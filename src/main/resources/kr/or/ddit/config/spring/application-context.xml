@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 자식컨테이너 : DispatcherServlet에 의해 생성 -->
+	<!-- . controller와 관련된 스프링 빈을 등록 -->
+	<context:component-scan
+		base-package="kr.or.ddit" use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+
+	</context:component-scan>
+	<!-- @ReqeustMapping 어노테이션을 처리 -->
+	<!-- FormattinConversionService 등록 -->
+	<!-- RequestmappingHandlerMapping -->
+	<!-- RequestmappingHandlerAdapter -->
+	<mvc:annotation-driven />
+
+
+	<!-- view Resolver 우선순위 order 필드 값이 낮을수록 우선순위가 높다 -->
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="order" value="0" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+
+
+	<bean name="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>classpath:/kr/or/ddit/config/tiles/tiles-definition.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
+
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+	</bean>
+	<!-- 파일 다운로드 뷰 관련 빈 생성 -->
+	<bean id="fd" class="kr.or.ddit.view.FileDownloadView"></bean>
+	<!-- 엑셀 다운로드 뷰 관련 빈 생성 -->
+	<bean id="userExcelDownloadView"
+		class="kr.or.ddit.view.ExcelDownloadView"></bean>
+
+	<!-- view resolver 등록 (여러개 하는 것인 가능) -->
+	<!-- jsp ==> InternalResourceViewResolver -->
+
+	<!-- prefix + view name + suffix -->
+	<!-- /WEB-INF/views/hello.jsp -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- 스프링이 처리하지 못하는 요청에 대해 서버에 설정이 되어있는 default 서블릿으로 요청을 위임 -->
+	<mvc:default-servlet-handler />
+
+
+	<!-- 파일 업로드를 위한 빈 생성 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
+
+</beans>

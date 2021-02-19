@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- <bean id="aspect" class="kr.or.ddit.aop.Aspect"></bean> -->
+
+	<!-- kr.or.ddit 패키지 하위의 service라는 이름은 가진 패키지에 속한 -->
+	<!-- 모든 클래스를 메소드에 대해 공통 관심사항을 적용 -->
+	<!-- 메소드 : 접근제어(public 생략), 반환타입, (패키지명.클래스명.)메소드이름(메소드인자) -->
+	<!-- <aop:config> <aop:pointcut expression="execution(* kr.or.ddit..service.*.*(..))" 
+		id="servicePointCut" /> <aop:aspect ref="aspect"> <aop:before method="beforeMethod" 
+		pointcut-ref="servicePointCut" /> <aop:around method="aroundMethod" pointcut-ref="servicePointCut" 
+		/> </aop:aspect> </aop:config> -->
+
+
+	<!-- xml ==> 어노테이션 -->
+	<context:component-scan
+		base-package="kr.or.ddit" use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.aspectj.lang.annotation.Aspect" />
+	</context:component-scan>
+
+	<!-- 위 주석처리한 것을 한번에 처리 -->
+	<aop:aspectj-autoproxy />
+
+
+</beans>

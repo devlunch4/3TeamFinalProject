@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- model과 관련된 @Service, @repository 어노테이션만 스캔하도록 수정 -->
+	<!-- use-default-filters="false" == 기본설정 삭제 -->
+	<context:component-scan
+		base-package="kr.or.ddit" use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+
+
+	<!-- msg 등록 bean 이름은 정해져있다.(messageSource) -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- error까지 적으면 이하 ko/en/ja 모두 인식 -->
+				<value>classpath:/kr/or/ddit/msg/error/error</value>
+				<value>classpath:/kr/or/ddit/msg/msg/msg</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

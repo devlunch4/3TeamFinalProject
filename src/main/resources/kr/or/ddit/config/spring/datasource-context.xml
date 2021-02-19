@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- 1.Datasource -->
+	<!-- 2.SqlSessionFactioryBean -->
+	<!-- 3.sqlSessionTemplate -->
+
+	<!-- BasicDataSource bs = new BasicDataSource(); bs.setDriverClassName("oracle.jdbc.driver.OracleDriver"); 
+		bs.setUrl("jdbc:oracle:thin:@localhost:1521:xe"); bs.setUsername("PC20"); 
+		bs.setPassword("java"); bs.setInitialSize(20); -->
+
+
+	<context:property-placeholder
+		location="classpath:/kr/or/ddit/config/db/dbinfo.properties" />
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="3" />
+	</bean>
+
+	<!-- Class 이름 class 이름 -->
+	<!-- FactoryBean인터페이스를 구현한 클래스를 스프링 빈으로 등록할 경우 FactoryBean 인터페이스의 getObject 
+		메소드가 리턴하는 객체를 스프링 빈으로 등록한다. -->
+	<!-- sqlSeccionFactory 스프링 빈은 SqlSessionFactoryBean 타입이 아니라 SqlSeccionFacory 
+		타입이다. -->
+
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:/kr/or/ddit/config/mybatis/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+	</bean>
+
+</beans>

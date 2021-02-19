@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- userDao, userService -->
+	<!-- bean : 스프링 빈을 선언할 떄 사용 -->
+	<!-- id : 스프링 컨테이너에서 관리할때 사용할 스프링 빈의 이름 - 중복이 되면 안된다 -->
+	<!-- class : 해당 스프링 빈을 생성하기 위한 구현체 클래스 full name -->
+
+	<!-- userDao 스프링 빈 선언 -->
+	<!-- userDaoImpl userDao = new userDaoImpl(); -->
+	<bean id="userDao" class="kr.or.ddit.user.repository.UserDaoImpl">
+	</bean>
+
+	<!-- userService 스프링 빈 선언 -->
+	<!-- userService userService = new userServiceImpl(); -->
+	<!-- userService.getUser("brown"); ==> ?????에러 (getter/setter not in is 
+		nullpoint >> so need getter/setter) -->
+	<!-- property == field, setter -->
+	<!-- >>>>>>>> value : 문자열, 숫자 -->
+	<!-- >>>>>>>> ref : 다른 스프링 빈. 주입 받고 싶은 스프링 빈 이름을 기술 -->
+	<!-- property 엘레멘트를 이용하여 다른 스프링 빈을 (DI-Dependency injection) 주입 -->
+
+	<!-- setter 주입 -->
+	<!-- userService userService = new userServiceImpl(); -->
+	<!-- userService.getUser("brown"); -->
+	<bean id="userService"
+		class="kr.or.ddit.user.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<!-- 생성자 주입 -->
+	<bean id="userServiceCons"
+		class="kr.or.ddit.user.service.UserServiceImpl">
+		<constructor-arg ref="userDao"></constructor-arg>
+	</bean>
+
+	<!-- prototype : 해당 빈을 dl,di 할때 마다 매번 새롭게 만든 객체를 반환 -->
+	<bean id="userServicePrototype"
+		class="kr.or.ddit.user.service.UserServiceImpl" scope="prototype">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+
+	<!-- list, set, map컬렉션 객체를 스프링 빈으로 등록 -->
+	<bean id="collectionBean" class="kr.or.ddit.ioc.CollectionBean">
+
+		<!-- List list = new ArrayList(); -->
+		<property name="list">
+			<list>
+				<value>brown</value>
+				<value>sally</value>
+				<value>cony</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="userid" value="brown" />
+				<entry key="usernm" value="브라운" />
+			</map>
+		</property>
+		<property name="set">
+			<set>
+				<value>brown</value>
+				<value>sally</value>
+				<value>cony</value>
+			</set>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="userid">
+					brown
+				</prop>
+				<prop key="usernm">
+					브라운
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- properties 파일의 값을 스프링 빈의 값으로 주입하기 -->
+	<!-- property-placeholder 는 설정한 파일의 값만 로딩하는 것이아니라 os의 환경변수도 같이 로딩한다 dbinfo.properties에 
+		선언한 username 속성은 os의 사용자 이름에 해당하는 환경변수와 겹친다. -->
+
+	<!-- property-placeholder의 system-properties-mode 속성을 "NEVER"로 설정한 경우 -->
+	<!-- property는 로딩하지 않고 location에 지정한 파일에서만 속성을 로딩한다 -->
+	<!-- <context:property-placeholder location="classpath:/kr/or/ddit/config/db/dbinfo.properties" 
+		system-properties-mode="NEVER" /> -->
+	<context:property-placeholder
+		location="classpath:/kr/or/ddit/config/db/dbinfo.properties" />
+	<bean id="dbConfig" class="kr.or.ddit.ioc.DbConfig">
+		<property name="driverClassName"
+			value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+</beans>

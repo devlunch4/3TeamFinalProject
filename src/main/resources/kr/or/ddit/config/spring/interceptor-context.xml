@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- interceptor 설정은 filter 설정과 유사 특정 인터셉터를 -->
+	<!-- 어떤 url 매핑을 할지 설정 filter와는 다르게 url 매칭이 유연함 -->
+
+	<!-- ** : 복수개의 path 세그먼트 -->
+	<!-- /user/regist -->
+	<!-- /user/regist/view -->
+
+	<!-- * : 하나 또는 0의 path 세그먼트 -->
+	<!-- /user/* ==> /user/regist,/user/modify -->
+
+	<!-- ? : 문자 하나를 의미 -->
+
+	<!-- bean 설정의 경우 inline view 의미로. 해당 interceptor에서만 사용함. -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="kr.or.ddit.interceptor.PerformanceCheckInterceptor"></bean>
+		</mvc:interceptor>
+
+		<!-- 세션 체크 인터셉터 -->
+		<!-- if (uri.endsWith("login.jsp") || uri.endsWith("loginController") ||uri.contains("/css/") 
+			|| uri.contains("/js/") || uri.contains("/image/") -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/login/view" />
+			<mvc:exclude-mapping path="/login/process" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/image/**" />
+			<bean class="kr.or.ddit.interceptor.SessionCheckInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang"></property>
+		</bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+
+	<!-- Locale Resolver (사용자의 locale 정보를 판단) -->
+	<!-- SessionLocaleResolver (!!주로사용) : 사용자가 선택한 locale 정보를 사용자의 session 영역에 
+		저장 -->
+	<!-- locale Resolver 스프링 등록시 주의사항 : 스프링에서는 항상 스프링 빈의 이름이 localeResolver인 
+		빈을 참조(대소문자구분) -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean> 
+
+
+</beans>
