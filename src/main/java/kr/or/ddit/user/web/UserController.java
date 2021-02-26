@@ -45,6 +45,10 @@ public class UserController {
 	// 메인 가기
 	@RequestMapping("main") // 모든 사용자 정보 조회
 	public String main(Model model) {
+		
+		
+		
+		
 		return "tiles.main.main";
 	}
 

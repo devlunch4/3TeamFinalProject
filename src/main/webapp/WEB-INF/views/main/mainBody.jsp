@@ -4,6 +4,11 @@
 
 <main>
     <div class="container-fluid">
+    
+    	
+    	
+    
+    
         <p>똑똑한 농부들</p>
         <div class="row">
             <div class="col-xl-6">
