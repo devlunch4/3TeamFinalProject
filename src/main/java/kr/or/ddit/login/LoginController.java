@@ -32,6 +32,13 @@ public class LoginController {
 		logger.debug("iNN login controller >> view");
 		return "login";
 	}
+	
+	
+	@RequestMapping(path = "view2", method = { RequestMethod.GET })
+	public String view2() {
+		logger.debug("iNN login controller >> view");
+		return "tiles.fdata.index";
+	}
 
 	// String userid = req.getParameter("userid");
 	// String pass = req.getParameter("pass");
