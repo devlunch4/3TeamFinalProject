@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
 <main>
+	
     <div class="container-fluid">
     
         <p>영농일지</p>
@@ -19,10 +20,10 @@
                     <div class="card-body">
                     	
                     	<!-- 품목 선택 해서 조회하는 부분 -->
-                    	<form action="#" method="post">
+                    	<form action="${pageContext.request.contextPath }/fsurpport/searchAllFsurpportList" method="post">
                     		
-	                    	<input type="date" name="">
-	                    	<input type="date" name="">
+	                    	<input type="date" name="startDate" value="" >
+	                    	<input type="date" name="endDate" value="" >
 	                    	<br>
                     		
                     		<label>*품목</label>
@@ -30,12 +31,18 @@
                     		
                     		<br>
                     		
-                    		<select>
-                    			<option>전체</option>
+                    		<select name="item_code">
+                    			<option  value="">전체</option>
+                    			<c:forEach items="${itemsList }" var="itemsList">
+                    				<option  value="${itemsList.item_code }">${itemsList.item_nm }</option>
+                    			</c:forEach>
                     		</select>
                     		
-                    		<select>
-                    			<option>전체</option>
+                    		<select name="wstep_code" >
+                    			<option value="">전체</option>
+                    			<c:forEach items="${workstepsList }" var="workstepsList">
+                    				<option  value="${workstepsList.wstep_code }">${workstepsList.wstep_nm }</option>
+                    			</c:forEach>
                     		</select>
                     		
                     		<br>
@@ -50,20 +57,23 @@
                     	<table border="1" style="padding: 100px;" >
                     		<tr><th>사진</th><th>일자</th><th>품목</th><th>작업단계</th></tr>
                     		
-                    		<tr>
                     			<c:choose>
-	                    			<c:when test="${ fsupportList != null }">
-	                    				<td><img src="" ></td>
-	                    				<td><fmt:formatDate value="${fsupportList.reg_dt }" pattern="yyyy.MM.dd" /></td>
-	                    				<td>1</td>
-	                    				<td>1</td>
+                    				
+	                    			<c:when test="${farmdiaryList != null }">
+	                    				<c:forEach items="${farmdiaryList }" var="farmdiaryList">
+	                    					<tr >
+			                    				<td><img src="${farmdiaryList.file2 }" ></td>
+			                    				<td><fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" /></td>
+			                    				<td>${farmdiaryList.item_code }</td>
+			                    				<td>${farmdiaryList.wstep_code }</td>
+	                    					</tr>
+		                    			</c:forEach>
 		                    		</c:when>
 		                    		
 		                    		<c:otherwise>
-		                    			<td>1</td><td>1</td><td>1</td><td>1</td>
+		                    			<tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
 		                    		</c:otherwise>
                     			</c:choose>
-	                    	</tr>
 	                    	
                     	</table>
                     	
