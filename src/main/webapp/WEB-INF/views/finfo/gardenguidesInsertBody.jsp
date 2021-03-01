@@ -6,8 +6,8 @@
 
 <main>
 	<div class="container-fluid">
-		<h3 class="mt-4">텃밭가이드(재배정보)</h3>
-		<button type="button" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'" class=" btn btn-outline-dark m-1">텃밭가이드 등록</button>
+		<h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
+		
 		<div class="row">
 			<div class="card mt-2 col-sm-12">
 				<div class="card-body text-left p-1">
@@ -29,12 +29,6 @@
 				</div>
 				<div class="card-body text-left p-1">
 					<span class="">품명</span> <br>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양배추</button>
-					<button type="button" onclick="#" class=" btn btn-primary m-1">양상추</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양파</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">오이</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">옥수수</button>
 				</div>
 			</div>
 
