@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class testController {
 
 	//테스트 - 부트스트랩 잘 열리는지 컨트롤러
-	@RequestMapping("test404")
-	public String test404() {
-		return "tiles.bootstrap_view.404";
-	}
-	
 	@RequestMapping("testCharts")
 	public String testCharts() {
 		return "tiles.bootstrap_view.charts";
@@ -32,5 +27,12 @@ public class testController {
 	public String testtables() {
 		return "tiles.bootstrap_view.tables";
 	}
+	
+	@RequestMapping("testRegist")
+	public String testRegister() {
+		return "bootstrap_view/register";
+	}
+	
+	
 	
 }
