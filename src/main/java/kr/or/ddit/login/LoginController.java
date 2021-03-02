@@ -67,7 +67,7 @@ public class LoginController {
 		} else {
 			// 로그인 실패시
 			// session.setAttribute("msg", "잘못된 사용자 정보입니다.");
-
+			
 			// 내부적으로 session 사용하여 속성을 저장
 			// 리다이렉트 처리가 완료되면 스프링 프레임워크에서 자동으로 session에서 제거
 			ra.addFlashAttribute("msg", "잘못된 사용자 정보입니다.");
@@ -77,7 +77,7 @@ public class LoginController {
 			return "redirect:/login/view";
 		}
 	}
-
+	
 	// 로그아웃
 	@RequestMapping("logout") // 모든 사용자 정보 조회
 	public String logout(Model model, HttpServletRequest req, HttpServletResponse resp, HttpSession session) {

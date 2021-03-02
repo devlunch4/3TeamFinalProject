@@ -22,14 +22,14 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">로그인</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action="${pageContext.request.contextPath}/user/login2">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputId">아이디</label>
-                                                <input class="form-control py-4" id="inputId" type="email" placeholder="아이디를 입력하세요." />
+                                                <input class="form-control py-4" id="userid"  placeholder="아이디를 입력하세요." />
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">비밀번호</label>
-                                                <input class="form-control py-4" id="inputPassword" type="password" placeholder="비밀번호를 입력하세요." />
+                                                <input class="form-control py-4" id="userpw" type="password" placeholder="비밀번호를 입력하세요." />
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox">
@@ -39,7 +39,8 @@
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.html">비밀번호를 잊어버리셨나요?</a>
-                                                <a class="btn btn-primary" href="index.html">로그인</a>
+<%--                                                 <a class="btn btn-primary" href="${pageContext.request.contextPath}/user/loginController">로그인</a> --%>
+                                                <button class="btn btn-primary" type="submit">로그인</button>
                                             </div>
                                         </form>
                                     </div>

@@ -1,90 +1,27 @@
 package kr.or.ddit.user.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-
+// UserVo 생성 02-27 10시16분 (경찬)
 public class UserVo {
 
-	@Size(min = 5)
-	private String userid;
+	public String userid; // 유저아이디
+	public String usernm; // 유저이름
+	public String userpw; // 패스워드
+	public String addr1; // 주소
+	public String addr2; // 상세주소
+	public String zip; // 우편번호
+	public String phone; // 전화번호
+	public Date reg_dt; // 가입일
+	public String file1; // 파일명
+	public String file2; // 파일경로
+	public int loginfallcnt; // 로그인 실패수
+	public Date logout_dt; // 로그아웃 시간
+	public int active; // 활성
 
-	private String usernm;
-	private String pass;
-	private String alias;
-	private String addr1;
-	private String addr2;
-	private String zipcode;
-	private String filename;
-	private String realfilename;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date reg_dt;
-	// private String reg_dt;
-
-//	public void setReg_dt(String reg_dt) {
-//		this.reg_dt = reg_dt;
-//	}
-//
-//	public String getReg_dt() {
-//		return reg_dt;
-//	}
-
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
-	private Date hire_dt;
-	// 1,000
-	@NumberFormat(pattern = "#,###")
-	private int price;
-
-//	private int age;
-//
-//	public int getAge() {
-//		return age;
-//	}
-//
-//	public void setAge(int age) {
-//		this.age = age;
-//	}
-
-	public int getPrice() {
-		return price;
+	public void UserVo() {
 	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	// 기본 생성자 (사용할 생성자 활용시 선언 필수!)
-	public UserVo() {
-	}
-
-	// 사용할 생성자
-	public UserVo(String userid, String usernm, String pass) {
-		setUserid(userid);
-		setUsernm(usernm);
-		setPass(pass);
-	}
-
-	// 테스트용 사용할 생성자 사용되는 모든 생성자
-	public UserVo(String userid, String usernm, String pass, Date reg_dt, String alias, String addr1, String addr2,
-			String zipcode, String filename, String realfilename) {
-		this.userid = userid;
-		this.usernm = usernm;
-		this.pass = pass;
-		this.reg_dt = reg_dt;
-		this.alias = alias;
-		this.addr1 = addr1;
-		this.addr2 = addr2;
-		this.zipcode = zipcode;
-		this.filename = filename;
-		this.realfilename = realfilename;
-
-	}
-
+	
 	public String getUserid() {
 		return userid;
 	}
@@ -101,20 +38,12 @@ public class UserVo {
 		this.usernm = usernm;
 	}
 
-	public String getPass() {
-		return pass;
+	public String getUserpw() {
+		return userpw;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
-	public String getAlias() {
-		return alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
+	public void setUserpw(String userpw) {
+		this.userpw = userpw;
 	}
 
 	public String getAddr1() {
@@ -133,55 +62,76 @@ public class UserVo {
 		this.addr2 = addr2;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public String getZip() {
+		return zip;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 
-	public String getFilename() {
-		return filename;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public String getRealfilename() {
-		return realfilename;
-	}
-
-	public void setRealfilename(String realfilename) {
-		this.realfilename = realfilename;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Date getReg_dt() {
 		return reg_dt;
 	}
 
-	public String getReg_dt_fmt() {
-		return new SimpleDateFormat("yyyy-MM-dd").format(reg_dt);
-	}
-
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}
 
-	public Date getHire_dt() {
-		return hire_dt;
+	public String getFile1() {
+		return file1;
 	}
 
-	public void setHire_dt(Date hire_dt) {
-		this.hire_dt = hire_dt;
+	public void setFile1(String file1) {
+		this.file1 = file1;
+	}
+
+	public String getFile2() {
+		return file2;
+	}
+
+	public void setFile2(String file2) {
+		this.file2 = file2;
+	}
+
+	public int getLoginfallcnt() {
+		return loginfallcnt;
+	}
+
+	public void setLoginfallcnt(int loginfallcnt) {
+		this.loginfallcnt = loginfallcnt;
+	}
+
+	public Date getLogout_dt() {
+		return logout_dt;
+	}
+
+	public void setLogout_dt(Date logout_dt) {
+		this.logout_dt = logout_dt;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
 	}
 
 	@Override
 	public String toString() {
-		return "UserVo [userid=" + userid + ", usernm=" + usernm + ", pass=" + pass + ", alias=" + alias + ", addr1="
-				+ addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", filename=" + filename + ", realfilename="
-				+ realfilename + ", reg_dt=" + reg_dt + ", hire_dt=" + hire_dt + ", price=" + price + "]";
+		return "UserVo [userid=" + userid + ", usernm=" + usernm + ", userpw=" + userpw + ", addr1=" + addr1
+				+ ", addr2=" + addr2 + ", zip=" + zip + ", phone=" + phone + ", reg_dt=" + reg_dt + ", file1=" + file1
+				+ ", file2=" + file2 + ", loginfallcnt=" + loginfallcnt + ", logout_dt=" + logout_dt + ", active="
+				+ active + "]";
 	}
 
 }

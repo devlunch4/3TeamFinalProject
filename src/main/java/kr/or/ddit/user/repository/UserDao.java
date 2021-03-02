@@ -30,7 +30,7 @@ public class UserDao implements UserDaoImpl {
 	public UserVo selectUser(String userid) {
 		return tempplate.selectOne("users.selectUser", userid);
 	}
-
+	
 	// 전체 사용자 정보 조회
 	@Override
 	public List<UserVo> selectAllUser() {
