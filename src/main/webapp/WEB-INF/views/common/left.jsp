@@ -47,7 +47,7 @@
             </a>
             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-sidenav-light.html">영농일지</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath }/fsurpport/main">영농일지</a>
                     <a class="nav-link" href="layout-sidenav-light.html">시설관리</a>
                 </nav>
                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">

@@ -1,8 +1,10 @@
 package kr.or.ddit.farm.model;
 
+
 public class ItemsVo {//품목테이블Vo
 	
 	private int category_code;
+
 	private int item_code;
 	private String item_nm;
 	
@@ -24,9 +26,11 @@ public class ItemsVo {//품목테이블Vo
 	public void setItem_nm(String item_nm) {
 		this.item_nm = item_nm;
 	}
+
 	@Override
 	public String toString() {
 		return "ItemsVo [category_code=" + category_code + ", item_code=" + item_code + ", item_nm=" + item_nm + "]";
 	}
+
 	
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<!-- 바로 밑에 appender는 consoleLog꺼다. -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+	
+	
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>d:\log\test.log</file>
+		<encoder>
+			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+		</encoder>
+	</appender>	
+
+
+	<!-- 
+		logger는 패키지 계층 구조로 얻어온다.
+		LoggerFZactory.getLogger(BasicServlet.class)
+		BasicServlet.class는 kr.or.ddit.servlet.basic 패키지에 속한다.
+		패키지의 계층 구조와 일치하는 로거 이름이 있는지 찾아
+		해당 로거를 사용하게 된다.
+	-->
+	
+	
+	
+	<!-- log가 매칭되지 않을때 가장 기본적으로 찍는거다. 모든 log를 찍는거다. -->
+	
+	<logger name="kr.or.ddit" level="debug">
+		<appender-ref ref="STDOUT"/>
+	</logger>
+<!-- 	<logger name="kr.or.ddit" level="debug">
+		<appender-ref ref="STDOUT"/>
+	</logger> -->
+	
+	<!-- 
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+  </root>
+   -->
+  
+</configuration>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fsurpports">
+	
+	<!-- 일지 조회. -->
+	<select id="selectAllFsurpportList" resultType="farmdiaryVo">
+		select *
+		from farmdiary
+		order by reg_dt
+	</select>
+	
+	<!-- 작업단계 조회. -->
+	<select id="selectAllWorkstepsList" resultType="workstepsVo">
+		select *
+		from worksteps
+		order by wstep_code
+	</select>
+	
+	<!-- 품목 조회. -->
+	<select id="selectAllItemsList" resultType="itemsVo">
+		select *
+		from items
+		order by category_code
+	</select>
+	
+	<!-- 날짜 기준으로 검색 -->
+	<select id="searchAllFsurpportList" parameterType="farmdiaryVo" resultType="farmdiaryVo">
+		select *
+		from farmdiary
+		where reg_dt &gt;= TO_DATE(#{startDate }, 'YYYY-MM-DD')
+		and reg_dt &lt;= TO_DATE(#{endDate }, 'YYYY-MM-DD')
+		or item_code = #{item_code }
+		or wstep_code = #{wstep_code }
+	</select>
+
+
+	
+	
+
+</mapper>
+
