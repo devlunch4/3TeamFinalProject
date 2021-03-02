@@ -13,11 +13,14 @@
 			alias="pageVo" />
 		<typeAlias type="kr.or.ddit.common.model.PageVoSearch"
 			alias="pageVoSearch" />
+		<typeAlias type="kr.or.ddit.farm.model.ItemsVo"
+			alias="ItemsVo" />	
 	</typeAliases>
 
 
 	<mappers>
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/items.xml" />
 	</mappers>
 
 </configuration>

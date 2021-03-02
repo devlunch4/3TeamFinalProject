@@ -15,9 +15,9 @@
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">시세분석</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">품목별 비율</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">인기농작물</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/user/main">시세분석</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/fdata/ratio">품목별 비율</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/fdata/popularity">인기농작물</a>
                 </nav>
             </div>
             
