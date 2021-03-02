@@ -24,6 +24,7 @@ public class FsurpportDaoImpl implements FsurpportDao{
 	// ggy_20210227 : 등록된 영농일지 조회
 	@Override
 	public List<FarmdiaryVo> selectAllFsurpportList() {
+		logger.debug("in selectAllFsurpportList()");
 		return template.selectList("fsurpports.selectAllFsurpportList");
 	}
 	

@@ -60,23 +60,25 @@ public class LoginController {
 		UserVo dbUser = userService.selectUser(userVo.getUserid());
 
 		// logger.debug("{} / {}",dbUser.getPass(),userVo.getPass());
-		if (dbUser != null && userVo.getPass().equals(dbUser.getPass())) {
+		//
+		//if (dbUser != null && userVo.getPass().equals(dbUser.getPass())) {
 			// 로그인 성공시
 			// 세션 내장객체 호출
-			session.setAttribute("S_USER", dbUser);
-			return "main";
-		} else {
-			// 로그인 실패시
-			// session.setAttribute("msg", "잘못된 사용자 정보입니다.");
-			
-			// 내부적으로 session 사용하여 속성을 저장
-			// 리다이렉트 처리가 완료되면 스프링 프레임워크에서 자동으로 session에서 제거
-			ra.addFlashAttribute("msg", "잘못된 사용자 정보입니다.");
-			// 일반 속성을 추가한경우: addAttribute
-			// 리다이렉트 페이지의 파라미터로 전달된
-			ra.addAttribute("userid", userVo.getUserid());
-			return "redirect:/login/view";
-		}
+//			session.setAttribute("S_USER", dbUser);
+//			return "main";
+//		} else {
+//			// 로그인 실패시
+//			// session.setAttribute("msg", "잘못된 사용자 정보입니다.");
+//			
+//			// 내부적으로 session 사용하여 속성을 저장
+//			// 리다이렉트 처리가 완료되면 스프링 프레임워크에서 자동으로 session에서 제거
+//			ra.addFlashAttribute("msg", "잘못된 사용자 정보입니다.");
+//			// 일반 속성을 추가한경우: addAttribute
+//			// 리다이렉트 페이지의 파라미터로 전달된
+//			ra.addAttribute("userid", userVo.getUserid());
+//			return "redirect:/login/view";
+//		}
+		return "";
 	}
 	
 
