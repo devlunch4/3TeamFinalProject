@@ -4,11 +4,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main>
+
+
 	<div class="container-fluid">
 		<h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
 		<br>
 
 		<form>
+		<!-- 글쓰기 summernote-->
+			 <textarea id="summernote" name="summernote"></textarea>
+			<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello SUMMERNOTE',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+    </script> 
+
+
 			<div class="form-group">
 				<label class="small mb-1" for="input_cls_code">분류명</label> <input
 					class="form-control py-4" id="input_cls_code" name="input_cls_code"
@@ -22,7 +44,8 @@
 			<div class="form-group">
 				<label class="small mb-1" for="input_difficulty">난이도(숫자)</label> <input
 					class="form-control py-4" id="input_difficulty"
-					name="input_difficulty" type="number" placeholder="난이도 입력(숫자) ex)2" required="required">
+					name="input_difficulty" type="number" placeholder="난이도 입력(숫자) ex)2"
+					required="required">
 			</div>
 			<div class="form-group">
 				<label class="small mb-1" for="input_plant_prd">재배시기</label> <input
@@ -33,10 +56,11 @@
 			<div class="form-group">
 				<label class="small mb-1" for="input_plant_prd">재배시기</label> <input
 					class="form-control py-4" id="input_plant_prd"
-					name="input_plant_prd" type="text" placeholder="재배기간 입력 ex)3개월" required="required">
+					name="input_plant_prd" type="text" placeholder="재배기간 입력 ex)3개월"
+					required="required">
 			</div>
 
-<a class="btn btn-primary" href="index.html">등록</a>
+			<a class="btn btn-primary" href="index.html">등록</a>
 		</form>
 
 
