@@ -62,15 +62,89 @@
 								>
 							</div>
 
-							<table class="table table-bordered col-sx-12" >
-								<tr>
-									<td >분류1</td>
-									<td >국화과1</td>
-									<td >국화과1</td>
-									<td >국화과1</td>
-								</tr>
-							</table>
+							<table border="1" style="padding: 100px;" class="table table-bordered col-sx-12" >
+                    		<tr><th>사진</th><th>일자</th><th>품목</th><th>작업단계</th></tr>
+                    		
+                    			<c:choose>
+                    				
+	                    			<c:when test="${farmdiaryList != null }">
+	                    				<c:forEach items="${farmdiaryList }" var="farmdiaryList">
+	                    					<tr >
+			                    				<td><img src="#" ></td>
+			                    				<td><fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" /></td>
+			                    				<td>${farmdiaryList.item_code }</td>
+			                    				<td>${farmdiaryList.wstep_code }</td>
+	                    					</tr>
+		                    			</c:forEach>
+		                    		</c:when>
+		                    		
+		                    		<c:otherwise>
+		                    			<tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+		                    		</c:otherwise>
+                    			</c:choose>
+	                    	
+                    	</table>
 							
+							<!-- 페이징 번호 부분 -->
+							<ul class="pagination justify-content-center m-0">
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/fsurpport/main?page=1&pageSize=${pageVo.pageSize}"><i
+										class="fas fa-angle-double-left"></i></a></li>
+								<c:choose>
+									<c:when test="${pageVo.page > 1 }">
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/fsurpport/main?page=${pageVo.page-1 }&pageSize=${pageVo.pageSize}"><i
+												class="fas fa-angle-left"></i></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link" href="#"><i
+												class="fas fa-angle-left"></i></a></li>
+									</c:otherwise>
+
+								</c:choose>
+								<%-- 번호 시작 --%>
+								<c:choose>
+
+									<c:when test="${pagination > 0 }">
+										<c:forEach begin="1" end="${pagination }" var="i">
+											<c:choose>
+												<c:when test="${pageVo.page == i }">
+													<li class="page-item active"><a class="page-link"
+														href="#">${i }</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a class="page-link"
+														href="${pageContext.request.contextPath}/fsurpport/main?page=${i }&pageSize=${pageVo.pageSize}">${i }</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:when>
+
+									<c:otherwise>
+										<li class="page-item active"><a class="page-link"
+											href="#">1</a></li>
+									</c:otherwise>
+								</c:choose>
+
+								<c:choose>
+									<c:when test="${pageVo.page == pagination}">
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/fsurpport/main?page=${pagination }&pageSize=${pageVo.pageSize}"><i
+												class="fas fa-angle-right"></i></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/fsurpport/main?page=${pageVo.page+1 }&pageSize=${pageVo.pageSize}"><i
+												class="fas fa-angle-right"></i></a></li>
+									</c:otherwise>
+								</c:choose>
+
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/fsurpport/main?page=${pagination }&pageSize=${pageVo.pageSize}"><i
+										class="fas fa-angle-double-right"></i></a></li>
+
+							</ul>
+
 						</div>
 					</div>
 				</div>

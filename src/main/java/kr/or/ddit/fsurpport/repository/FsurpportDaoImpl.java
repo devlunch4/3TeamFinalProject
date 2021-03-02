@@ -9,9 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.farm.model.ItemsVo;
-import kr.or.ddit.farm.model.WorkstepsVo;
 
 @Repository("fsurpportDao")
 public class FsurpportDaoImpl implements FsurpportDao{
@@ -21,28 +20,19 @@ public class FsurpportDaoImpl implements FsurpportDao{
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate template;
 	
-	// ggy_20210227 : 등록된 영농일지 조회
+	
+	// ggy_20210302 : 등록된 영농일지 전체 리스트 겟수 조회
 	@Override
-	public List<FarmdiaryVo> selectAllFsurpportList() {
-		logger.debug("in selectAllFsurpportList()");
-		return template.selectList("fsurpports.selectAllFsurpportList");
+	public int selectAllFsurpportListCnt() {
+		return template.selectOne("fsurpports.selectAllFsurpportListCnt");
 	}
 	
-	// ggy_20210227 : 등록된 작업단계 조회
+	// ggy_20210302 : 등록된 영농일치 리스트 조회
 	@Override
-	public List<WorkstepsVo> selectAllWorkstepsList() {
-		return template.selectList("fsurpports.selectAllWorkstepsList");
+	public List<FarmdiaryVo> selectPagingFarmdiary(PageVo pageVo) {
+		return template.selectList("fsurpports.selectPagingFarmdiary", pageVo);
 	}
 	
-	// ggy_20210227 : 등록된 품목 조회
-	@Override
-	public List<ItemsVo> selectAllItemsList() {
-		return template.selectList("fsurpports.selectAllItemsList");
-	}
 
-	@Override
-	public List<FarmdiaryVo> searchAllFsurpportList(FarmdiaryVo farmdiaryVo) {
-		return template.selectList("fsurpports.searchAllFsurpportList", farmdiaryVo);
-	}
 	
 }
