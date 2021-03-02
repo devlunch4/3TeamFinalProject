@@ -218,12 +218,12 @@ public class UserController {
 			}
 		}
 
-		userVo.setFilename(originalFileName);
-		if (realFileName.equals("")) {
-			userVo.setRealfilename(dbUser.getRealfilename());
-		} else {
-			userVo.setRealfilename("d:\\upload\\" + realFileName);
-		}
+//		userVo.setFilename(originalFileName);
+//		if (realFileName.equals("")) {
+//			userVo.setRealfilename(dbUser.getRealfilename());
+//		} else {
+//			userVo.setRealfilename("d:\\upload\\" + realFileName);
+//		}
 		// file 컬럼 2부분 설정 / 날짜 부분 재설정
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
@@ -300,12 +300,12 @@ public class UserController {
 		}
 
 		// 신규 등록에 따른 파일/날짜 컬럼 값 설정
-		userVo.setFilename(originalFileName);
-		if (realFileName.equals("")) {
-			userVo.setRealfilename(realFileName);
-		} else {
-			userVo.setRealfilename("d:\\upload\\" + realFileName);
-		}
+//		userVo.setFilename(originalFileName);
+//		if (realFileName.equals("")) {
+//			userVo.setRealfilename(realFileName);
+//		} else {
+//			userVo.setRealfilename("d:\\upload\\" + realFileName);
+//		}
 		userVo.setReg_dt(new Date());
 		// 등록 sql 시행
 		int insertCnt = userService.insertUser(userVo);
@@ -381,42 +381,42 @@ public class UserController {
 	}
 
 	// localhost/user/profile
-	@RequestMapping("profile")
-	public void profile(HttpServletResponse resp, String userid, HttpServletRequest req) {
-		resp.setContentType("image");
+//	@RequestMapping("profile")
+//	public void profile(HttpServletResponse resp, String userid, HttpServletRequest req) {
+//		resp.setContentType("image");
+//
+//		// userid 파라미터를 이용하여
+//		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
+//		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+//
+//		UserVo userVo = userService.selectUser(userid);
 
-		// userid 파라미터를 이용하여
-		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
-		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+//		String path = "";
+//		if (userVo.getRealfilename() == null) {
+//			path = req.getServletContext().getRealPath("/image/unknown.png");
+//		} else {
+//			path = userVo.getRealfilename();
+//		}
 
-		UserVo userVo = userService.selectUser(userid);
+//		logger.debug("path : {} ", path);
 
-		String path = "";
-		if (userVo.getRealfilename() == null) {
-			path = req.getServletContext().getRealPath("/image/unknown.png");
-		} else {
-			path = userVo.getRealfilename();
-		}
-
-		logger.debug("path : {} ", path);
-
-		try {
-			FileInputStream fis = new FileInputStream(path);
-			ServletOutputStream sos = resp.getOutputStream();
-
-			byte[] buff = new byte[512];
-
-			while (fis.read(buff) != -1) {
-				sos.write(buff);
-			}
-
-			fis.close();
-			sos.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//		try {
+//			FileInputStream fis = new FileInputStream(path);
+//			ServletOutputStream sos = resp.getOutputStream();
+//
+//			byte[] buff = new byte[512];
+//
+//			while (fis.read(buff) != -1) {
+//				sos.write(buff);
+//			}
+//
+//			fis.close();
+//			sos.close();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	@RequestMapping("profileDownload")
 	public void profileDownload(String userid, HttpServletRequest req, HttpServletResponse resp) {
@@ -425,13 +425,13 @@ public class UserController {
 
 		String path = "";
 		String filename = "";
-		if (userVo.getRealfilename() == null) {
-			path = req.getServletContext().getRealPath("/image/unknown.png");
-			filename = "unknown.png";
-		} else {
-			path = userVo.getRealfilename();
-			filename = userVo.getFilename();
-		}
+//		if (userVo.getRealfilename() == null) {
+//			path = req.getServletContext().getRealPath("/image/unknown.png");
+//			filename = "unknown.png";
+//		} else {
+//			path = userVo.getRealfilename();
+//			filename = userVo.getFilename();
+//		}
 
 		resp.setHeader("Content-Disposition", "attachment; filename=" + filename);
 
