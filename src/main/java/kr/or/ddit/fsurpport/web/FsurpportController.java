@@ -28,9 +28,9 @@ public class FsurpportController {
 	@RequestMapping("main")
 	public String main(Model model) {
 		
-		model.addAttribute("farmdiaryList",fsurpportService.selectAllFsurpportList());
-		model.addAttribute("workstepsList",fsurpportService.selectAllWorkstepsList());
-		model.addAttribute("itemsList",fsurpportService.selectAllItemsList());
+//		model.addAttribute("farmdiaryList",fsurpportService.selectAllFsurpportList());
+//		model.addAttribute("workstepsList",fsurpportService.selectAllWorkstepsList());
+//		model.addAttribute("itemsList",fsurpportService.selectAllItemsList());
 		
 		
 		return "tiles.fsurpport.fsurpportMain";
@@ -84,7 +84,19 @@ public class FsurpportController {
 		return "tiles.fsurpport.fsurpportMain";
 	}
 
+	// ggy_20210302 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
+	@RequestMapping("insertView")
+	public String insertView() {
+
+		return "tiles.fsurpport.fsurpportInsert";
+	}
 	
+	// ggy_20210302 : 농업지원-영농일지 내 일지 상세조회를 위한 진입페이지
+	@RequestMapping("infoView")
+	public String infoView() {
+		
+		return "tiles.fsurpport.fsurpportInfo";
+	}
 	
 	
 	
