@@ -18,9 +18,23 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">마이페이지</a>
+            
+            	<c:if test="${S_USER != null}">
+            	<form action="myPage">
+              	  <a class="dropdown-item" href="">마이페이지</a>
+                </form>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="login.html">로그아웃</a>
+                <form action="logOut">
+               	  <a class="dropdown-item" href="login.html">로그아웃</a>
+                </form>
+				</c:if>
+				
+				<c:if test="${S_USER == null}">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/user/login">로그인</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="">회원가입</a>
+				</c:if>
+				
             </div>
         </li>
     </ul>

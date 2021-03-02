@@ -9,17 +9,15 @@
 		SELECT *
 		FROM users users ORDER BY userid
 	</select>
-
-
+	
 	<select id="selectUser" resultType="userVo"
 		parameterType="String">
 		SELECT *
 		FROM
 		users
-		WHERE userid = #{value}
+		WHERE user_id = #{value}
 	</select>
-
-
+	
 	<select id="selectPagingUser" resultType="userVo"
 		parameterType="pageVo">
 		SELECT *
