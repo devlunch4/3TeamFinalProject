@@ -5,7 +5,7 @@
 
 <main>
 	<div class="container-fluid">
-		<h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
+		<h3 class="mt-4">영농일지</h3>
 		<br>
 
 		<form>

@@ -93,5 +93,14 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.fsurpportInfo";
 	}
+	
+	// ggy_20210302 : 농업지원-영농일지 내 일지 간편등록를 위한 진입페이지
+	@RequestMapping("simpleInsertView")
+	public String simpleInsertView() {
+		
+		return "tiles.fsurpport.fsurpportSimpleInsert";
+	}
+	
+	
 
 }
