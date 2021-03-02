@@ -19,14 +19,6 @@
         <script src="${pageContext.request.contextPath}/resources/src/js/all.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         
-        <!-- summer 노트 추가 -->
-        <!-- include libraries(jQuery, bootstrap) -->
-<!-- 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-		        
     </head>
     
     <body class="sb-nav-fixed bg-primary">

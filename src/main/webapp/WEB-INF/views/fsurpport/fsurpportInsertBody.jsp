@@ -6,11 +6,17 @@
 <main>
 
 	<script>
-		$(document).ready(function(){
-			
-			/* 게시글 추가를 위해 추가한 코드 */
-			$('#summernote').summernote();
+	
+	$(document).ready(function(){
+		
+		
+		// picture input의 파일 변경시 이벤트 
+		$("#picture").change(function(){
+		   readURL(this);
 		});
+		
+		
+	});
 		
 		function readURL(input) {
 			if (input.files && input.files[0]) {
@@ -71,12 +77,29 @@
 			</div>
 			
 			<div class="form-group">
-				<label class="small mb-1" for="input_plant_prd">사진 등록</label> 
-				<input id="picture" class="form-control py-4"
-				type="file" name="picture" accept=".gif, .jpg, .png" style="height:37px;"/>
+				<label class="small mb-1" for="input_plant_prd">사진 등록</label>
+
 			</div>
 
-				<input type="submit" value="등록" class="btn btn-primary">
+			<div class="input-group mb-3">
+				<div class="mailbox-attachments clearfix"
+					style="text-align: center; width: 100%;">
+					<div class="mailbox-attachment-icon has-img" id="pictureView"
+						style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;">
+						<img id="pictureViewImg" style="width: 100%; height: 100%;" />
+					</div>
+					
+					<div class="mailbox-attachment-info">
+						<div class="input-group input-group-sm">
+							<input id="picture" class="form-control" type="file"
+								name="picture" accept=".gif, .jpg, .png" style="height: 37px;" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<input type="submit" value="등록" class="btn btn-primary">
 		</form>
 
 
