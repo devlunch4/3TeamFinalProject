@@ -7,7 +7,7 @@
 <main>
 	<div class="container-fluid">
 		<h3 class="mt-4">텃밭가이드(재배정보)</h3>
-		<button type="button" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'" class=" btn btn-outline-dark m-1">텃밭가이드 등록</button>
+		<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'" class=" btn btn-outline-dark m-1">텃밭가이드 등록</button>
 		<div class="row">
 			<div class="card mt-2 col-sm-12">
 				<div class="card-body text-left p-1">

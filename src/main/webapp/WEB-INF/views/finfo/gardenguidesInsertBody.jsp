@@ -1,36 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main>
 	<div class="container-fluid">
 		<h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
-		
-		<div class="row">
-			<div class="card mt-2 col-sm-12">
-				<div class="card-body text-left p-1">
-					<span class="">가나다순</span> <br>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄱ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄴ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄷ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄹ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅁ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅂ</button>
-					<button type="button" onclick="#" class=" btn btn-primary m-1">ㅅ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅇ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅈ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅊ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅋ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅌ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅍ</button>
-					<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅎ</button>
-				</div>
-				<div class="card-body text-left p-1">
-					<span class="">품명</span> <br>
-				</div>
+		<br>
+
+		<form>
+			<div class="form-group">
+				<label class="small mb-1" for="input_cls_code">분류명</label> <input
+					class="form-control py-4" id="input_cls_code" name="input_cls_code"
+					type="text" placeholder="분류명 입력 ex)가지과" required="required">
 			</div>
+			<div class="form-group">
+				<label class="small mb-1" for="input_grdgd_nm">품목명</label> <input
+					class="form-control py-4" id="input_grdgd_nm" name="input_grdgd_nm"
+					type="text" placeholder="품목명 입력 ex)가지" required="required">
+			</div>
+			<div class="form-group">
+				<label class="small mb-1" for="input_difficulty">난이도(숫자)</label> <input
+					class="form-control py-4" id="input_difficulty"
+					name="input_difficulty" type="number" placeholder="난이도 입력(숫자) ex)2" required="required">
+			</div>
+			<div class="form-group">
+				<label class="small mb-1" for="input_plant_prd">재배시기</label> <input
+					class="form-control py-4" id="input_plant_prd"
+					name="input_plant_prd" type="text"
+					placeholder="재배시기 입력 ex)3월중순~6월하순" required="required">
+			</div>
+			<div class="form-group">
+				<label class="small mb-1" for="input_plant_prd">재배시기</label> <input
+					class="form-control py-4" id="input_plant_prd"
+					name="input_plant_prd" type="text" placeholder="재배기간 입력 ex)3개월" required="required">
+			</div>
+
+<a class="btn btn-primary" href="index.html">등록</a>
+		</form>
+
+
+		<div class="row">
 
 			<!-- 설명 시작 -->
 			<br>
@@ -41,11 +51,18 @@
 						<div class="row">
 							<div class="imgwrap">
 								<img src="/images/upload/farm_guide_info/144609103235500023.jpg"
-									alt="144609103235500023.jpg"
-								>
+									alt="144609103235500023.jpg">
 							</div>
 
+
+
+
 							<table class="table table-bordered col-sx-12">
+								<tr>
+									<td style="width: 30%">품명</td>
+									<td style="width: 70%"></td>
+								</tr>
+
 								<tr>
 									<td style="width: 30%">분류</td>
 									<td style="width: 70%">국화과</td>
@@ -103,9 +120,8 @@
 		<div class="d-flex align-items-center justify-content-between small">
 			<div class="text-muted">Copyright &copy; Your Website 2020</div>
 			<div>
-				<a href="#">Privacy Policy</a>
-				&middot;
-				<a href="#">Terms &amp; Conditions</a>
+				<a href="#">Privacy Policy</a> &middot; <a href="#">Terms &amp;
+					Conditions</a>
 			</div>
 		</div>
 	</div>
