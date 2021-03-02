@@ -15,9 +15,9 @@
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">시세분석</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">품목별 비율</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">인기농작물</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/user/main">시세분석</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/fdata/ratio">품목별 비율</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/fdata/popularity">인기농작물</a>
                 </nav>
             </div>
             
@@ -30,7 +30,7 @@
             </a>
             <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">텃밭가이드</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/gardenguides">텃밭가이드</a>
                     <a class="nav-link" href="layout-sidenav-light.html">제철작물</a>
                     <a class="nav-link" href="layout-sidenav-light.html">품종정보</a>
                     <a class="nav-link" href="layout-sidenav-light.html">주간 농사정보</a>

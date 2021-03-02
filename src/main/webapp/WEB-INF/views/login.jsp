@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Page Title - SB Admin</title>
+        <title>똑똑한 농부들 로그인 페이지</title>
         <link href="${pageContext.request.contextPath}/resources/src/css/styles.css" rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resources/src/js/all.min.js"></script>
     </head>

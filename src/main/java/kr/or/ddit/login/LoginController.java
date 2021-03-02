@@ -51,6 +51,7 @@ public class LoginController {
 	}
 
 	// post만 처리하도 설정
+//<<<<<<< 20210226_KKC_MyPage
 	@RequestMapping(path = "process", method = { RequestMethod.POST })
 	public String process(UserVo userVo, HttpSession session, HttpServletRequest request, RedirectAttributes ra) {
 		logger.debug("userVo : {}", userVo);
@@ -78,6 +79,7 @@ public class LoginController {
 		}
 	}
 	
+
 	// 로그아웃
 	@RequestMapping("logout") // 모든 사용자 정보 조회
 	public String logout(Model model, HttpServletRequest req, HttpServletResponse resp, HttpSession session) {
