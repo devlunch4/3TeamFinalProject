@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.common.model.PageVoSearch;
+import kr.or.ddit.farm.model.ItemsVo;
+import kr.or.ddit.fdata.service.FdataServiceImpl;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceImpl;
 
@@ -45,72 +48,96 @@ public class UserController {
 	// 필요한 스프링 빈 호출
 	@Resource(name = "userService")
 	private UserServiceImpl userService;
+	
+	@Resource(name = "fdataService")
+	private FdataServiceImpl fdataService;
 
 	// 메인 가기
 	@RequestMapping("main") // 모든 사용자 정보 조회
-	public String main(Model model) {
-		
-		String itemcategorycode = "100";
-		String itemcode = "111";
+	public String main(Model model, ItemsVo itemsVo, String sdate) {
+		//메인으로 가면서 크롤링하여 시세분석값을 가져옴
+		int itemcategorycode = 100;
+		int itemcode = 111;
 		Date date = new Date();
-		
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 		String mydate = transFormat.format(date);
 		
+//		Calendar day = Calendar.getInstance();
+//	    day.add(Calendar.DATE , -1);
+//	    String mydate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day.getTime());
+
+		if(sdate != null) {
+		mydate = sdate;
+		}
+		if(itemsVo.getCategory_code() != 0) {
+			itemcategorycode = itemsVo.getCategory_code();
+			itemcode = itemsVo.getItem_code();
+
+		}	
+		//Jsoup라이브러리를 사용한 크롤링
 		Document doc;
-		try {
+		try {//regday="+mydate+"
 			doc = 
-					Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday="+mydate+"&itemcategorycode="+itemcategorycode+"&itemcode="+itemcode+"&kindcode=&productrankcode=0&convert_kg_yn=N").get();
-		
-		    String average1 = ((doc.select("tr").get(12)).select("td").get(1)).text(); // class dv_input인 a 태그 전부 찾음
-		    String average2 = ((doc.select("tr").get(12)).select("td").get(6)).text();
-		    String average3 = ((doc.select("tr").get(12)).select("td").get(7)).text();
-		    String average4 = ((doc.select("tr").get(12)).select("td").get(8)).text();
+			Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday="+mydate+"&itemcategorycode="+itemcategorycode+"&itemcode="+itemcode+"&kindcode=&productrankcode=0&convert_kg_yn=N").get();
+//		    Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday=2021-03-02&itemcategorycode=100&itemcode=111&kindcode=&productrankcode=0&convert_kg_yn=N").get();
 		    
-		    String maxvalue1 = ((doc.select("tr").get(13)).select("td").get(1)).text(); // class dv_input인 a 태그 전부 찾음
-		    String maxvalue2 = ((doc.select("tr").get(13)).select("td").get(6)).text();
-		    String maxvalue3 = ((doc.select("tr").get(13)).select("td").get(7)).text();
-		    String maxvalue4 = ((doc.select("tr").get(13)).select("td").get(8)).text();
+			System.out.println((doc.select("tr").get(12)).select("td").size());
+			int docsize = (doc.select("tr").get(12)).select("td").size();
+			
+			List<String> target = new ArrayList<String>();
+			target.add(((doc.select("tr").get(11)).select("th").get(1)).text());
+			target.add(((doc.select("tr").get(11)).select("th").get(docsize-4)).text());
+			target.add(((doc.select("tr").get(11)).select("th").get(docsize-3)).text());
+			target.add(((doc.select("tr").get(11)).select("th").get(docsize-2)).text());
+			target.add(((doc.select("tr").get(11)).select("th").get(docsize-1)).text());
+			System.out.println((doc.select("tr").get(11)).select("th").get(1));
+			System.out.println((doc.select("tr").get(11)).select("th").get(docsize-1));
+			
+			List<String> average = new ArrayList<String>();
+		    average.add(((doc.select("tr").get(12)).select("td").get(1)).text());
+		    average.add(((doc.select("tr").get(12)).select("td").get(docsize-4)).text());
+		    average.add(((doc.select("tr").get(12)).select("td").get(docsize-3)).text());
+		    average.add(((doc.select("tr").get(12)).select("td").get(docsize-2)).text());
+		    average.add(((doc.select("tr").get(12)).select("td").get(docsize-1)).text());
+
+		    List<String> maxvalue = new ArrayList<String>();
+		    maxvalue.add(((doc.select("tr").get(13)).select("td").get(1)).text());
+		    maxvalue.add(((doc.select("tr").get(13)).select("td").get(docsize-4)).text());
+		    maxvalue.add(((doc.select("tr").get(13)).select("td").get(docsize-3)).text());
+		    maxvalue.add(((doc.select("tr").get(13)).select("td").get(docsize-2)).text());
+		    maxvalue.add(((doc.select("tr").get(13)).select("td").get(docsize-1)).text());
 		    
-		    String minvalue1 = ((doc.select("tr").get(14)).select("td").get(1)).text(); // class dv_input인 a 태그 전부 찾음
-		    String minvalue2 = ((doc.select("tr").get(14)).select("td").get(6)).text();
-		    String minvalue3 = ((doc.select("tr").get(14)).select("td").get(7)).text();
-		    String minvalue4 = ((doc.select("tr").get(14)).select("td").get(8)).text();
+		    List<String> minvalue = new ArrayList<String>();
+		    minvalue.add(((doc.select("tr").get(14)).select("td").get(1)).text());
+		    minvalue.add(((doc.select("tr").get(13)).select("td").get(docsize-4)).text());
+		    minvalue.add(((doc.select("tr").get(14)).select("td").get(docsize-3)).text());
+		    minvalue.add(((doc.select("tr").get(14)).select("td").get(docsize-2)).text());
+		    minvalue.add(((doc.select("tr").get(14)).select("td").get(docsize-1)).text());
 		    
-		    String flrate2 = ((doc.select("tr").get(15)).select("td").get(6)).text();
-		    String flrate3 = ((doc.select("tr").get(15)).select("td").get(7)).text();
-		    String flrate4 = ((doc.select("tr").get(15)).select("td").get(8)).text();
-		    
-		    
-		    model.addAttribute("average1",average1);model.addAttribute("average2",average2);
-		    model.addAttribute("average3",average3);model.addAttribute("average4",average4);
-		    
-		    model.addAttribute("maxvalue1",maxvalue1);model.addAttribute("maxvalue2",maxvalue2);
-		    model.addAttribute("maxvalue3",maxvalue3);model.addAttribute("maxvalue4",maxvalue4);
-		    
-		    model.addAttribute("minvalue1",minvalue1);model.addAttribute("minvalue2",minvalue2);
-		    model.addAttribute("minvalue3",minvalue3);model.addAttribute("minvalue4",minvalue4);
-		    
-		    model.addAttribute("flrate2",flrate2);model.addAttribute("flrate3",flrate3);
-		    model.addAttribute("flrate4",flrate4);
+		    List<String> flrate = new ArrayList<String>();
+		    flrate.add(((doc.select("tr").get(15)).select("td").get(1)).text());
+		    flrate.add(((doc.select("tr").get(15)).select("td").get(docsize-4)).text());
+		    flrate.add(((doc.select("tr").get(15)).select("td").get(docsize-3)).text());
+		    flrate.add(((doc.select("tr").get(15)).select("td").get(docsize-2)).text());
+		    flrate.add(((doc.select("tr").get(15)).select("td").get(docsize-1)).text());
+
+		    model.addAttribute("target",target);
+		    model.addAttribute("average",average);
+		    model.addAttribute("maxvalue",maxvalue);
+		    model.addAttribute("minvalue",minvalue);
+		    model.addAttribute("flrate",flrate);
 		    
 		    
-		    
-		    //Element els = doc.select(".dv_input a").get(0); //get(i)를통해 몇번째 요소 가져올수 있음
-//		    Element maxindex = els.get(13);
-		    
-//	    for(Element e : els){ 
-//	        System.out.println(e.getElementsByAttribute("href").attr("tr"));  //a 태그의 href 속성값 전부 print
-//	    }
+		    model.addAttribute("itemcategorycode",itemcategorycode);
+		    model.addAttribute("itemcode",itemcode);
+		    model.addAttribute("mydate",mydate);
 		
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}//html 가져오기
-    	//System.out.println(doc.toString()); //전체 html 출력
+		}
 		
-		
+		List<ItemsVo> itemsList = fdataService.selectItems(itemcategorycode);
+		model.addAttribute("itemsList",itemsList);
 
 		return "tiles.main.main";
 	}
