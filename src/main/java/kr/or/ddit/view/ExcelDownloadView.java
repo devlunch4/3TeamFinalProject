@@ -63,7 +63,6 @@ public class ExcelDownloadView extends AbstractView {
 			Row r = sheet.createRow(rownum++);
 			r.createCell(colnum++).setCellValue(d.getUserid());
 			r.createCell(colnum++).setCellValue(d.getUsernm());
-			r.createCell(colnum++).setCellValue(d.getAlias());
 		}
 
 		book.write(response.getOutputStream());

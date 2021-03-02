@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/* 예슬 추가 */
+/* 부트스트랩에 없는 버튼스타일 */
+
+.btn-primary2 {
+    color: #007bff;
+    background-color: #c3dfff;
+    border-color: #95c8ff;
+    font-size: 13px;
+}
+
+.btn-primary2:hover {
+    color: #004a99;
+    background-color: #8dc2ff;
+    border-color: #95c8ff;
+    font-size: 13px;
+}

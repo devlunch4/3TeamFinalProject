@@ -43,7 +43,8 @@ public interface UserDaoImpl {
 
 	int nameSearchUserCnt(String usernm);
 
-	List<UserVo> nameSearchUserPaging(PageVoSearch pageVoSearch);
+	List<UserVo> nameSearchUserPaging(PageVoSear@Override
+		ch pageVoSearch);
 
 	// 별명으로 검색
 	List<UserVo> aliasSearchUser(String alias);
