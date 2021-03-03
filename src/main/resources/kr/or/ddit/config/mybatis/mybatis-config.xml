@@ -7,14 +7,10 @@
 <configuration>
 	<!-- <typeAlias type="클래스명" alias="별칭" /> -->
 	<typeAliases>
-		<typeAlias type="kr.or.ddit.user.model.UserVo"
-			alias="userVo" />
 		<typeAlias type="kr.or.ddit.common.model.PageVo"
 			alias="pageVo" />
 		<typeAlias type="kr.or.ddit.common.model.PageVoSearch"
 			alias="pageVoSearch" />
-		<typeAlias type="kr.or.ddit.common.model.PageVoSearch_Farmdiary"
-			alias="pageVoSearch_Farmdiary" />
 			
 		<typeAlias type="kr.or.ddit.common.model.CodesVo"
 			alias="codesVo" />
@@ -25,7 +21,6 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
 
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
 

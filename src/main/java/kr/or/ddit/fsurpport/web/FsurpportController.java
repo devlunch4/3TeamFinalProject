@@ -10,9 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
@@ -37,67 +36,66 @@ public class FsurpportController {
 		
 		return "tiles.fsurpport.fsurpportMain";
 	}
-//	@RequestMapping("main")
-//	public String main( 
-//			@RequestParam( defaultValue = "1") int page, 
-//			@RequestParam( defaultValue = "5" )int pageSize,
-//			Model model) {
-//		
-//		logger.debug("/finalProject/main 진입");
-//		
-//		PageVo pageVo = new PageVo(page, pageSize);
-////		
-//		model.addAllAttributes(fsurpportService.selectPagingFarmdiary(pageVo));
-//		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
-//		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-//		
-//		return "tiles.fsurpport.fsurpportMain";
-//	}
 
 	// ggy_20210303 : 농업지원-영농일지 내 일지 목록 검색
-	@RequestMapping("searchAllFsurpportList")
+	@RequestMapping(path = "searchAllFsurpportList", method= {RequestMethod.POST})
 	public String searchAllFsurpportList(
 			HttpServletRequest req,
-			@RequestParam( defaultValue = "1") int page, 
-			@RequestParam( defaultValue = "5" )int pageSize,
 			Model model) {
-		logger.debug("in searchAllFsurpportList()");
+		logger.debug("searchAllFsurpportList 진입");
 		
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
-
-		if (req.getParameter("startDate") != null) {
+		
+		if (req.getParameter("startDate") != null && !req.getParameter("startDate").equals("") ) {
+			logger.debug("1");
 			farmdiaryVo.setStartDate(req.getParameter("startDate").replace("-", ""));
 		} else {
-			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryPagingList(farmdiaryVo));
-			model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
-			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-			return "tiles.fsurpport.fsurpportMain";
+			logger.debug("-1");
+			farmdiaryVo.setStartDate("");
 		}
 
-		if (req.getParameter("endDate") != null) {
+		if (req.getParameter("endDate") != null && !req.getParameter("endDate").equals("") ) {
+			logger.debug("2");
 			farmdiaryVo.setEndDate(req.getParameter("endDate").replace("-", ""));
 		} else {
-			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryPagingList(farmdiaryVo));
-			model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
-			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-
-			return "tiles.fsurpport.fsurpportMain";
+			logger.debug("-2");
+			farmdiaryVo.setEndDate("");
 		}
 
-		if (req.getParameter("item_code") != null) {
-			farmdiaryVo.setItem_code("0");
-		} else {
+		if (req.getParameter("item_code") != null && !req.getParameter("item_code").equals("") ) {
+			logger.debug("3");
 			farmdiaryVo.setItem_code(req.getParameter("item_code"));
+		} else {
+			logger.debug("-3");
+			farmdiaryVo.setItem_code("");
 		}
 
-		if (req.getParameter("wstep_code") != null) {
-			farmdiaryVo.setWstep_code("0");
-		} else {
+		if (req.getParameter("wstep_code") != null && !req.getParameter("wstep_code").equals("") ) {
+			logger.debug("4");
 			farmdiaryVo.setWstep_code(req.getParameter("wstep_code"));
+		} else {
+			logger.debug("-4");
+			farmdiaryVo.setWstep_code("");
 		}
 		
+		if(
+			farmdiaryVo.getStartDate() != null && 
+			!farmdiaryVo.getStartDate().equals("") && 
+			farmdiaryVo.getEndDate() != null &&
+			!farmdiaryVo.getEndDate().equals("") 
+				) {
+			logger.debug("값 있으니 searchAllFarmdiaryList로 DB 조회");
+			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryList(farmdiaryVo));
 			
-		return "tiles.fsurpport.fsurpportMain";
+			model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+				
+			return "tiles.fsurpport.fsurpportMain";
+		}
+		else {
+			logger.debug("값 없으니 redirect main");
+			return "redirect:/fsurpport/main"; 
+		}
 	}
 
 	// ggy_20210302 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지

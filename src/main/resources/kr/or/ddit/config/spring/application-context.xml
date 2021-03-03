@@ -50,9 +50,6 @@
 	</bean>
 	<!-- 파일 다운로드 뷰 관련 빈 생성 -->
 	<bean id="fd" class="kr.or.ddit.view.FileDownloadView"></bean>
-	<!-- 엑셀 다운로드 뷰 관련 빈 생성 -->
-	<bean id="userExcelDownloadView"
-		class="kr.or.ddit.view.ExcelDownloadView"></bean>
 
 	<!-- view resolver 등록 (여러개 하는 것인 가능) -->
 	<!-- jsp ==> InternalResourceViewResolver -->

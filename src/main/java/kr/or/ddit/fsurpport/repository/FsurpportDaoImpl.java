@@ -27,20 +27,6 @@ public class FsurpportDaoImpl implements FsurpportDao{
 		return template.selectList("fsurpports.selectAllFsurpportList");
 	}
 	
-	// ggy_20210303 : 등록된 영농일지 전체 리스트 겟수 조회
-	@Override
-	public int selectAllFsurpportListCnt() {
-		return template.selectOne("fsurpports.selectAllFsurpportListCnt");
-	}
-	
-	// ggy_20210303 : 등록된 영농일치 리스트 조회
-	@Override
-	public List<FarmdiaryVo> selectPagingFarmdiary(PageVo pageVo) {
-		logger.debug("dao page {}, pageSize {}", pageVo.getPage(), pageVo.getPageSize());
-		logger.debug("{}",template.selectList("fsurpports.selectPagingFarmdiary", pageVo));
-		return template.selectList("fsurpports.selectPagingFarmdiary", pageVo);
-	}
-	
 	// ggy_20210303 : 등록된 품목 코드 리스트 조회
 	@Override
 	public List<CodesVo> selectAllItem_codeList() {
@@ -55,8 +41,8 @@ public class FsurpportDaoImpl implements FsurpportDao{
 	
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
-	public List<FarmdiaryVo> searchAllFarmdiaryPagingList(FarmdiaryVo farmdiaryVo) {
-		return template.selectList("fsurpports.searchAllFarmdiaryPagingList", farmdiaryVo);
+	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
+		return template.selectList("fsurpports.searchAllFarmdiaryList", farmdiaryVo);
 	}
 
 	
