@@ -1,7 +1,5 @@
 package kr.or.ddit.fsurpport.web;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 
 @RequestMapping("fsurpport")
 @Controller
