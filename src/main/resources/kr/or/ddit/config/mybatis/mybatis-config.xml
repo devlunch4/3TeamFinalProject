@@ -20,8 +20,7 @@
 
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo"
 			alias="farmdiaryVo" />
-		<typeAlias type="kr.or.ddit.farm.model.WorkstepsVo"
-			alias="workstepsVo" />
+
 			<!-- 2021-03-03KJH FcltmngVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
 			alias="fcltmngVo" />
@@ -31,13 +30,14 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
 
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
+
 
 		<!-- 2021-03-03KJH codes,fcltmng mapper -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/codes.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fcltmng.xml" />
+
 
 	</mappers>
 	

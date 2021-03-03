@@ -12,54 +12,50 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
-import kr.or.ddit.farm.model.WorkstepsVo;
 
 @Repository("fsurpportDao")
-public class FsurpportDaoImpl implements FsurpportDao{
-	
+public class FsurpportDaoImpl implements FsurpportDao {
+
 	private static final Logger logger = LoggerFactory.getLogger(FsurpportDaoImpl.class);
-	
-	@Resource(name="sqlSessionTemplate")
+
+	@Resource(name = "sqlSessionTemplate")
 	private SqlSessionTemplate template;
-	
-	// ggy_20210227 : 등록된 영농일지 조회
+
+	// ggy_20210303 : 등록된 영농일지 전체 리스트 조회
 	@Override
 	public List<FarmdiaryVo> selectAllFsurpportList() {
-		logger.debug("in selectAllFsurpportList()");
 		return template.selectList("fsurpports.selectAllFsurpportList");
 	}
-	
-	// ggy_20210227 : 등록된 작업단계 조회
+
+	// ggy_20210303 : 등록된 품목 코드 리스트 조회
 	@Override
-	public List<WorkstepsVo> selectAllWorkstepsList() {
-		return template.selectList("fsurpports.selectAllWorkstepsList");
+	public List<CodesVo> selectAllItem_codeList() {
+		return template.selectList("fsurpports.selectAllItem_codeList");
 	}
-	
-	// ggy_20210227 : 등록된 품목 조회
+
+	// ggy_20210303 : 등록된 작업단계 리스트 조회
 	@Override
-	public List<CodesVo> selectAllItemsList() {
-		return template.selectList("fsurpports.selectAllItemsList");
+	public List<CodesVo> selectAllWstep_codeList() {
+		return template.selectList("fsurpports.selectAllWstep_codeList");
+	}
+
+	// ggy_20210303 : 등록된 일지 조건 검색
+	@Override
+	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
+		return template.selectList("fsurpports.searchAllFarmdiaryList", farmdiaryVo);
+	}
+
+	/* 시설관리 영역 */
+
+	// 20210302_KJH 시설리스트 조회
+	@Override
+	public List<FcltmngVo> myfcltmngList() {
+		return template.selectList("fcltmng.myfcltmngList");
 	}
 
 	@Override
-	public List<FarmdiaryVo> searchAllFsurpportList(FarmdiaryVo farmdiaryVo) {
-		return template.selectList("fsurpports.searchAllFsurpportList", farmdiaryVo);
+	public FcltmngVo fcltmngInfo(String str) {
+		return template.selectOne("fcltmng.fcltmngInfo", str);
 	}
-	
-	
-	
-	
-	/*시설관리 영역*/
-	
-	//20210302_KJH 시설리스트 조회
-	@Override
-	public List<FcltmngVo> myfcltmngList(){
-		return template.selectList("fcltmng.myfcltmngList");
-	}
-	
-	@Override
-	public FcltmngVo fcltmngInfo(String str){
-		return template.selectOne("fcltmng.fcltmngInfo",str);
-	}
-	
+
 }
