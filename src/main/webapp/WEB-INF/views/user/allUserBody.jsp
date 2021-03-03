@@ -5,8 +5,23 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- <script>document.location="create"</script> -->
-
+<script>
+//문서 로딩이 완료되고 나서 실행되는 영역
+$(function(){
+	$(".user").on("click", function(){
+		//this : 클릭 이벤트가 발생한 element
+		// data-속성명  data-userid, 속성명은 대소문자 무시하고 소문자로 인식
+		// data-userId ==> data-userid
+		var user_id = $(this).data("userid");
+		$("#userid").val(user_id);
+		$("#frm").submit();
+	});
+});
+</script>
 <main>	
+	<form id="frm" action="${pageContext.request.contextPath}/user/userDetail" >
+		<input type="hidden" id="userid" name="user_id" value=""/>
+	</form>
 	<div class="container-fluid">
 					<div class="card mb-4">
                             <div class="card-header">
@@ -38,16 +53,9 @@
 		                                         	    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">가입일</th>
 		                                            </tr>
 		                                        </thead>
-		                                        <tfoot>
-		                                            <tr>
-		                                            	<th rowspan="1" colspan="1">이름</th>
-		                                            	<th rowspan="1" colspan="1">ID</th>
-		                                            	<th rowspan="1" colspan="1">가입일</th>
-		                                            </tr>
-		                                        </tfoot>
 		                                        <tbody>
 			                                          <c:forEach items="${userList }" var="user"> 
-														<tr data-userid="${user.user_id }">
+														<tr class="user" data-userid="${user.user_id }">
 															<td>${user.user_nm }</td>
 															<td>${user.user_id }</td>											
 															<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd"/> </td>

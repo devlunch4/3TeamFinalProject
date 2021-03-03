@@ -73,10 +73,13 @@ $(function(){
 						</div>
 						<br>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트주소1" />
+							<input id="addr1" class="form-control" value="" />
 						</div>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트주소2" />
+							<input id="zipcode" class="form-control" value="" />
+						</div>
+						<div class="col-sm-10">
+							<input id="zipcode" class="form-control" value="상세주소 입력" />
 						</div>
 					</div>
 					

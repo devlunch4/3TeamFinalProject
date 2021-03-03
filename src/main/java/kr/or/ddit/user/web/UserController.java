@@ -167,7 +167,15 @@ public class UserController {
 		
 		return "tiles.user.allUser";
 	}
-
+	
+	// 관리자가 회원상세정보 보는거  03-03 15시20분 (경찬)
+	@RequestMapping("userDetail")  
+	public String userForm(Model model, String user_id) {
+		UserVo user = userService.selectUser(user_id);
+		model.addAttribute("user", user);
+		return "tiles.user.userDetail";
+	}
+	
 //	@RequestMapping("allUser") // 모든 사용자 정보 조회
 //	public String allUser(Model model) {
 //		logger.debug("INN UserController allUser() :");
@@ -201,14 +209,7 @@ public class UserController {
 //		return "user/pagingUser";
 //	}
 //
-//	@RequestMapping("userForm") // 사용자 상세보기
-//	public String userForm(Model model, String userid) {
-//		logger.debug("INN UserController pagingUser() :");
-//		logger.debug("클릭된 userid값 : {}", userid);
-//		UserVo user = userService.selectUser(userid);
-//		model.addAttribute("user", user);
-//		return "user/userForm";
-//	}
+	
 //
 //	// 사용자 수정 // GET // 해당 수정 페이지로 이동
 //	@RequestMapping(path = "userModify", method = { RequestMethod.GET })
