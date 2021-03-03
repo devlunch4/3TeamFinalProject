@@ -11,18 +11,23 @@
 		FROM farmdiary
 	</select>
 	
-	<!-- 일지 조회. -->
+	<!-- 일지 갯수 조회. -->
 	<select id="selectAllFsurpportList" resultType="farmdiaryVo">
 		SELECT 
-		    f.fdiary_no, f.writer, f.content,
-		    f.reg_dt, f.weather, f.low_temp,
-		    f.high_temp, f.rainfall, f.humid,
-		    f.yield, f.area, f.file_no,
-		    f.use, f.btype_code, f.wstep_code,
-		    f.item_code 
-		FROM farmdiary f
-		JOIN codes c
-		ON f.btype_code = c.code_No;
+			    f.fdiary_no, f.writer, f.content,
+			    f.reg_dt, f.weather, f.low_temp,
+			    f.high_temp, f.rainfall, f.humid,
+			    f.yield, f.area, f.file_no,
+			    f.use, c.code_nm btype_code, co.code_nm wstep_code,
+			    cod.code_nm item_code 
+			FROM farmdiary f
+			JOIN codes c
+			ON f.btype_code = c.code_no
+			JOIN codes co
+			ON f.wstep_code = co.code_no
+			JOIN codes cod
+			ON f.item_code = cod.code_no
+			ORDER BY f.reg_dt desc
 	</select>
 	
 	<!-- 페이징 처리하여 영농일지 조회 -->
@@ -33,32 +38,71 @@
 			from
 			(select rownum rn, a.*
 			from
-			(SELECT
-			f.fdiary_no, f.writer, f.content,
-			f.reg_dt, f.weather, f.low_temp,
-			f.high_temp, f.rainfall, f.humid,
-			f.yield, f.area, f.file_no,
-			f.use, f.btype_code, f.wstep_code,
-			f.item_code
+			( SELECT 
+			    f.fdiary_no, f.writer, f.content,
+			    f.reg_dt, f.weather, f.low_temp,
+			    f.high_temp, f.rainfall, f.humid,
+			    f.yield, f.area, f.file_no,
+			    f.use, c.code_nm btype_code, co.code_nm wstep_code,
+			    cod.code_nm item_code 
 			FROM farmdiary f
 			JOIN codes c
-			ON f.btype_code = c.code_No) a
+			ON f.btype_code = c.code_no
+			JOIN codes co
+			ON f.wstep_code = co.code_no
+			JOIN codes cod
+			ON f.item_code = cod.code_no
+			ORDER BY f.reg_dt desc ) a
 		where rownum &lt;= #{page}*#{pageSize})
 		WHERE rn BETWEEN (#{page}-1)*#{pageSize} + 1 AND #{page}*#{pageSize}
   	
   	</select>
 	
+	<!-- ggy_20210303 : code 품목 리스트 조회. -->
+	<select id="selectAllItem_codeList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = '100'
+		or parent_code = '200'
+		or parent_code = '300'
+		or parent_code = '400'
+		and use = 'Y'
+	</select>
 	
-	<!-- 날짜 기준으로 검색 -->
-<!-- 	<select id="searchAllFsurpportList" parameterType="farmdiaryVo" resultType="farmdiaryVo"> -->
+	<!-- ggy_20210303 : code 작업단계 리스트 조회. -->
+	<select id="selectAllWstep_codeList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = '1'
+		or parent_code = '2'
+		or parent_code = '3'
+		or parent_code = '4'
+		or parent_code = '5'
+		or parent_code = '6'
+		or parent_code = '7'
+		and use = 'Y'
+	</select>
+	
+	<!-- ggy_20210303 : 페이징 처리하여 영농일지 검색 조회 -->
+<!-- 	<select id="searchAllFarmdiaryPagingList" resultType="farmdiaryVo"  -->
+<!-- 									parameterType="farmdiaryVo"> -->
+
 <!-- 		select * -->
-<!-- 		from farmdiary -->
-<!-- 		where reg_dt &gt;= TO_DATE(#{startDate }, 'YYYY-MM-DD') -->
-<!-- 		and reg_dt &lt;= TO_DATE(#{endDate }, 'YYYY-MM-DD') -->
-<!-- 		or item_code = #{item_code } -->
-<!-- 		or wstep_code = #{wstep_code } -->
-<!-- 	</select> -->
-	
+<!-- 			from -->
+<!-- 			(select rownum rn, a.* -->
+<!-- 			from -->
+<!-- 			( select * -->
+<!-- 				from farmdiary -->
+<!-- 				where reg_dt &gt;= TO_DATE(#{startDate }, 'YYYY-MM-DD') -->
+<!-- 				and reg_dt &lt;= TO_DATE(#{endDate }, 'YYYY-MM-DD') -->
+<!-- 				or item_code = #{item_code } -->
+<!-- 				or wstep_code = #{wstep_code } -->
+<!-- 				ORDER BY reg_dt desc -->
+<!-- 		 ) a -->
+<!-- 		where rownum &lt;= #{page}*#{pageSize}) -->
+<!-- 		WHERE rn BETWEEN (#{page}-1)*#{pageSize} + 1 AND #{page}*#{pageSize} -->
+  	
+<!--   	</select> -->
 
 	
 

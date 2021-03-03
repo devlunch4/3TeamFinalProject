@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ddit.common.model.PageVo;
+import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
 @RequestMapping("fsurpport")
@@ -25,76 +26,79 @@ public class FsurpportController {
 	private FsurpportService fsurpportService;
 
 	// ggy_20210302 : 농업지원-영농일지 내 일지 페이징 목록조회를 위한 진입페이지
-//	@RequestMapping("main")
-//	public String main(Model model) {
-//
-//		model.addAttribute("farmdiaryList",fsurpportService.selectAllFsurpportList());
-//
-//		return "tiles.fsurpport.fsurpportMain";
-//	}
-//	
 	@RequestMapping("main")
-	public String main( 
-			@RequestParam( defaultValue = "1") int page, 
-			@RequestParam( defaultValue = "5" )int pageSize,
-			Model model) {
+	public String main( Model model ) {
 		
 		logger.debug("/finalProject/main 진입");
 		
-		PageVo pageVo = new PageVo();
-		
-		pageVo.setPage(page);
-		pageVo.setPageSize(pageSize);
-			
-		model.addAllAttributes(fsurpportService.selectPagingFarmdiary(pageVo));
+		model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList());
+		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 		
 		return "tiles.fsurpport.fsurpportMain";
 	}
-
-	// ggy_20210227 : 농업지원-영농일지 내 일지 목록 검색
-//	@RequestMapping("searchAllFsurpportList")
-//	public String searchAllFsurpportList(HttpServletRequest req, Model model) {
-//		logger.debug("in searchAllFsurpportList()");
-//
-//		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
-//
-//		if (req.getParameter("startDate") != null) {
-//			farmdiaryVo.setStartDate(req.getParameter("startDate").replace("-", ""));
-//		} else {
-//			model.addAttribute("farmdiaryList", fsurpportService.searchAllFsurpportList(farmdiaryVo));
-//			model.addAttribute("workstepsList", fsurpportService.selectAllWorkstepsList());
-//			model.addAttribute("itemsList", fsurpportService.selectAllItemsList());
-//			return "tiles.fsurpport.fsurpportMain";
-//		}
-//
-//		if (req.getParameter("endDate") != null) {
-//			farmdiaryVo.setEndDate(req.getParameter("endDate").replace("-", ""));
-//		} else {
-//			model.addAttribute("farmdiaryList", fsurpportService.searchAllFsurpportList(farmdiaryVo));
-//			model.addAttribute("workstepsList", fsurpportService.selectAllWorkstepsList());
-//			model.addAttribute("itemsList", fsurpportService.selectAllItemsList());
-//
-//			return "tiles.fsurpport.fsurpportMain";
-//		}
-//
-//		if (req.getParameter("item_code") != null) {
-//			farmdiaryVo.setItem_code(0);
-//		} else {
-//			farmdiaryVo.setItem_code(Integer.parseInt(req.getParameter("item_code")));
-//		}
-//
-//		if (req.getParameter("wstep_code") != null) {
-//			farmdiaryVo.setWstep_code(0);
-//		} else {
-//			farmdiaryVo.setWstep_code(Integer.parseInt(req.getParameter("wstep_code")));
-//		}
-//
-//		model.addAttribute("farmdiaryList", fsurpportService.searchAllFsurpportList(farmdiaryVo));
-//		model.addAttribute("workstepsList", fsurpportService.selectAllWorkstepsList());
-//		model.addAttribute("itemsList", fsurpportService.selectAllItemsList());
-//
+//	@RequestMapping("main")
+//	public String main( 
+//			@RequestParam( defaultValue = "1") int page, 
+//			@RequestParam( defaultValue = "5" )int pageSize,
+//			Model model) {
+//		
+//		logger.debug("/finalProject/main 진입");
+//		
+//		PageVo pageVo = new PageVo(page, pageSize);
+////		
+//		model.addAllAttributes(fsurpportService.selectPagingFarmdiary(pageVo));
+//		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+//		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+//		
 //		return "tiles.fsurpport.fsurpportMain";
 //	}
+
+	// ggy_20210303 : 농업지원-영농일지 내 일지 목록 검색
+	@RequestMapping("searchAllFsurpportList")
+	public String searchAllFsurpportList(
+			HttpServletRequest req,
+			@RequestParam( defaultValue = "1") int page, 
+			@RequestParam( defaultValue = "5" )int pageSize,
+			Model model) {
+		logger.debug("in searchAllFsurpportList()");
+		
+		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
+
+		if (req.getParameter("startDate") != null) {
+			farmdiaryVo.setStartDate(req.getParameter("startDate").replace("-", ""));
+		} else {
+			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryPagingList(farmdiaryVo));
+			model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+			return "tiles.fsurpport.fsurpportMain";
+		}
+
+		if (req.getParameter("endDate") != null) {
+			farmdiaryVo.setEndDate(req.getParameter("endDate").replace("-", ""));
+		} else {
+			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryPagingList(farmdiaryVo));
+			model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+
+			return "tiles.fsurpport.fsurpportMain";
+		}
+
+		if (req.getParameter("item_code") != null) {
+			farmdiaryVo.setItem_code("0");
+		} else {
+			farmdiaryVo.setItem_code(req.getParameter("item_code"));
+		}
+
+		if (req.getParameter("wstep_code") != null) {
+			farmdiaryVo.setWstep_code("0");
+		} else {
+			farmdiaryVo.setWstep_code(req.getParameter("wstep_code"));
+		}
+		
+			
+		return "tiles.fsurpport.fsurpportMain";
+	}
 
 	// ggy_20210302 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
 	@RequestMapping("insertView")

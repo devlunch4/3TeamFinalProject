@@ -2,6 +2,7 @@ package kr.or.ddit.farm.model;
 
 import java.util.Date;
 
+// ggy_20210302 : FarmdiaryVo 만듬
 public class FarmdiaryVo {
 
 	private int fdiary_no;
@@ -20,6 +21,27 @@ public class FarmdiaryVo {
 	private String btype_code;
 	private String wstep_code;
 	private String item_code;
+	
+	private String startDate;
+	private String endDate;
+	
+	
+	
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	
 	
 	public int getFdiary_no() {
 		return fdiary_no;

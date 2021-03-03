@@ -13,16 +13,14 @@
 			alias="pageVo" />
 		<typeAlias type="kr.or.ddit.common.model.PageVoSearch"
 			alias="pageVoSearch" />
+		<typeAlias type="kr.or.ddit.common.model.PageVoSearch_Farmdiary"
+			alias="pageVoSearch_Farmdiary" />
+			
+		<typeAlias type="kr.or.ddit.common.model.CodesVo"
+			alias="codesVo" />
 
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo"
 			alias="farmdiaryVo" />
-		<typeAlias type="kr.or.ddit.farm.model.WorkstepsVo"
-			alias="workstepsVo" />
-		<typeAlias type="kr.or.ddit.farm.model.ItemsVo"
-			alias="itemsVo" />
-
-		<typeAlias type="kr.or.ddit.farm.model.ItemsVo"
-			alias="ItemsVo" />	
 
 	</typeAliases>
 
@@ -31,7 +29,6 @@
 
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
 
-		<mapper resource="kr/or/ddit/config/mybatis/mapper/items.xml" />
 
 	</mappers>
 	
