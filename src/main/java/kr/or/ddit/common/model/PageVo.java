@@ -14,7 +14,7 @@ public class PageVo {
 
 	// jpa --> page:0 jpa의 경우 0부터 사용하게 된다.
 	public int getPage() {
-		return page == 0 ? 1 : page;
+		return page;
 	}
 
 	public void setPage(int page) {
@@ -24,7 +24,7 @@ public class PageVo {
 	public int getPageSize() {
 		return pageSize == 0 ? 20 : pageSize;
 	}
-	
+
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}

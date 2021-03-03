@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.farm.model.ItemsVo;
-import kr.or.ddit.farm.model.WorkstepsVo;
+import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
 
 @Service("fsurpportService")
@@ -24,32 +24,47 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FsurpportServiceImpl() {
 	}
 
+	// ggy_20210303 : 등록된 일지 전체 리스트 조회
+	@Override
+	public List<FarmdiaryVo> selectAllFsurpportList() {
+		return fsurpportDao.selectAllFsurpportList();
+	}
+
 	public FsurpportServiceImpl(FsurpportDao fsurpportDao) {
 		this.fsurpportDao = fsurpportDao;
 	}
 
-	// ggy_20210227 : 등록된 영농일지 조회
+	// ggy_20210303 : 등록된 품목코드 리스트 조회
 	@Override
-	public List<FarmdiaryVo> selectAllFsurpportList() {
-		logger.debug("in selectAllFsurpportList()");
-		return fsurpportDao.selectAllFsurpportList();
+	public List<CodesVo> selectAllItem_codeList() {
+		return fsurpportDao.selectAllItem_codeList();
 	}
 
-	// ggy_20210227 : 등록된 작업단계 조회
+	// ggy_20210303 : 등록된 작업단계코드 리스트 조회
 	@Override
-	public List<WorkstepsVo> selectAllWorkstepsList() {
-		return fsurpportDao.selectAllWorkstepsList();
+	public List<CodesVo> selectAllWstep_codeList() {
+		return fsurpportDao.selectAllWstep_codeList();
 	}
 
-	// ggy_20210227 : 등록된 품목 조회
+	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
-	public List<ItemsVo> selectAllItemsList() {
-		return fsurpportDao.selectAllItemsList();
+	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
+
+		return fsurpportDao.searchAllFarmdiaryList(farmdiaryVo);
+
 	}
 
-	// ggy_20210227 : 등록된 품목 검색
+	/* 시설관리 영역 */
 	@Override
-	public List<FarmdiaryVo> searchAllFsurpportList(FarmdiaryVo farmdiaryVo) {
-		return fsurpportDao.searchAllFsurpportList(farmdiaryVo);
+	public List<FcltmngVo> myfcltmngList() {
+		// TODO Auto-generated method stub
+		return fsurpportDao.myfcltmngList();
+	}
+
+	@Override
+	public FcltmngVo fcltmngInfo(String str) {
+		// TODO Auto-generated method stub
+		return fsurpportDao.fcltmngInfo(str);
+
 	}
 }

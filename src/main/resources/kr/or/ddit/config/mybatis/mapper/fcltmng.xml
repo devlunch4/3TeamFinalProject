@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fcltmng">
+<!-- 시설관리 -->
+
+<!-- 시설리스트 조회 -->
+<select id="myfcltmngList" resultType="fcltmngVo">
+	select
+	control_no,msr_code,owner,location,info,use,reg_dt
+	from fcltmng
+</select>
+
+<!-- 시설 상세 조회-->
+<select id="fcltmngInfo" resultType="fcltmngVo" parameterType="String">
+	select
+	control_no,msr_code,owner,location,info,use,reg_dt
+	from fcltmng where control_no = #{control_no}
+</select>		
+ 
+</mapper>
+
