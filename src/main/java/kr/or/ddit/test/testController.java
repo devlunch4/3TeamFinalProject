@@ -43,14 +43,5 @@ public class testController {
 	}
 //<<<<<<< 20210226_KKC_MyPage
 
-//=======
-	
-	@RequestMapping("testRegist")
-	public String testRegister() {
-		return "bootstrap_view/register";
-	}
-	
-	
-	
-//>>>>>>> develop
+
 }

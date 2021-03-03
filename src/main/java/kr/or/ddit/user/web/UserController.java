@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,27 +35,26 @@ public class UserController {
 	private FdataServiceImpl fdataService;
 
 	// 메인 가기
-	//20210302_KJH items - > codes 변경
+	// 20210302_KJH items - > codes 변경
 	@RequestMapping("main") // 모든 사용자 정보 조회
 
 	public String main(Model model, CodesVo codesVo, String sdate) {
-		//KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
+		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
 
 		Date date = new Date();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String mydate = transFormat.format(date);
-		
-		if(sdate != null) {
-		mydate = sdate;
+
+		if (sdate != null) {
+			mydate = sdate;
 
 		}
 
-		if(codesVo.getCode_no() != null) {
+		if (codesVo.getCode_no() != null) {
 			itemcategorycode = codesVo.getParent_code();
 			itemcode = codesVo.getCode_no();
-
 
 		}
 		// Jsoup라이브러리를 사용한 크롤링
@@ -121,65 +119,41 @@ public class UserController {
 			e1.printStackTrace();
 		}
 
-		
 		List<CodesVo> codesList = fdataService.selectcodes();
-		model.addAttribute("codesList",codesList);
-
+		model.addAttribute("codesList", codesList);
 
 		return "tiles.main.main";
 	}
 
-	// 로그인 하는거 02-27 12시11분 (경찬)
-	@RequestMapping("login")
-	public String login() {
-		return "login";
-	}
-
-	// 로그인 하는거 03-02 09시50분 (경찬)
-	@RequestMapping("login2")
-	public String loginController(UserVo userVo, HttpSession session) {
-		UserVo dbUser = userService.selectUser(userVo.getUser_id());
-		if (dbUser != null && userVo.getUser_pw().equals(dbUser.getUser_pw())) {
-			session.setAttribute("S_USER", dbUser);
-			return "tiles.main.main";
-		} else {
-			return "login";
-		}
-	}
-
-	// 마이페이지 가는거 03-02 16시20분 (경찬)
 	@RequestMapping("myPage")
 	public String myPage(UserVo userVo) {
 		return "tiles.user.userinfo";
 	}
 
-
 	// 관리자가 모든 회원보는거 03-02 16시20분 (경찬)
 	@RequestMapping("allUser")
 	public String allUser(Model model, PageVo pageVo) {
 		logger.debug("in allUser()");
-		long start = System.currentTimeMillis(); //시작하는 시점 계산
-		
-		List<UserVo> userList =  userService.selectAllUser();
-		
-		long end = System.currentTimeMillis(); //프로그램이 끝나는 시점 계산
-		
-		System.out.println( "실행 시간 : " + ( end - start )/1000.0 +"초"); //실행 시간 계산 및 출력
-		logger.debug("실행 시간 : " + ( end - start )/1000.0 +"초");
-		
+		long start = System.currentTimeMillis(); // 시작하는 시점 계산
+
+		List<UserVo> userList = userService.selectAllUser();
+
+		long end = System.currentTimeMillis(); // 프로그램이 끝나는 시점 계산
+
+		System.out.println("실행 시간 : " + (end - start) / 1000.0 + "초"); // 실행 시간 계산 및 출력
+		logger.debug("실행 시간 : " + (end - start) / 1000.0 + "초");
+
 		model.addAttribute("userList", userList);
-		
+
 		return "tiles.user.allUser";
 	}
-	
-	// 관리자가 회원상세정보 보는거  03-03 15시20분 (경찬)
-	@RequestMapping("userDetail")  
+
+	// 관리자가 회원상세정보 보는거 03-03 15시20분 (경찬)
+	@RequestMapping("userDetail")
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
 		model.addAttribute("user", user);
 		return "tiles.user.userDetail";
 	}
-	
-
 
 }
