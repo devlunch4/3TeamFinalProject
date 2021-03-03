@@ -11,18 +11,32 @@
 			alias="pageVo" />
 		<typeAlias type="kr.or.ddit.common.model.PageVoSearch"
 			alias="pageVoSearch" />
-			
+			<!-- 2021-03-03KJH CoesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.common.model.CodesVo"
 			alias="codesVo" />
+		
+		<typeAlias type="kr.or.ddit.user.model.UserVo"
+			alias="userVo" />	
 
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo"
 			alias="farmdiaryVo" />
+
+			<!-- 2021-03-03KJH FcltmngVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
+			alias="fcltmngVo" />
+				
+
 
 	</typeAliases>
 
 	<mappers>
 
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
+
+
+		<!-- 2021-03-03KJH codes,fcltmng mapper -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/codes.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/fcltmng.xml" />
 
 
 	</mappers>

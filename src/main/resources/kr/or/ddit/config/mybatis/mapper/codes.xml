@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="codes">
+<!-- 품목 쿼리 -->
+
+<!-- 분류코드로 품목(작물명)찾기 -->
+<select id="selectcodes" resultType="codesVo">
+	select code_no,code_nm,parent_code,use
+	from codes
+</select>	
+ 
+</mapper>
+

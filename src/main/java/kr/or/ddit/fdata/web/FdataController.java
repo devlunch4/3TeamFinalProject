@@ -1,6 +1,12 @@
 package kr.or.ddit.fdata.web;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +27,9 @@ public class FdataController {
 	@Resource(name = "fdataService")
 	private FdataServiceImpl fdataService;
 	
-	
-	@RequestMapping("popularity") //
+	//20210301KJH
+	//인기작물 크롤링
+	@RequestMapping("popularity")
 	public String popularity(Model model) {
 		
 		Document doc;
@@ -47,15 +54,25 @@ public class FdataController {
 			e.printStackTrace();
 		}
 		
-
+//		String fileurl = "https://www.kamis.or.kr/customer/board/board_file.do?brdno=4&brdctsno=430442&brdctsfileno=14921";
+//		
+//		try(InputStream in = new URL(fileurl).openStream()){
+//		     Files.copy(in, Paths.get("D:\\upload\\fileTest.xls"),     StandardCopyOption.REPLACE_EXISTING);
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		return "tiles.fdata.popularity";
 	}
 	
-	@RequestMapping("ratio") //
+	//20210302KJH
+	//품목별 비율 통계 페이지
+	@RequestMapping("ratio")
 	public String ratio(Model model) {
-		
-		
 		
 		return "tiles.fdata.ratio";
 	}
