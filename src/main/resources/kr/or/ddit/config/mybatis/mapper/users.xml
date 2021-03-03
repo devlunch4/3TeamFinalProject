@@ -7,7 +7,7 @@
 	<!-- Select 된 컬럼과 resultType에 기술된 클래스의 필드 이름이 동일하면 자동으로 값을 넣어준다. -->
 	<select id="selectAllUser" resultType="userVo">
 		SELECT *
-		FROM users users ORDER BY userid
+		FROM users ORDER BY user_id
 	</select>
 	
 	<select id="selectUser" resultType="userVo"
@@ -27,7 +27,7 @@
 		(SELECT *
 		FROM
 		users
-		ORDER BY userid) a
+		ORDER BY user_id) a
 		WHERE ROWNUM &lt;= #{page} * #{pageSize})
 		WHERE
 		rn BETWEEN (#{page} - 1) *
@@ -39,7 +39,7 @@
 	<select id="selectAllUserCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM
-		users ORDER BY userid
+		users ORDER BY user_id
 	</select>
 
 

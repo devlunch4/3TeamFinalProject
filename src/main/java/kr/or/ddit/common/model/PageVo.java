@@ -22,9 +22,9 @@ public class PageVo {
 	}
 
 	public int getPageSize() {
-		return pageSize == 0 ? 5 : pageSize;
+		return pageSize == 0 ? 20 : pageSize;
 	}
-
+	
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}

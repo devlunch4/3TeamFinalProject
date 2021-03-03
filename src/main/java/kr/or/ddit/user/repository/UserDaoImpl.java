@@ -11,12 +11,12 @@ public interface UserDaoImpl {
 	UserVo selectUser(String userid);
 //
 //	// 전체 사용자 정보 조회
-//	List<UserVo> selectAllUser();
+	List<UserVo> selectAllUser();
 //
 //	// 페이지 처리
-//	List<UserVo> selectPagingUser(PageVo pageVo);
+	List<UserVo> selectPagingUser(PageVo pageVo);
 //	// 사용자 전체수 조회
-//	int selectAllUserCnt();
+	int selectAllUserCnt();
 //
 //	// 사용자 정보 수정
 //	int modifyUser(UserVo userVo);

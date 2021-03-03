@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -32,7 +32,7 @@ $(function(){
 					<input type="hidden" name="userid" value="${S_USER.userid }" />
 					
 					<div class="form-group">
-						<label class="small mb-1" for="input_cls_code">성명</label>
+						<label class="small mb-3" for="input_cls_code">성명</label>
 						<div class="col-sm-10">
 							<input name="userid" class="form-control" value="테스트이름" />
 						</div>

@@ -1,8 +1,5 @@
 package kr.or.ddit.login;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +54,7 @@ public class LoginController {
 		logger.debug("userVo : {}", userVo);
 
 		// 아이디 가져오기
-		UserVo dbUser = userService.selectUser(userVo.getUserid());
+		UserVo dbUser = userService.selectUser(userVo.getUser_id());
 
 		// logger.debug("{} / {}",dbUser.getPass(),userVo.getPass());
 		//
@@ -88,7 +85,7 @@ public class LoginController {
 		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
 		String outid = "";
 		if (dbUser != null) {
-			outid = dbUser.getUserid();
+			outid = dbUser.getUser_id();
 		}
 		model.addAttribute("msg", outid + " 님 로그아웃 되셨습니다.");
 		model.addAttribute("url", "/login/view");

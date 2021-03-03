@@ -13,10 +13,10 @@ public interface UserServiceImpl {
 	UserVo selectUser(String userid);
 //	
 //	// 전체 사용자 정보 조회
-//	List<UserVo> selectAllUser();
+	List<UserVo> selectAllUser();
 //
 //	// 페이지 처리
-//	Map<String, Object> selectPagingUser(PageVo pageVo);
+	Map<String, Object> selectPagingUser(PageVo pageVo);
 //
 //	// 사용자 정보 수정
 //	int modifyUser(UserVo userVo);
@@ -41,6 +41,7 @@ public interface UserServiceImpl {
 //	Map<String, Object> nameSearchUser(PageVoSearch pageVoSearch);
 //
 //	// 별명으로 검색
-//	Map<String, Object> aliasSearchUser(PageVoSearch pageVoSearch);
+//	Map<String, Object> aliasSearchUser(PageVoSearch pag@Override
+//	eVoSearch);
 
 }
