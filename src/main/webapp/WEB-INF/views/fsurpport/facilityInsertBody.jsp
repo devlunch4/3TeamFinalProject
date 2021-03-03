@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- 20210302_KJH 시설등록 -->
-<main>
+<main> 
 시설관리
 			<div class="card mt-2 col-sm-12 px-0">
 				<h3 class="card-header">총게시글 :</h3>
