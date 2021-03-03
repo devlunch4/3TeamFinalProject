@@ -9,8 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.farm.model.ItemsVo;
+import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.farm.model.WorkstepsVo;
 
 @Repository("fsurpportDao")
@@ -36,13 +37,29 @@ public class FsurpportDaoImpl implements FsurpportDao{
 	
 	// ggy_20210227 : 등록된 품목 조회
 	@Override
-	public List<ItemsVo> selectAllItemsList() {
+	public List<CodesVo> selectAllItemsList() {
 		return template.selectList("fsurpports.selectAllItemsList");
 	}
 
 	@Override
 	public List<FarmdiaryVo> searchAllFsurpportList(FarmdiaryVo farmdiaryVo) {
 		return template.selectList("fsurpports.searchAllFsurpportList", farmdiaryVo);
+	}
+	
+	
+	
+	
+	/*시설관리 영역*/
+	
+	//20210302_KJH 시설리스트 조회
+	@Override
+	public List<FcltmngVo> myfcltmngList(){
+		return template.selectList("fcltmng.myfcltmngList");
+	}
+	
+	@Override
+	public FcltmngVo fcltmngInfo(String str){
+		return template.selectOne("fcltmng.fcltmngInfo",str);
 	}
 	
 }

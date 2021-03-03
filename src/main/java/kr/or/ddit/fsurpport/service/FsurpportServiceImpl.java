@@ -8,8 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.farm.model.ItemsVo;
+import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.farm.model.WorkstepsVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
 
@@ -43,7 +44,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 	// ggy_20210227 : 등록된 품목 조회
 	@Override
-	public List<ItemsVo> selectAllItemsList() {
+	public List<CodesVo> selectAllItemsList() {
 		return fsurpportDao.selectAllItemsList();
 	}
 
@@ -51,5 +52,20 @@ public class FsurpportServiceImpl implements FsurpportService {
 	@Override
 	public List<FarmdiaryVo> searchAllFsurpportList(FarmdiaryVo farmdiaryVo) {
 		return fsurpportDao.searchAllFsurpportList(farmdiaryVo);
+	}
+
+
+	/*시설관리 영역*/
+	@Override
+	public List<FcltmngVo> myfcltmngList() {
+		// TODO Auto-generated method stub
+		return fsurpportDao.myfcltmngList();
+	}
+	
+
+	@Override
+	public FcltmngVo fcltmngInfo(String str) {
+		// TODO Auto-generated method stub
+		return fsurpportDao.fcltmngInfo(str);
 	}
 }

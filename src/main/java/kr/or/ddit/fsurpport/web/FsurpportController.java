@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
 @RequestMapping("fsurpport")
@@ -90,5 +91,47 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.fsurpportInfo";
 	}
+	
+	
+	/*시설관리 영역*/
+	
+	//KJH_20210302
+	//농업양식 - 시설관리 관리중인 시설 리스트 조회페이지
+	@RequestMapping("facilityList")
+	public String facilityList(Model model) {
+		
+		List<FcltmngVo> fcltmngList =  fsurpportService.myfcltmngList();
+		
+		model.addAttribute("fcltmngList", fcltmngList);
 
+		return "tiles.fsurpport.facilityList";
+	}
+	
+	//KJH_20210302
+	//농업양식 - 시설관리 관리중인 시설 상세 조회페이지
+	@RequestMapping("facilityInfo")
+	public String facility(Model model, FcltmngVo facility) {
+		logger.debug(facility.getControl_no());
+		FcltmngVo vo = fsurpportService.fcltmngInfo(facility.getControl_no());
+		
+		model.addAttribute("facility", vo);
+
+		return "tiles.fsurpport.facilityInfo";
+	}
+	
+	//KJH_20210302
+	//농업양식 - 시설관리 관리중인 시설 등록 페이지
+	@RequestMapping("facilityInsert")
+	public String facilityInsert() {
+
+		return "tiles.fsurpport.facilityInsert";
+	}
+	
+	//KJH_20210302
+	//농업양식 - 시설관리 관리중인 시설 업데이트 페이지
+	@RequestMapping("facilityupdate")
+	public String facilityupdate() {
+
+		return "tiles.fsurpport.facilityupdate";
+	}
 }
