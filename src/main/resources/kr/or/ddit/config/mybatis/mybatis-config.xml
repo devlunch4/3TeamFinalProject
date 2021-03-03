@@ -32,7 +32,7 @@
 	<mappers>
 
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
-
+<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
 
 		<!-- 2021-03-03KJH codes,fcltmng mapper -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/codes.xml" />
