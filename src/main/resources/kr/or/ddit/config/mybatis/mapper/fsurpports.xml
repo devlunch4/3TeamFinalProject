@@ -19,12 +19,12 @@
 		order by wstep_code
 	</select>
 	
-	<!-- 품목 조회. -->
-	<select id="selectAllItemsList" resultType="itemsVo">
-		select *
-		from items
-		order by category_code
-	</select>
+<!-- 품목 조회. -->
+<!-- 	<select id="selectAllItemsList" resultType="itemsVo"> -->
+<!-- 		select * -->
+<!-- 		from items -->
+<!-- 		order by category_code -->
+<!-- 	</select> -->
 	
 	<!-- 날짜 기준으로 검색 -->
 	<select id="searchAllFsurpportList" parameterType="farmdiaryVo" resultType="farmdiaryVo">

@@ -1,42 +1,23 @@
 package kr.or.ddit.user.web;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import kr.or.ddit.common.model.PageVo;
-import kr.or.ddit.common.model.PageVoSearch;
-import kr.or.ddit.farm.model.ItemsVo;
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -54,25 +35,22 @@ public class UserController {
 	private FdataServiceImpl fdataService;
 
 	// 메인 가기
+	//20210302_KJH items - > codes 변경
 	@RequestMapping("main") // 모든 사용자 정보 조회
-	public String main(Model model, ItemsVo itemsVo, String sdate) {
-		//메인으로 가면서 크롤링하여 시세분석값을 가져옴
-		int itemcategorycode = 100;
-		int itemcode = 111;
+	public String main(Model model, CodesVo codesVo, String sdate) {
+		//KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
+		String itemcategorycode = "100";
+		String itemcode = "111";
 		Date date = new Date();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String mydate = transFormat.format(date);
 		
-//		Calendar day = Calendar.getInstance();
-//	    day.add(Calendar.DATE , -1);
-//	    String mydate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day.getTime());
-
 		if(sdate != null) {
 		mydate = sdate;
 		}
-		if(itemsVo.getCategory_code() != 0) {
-			itemcategorycode = itemsVo.getCategory_code();
-			itemcode = itemsVo.getItem_code();
+		if(codesVo.getCode_no() != null) {
+			itemcategorycode = codesVo.getParent_code();
+			itemcode = codesVo.getCode_no();
 
 		}	
 		//Jsoup라이브러리를 사용한 크롤링
@@ -137,8 +115,8 @@ public class UserController {
 			e1.printStackTrace();
 		}
 		
-		List<ItemsVo> itemsList = fdataService.selectItems(itemcategorycode);
-		model.addAttribute("itemsList",itemsList);
+		List<CodesVo> codesList = fdataService.selectcodes();
+		model.addAttribute("codesList",codesList);
 
 		return "tiles.main.main";
 	}

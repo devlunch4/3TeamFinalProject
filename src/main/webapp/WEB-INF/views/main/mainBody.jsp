@@ -43,9 +43,7 @@ $(function(){
 		$("#c_code").val($("#category").val());
 		$("#i_code").val(item);
 		$("#d_code").val($("#dateserch").val());
-		
 		$("#select").submit();
-		
 	})
 	
 	$("#category").val("${itemcategorycode}").prop("selected",true);
@@ -65,7 +63,7 @@ $(function(){
 })
 </script>
 
-
+    <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
 <main>
 
     <div class="container-fluid">
@@ -83,14 +81,14 @@ $(function(){
     
     <form id ="select" action="${pageContext.request.contextPath}/user/main">
     
-    <input type="hidden" id = "c_code" name ="category_code" value="">
-    <input type="hidden" id = "i_code" name ="item_code" value="">
+    <input type="hidden" id = "c_code" name ="parent_code" value="">
+    <input type="hidden" id = "i_code" name ="code_no" value="">
     <input type="hidden" id = "d_code" name ="sdate" value="">
     
     </form>
     
-    <table class="table table-bordered" style="font-size: 15px;">
-    <tr><td class="table-active">부류</td>
+    <table class="table table-bordered col-sx-12" style="font-size: 15px;">
+    <tr class="col-sx-"><td class="table-active">부류</td>
     </tr><tr><td>
      <select id = "category" class="form-control data-style="btn-primary">
      <option value="100">식량작물</option>
@@ -103,18 +101,17 @@ $(function(){
     
     <td>
      <select id = "item1" class="form-control data-style="btn-primary">
-     <c:forEach items="${itemsList}" var="item">
-     <c:if test="${item.category_code==100}">
-     <option value="${item.item_code}">${item.item_nm}</option>
+     <c:forEach items="${codesList}" var="codes">
+     <c:if test="${codes.parent_code=='100'}">
+     <option value="${codes.code_no}">${codes.code_nm}</option>
      </c:if>
      </c:forEach>
   	</select>
   	 
-  	
-  	<select id = "item2" class="form-control data-style="btn-primary" style="display:none">
-     <c:forEach items="${itemsList}" var="item">
-     <c:if test="${item.category_code==200}">
-     <option value="${item.item_code}">${item.item_nm}</option>
+     <select id = "item2" class="form-control data-style="btn-primary" style="display:none">
+     <c:forEach items="${codesList}" var="codes">
+     <c:if test="${codes.parent_code=='200'}">
+     <option value="${codes.code_no}">${codes.code_nm}</option>
      </c:if>
      </c:forEach>
   	</select>
@@ -167,39 +164,39 @@ $(function(){
     
     </table>
     
-    <canvas id="myChart" width="600" height="600">
+    <canvas id="myChart" width="600" height="300">
     This text is displayed if your browser does not support HTML5 Canvas.
 	</canvas>
     
     
-        <p>똑똑한 농부들</p>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-area mr-1"></i>
-                        농산물 시세분석
-                    </div>
-                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar mr-1"></i>
-                        Bar Chart Example
-                    </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                DataTable Example
-            </div>
+<!--         <p>똑똑한 농부들</p> -->
+<!--         <div class="row"> -->
+<!--             <div class="col-xl-6"> -->
+<!--                 <div class="card mb-4"> -->
+<!--                     <div class="card-header"> -->
+<!--                         <i class="fas fa-chart-area mr-1"></i> -->
+<!--                         농산물 시세분석 -->
+<!--                     </div> -->
+<%--                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div> --%>
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="col-xl-6"> -->
+<!--                 <div class="card mb-4"> -->
+<!--                     <div class="card-header"> -->
+<!--                         <i class="fas fa-chart-bar mr-1"></i> -->
+<!--                         Bar Chart Example -->
+<!--                     </div> -->
+<%--                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div> --%>
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--         <div class="card mb-4"> -->
+<!--             <div class="card-header"> -->
+<!--                 <i class="fas fa-table mr-1"></i> -->
+<!--                 DataTable Example -->
+<!--             </div> -->
 			
-        </div>
+<!--         </div> -->
     </div>
 </main>
 <footer class="py-4 bg-light mt-auto">
