@@ -27,11 +27,35 @@ public class LoginController {
 	@Resource(name = "userService")
 	private UserServiceImpl userService;
 
+//	20210302_LYS_Login2 - 로그인페이지로 이동
 	@RequestMapping(path = "view", method = { RequestMethod.GET })
-	public String view() {
-		logger.debug("iNN login controller >> view");
+	public String loginView() {
+		logger.debug("iNN login controller >> loginView");
 		return "login";
 	}
+	
+//	20210302_LYS_Login2 - 로그인 구현 페이지
+	@RequestMapping(path="process", method = { RequestMethod.POST })
+	public String loginProcess(UserVo userVo, HttpSession session) {
+		logger.debug("iNN login controller >> loginProcess");
+		
+		UserVo dbUser = userService.selectUser(userVo.getUser_id());
+		
+		if(dbUser!=null && userVo.getUser_pw().equals(dbUser.getUser_pw())) {
+			session.setAttribute("S_USER", dbUser);
+			return "redirect:/user/main";
+		}else {
+			return "redirect:/login/view";
+		}
+	}
+	
+//	20210302_LYS_Login2 - 회원가입페이지로 이동
+	@RequestMapping(path="register", method = { RequestMethod.GET })
+	public String registerView() {
+		logger.debug("iNN login controller >> registerView");
+		return "register";
+	}
+	
 	
 	
 	@RequestMapping(path = "view2", method = { RequestMethod.GET })
@@ -40,55 +64,13 @@ public class LoginController {
 		return "tiles.fdata.index";
 	}
 
-	// String userid = req.getParameter("userid");
-	// String pass = req.getParameter("pass");
-	// @RequestMapping("process")
-	public String process(String userid, String pass, int price) {
-		logger.debug("userid : {}", userid);
-		logger.debug("pass : {}", pass);
-		logger.debug("price : {}", price);
-		return "";
-	}
-
-	// post만 처리하도 설정
-//<<<<<<< 20210226_KKC_MyPage
-	@RequestMapping(path = "process", method = { RequestMethod.POST })
-	public String process(UserVo userVo, HttpSession session, HttpServletRequest request, RedirectAttributes ra) {
-		logger.debug("userVo : {}", userVo);
-
-		// 아이디 가져오기
-		UserVo dbUser = userService.selectUser(userVo.getUserid());
-
-		// logger.debug("{} / {}",dbUser.getPass(),userVo.getPass());
-		//
-		//if (dbUser != null && userVo.getPass().equals(dbUser.getPass())) {
-			// 로그인 성공시
-			// 세션 내장객체 호출
-//			session.setAttribute("S_USER", dbUser);
-//			return "main";
-//		} else {
-//			// 로그인 실패시
-//			// session.setAttribute("msg", "잘못된 사용자 정보입니다.");
-//			
-//			// 내부적으로 session 사용하여 속성을 저장
-//			// 리다이렉트 처리가 완료되면 스프링 프레임워크에서 자동으로 session에서 제거
-//			ra.addFlashAttribute("msg", "잘못된 사용자 정보입니다.");
-//			// 일반 속성을 추가한경우: addAttribute
-//			// 리다이렉트 페이지의 파라미터로 전달된
-//			ra.addAttribute("userid", userVo.getUserid());
-//			return "redirect:/login/view";
-//		}
-		return "";
-	}
-	
-
 	// 로그아웃
 	@RequestMapping("logout") // 모든 사용자 정보 조회
 	public String logout(Model model, HttpServletRequest req, HttpServletResponse resp, HttpSession session) {
 		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
 		String outid = "";
 		if (dbUser != null) {
-			outid = dbUser.getUserid();
+			outid = dbUser.getUser_id();
 		}
 		model.addAttribute("msg", outid + " 님 로그아웃 되셨습니다.");
 		model.addAttribute("url", "/login/view");

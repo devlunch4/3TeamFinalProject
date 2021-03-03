@@ -1,18 +1,38 @@
 @charset "UTF-8";
 
 /* 예슬 추가 */
-/* 부트스트랩에 없는 버튼스타일 */
 
+/* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼*/
 .btn-primary2 {
     color: #007bff;
     background-color: #c3dfff;
     border-color: #95c8ff;
-    font-size: 13px;
 }
 
+/* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼 hover*/
 .btn-primary2:hover {
     color: #004a99;
     background-color: #8dc2ff;
     border-color: #95c8ff;
-    font-size: 13px;
+}
+
+/* py-3  패딩 1rem아니고, 회원가입할때 버튼 틀어져서 직접 맞춘 패딩 */
+.f-py-3{
+	padding-top: 0.8rem !important;
+	padding-bottom: 0.7rem !important;
+}
+
+/* 인라인요소 블럭 처리할때 - 공통사용 */
+.display-block{
+	display:block;
+}
+
+/* 미디어쿼리 767px미만 or 766px이하 */
+@media (max-width: 767px) {
+
+	/* 	767px미만일때 display:none 처리 */
+	.display-none-767{
+		display:none;
+	}
+
 }

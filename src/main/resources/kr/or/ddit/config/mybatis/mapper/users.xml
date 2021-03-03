@@ -13,8 +13,7 @@
 	<select id="selectUser" resultType="userVo"
 		parameterType="String">
 		SELECT *
-		FROM
-		users
+		FROM users
 		WHERE user_id = #{value}
 	</select>
 	

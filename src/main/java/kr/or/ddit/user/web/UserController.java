@@ -143,24 +143,6 @@ public class UserController {
 		return "tiles.main.main";
 	}
 
-	// 로그인 하는거 02-27 12시11분 (경찬)
-	@RequestMapping("login")
-	public String login() {
-		return "login";
-	}
-	
-	// 로그인 하는거 03-02 09시50분 (경찬)
-	@RequestMapping("login2")
-	public String loginController(UserVo userVo, HttpSession session) {
-		UserVo dbUser = userService.selectUser(userVo.getUserid());
-		if (dbUser != null && userVo.getUserpw().equals(dbUser.getUserpw())) {
-			session.setAttribute("S_USER", dbUser);
-			return "tiles.main.main";
-		} else {
-			return "login";
-		}
-	}
-
 	@RequestMapping("myPage")
 	public String myPage(UserVo userVo) {
 		return "tiles.user.userinfo";
