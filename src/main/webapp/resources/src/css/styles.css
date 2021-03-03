@@ -366,7 +366,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 2.0rem;
 }
 
 h2, .h2 {
@@ -7598,6 +7598,7 @@ button.bg-dark:focus {
 .mt-4,
 .my-4 {
   margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 .mr-4,

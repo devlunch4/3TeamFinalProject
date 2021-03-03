@@ -7,27 +7,26 @@
 
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
-<main>
-	<div class="card mt-2 col-sm-12 px-0">
-		<h3 class="card-header">총게시글 :</h3>
-		<div class="card-body text-left ">
-			<div class="">
-				<div class="row">
-					<div class="container">
-						<div class="row my-3">
-							<div class="col-12">
-								<h4>Bootstrap 4 Chart.js - Chart</h4>
-							</div>
+<h1 class="mt-4">품목별 비율</h1>
+<div class="card mt-2 col-sm-12 px-0">
+	<h3 class="card-header">총게시글 :</h3>
+	<div class="card-body text-left ">
+		<div class="">
+			<div class="row">
+				<div class="container">
+					<div class="row my-3">
+						<div class="col-12">
+							<h4>Bootstrap 4 Chart.js - Chart</h4>
 						</div>
-						<div class="row my-2">
-							<div class="col-lg-6">
-								<div class="card">
-									<div class="card-body">
-										<canvas id="myChart2"></canvas>
-									</div>
-									<div class="card card-body text-center bg-primary">
-										<h3>Doughnut</h3>
-									</div>
+					</div>
+					<div class="row my-2">
+						<div class="col-lg-6">
+							<div class="card">
+								<div class="card-body">
+									<canvas id="myChart2"></canvas>
+								</div>
+								<div class="card card-body text-center bg-primary">
+									<h3>Doughnut</h3>
 								</div>
 							</div>
 						</div>
@@ -36,7 +35,7 @@
 			</div>
 		</div>
 	</div>
-</main>
+</div>
 <script>
 
 

@@ -40,7 +40,23 @@
 
 		<!-- 실제 컨텐트가 들어가는 div -->
 		<div id="layoutSidenav_content">
-			<tiles:insertAttribute name="body" />
+			<main>
+			    <div class="container-fluid">
+					<tiles:insertAttribute name="body"/>
+				</div>
+			</main>	
+			<footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; 똑똑한 농부들 2021</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
 		</div>
 	</div>
 
