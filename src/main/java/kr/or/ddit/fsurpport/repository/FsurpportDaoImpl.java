@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 
 @Repository("fsurpportDao")
 public class FsurpportDaoImpl implements FsurpportDao {
@@ -52,10 +53,14 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<FcltmngVo> myfcltmngList() {
 		return template.selectList("fcltmng.myfcltmngList");
 	}
-
+	// 20210302_KJH 시설 상세조회
 	@Override
 	public FcltmngVo fcltmngInfo(String str) {
 		return template.selectOne("fcltmng.fcltmngInfo", str);
 	}
-
+	// 20210304_KJH 시설 최근 측정정보 조회
+	@Override
+	public MsrrecVo latelyData(String msr_code) {
+		return template.selectOne("fcltmng.latelyData",msr_code);
+	}
 }

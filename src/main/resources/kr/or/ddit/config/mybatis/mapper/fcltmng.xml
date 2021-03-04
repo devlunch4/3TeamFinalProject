@@ -16,9 +16,23 @@
 <!-- 시설 상세 조회-->
 <select id="fcltmngInfo" resultType="fcltmngVo" parameterType="String">
 	select
-	control_no,msr_code,owner,location,info,use,reg_dt
-	from fcltmng where control_no = #{control_no}
-</select>		
- 
+	f.control_no,f.msr_code,f.owner,f.location,f.info,c.code_nm item_code,f.reg_dt
+	from fcltmng f,codes c
+	where control_no = #{control_no}
+    and f.item_code = c.code_no
+</select>
+
+<!--가장 최근 센서 정보 조회 -->
+<select id="latelyData" resultType="msrrecVo" parameterType="String">
+	select c.msr_no, p.msr_nm msr_code, c.msr_reg_dt, c.msr_temp , c.msr_humid, c.msr_bright
+	from msrrec c, msrequip p
+	where MSR_REG_DT =
+	(SELECT max(msr_reg_dt) KEEP(DENSE_RANK FIRST ORDER BY msr_reg_dt DESC)
+	msr_reg_dt
+	FROM msrrec
+	where msr_code = #{msr_code})
+	and c.msr_code = p.msr_code
+</select>
+
 </mapper>
 

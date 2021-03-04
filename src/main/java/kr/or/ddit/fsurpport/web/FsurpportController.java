@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
 @RequestMapping("fsurpport")
@@ -113,6 +114,7 @@ public class FsurpportController {
 		return "tiles.fsurpport.fsurpportSimpleInsert";
 	}
 
+	
 	/* 시설관리 영역 */
 
 	// KJH_20210302
@@ -130,11 +132,15 @@ public class FsurpportController {
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 상세 조회페이지
 	@RequestMapping("facilityInfo")
-	public String facility(Model model, FcltmngVo facility) {
-		logger.debug(facility.getControl_no());
-		FcltmngVo vo = fsurpportService.fcltmngInfo(facility.getControl_no());
+	public String facility(Model model, FcltmngVo fcltmng) {
+		logger.debug(fcltmng.getControl_no());
+		FcltmngVo fvo = fsurpportService.fcltmngInfo(fcltmng.getControl_no());
+		System.out.println(fvo.getControl_no());
+		// KJH_20210304 측정 정보 조회
+		MsrrecVo mvo = fsurpportService.latelyData(fvo.getMsr_code());
 
-		model.addAttribute("facility", vo);
+		model.addAttribute("facility", fvo);
+		model.addAttribute("msrrec", mvo);
 
 		return "tiles.fsurpport.facilityInfo";
 	}

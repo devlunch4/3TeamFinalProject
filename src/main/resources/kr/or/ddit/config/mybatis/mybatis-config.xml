@@ -24,7 +24,14 @@
 			<!-- 2021-03-03KJH FcltmngVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
 			alias="fcltmngVo" />
-				
+			
+			<!-- 2021-03-04KJH FcltmngVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.MsrrecVo"
+			alias="msrrecVo"/>
+			
+			<!-- 2021-03-04KJH MsrequipVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.MsrequipVo"
+			alias="msrequipVo" />
 
 
 	</typeAliases>

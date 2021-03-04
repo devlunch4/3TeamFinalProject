@@ -8,6 +8,7 @@ public class FcltmngVo {
 	private String owner;
 	private String location;
 	private String info;
+	private String item_code;
 	private String use;
 	private Date reg_dt;
 	
@@ -41,6 +42,12 @@ public class FcltmngVo {
 	public void setInfo(String info) {
 		this.info = info;
 	}
+	public String getItem_code() {
+		return item_code;
+	}
+	public void setItem_code(String item_code) {
+		this.item_code = item_code;
+	}
 	public String getUse() {
 		return use;
 	}
@@ -53,11 +60,12 @@ public class FcltmngVo {
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}
+	
 	@Override
 	public String toString() {
 		return "FcltmngVo [control_no=" + control_no + ", msr_code=" + msr_code + ", owner=" + owner + ", location="
-				+ location + ", info=" + info + ", use=" + use + ", reg_dt=" + reg_dt + "]";
+				+ location + ", info=" + info + ", item_code=" + item_code + ", use=" + use + ", reg_dt=" + reg_dt
+				+ "]";
 	}
-	                         
 	
 }

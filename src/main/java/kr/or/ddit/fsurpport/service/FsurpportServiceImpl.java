@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
 
 @Service("fsurpportService")
@@ -60,11 +61,19 @@ public class FsurpportServiceImpl implements FsurpportService {
 		// TODO Auto-generated method stub
 		return fsurpportDao.myfcltmngList();
 	}
-
+	// 20210302_KJH 시설 상세조회
 	@Override
 	public FcltmngVo fcltmngInfo(String str) {
 		// TODO Auto-generated method stub
 		return fsurpportDao.fcltmngInfo(str);
 
 	}
+
+	@Override
+	public MsrrecVo latelyData(String msr_code) {
+		// TODO Auto-generated method stub
+		return fsurpportDao.latelyData(msr_code);
+	}
+	
+	
 }

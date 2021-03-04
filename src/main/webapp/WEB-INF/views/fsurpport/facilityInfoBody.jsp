@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+
+<script>
+//20210304_KJH 5초마다 새로고침
+function reload(){  
+      setTimeout('location.reload()',5000); 
+}
+</script>
+
 <!-- 20210302_KJH 시설정보 조회 -->
 <h3 class="mt-4">시설관리</h3>
 
@@ -10,20 +18,20 @@
 			<div class="row">
 				<table class="table table-bordered col-sx-12" style="text-align: center;">
 					<tr>
-						<td style="width: 50%;">${facility.location}</td>
+						<td style="width: 50%;">${facility.control_no}</td>
 						<td style="width: 50%;">${facility.owner}</td>
 					</tr>
-					<tr>1
-						<td style="width: 50%;">작물</td>
-						<td style="width: 50%;">둔산동농장32</td>
+					<tr>
+						<td style="width: 50%;">${facility.item_code}</td>
+						<td style="width: 50%;">${facility.location}</td>
 					</tr>
 					<tr>
-						<td style="width: 50%;">장비번호32</td>
-						<td style="width: 50%;">현재온도:21도</td>
+						<td style="width: 50%;">장비명:${msrrec.msr_code}</td>
+						<td style="width: 50%;">온도:${msrrec.msr_temp}</td>
 					</tr>
 					<tr>
-						<td style="width: 50%;">습도:60%</td>
-						<td style="width: 50%;">조도:100</td>
+						<td style="width: 50%;">습도:${msrrec.msr_humid}</td>
+						<td style="width: 50%;">조도:${msrrec.msr_bright}</td>
 					</tr>
 					<tr>
 						<td colspan="2">내용없음</td>
