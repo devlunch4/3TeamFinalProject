@@ -8,44 +8,44 @@
 
 <div>
 	
-	<c:when test="">
+<%-- 	<c:when test=""> --%>
 		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
 			onclick="location.href='#'" class=" btn btn-outline-dark m-1">품종정보 등록</button>
-	</c:when>
+<%-- 	</c:when> --%>
 </div>
 
 <div>
 	<div class="card mt-2 col-sm-12">
 		<div class="card-body text-left p-1">
-			<c:choose>
-				<c:when test="">
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test=""> --%>
 	<%-- 			<c:forEach items="" var="" > --%>
 					<button type="button" onclick="#" 
 					class=" btn btn-primary m-1">ㅅ</button>
 	<%-- 			</c:forEach> --%>
-				</c:when>
-				<c:otherwise>
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
 						<button type="button" onclick="#" 
 						class=" btn btn-outline-dark m-1">ㄱ</button>
-				</c:otherwise>
-			</c:choose>
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
 		
 		</div>
 		<div class="card-body text-left p-1">
 			<span class="">품명</span> <br>
 			
-			<c:choose>
-				<c:when test="">
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test=""> --%>
 	<%-- 			<c:forEach items="" var="" > --%>
 						<button type="button" onclick="#" 
 						class=" btn btn-primary m-1">품명</button>
 	<%-- 			</c:forEach> --%>
-				</c:when>
-				<c:otherwise>
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
 					<button type="button" onclick="#" 
 					class=" btn btn-outline-dark m-1">품명</button>
-				</c:otherwise>
-			</c:choose>	
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose>	 --%>
 				
 		</div>
 	</div>
@@ -86,7 +86,6 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						ㅁㅁ					
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
@@ -102,6 +101,7 @@
 									aria-label="WSTEP_CODE: activate to sort column ascending">품종명</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
 									aria-label="WSTEP_CODE: activate to sort column ascending">주요특성</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -112,11 +112,12 @@
 									<th rowspan="1" colspan="1">육성기관</th>
 									<th rowspan="1" colspan="1">품종명</th>
 									<th rowspan="1" colspan="1">주요특성</th>
+									<th></th>
 								</tr>
 							</tfoot>
 							<tbody>
-								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView'" >
+<%-- 								<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
+									<tr >
 										<td>
 											<img src="#" >
 										</td>
@@ -127,8 +128,12 @@
 										<td>${farmdiaryList.wstep_code }</td>
 										<td></td>
 										<td></td>
+										<td>
+											<input type="button" value="다운로드"
+												onclick="location.href=''">
+										</td>
 									</tr>
-								</c:forEach>
+<%-- 								</c:forEach> --%>
 							</tbody>
 						</table>
 					</div>
