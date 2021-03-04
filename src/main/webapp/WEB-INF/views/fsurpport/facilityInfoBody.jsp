@@ -13,7 +13,7 @@
 						<td style="width: 50%;">${facility.location}</td>
 						<td style="width: 50%;">${facility.owner}</td>
 					</tr>
-					<tr>
+					<tr>1
 						<td style="width: 50%;">작물</td>
 						<td style="width: 50%;">둔산동농장32</td>
 					</tr>
