@@ -34,5 +34,22 @@
 	and c.msr_code = p.msr_code
 </select>
 
+<!-- 센서 기록 조회 -->
+<select id="myfanalysisInfo" resultType="msrrecVo" parameterType="msrrecVo">
+	select ROUND(AVG(NVL(MSR_TEMP, 0)),0) MSR_TEMP,
+    ROUND(AVG(NVL(MSR_HUMID, 0)),0)  MSR_HUMID,
+    ROUND(AVG(NVL(MSR_BRIGHT, 0)),0) MSR_BRIGHT 
+    from msrrec 
+    where msr_reg_dt &lt;= sysdate
+    and msr_reg_dt &gt;= sysdate-#{msr_no}
+    and MSR_CODE = #{msr_code}
+</select>
+
+<!-- 센서 목록 조회 -->
+<select id="msrequipList" resultType="msrequipVo" parameterType="String">
+select msr_code,msr_nm,owner,use 
+from msrequip where owner = #{OWNER}
+</select>
+
 </mapper>
 

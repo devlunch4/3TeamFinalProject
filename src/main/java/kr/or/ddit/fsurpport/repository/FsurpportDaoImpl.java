@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 
 @Repository("fsurpportDao")
@@ -62,5 +63,10 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	@Override
 	public MsrrecVo latelyData(String msr_code) {
 		return template.selectOne("fcltmng.latelyData",msr_code);
+	}
+
+	@Override
+	public List<MsrequipVo> msrequipList(String owner) {
+		return template.selectList("fcltmng.msrequipList",owner);
 	}
 }

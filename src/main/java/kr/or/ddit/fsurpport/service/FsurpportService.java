@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 
 public interface FsurpportService {
@@ -31,4 +32,7 @@ public interface FsurpportService {
 	
 	// 20210304_KJH 시설 최근 측정정보 조회
 	MsrrecVo latelyData(String msr_code);
+	
+	// 20210304_KJH 보유 장비 조회
+	List<MsrequipVo> msrequipList(String owner); 
 }
