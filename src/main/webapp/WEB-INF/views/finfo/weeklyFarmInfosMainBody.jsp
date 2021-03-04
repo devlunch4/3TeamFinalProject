@@ -7,11 +7,11 @@
 <h3 class="mt-4">주간 농사정보</h3>
 
 <div>
-		
-		<c:if test="${S_USER.user_id.equals('admin') }">	
-			<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
-				onclick="location.href='#'" class=" btn btn-outline-dark m-1">주간 농사정보 등록</button>
-		</c:if>
+	
+	<c:if test="${S_USER.user_id.equals('admin') }">
+		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right"
+			onclick="location.href='#'" class=" btn btn-outline-dark m-1">주간 농사정보 등록</button>
+	</c:if>
 </div>
 	
 <!-- 설명 시작 -->

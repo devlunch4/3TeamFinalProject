@@ -33,8 +33,8 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/gardenguides">텃밭가이드</a>
                     <a class="nav-link" href="layout-sidenav-light.html">제철작물</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/raceInfosView">품종정보</a>
-                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/fcltmngView">주간 농사정보</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">품목별 영농매뉴얼</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/weeklyFarmInfosView">주간 농사정보</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/itemFarmManualsView">품목별 영농매뉴얼</a>
                 </nav>
             </div>
            
