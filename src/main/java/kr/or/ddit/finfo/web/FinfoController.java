@@ -46,11 +46,18 @@ public class FinfoController {
 	//KWS 텃밭 가이드 수정 (재배정보 수정 페이지 진입)
 	
 	
-	// ggy_20210304 : 농업 정보 - 품종정보 진입
+	// ggy_20210304 : 농업정보 - 품종정보 진입
 	@RequestMapping("raceInfosView") 
 	public String raceInfosView(Model model) {
 		
 		return "tiles.finfo.raceInfosMain";
+	}
+	
+	// ggy_20210304 : 농업정보 - 주간 농사정보 진입
+	@RequestMapping("fcltmngView") 
+	public String fcltmngView(Model model) {
+		
+		return "tiles.finfo.fcltmngMain";
 	}
 	
 	

@@ -4,14 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">품종정보</h3>
+<h3 class="mt-4">품종정보666</h3>
 
 <div>
-	
-<%-- 	<c:when test=""> --%>
-		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
-			onclick="location.href='#'" class=" btn btn-outline-dark m-1">품종정보 등록</button>
-<%-- 	</c:when> --%>
+			<c:if test="${S_USER.user_id.equals('admin') }">
+				<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
+					onclick="location.href='#'" class=" btn btn-outline-dark m-1">품종정보 등록</button>
+			</c:if>
 </div>
 
 <div>
@@ -92,16 +91,17 @@
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
 									aria-label="Image: activate to sort column descending" aria-sort="ascending">사진</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="REG_DT: activate to sort column ascending">작물명</th>
+									aria-label="RINFO_NM: activate to sort column ascending">작물명</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="ITEM_CODE: activate to sort column ascending">육성년도</th>
+									aria-label="DEV_YEAR: activate to sort column ascending">육성년도</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="WSTEP_CODE: activate to sort column ascending">육성기관</th>
+									aria-label="INC_CODE: activate to sort column ascending">육성기관</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="WSTEP_CODE: activate to sort column ascending">품종명</th>
+									aria-label="VRT_NM: activate to sort column ascending">품종명</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="WSTEP_CODE: activate to sort column ascending">주요특성</th>
-									<th></th>
+									aria-label="SPEC: activate to sort column ascending">주요특성</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
+									aria-label="FILE_NO: activate to sort column ascending">첨부파일</th>
 								</tr>
 							</thead>
 							<tfoot>
