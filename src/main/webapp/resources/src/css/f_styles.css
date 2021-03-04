@@ -2,6 +2,11 @@
 
 
 
+
+
+
+/*-------------------------공통 css 시작-------------------------*/
+
 /* LYS - 20210303*/
 /* 폰트 추가 */
 @font-face { font-family: 'NanumBarunGothic';
@@ -11,24 +16,73 @@ url('/fonts/NanumBarunGothic.woff') format('woff');}
 
 body {font-family: 'NanumBarunGothic', 'serif';}
 
-.input-group{
+#logo img{
+	width: 165px;
+}
+
+/* LYS - 20210303*/
+/* 인라인요소 블럭 처리할때 - 공통사용 */
+.display-block{
+	display:block;
+}
+
+/*-------------------------공통 css 끝 -------------------------*/
+
+
+
+/*-------------------------header css 시작-------------------------*/
+/*-------------------------header css 끝 -------------------------*/
+
+
+/*-------------------------body css 시작-------------------------*/
+/*-------------------------body css 끝 -------------------------*/
+
+
+
+/*-------------------------footer css 시작-------------------------*/
+
+/* LYS - 20210303*/
+/* footer 상단 여백 */
+.footer{
+	margin-top: 2.0rem !important;
+}
+
+
+/*-------------------------footer css 끝 -------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------그외 부트스트랩 수정 css 시작-------------------------*/
+
+/* LYS - 20210303*/
+/*헤더부분 검색 안보임 처리 - 소스자체를 지우면 레이아웃 틀어짐  */
+.header-search{
 	display:none;
 }
 
 /* LYS - 20210226*/
 /* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼*/
 .btn-primary2 {
-    color: #007bff;
-    background-color: #c3dfff;
-    border-color: #95c8ff;
+    color: #138035;
+    background-color: #c5f1c1;
 }
 
 /* LYS - 20210226*/
 /* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼 hover*/
 .btn-primary2:hover {
-    color: #004a99;
-    background-color: #8dc2ff;
-    border-color: #95c8ff;
+    color: #0d6238;
+    background-color: #aceaa5;
 }
 
 /* LYS - 20210303*/
@@ -38,21 +92,24 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 	padding-bottom: 0.7rem !important;
 }
 
-/* LYS - 20210303*/
-/* 인라인요소 블럭 처리할때 - 공통사용 */
-.display-block{
-	display:block;
-}
-
-/* LYS - 20210303*/
-/* footer 상단 여백 */
-.footer{
-	margin-top: 2.0rem !important;
-}
+/*-------------------------그외 부트스트랩 수정 css 끝 -------------------------*/
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------미디어쿼리 767px미만 or 766px이하 시작--------------------------*/
+
 /* LYS - 20210303*/
-/* 미디어쿼리 767px미만 or 766px이하 */
 @media (max-width: 767px) {
 
 	/* 	767px미만일때 display:none 처리 */
@@ -61,3 +118,5 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 	}
 
 }
+
+/* ----------------------미디어쿼리 767px미만 or 766px이하 끝--------------------------*/
