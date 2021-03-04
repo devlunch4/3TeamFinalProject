@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">품종정보666</h3>
+<h3 class="mt-4">품종정보</h3>
 
 <div>
-			<c:if test="${S_USER.user_id.equals('admin') }">
-				<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
-					onclick="location.href='#'" class=" btn btn-outline-dark m-1">품종정보 등록</button>
-			</c:if>
+	<c:if test="${S_USER.user_id.equals('admin') }">
+		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
+			onclick="location.href='#'" class=" btn btn-outline-dark m-1">품종정보 등록</button>
+	</c:if>
 </div>
 
 <div>

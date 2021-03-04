@@ -73,8 +73,8 @@
             <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="layout-static.html">문의사항</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">공지사항</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">미니장터</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/noticesView">공지사항</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/minimarketView">미니장터</a>
                 </nav>
             </div>
            
