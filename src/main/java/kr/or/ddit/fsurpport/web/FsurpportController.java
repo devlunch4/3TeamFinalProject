@@ -112,6 +112,20 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.fsurpportSimpleInsert";
 	}
+	
+	// ggy_20210304 : 농업지원-영농일지 내 일지 수정을 위한 진입페이지
+	@RequestMapping("ModifyView")
+	public String ModifyView() {
+		
+		return "tiles.fsurpport.fsurpportModify";
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	/* 시설관리 영역 */
 
