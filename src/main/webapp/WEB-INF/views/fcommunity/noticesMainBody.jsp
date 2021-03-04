@@ -66,11 +66,13 @@
 								</c:forEach>
 								
 								<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'" >
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
-								</tr>
+										<td></td>
+										<td>test</td>
+										<td>test</td>
+										<td>
+											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
+										</td>
+									</tr>
 								
 							</tbody>
 						</table>

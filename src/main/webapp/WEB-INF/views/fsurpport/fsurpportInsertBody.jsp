@@ -87,8 +87,8 @@
 			</div>
 
 			<div class="mailbox-attachment-info">
-				<div class="input-group input-group-sm">
-					<input id="picture" class="form-control" type="file" name="picture" accept=".gif, .jpg, .png" style="height: 37px;" />
+				<div class="">
+					<input id="picture" class="form" type="file" name="picture" accept=".gif, .jpg, .png" style="height: 37px;" />
 				</div>
 			</div>
 		</div>

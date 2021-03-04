@@ -39,7 +39,7 @@ public class FcommunityController {
 		return "tiles.fcommunity.noticesModify";
 	}
 	
-	// ggy_20210304 : 커뮤니티 공지사항 진입
+	// ggy_20210304 : 커뮤니티 미니장터 진입
 	@RequestMapping("minimarketView") 
 	public String minimarketView(Model model) {
 		
@@ -48,6 +48,32 @@ public class FcommunityController {
 		return "tiles.fcommunity.minimarketMain";
 	}
 	
+	// ggy_20210304 : 커뮤니티 미니장터 상세정보 진입
+	@RequestMapping("minimarketInfoView")
+	public String minimarketInfoView(Model model) {
+
+		logger.debug("IN noticesInfoView()");
+
+		return "tiles.fcommunity.minimarketInfo";
+	}
+	
+	// ggy_20210304 : 커뮤니티 미니장터 수정 페이지 진입
+	@RequestMapping("minimarketModifyView")
+	public String minimarketModify퍋ㅈ(Model model) {
+		
+		logger.debug("IN noticesInfoView()");
+		
+		return "tiles.fcommunity.minimarketModify";
+	}
+	
+	// ggy_20210304 : 커뮤니티 미니장터 글 작성 페이지 진입
+	@RequestMapping("minimarketRegistView")
+	public String minimarketRegist퍋ㅈ(Model model) {
+		
+		logger.debug("IN noticesInfoView()");
+		
+		return "tiles.fcommunity.minimarketRegist";
+	}
 	
 	
 	
