@@ -5,7 +5,6 @@
 
 
 <h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
-<br>
 
 <form id="grdguidefrm" enctype="multipart/form-data"
 	action="${pageContext.request.contextPath}/finfo/gardenguidesInsertBtn"

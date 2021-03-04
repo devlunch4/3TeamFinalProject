@@ -1,7 +1,21 @@
 @charset "UTF-8";
 
-/* 예슬 추가 */
 
+
+/* LYS - 20210303*/
+/* 폰트 추가 */
+@font-face { font-family: 'NanumBarunGothic';
+src: url('/fonts/NanumBarunGothic.eot');
+src: url('/fonts/NanumBarunGothic.eot') format('embedded-opentype'),
+url('/fonts/NanumBarunGothic.woff') format('woff');}
+
+body {font-family: 'NanumBarunGothic', 'serif';}
+
+.input-group{
+	display:none;
+}
+
+/* LYS - 20210226*/
 /* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼*/
 .btn-primary2 {
     color: #007bff;
@@ -9,6 +23,7 @@
     border-color: #95c8ff;
 }
 
+/* LYS - 20210226*/
 /* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼 hover*/
 .btn-primary2:hover {
     color: #004a99;
@@ -16,17 +31,27 @@
     border-color: #95c8ff;
 }
 
+/* LYS - 20210303*/
 /* py-3  패딩 1rem아니고, 회원가입할때 버튼 틀어져서 직접 맞춘 패딩 */
 .f-py-3{
 	padding-top: 0.8rem !important;
 	padding-bottom: 0.7rem !important;
 }
 
+/* LYS - 20210303*/
 /* 인라인요소 블럭 처리할때 - 공통사용 */
 .display-block{
 	display:block;
 }
 
+/* LYS - 20210303*/
+/* footer 상단 여백 */
+.footer{
+	margin-top: 2.0rem !important;
+}
+
+
+/* LYS - 20210303*/
 /* 미디어쿼리 767px미만 or 766px이하 */
 @media (max-width: 767px) {
 

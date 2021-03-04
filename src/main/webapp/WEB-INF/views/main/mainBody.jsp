@@ -57,10 +57,9 @@ $(function(){
 </script>
 
 <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
-<h1 class="mt-4">시세분석</h1>
-<br>
-<div class="form-group">
+<h3 class="mt-4">시세분석</h3>
 
+<div class="form-group">
 	<!-- 현재날짜를 넘지 않게 max값 지정 -->
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="sysd">

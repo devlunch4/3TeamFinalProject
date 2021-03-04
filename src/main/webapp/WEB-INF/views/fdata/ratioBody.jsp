@@ -7,9 +7,9 @@
 
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
-<h1 class="mt-4">품목별 비율</h1>
+<h3 class="mt-4">품목별 비율</h3>
 <div class="card mt-2 col-sm-12 px-0">
-	<h3 class="card-header">총게시글 :</h3>
+	<h5 class="card-header">총게시글 :</h5>
 	<div class="card-body text-left ">
 		<div class="">
 			<div class="row">

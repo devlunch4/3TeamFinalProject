@@ -6150,7 +6150,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #138035 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
@@ -10012,8 +10012,8 @@ body {
 .container-md,
 .container-lg,
 .container-xl {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 2.0rem;
+  padding-right: 2.0rem;
 }
 
 #layoutAuthentication {
@@ -10186,6 +10186,7 @@ body {
 .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-nested {
   margin-left: 1.5rem;
   flex-direction: column;
+  background: #555;
 }
 .sb-sidenav .sb-sidenav-footer {
   padding: 0.75rem;

@@ -17,6 +17,7 @@
 <title>똑똑한 농부들 - 해당 게시판 EL로 넣기</title>
 
 <link href="${pageContext.request.contextPath}/resources/src/css/styles.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/src/css/f_styles.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/src/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/resources/src/js/all.min.js"></script>
 
@@ -45,7 +46,7 @@
 					<tiles:insertAttribute name="body"/>
 				</div>
 			</main>	
-			<footer class="py-4 bg-light mt-auto">
+			<footer class="py-4 bg-light mt-auto footer">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; 똑똑한 농부들 2021</div>
