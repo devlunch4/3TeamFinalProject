@@ -75,6 +75,20 @@
 					</div>
 					
 					<div class="form-group">
+						<label class="small mb-1" for="input_cls_code">등록된 시설 갯수 </label>
+						<div class="col-sm-10">
+							<input name="userid" class="form-control" value="${count }" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="small mb-1" for="input_cls_code">등록된 영농일지 갯수</label>
+						<div class="col-sm-10">
+							<input name="userid" class="form-control" value="${ffcount }" />
+						</div>
+					</div>
+					
+					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" id="modifyBtn" class="btn btn-primary">회원탈퇴 </button>
 							<button type="button" id="deleteBtn" class="btn btn-primary">정보수정 </button>
