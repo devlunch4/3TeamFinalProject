@@ -5,7 +5,6 @@
 <h3 class="mt-4">영농일지</h3>
 
 <button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView'" class=" btn btn-outline-dark m-1">영농일지 등록</button>
-<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView'" class=" btn btn-outline-dark m-1">영농일지 임시 조회</button>
 <div class="card mt-2 col-sm-12">
 	<!-- 품목 선택 해서 조회하는 부분 -->
 	<form action="${pageContext.request.contextPath }/fsurpport/searchAllFsurpportList" method="post">
@@ -74,9 +73,9 @@
 							</tfoot>
 							<tbody>
 								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
-									<tr>
+									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView'" >
 										<td>
-											<img src="#">
+											<img src="#" >
 										</td>
 										<td>
 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />

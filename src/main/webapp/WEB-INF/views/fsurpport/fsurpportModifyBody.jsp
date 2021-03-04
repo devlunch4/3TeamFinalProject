@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">영농일지 조회</h3>
+<h3 class="mt-4">영농일지 수정</h3>
 
 <form>
 	<div class="form-group">
@@ -30,6 +30,6 @@
 		<label class="small mb-1" for="input_plant_prd">사진 등록</label> <img src="">
 		<input class="form-control py-4" id="input_plant_prd" name="input_plant_prd" type="text" placeholder="재배기간 입력 ex)3개월" required="required">
 	</div>
-	<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView">수정</a> <a class="btn btn-primary" href="#">삭제</a>
+	<input type="submit" value="수정 완료" class="btn btn-primary" >
 </form>
 
