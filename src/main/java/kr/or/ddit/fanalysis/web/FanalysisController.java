@@ -51,14 +51,15 @@ public class FanalysisController {
 		MsrrecVo msrrecVo = new MsrrecVo();
 		msrrecVo.setMsr_code(msrequipList.get(0).getMsr_code());
 		msrrecVo.setMsr_no(1);
-
+		String msr_code = msrequipList.get(0).getMsr_code();
+		
 		System.out.println(msrrecVo.getMsr_temp());
 //		msrrecVo = fanalysisService.myfanalysisInfo(msrrecVo);
 		List<MsrrecVo> msrrecList = new ArrayList<MsrrecVo>();
 		msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 		
 		
-		
+		model.addAttribute("msr_code",msr_code);
 		model.addAttribute("msrequipList",msrequipList);
 		model.addAttribute("msrrecVo",msrrecList);
 		return "tiles.fanalysis.myfanalysisInfo";
@@ -66,48 +67,61 @@ public class FanalysisController {
 	
 	//20210304_KJH 내 시설 관측정보 조회
 	@RequestMapping(path = "myfanalysisInfo" , method = { RequestMethod.POST })
-	public String semyfanalysisInfo(Model model,String MSR_CODE, String mm,String dd,String selectdate,HttpSession session) {
+	public String semyfanalysisInfo(Model model,String msr_code, String week,String month,String day,HttpSession session) {
 		
 		UserVo userVo = new UserVo();
 		
 		userVo = (UserVo) session.getAttribute("S_USER");
 		System.out.println(userVo.getUser_id());
 		
-		List<MsrequipVo> MsrequipList = 
+		List<MsrequipVo> msrequipList = 
 				fsurpportService.msrequipList(userVo.getUser_id());
 		
-		
-		System.out.println(MsrequipList.size());
-		
 		MsrrecVo msrrecVo = new MsrrecVo();
-		msrrecVo.setMsr_code(MsrequipList.get(0).getMsr_code());
+		msrrecVo.setMsr_code(msr_code);
 		msrrecVo.setMsr_no(1);
 		
 		Calendar getToday = Calendar.getInstance();
 		Calendar cmpDate = Calendar.getInstance();
-		
-		if(mm != null) {
-			msrrecVo.setMsr_no(Integer.parseInt(mm));
-		}else if(dd != null) {
-			msrrecVo.setMsr_no(Integer.parseInt(dd));
-		}else if(selectdate != null) {
+		List<MsrrecVo> msrrecList = new ArrayList<MsrrecVo>();
+		System.out.println(week);
+		if(week != null && week != "") {
+			for(int i = Integer.parseInt(week); i > 0; i--) {
+			msrrecVo.setMsr_no(i);
+			msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
+			}
+			System.out.println(month);
+		}else if(month != null && month != "") {
+			for(int i = Integer.parseInt(month); i > 0;i--) {
+				msrrecVo.setMsr_no(i);
+				msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
+			}
+			
+			System.out.println(day);
+		}else if(day != null && day != "") {
 			try {
 				Date date1 = new Date();
-				Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(selectdate);
+				Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(day);
 				getToday.setTime(date1);
 				cmpDate.setTime(date2);
 				
 				long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-				int diffDays = (int) (diffSec / (24*60*60));
-				msrrecVo.setMsr_no(diffDays);
-			
+				int diffDays = (int) (diffSec / (24*60*60));		
+				for(int i = diffDays; i > 0;i--) {
+					msrrecVo.setMsr_no(i);
+					msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
+				}
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+		}else {
+			msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 		}
 		
 		
-		
+		model.addAttribute("msr_code",msr_code);
+		model.addAttribute("msrequipList",msrequipList);
+		model.addAttribute("msrrecVo",msrrecList);
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
 

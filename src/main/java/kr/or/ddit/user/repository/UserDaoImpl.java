@@ -3,7 +3,6 @@ package kr.or.ddit.user.repository;
 import java.util.List;
 
 import kr.or.ddit.common.model.PageVo;
-import kr.or.ddit.common.model.PageVoSearch;
 import kr.or.ddit.user.model.UserVo;
 
 public interface UserDaoImpl {

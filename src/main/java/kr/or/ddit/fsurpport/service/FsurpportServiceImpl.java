@@ -75,7 +75,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 		return fsurpportDao.latelyData(msr_code);
 	}
-
+	// 20210304_KJH 보유 장비 조회
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return fsurpportDao.msrequipList(owner);

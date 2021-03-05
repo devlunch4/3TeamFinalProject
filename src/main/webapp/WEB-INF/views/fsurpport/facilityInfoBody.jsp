@@ -2,12 +2,12 @@
 
 
 <script>
-//20210304_KJH 5초마다 새로고침
-$(function(){
+	//20210304_KJH 5초마다 새로고침
+	$(function() {
 
-	setTimeout("location.reload()", 5000);
+		setTimeout("location.reload()", 5000);
 
-});
+	});
 </script>
 
 <!-- 20210302_KJH 시설정보 조회 -->

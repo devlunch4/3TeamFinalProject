@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -11,7 +10,7 @@
 	<div class="card-body text-left ">
 		<div class="">
 			<div class="row">
-				<table class="table table-bordered col-sx-12" >
+				<table class="table table-bordered col-sx-12">
 					<tr>
 						<th style="width: 10%;">시설번호</th>
 						<th style="width: 10%;">소유자</th>
@@ -19,23 +18,25 @@
 						<th style="width: 30%;">등록일</th>
 					</tr>
 					<c:forEach items="${fcltmngList}" var="fcltmng">
-					<c:set var="dt"><fmt:formatDate value="${fcltmng.reg_dt}" pattern="yyyy-MM-dd" /></c:set>
-					<c:if test="${fcltmng.owner == S_USER.user_id}">
-						<tr>
-							<td style="width: 10%;">${fcltmng.control_no}</td>
-							<td style="width: 10%;">${fcltmng.owner}</td>
-							<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fcltmng.control_no}">${fcltmng.location}</a></td>
-							<td style="width: 30%;">${dt}</td>
-						</tr>
-					</c:if>
-					<c:if test="${S_USER.user_id == '1'}">
-						<tr>
-							<td style="width: 10%;">${fcltmng.control_no}</td>
-							<td style="width: 10%;">${fcltmng.owner}</td>
-							<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fcltmng.control_no}">${fcltmng.location}</a></td>
-							<td style="width: 30%;">${dt}</td>
-						</tr>
-					</c:if>
+						<c:set var="dt">
+							<fmt:formatDate value="${fcltmng.reg_dt}" pattern="yyyy-MM-dd" />
+						</c:set>
+						<c:if test="${fcltmng.owner == S_USER.user_id}">
+							<tr>
+								<td style="width: 10%;">${fcltmng.control_no}</td>
+								<td style="width: 10%;">${fcltmng.owner}</td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fcltmng.control_no}">${fcltmng.location}</a></td>
+								<td style="width: 30%;">${dt}</td>
+							</tr>
+						</c:if>
+						<c:if test="${S_USER.user_id == '1'}">
+							<tr>
+								<td style="width: 10%;">${fcltmng.control_no}</td>
+								<td style="width: 10%;">${fcltmng.owner}</td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fcltmng.control_no}">${fcltmng.location}</a></td>
+								<td style="width: 30%;">${dt}</td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</table>
 			</div>

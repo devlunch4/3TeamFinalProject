@@ -64,7 +64,7 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public MsrrecVo latelyData(String msr_code) {
 		return template.selectOne("fcltmng.latelyData",msr_code);
 	}
-
+	// 20210304_KJH 보유 장비 조회
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return template.selectList("fcltmng.msrequipList",owner);
