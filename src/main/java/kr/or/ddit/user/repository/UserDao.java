@@ -62,6 +62,6 @@ public class UserDao implements UserDaoImpl {
 	// 사용자 삭제 03/04 (경찬)
 	@Override
 	public UserVo deleteUser(String user_id) {
-		return tempplate.selectOne("users.deleteUser", user_id);
+		return template.selectOne("users.deleteUser", user_id);
 	}
 }

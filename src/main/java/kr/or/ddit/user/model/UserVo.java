@@ -31,7 +31,7 @@ public class UserVo {
 	
 	public UserVo(String user_pw, int login_fail_cnt) {
 		setUser_pw(user_pw);
-		setlogin_fail_cnt(login_fail_cnt);
+		setLogin_fail_cnt(login_fail_cnt);
 	}
 	
 	public String getUser_id() {

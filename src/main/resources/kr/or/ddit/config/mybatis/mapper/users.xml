@@ -41,7 +41,7 @@
 		SELECT user_id FROM users WHERE user_id=#{user_id}
 	</select>	
 	
-		<select id="selectPagingUser" resultType="userVo"
+	<select id="selectPagingUser" resultType="userVo"
 		parameterType="pageVo">
 		SELECT *
 		FROM
@@ -66,23 +66,6 @@
 		users ORDER BY user_id
 	</select>
 
-
-	<!-- 사용자 정보 수정 -->
-	<update id="modifyUser" parameterType="userVo">
-		UPDATE users SET usernm =
-		#{usernm},
-		pass = #{pass},
-		alias = #{alias},
-		addr1 =
-		#{addr1},
-		addr2 =
-		#{addr2},
-		zipcode = #{zipcode},
-		filename =#{filename},
-		realfilename=
-		#{realfilename}
-		WHERE userid = #{userid}
-	</update>
 	
 	<!-- 	사용자삭제 하는거 03/04 (경찬) -->
 	<update id="deleteUser" parameterType="String">
@@ -90,116 +73,12 @@
 		where user_id=#{user_id}
 	</update>
 	
-	<!-- 사용자 추가 -->
-	<insert id="insertUser" parameterType="userVo">
-		INSERT INTO users
-		(
-		userid,
-		usernm, pass, reg_dt, alias, addr1, addr2, zipcode, filename,
-		realfilename
-		)
-		VALUES
-		(
-		#{userid},
-		#{usernm}, #{pass},
-		#{reg_dt}, #{alias},
-		#{addr1}, #{addr2},
-		#{zipcode}, #{filename}, #{realfilename}
-		)
-	</insert>
+	
 
 
+	
+	
 
-	<!-- 사용자 삭제 -->
-	<!-- string인 경우 value / result type 없음. 조회가 없기에 -->
-	<!-- <delete id="deleteUser" parameterType="string"> -->
-	<!-- DELETE users -->
-	<!-- WHERE userid = -->
-	<!-- #{value} -->
-	<!-- </delete> -->
-
-
-
-	<!-- 검색 -->
-	<!-- 검색 -->
-	<!-- 검색 -->
-
-	<!-- 아이디로 찾기 -->
-	<select id="idSearchUser" parameterType="String"
-		resultType="userVo">
-		SELECT * FROM users WHERE userid=#{userid}
-	</select>
-
-	<select id="idSearchUserCnt" parameterType="String"
-		resultType="Integer">
-		SELECT COUNT(*) FROM users WHERE userid LIKE #{userid}
-	</select>
-
-	<select id="idSearchUserPaging" parameterType="pageVoSearch"
-		resultType="userVo">
-		SELECT *
-		FROM
-		(SELECT ROWNUM rn, a.*
-		FROM
-		(SELECT *
-		FROM users
-		WHERE userid LIKE #{serachvalue}
-		ORDER BY userid) a
-		WHERE ROWNUM &lt;=
-		#{page} * #{pageSize})
-		WHERE rn BETWEEN (#{page}-1) * #{pageSize} +1
-		AND ${page} * #{pageSize}
-	</select>
-
-	<!-- 이름으로 찾기 -->
-	<select id="nameSearchUser" parameterType="String"
-		resultType="userVo">
-		SELECT * FROM users WHERE usernm=#{usernm}
-	</select>
-	<select id="nameSearchUserCnt" parameterType="String"
-		resultType="Integer">
-		SELECT COUNT(*) FROM users WHERE usernm LIKE #{usernm}
-	</select>
-	<select id="nameSearchUserPaging" parameterType="pageVoSearch"
-		resultType="userVo">
-		SELECT *
-		FROM
-		(SELECT ROWNUM rn, a.*
-		FROM
-		(SELECT *
-		FROM users
-		WHERE usernm LIKE #{serachvalue}
-		ORDER BY userid) a
-		WHERE ROWNUM &lt;=
-		#{page} * #{pageSize})
-		WHERE rn BETWEEN (#{page}-1) * #{pageSize} +1
-		AND ${page} * #{pageSize}
-	</select>
-
-	<!-- 별명으로 찾기 -->
-	<select id="aliasSearchUser" parameterType="String"
-		resultType="userVo">
-		SELECT * FROM users WHERE alias=#{alias}
-	</select>
-	<select id="aliasSearchUserCnt" parameterType="String"
-		resultType="Integer">
-		SELECT COUNT(*) FROM users WHERE alias LIKE #{alias}
-	</select>
-	<select id="aliasSearchUserPaging" parameterType="pageVoSearch"
-		resultType="userVo">
-		SELECT *
-		FROM
-		(SELECT ROWNUM rn, a.*
-		FROM
-		(SELECT *
-		FROM users
-		WHERE alias LIKE #{serachvalue}
-		ORDER BY userid) a
-		WHERE ROWNUM &lt;=
-		#{page} * #{pageSize})
-		WHERE rn BETWEEN (#{page}-1) * #{pageSize} +1
-		AND ${page} * #{pageSize}
-	</select>
 
 
 
