@@ -52,7 +52,7 @@ public class FcommunityController {
 	@RequestMapping("minimarketInfoView")
 	public String minimarketInfoView(Model model) {
 
-		logger.debug("IN noticesInfoView()");
+		logger.debug("IN minimarketInfoView()");
 
 		return "tiles.fcommunity.minimarketInfo";
 	}
@@ -61,16 +61,16 @@ public class FcommunityController {
 	@RequestMapping("minimarketModifyView")
 	public String minimarketModify퍋ㅈ(Model model) {
 		
-		logger.debug("IN noticesInfoView()");
+		logger.debug("IN minimarketModifyView()");
 		
 		return "tiles.fcommunity.minimarketModify";
 	}
 	
 	// ggy_20210304 : 커뮤니티 미니장터 글 작성 페이지 진입
 	@RequestMapping("minimarketRegistView")
-	public String minimarketRegist퍋ㅈ(Model model) {
+	public String minimarketRegistView(Model model) {
 		
-		logger.debug("IN noticesInfoView()");
+		logger.debug("IN minimarketRegistView()");
 		
 		return "tiles.fcommunity.minimarketRegist";
 	}

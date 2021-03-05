@@ -57,13 +57,11 @@ public class FsurpportServiceImpl implements FsurpportService {
 	/* 시설관리 영역 */
 	@Override
 	public List<FcltmngVo> myfcltmngList() {
-		// TODO Auto-generated method stub
 		return fsurpportDao.myfcltmngList();
 	}
 
 	@Override
 	public FcltmngVo fcltmngInfo(String str) {
-		// TODO Auto-generated method stub
 		return fsurpportDao.fcltmngInfo(str);
 
 	}
