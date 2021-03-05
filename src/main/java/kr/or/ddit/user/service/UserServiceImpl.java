@@ -17,5 +17,8 @@ public interface UserServiceImpl {
 
 	// 사용자 삭제 03/04 (경찬)
 	UserVo deleteUser(String user_id);
+	
+	// 관리자가 사용자 수정 03/05 (경찬)
+	UserVo modifyUser(UserVo userVo);
 
 }

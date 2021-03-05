@@ -44,29 +44,18 @@
 	</select>
 
 
-	<!-- 사용자 정보 수정 -->
+	<!-- 사용자 정보 수정 03/05 (경찬)-->
 	<update id="modifyUser" parameterType="userVo">
-		UPDATE users SET usernm =
-		#{usernm},
-		pass = #{pass},
-		alias = #{alias},
-		addr1 =
-		#{addr1},
-		addr2 =
-		#{addr2},
-		zipcode = #{zipcode},
-		filename =#{filename},
-		realfilename=
-		#{realfilename}
-		WHERE userid = #{userid}
+		update users set  user_pw = #{user_pw},  login_fail_cnt = #{login_fail_cnt}
+		where user_id = #{user_id}
 	</update>
-	
-	<!-- 	사용자삭제 하는거 03/04 (경찬) -->
+
+	<!-- 사용자삭제 하는거 03/04 (경찬) -->
 	<update id="deleteUser" parameterType="String">
 		update users set use= 'n'
 		where user_id=#{user_id}
 	</update>
-	
+
 	<!-- 사용자 추가 -->
 	<insert id="insertUser" parameterType="userVo">
 		INSERT INTO users

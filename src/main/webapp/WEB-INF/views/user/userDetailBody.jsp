@@ -7,7 +7,7 @@
 $(function(){
 	$("#modifyBtn").on("click", function(){
 		$("#frm").attr("method", "get");
-		$("#frm").attr("action", "userModify1");
+		$("#frm").attr("action", "modifyUser");
 		$("#frm").submit();
 	});
 	
@@ -51,7 +51,7 @@ $(function(){
 							<input name="email" class="form-control" readonly="readonly" value="${user.email }" />
 						</div>
 					</div>
-
+	
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">전화번호</label>
 						<div class="col-sm-10">
@@ -62,7 +62,7 @@ $(function(){
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">등록일</label>
 						<div class="col-sm-10">
-							<input name="reg_dt" class="form-control" readonly="readonly" value="<fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd"/>"></input>
+							<input name="" class="form-control" readonly="readonly" value="<fmt:formatDate value="${user.reg_dt }" pattern="yyyy/MM/dd"/>"></input>
 						</div>
 					</div>
 					
@@ -72,7 +72,7 @@ $(function(){
 							<input name="login_fail_cnt" class="form-control"  value="${user.login_fail_cnt }" />
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">주소</label>
 						<div class="col-sm-10">
@@ -89,14 +89,14 @@ $(function(){
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">등록된 시설 갯수 </label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" readonly="readonly" value="${count }" />
+							<input  class="form-control" readonly="readonly" value="${count }" />
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">등록된 영농일지 갯수</label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" readonly="readonly" value="${ffcount }" />
+							<input  class="form-control" readonly="readonly" value="${ffcount }" />
 						</div>
 					</div>
 					

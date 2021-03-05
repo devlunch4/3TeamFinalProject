@@ -170,19 +170,20 @@ public class UserController {
 
 		return "tiles.user.userDetail";
 	}
-	
+
 	// 회원탈퇴 누르면 use가 n으로 변하는거 03/04 (경찬)
 	@RequestMapping("deleteUser")
 	public String deleteUser(String user_id) {
 		UserVo user = userService.deleteUser(user_id);
 		return "redirect:/user/allUser";
 	}
-	
+
 	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
 	@RequestMapping("modifyUser")
-	public String modifyUser(String user_id, int login_fail_cnt) {
-		
-		return "redirect:/user/allUser";
+	public String modifyUser(UserVo userVo) {
+		return "tiles.user.modifyUser";
 	}
+	
+	
 
 }
