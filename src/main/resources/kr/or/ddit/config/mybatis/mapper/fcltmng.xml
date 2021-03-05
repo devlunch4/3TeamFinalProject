@@ -41,8 +41,8 @@
     ROUND(AVG(NVL(MSR_HUMID, 0)),0)  MSR_HUMID,
     ROUND(AVG(NVL(MSR_BRIGHT, 0)),0) MSR_BRIGHT 
     from msrrec 
-    where msr_reg_dt &lt;= sysdate-${msr_no}+1
-    and msr_reg_dt &gt;= sysdate-${msr_no}
+    where msr_reg_dt &lt; sysdate-${msr_no}
+    and msr_reg_dt &gt;= sysdate-${msr_no}-1
     and MSR_CODE = #{msr_code}
 </select>
 

@@ -50,7 +50,7 @@ public class FanalysisController {
 		
 		MsrrecVo msrrecVo = new MsrrecVo();
 		msrrecVo.setMsr_code(msrequipList.get(0).getMsr_code());
-		msrrecVo.setMsr_no(1);
+		msrrecVo.setMsr_no(0);
 		String msr_code = msrequipList.get(0).getMsr_code();
 		
 		System.out.println(msrrecVo.getMsr_temp());
@@ -68,8 +68,9 @@ public class FanalysisController {
 	//20210304_KJH 내 시설 관측정보 조회
 	@RequestMapping(path = "myfanalysisInfo" , method = { RequestMethod.POST })
 	public String semyfanalysisInfo(Model model,String msr_code, String week,String month,String day,HttpSession session) {
-		
+		Date date1 = new Date();
 		UserVo userVo = new UserVo();
+		model.addAttribute("sedate",date1);
 		
 		userVo = (UserVo) session.getAttribute("S_USER");
 		
@@ -84,25 +85,27 @@ public class FanalysisController {
 		Calendar cmpDate = Calendar.getInstance();
 		List<MsrrecVo> msrrecList = new ArrayList<MsrrecVo>();
 		if(week != null && week != "") {
-			for(int i = 1; i < Integer.parseInt(week)+1; i++) {
+			for(int i = 0; i < Integer.parseInt(week)+1; i++) {
 			msrrecVo.setMsr_no(i);
 			msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 			}
 		}else if(month != null && month != "") {
-			for(int i = 1; i < Integer.parseInt(month)+1; i++) {
+			for(int i = 0; i < Integer.parseInt(month)+1; i++) {
 				msrrecVo.setMsr_no(i);
 				msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 			}
 		}else if(day != null && day != "") {
 			try {
-				Date date1 = new Date();
+
 				Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(day);
 				getToday.setTime(date1);
 				cmpDate.setTime(date2);
-				
+
+				model.addAttribute("sedate",date2);
 				long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-				int diffDays = (int) (diffSec / (24*60*60));		
-				for(int i = 1; i < diffDays+1;i++) {
+				int diffDays = (int) (diffSec / (24*60*60));
+				System.out.println(diffDays);
+				for(int i = 0; i < diffDays+1 ; i++) {
 					msrrecVo.setMsr_no(i);
 					msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 				}
@@ -114,9 +117,11 @@ public class FanalysisController {
 		}
 		
 		
+		
 		model.addAttribute("msr_code",msr_code);
 		model.addAttribute("msrequipList",msrequipList);
 		model.addAttribute("msrrecVo",msrrecList);
+
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
 

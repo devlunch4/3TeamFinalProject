@@ -62,10 +62,20 @@ ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 	<c:set var="sysd">
 		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
 	</c:set>
-	<input type="date" id="dateserch" class="form-control" value="${mydate}" max="${sysd}"> <br>
+	
+	<c:set var="se" value="${sedate}" />
+	<c:set var="sedate">
+		<fmt:formatDate value="${se}" pattern="yyyy-MM-dd" />
+	</c:set>
+	
+	<input type="date" id="dateserch" class="form-control" value="${sedate}" max="${sysd}"> <br>
+	
+	
 
 	<form id="select" action="${pageContext.request.contextPath}/user/main">
-		<input type="hidden" id="c_code" name="parent_code" value=""> <input type="hidden" id="i_code" name="code_no" value=""> <input type="hidden" id="d_code" name="sdate" value="">
+		<input type="hidden" id="c_code" name="parent_code" value=""> 
+		<input type="hidden" id="i_code" name="code_no" value=""> 
+		<input type="hidden" id="d_code" name="sdate" value="">
 	</form>
 
 	<button id="btn_search" class="btn btn-secondary">조회하기</button>
