@@ -30,11 +30,13 @@
                                         <form action="${pageContext.request.contextPath}/login/process" method="post">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_id">아이디</label>
-                                                <input class="form-control py-4" id="user_id" name="user_id"  placeholder="아이디를 입력하세요." />
+<!--                                                 <input class="form-control py-4" id="user_id" name="user_id"  placeholder="아이디를 입력하세요." /> -->
+                                                <input class="form-control py-4" id="user_id" name="user_id"  placeholder="아이디를 입력하세요." value="brown"/>
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_pw">비밀번호</label>
-                                                <input class="form-control py-4" id="user_pw" name="user_pw" type="password" placeholder="비밀번호를 입력하세요." />
+<!--                                                 <input class="form-control py-4" id="user_pw" name="user_pw" type="password" placeholder="비밀번호를 입력하세요." /> -->
+                                                 <input class="form-control py-4" id="user_pw" name="user_pw" type="password" placeholder="비밀번호를 입력하세요." value="brownPass"/> 
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox">

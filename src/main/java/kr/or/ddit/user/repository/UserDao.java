@@ -8,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.PageVo;
-import kr.or.ddit.common.model.PageVoSearch;
 import kr.or.ddit.user.model.UserVo;
 
 //<bean id="" class=""
