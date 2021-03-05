@@ -99,10 +99,12 @@ public class FsurpportController {
 		return "tiles.fsurpport.fsurpportInsert";
 	}
 
-	// ggy_20210302 : 농업지원-영농일지 내 일지 상세조회를 위한 진입페이지
+	// ggy_20210305 : 농업지원-영농일지 내 일지 상세조회를 위한 진입페이지
 	@RequestMapping("infoView")
-	public String infoView() {
-
+	public String infoView( int fdiary_no, Model model ) {
+		
+		model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(fdiary_no));
+		
 		return "tiles.fsurpport.fsurpportInfo";
 	}
 

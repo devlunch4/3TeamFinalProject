@@ -53,6 +53,12 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.searchAllFarmdiaryList(farmdiaryVo);
 
 	}
+	
+	// ggy_20210305 : 해당 일지 조회
+	@Override
+	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
+		return fsurpportDao.selectFarmdiaryInfo(fdiary_no);
+	}
 
 	/* 시설관리 영역 */
 	@Override
@@ -65,4 +71,6 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.fcltmngInfo(str);
 
 	}
+
+	
 }

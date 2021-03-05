@@ -9,20 +9,22 @@
 	<!-- ggy_20210303 : 영농일지 전체 리스트 조회. -->
 	<select id="selectAllFsurpportList" resultType="farmdiaryVo">
 		SELECT 
-			    f.fdiary_no, f.writer, f.content,
-			    f.reg_dt, f.weather, f.low_temp,
-			    f.high_temp, f.rainfall, f.humid,
-			    f.yield, f.area, f.file_no,
-			    f.use, c.code_nm btype_code, co.code_nm wstep_code,
-			    cod.code_nm item_code 
-			FROM farmdiary f
-			JOIN codes c
-			ON f.btype_code = c.code_no
-			JOIN codes co
-			ON f.wstep_code = co.code_no
-			JOIN codes cod
-			ON f.item_code = cod.code_no
-			ORDER BY f.reg_dt desc
+		    f.fdiary_no, f.writer, f.content,
+		    f.reg_dt, f.weather, f.low_temp,
+		    f.high_temp, f.rainfall, f.humid,
+		    f.yield, f.area, files.file_nm file_no,
+		    f.use, c.code_nm btype_code, co.code_nm wstep_code,
+		    cod.code_nm item_code 
+		FROM farmdiary f
+		JOIN codes c
+		ON f.btype_code = c.code_no
+		JOIN codes co
+		ON f.wstep_code = co.code_no
+		JOIN codes cod
+		ON f.item_code = cod.code_no
+		JOIN files files
+		ON f.file_no = files.file_no
+		ORDER BY f.reg_dt desc
 	</select>
 	
 	<!-- ggy_20210303 : code 품목 리스트 조회. -->
@@ -58,7 +60,7 @@
 		    f.fdiary_no, f.writer, f.content,
 		    f.reg_dt, f.weather, f.low_temp,
 		    f.high_temp, f.rainfall, f.humid,
-		    f.yield, f.area, f.file_no,
+		    f.yield, f.area, files.file_nm file_no,
 		    f.use, c.code_nm btype_code, co.code_nm wstep_code,
 		    cod.code_nm item_code 
 		FROM farmdiary f
@@ -68,11 +70,37 @@
 		ON f.wstep_code = co.code_no
 		JOIN codes cod
 		ON f.item_code = cod.code_no
+		JOIN files files
+		ON f.file_no = files.file_no
 		where f.reg_dt &gt;= TO_DATE(#{startDate }, 'YYYY-MM-DD')
 			and f.reg_dt &lt;= TO_DATE(#{endDate }, 'YYYY-MM-DD')
 			or f.item_code = #{item_code }
 			or f.wstep_code = #{wstep_code }
 		ORDER BY f.reg_dt desc								
+  	
+	</select>
+	
+	<!-- ggy_20210305 : 해당 영농일지 조회 -->
+	<select id="selectFarmdiaryInfo" resultType="farmdiaryVo" 
+									parameterType="int">
+		
+		SELECT 
+		    f.fdiary_no, f.writer, f.content,
+		    f.reg_dt, f.weather, f.low_temp,
+		    f.high_temp, f.rainfall, f.humid,
+		    f.yield, f.area, files.file_nm file_no,
+		    f.use, c.code_nm btype_code, co.code_nm wstep_code,
+		    cod.code_nm item_code 
+		FROM farmdiary f
+		JOIN codes c
+		ON f.btype_code = c.code_no
+		JOIN codes co
+		ON f.wstep_code = co.code_no
+		JOIN codes cod
+		ON f.item_code = cod.code_no
+		JOIN files files
+		ON f.file_no = files.file_no
+		where f.fdiary_no = #{fdiary_no }								
   	
 	</select>
 

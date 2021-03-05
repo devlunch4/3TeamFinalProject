@@ -44,7 +44,14 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
 		return template.selectList("fsurpports.searchAllFarmdiaryList", farmdiaryVo);
 	}
-
+	
+	
+	// ggy_20210305 : 해당 일지 정보 조회
+	@Override
+	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
+		return template.selectOne("fsurpports.selectFarmdiaryInfo", fdiary_no);
+	}
+	
 	/* 시설관리 영역 */
 
 	// 20210302_KJH 시설리스트 조회
@@ -57,5 +64,7 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public FcltmngVo fcltmngInfo(String str) {
 		return template.selectOne("fcltmng.fcltmngInfo", str);
 	}
+
+	
 
 }

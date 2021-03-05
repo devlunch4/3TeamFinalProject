@@ -16,7 +16,7 @@ public class FarmdiaryVo {
 	private int humid;
 	private int yield;
 	private int area;
-	private int file_no;
+	private String file_no;
 	private String use;
 	private String btype_code;
 	private String wstep_code;
@@ -109,10 +109,10 @@ public class FarmdiaryVo {
 	public void setArea(int area) {
 		this.area = area;
 	}
-	public int getFile_no() {
+	public String getFile_no() {
 		return file_no;
 	}
-	public void setFile_no(int file_no) {
+	public void setFile_no(String file_no) {
 		this.file_no = file_no;
 	}
 	public String getUse() {

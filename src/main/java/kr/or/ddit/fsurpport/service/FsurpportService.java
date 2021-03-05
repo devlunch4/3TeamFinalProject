@@ -19,6 +19,9 @@ public interface FsurpportService {
 
 	// ggy_20210303 : 등록된 일지 조건 검색
 	List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo);
+	
+	// ggy_20210305 : 해당 일지 정보 조회
+	FarmdiaryVo selectFarmdiaryInfo(int fdiary_no);
 
 	/* 시설관리 영역 */
 
