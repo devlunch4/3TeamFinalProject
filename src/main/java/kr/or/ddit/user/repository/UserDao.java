@@ -64,4 +64,13 @@ public class UserDao implements UserDaoImpl {
 	public UserVo deleteUser(String user_id) {
 		return template.selectOne("users.deleteUser", user_id);
 	}
+
+
+	// 관리자가 사용자 수정 03/05 (경찬)
+	@Override
+	public UserVo modifyUser(UserVo userVo) {
+		return tempplate.selectOne("users.modifyUser", userVo);
+	}
+
 }
+

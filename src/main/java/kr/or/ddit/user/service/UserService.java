@@ -67,5 +67,11 @@ public class UserService implements UserServiceImpl {
 	public UserVo deleteUser(String user_id) {
 		return userDao.deleteUser(user_id);
 	}
+	
+	// 관리자가 사용자 수정 03/05 (경찬)
+	@Override
+	public UserVo modifyUser(UserVo userVo) {
+		return userDao.modifyUser(userVo);
+	}
 
 }
