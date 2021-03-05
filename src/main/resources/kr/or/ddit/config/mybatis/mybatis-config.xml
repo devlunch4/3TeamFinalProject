@@ -25,20 +25,28 @@
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
 			alias="fcltmngVo" />
 
+		<!-- 20210305KWS GardenguidesVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.GardenguidesVo"
+			alias="gardenguidesVo" />
+<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo"
+			alias="guideSqlVo" />
+
 
 
 	</typeAliases>
 
 	<mappers>
 
-		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
+		<mapper
+			resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
 
 		<!-- 2021-03-03KJH codes,fcltmng mapper -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/codes.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fcltmng.xml" />
 
-
+		<!-- 20210305KWS GardenguidesVo mappers -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/guides.xml" />
 	</mappers>
 
 </configuration>
