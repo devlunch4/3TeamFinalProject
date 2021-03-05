@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <h3 class="mt-4">텃밭가이드(재배정보)</h3>
 
 <div>
-	<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
-			onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'" class=" btn btn-outline-dark m-1">텃밭가이드 등록</button>
+	<c:if test="${S_USER.user_id.equals('admin') }">
+		<button type="button"
+			class="btn btn-success btn-lg btn-block col-md-3 float-right"
+			onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'"
+			class=" btn btn-outline-dark m-1">텃밭가이드 등록</button>
+	</c:if>
 </div>
+
 
 <div>
 	<div class="card mt-2 col-sm-12">
@@ -49,7 +53,8 @@
 			<div class="">
 				<div class="row">
 					<div class="imgwrap">
-						<img src="/images/upload/farm_guide_info/144609103235500023.jpg"  alt="144609103235500023.jpg">
+						<img src="/images/upload/farm_guide_info/144609103235500023.jpg"
+							alt="144609103235500023.jpg">
 					</div>
 
 					<table class="table table-bordered col-sx-12">
@@ -79,8 +84,8 @@
 						</tr>
 						<tr>
 							<td style="width: 30%">효과</td>
-							<td style="width: 70%">락투카리움 성분이 있어, 불면증, 신경장애에 좋으며, 철분이
-								많이 함유되어 혈액을 늘리는 작용을 한다.</td>
+							<td style="width: 70%">락투카리움 성분이 있어, 불면증, 신경장애에 좋으며, 철분이 많이
+								함유되어 혈액을 늘리는 작용을 한다.</td>
 						</tr>
 						<tr>
 							<td style="width: 30%">주요성분</td>
@@ -89,12 +94,11 @@
 						<tr>
 							<td style="width: 30%">재배TIP!</td>
 							<td style="width: 70%">*잘 자라는 온도 : 생육 15∼20℃, 결구 10∼16℃<br>
-								*양상추의 비대와 충실도는 밤 온도가 10℃부터 15℃정도의 약간 차갑고 서늘한 온도가 적당하다. 낮과 밤의
-								온도가 20℃ 이상이 계속되면 줄기가 자라기 시작하고 마침내는 꽃눈이 분화하게 된다. 그러므로 고온기 재배 때는
-								낮 온도뿐만 아니라 밤의 온도도 포기비대, 충실에 제한요인이 된다.<br> *햇빛의 세기 : 생육
-								초기에 광이 부족하면 엽육이 얇아지고, 엽면적도 작아진다.<br> *토양조건 : 건조한 사질토나,
-								지하수위가 높은 점질 땅에서는 생육이 나쁘므로 유기질이 풍부하고 관수하기 편리한 포장인 양토에서 재배하는 것이
-								좋다.
+								*양상추의 비대와 충실도는 밤 온도가 10℃부터 15℃정도의 약간 차갑고 서늘한 온도가 적당하다. 낮과 밤의 온도가
+								20℃ 이상이 계속되면 줄기가 자라기 시작하고 마침내는 꽃눈이 분화하게 된다. 그러므로 고온기 재배 때는 낮
+								온도뿐만 아니라 밤의 온도도 포기비대, 충실에 제한요인이 된다.<br> *햇빛의 세기 : 생육 초기에 광이
+								부족하면 엽육이 얇아지고, 엽면적도 작아진다.<br> *토양조건 : 건조한 사질토나, 지하수위가 높은 점질
+								땅에서는 생육이 나쁘므로 유기질이 풍부하고 관수하기 편리한 포장인 양토에서 재배하는 것이 좋다.
 							</td>
 						</tr>
 					</table>
