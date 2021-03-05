@@ -25,12 +25,12 @@
                 </form>
                 <div class="dropdown-divider"></div>
                 <form action="logOut">
-               	  <a class="dropdown-item" href="login.html">로그아웃</a>
+               	  <a class="dropdown-item" href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
                 </form>
 				</c:if>
 				
 				<c:if test="${S_USER == null}">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/user/login">로그인</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/login/view">로그인</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="">회원가입</a>
 				</c:if>
