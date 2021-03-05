@@ -10,7 +10,9 @@
 		FROM users ORDER
 		BY user_id
 	</select>
-
+	
+	<!-- 20210304_LYS_Login3 - 주석 적은 날 기준-->
+	<!-- 로그인 구현 -->
 	<select id="selectUser" resultType="userVo"
 		parameterType="String">
 		SELECT *
@@ -18,7 +20,28 @@
 		WHERE user_id = #{value}
 	</select>
 
-	<select id="selectPagingUser" resultType="userVo"
+	
+	<!-- 20210304_LYS_Login3 -->
+	<!-- 사용자 추가 - 회원가입 -->
+	<insert id="insertUser" parameterType="userVo">
+		INSERT INTO users
+		(
+		user_id, user_pw, user_nm, email, addr1, addr2, zip, mobile, reg_dt, file_no, login_fail_cnt, logout_dt, use
+		)
+		VALUES
+		(
+		#{user_id}, #{user_pw}, #{user_nm}, #{email}, #{addr1},	#{addr2}, #{zip}, #{mobile}, sysdate, null, null, sysdate, "Y"
+		)
+	</insert>
+	
+	
+	<!-- 20210304_LYS_Login3 -->
+	<!-- 회원가입시, 아이디 중복체크 -->
+	<select id="checkForDuplicateId" parameterType="string" resultType="string">
+		SELECT user_id FROM users WHERE user_id=#{user_id}
+	</select>	
+	
+		<select id="selectPagingUser" resultType="userVo"
 		parameterType="pageVo">
 		SELECT *
 		FROM
@@ -84,6 +107,7 @@
 		#{zipcode}, #{filename}, #{realfilename}
 		)
 	</insert>
+
 
 
 	<!-- 사용자 삭제 -->

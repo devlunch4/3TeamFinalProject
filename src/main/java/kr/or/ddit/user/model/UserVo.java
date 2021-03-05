@@ -114,11 +114,11 @@ public class UserVo {
 		this.file_no = file_no;
 	}
 
-	public int getlogin_fail_cnt() {
+	public int getLogin_fail_cnt() {
 		return login_fail_cnt;
 	}
 
-	public void setlogin_fail_cnt(int login_fail_cnt) {
+	public void setLogin_fail_cnt(int login_fail_cnt) {
 		this.login_fail_cnt = login_fail_cnt;
 	}
 

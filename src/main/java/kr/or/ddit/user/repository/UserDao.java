@@ -23,30 +23,40 @@ import kr.or.ddit.user.model.UserVo;
 public class UserDao implements UserDaoImpl {
 
 	@Resource(name = "sqlSessionTemplate")
-	private SqlSessionTemplate tempplate;
+	private SqlSessionTemplate template;
 
+
+	// 20210304_LYS_Login3 - 로그인 구현
+	// userid에 해당하는 사용자 한명의 정보 조회
 	// 사용자 아이디로 사용자 조회 (경찬)
 	@Override
-	public UserVo selectUser(String userid) {
-		return tempplate.selectOne("users.selectUser", userid);
+	public UserVo selectUser(String user_id) {
+		return template.selectOne("users.selectUser", user_id);
 	}
-
+   	
+	// 20210304_LYS_Login3 - 회원가입 구현
+	// 사용자 정보 추가
+	@Override
+	public int insertUser(UserVo userVo) {
+		return template.update("users.insertUser", userVo);
+	}
+		
 	// 전체 사용자 정보 조회 (경찬)
 	@Override
 	public List<UserVo> selectAllUser() {
-		return tempplate.selectList("users.selectAllUser");
+		return template.selectList("users.selectAllUser");
 	}
 
 	// 페이지 처리 (경찬)
 	@Override
 	public List<UserVo> selectPagingUser(PageVo pageVo) {
-		return tempplate.selectList("users.selectPagingUser", pageVo);
+		return template.selectList("users.selectPagingUser", pageVo);
 	}
 
 	// 사용자 전체수 조회 (경찬)
 	@Override
 	public int selectAllUserCnt() {
-		return tempplate.selectOne("users.selectAllUserCnt");
+		return template.selectOne("users.selectAllUserCnt");
 	}
 
 	// 사용자 삭제 03/04 (경찬)
@@ -54,7 +64,4 @@ public class UserDao implements UserDaoImpl {
 	public UserVo deleteUser(String user_id) {
 		return tempplate.selectOne("users.deleteUser", user_id);
 	}
-
-	 
-
 }
