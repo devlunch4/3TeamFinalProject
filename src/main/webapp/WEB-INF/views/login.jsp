@@ -52,7 +52,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="${pageContext.request.contextPath}/login/register">아직 회원이 아니신가요? 똑똑한 농부들 회원 되기!</a></div>
+                                        <div class="small"><a href="${pageContext.request.contextPath}/join/view">아직 회원이 아니신가요? 똑똑한 농부들 회원 되기!</a></div>
                                     </div>
                                 </div>
                             </div>

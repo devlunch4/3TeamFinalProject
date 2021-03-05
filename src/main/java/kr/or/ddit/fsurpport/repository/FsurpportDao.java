@@ -34,4 +34,11 @@ public interface FsurpportDao {
 	
 	// 20210304_KJH 보유 장비 조회
 	List<MsrequipVo> msrequipList(String owner); 
+
+	// 등록된 시설 카운트 03/04 (경찬)
+	int fcltmngCount(String user_id);
+	
+	// 등록된 일지 카운트 03/04 (경찬)
+	int fsurCount(String user_id);
+
 }

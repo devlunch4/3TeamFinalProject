@@ -22,108 +22,54 @@ import kr.or.ddit.user.model.UserVo;
 public class UserDao implements UserDaoImpl {
 
 	@Resource(name = "sqlSessionTemplate")
-	private SqlSessionTemplate tempplate;
+	private SqlSessionTemplate template;
 
-	// 사용자 아이디로 사용자 조회
+
+	// 20210304_LYS_Login3 - 로그인 구현
+	// userid에 해당하는 사용자 한명의 정보 조회
+	// 사용자 아이디로 사용자 조회 (경찬)
 	@Override
-	public UserVo selectUser(String userid) {
-		return tempplate.selectOne("users.selectUser", userid);
+	public UserVo selectUser(String user_id) {
+		return template.selectOne("users.selectUser", user_id);
 	}
-	
-	// 전체 사용자 정보 조회
+   	
+	// 20210304_LYS_Login3 - 회원가입 구현
+	// 사용자 정보 추가
+	@Override
+	public int insertUser(UserVo userVo) {
+		return template.update("users.insertUser", userVo);
+	}
+		
+	// 전체 사용자 정보 조회 (경찬)
 	@Override
 	public List<UserVo> selectAllUser() {
-		return tempplate.selectList("users.selectAllUser");
+		return template.selectList("users.selectAllUser");
 	}
 
-	// 페이지 처리
+	// 페이지 처리 (경찬)
 	@Override
 	public List<UserVo> selectPagingUser(PageVo pageVo) {
-		return tempplate.selectList("users.selectPagingUser", pageVo);
+		return template.selectList("users.selectPagingUser", pageVo);
 	}
 
-	// 사용자 전체수 조회
+	// 사용자 전체수 조회 (경찬)
 	@Override
 	public int selectAllUserCnt() {
-		return tempplate.selectOne("users.selectAllUserCnt");
+		return template.selectOne("users.selectAllUserCnt");
 	}
 
-	
-	
-	
-	
-	
-//	// 사용자 정보 수정
-//	@Override
-//	public int modifyUser(UserVo userVo) {
-//		return tempplate.update("users.modifyUser", userVo);
-//	}
+	// 사용자 삭제 03/04 (경찬)
+	@Override
+	public UserVo deleteUser(String user_id) {
+		return template.selectOne("users.deleteUser", user_id);
+	}
 
-//	// 사용자 정보 추가
-//	@Override
-//	public int insertUser(UserVo userVo) {
-//		return tempplate.update("users.insertUser", userVo);
-//	}
 
-//	// 사용자 삭제
-//	@Override
-//	public int deleteUser(String userid) {
-//		return tempplate.delete("users.deleteUser", userid);
-//	}
-
-//	// 아이디로 검색
-//	@Override
-//	public List<UserVo> idSearchUser(String userid) {
-//		return tempplate.selectList("users.idSearchUser", userid);
-//	}
-
-//	// 아이디로 검색한 회원수
-//	@Override
-//	public int idSearchUserCnt(String userid) {
-//		return tempplate.selectOne("users.idSearchUserCnt", userid);
-//	}
-
-//	// 아이디로 검색한 회원 페이징
-//	@Override
-//	public List<UserVo> idSearchUserPaging(PageVoSearch pageVoSearch) {
-//		return tempplate.selectList("users.idSearchUserPaging", pageVoSearch);
-//	}
-
-//	// 이름으로 검색
-//	@Override
-//	public List<UserVo> nameSearchUser(String usernm) {
-//		//
-//		return tempplate.selectList("users.nameSearchUser", usernm);
-//	}
-
-//	// 이름으로 검색한 회원수
-//	@Override
-//	public int nameSearchUserCnt(String usernm) {
-//		return tempplate.selectOne("users.nameSearchUserCnt", usernm);
-//	}
-
-//	// 이름으로 검색한 회원 페이징
-//	@Override
-//	public List<UserVo> nameSearchUserPaging(PageVoSearch pageVoSearch) {
-//		return tempplate.selectList("users.nameSearchUserPaging", pageVoSearch);
-//	}
-
-//	// 별명으로 검색
-//	@Override
-//	public List<UserVo> aliasSearchUser(String alias) {
-//		return tempplate.selectList("users.aliasSearchUser", alias);
-//	}
-
-//	// 별명으로 검색한 회원 수
-//	@Override
-//	public int aliasSearchUserCnt(String alias) {
-//		return tempplate.selectOne("users.aliasSearchUserCnt", alias);
-//	}
-
-//	// 별명으로 검색한 회원 페이징
-//	@Override
-//	public List<UserVo> aliasSearchUserPaging(PageVoSearch pageVoSearch) {
-//		return tempplate.selectList("users.aliasSearchUserPaging", pageVoSearch);
-//	}
+	// 관리자가 사용자 수정 03/05 (경찬)
+	@Override
+	public UserVo modifyUser(UserVo userVo) {
+		return template.selectOne("users.modifyUser", userVo);
+	}
 
 }
+

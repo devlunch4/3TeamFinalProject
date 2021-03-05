@@ -59,6 +59,7 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public FcltmngVo fcltmngInfo(String str) {
 		return template.selectOne("fcltmng.fcltmngInfo", str);
 	}
+
 	// 20210304_KJH 시설 최근 측정정보 조회
 	@Override
 	public MsrrecVo latelyData(String msr_code) {
@@ -69,4 +70,18 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<MsrequipVo> msrequipList(String owner) {
 		return template.selectList("fcltmng.msrequipList",owner);
 	}
+
+		
+	// 등록된 시설 카운트 03/04 (경찬)
+	@Override
+	public int fcltmngCount(String user_id) {
+		return template.selectOne("fcltmng.fcltmngCount", user_id);
+	}
+	
+	// 등록된 일지 카운트 03/04 (경찬)
+	@Override
+	public int fsurCount(String user_id) {
+		return template.selectOne("fsurpports.fsurCount", user_id);
+	}
+
 }

@@ -1,105 +1,160 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">텃밭가이드(재배정보)</h3>
 
+<script>
+	// 수정 버튼 클릭시 이동 
+	$(function() {
+		$("#modifyBtn").on("click", function() {
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguidesUpdate");
+			$("#frm").submit();
+		});
+	})
+	// 삭제 버튼 클릭시 이동
+	$(function() {
+		$("#deleteBtn").on("click", function() {
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguidesDelete");
+			$("#frm").submit();
+		});
+	})
+	//초성검색
+	$(function() {
+		$(".chosungc").on("click", function() {
+			var chosung = $(this).data("chosung");
+			$("#chosung").val(chosung);
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguides");
+			$("#frm").submit();
+		});
+	});
+	// 해당 가이드 클릭시
+	$(function() {
+		$(".onebtn").on("click", function() {
+			var onebtn = $(this).data("onebtn");
+			$("#xgrdgd_code").val(onebtn);
+			console.log(onebtn);
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguides");
+			$("#frm").submit();
+		});
+	});
+</script>
+
+<h3 class="mt-4">텃밭가이드(재배정보)</h3>
 <div>
-	<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" 
-			onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'" class=" btn btn-outline-dark m-1">텃밭가이드 등록</button>
+	<!-- 관리자 전용 등록 이동 버튼 활성 -->
+	<c:if test="${S_USER.user_id.equals('admin') }">
+		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
+	</c:if>
 </div>
 
 <div>
-	<div class="card mt-2 col-sm-12">
-		<div class="card-body text-left p-1">
-			<span class="">가나다순</span> <br>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄱ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄴ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄷ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄹ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅁ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅂ</button>
-			<button type="button" onclick="#" class=" btn btn-primary m-1">ㅅ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅇ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅈ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅊ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅋ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅌ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅍ</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅎ</button>
-		</div>
-		<div class="card-body text-left p-1">
-			<span class="">품명</span> <br>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양배추</button>
-			<button type="button" onclick="#" class=" btn btn-primary m-1">양상추</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양파</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">오이</button>
-			<button type="button" onclick="#" class=" btn btn-outline-dark m-1">옥수수</button>
-		</div>
-	</div>
+	<form id="frm" role="form">
+		<input type="hidden" id="chosung" name="chosung" value="${chosung }">
+		<input type="hidden" id="xgrdgd_code" name="xgrdgd_code" value="">
+		<div class="card mt-2 col-sm-12">
+			<div class="card-body text-left p-1">
+				<span class="">가나다순</span> <br>
+				<!-- 과거 기본 코드 -->
+				<!-- <button type="button" class=" btn btn-outline-dark m-1 chosungc" data-chosung="ㄱ">ㄱ</button> -->
 
-	<!-- 설명 시작 -->
-	<br>
-	<div class="card mt-2 col-sm-12 px-0">
-		<h3 class="card-header">가지</h3>
-		<div class="card-body text-left ">
-			<div class="">
-				<div class="row">
-					<div class="imgwrap">
-						<img src="/images/upload/farm_guide_info/144609103235500023.jpg"  alt="144609103235500023.jpg">
+				<!-- 코어 태그 사용 -->
+				<c:forEach var="chosungArr" items="${chosungArr}">
+					<button type="button" <c:set var="checkc" value="${chosung }" /> <c:choose>
+    <c:when test="${checkc  eq chosungArr }">
+       class=" btn btn-primary m-1 chosungc"
+    </c:when>
+    <c:otherwise>
+        class=" btn btn-outline-dark m-1 chosungc"
+    </c:otherwise>
+</c:choose> data-chosung="${chosungArr }">${chosungArr }</button>
+				</c:forEach>
+			</div>
+
+			<!-- 위의 가나다 순에 따른 결과 보여주기 -->
+			<div class="card-body text-left p-1">
+				<span class="">품명</span> <br>
+				<!-- 과거 기본 코드 -->
+				<!-- <button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button> -->
+				<!-- 코어 태그 사용 -->
+				<c:set var="chkList" value="${gardenguidesList.size() }" />
+
+				<c:if test="${chkList == 0 }">
+				조회된 값이 없습니다.
+</c:if>
+
+				<c:forEach var="gardenguidesList" items="${gardenguidesList}">
+					<button type="button" class=" btn btn-outline-dark m-1 onebtn" data-onebtn="${gardenguidesList.grdgd_code }">${gardenguidesList.grdgd_nm}</button>
+				</c:forEach>
+
+			</div>
+		</div>
+
+		<!-- 설명 시작 -->
+		<br>
+		<div class="card mt-2 col-sm-12 px-0">
+			<h3 class="card-header">${gardenguidesVo.grdgd_nm }</h3>
+			<div class="card-body text-left ">
+				<div class="">
+					<div class="row">
+						<div class="imgwrap">
+							<img src="/images/upload/farm_guide_info/144609103235500023.jpg" alt="144609103235500023.jpg">
+						</div>
+
+						<table class="table table-bordered col-sx-12">
+							<tr>
+								<td style="width: 30%">분류</td>
+								<td style="width: 70%">${gardenguidesVo.cls_code }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">원산지</td>
+								<td style="width: 70%">${gardenguidesVo.origin }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">생육온도</td>
+								<td style="width: 70%">${gardenguidesVo.cls_code }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">연작피해</td>
+								<td style="width: 70%">${gardenguidesVo.damage }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">제철</td>
+								<td style="width: 70%">${gardenguidesVo.season }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">효과</td>
+								<td style="width: 70%">${gardenguidesVo.effect }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">주요성분</td>
+								<td style="width: 70%">${gardenguidesVo.ingredient }</td>
+							</tr>
+							<tr>
+								<td style="width: 30%">재배TIP!</td>
+								<td style="width: 70%">${gardenguidesVo.plant_tip }</td>
+							</tr>
+							<%-- <tr>
+								<td style="width: 30%">작성일</td>
+								<td style="width: 70%">${gardenguidesVo.reg_dt }</td>
+							</tr> --%>
+						</table>
 					</div>
-
-					<table class="table table-bordered col-sx-12">
-						<tr>
-							<td style="width: 30%">분류</td>
-							<td style="width: 70%">국화과</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">싹트이는온도</td>
-							<td style="width: 70%">15~20℃</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">원산지</td>
-							<td style="width: 70%">남유럽 및 서아시아</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">생육온도</td>
-							<td style="width: 70%">15~20℃</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">연작피해</td>
-							<td style="width: 70%">없음</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">제철</td>
-							<td style="width: 70%">사계절</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">효과</td>
-							<td style="width: 70%">락투카리움 성분이 있어, 불면증, 신경장애에 좋으며, 철분이
-								많이 함유되어 혈액을 늘리는 작용을 한다.</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">주요성분</td>
-							<td style="width: 70%">락투카리움, 철분</td>
-						</tr>
-						<tr>
-							<td style="width: 30%">재배TIP!</td>
-							<td style="width: 70%">*잘 자라는 온도 : 생육 15∼20℃, 결구 10∼16℃<br>
-								*양상추의 비대와 충실도는 밤 온도가 10℃부터 15℃정도의 약간 차갑고 서늘한 온도가 적당하다. 낮과 밤의
-								온도가 20℃ 이상이 계속되면 줄기가 자라기 시작하고 마침내는 꽃눈이 분화하게 된다. 그러므로 고온기 재배 때는
-								낮 온도뿐만 아니라 밤의 온도도 포기비대, 충실에 제한요인이 된다.<br> *햇빛의 세기 : 생육
-								초기에 광이 부족하면 엽육이 얇아지고, 엽면적도 작아진다.<br> *토양조건 : 건조한 사질토나,
-								지하수위가 높은 점질 땅에서는 생육이 나쁘므로 유기질이 풍부하고 관수하기 편리한 포장인 양토에서 재배하는 것이
-								좋다.
-							</td>
-						</tr>
-					</table>
 				</div>
 			</div>
 		</div>
+	</form>
+
+	<div>
+
+		<c:if test="${S_USER.user_id.equals('admin') }">
+			<!-- 관리자 전용 삭제 이동 버튼 활성 -->
+			<button type="button" id="deleteBtn" class="btn btn-warning btn-lg btn-block col-md-3 float-left mt-4">텃밭가이드 삭제</button>
+			<!-- 관리자 전용 수정 이동 버튼 활성 -->
+			<button type="button" id="modifyBtn" class="btn btn-success btn-lg btn-block col-md-3 float-right mt-4">텃밭가이드 수정</button>
+		</c:if>
 	</div>
 </div>
