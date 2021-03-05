@@ -9,39 +9,13 @@ import kr.or.ddit.user.model.UserVo;
 
 public interface UserServiceImpl {
 
-	// userid에 해당하는 사용자 한명의 정보 조회
+	// userid에 해당하는 사용자 한명의 정보 조회 (경찬)
 	UserVo selectUser(String userid);
-//	
-//	// 전체 사용자 정보 조회
+
+	// 전체 사용자 정보 조회 (경찬)
 	List<UserVo> selectAllUser();
-//
-//	// 페이지 처리
-	Map<String, Object> selectPagingUser(PageVo pageVo);
-//
-//	// 사용자 정보 수정
-//	int modifyUser(UserVo userVo);
-//
-//	// 사용자 정보 추가
-//	int insertUser(UserVo userVo);
-//
-//	// 사용자 정보 추가 - 삼항연산자 사용
-//	int insertUserx(UserVo userVo);
-//
-//	// 사용자 정보 삭제
-//	int deleteUser(String userid);
-//
-//	// 검색
-//	// 검색
-//	// 검색
-//
-//	// 아이디로 검색
-//	Map<String, Object> idSearchUser(PageVoSearch pageVoSearch);
-//
-//	// 이름으로 검색
-//	Map<String, Object> nameSearchUser(PageVoSearch pageVoSearch);
-//
-//	// 별명으로 검색
-//	Map<String, Object> aliasSearchUser(PageVoSearch pag@Override
-//	eVoSearch);
+
+	// 사용자 삭제 03/04 (경찬)
+	UserVo deleteUser(String user_id);
 
 }

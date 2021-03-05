@@ -38,7 +38,7 @@ public class UserController {
 
 	@Resource(name = "fsurpportService")
 	private FsurpportServiceImpl fsurpportService;
-	
+
 	// 메인 가기
 	// 20210302_KJH items - > codes 변경
 	@RequestMapping("main") // 모든 사용자 정보 조회
@@ -157,19 +157,32 @@ public class UserController {
 	@RequestMapping("userDetail")
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
-		
+
 		// 시설카운트
- 		int fcount = fsurpportService.fcltmngCount(user_id);
-		
- 		// 일지카운트
- 		int ffcount = fsurpportService.fsurCount(user_id);
- 		
- 		
+		int fcount = fsurpportService.fcltmngCount(user_id);
+
+		// 일지카운트
+		int ffcount = fsurpportService.fsurCount(user_id);
+
 		model.addAttribute("user", user);
 		model.addAttribute("count", fcount);
 		model.addAttribute("ffcount", ffcount);
-		
+
 		return "tiles.user.userDetail";
+	}
+	
+	// 회원탈퇴 누르면 use가 n으로 변하는거 03/04 (경찬)
+	@RequestMapping("deleteUser")
+	public String deleteUser(String user_id) {
+		UserVo user = userService.deleteUser(user_id);
+		return "redirect:/user/allUser";
+	}
+	
+	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+	@RequestMapping("modifyUser")
+	public String modifyUser(String user_id, int login_fail_cnt) {
+		
+		return "redirect:/user/allUser";
 	}
 
 }
