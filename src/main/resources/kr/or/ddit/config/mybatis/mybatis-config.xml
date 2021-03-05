@@ -29,9 +29,9 @@
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
 			alias="fcltmngVo" />
 			
-		<!-- ggy_20210305 MysimplecodeVo 만듬 -->
-		<typeAlias type="kr.or.ddit.common.model.MysimplecodeVo"
-			alias="mysimplecodeVo" />
+		<!-- ggy_20210305 MySimpleCodeVo 만듬 -->
+		<typeAlias type="kr.or.ddit.farm.model.MySimpleCodeVo"
+			alias="mySimpleCodeVo" />
 				
 
 

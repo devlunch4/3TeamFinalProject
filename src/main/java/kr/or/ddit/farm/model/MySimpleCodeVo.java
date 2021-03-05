@@ -1,7 +1,7 @@
 package kr.or.ddit.farm.model;
 
-// ggy_20210305 : MysimplecodeVo 만듬
-public class MysimplecodeVo {
+// ggy_20210305 : MySimpleCodeVo 만듬
+public class MySimpleCodeVo {
 
 	private String my_simple_code;
 	private String owner;

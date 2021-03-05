@@ -110,7 +110,7 @@ public class FsurpportController {
 	public String insertView( String user_id, Model model ) {
 		
 
-		model.addAttribute("selectMySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
+//		model.addAttribute("selectMySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
 		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 		
