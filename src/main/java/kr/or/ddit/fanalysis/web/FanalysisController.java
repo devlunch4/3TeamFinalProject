@@ -72,7 +72,6 @@ public class FanalysisController {
 		UserVo userVo = new UserVo();
 		
 		userVo = (UserVo) session.getAttribute("S_USER");
-		System.out.println(userVo.getUser_id());
 		
 		List<MsrequipVo> msrequipList = 
 				fsurpportService.msrequipList(userVo.getUser_id());
@@ -84,20 +83,16 @@ public class FanalysisController {
 		Calendar getToday = Calendar.getInstance();
 		Calendar cmpDate = Calendar.getInstance();
 		List<MsrrecVo> msrrecList = new ArrayList<MsrrecVo>();
-		System.out.println(week);
 		if(week != null && week != "") {
-			for(int i = Integer.parseInt(week); i > 0; i--) {
+			for(int i = 1; i < Integer.parseInt(week)+1; i++) {
 			msrrecVo.setMsr_no(i);
 			msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 			}
-			System.out.println(month);
 		}else if(month != null && month != "") {
-			for(int i = Integer.parseInt(month); i > 0;i--) {
+			for(int i = 1; i < Integer.parseInt(month)+1; i++) {
 				msrrecVo.setMsr_no(i);
 				msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 			}
-			
-			System.out.println(day);
 		}else if(day != null && day != "") {
 			try {
 				Date date1 = new Date();
@@ -107,7 +102,7 @@ public class FanalysisController {
 				
 				long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
 				int diffDays = (int) (diffSec / (24*60*60));		
-				for(int i = diffDays; i > 0;i--) {
+				for(int i = 1; i < diffDays+1;i++) {
 					msrrecVo.setMsr_no(i);
 					msrrecList.add((MsrrecVo)fanalysisService.myfanalysisInfo(msrrecVo));
 				}

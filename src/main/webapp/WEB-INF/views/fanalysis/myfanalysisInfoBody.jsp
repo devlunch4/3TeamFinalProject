@@ -47,10 +47,9 @@ ${msrequip.msr_nm}<br>${msrequip.msr_code}
 </c:forEach>
 <br>
 <c:forEach items="${msrrecVo}" var="msrrec">
-<c:if test="${NULL ne msrrec}">
+<%-- <c:if test="${NULL ne msrrec}"> --%>
 ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
-</c:if>
-<%-- ${fn:length("msrrec")} --%>
+<%-- </c:if> --%>
 </c:forEach>
 
 <button class="btn btn-primary float-left" id="week">일주일</button>
@@ -78,17 +77,48 @@ ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 
 <script> 
 	$(document).ready(function(){
+		
 		const colors = ['red','yellow','blue','#c3e6cb','#dc3545','#6c757d']; 
 		var chBar = document.getElementById("myChart"); 
-		var chartData = { labels: ["S", "M", "T", "W", "T", "F", "S"], 
-				datasets: [{ data: [589, 445, 483, 503, 689, 692, 634], 
+		var chartData = { labels: 
+			[
+				<c:forEach items="${msrrecVo}" var="msrrec" varStatus="status">
+
+				'${status.count}',
+
+			</c:forEach>
+				], 
+			datasets: [
+				{ data: [
+
+					<c:forEach items="${msrrecVo}" var="msrrec">
+					${msrrec.msr_temp},
+					</c:forEach>
+					
+					], 
 					backgroundColor: colors[0] }, 
-					{ data: [209, 245, 383, 403, 589, 692, 580], 
+					{ data: [
+
+						<c:forEach items="${msrrecVo}" var="msrrec">
+
+						${msrrec.msr_humid},
+
+						</c:forEach>
+						
+						], 
 						backgroundColor: colors[1] }, 
-						{ data: [489, 135, 483, 290, 189, 603, 600], 
-							backgroundColor: colors[2] }, 
-							{ data: [639, 465, 493, 478, 589, 632, 674], 
-								backgroundColor: colors[4] }] }; 
+						{ data: [
+
+							<c:forEach items="${msrrecVo}" var="msrrec">
+							${msrrec.msr_bright},
+							</c:forEach>
+							
+							], 
+							backgroundColor: colors[2] }
+							] 
+		};
+
+
 		var myChart = new Chart(chBar, { // 챠트 종류를 선택 
 			type: 'bar', // 챠트를 그릴 데이타 
 			data: chartData, // 옵션 
