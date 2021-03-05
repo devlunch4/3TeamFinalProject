@@ -29,7 +29,23 @@
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">등록일</label>
-		<input id="input_cls_code" name="input_cls_code" name="" type="date" class="form-control py-4">
+		<input id="input_cls_code" name="input_cls_code" name="reg_dt" type="date" class="form-control py-4">
+	</div>
+	
+	<div class="form-group col-md-2">
+		<label class="small mb-1" for="input_cls_code">간편 등록</label>
+		<select name="">
+			<option value="">선택</option>
+			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
+				<option onclick="location.href='${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }
+					value="${mySimpleCodeList.my_simple_code }">
+					${mySimpleCodeList.item_code }-
+					${mySimpleCodeList.bsn_code }-
+					${mySimpleCodeList.area }
+				</option>
+			</c:forEach>
+		</select>
+		
 	</div>
 	
 	<div class="form-group col-md-6">

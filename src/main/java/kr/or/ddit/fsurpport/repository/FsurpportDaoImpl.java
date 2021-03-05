@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
+import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
 
@@ -38,6 +39,12 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<CodesVo> selectAllWstep_codeList() {
 		return template.selectList("fsurpports.selectAllWstep_codeList");
 	}
+	
+	// ggy_20210305 : 등록된 사업유형 리스트 조회
+	@Override
+	public List<CodesVo> selectAllBtype_codeList() {
+		return template.selectList("fsurpports.selectAllBtype_codeList");
+	}
 
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
@@ -52,6 +59,28 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.selectOne("fsurpports.selectFarmdiaryInfo", fdiary_no);
 	}
 	
+	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
+	@Override
+	public int registFiles(FilesVo filesVo) {
+		return template.insert("fsurpports.registFiles", filesVo);
+	}
+	
+	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
+	@Override
+	public FilesVo selectFilesInfo(String file_nm) {
+		return template.selectOne("fsurpports.selectFilesInfo", file_nm);
+	}
+	
+	// ggy_20210305 : 영농일지 등록
+	@Override
+	public int registFarmdiary(FarmdiaryVo farmdiaryVo) {
+		return template.insert("fsurpports.registFarmdiary", farmdiaryVo);
+	}
+	
+	
+	
+	
+	
 	/* 시설관리 영역 */
 
 	// 20210302_KJH 시설리스트 조회
@@ -64,6 +93,10 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public FcltmngVo fcltmngInfo(String str) {
 		return template.selectOne("fcltmng.fcltmngInfo", str);
 	}
+
+	
+
+
 
 	
 

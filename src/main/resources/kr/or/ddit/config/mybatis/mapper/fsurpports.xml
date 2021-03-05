@@ -52,6 +52,14 @@
 		and use = 'Y'
 	</select>
 	
+	<!-- ggy_20210305 : code 사업유형단계 리스트 조회. -->
+	<select id="selectAllBtype_codeList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = 'b'
+		and use = 'Y'
+	</select>
+	
 	<!-- ggy_20210303 : 페이징 처리하여 영농일지 검색 조회 -->
 	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo" 
 									parameterType="farmdiaryVo">
@@ -104,9 +112,32 @@
   	
 	</select>
 
-	
+	<!-- ggy_20210305 : 일지 등록때 파일 있으면 파일 등록 -->
+	<insert id="registFiles" parameterType="filesVo">
+		insert into files values(
+				seq_files.NEXTVAL, #{file_nm }, 
+				#{file_path }, 'farmdiary', #{writer }, 
+				#{ori_post_no }, 'Y')
+	</insert>
 
+	<!-- ggy_20210305 : 일지 등록을 위한 등록된 파일 정보 가져오기 -->
+	<select id="selectFilesInfo" resultType="filesVo" 
+								parameterType="String">
+		select *
+		from files
+		where ori_table_nm = 'farmdiary'
+		and file_nm = #{file_nm }
+	</select>
 	
+	<!-- ggy_20210305 : 일지 등록 -->
+	<insert id="registFarmdiary" parameterType="filesVo">
+		insert into farmdiary values(seq_farmdiary.NEXTVAL, 
+						#{writer }, #{content }, 
+                        sysdate, #{weather }, #{low_temp }, 
+                        #{high_temp }, #{rainfall }, #{humid }, 
+                        #{yield }, #{area }, #{file_no }, #{use }, 
+                        #{btype_code }, #{wstep_code }, #{item_code })
+	</insert>
 	
 
 </mapper>

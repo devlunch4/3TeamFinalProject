@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.CodesVo;
+import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
@@ -45,6 +46,11 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<CodesVo> selectAllWstep_codeList() {
 		return fsurpportDao.selectAllWstep_codeList();
 	}
+	
+	// ggy_20210305 : 등록된 사업유형 조회
+	public List<CodesVo> selectAllBtype_codeList() {
+		return fsurpportDao.selectAllBtype_codeList();
+	}
 
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
@@ -59,7 +65,26 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
 		return fsurpportDao.selectFarmdiaryInfo(fdiary_no);
 	}
-
+	
+	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
+	@Override
+	public int registFiles(FilesVo filesVo) {
+		return fsurpportDao.registFiles(filesVo);
+	}
+	
+	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
+	@Override
+	public FilesVo selectFilesInfo(String file_nm) {
+		return fsurpportDao.selectFilesInfo(file_nm);
+	}
+	
+	// ggy_20210305 : 영농일지 등록
+	@Override
+	public int registFarmdiary(FarmdiaryVo farmdiaryVo) {
+		return fsurpportDao.registFarmdiary(farmdiaryVo);
+	}
+	
+	
 	/* 시설관리 영역 */
 	@Override
 	public List<FcltmngVo> myfcltmngList() {
@@ -71,6 +96,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.fcltmngInfo(str);
 
 	}
+
 
 	
 }

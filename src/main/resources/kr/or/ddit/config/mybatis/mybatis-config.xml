@@ -14,6 +14,10 @@
 			<!-- 2021-03-03KJH CoesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.common.model.CodesVo"
 			alias="codesVo" />
+			
+		<!-- ggy_20210305 FilesVo 만듬 -->
+		<typeAlias type="kr.or.ddit.common.model.FilesVo"
+			alias="filesVo" />
 		
 		<typeAlias type="kr.or.ddit.user.model.UserVo"
 			alias="userVo" />	
@@ -24,6 +28,10 @@
 			<!-- 2021-03-03KJH FcltmngVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
 			alias="fcltmngVo" />
+			
+		<!-- ggy_20210305 MysimplecodeVo 만듬 -->
+		<typeAlias type="kr.or.ddit.common.model.MysimplecodeVo"
+			alias="mysimplecodeVo" />
 				
 
 
