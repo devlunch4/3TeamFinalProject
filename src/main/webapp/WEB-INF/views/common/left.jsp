@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
         
@@ -79,8 +79,5 @@
             </div>
            
         </div>
-    </div>
-    <div class="sb-sidenav-footer">
-        
     </div>
 </nav>	

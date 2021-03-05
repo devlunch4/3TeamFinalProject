@@ -25,11 +25,36 @@ public class UserService implements UserServiceImpl {
 		this.userDao = userDao;
 	}
 
-	// userid에 해당하는 사용자 한명의 정보 조회 (경찬)
-	@Override
-	public UserVo selectUser(String userid) {
-		return userDao.selectUser(userid);
-	}
+   // 20210304_LYS_Login3 - 로그인 구현
+   // userid에 해당하는 사용자 한명의 정보 조회
+   @Override
+   public UserVo selectUser(String user_id) {
+      return userDao.selectUser(user_id);
+   }
+   
+   // 20210304_LYS_Login3 - 회원가입 구현
+   // 사용자 정보 추가
+   @Override
+   public int insertUser(UserVo userVo) {
+      return userDao.insertUser(userVo);
+   }
+   
+   // 20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
+   @Override
+   public String checkForDuplicateId(String user_id) {
+   	return null;
+   }
+
+   // Original   
+   @Override
+   public Map<String, Object> selectPagingUser(PageVo pageVo) {
+      Map<String, Object> map = new HashMap<String, Object>();
+      List<UserVo> userList = userDao.selectPagingUser(pageVo);
+      int userCnt = userDao.selectAllUserCnt();
+      map.put("userList", userList);
+      map.put("userCnt", userCnt);
+      return map;
+   }
 
 	// 전체 사용자 정보 조회 (경찬)
 	@Override
