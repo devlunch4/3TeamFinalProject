@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceImpl;
 
-
 @RequestMapping("join")
 @Controller
 public class RegistController {
@@ -28,7 +27,7 @@ public class RegistController {
 		logger.debug("iNN RegistController >> registerView");
 		return "register";
 	}
-	
+
 //	//	20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
 //	@RequestMapping(path = "id_check", method = RequestMethod.POST)
 //	public String idCheck(String user_id, Model model) {
@@ -39,14 +38,14 @@ public class RegistController {
 //		
 //	}
 
-	//	20210304_LYS_Login3 - 회원가입 구현
+	// 20210304_LYS_Login3 - 회원가입 구현
 	@RequestMapping(path = "process", method = { RequestMethod.POST })
 	public String registerProcess(UserVo userVo) {
 		logger.debug("iNN RegistController >> registerProcess");
-		
+
 		userService.insertUser(userVo);
-		
+
 		return "register";
 	}
-	
+
 }

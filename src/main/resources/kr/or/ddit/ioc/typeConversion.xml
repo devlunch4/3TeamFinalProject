@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
 	<bean id="user" class="kr.or.ddit.user.model.UserVo">
@@ -11,14 +9,10 @@
 	</bean>
 
 
-	<!-- <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"> 
-		<property name="converters"> <set> <bean class="kr.or.ddit.ioc.convert.CustomDateConverter"> 
-		<property name="dateFormat" value="yyyy-dd-MM"></property> </bean> </set> 
-		</property> </bean> -->
+	<!-- <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"> <property name="converters"> <set> <bean class="kr.or.ddit.ioc.convert.CustomDateConverter"> <property name="dateFormat" value="yyyy-dd-MM"></property> </bean> </set> </property> </bean> -->
 
 
-	<bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 
 	</bean>
 

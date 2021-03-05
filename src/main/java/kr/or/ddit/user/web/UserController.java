@@ -17,9 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ddit.common.model.CodesVo;
-import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
-import kr.or.ddit.fsurpport.repository.FsurpportDaoImpl;
 import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -138,7 +136,7 @@ public class UserController {
 
 	// 관리자가 모든 회원보는거 03/02 (경찬)
 	@RequestMapping("allUser")
-	public String allUser(Model model, PageVo pageVo) {
+	public String allUser(Model model) {
 		logger.debug("in allUser()");
 		long start = System.currentTimeMillis(); // 시작하는 시점 계산
 
@@ -183,7 +181,7 @@ public class UserController {
 	public String modifyUser(UserVo userVo) {
 		return "tiles.user.modifyUser";
 	}
-	
+
 	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
 	@RequestMapping("modifyUser2")
 	public String modifyUser2(UserVo userVo) {

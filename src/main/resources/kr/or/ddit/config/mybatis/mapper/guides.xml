@@ -5,51 +5,22 @@
 
 <mapper namespace="guides">
 
-
 	<!-- 텃밭가이드 코드로 검색 또는 최초 조회 -->
 	<select id="selectGuide" resultType="gardenguidesVo"
 		parameterType="Integer">
-		SELECT * FROM gardenguides WHERE grdgd_code = #{value}
+		SELECT *
+		FROM gardenguides
+		WHERE grdgd_code = #{value}
 	</select>
 
 	<!-- 텃밭가이드 코드로 검색 또는 최초 조회 -->
 	<select id="selectGuideList" resultType="gardenguidesVo"
 		parameterType="guideSqlVo">
-		SELECT * FROM gardenguides WHERE GRDGD_NM >=
+		SELECT *
+		FROM gardenguides
+		WHERE GRDGD_NM >=
 		#{sqlwhere1}
-		and GRDGD_NM <![CDATA[ < ]]>
+		AND GRDGD_NM <![CDATA[ < ]]>
 		#{sqlwhere2}
 	</select>
-
-	<!-- <select id="selectAllFsurpportList" resultType="farmdiaryVo"> SELECT 
-		f.fdiary_no, f.writer, f.content, f.reg_dt, f.weather, f.low_temp, f.high_temp, 
-		f.rainfall, f.humid, f.yield, f.area, f.file_no, f.use, c.code_nm btype_code, 
-		co.code_nm wstep_code, cod.code_nm item_code FROM farmdiary f JOIN codes 
-		c ON f.btype_code = c.code_no JOIN codes co ON f.wstep_code = co.code_no 
-		JOIN codes cod ON f.item_code = cod.code_no ORDER BY f.reg_dt desc </select> 
-		ggy_20210303 : code 품목 리스트 조회. <select id="selectAllItem_codeList" resultType="codesVo"> 
-		select * from codes where parent_code = '100' or parent_code = '200' or parent_code 
-		= '300' or parent_code = '400' and use = 'Y' </select> ggy_20210303 : code 
-		작업단계 리스트 조회. <select id="selectAllWstep_codeList" resultType="codesVo"> select 
-		* from codes where parent_code = '1' or parent_code = '2' or parent_code 
-		= '3' or parent_code = '4' or parent_code = '5' or parent_code = '6' or parent_code 
-		= '7' and use = 'Y' </select> ggy_20210303 : 페이징 처리하여 영농일지 검색 조회 <select 
-		id="searchAllFarmdiaryList" resultType="farmdiaryVo" parameterType="farmdiaryVo"> 
-		SELECT f.fdiary_no, f.writer, f.content, f.reg_dt, f.weather, f.low_temp, 
-		f.high_temp, f.rainfall, f.humid, f.yield, f.area, f.file_no, f.use, c.code_nm 
-		btype_code, co.code_nm wstep_code, cod.code_nm item_code FROM farmdiary f 
-		JOIN codes c ON f.btype_code = c.code_no JOIN codes co ON f.wstep_code = 
-		co.code_no JOIN codes cod ON f.item_code = cod.code_no where f.reg_dt &gt;= 
-		TO_DATE(#{startDate }, 'YYYY-MM-DD') and f.reg_dt &lt;= TO_DATE(#{endDate 
-		}, 'YYYY-MM-DD') or f.item_code = #{item_code } or f.wstep_code = #{wstep_code 
-		} ORDER BY f.reg_dt desc </select> 등록된 영농일지 보는거 03/04 (경찬) <select id="fsurCount" 
-		parameterType="String" resultType="Integer"> select count(*) from farmdiary 
-		where writer = #{user_id} </select> -->
-
-
-
-
-
-
 </mapper>
-

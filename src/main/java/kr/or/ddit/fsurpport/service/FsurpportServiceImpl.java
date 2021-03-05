@@ -48,7 +48,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<CodesVo> selectAllWstep_codeList() {
 		return fsurpportDao.selectAllWstep_codeList();
 	}
-	
+
 	// ggy_20210305 : 등록된 사업유형 조회
 	public List<CodesVo> selectAllBtype_codeList() {
 		return fsurpportDao.selectAllBtype_codeList();
@@ -61,37 +61,37 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.searchAllFarmdiaryList(farmdiaryVo);
 
 	}
-	
+
 	// ggy_20210305 : 해당 일지 조회
 	@Override
 	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
 		return fsurpportDao.selectFarmdiaryInfo(fdiary_no);
 	}
-	
+
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
 		return fsurpportDao.registFiles(filesVo);
 	}
-	
+
 	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
 	@Override
 	public FilesVo selectFilesInfo(String file_nm) {
 		return fsurpportDao.selectFilesInfo(file_nm);
 	}
-	
+
 	// ggy_20210305 : 영농일지 등록
 	@Override
 	public int registFarmdiary(FarmdiaryVo farmdiaryVo) {
 		return fsurpportDao.registFarmdiary(farmdiaryVo);
 	}
-	
-	
+
 	/* 시설관리 영역 */
 	@Override
 	public List<FcltmngVo> myfcltmngList() {
 		return fsurpportDao.myfcltmngList();
 	}
+
 	// 20210302_KJH 시설 상세조회
 	@Override
 	public FcltmngVo fcltmngInfo(String str) {
@@ -105,12 +105,13 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 		return fsurpportDao.latelyData(msr_code);
 	}
+
 	// 20210304_KJH 보유 장비 조회
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return fsurpportDao.msrequipList(owner);
+	}
 
-	
 	// 등록된 시설 카운트 03/04 (경찬)
 	@Override
 	public int fcltmngCount(String user_id) {
@@ -121,7 +122,6 @@ public class FsurpportServiceImpl implements FsurpportService {
 	@Override
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
-
 	}
 
 }

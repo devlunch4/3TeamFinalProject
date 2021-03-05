@@ -45,8 +45,6 @@ public class LoginController {
 		}
 	}
 
-	
-
 	// 누구?
 	@RequestMapping(path = "view2", method = { RequestMethod.GET })
 	public String view2() {

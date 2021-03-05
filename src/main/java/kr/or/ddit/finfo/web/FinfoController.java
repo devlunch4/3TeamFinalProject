@@ -70,8 +70,6 @@ public class FinfoController {
 		// 초성 검색 관련 이름 리스트 보내기
 		List<GardenguidesVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
 		model.addAttribute("gardenguidesList", gardenguidesList);
-		
-		
 
 		// 해당 가이드 글번호 보내기
 		model.addAttribute("xgrdgd_code", xgrdgd_code);
@@ -130,22 +128,17 @@ public class FinfoController {
 
 	// ggy_20210304 : 농업정보 - 주간 농사정보 진입
 
-	@RequestMapping("weeklyFarmInfosView") 
+	@RequestMapping("weeklyFarmInfosView")
 	public String fcltmngView(Model model) {
-		
+
 		return "tiles.finfo.weeklyFarmInfosMain";
 	}
-	
+
 	// ggy_20210304 : 농업정보 - 품목별영농매뉴얼 진입
-	@RequestMapping("itemFarmManualsView") 
+	@RequestMapping("itemFarmManualsView")
 	public String itemFarmManualsView(Model model) {
-		
+
 		return "tiles.finfo.itemFarmManualsMain";
 
-  //?
-	@RequestMapping("fcltmngView")
-	public String fcltmngView(Model model) {
-		return "tiles.finfo.fcltmngMain";
 	}
-
 }
