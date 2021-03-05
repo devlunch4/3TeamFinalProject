@@ -16,6 +16,7 @@ public class CodesVo {
 	}
 
 	public String getCode_nm() {
+		
 		return code_nm;
 	}
 
