@@ -114,7 +114,7 @@ public class FanalysisController {
 		model.addAttribute("msr_code", msr_code);
 		model.addAttribute("msrequipList", msrequipList);
 		model.addAttribute("msrrecVo", msrrecList);
-
+ 
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
 
