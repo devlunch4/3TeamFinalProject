@@ -2,8 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- <script>document.location="create"</script> -->
 <script>
 //문서 로딩이 완료되고 나서 실행되는 영역
@@ -18,14 +18,16 @@ $(function(){
 	});
 });
 </script>
-<main>	
-	<form id="frm" action="${pageContext.request.contextPath}/user/userDetail" >
-		<input type="hidden" id="userid" name="user_id" value=""/>
-	</form>
-	<div class="container-fluid">
-					<div class="card mb-4">
-                            <div class="card-header">
-                                <svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+
+<form id="frm" action="${pageContext.request.contextPath}/user/userDetail">
+	<input type="hidden" id="userid" name="user_id" value="" />
+</form>
+
+<h3 class="mt-4">전체사용자 조회</h3>
+
+<div class="card mb-4">
+	<div class="card-header">
+		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                 <path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path>
                                 </svg><!-- <i class="fas fa-table mr-1"></i> Font Awesome fontawesome.com -->
                                 전체사용자 조회
@@ -54,13 +56,15 @@ $(function(){
 		                                            </tr>
 		                                        </thead>
 		                                        <tbody>
-			                                          <c:forEach items="${userList }" var="user"> 
-														<tr class="user" data-userid="${user.user_id }">
-															<td>${user.user_nm }</td>
-															<td>${user.user_id }</td>											
-															<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd"/> </td>
-														</tr>
-													  </c:forEach>
+				                                      <c:forEach items="${userList }" var="user"> 
+				                                         <c:if test="${user.use == 'Y'}">
+															<tr class="user" data-userid="${user.user_id }">
+																<td>${user.user_nm }</td>
+																<td>${user.user_id }</td>											
+																<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd"/> </td>
+															</tr>
+														 </c:if>
+													 </c:forEach>
 		                                        </tbody>
 		                                    </table>
 	                                    </div>
@@ -71,3 +75,4 @@ $(function(){
                         </div>
 	</div>					
 </main>
+

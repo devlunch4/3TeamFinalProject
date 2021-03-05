@@ -4,21 +4,64 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="fcltmng">
-<!-- 시설관리 -->
+	<!-- 시설관리 -->
 
-<!-- 시설리스트 조회 -->
-<select id="myfcltmngList" resultType="fcltmngVo">
-	select
-	control_no,msr_code,owner,location,info,use,reg_dt
-	from fcltmng
-</select>
+	<!-- 시설리스트 조회 -->
+	<select id="myfcltmngList" resultType="fcltmngVo">
+		select
+		control_no,msr_code,owner,location,info,use,reg_dt
+		from fcltmng
+	</select>
+
+
+	<!-- 등록된 시설 보는거 03/04 (경찬) -->
+	<select id="fcltmngCount" parameterType="String"
+		resultType="Integer">
+		select count(*)
+		from fcltmng
+		where owner = #{user_id}
+	</select>
+
+
 
 <!-- 시설 상세 조회-->
 <select id="fcltmngInfo" resultType="fcltmngVo" parameterType="String">
 	select
-	control_no,msr_code,owner,location,info,use,reg_dt
-	from fcltmng where control_no = #{control_no}
-</select>		
- 
+	f.control_no,f.msr_code,f.owner,f.location,f.info,c.code_nm item_code,f.reg_dt
+	from fcltmng f,codes c
+	where control_no = #{control_no}
+    and f.item_code = c.code_no
+</select>
+
+<!--가장 최근 센서 정보 조회 -->
+<select id="latelyData" resultType="msrrecVo" parameterType="String">
+	select c.msr_no, p.msr_nm msr_code, c.msr_reg_dt, c.msr_temp , c.msr_humid, c.msr_bright
+	from msrrec c, msrequip p
+	where MSR_REG_DT =
+	(SELECT max(msr_reg_dt) KEEP(DENSE_RANK FIRST ORDER BY msr_reg_dt DESC)
+	msr_reg_dt
+	FROM msrrec
+	where msr_code = #{msr_code})
+	and c.msr_code = p.msr_code
+</select>
+
+<!-- 센서 기록 조회 -->
+<!-- 20210305KJH 수정 -->
+<select id="myfanalysisInfo" resultType="msrrecVo" parameterType="msrrecVo">
+	select ROUND(AVG(NVL(MSR_TEMP, 0)),0) MSR_TEMP,
+    ROUND(AVG(NVL(MSR_HUMID, 0)),0)  MSR_HUMID,
+    ROUND(AVG(NVL(MSR_BRIGHT, 0)),0) MSR_BRIGHT 
+    from msrrec 
+    where msr_reg_dt &lt; sysdate-${msr_no}
+    and msr_reg_dt &gt;= sysdate-${msr_no}-1
+    and MSR_CODE = #{msr_code}
+</select>
+
+<!-- 센서 목록 조회 -->
+<select id="msrequipList" resultType="msrequipVo" parameterType="String">
+select msr_code,msr_nm,owner,use 
+from msrequip where owner = #{OWNER}
+</select>
+
 </mapper>
 

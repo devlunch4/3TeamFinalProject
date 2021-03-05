@@ -12,6 +12,8 @@ import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.MsrequipVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
 
 @Service("fsurpportService")
@@ -90,13 +92,36 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<FcltmngVo> myfcltmngList() {
 		return fsurpportDao.myfcltmngList();
 	}
-
+	// 20210302_KJH 시설 상세조회
 	@Override
 	public FcltmngVo fcltmngInfo(String str) {
 		return fsurpportDao.fcltmngInfo(str);
 
 	}
 
+	// 20210304_KJH 최근 측정값 조회
+	@Override
+	public MsrrecVo latelyData(String msr_code) {
+
+		return fsurpportDao.latelyData(msr_code);
+	}
+	// 20210304_KJH 보유 장비 조회
+	@Override
+	public List<MsrequipVo> msrequipList(String owner) {
+		return fsurpportDao.msrequipList(owner);
 
 	
+	// 등록된 시설 카운트 03/04 (경찬)
+	@Override
+	public int fcltmngCount(String user_id) {
+		return fsurpportDao.fcltmngCount(user_id);
+	}
+
+	// 등록된 일지 카운트 03/04 (경찬)
+	@Override
+	public int fsurCount(String user_id) {
+		return fsurpportDao.fsurCount(user_id);
+
+	}
+
 }

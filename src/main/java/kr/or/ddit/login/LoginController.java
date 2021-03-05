@@ -45,12 +45,7 @@ public class LoginController {
 		}
 	}
 
-//	20210302_LYS_Login2 - 회원가입페이지로 이동
-	@RequestMapping(path = "register", method = { RequestMethod.GET })
-	public String registerView() {
-		logger.debug("iNN login controller >> registerView");
-		return "register";
-	}
+	
 
 	// 누구?
 	@RequestMapping(path = "view2", method = { RequestMethod.GET })
@@ -68,7 +63,7 @@ public class LoginController {
 			outid = dbUser.getUser_id();
 		}
 		model.addAttribute("msg", outid + " 님 로그아웃 되셨습니다.");
-		model.addAttribute("url", "/login/view");
+		model.addAttribute("url", "/user/main");
 		req.getSession().invalidate();
 		return "logoutRedirect";
 	}
