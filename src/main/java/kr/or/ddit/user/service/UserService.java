@@ -25,11 +25,27 @@ public class UserService implements UserServiceImpl {
       this.userDao = userDao;
    }
 
+   // 20210304_LYS_Login3 - 로그인 구현
    // userid에 해당하는 사용자 한명의 정보 조회
    @Override
-   public UserVo selectUser(String userid) {
-      return userDao.selectUser(userid);
+   public UserVo selectUser(String user_id) {
+      return userDao.selectUser(user_id);
    }
+   
+   // 20210304_LYS_Login3 - 회원가입 구현
+   // 사용자 정보 추가
+   @Override
+   public int insertUser(UserVo userVo) {
+      return userDao.insertUser(userVo);
+   }
+   
+   // 20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
+   @Override
+   public String checkForDuplicateId(String user_id) {
+   	return null;
+   }
+   
+   
 //
 //   // DI getter setter 사용
 //   public UserDaoImpl getUserDao() {
@@ -83,11 +99,7 @@ public class UserService implements UserServiceImpl {
 //      return userDao.modifyUser(userVo);
 //   }
 //
-//   // 사용자 정보 추가
-//   @Override
-//   public int insertUser(UserVo userVo) {
-//      return userDao.insertUser(userVo);
-//   }
+
 //
 //   // 사용자 정보 추가 - 삼항연산자 사용
 //   @Override
@@ -148,5 +160,7 @@ public class UserService implements UserServiceImpl {
 //
 //      return map;
 //   }
+
+
 
 }

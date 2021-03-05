@@ -23,30 +23,41 @@ import kr.or.ddit.user.model.UserVo;
 public class UserDao implements UserDaoImpl {
 
 	@Resource(name = "sqlSessionTemplate")
-	private SqlSessionTemplate tempplate;
+	private SqlSessionTemplate template;
 
-	// 사용자 아이디로 사용자 조회
+	// 20210304_LYS_Login3 - 로그인 구현
+	// userid에 해당하는 사용자 한명의 정보 조회
 	@Override
-	public UserVo selectUser(String userid) {
-		return tempplate.selectOne("users.selectUser", userid);
+	public UserVo selectUser(String user_id) {
+		return template.selectOne("users.selectUser", user_id);
 	}
+	
+	// 20210304_LYS_Login3 - 회원가입 구현
+	// 사용자 정보 추가
+	@Override
+	public int insertUser(UserVo userVo) {
+		return template.update("users.insertUser", userVo);
+	}
+	
+	
+	
 	
 	// 전체 사용자 정보 조회
 	@Override
 	public List<UserVo> selectAllUser() {
-		return tempplate.selectList("users.selectAllUser");
+		return template.selectList("users.selectAllUser");
 	}
 
 	// 페이지 처리
 	@Override
 	public List<UserVo> selectPagingUser(PageVo pageVo) {
-		return tempplate.selectList("users.selectPagingUser", pageVo);
+		return template.selectList("users.selectPagingUser", pageVo);
 	}
 
 	// 사용자 전체수 조회
 	@Override
 	public int selectAllUserCnt() {
-		return tempplate.selectOne("users.selectAllUserCnt");
+		return template.selectOne("users.selectAllUserCnt");
 	}
 
 	
@@ -57,74 +68,70 @@ public class UserDao implements UserDaoImpl {
 //	// 사용자 정보 수정
 //	@Override
 //	public int modifyUser(UserVo userVo) {
-//		return tempplate.update("users.modifyUser", userVo);
+//		return template.update("users.modifyUser", userVo);
 //	}
 
-//	// 사용자 정보 추가
-//	@Override
-//	public int insertUser(UserVo userVo) {
-//		return tempplate.update("users.insertUser", userVo);
-//	}
+	
 
 //	// 사용자 삭제
 //	@Override
 //	public int deleteUser(String userid) {
-//		return tempplate.delete("users.deleteUser", userid);
+//		return template.delete("users.deleteUser", userid);
 //	}
 
 //	// 아이디로 검색
 //	@Override
 //	public List<UserVo> idSearchUser(String userid) {
-//		return tempplate.selectList("users.idSearchUser", userid);
+//		return template.selectList("users.idSearchUser", userid);
 //	}
 
 //	// 아이디로 검색한 회원수
 //	@Override
 //	public int idSearchUserCnt(String userid) {
-//		return tempplate.selectOne("users.idSearchUserCnt", userid);
+//		return template.selectOne("users.idSearchUserCnt", userid);
 //	}
 
 //	// 아이디로 검색한 회원 페이징
 //	@Override
 //	public List<UserVo> idSearchUserPaging(PageVoSearch pageVoSearch) {
-//		return tempplate.selectList("users.idSearchUserPaging", pageVoSearch);
+//		return template.selectList("users.idSearchUserPaging", pageVoSearch);
 //	}
 
 //	// 이름으로 검색
 //	@Override
 //	public List<UserVo> nameSearchUser(String usernm) {
 //		//
-//		return tempplate.selectList("users.nameSearchUser", usernm);
+//		return template.selectList("users.nameSearchUser", usernm);
 //	}
 
 //	// 이름으로 검색한 회원수
 //	@Override
 //	public int nameSearchUserCnt(String usernm) {
-//		return tempplate.selectOne("users.nameSearchUserCnt", usernm);
+//		return template.selectOne("users.nameSearchUserCnt", usernm);
 //	}
 
 //	// 이름으로 검색한 회원 페이징
 //	@Override
 //	public List<UserVo> nameSearchUserPaging(PageVoSearch pageVoSearch) {
-//		return tempplate.selectList("users.nameSearchUserPaging", pageVoSearch);
+//		return template.selectList("users.nameSearchUserPaging", pageVoSearch);
 //	}
 
 //	// 별명으로 검색
 //	@Override
 //	public List<UserVo> aliasSearchUser(String alias) {
-//		return tempplate.selectList("users.aliasSearchUser", alias);
+//		return template.selectList("users.aliasSearchUser", alias);
 //	}
 
 //	// 별명으로 검색한 회원 수
 //	@Override
 //	public int aliasSearchUserCnt(String alias) {
-//		return tempplate.selectOne("users.aliasSearchUserCnt", alias);
+//		return template.selectOne("users.aliasSearchUserCnt", alias);
 //	}
 
 //	// 별명으로 검색한 회원 페이징
 //	@Override
 //	public List<UserVo> aliasSearchUserPaging(PageVoSearch pageVoSearch) {
-//		return tempplate.selectList("users.aliasSearchUserPaging", pageVoSearch);
+//		return template.selectList("users.aliasSearchUserPaging", pageVoSearch);
 //	}
 
 }

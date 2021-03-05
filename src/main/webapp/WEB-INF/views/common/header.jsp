@@ -32,7 +32,7 @@
 				<c:if test="${S_USER == null}">
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/login/view">로그인</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/login/register">회원가입</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/join/view">회원가입</a>
 				</c:if>
 				
             </div>

@@ -14,10 +14,10 @@ public class UserVo {
 	public String addr1; // 주소
 	public String addr2; // 상세주소
 	public String zip; // 우편번호
-	public int mobile; // 전화번호
+	public String mobile; // 전화번호
 	public Date reg_dt; // 가입일
 	public int file_no; // 파일번호
-	public int loginfail_cnt; // 로그인 실패수
+	public int login_fail_cnt; // 로그인 실패수
 	public Date logout_dt; // 로그아웃 시간
 	public String use; // 사용여부
 
@@ -85,11 +85,11 @@ public class UserVo {
 		this.zip = zip;
 	}
 
-	public int getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(int mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 
@@ -110,11 +110,11 @@ public class UserVo {
 	}
 
 	public int getLoginfail_cnt() {
-		return loginfail_cnt;
+		return login_fail_cnt;
 	}
 
-	public void setLoginfail_cnt(int loginfail_cnt) {
-		this.loginfail_cnt = loginfail_cnt;
+	public void setLoginfail_cnt(int login_fail_cnt) {
+		this.login_fail_cnt = login_fail_cnt;
 	}
 
 	public Date getLogout_dt() {
@@ -137,7 +137,7 @@ public class UserVo {
 	public String toString() {
 		return "UserVo [user_id=" + user_id + ", user_nm=" + user_nm + ", user_pw=" + user_pw + ", email=" + email
 				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zip=" + zip + ", mobile=" + mobile + ", reg_dt=" + reg_dt
-				+ ", file_no=" + file_no + ", loginfail_cnt=" + loginfail_cnt + ", logout_dt=" + logout_dt + ", use="
+				+ ", file_no=" + file_no + ", loginfail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt + ", use="
 				+ use + "]";
 	}
 

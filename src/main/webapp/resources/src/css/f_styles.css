@@ -17,7 +17,7 @@ url('/fonts/NanumBarunGothic.woff') format('woff');}
 body {font-family: 'NanumBarunGothic', 'serif';}
 
 #logo img{
-	width: 165px;
+	width: 180px;
 }
 
 /* LYS - 20210303*/
@@ -35,6 +35,18 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 
 
 /*-------------------------body css 시작-------------------------*/
+
+/* LYS - 20210304*/
+/* 회원가입 */
+.status_txt{
+	font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+    color: #e4301e;
+}
+
+
+
 /*-------------------------body css 끝 -------------------------*/
 
 
