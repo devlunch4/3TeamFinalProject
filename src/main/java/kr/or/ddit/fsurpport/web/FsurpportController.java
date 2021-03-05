@@ -1,5 +1,7 @@
 package kr.or.ddit.fsurpport.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -92,26 +96,94 @@ public class FsurpportController {
 			return "redirect:/fsurpport/main";
 		}
 	}
-
-	// ggy_20210302 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
-	@RequestMapping("insertView")
-	public String insertView() {
-
-		return "tiles.fsurpport.fsurpportInsert";
-	}
-
-	// ggy_20210302 : 농업지원-영농일지 내 일지 상세조회를 위한 진입페이지
+	
+	// ggy_20210305 : 농업지원-영농일지 내 일지 상세조회를 위한 진입페이지
 	@RequestMapping("infoView")
-	public String infoView() {
+	public String infoView(int fdiary_no, Model model) {
+
+		model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(fdiary_no));
 
 		return "tiles.fsurpport.fsurpportInfo";
 	}
+	
+	// ggy_20210305 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
+	@RequestMapping("insertView")
+	public String insertView( String user_id, Model model ) {
+		
+
+//		model.addAttribute("selectMySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
+		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+		
+		return "tiles.fsurpport.fsurpportInsert";
+	}
+
+	
 
 	// ggy_20210302 : 농업지원-영농일지 내 일지 간편등록를 위한 진입페이지
 	@RequestMapping("simpleInsertView")
-	public String simpleInsertView() {
+	public String simpleInsertView( Model model ) {
+		
+		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+		model.addAttribute("btypeList", fsurpportService.selectAllBtype_codeList());
+		
 
 		return "tiles.fsurpport.fsurpportSimpleInsert";
+	}
+
+	// ggy_20210302 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
+	@RequestMapping("registFarmdiary")
+	public String registFarmdiary( 
+			FarmdiaryVo farmdiaryVo,
+			MultipartFile file_file,
+			Model model
+			) {
+		
+		logger.debug("registFarmdiary 진입");
+		
+		FilesVo filesVo = new FilesVo();
+		
+		String upload_path = "c:\\fdown\\";
+		
+		try {
+			
+			file_file.transferTo(new File(upload_path + file_file.getOriginalFilename()));
+			
+			filesVo.setFile_nm("");
+			filesVo.setFile_nm(file_file.getOriginalFilename());
+			filesVo.setFile_path(upload_path+filesVo.getFile_nm());
+		} catch ( IllegalStateException | IOException e) {
+			filesVo.setFile_nm("");
+		}
+		
+		int registFilesCnt = fsurpportService.registFiles(filesVo);
+		
+		logger.debug("registFilesCnt : "+ registFilesCnt);
+		
+		if (registFilesCnt != 1) {
+			model.addAttribute("farmdiaryList", farmdiaryVo);
+			logger.debug("파일 등록 실패");
+			return "redirect:/fsurpport/fsurpportInsert";
+		}
+		
+		filesVo = fsurpportService.selectFilesInfo(filesVo.getFile_nm());
+		
+		farmdiaryVo.setFdiary_no(filesVo.getFile_no());
+		
+		int registFarmdiaryCnt = fsurpportService.registFarmdiary(farmdiaryVo);
+		
+		if (registFarmdiaryCnt != 1) {
+			model.addAttribute("farmdiaryList", farmdiaryVo);
+			logger.debug("일지 등록 실패");
+			return "redirect:/fsurpport/fsurpportInsert";
+		}
+		
+		if (registFarmdiaryCnt == 1) {
+			logger.debug("영농일지 등록 성공");
+		}
+		
+		return "tiles.fsurpport.fsurpportMain";
 	}
 	
 	// ggy_20210304 : 농업지원-영농일지 내 일지 수정을 위한 진입페이지
