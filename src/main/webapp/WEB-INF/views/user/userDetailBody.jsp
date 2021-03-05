@@ -7,7 +7,7 @@
 $(function(){
 	$("#modifyBtn").on("click", function(){
 		$("#frm").attr("method", "get");
-		$("#frm").attr("action", "modifyUser");
+		$("#frm").attr("action", "modifyUser2");
 		$("#frm").submit();
 	});
 	

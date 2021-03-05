@@ -178,12 +178,17 @@ public class UserController {
 		return "redirect:/user/allUser";
 	}
 
-	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+	// 회원이 정보수정 하는거 03/05(경찬)
 	@RequestMapping("modifyUser")
 	public String modifyUser(UserVo userVo) {
 		return "tiles.user.modifyUser";
 	}
 	
-	
+	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+	@RequestMapping("modifyUser2")
+	public String modifyUser2(UserVo userVo) {
+		userVo = userService.modifyUser(userVo);
+		return "tiles.user.allUser";
+	}
 
 }

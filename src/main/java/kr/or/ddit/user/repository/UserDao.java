@@ -69,7 +69,7 @@ public class UserDao implements UserDaoImpl {
 	// 관리자가 사용자 수정 03/05 (경찬)
 	@Override
 	public UserVo modifyUser(UserVo userVo) {
-		return tempplate.selectOne("users.modifyUser", userVo);
+		return template.selectOne("users.modifyUser", userVo);
 	}
 
 }

@@ -79,23 +79,6 @@
 		where user_id=#{user_id}
 	</update>
 
-	<!-- 사용자 추가 -->
-	<insert id="insertUser" parameterType="userVo">
-		INSERT INTO users
-		(
-		userid,
-		usernm, pass, reg_dt, alias, addr1, addr2, zipcode, filename,
-		realfilename
-		)
-		VALUES
-		(
-		#{userid},
-		#{usernm}, #{pass},
-		#{reg_dt}, #{alias},
-		#{addr1}, #{addr2},
-		#{zipcode}, #{filename}, #{realfilename}
-		)
-	</insert>
 
 </mapper>
 
