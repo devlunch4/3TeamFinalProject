@@ -25,7 +25,7 @@
                 </form>
                 <div class="dropdown-divider"></div>
                 <form action="logOut">
-               	  <a class="dropdown-item" href="login.html">로그아웃</a>
+               	  <a class="dropdown-item" href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
                 </form>
 				</c:if>
 				

@@ -4,21 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="fcltmng">
-<!-- 시설관리 -->
+	<!-- 시설관리 -->
 
-<!-- 시설리스트 조회 -->
-<select id="myfcltmngList" resultType="fcltmngVo">
-	select
-	control_no,msr_code,owner,location,info,use,reg_dt
-	from fcltmng
-</select>
+	<!-- 시설리스트 조회 -->
+	<select id="myfcltmngList" resultType="fcltmngVo">
+		select
+		control_no,msr_code,owner,location,info,use,reg_dt
+		from fcltmng
+	</select>
 
-<!-- 시설 상세 조회-->
-<select id="fcltmngInfo" resultType="fcltmngVo" parameterType="String">
-	select
-	control_no,msr_code,owner,location,info,use,reg_dt
-	from fcltmng where control_no = #{control_no}
-</select>		
- 
+	<!-- 시설 상세 조회 -->
+	<select id="fcltmngInfo" resultType="fcltmngVo"
+		parameterType="String">
+		select
+		control_no,msr_code,owner,location,info,use,reg_dt
+		from fcltmng where control_no = #{control_no}
+	</select>
+
+	<!-- 등록된 시설 보는거 03/04 (경찬) -->
+	<select id="fcltmngCount" parameterType="String"
+		resultType="Integer">
+		select count(*)
+		from fcltmng
+		where owner = #{user_id}
+	</select>
+
+
 </mapper>
 

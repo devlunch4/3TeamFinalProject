@@ -12,67 +12,16 @@ public interface UserDaoImpl {
 	
 	// 사용자 정보 추가 - 회원가입 LYS
 	int insertUser(UserVo userVo);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 전체 사용자 정보 조회
+		
+	// 전체 사용자 정보 조회 (경찬)
 	List<UserVo> selectAllUser();
 
-	// 페이지 처리
+	// 페이지 처리 (경찬)
 	List<UserVo> selectPagingUser(PageVo pageVo);
-	// 사용자 전체수 조회
+
+	// 사용자 전체수 조회 (경찬)
 	int selectAllUserCnt();
-	
-	
-	
-	
-	
-	
-	
-//
-//	// 사용자 정보 수정
-//	int modifyUser(UserVo userVo);
-//
 
-//
-//	// 사용자 삭제
-//	int deleteUser(String userid);
-//
-//	// 검색
-//	// 검색
-//	// 검색
-//	// 아이디로 검색
-//	List<UserVo> idSearchUser(String userid);
-//
-//	int idSearchUserCnt(String userid);
-//
-//	List<UserVo> idSearchUserPaging(PageVoSearch pageVoSearch);
-//
-//	// 이름으로 검색
-//	List<UserVo> nameSearchUser(String usernm);
-//
-//	int nameSearchUserCnt(String usernm);
-//
-//	List<UserVo> nameSearchUserPaging(PageVoSear@Override
-//		ch pageVoSearch);
-//
-//	// 별명으로 검색
-//	List<UserVo> aliasSearchUser(String alias);
-//
-//	int aliasSearchUserCnt(String alias);
-//
-//	List<UserVo> aliasSearchUserPaging(PageVoSearch pageVoSearch);
-
-}
+	// 사용자 삭제 03/04 (경찬)
+	UserVo deleteUser(String user_id);
+	}

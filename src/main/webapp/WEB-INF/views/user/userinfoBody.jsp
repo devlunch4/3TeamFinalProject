@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -20,7 +19,6 @@ $(function(){
 	    }).open();	
 	});
 });
-    
 </script>
 	
 <main>
@@ -34,35 +32,35 @@ $(function(){
 					<div class="form-group">
 						<label class="small mb-3" for="input_cls_code">성명</label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트이름" />
+							<input name="userid" class="form-control" value="${S_USER.user_nm }" />
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">아이디</label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트아이디" />
+							<input name="userid" class="form-control" value="${S_USER.user_id }" />
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">비밀번호</label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트비밀번호" />
+							<input name="userid" class="form-control" value="${S_USER.user_pw }" />
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">이메일</label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트이메일" />
+							<input name="userid" class="form-control" value="${S_USER.email }" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="small mb-1" for="input_cls_code">전화번호</label>
 						<div class="col-sm-10">
-							<input name="userid" class="form-control" value="테스트전화번호" />
+							<input name="userid" class="form-control" value="${S_USER.mobile }" />
 						</div>
 					</div>
 
@@ -79,7 +77,7 @@ $(function(){
 							<input id="zipcode" class="form-control" value="" />
 						</div>
 						<div class="col-sm-10">
-							<input id="zipcode" class="form-control" value="상세주소 입력" />
+							<input id="zipcode" class="form-control" value="${S_USER.zip }" />
 						</div>
 					</div>
 					

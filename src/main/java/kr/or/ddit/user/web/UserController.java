@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
+import kr.or.ddit.fsurpport.repository.FsurpportDaoImpl;
+import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceImpl;
 
@@ -33,6 +35,9 @@ public class UserController {
 
 	@Resource(name = "fdataService")
 	private FdataServiceImpl fdataService;
+
+	@Resource(name = "fsurpportService")
+	private FsurpportServiceImpl fsurpportService;
 
 	// 메인 가기
 	// 20210302_KJH items - > codes 변경
@@ -125,12 +130,13 @@ public class UserController {
 		return "tiles.main.main";
 	}
 
+	// 로그인한 회원이 자기정보 보는거 02/26(경찬)
 	@RequestMapping("myPage")
 	public String myPage(UserVo userVo) {
 		return "tiles.user.userinfo";
 	}
 
-	// 관리자가 모든 회원보는거 03-02 16시20분 (경찬)
+	// 관리자가 모든 회원보는거 03/02 (경찬)
 	@RequestMapping("allUser")
 	public String allUser(Model model, PageVo pageVo) {
 		logger.debug("in allUser()");
@@ -140,7 +146,6 @@ public class UserController {
 
 		long end = System.currentTimeMillis(); // 프로그램이 끝나는 시점 계산
 
-		System.out.println("실행 시간 : " + (end - start) / 1000.0 + "초"); // 실행 시간 계산 및 출력
 		logger.debug("실행 시간 : " + (end - start) / 1000.0 + "초");
 
 		model.addAttribute("userList", userList);
@@ -148,12 +153,36 @@ public class UserController {
 		return "tiles.user.allUser";
 	}
 
-	// 관리자가 회원상세정보 보는거 03-03 15시20분 (경찬)
+	// 관리자가 회원상세정보 보는거 03/03 (경찬)
 	@RequestMapping("userDetail")
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
+
+		// 시설카운트
+		int fcount = fsurpportService.fcltmngCount(user_id);
+
+		// 일지카운트
+		int ffcount = fsurpportService.fsurCount(user_id);
+
 		model.addAttribute("user", user);
+		model.addAttribute("count", fcount);
+		model.addAttribute("ffcount", ffcount);
+
 		return "tiles.user.userDetail";
+	}
+	
+	// 회원탈퇴 누르면 use가 n으로 변하는거 03/04 (경찬)
+	@RequestMapping("deleteUser")
+	public String deleteUser(String user_id) {
+		UserVo user = userService.deleteUser(user_id);
+		return "redirect:/user/allUser";
+	}
+	
+	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+	@RequestMapping("modifyUser")
+	public String modifyUser(String user_id, int login_fail_cnt) {
+		
+		return "redirect:/user/allUser";
 	}
 
 }

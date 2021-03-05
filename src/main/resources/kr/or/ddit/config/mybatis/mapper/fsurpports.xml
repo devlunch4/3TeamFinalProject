@@ -75,6 +75,14 @@
 		ORDER BY f.reg_dt desc								
   	
 	</select>
+	
+	<!-- 등록된 영농일지 보는거 03/04 (경찬) -->
+	<select id="fsurCount" parameterType="String"
+		resultType="Integer">
+		select count(*)
+		from farmdiary
+		where writer = #{user_id}
+	</select>
 
 	
 

@@ -57,5 +57,18 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public FcltmngVo fcltmngInfo(String str) {
 		return template.selectOne("fcltmng.fcltmngInfo", str);
 	}
+	
+	
+	// 등록된 시설 카운트 03/04 (경찬)
+	@Override
+	public int fcltmngCount(String user_id) {
+		return template.selectOne("fcltmng.fcltmngCount", user_id);
+	}
+	
+	// 등록된 일지 카운트 03/04 (경찬)
+	@Override
+	public int fsurCount(String user_id) {
+		return template.selectOne("fsurpports.fsurCount", user_id);
+	}
 
 }

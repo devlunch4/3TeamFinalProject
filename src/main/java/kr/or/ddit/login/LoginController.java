@@ -63,7 +63,7 @@ public class LoginController {
 			outid = dbUser.getUser_id();
 		}
 		model.addAttribute("msg", outid + " 님 로그아웃 되셨습니다.");
-		model.addAttribute("url", "/login/view");
+		model.addAttribute("url", "/user/main");
 		req.getSession().invalidate();
 		return "logoutRedirect";
 	}

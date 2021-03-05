@@ -28,7 +28,12 @@ public class UserVo {
 		setUser_id(userid);
 		setUser_pw(pass);
 	}
-
+	
+	public UserVo(String user_pw, int login_fail_cnt) {
+		setUser_pw(user_pw);
+		setlogin_fail_cnt(login_fail_cnt);
+	}
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -109,11 +114,11 @@ public class UserVo {
 		this.file_no = file_no;
 	}
 
-	public int getLoginfail_cnt() {
+	public int getLogin_fail_cnt() {
 		return login_fail_cnt;
 	}
 
-	public void setLoginfail_cnt(int login_fail_cnt) {
+	public void setLogin_fail_cnt(int login_fail_cnt) {
 		this.login_fail_cnt = login_fail_cnt;
 	}
 
@@ -137,7 +142,7 @@ public class UserVo {
 	public String toString() {
 		return "UserVo [user_id=" + user_id + ", user_nm=" + user_nm + ", user_pw=" + user_pw + ", email=" + email
 				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zip=" + zip + ", mobile=" + mobile + ", reg_dt=" + reg_dt
-				+ ", file_no=" + file_no + ", loginfail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt + ", use="
+				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt + ", use="
 				+ use + "]";
 	}
 
