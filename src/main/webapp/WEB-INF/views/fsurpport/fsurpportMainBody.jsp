@@ -4,7 +4,9 @@
 
 <h3 class="mt-4">영농일지</h3>
 
-<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView'" class=" btn btn-outline-dark m-1">영농일지 등록</button>
+<button type="button" class=" btn btn-success " 
+onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?user_id=${S_USER.user_id }'" class=" btn btn-outline-dark m-1">영농일지 등록</button>
+
 <div class="card mt-2 col-sm-12">
 	<!-- 품목 선택 해서 조회하는 부분 -->
 	<form action="${pageContext.request.contextPath }/fsurpport/searchAllFsurpportList" method="post">

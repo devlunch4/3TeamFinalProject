@@ -19,6 +19,7 @@ import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.farm.model.MsrrecVo;
+import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
 @RequestMapping("fsurpport")
@@ -109,11 +110,33 @@ public class FsurpportController {
 	// ggy_20210305 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
 	@RequestMapping("insertView")
 	public String insertView(String user_id, Model model) {
-
-//		model.addAttribute("selectMySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
+		
+		logger.debug("insertView 진입 user_id : "+user_id);
+		
+		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
 		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
+		return "tiles.fsurpport.fsurpportInsert";
+	}
+	
+	// ggy_20210305 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치
+	@RequestMapping("selectMySimpleCodeInfo")
+	public String selectMySimpleCodeInfo(String user_id, String my_simple_code, Model model) {
+		
+		MySimpleCodeVo mySimpleCodeVo = new MySimpleCodeVo();
+		mySimpleCodeVo.setMy_simple_code(my_simple_code);
+		mySimpleCodeVo.setOwner(user_id);
+		
+		logger.debug("selectMySimpleCodeInfo 진입 my_simple_code {}, user_id {} ", mySimpleCodeVo.getMy_simple_code(), mySimpleCodeVo.getOwner());
+		
+		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
+		model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
+		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+		
+		logger.debug("selectMySimpleCodeInfo item_code : {}, bsn_code : {}",fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getItem_code(), fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getBsn_code());
+		
 		return "tiles.fsurpport.fsurpportInsert";
 	}
 

@@ -14,6 +14,7 @@ import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
+import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
 
 @Service("fsurpportService")
@@ -53,7 +54,20 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<CodesVo> selectAllBtype_codeList() {
 		return fsurpportDao.selectAllBtype_codeList();
 	}
+	
 
+	// ggy_20210305 : 등록한 나만의 영농일지-간편등록 목록 조회
+	@Override
+	public List<MySimpleCodeVo> selectMySimpleCodeList(String user_id) {
+		return fsurpportDao.selectMySimpleCodeList(user_id);
+	}
+	
+	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
+	@Override
+	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
+		return fsurpportDao.selectMySimpleCodeInfo(mySimpleCodeVo);
+	}
+	
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
 	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
@@ -123,5 +137,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
+
+	
 
 }

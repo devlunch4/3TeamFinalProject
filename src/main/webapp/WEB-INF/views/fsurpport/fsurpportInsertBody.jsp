@@ -34,14 +34,12 @@
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">간편 등록</label>
-		<select name="">
+		<select name="" onchange="location.href=this.value">
 			<option value="">선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
-				<option onclick="location.href='${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }
-					value="${mySimpleCodeList.my_simple_code }">
-					${mySimpleCodeList.item_code }-
-					${mySimpleCodeList.bsn_code }-
-					${mySimpleCodeList.area }
+				<option 
+					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }&user_id=${S_USER.user_id}">
+					${mySimpleCodeList.alias }
 				</option>
 			</c:forEach>
 		</select>
@@ -52,6 +50,11 @@
 		<label class="small mb-6" for="input_grdgd_nm">품목</label>
 		<select name="">
 			<option value="">선택</option>
+			<c:forEach items="${itemsList }" var="itemsList">
+				<option value="${itemsList.code_no }"
+					<c:if test="${selectMySimpleCodeInfo.item_code eq itemsList.code_nm }">selected</c:if> >
+					${itemsList.code_nm }</option>
+			</c:forEach>
 		</select>
 		<a href="${pageContext.request.contextPath}/fsurpport/simpleInsertView"> 
 			<input name="input_grdgd_nm" type="button" value="간편 등록">
@@ -62,6 +65,11 @@
 		<label class="small mb-6" for="input_difficulty">작업단계</label>
 		<select name="">
 			<option value="">선택</option>
+			<c:forEach items="${workstepsList }" var="workstepsList" >
+				<option value="${workstepsList.code_no }"
+				<c:if test="${selectMySimpleCodeInfo.bsn_code eq workstepsList.code_nm }">selected</c:if>
+				>${workstepsList.code_nm }</option>
+			</c:forEach>
 		</select>
 	</div>
 

@@ -54,8 +54,7 @@
 		OR parent_code = '4'
 		OR parent_code = '5'
 		OR parent_code = '6'
-		OR
-		parent_code = '7'
+		OR parent_code = '7'
 		AND use = 'Y'
 	</select>
 
@@ -67,7 +66,33 @@
 		WHERE parent_code = 'b'
 		AND use = 'Y'
 	</select>
-
+	
+	<!-- ggy_20210305 : mysimplecode 내가 등록한 간편 등록 리스트 조회. -->
+	<select id="selectMySimpleCodeList" resultType="mySimpleCodeVo"
+										parameterType="String">
+		select *
+		from mysimplecode
+		where owner = #{owner }
+	</select>
+	
+	
+	<!-- ggy_20210305 : mysimplecode 내가 등록한 간편 등록 조회해서 화면에 배치. -->
+	<select id="selectMySimpleCodeInfo" parameterType="mySimpleCodeVo"
+		resultType="mySimpleCodeVo">
+		SELECT my.my_simple_code, my.owner, 
+		c.code_nm item_code, co.code_nm bsn_code, my.alias, my.area
+		FROM mysimplecode my
+		JOIN codes c
+		ON my.item_code = c.code_no 
+		JOIN codes co
+		ON my.bsn_code = co.code_no
+		where my.owner = #{owner }
+		and my.my_simple_code = #{my_simple_code }
+		and my.use = 'Y'
+		and c.use = 'Y'
+		and co.use = 'Y'
+	</select>
+	
 	<!-- ggy_20210303 : 페이징 처리하여 영농일지 검색 조회 -->
 	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo"
 		parameterType="farmdiaryVo">

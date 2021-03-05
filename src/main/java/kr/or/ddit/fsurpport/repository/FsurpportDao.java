@@ -8,6 +8,7 @@ import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FcltmngVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
+import kr.or.ddit.farm.model.MySimpleCodeVo;
 
 public interface FsurpportDao {
 
@@ -22,6 +23,12 @@ public interface FsurpportDao {
 	
 	// ggy_20210305 : 등록된 사업유형 조회
 	List<CodesVo> selectAllBtype_codeList();
+	
+	// ggy_20210305 : 등록한 나만의 영농일지-간편등록 목록 조회
+	List<MySimpleCodeVo> selectMySimpleCodeList(String user_id);
+
+	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
+	MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo);
 
 	// ggy_20210303 : 등록된 일지 조건 검색
 	List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo);
