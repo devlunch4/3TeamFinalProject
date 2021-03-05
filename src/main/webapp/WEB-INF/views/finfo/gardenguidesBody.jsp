@@ -1,74 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <script>
-<!-- 수정 버튼 클릭시 이동 -->
-$(function(){
-	$("#modifyBtn").on("click", function(){
-		$("#frm").attr("method", "post");
-		$("#frm").attr("action", "gardenguidesUpdate");
-		$("#frm").submit();
+	// 수정 버튼 클릭시 이동 
+	$(function() {
+		$("#modifyBtn").on("click", function() {
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguidesUpdate");
+			$("#frm").submit();
+		});
+	})
+	// 삭제 버튼 클릭시 이동
+	$(function() {
+		$("#deleteBtn").on("click", function() {
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguidesDelete");
+			$("#frm").submit();
+		});
+	})
+	//초성검색
+	$(function() {
+		$(".chosungc").on("click", function() {
+			var chosung = $(this).data("chosung");
+			$("#chosung").val(chosung);
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguides");
+			$("#frm").submit();
+		});
 	});
-})
-<!-- 삭제 버튼 클릭시 이동 -->
-$(function(){
-	$("#deleteBtn").on("click", function(){
-		$("#frm").attr("method", "post");
-		$("#frm").attr("action", "gardenguidesDelete");
-		$("#frm").submit();
+	// 해당 가이드 클릭시
+	$(function() {
+		$(".onebtn").on("click", function() {
+			var onebtn = $(this).data("onebtn");
+			$("#xgrdgd_code").val(onebtn);
+			console.log(onebtn);
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "gardenguides");
+			$("#frm").submit();
+		});
 	});
-})
 </script>
 
-
 <h3 class="mt-4">텃밭가이드(재배정보)</h3>
-
-
 <div>
+	<!-- 관리자 전용 등록 이동 버튼 활성 -->
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<!-- 관리자 전용 등록 이동 버튼 활성 -->
-		<button type="button"
-			class="btn btn-success btn-lg btn-block col-md-3 float-right mb-4"
-			onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드
-			등록</button>
+		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
 	</c:if>
 </div>
 
-
-
 <div>
 	<form id="frm" role="form">
+		<input type="hidden" id="chosung" name="chosung" value="${chosung }">
+		<input type="hidden" id="xgrdgd_code" name="xgrdgd_code" value="">
 		<div class="card mt-2 col-sm-12">
 			<div class="card-body text-left p-1">
 				<span class="">가나다순</span> <br>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄱ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄴ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄷ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄹ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅁ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅂ</button>
-				<button type="button" onclick="#" class=" btn btn-primary m-1">ㅅ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅇ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅈ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅊ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅋ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅌ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅍ</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅎ</button>
+				<!-- 과거 기본 코드 -->
+				<!-- <button type="button" class=" btn btn-outline-dark m-1 chosungc" data-chosung="ㄱ">ㄱ</button> -->
+
+				<!-- 코어 태그 사용 -->
+				<c:forEach var="chosungArr" items="${chosungArr}">
+					<button type="button" <c:set var="checkc" value="${chosung }" /> <c:choose>
+    <c:when test="${checkc  eq chosungArr }">
+       class=" btn btn-primary m-1 chosungc"
+    </c:when>
+    <c:otherwise>
+        class=" btn btn-outline-dark m-1 chosungc"
+    </c:otherwise>
+</c:choose> data-chosung="${chosungArr }">${chosungArr }</button>
+				</c:forEach>
 			</div>
 
 			<!-- 위의 가나다 순에 따른 결과 보여주기 -->
 			<div class="card-body text-left p-1">
 				<span class="">품명</span> <br>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양배추</button>
-				<button type="button" onclick="#" class=" btn btn-primary m-1">양상추</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양파</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">오이</button>
-				<button type="button" onclick="#" class=" btn btn-outline-dark m-1">옥수수</button>
+				<!-- 과거 기본 코드 -->
+				<!-- <button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button> -->
+				<!-- 코어 태그 사용 -->
+				<c:set var="chkList" value="${gardenguidesList.size() }" />
+
+				<c:if test="${chkList == 0 }">
+				조회된 값이 없습니다.
+</c:if>
+
+				<c:forEach var="gardenguidesList" items="${gardenguidesList}">
+					<button type="button" class=" btn btn-outline-dark m-1 onebtn" data-onebtn="${gardenguidesList.grdgd_code }">${gardenguidesList.grdgd_nm}</button>
+				</c:forEach>
+
 			</div>
 		</div>
 
@@ -80,8 +101,7 @@ $(function(){
 				<div class="">
 					<div class="row">
 						<div class="imgwrap">
-							<img src="/images/upload/farm_guide_info/144609103235500023.jpg"
-								alt="144609103235500023.jpg">
+							<img src="/images/upload/farm_guide_info/144609103235500023.jpg" alt="144609103235500023.jpg">
 						</div>
 
 						<table class="table table-bordered col-sx-12">
@@ -129,15 +149,12 @@ $(function(){
 	</form>
 
 	<div>
+
 		<c:if test="${S_USER.user_id.equals('admin') }">
 			<!-- 관리자 전용 삭제 이동 버튼 활성 -->
-			<button type="button" id="deleteBtn"
-				class="btn btn-warning btn-lg btn-block col-md-3 float-left mt-4">텃밭가이드
-				삭제</button>
+			<button type="button" id="deleteBtn" class="btn btn-warning btn-lg btn-block col-md-3 float-left mt-4">텃밭가이드 삭제</button>
 			<!-- 관리자 전용 수정 이동 버튼 활성 -->
-			<button type="button" id="modifyBtn"
-				class="btn btn-success btn-lg btn-block col-md-3 float-right mt-4">텃밭가이드
-				수정</button>
+			<button type="button" id="modifyBtn" class="btn btn-success btn-lg btn-block col-md-3 float-right mt-4">텃밭가이드 수정</button>
 		</c:if>
 	</div>
 </div>

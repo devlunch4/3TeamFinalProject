@@ -1,5 +1,7 @@
 package kr.or.ddit.finfo.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.farm.model.GardenguidesVo;
+import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.finfo.service.FinfoServiceImpl;
 
 /**
@@ -28,14 +31,57 @@ public class FinfoController {
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
 
-	// KWS 텃밭 가이드 (재배정보 진입)
+	// KWS 텃밭 가이드 (재배정보 진입) 수정 20210305
 	@RequestMapping("gardenguides")
-	public String gardenguides(Model model, @RequestParam(defaultValue = "1") int xgrdgd_code) {
+	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
+			@RequestParam(defaultValue = "1") int xgrdgd_code) {
 		logger.debug("IN gardenguides()");
+		logger.debug("초성 : {}", chosung);
+		logger.debug("xgrdgd_code : {}", xgrdgd_code);
+
+		String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
+		model.addAttribute("chosungArr", chosungArr);
+
+		String[] chosungArrMatch = { "가", "나", "다", "라", "마", "바", "사", "아", "자", "차", "카", "타", "파", "하" };
+		String sqlwhere1 = "";
+		String sqlwhere2 = "";
+
+		// 마지막 'ㅎ'인 제외 검색
+		for (int i = 0; i < chosungArrMatch.length - 1; i++) {
+			if (chosung.equals(chosungArr[i])) {
+				sqlwhere1 = chosungArrMatch[i];
+				sqlwhere2 = chosungArrMatch[i + 1];
+				logger.debug("검색 where 조건1: {}, {}", sqlwhere1, sqlwhere2);
+			}
+		}
+		// 마지막 'ㅎ'인 경우 검색
+		if (chosung.equals("ㅎ")) {
+			sqlwhere1 = "하";
+			sqlwhere2 = "힣";
+			logger.debug("검색 where 조건1: {}, {}", sqlwhere1, sqlwhere2);
+		}
+		logger.debug("검색 where 조건 최종: {}, {}", sqlwhere1, sqlwhere2);
+
+		GuideSqlVo guideSqlVo = new GuideSqlVo(sqlwhere1, sqlwhere2);
+
+		//
+		// 초성 글자 보내기
+		model.addAttribute("chosung", chosung);
+		// 초성 검색 관련 이름 리스트 보내기
+		List<GardenguidesVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
+		model.addAttribute("gardenguidesList", gardenguidesList);
+		
+		
+
+		// 해당 가이드 글번호 보내기
+		model.addAttribute("xgrdgd_code", xgrdgd_code);
+		// 헤당 가이드 글 보내기
 		GardenguidesVo gardenguidesVo = finfoService.selectGuide(xgrdgd_code);
 		model.addAttribute("gardenguidesVo", gardenguidesVo);
 		return "tiles.finfo.gardenguides";
 	}
+
+	////////////////////
 
 	// KWS 텃밭 가이드 등록페이지이동 (재배정보 등록페이지 진입)
 	@RequestMapping("gardenguidesInsert") // get
