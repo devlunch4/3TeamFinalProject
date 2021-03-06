@@ -1,5 +1,7 @@
 package kr.or.ddit.fanalysis.web;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.fanalysis.service.FanalysisServiceImpl;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -117,5 +120,27 @@ public class FanalysisController {
  
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
+	
+	
+	// 20210305_KJH 내 시설 실시간 관측 조회
+	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.GET })
+	public String mymaxmsrrecList(Model model , HttpSession session) {
+		
+		UserVo userVo = new UserVo();
 
+		userVo = (UserVo) session.getAttribute("S_USER");
+		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
+		
+		List<MyMaxMrrecListVo> maxmrrecList = new ArrayList<MyMaxMrrecListVo>();
+		
+		MsrrecVo msrrecVo = new MsrrecVo();
+		for(int i = msrequipList.size()-1; i >= 0; i-- ) {
+			String msrcode = msrequipList.get(i).getMsr_code();
+			msrrecVo.setMsr_code(msrcode);
+			maxmrrecList.add(fanalysisService.mymaxmsrrecList(msrrecVo));
+		}
+		
+		model.addAttribute("maxmrrecList",maxmrrecList);
+		return "tiles.fanalysis.mymaxmsrrecList";
+	}
 }

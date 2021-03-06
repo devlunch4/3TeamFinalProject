@@ -72,4 +72,18 @@
 		WHERE owner
 		= #{OWNER}
 	</select>
+	
+	<!-- 내 시설 실시간 관측 -->
+	<select id="mymaxmsrrecList" resultType="mymaxmrreclistVo" parameterType="msrrecVo">
+	select fc.location,fc.msr_code, co.code_nm, fc.reg_dt, rec.msr_temp,
+	rec.msr_humid, rec.msr_bright
+	from fcltmng fc, msrequip eq,
+	(select msr_code,msr_reg_dt ,msr_temp,msr_humid,msr_bright
+	from msrrec where msr_code = '${msr_code}'
+	and msr_reg_dt = (select max(msr_reg_dt) from msrrec where msr_code = '${msr_code}')
+	) rec,codes co
+	where fc.msr_code = eq.msr_code
+	and co.code_no = fc.item_code
+	and eq.msr_code ='${msr_code}'
+	</select>
 </mapper>

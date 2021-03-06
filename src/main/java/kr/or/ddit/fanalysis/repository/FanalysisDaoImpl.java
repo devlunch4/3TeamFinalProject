@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 
 @Repository("fanalysisDao")
@@ -17,6 +18,12 @@ public class FanalysisDaoImpl implements FanalysisDao {
 	@Override
 	public MsrrecVo myfanalysisInfo(MsrrecVo msrrecVo) {
 		return tempplate.selectOne("fcltmng.myfanalysisInfo", msrrecVo);
+	}
+	
+	// 20210305_KJH 내 시설 실시간 관측 조회
+	@Override
+	public MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo) {
+		return tempplate.selectOne("fcltmng.mymaxmsrrecList",msrrecVo);
 	}
 
 }

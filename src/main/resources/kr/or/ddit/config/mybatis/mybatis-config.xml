@@ -28,6 +28,9 @@
 		<typeAlias type="kr.or.ddit.farm.model.GardenguidesVo" alias="gardenguidesVo" />
 		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
 
+
+		<!-- 20210305 KJH MyMaxMrrecListVo typeAliases -->
+		<typeAlias type="kr.or.ddit.fanalysis.model.MyMaxMrrecListVo" alias="mymaxmrreclistVo" />
 	</typeAliases>
 
 
