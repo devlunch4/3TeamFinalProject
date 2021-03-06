@@ -26,8 +26,8 @@
 			alias="fcltmngVo" />
 
 		<!-- 20210305KWS GardenguidesVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.GardenguidesVo"
-			alias="gardenguidesVo" />
+		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo"
+			alias="gardenguideVo" />
 <typeAlias type="kr.or.ddit.farm.model.GuideSqlVo"
 			alias="guideSqlVo" />
 

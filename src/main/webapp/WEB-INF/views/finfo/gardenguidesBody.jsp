@@ -34,7 +34,7 @@
 	$(function() {
 		$(".onebtn").on("click", function() {
 			var onebtn = $(this).data("onebtn");
-			$("#xgrdgd_code").val(onebtn);
+			$("#xguide_code").val(onebtn);
 			console.log(onebtn);
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "gardenguides");
@@ -54,7 +54,7 @@
 <div>
 	<form id="frm" role="form">
 		<input type="hidden" id="chosung" name="chosung" value="${chosung }">
-		<input type="hidden" id="xgrdgd_code" name="xgrdgd_code" value="">
+		<input type="hidden" id="xguide_code" name="xguide_code" value="">
 		<div class="card mt-2 col-sm-12">
 			<div class="card-body text-left p-1">
 				<span class="">가나다순</span> <br>
@@ -81,13 +81,22 @@
 				<!-- <button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button> -->
 				<!-- 코어 태그 사용 -->
 				<c:set var="chkList" value="${gardenguidesList.size() }" />
-
-				<c:if test="${chkList == 0 }">
-				조회된 값이 없습니다.
-</c:if>
-
+				
+				<div>
+					<c:if test="${chkList == 0 }">
+				<span class="bg-warning">조회된 값이 없습니다.</span>
+				</c:if>
+				</div>
+				
 				<c:forEach var="gardenguidesList" items="${gardenguidesList}">
-					<button type="button" class=" btn btn-outline-dark m-1 onebtn" data-onebtn="${gardenguidesList.grdgd_code }">${gardenguidesList.grdgd_nm}</button>
+					<button type="button" <c:set var="checkcode" value="${gardenguidesList.guide_code}" /> <c:choose>
+    <c:when test="${checkcode  eq xguide_code }">
+       class=" btn btn-primary m-1  onebtn"
+    </c:when>
+    <c:otherwise>
+        class=" btn btn-outline-dark m-1  onebtn"
+    </c:otherwise>
+</c:choose> data-onebtn="${gardenguidesList.guide_code }">${gardenguidesList.item_code}</button>
 				</c:forEach>
 
 			</div>
@@ -96,7 +105,7 @@
 		<!-- 설명 시작 -->
 		<br>
 		<div class="card mt-2 col-sm-12 px-0">
-			<h3 class="card-header">${gardenguidesVo.grdgd_nm }</h3>
+			<h3 class="card-header">${gardenguidesVo.item_code }</h3>
 			<div class="card-body text-left ">
 				<div class="">
 					<div class="row">
@@ -107,7 +116,7 @@
 						<table class="table table-bordered col-sx-12">
 							<tr>
 								<td style="width: 30%">분류</td>
-								<td style="width: 70%">${gardenguidesVo.cls_code }</td>
+								<td style="width: 70%">${gardenguidesVo.class_code }</td>
 							</tr>
 							<tr>
 								<td style="width: 30%">원산지</td>
@@ -115,7 +124,7 @@
 							</tr>
 							<tr>
 								<td style="width: 30%">생육온도</td>
-								<td style="width: 70%">${gardenguidesVo.cls_code }</td>
+								<td style="width: 70%">${gardenguidesVo.temperature }</td>
 							</tr>
 							<tr>
 								<td style="width: 30%">연작피해</td>
