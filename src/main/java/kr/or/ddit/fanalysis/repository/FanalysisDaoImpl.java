@@ -16,7 +16,13 @@ public class FanalysisDaoImpl implements FanalysisDao {
 	// 20210304_KJH 내 시설 관측정보 조회
 	@Override
 	public MsrrecVo myfanalysisInfo(MsrrecVo msrrecVo) {
-		return tempplate.selectOne("fcltmng.myfanalysisInfo", msrrecVo);
+		return tempplate.selectOne("fmanage.myfanalysisInfo", msrrecVo);
 	}
 	
+	// 20210305_KJH 내 시설 실시간 관측 조회
+//	@Override
+//	public MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo) {
+//		return tempplate.selectOne("fmanage.mymaxmsrrecList",msrrecVo);
+//	}
+
 }

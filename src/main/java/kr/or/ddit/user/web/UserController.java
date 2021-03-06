@@ -157,7 +157,7 @@ public class UserController {
 		UserVo user = userService.selectUser(user_id);
 
 		// 시설카운트
-		int fcount = fsurpportService.fcltmngCount(user_id);
+		int fcount = fsurpportService.fmanageCount(user_id);
 
 		// 일지카운트
 		int ffcount = fsurpportService.fsurCount(user_id);

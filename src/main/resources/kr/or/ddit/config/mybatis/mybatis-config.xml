@@ -11,9 +11,10 @@
 
 		<!-- 2021-03-03KJH CoesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.common.model.CodesVo" alias="codesVo" />
-		<!-- 2021-03-03KJH FcltmngVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
-			alias="fcltmngVo" />
+		
+		<!-- 2021-03-03KJH fmanageVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FmanageVo" alias="fmanageVo" />
+		
 
 		<!-- 20210305KWS GardenguidesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo"
@@ -22,17 +23,21 @@
 			alias="guideSqlVo" />
 
 
-		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo" alias="fcltmngVo" />
 		<!-- 2021-03-04KJH FcltmngVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MsrrecVo" alias="msrrecVo" />
 		<!-- 2021-03-04KJH MsrequipVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MsrequipVo" alias="msrequipVo" />
+		<!-- 2021-03-06KJH MsrequipVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FhistoryVo" alias="fhistoryVo" />
 
 		<!-- ggy_20210305 FilesVo 만듬 -->
 		<typeAlias type="kr.or.ddit.common.model.FilesVo" alias="filesVo" />
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo" alias="farmdiaryVo" />
 		<!-- ggy_20210305 MySimpleCodeVo 만듬 -->
 		<typeAlias type="kr.or.ddit.farm.model.MySimpleCodeVo" alias="mySimpleCodeVo" />
+
+		<!-- 20210305 KJH MyMaxMrrecListVo typeAliases -->
+		<typeAlias type="kr.or.ddit.fanalysis.model.MyMaxMrrecListVo" alias="mymaxmrreclistVo" />
 	</typeAliases>
 
 	<mappers>
@@ -40,9 +45,9 @@
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
 
-		<!-- 2021-03-03 KJH codes,fcltmng mapper -->
+		<!-- 2021-03-03 KJH codes,fmanage mapper -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/codes.xml" />
-		<mapper resource="kr/or/ddit/config/mybatis/mapper/fcltmng.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/fmanage.xml" />
 
 		<!-- 20210305 KWS GardenguidesVo mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/guides.xml" />
