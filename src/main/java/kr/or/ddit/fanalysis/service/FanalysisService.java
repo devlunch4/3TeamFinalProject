@@ -9,5 +9,5 @@ public interface FanalysisService {
 	MsrrecVo myfanalysisInfo(MsrrecVo msrrecVo);
 	
 	// 20210305_KJH 내 시설 실시간 관측 조회
-	MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo);
+//	MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo);
 }

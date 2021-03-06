@@ -1,6 +1,5 @@
 package kr.or.ddit.fanalysis.repository;
 
-import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 
 public interface FanalysisDao {
@@ -8,6 +7,6 @@ public interface FanalysisDao {
 	MsrrecVo myfanalysisInfo(MsrrecVo msrrecVo);
 	
 	// 20210305_KJH 내 시설 실시간 관측 조회
-	MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo);
+//	MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo);
 
 }

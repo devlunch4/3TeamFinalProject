@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fmanage">
+	<!-- 시설관리 -->
+	<!-- 시설리스트 조회 20210306_KJH 수정-->
+	<select id="myfmanageList" resultType="fmanageVo">
+		SELECT
+		manage_no,owner,location,info,reg_dt,use_yn
+		FROM fmanage;
+	</select>
+
+	<!-- 등록된 시설 보는거 03/04 (경찬) -->
+	<!-- 20210306KJH 수정 -->
+	<select id="fmanageCount" parameterType="String"
+		resultType="Integer">
+		SELECT count(*)
+		FROM fmanage
+		WHERE owner = #{user_id}
+	</select>
+
+	<!-- 시설 상세 조회 -->
+	<!-- 20210306KJH 수정 -->
+	<select id="fmanageInfo" resultType="fmanageVo"
+		parameterType="String">
+		select manage_no,owner,location,info,item_code,reg_dt,use_yn
+		from fmanage where manage_no = #{manage_no}
+	</select>
+
+	<!--해당 시설의 가장 최근 센서 정보 조회 -->
+	<!-- 20210306KJH 수정 -->
+	<select id="latelyData" resultType="msrrecVo" parameterType="fhistoryVo">
+	select * from MSEREC where
+	msr_code = 'uno01'
+	and msr_reg_dt =
+	(select Max(MSR_REG_DT) from
+	( SELECT fh.manage_no,MSR_REG_DT ,ec.MSR_TEMP,
+	ec.MSR_HUMID,ec.MSR_BRIGHT
+	from
+	FHISTORY fh, MSEREC ec
+	where fh.MSR_CODE = ec.MSR_CODE
+	and ec.MSR_REG_DT &lt;= fh.SETUP_DT
+	and ec.msr_reg_dt &gt; fh.RELEASE_DT
+	and fh.MANAGE_NO = 1) )
+	</select>
+
+	<!-- 센서 기록 조회 -->
+	<!-- 20210306KJH 삭제 -->
+	<select id="myfanalysisInfo" resultType="msrrecVo">
+		
+	</select>
+
+	<!-- 센서 목록 조회 -->
+	<!-- 20210306KJH 삭제 -->
+	<select id="msrequipList" resultType="msrequipVo" parameterType="String">
+		
+	</select>
+	
+	<!-- 내 시설 실시간 관측 -->
+	<!-- 20210306KJH 삭제 -->
+	<select id="mymaxmsrrecList" resultType="mymaxmrreclistVo" parameterType="msrrecVo">
+	
+	</select>
+</mapper>

@@ -129,7 +129,7 @@ public class FinfoController {
 	// ggy_20210304 : 농업정보 - 주간 농사정보 진입
 
 	@RequestMapping("weeklyFarmInfosView")
-	public String fcltmngView(Model model) {
+	public String fmanageView(Model model) {
 
 		return "tiles.finfo.weeklyFarmInfosMain";
 	}

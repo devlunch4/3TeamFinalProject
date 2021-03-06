@@ -2,14 +2,14 @@ package kr.or.ddit.farm.model;
 
 import java.util.Date;
 
-public class FcltmngVo {
+public class FmanageVo {
 	private String control_no;
 	private String msr_code;
 	private String owner;
 	private String location;
 	private String info;
 	private String item_code;
-	private String use;
+	private String use_yn;
 	private Date reg_dt;
 
 	public String getControl_no() {
@@ -61,11 +61,11 @@ public class FcltmngVo {
 	}
 
 	public String getUse() {
-		return use;
+		return use_yn;
 	}
 
 	public void setUse(String use) {
-		this.use = use;
+		this.use_yn = use;
 	}
 
 	public Date getReg_dt() {
@@ -78,8 +78,8 @@ public class FcltmngVo {
 
 	@Override
 	public String toString() {
-		return "FcltmngVo [control_no=" + control_no + ", msr_code=" + msr_code + ", owner=" + owner + ", location="
-				+ location + ", info=" + info + ", item_code=" + item_code + ", use=" + use + ", reg_dt=" + reg_dt
+		return "FmanageVo [control_no=" + control_no + ", msr_code=" + msr_code + ", owner=" + owner + ", location="
+				+ location + ", info=" + info + ", item_code=" + item_code + ", use=" + use_yn + ", reg_dt=" + reg_dt
 				+ "]";
 	}
 

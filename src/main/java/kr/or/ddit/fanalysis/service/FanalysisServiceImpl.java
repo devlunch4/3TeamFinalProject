@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.fanalysis.repository.FanalysisDao;
 import kr.or.ddit.farm.model.MsrrecVo;
 
@@ -24,9 +23,9 @@ public class FanalysisServiceImpl implements FanalysisService {
 		return fanalysisDao.myfanalysisInfo(msrrecVo);
 	}
 	// 20210305_KJH 내 시설 실시간 관측 조회
-	@Override
-	public MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo) {
-		return fanalysisDao.mymaxmsrrecList(msrrecVo);
-	}
+//	@Override
+//	public MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo) {
+//		return fanalysisDao.mymaxmsrrecList(msrrecVo);
+//	}
 
 }
