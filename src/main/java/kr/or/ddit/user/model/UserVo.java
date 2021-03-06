@@ -5,6 +5,7 @@ import java.util.Date;
 // 20210226_KKC_MyPage
 // UserVo 생성 02-27 10시16분 (경찬)
 // UserVo 수정 03-03 15시06분 (예슬)
+// UserVo 수정 03-06 15시18분 (예슬)
 // UserVo 생성 03-06 17시06분 (경찬)
 public class UserVo {
 
@@ -146,5 +147,7 @@ public class UserVo {
 				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt
 				+ ", use_yn=" + use_yn + "]";
 	}
+	
+	
 
 }

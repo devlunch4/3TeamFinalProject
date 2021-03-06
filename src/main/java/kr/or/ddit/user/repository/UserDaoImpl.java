@@ -11,6 +11,9 @@ public interface UserDaoImpl {
 	// 사용자 정보 추가 - 회원가입 LYS
 	int insertUser(UserVo userVo);
 
+	// 아이디 중복체크 LYS
+	String checkForDuplicateId(String user_id);
+
 	// 전체 사용자 정보 조회 (경찬)
 	List<UserVo> selectAllUser();
 
@@ -22,4 +25,5 @@ public interface UserDaoImpl {
 
 	// 관리자가 사용자 수정 03/05 (경찬)
 	UserVo modifyUser(UserVo userVo);
+
 }
