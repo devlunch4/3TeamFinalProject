@@ -3,84 +3,57 @@ package kr.or.ddit.farm.model;
 import java.util.Date;
 
 public class FmanageVo {
-	private String control_no;
-	private String msr_code;
+	private String manage_no;
 	private String owner;
 	private String location;
 	private String info;
 	private String item_code;
-	private String use_yn;
 	private Date reg_dt;
-
-	public String getControl_no() {
-		return control_no;
+	private String use_yn;
+	
+	public String getManage_no() {
+		return manage_no;
 	}
-
-	public void setControl_no(String control_no) {
-		this.control_no = control_no;
+	public void setManage_no(String manage_no) {
+		this.manage_no = manage_no;
 	}
-
-	public String getMsr_code() {
-		return msr_code;
-	}
-
-	public void setMsr_code(String msr_code) {
-		this.msr_code = msr_code;
-	}
-
 	public String getOwner() {
 		return owner;
 	}
-
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-
 	public String getLocation() {
 		return location;
 	}
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
 	public String getInfo() {
 		return info;
 	}
-
 	public void setInfo(String info) {
 		this.info = info;
 	}
-
 	public String getItem_code() {
 		return item_code;
 	}
-
 	public void setItem_code(String item_code) {
 		this.item_code = item_code;
 	}
-
-	public String getUse() {
-		return use_yn;
-	}
-
-	public void setUse(String use) {
-		this.use_yn = use;
-	}
-
 	public Date getReg_dt() {
 		return reg_dt;
 	}
-
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}
-
-	@Override
-	public String toString() {
-		return "FmanageVo [control_no=" + control_no + ", msr_code=" + msr_code + ", owner=" + owner + ", location="
-				+ location + ", info=" + info + ", item_code=" + item_code + ", use=" + use_yn + ", reg_dt=" + reg_dt
-				+ "]";
+	public String getUse_yn() {
+		return use_yn;
 	}
+	public void setUse_yn(String use_yn) {
+		this.use_yn = use_yn;
+	}
+	
+	
 
 }

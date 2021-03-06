@@ -11,8 +11,12 @@
 
 		<!-- 2021-03-03KJH CoesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.common.model.CodesVo" alias="codesVo" />
+		
+		
 		<!-- 2021-03-03KJH fmanageVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FmanageVo" alias="fmanageVo" />
+		
+		
 		<!-- 2021-03-04KJH MsrrecVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MsrrecVo" alias="msrrecVo" />
 		<!-- 2021-03-04KJH MsrequipVo typeAliases -->

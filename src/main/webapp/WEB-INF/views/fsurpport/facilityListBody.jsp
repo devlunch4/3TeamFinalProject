@@ -23,17 +23,17 @@
 						</c:set>
 						<c:if test="${fmanage.owner == S_USER.user_id}">
 							<tr>
-								<td style="width: 10%;">${fmanage.control_no}</td>
+								<td style="width: 10%;">${fmanage.manage_no}</td>
 								<td style="width: 10%;">${fmanage.owner}</td>
-								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fmanage.control_no}">${fmanage.location}</a></td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 								<td style="width: 30%;">${dt}</td>
 							</tr>
 						</c:if>
 						<c:if test="${S_USER.user_id == '1'}">
 							<tr>
-								<td style="width: 10%;">${fmanage.control_no}</td>
+								<td style="width: 10%;">${fmanage.manage_no}</td>
 								<td style="width: 10%;">${fmanage.owner}</td>
-								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fmanage.control_no}">${fmanage.location}</a></td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 								<td style="width: 30%;">${dt}</td>
 							</tr>
 						</c:if>

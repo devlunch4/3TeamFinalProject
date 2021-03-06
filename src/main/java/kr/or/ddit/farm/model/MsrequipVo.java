@@ -6,7 +6,7 @@ public class MsrequipVo {
 	private String msr_code; // 측정장비코드
 	private String msr_nm; // 측정장비명
 	private String owner; // 소유자
-	private String use; // 사용여부
+	private String use_yn; // 사용여부
 
 	public String getMsr_code() {
 		return msr_code;
@@ -33,16 +33,16 @@ public class MsrequipVo {
 	}
 
 	public String getUse() {
-		return use;
+		return use_yn;
 	}
 
 	public void setUse(String use) {
-		this.use = use;
+		this.use_yn = use;
 	}
 
 	@Override
 	public String toString() {
-		return "MsrequipVo [msr_code=" + msr_code + ", msr_nm=" + msr_nm + ", owner=" + owner + ", use=" + use + "]";
+		return "MsrequipVo [msr_code=" + msr_code + ", msr_nm=" + msr_nm + ", owner=" + owner + ", use=" + use_yn + "]";
 	}
 
 }

@@ -20,7 +20,7 @@
 			<div class="row">
 				<table class="table table-bordered col-sx-12" style="text-align: center;">
 					<tr>
-						<td style="width: 50%;">${facility.control_no}</td>
+						<td style="width: 50%;">${facility.manage_no}</td>
 						<td style="width: 50%;">${facility.owner}</td>
 					</tr>
 					<tr>
@@ -40,7 +40,7 @@
 					</tr>
 				</table>
 			</div>
-			<button type="button" class="btn btn-warning float-left" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/facilityupdate?control_no=${facility.control_no}'">수정하기</button>
+			<button type="button" class="btn btn-warning float-left" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/facilityupdate?manage_no=${facility.manage_no}'">수정하기</button>
 			<button type="button" class="btn btn-danger float-left" style="margin-left: 5px;">삭제하기</button>
 		</div>
 	</div>

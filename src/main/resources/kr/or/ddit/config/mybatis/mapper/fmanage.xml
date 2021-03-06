@@ -9,7 +9,7 @@
 	<select id="myfmanageList" resultType="fmanageVo">
 		SELECT
 		manage_no,owner,location,info,reg_dt,use_yn
-		FROM fmanage;
+		FROM fmanage
 	</select>
 
 	<!-- 등록된 시설 보는거 03/04 (경찬) -->
