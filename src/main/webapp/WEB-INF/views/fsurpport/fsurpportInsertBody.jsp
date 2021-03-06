@@ -39,7 +39,7 @@
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
 				<option 
 					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }&user_id=${S_USER.user_id}">
-					${mySimpleCodeList.alias }
+					${mySimpleCodeList.code_alias }
 				</option>
 			</c:forEach>
 		</select>
