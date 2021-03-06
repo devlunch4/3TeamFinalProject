@@ -1,14 +1,15 @@
-/**
- * 
- */
+
 
 //이름 정규식 체크 - 한글과 영어만 가능
 function user_nm_check(){
-	user_nm_value = $('#user_nm').val().trim();
+	user_nm_value = $("#user_nm").val().trim();
 	
-	nm_regex = /([^가-힣\x20a-zA-Z])/i; 
+	nm_regex = /^[가-힣]{2,4}$/;
 	if(!(nm_regex.test(user_nm_value))){
+		$(".name_status").html("이름을 정확하게 입력하세요.");
 		return false;
+	}else{
+		$(".name_status").css("display", "none");
 	}
 	return true;
 }
@@ -19,6 +20,17 @@ function user_id_check(){
 	
 	id_regex = /^[a-z]+[a-z0-9]{5,19}$/;
 	if(!(id_regex.test(user_id_value))){
+		return false;
+	}
+	return true;
+}
+
+
+function idcheck() {
+	idvalue = $('#user_id').val().trim();
+
+	idreg = /^[a-z]+[a-z0-9]{5,19}$/;
+	if (!(idreg.test(idvalue))) {
 		return false;
 	}
 	return true;

@@ -8,7 +8,7 @@
 
 <!-- 분류코드로 품목(작물명)찾기 -->
 <select id="selectcodes" resultType="codesVo">
-	select code_no,code_nm,parent_code,use
+	select code_no,code_nm,parent_code,use_yn
 	from codes
 </select>	
  

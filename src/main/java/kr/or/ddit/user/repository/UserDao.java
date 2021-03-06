@@ -37,6 +37,12 @@ public class UserDao implements UserDaoImpl {
 	public int insertUser(UserVo userVo) {
 		return template.update("users.insertUser", userVo);
 	}
+	
+	// 20210305_LYS_Join - 아이디 중복 체크
+	@Override
+	public String checkForDuplicateId(String user_id) {
+		return template.selectOne("users.checkForDuplicateId", user_id);
+	}
 
 	// 전체 사용자 정보 조회 (경찬)
 	@Override
