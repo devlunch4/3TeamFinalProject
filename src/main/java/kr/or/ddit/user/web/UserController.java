@@ -189,4 +189,20 @@ public class UserController {
 		return "tiles.user.allUser";
 	}
 
+	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
+	@RequestMapping("excelDownload")
+	public String excelDownLoad(Model model) {
+		List<String> header = new ArrayList<String>();
+		header.add("아이디");
+		header.add("이름");
+		header.add("가입일");
+
+		model.addAttribute("header", header);
+
+		List<UserVo> data = new ArrayList<UserVo>();
+		model.addAttribute("data", userService.selectAllUser());
+
+		return "userExcelDownloadView";
+	}
+
 }

@@ -51,10 +51,8 @@
 
 	<!-- 사용자삭제 하는거 03/04 (경찬) -->
 	<update id="deleteUser" parameterType="String">
-		update users set use= 'n'
-		where user_id=#{user_id}
+		UPDATE users set use_yn = 'N'
+		WHERE user_id=#{user_id}
 	</update>
-
-
+	
 </mapper>
-

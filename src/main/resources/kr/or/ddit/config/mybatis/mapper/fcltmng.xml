@@ -16,7 +16,7 @@
 	<select id="fcltmngCount" parameterType="String"
 		resultType="Integer">
 		SELECT count(*)
-		FROM fcltmng
+		FROM fmanage
 		WHERE owner = #{user_id}
 	</select>
 

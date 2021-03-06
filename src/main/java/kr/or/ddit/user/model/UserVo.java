@@ -6,6 +6,7 @@ import java.util.Date;
 // UserVo 생성 02-27 10시16분 (경찬)
 // UserVo 수정 03-03 15시06분 (예슬)
 // UserVo 수정 03-06 15시18분 (예슬)
+// UserVo 생성 03-06 17시06분 (경찬)
 public class UserVo {
 
 	public String user_id; // 유저아이디
@@ -29,7 +30,7 @@ public class UserVo {
 		setUser_id(userid);
 		setUser_pw(pass);
 	}
-	
+
 	public UserVo(String user_pw, int login_fail_cnt) {
 		setUser_pw(user_pw);
 		setLogin_fail_cnt(login_fail_cnt);

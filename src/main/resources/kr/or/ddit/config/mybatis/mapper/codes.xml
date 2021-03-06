@@ -12,5 +12,11 @@
 	from codes
 </select>	
  
+<!--  모든 코드 조회하는거 03/06 (경찬) -->
+ <select id="selectAllCodes" resultType="codesVo">
+	select *
+	from codes
+</select>	
+ 
 </mapper>
 
