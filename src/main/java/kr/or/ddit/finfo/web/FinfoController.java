@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.or.ddit.farm.model.GardenguidesVo;
+import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.finfo.service.FinfoServiceImpl;
 
@@ -34,10 +34,10 @@ public class FinfoController {
 	// KWS 텃밭 가이드 (재배정보 진입) 수정 20210305
 	@RequestMapping("gardenguides")
 	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
-			@RequestParam(defaultValue = "1") int xgrdgd_code) {
+			@RequestParam(defaultValue = "1") int xguide_code) {
 		logger.debug("IN gardenguides()");
 		logger.debug("초성 : {}", chosung);
-		logger.debug("xgrdgd_code : {}", xgrdgd_code);
+		logger.debug("xguide_code : {}", xguide_code);
 
 		String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
 		model.addAttribute("chosungArr", chosungArr);
@@ -68,13 +68,13 @@ public class FinfoController {
 		// 초성 글자 보내기
 		model.addAttribute("chosung", chosung);
 		// 초성 검색 관련 이름 리스트 보내기
-		List<GardenguidesVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
+		List<GardenguideVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
 		model.addAttribute("gardenguidesList", gardenguidesList);
 
 		// 해당 가이드 글번호 보내기
-		model.addAttribute("xgrdgd_code", xgrdgd_code);
+		model.addAttribute("xguide_code", xguide_code);
 		// 헤당 가이드 글 보내기
-		GardenguidesVo gardenguidesVo = finfoService.selectGuide(xgrdgd_code);
+		GardenguideVo gardenguidesVo = finfoService.selectGuide(xguide_code);
 		model.addAttribute("gardenguidesVo", gardenguidesVo);
 		return "tiles.finfo.gardenguides";
 	}
@@ -90,7 +90,7 @@ public class FinfoController {
 
 	// KWS 텃밭 가이드 등록페이지완료 (재배정보 등록완료)
 	@RequestMapping(path = "gardenguidesInsertBtn", method = { RequestMethod.POST })
-	public String gardenguidesInsertBtn(Model model, GardenguidesVo gardenguidesVo, MultipartFile file_nm2) {
+	public String gardenguidesInsertBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesInsertBtn()");
 		logger.debug("Vo : {}", gardenguidesVo);
 		logger.debug("file_nm: {}", file_nm2.getOriginalFilename());
@@ -99,7 +99,7 @@ public class FinfoController {
 
 	// KWS 텃밭 가이드 수정페이지 이동 (재배정보 수정 페이지 진입)20210305
 	@RequestMapping(path = "gardenguidesUpdate", method = { RequestMethod.POST })
-	public String gardenguidesUpdate(Model model, GardenguidesVo gardenguidesVo, MultipartFile file_nm2) {
+	public String gardenguidesUpdate(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesUpdate()");
 		logger.debug("Vo : {}", gardenguidesVo);
 		if (file_nm2 != null) {
@@ -112,7 +112,7 @@ public class FinfoController {
 
 	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305
 	@RequestMapping(path = "gardenguidesUpdateBtn", method = { RequestMethod.POST })
-	public String gardenguidesUpdateBtn(Model model, GardenguidesVo gardenguidesVo, MultipartFile file_nm2) {
+	public String gardenguidesUpdateBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesUpdateBtn()");
 		logger.debug("Vo : {}", gardenguidesVo);
 		logger.debug("file_nm: {}", file_nm2.getOriginalFilename());
@@ -129,7 +129,7 @@ public class FinfoController {
 	// ggy_20210304 : 농업정보 - 주간 농사정보 진입
 
 	@RequestMapping("weeklyFarmInfosView")
-	public String fcltmngView(Model model) {
+	public String fmanageView(Model model) {
 
 		return "tiles.finfo.weeklyFarmInfosMain";
 	}

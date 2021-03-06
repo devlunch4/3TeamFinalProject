@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.farm.model.MySimpleCodeVo;
@@ -100,31 +100,31 @@ public class FsurpportDaoImpl implements FsurpportDao {
 
 	// 20210302_KJH 시설리스트 조회
 	@Override
-	public List<FcltmngVo> myfcltmngList() {
-		return template.selectList("fcltmng.myfcltmngList");
+	public List<FmanageVo> myfmanageList() {
+		return template.selectList("fmanage.myfmanageList");
 	}
 	// 20210302_KJH 시설 상세조회
 	@Override
-	public FcltmngVo fcltmngInfo(String str) {
-		return template.selectOne("fcltmng.fcltmngInfo", str);
+	public FmanageVo fmanageInfo(String str) {
+		return template.selectOne("fmanage.fmanageInfo", str);
 	}
 
 	// 20210304_KJH 시설 최근 측정정보 조회
 	@Override
 	public MsrrecVo latelyData(String msr_code) {
-		return template.selectOne("fcltmng.latelyData",msr_code);
+		return template.selectOne("fmanage.latelyData",msr_code);
 	}
 	// 20210304_KJH 보유 장비 조회
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
-		return template.selectList("fcltmng.msrequipList",owner);
+		return template.selectList("fmanage.msrequipList",owner);
 	}
 
 		
 	// 등록된 시설 카운트 03/04 (경찬)
 	@Override
-	public int fcltmngCount(String user_id) {
-		return template.selectOne("fcltmng.fcltmngCount", user_id);
+	public int fmanageCount(String user_id) {
+		return template.selectOne("fmanage.fmanageCount", user_id);
 	}
 	
 	// 등록된 일지 카운트 03/04 (경찬)

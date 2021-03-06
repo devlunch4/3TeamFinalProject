@@ -22,5 +22,10 @@ public class FanalysisServiceImpl implements FanalysisService {
 
 		return fanalysisDao.myfanalysisInfo(msrrecVo);
 	}
+	// 20210305_KJH 내 시설 실시간 관측 조회
+//	@Override
+//	public MyMaxMrrecListVo mymaxmsrrecList(MsrrecVo msrrecVo) {
+//		return fanalysisDao.mymaxmsrrecList(msrrecVo);
+//	}
 
 }

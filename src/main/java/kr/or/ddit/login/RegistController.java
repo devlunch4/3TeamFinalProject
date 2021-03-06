@@ -28,15 +28,23 @@ public class RegistController {
 		return "register";
 	}
 
-//	//	20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
-//	@RequestMapping(path = "id_check", method = RequestMethod.POST)
-//	public String idCheck(String user_id, Model model) {
-//		
-//		String user_id = userService.
-//	sdfsdfd
-//		return "";
-//		
-//	}
+	//	20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
+	@RequestMapping(path = "id_check", method = RequestMethod.POST)
+	public String idCheck(String user_id, Model model) {
+		
+		logger.debug("iNN RegistController >> idCheck");
+		String user_id_check = userService.checkForDuplicateId(user_id);
+		
+		if(user_id_check.equals(user_id)) {
+			String txt_taken = "가입된 아이디입니다.";
+			model.addAttribute("txt_taken", txt_taken);
+		}else {
+			String txt_available = "사용 가능한 아이디입니다.";
+			model.addAttribute(txt_available);
+		}
+		return "jsonView";
+		
+	}
 
 	// 20210304_LYS_Login3 - 회원가입 구현
 	@RequestMapping(path = "process", method = { RequestMethod.POST })

@@ -1,19 +1,25 @@
 package kr.or.ddit.common.model;
 
 public class CodesVo {
-	// ggy_20210306 Codes테이블 Vo 수정
-	private int code_seq;
+
+	
+	// 2021-03-02KJH Codes테이블 Vo
+	// 2021-03-06 vo수정 (경찬)
+
+	private String code_seq;
 	private String code_no;
 	private String code_nm;
 	private String parent_code;
 	private String use_yn;
 	
-	public int getCode_seq() {
+	public String getCode_seq() {
 		return code_seq;
 	}
-	public void setCode_seq(int code_seq) {
+
+	public void setCode_seq(String code_seq) {
 		this.code_seq = code_seq;
 	}
+
 	public String getCode_no() {
 		return code_no;
 	}
@@ -32,6 +38,7 @@ public class CodesVo {
 	public void setParent_code(String parent_code) {
 		this.parent_code = parent_code;
 	}
+
 	public String getUse_yn() {
 		return use_yn;
 	}
@@ -39,7 +46,5 @@ public class CodesVo {
 		this.use_yn = use_yn;
 	}
 	
-	
-
 
 }

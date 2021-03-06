@@ -39,7 +39,7 @@ public class UserService implements UserServiceImpl {
 	// 20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
 	@Override
 	public String checkForDuplicateId(String user_id) {
-		return null;
+		return userDao.checkForDuplicateId(user_id);
 	}
 
 	// 전체 사용자 정보 조회 (경찬)

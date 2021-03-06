@@ -25,12 +25,8 @@
 	    		
 	    		//이름 입력
 	    		$("#user_nm").keyup(function(){
-	    			
-	    			status_txt = "이름을 정확하게 입력하세요."
-	    			
-// 	    			정규식체크 regex.js 에 있는 함수
-	    			if(!user_nm_check(this)){
-	    				$(".status_txt").html(status_txt);
+					// 정규식체크 regex.js 에 있는 함수
+	    			if(!user_nm_check()){
 	    				return false;
 	    			}
 	    		})
@@ -40,20 +36,21 @@
 	    			
 	    			status_txt = "아이디는 영소문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다."
 	    			
-	    			if(!user_id_check(this)){
-	    				$(".status_txt").html(status_txt);
+	    			if(!idcheck()){
+	    				$(".id_status").html(status_txt);
 	    				return false;
 	    			}
 	    			
-	    			idValue = $("#user_id").val().trim();
+	    			user_id_value = $("#user_id").val().trim();
+	    			
 	    			$.ajax({
-	    				url : "/join/",
+	    				url : "join/id_check",
 	    				type : "post",
 	    				data : {
 	    					"user_id" : user_id_value
 	    				},
 	    				success : function(res){
-	    					status_txt_from_idCheck = res.sw;
+	    					status_txt_from_idCheck = res.txt_taken;
 		    				$(".status_txt").html(status_txt_from_idCheck);
 	    				},
 	    				error : function(xhr){
@@ -61,8 +58,8 @@
 	    				},
 	    				dataType : "json"
 	    			})
-	    			
 	    		})
+	    		
 	    		
 	    		
 	    		
@@ -90,6 +87,8 @@
 	    		        }
 	    		    }).open();
 	    		})
+	    		
+	    		
 	    	})
 	    	
 	    	
@@ -97,7 +96,7 @@
 	    	
 	    	
 	    	$("#join_btn").on('click', function(){
-	    		
+	    		alert("sdsd")
 	    		
 	    		
 	    	})
@@ -121,16 +120,16 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">회원가입</h3></div>
                                     <div class="card-body">
-                                        <form id="frm" method="post" action="${pageContext.request.contextPath}/join/process">
+                                        <form id="frm" role="form" method="post" action="${pageContext.request.contextPath}/join/process">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_nm">이름</label>
                                                 <input class="form-control py-4" id="user_nm" name="user_nm" type="text" placeholder="이름을 입력하세요." />
-                                                <p class="status_txt"></p>
+                                                <p class="status_txt name_status"></p>
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_id">아이디</label>
                                                 <input class="form-control py-4" id="user_id" name="user_id" type="text" placeholder="아이디를 입력하세요." />
-                                                <p class="status_txt"></p>
+                                                <p class="status_txt id_status"></p>
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_pw">비밀번호</label>
@@ -202,7 +201,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group mt-4 mb-0">
-                                            	<button type="button" id="join_btn" class="btn btn-primary btn-block">회원가입하기</button>
+                                            	<button type="submit" id="join_btn" class="btn btn-primary btn-block">회원가입하기</button>
                                            	</div>
                                         </form>
                                     </div>

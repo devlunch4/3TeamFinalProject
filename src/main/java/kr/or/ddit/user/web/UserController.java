@@ -157,7 +157,7 @@ public class UserController {
 		UserVo user = userService.selectUser(user_id);
 
 		// 시설카운트
-		int fcount = fsurpportService.fcltmngCount(user_id);
+		int fcount = fsurpportService.fmanageCount(user_id);
 
 		// 일지카운트
 		int ffcount = fsurpportService.fsurCount(user_id);
@@ -187,6 +187,22 @@ public class UserController {
 	public String modifyUser2(UserVo userVo) {
 		userVo = userService.modifyUser(userVo);
 		return "tiles.user.allUser";
+	}
+
+	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
+	@RequestMapping("excelDownload")
+	public String excelDownLoad(Model model) {
+		List<String> header = new ArrayList<String>();
+		header.add("아이디");
+		header.add("이름");
+		header.add("가입일");
+
+		model.addAttribute("header", header);
+
+		List<UserVo> data = new ArrayList<UserVo>();
+		model.addAttribute("data", userService.selectAllUser());
+
+		return "userExcelDownloadView";
 	}
 
 }

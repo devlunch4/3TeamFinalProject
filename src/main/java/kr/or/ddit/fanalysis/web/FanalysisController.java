@@ -114,8 +114,30 @@ public class FanalysisController {
 		model.addAttribute("msr_code", msr_code);
 		model.addAttribute("msrequipList", msrequipList);
 		model.addAttribute("msrrecVo", msrrecList);
-
+ 
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
-
+	
+	
+	// 20210305_KJH 내 시설 실시간 관측 조회
+//	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.GET })
+//	public String mymaxmsrrecList(Model model , HttpSession session) {
+//		
+//		UserVo userVo = new UserVo();
+//
+//		userVo = (UserVo) session.getAttribute("S_USER");
+//		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
+//		
+//		List<MyMaxMrrecListVo> maxmrrecList = new ArrayList<MyMaxMrrecListVo>();
+//		
+//		MsrrecVo msrrecVo = new MsrrecVo();
+//		for(int i = msrequipList.size()-1; i >= 0; i-- ) {
+//			String msrcode = msrequipList.get(i).getMsr_code();
+//			msrrecVo.setMsr_code(msrcode);
+//			maxmrrecList.add(fanalysisService.mymaxmsrrecList(msrrecVo));
+//		}
+//		
+//		model.addAttribute("maxmrrecList",maxmrrecList);
+//		return "tiles.fanalysis.mymaxmsrrecList";
+//	}
 }

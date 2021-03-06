@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
 
 @RequestMapping("fdata")
@@ -47,18 +48,11 @@ public class FdataController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		FarmdiaryVo fm = new FarmdiaryVo();
 		
-//		String fileurl = "https://www.kamis.or.kr/customer/board/board_file.do?brdno=4&brdctsno=430442&brdctsfileno=14921";
-//		
-//		try(InputStream in = new URL(fileurl).openStream()){
-//		     Files.copy(in, Paths.get("D:\\upload\\fileTest.xls"),     StandardCopyOption.REPLACE_EXISTING);
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		List<FarmdiaryVo> mostfile = new ArrayList<FarmdiaryVo>();
+		
+		
 		
 		return "tiles.fdata.popularity";
 	}

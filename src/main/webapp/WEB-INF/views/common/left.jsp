@@ -59,7 +59,7 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="${pageContext.request.contextPath }/fanalysis/myfanalysisInfo">내 시설 관측</a>
                             <a class="nav-link" href="register.html">수확량 분석</a>
-                            <a class="nav-link" href="password.html">내 시설 실시간 관측</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath }/fanalysis/mymaxmsrrecList">내 시설 실시간 관측</a>
                         </nav>
                     </div>
                 </nav>

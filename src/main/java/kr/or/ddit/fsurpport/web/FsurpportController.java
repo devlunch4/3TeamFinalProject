@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.farm.model.FcltmngVo;
+import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
@@ -214,32 +214,32 @@ public class FsurpportController {
 	/* 시설관리 영역 */
 
 	// KJH_20210302
-	// 농업양식 - 시설관리 관리중인 시설 리스트 조회페이지
+	// 농업지원 - 시설관리 관리중인 시설 리스트 조회페이지
 	@RequestMapping("facilityList")
 	public String facilityList(Model model) {
 
-		List<FcltmngVo> fcltmngList = fsurpportService.myfcltmngList();
+		List<FmanageVo> fmanageList = fsurpportService.myfmanageList();
 
-		model.addAttribute("fcltmngList", fcltmngList);
+		model.addAttribute("fmanageList", fmanageList);
 
 		return "tiles.fsurpport.facilityList";
 	}
 
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 상세 조회페이지
-	@RequestMapping("facilityInfo")
-	public String facility(Model model, FcltmngVo fcltmng) {
-		logger.debug(fcltmng.getControl_no());
-		FcltmngVo fvo = fsurpportService.fcltmngInfo(fcltmng.getControl_no());
-		System.out.println(fvo.getControl_no());
-		// KJH_20210304 측정 정보 조회
-		MsrrecVo mvo = fsurpportService.latelyData(fvo.getMsr_code());
-
-		model.addAttribute("facility", fvo);
-		model.addAttribute("msrrec", mvo);
-
-		return "tiles.fsurpport.facilityInfo";
-	}
+//	@RequestMapping("facilityInfo")
+//	public String facility(Model model, FmanageVo fmanage) {
+//		logger.debug(fmanage.getManage_no());
+//		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
+//		System.out.println(fvo.getManage_no());
+//		// KJH_20210304 측정 정보 조회
+//		MsrrecVo mvo = fsurpportService.latelyData(fvo.getMsr_code());
+//
+//		model.addAttribute("facility", fvo);
+//		model.addAttribute("msrrec", mvo);
+//
+//		return "tiles.fsurpport.facilityInfo";
+//	}
 
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 등록 페이지

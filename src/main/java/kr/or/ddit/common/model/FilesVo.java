@@ -11,7 +11,7 @@ public class FilesVo {
 	public int getFile_no() {
 		return file_no;
 	}
-	public void setFile_no(int file_no) {
+  	public void setFile_no(int file_no) {
 		this.file_no = file_no;
 	}
 	public String getFile_nm() {
@@ -32,7 +32,5 @@ public class FilesVo {
 	public void setUse_yn(String use_yn) {
 		this.use_yn = use_yn;
 	}
-	
-	
-	
+		
 }

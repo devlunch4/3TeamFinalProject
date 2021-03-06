@@ -17,23 +17,23 @@
 						<th style="width: 50%;">시설위치</th>
 						<th style="width: 30%;">등록일</th>
 					</tr>
-					<c:forEach items="${fcltmngList}" var="fcltmng">
+					<c:forEach items="${fmanageList}" var="fmanage">
 						<c:set var="dt">
-							<fmt:formatDate value="${fcltmng.reg_dt}" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${fmanage.reg_dt}" pattern="yyyy-MM-dd" />
 						</c:set>
-						<c:if test="${fcltmng.owner == S_USER.user_id}">
+						<c:if test="${fmanage.owner == S_USER.user_id}">
 							<tr>
-								<td style="width: 10%;">${fcltmng.control_no}</td>
-								<td style="width: 10%;">${fcltmng.owner}</td>
-								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fcltmng.control_no}">${fcltmng.location}</a></td>
+								<td style="width: 10%;">${fmanage.manage_no}</td>
+								<td style="width: 10%;">${fmanage.owner}</td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 								<td style="width: 30%;">${dt}</td>
 							</tr>
 						</c:if>
 						<c:if test="${S_USER.user_id == '1'}">
 							<tr>
-								<td style="width: 10%;">${fcltmng.control_no}</td>
-								<td style="width: 10%;">${fcltmng.owner}</td>
-								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?control_no=${fcltmng.control_no}">${fcltmng.location}</a></td>
+								<td style="width: 10%;">${fmanage.manage_no}</td>
+								<td style="width: 10%;">${fmanage.owner}</td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 								<td style="width: 30%;">${dt}</td>
 							</tr>
 						</c:if>
