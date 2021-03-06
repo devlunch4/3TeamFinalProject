@@ -12,6 +12,16 @@
 		<!-- 2021-03-03KJH CoesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.common.model.CodesVo" alias="codesVo" />
 		<!-- 2021-03-03KJH FcltmngVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
+			alias="fcltmngVo" />
+
+		<!-- 20210305KWS GardenguidesVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo"
+			alias="gardenguideVo" />
+<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo"
+			alias="guideSqlVo" />
+
+
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo" alias="fcltmngVo" />
 		<!-- 2021-03-04KJH FcltmngVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MsrrecVo" alias="msrrecVo" />
@@ -23,13 +33,7 @@
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo" alias="farmdiaryVo" />
 		<!-- ggy_20210305 MySimpleCodeVo 만듬 -->
 		<typeAlias type="kr.or.ddit.farm.model.MySimpleCodeVo" alias="mySimpleCodeVo" />
-
-		<!-- 20210305 KWS GardenguidesVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.GardenguidesVo" alias="gardenguidesVo" />
-		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
-
 	</typeAliases>
-
 
 	<mappers>
 
