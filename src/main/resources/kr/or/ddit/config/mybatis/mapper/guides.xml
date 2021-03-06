@@ -5,7 +5,6 @@
 
 <mapper namespace="guides">
 
-
 	<!-- 텃밭가이드 코드로 검색 또는 최초 조회 -->
 	<select id="selectGuide" resultType="gardenguideVo"
 		parameterType="Integer">
@@ -21,4 +20,3 @@
 		#{sqlwhere2}
 	</select>
 </mapper>
-

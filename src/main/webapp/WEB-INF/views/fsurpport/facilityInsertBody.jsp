@@ -9,30 +9,23 @@
 				<form action="#">
 					<table class="table table-bordered col-sx-12" style="text-align: center;">
 						<tr>
-							<td style="width: 50%;">
-								시설명 : <input type="text" />
+							<td style="width: 50%;">시설명 : <input type="text" />
 							</td>
-							<td style="width: 50%;">
-								농장주 : <input type="text" />
+							<td style="width: 50%;">농장주 : <input type="text" />
 							</td>
 						</tr>
 						<tr>
-							<td style="width: 50%;">
-								작물 : <input type="text" />
+							<td style="width: 50%;">작물 : <input type="text" />
 							</td>
-							<td style="width: 50%;">
-								장소 : <input type="text" />
+							<td style="width: 50%;">장소 : <input type="text" />
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">
-								장비번호 : <input type="text" />
+							<td colspan="2">장비번호 : <input type="text" />
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">
-								<textarea id="summernote" name="summernote"></textarea>
-							</td>
+							<td colspan="2"><textarea id="summernote" name="summernote"></textarea></td>
 						</tr>
 					</table>
 					<button type="button" class="btn btn-primary">등록하기</button>
@@ -57,4 +50,4 @@
 	    ['view', ['fullscreen', 'codeview', 'help']]
 	  ]
 	});
-</script> 
+</script>

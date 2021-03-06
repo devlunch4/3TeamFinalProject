@@ -73,9 +73,9 @@
 							</tfoot>
 							<tbody>
 								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView'" >
+									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView?fdiary_no=${farmdiaryList.fdiary_no }'" >
 										<td>
-											<img src="#" >
+											<img src="${farmdiaryList.file_no }" >
 										</td>
 										<td>
 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />

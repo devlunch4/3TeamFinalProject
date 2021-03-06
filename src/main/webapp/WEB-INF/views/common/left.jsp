@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
         
@@ -33,8 +33,8 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/gardenguides">텃밭가이드</a>
                     <a class="nav-link" href="layout-sidenav-light.html">제철작물</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/raceInfosView">품종정보</a>
-                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/fcltmngView">주간 농사정보</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">품목별 영농매뉴얼</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/weeklyFarmInfosView">주간 농사정보</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/itemFarmManualsView">품목별 영농매뉴얼</a>
                 </nav>
             </div>
            
@@ -57,7 +57,7 @@
                     </a>
                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="login.html">내 시설 관측</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath }/fanalysis/myfanalysisInfo">내 시설 관측</a>
                             <a class="nav-link" href="register.html">수확량 분석</a>
                             <a class="nav-link" href="password.html">내 시설 실시간 관측</a>
                         </nav>
@@ -73,14 +73,11 @@
             <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="layout-static.html">문의사항</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">공지사항</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">미니장터</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/noticesView">공지사항</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/minimarketView">미니장터</a>
                 </nav>
             </div>
            
         </div>
-    </div>
-    <div class="sb-sidenav-footer">
-        
     </div>
 </nav>	

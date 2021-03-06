@@ -5,22 +5,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<!-- <typeAlias type="클래스명" alias="별칭" /> -->
 	<typeAliases>
-		<typeAlias type="kr.or.ddit.common.model.PageVo"
-			alias="pageVo" />
-		<typeAlias type="kr.or.ddit.common.model.PageVoSearch"
-			alias="pageVoSearch" />
+
+		<typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo" />
+
 		<!-- 2021-03-03KJH CoesVo typeAliases -->
-		<typeAlias type="kr.or.ddit.common.model.CodesVo"
-			alias="codesVo" />
-
-		<typeAlias type="kr.or.ddit.user.model.UserVo"
-			alias="userVo" />
-
-		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo"
-			alias="farmdiaryVo" />
-
+		<typeAlias type="kr.or.ddit.common.model.CodesVo" alias="codesVo" />
 		<!-- 2021-03-03KJH FcltmngVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo"
 			alias="fcltmngVo" />
@@ -32,21 +22,31 @@
 			alias="guideSqlVo" />
 
 
+		<typeAlias type="kr.or.ddit.farm.model.FcltmngVo" alias="fcltmngVo" />
+		<!-- 2021-03-04KJH FcltmngVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.MsrrecVo" alias="msrrecVo" />
+		<!-- 2021-03-04KJH MsrequipVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.MsrequipVo" alias="msrequipVo" />
 
+		<!-- ggy_20210305 FilesVo 만듬 -->
+		<typeAlias type="kr.or.ddit.common.model.FilesVo" alias="filesVo" />
+		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo" alias="farmdiaryVo" />
+		<!-- ggy_20210305 MySimpleCodeVo 만듬 -->
+		<typeAlias type="kr.or.ddit.farm.model.MySimpleCodeVo" alias="mySimpleCodeVo" />
 	</typeAliases>
 
 	<mappers>
 
-		<mapper
-			resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/fsurpports.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/users.xml" />
 
-		<!-- 2021-03-03KJH codes,fcltmng mapper -->
+		<!-- 2021-03-03 KJH codes,fcltmng mapper -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/codes.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/fcltmng.xml" />
 
-		<!-- 20210305KWS GardenguidesVo mappers -->
+		<!-- 20210305 KWS GardenguidesVo mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/guides.xml" />
+
 	</mappers>
 
 </configuration>

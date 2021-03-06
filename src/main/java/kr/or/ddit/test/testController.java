@@ -13,35 +13,31 @@ public class testController {
 	public String test404() {
 		return "tiles.bootstrap_view.404";
 	}
-	
+
 	@RequestMapping("main")
 	public String main() {
 		return "login";
 	}
-	
-//=======
-	//테스트 - 부트스트랩 잘 열리는지 컨트롤러
-//>>>>>>> develop
+
+	// 테스트 - 부트스트랩 잘 열리는지 컨트롤러
 	@RequestMapping("testCharts")
 	public String testCharts() {
 		return "tiles.bootstrap_view.charts";
 	}
-	
+
 	@RequestMapping("testSidenav")
 	public String testsidenav() {
 		return "tiles.bootstrap_view.layout-sidenav-light";
 	}
-	
+
 	@RequestMapping("testLayout")
 	public String testlayout() {
 		return "tiles.bootstrap_view.layout-static";
 	}
-	
+
 	@RequestMapping("testTables")
 	public String testtables() {
 		return "tiles.bootstrap_view.tables";
 	}
-//<<<<<<< 20210226_KKC_MyPage
-
 
 }

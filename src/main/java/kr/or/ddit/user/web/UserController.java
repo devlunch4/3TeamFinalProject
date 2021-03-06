@@ -17,9 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ddit.common.model.CodesVo;
-import kr.or.ddit.common.model.PageVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
-import kr.or.ddit.fsurpport.repository.FsurpportDaoImpl;
 import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserServiceImpl;
@@ -138,7 +136,7 @@ public class UserController {
 
 	// 관리자가 모든 회원보는거 03/02 (경찬)
 	@RequestMapping("allUser")
-	public String allUser(Model model, PageVo pageVo) {
+	public String allUser(Model model) {
 		logger.debug("in allUser()");
 		long start = System.currentTimeMillis(); // 시작하는 시점 계산
 
@@ -170,19 +168,41 @@ public class UserController {
 
 		return "tiles.user.userDetail";
 	}
-	
+
 	// 회원탈퇴 누르면 use가 n으로 변하는거 03/04 (경찬)
 	@RequestMapping("deleteUser")
 	public String deleteUser(String user_id) {
 		UserVo user = userService.deleteUser(user_id);
 		return "redirect:/user/allUser";
 	}
-	
-	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+
+	// 회원이 정보수정 하는거 03/05(경찬)
 	@RequestMapping("modifyUser")
-	public String modifyUser(String user_id, int login_fail_cnt) {
-		
-		return "redirect:/user/allUser";
+	public String modifyUser(UserVo userVo) {
+		return "tiles.user.modifyUser";
+	}
+
+	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+	@RequestMapping("modifyUser2")
+	public String modifyUser2(UserVo userVo) {
+		userVo = userService.modifyUser(userVo);
+		return "tiles.user.allUser";
+	}
+
+	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
+	@RequestMapping("excelDownload")
+	public String excelDownLoad(Model model) {
+		List<String> header = new ArrayList<String>();
+		header.add("아이디");
+		header.add("이름");
+		header.add("가입일");
+
+		model.addAttribute("header", header);
+
+		List<UserVo> data = new ArrayList<UserVo>();
+		model.addAttribute("data", userService.selectAllUser());
+
+		return "userExcelDownloadView";
 	}
 
 }

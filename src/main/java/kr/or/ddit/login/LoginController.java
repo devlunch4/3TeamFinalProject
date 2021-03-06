@@ -45,13 +45,6 @@ public class LoginController {
 		}
 	}
 
-//	20210302_LYS_Login2 - 회원가입페이지로 이동
-	@RequestMapping(path = "register", method = { RequestMethod.GET })
-	public String registerView() {
-		logger.debug("iNN login controller >> registerView");
-		return "register";
-	}
-
 	// 누구?
 	@RequestMapping(path = "view2", method = { RequestMethod.GET })
 	public String view2() {

@@ -39,21 +39,18 @@
 	</div>
 
 	<div class="form-group col-md-6">
-		<label class="small mb-6" for="input_grdgd_nm">품목</label>
-		<select name="">
+		<label class="small mb-6" for="input_grdgd_nm">품목</label> <select name="">
 			<option value="">선택</option>
 		</select>
 	</div>
 
 	<div class="form-group col-md-6">
-		<label class="small mb-6" for="input_grdgd_nm">사업유형</label>
-		<select name="">
+		<label class="small mb-6" for="input_grdgd_nm">사업유형</label> <select name="">
 			<option value="">선택</option>
 		</select>
 	</div>
 
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">면적(m2)</label>
-		<input id="input_cls_code" name="input_cls_code" name="" type="text" class="form-control py-4">
+		<label class="small mb-1" for="input_plant_prd">면적(m2)</label> <input id="input_cls_code" name="input_cls_code" name="" type="text" class="form-control py-4">
 	</div>
 </div>

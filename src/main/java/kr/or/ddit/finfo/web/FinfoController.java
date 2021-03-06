@@ -127,10 +127,18 @@ public class FinfoController {
 	}
 
 	// ggy_20210304 : 농업정보 - 주간 농사정보 진입
-	@RequestMapping("fcltmngView")
+
+	@RequestMapping("weeklyFarmInfosView")
 	public String fcltmngView(Model model) {
 
-		return "tiles.finfo.fcltmngMain";
+		return "tiles.finfo.weeklyFarmInfosMain";
 	}
 
+	// ggy_20210304 : 농업정보 - 품목별영농매뉴얼 진입
+	@RequestMapping("itemFarmManualsView")
+	public String itemFarmManualsView(Model model) {
+
+		return "tiles.finfo.itemFarmManualsMain";
+
+	}
 }

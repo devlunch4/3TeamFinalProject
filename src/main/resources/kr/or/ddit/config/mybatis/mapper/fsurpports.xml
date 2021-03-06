@@ -4,90 +4,167 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="fsurpports">
-	
-	
+
 	<!-- ggy_20210303 : 영농일지 전체 리스트 조회. -->
 	<select id="selectAllFsurpportList" resultType="farmdiaryVo">
-		SELECT 
-			    f.fdiary_no, f.writer, f.content,
-			    f.reg_dt, f.weather, f.low_temp,
-			    f.high_temp, f.rainfall, f.humid,
-			    f.yield, f.area, f.file_no,
-			    f.use, c.code_nm btype_code, co.code_nm wstep_code,
-			    cod.code_nm item_code 
-			FROM farmdiary f
-			JOIN codes c
-			ON f.btype_code = c.code_no
-			JOIN codes co
-			ON f.wstep_code = co.code_no
-			JOIN codes cod
-			ON f.item_code = cod.code_no
-			ORDER BY f.reg_dt desc
-	</select>
-	
-	<!-- ggy_20210303 : code 품목 리스트 조회. -->
-	<select id="selectAllItem_codeList" resultType="codesVo">
-		select *
-		from codes
-		where parent_code = '100'
-		or parent_code = '200'
-		or parent_code = '300'
-		or parent_code = '400'
-		and use = 'Y'
-	</select>
-	
-	<!-- ggy_20210303 : code 작업단계 리스트 조회. -->
-	<select id="selectAllWstep_codeList" resultType="codesVo">
-		select *
-		from codes
-		where parent_code = '1'
-		or parent_code = '2'
-		or parent_code = '3'
-		or parent_code = '4'
-		or parent_code = '5'
-		or parent_code = '6'
-		or parent_code = '7'
-		and use = 'Y'
-	</select>
-	
-	<!-- ggy_20210303 : 페이징 처리하여 영농일지 검색 조회 -->
-	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo" 
-									parameterType="farmdiaryVo">
-		
-		SELECT 
-		    f.fdiary_no, f.writer, f.content,
-		    f.reg_dt, f.weather, f.low_temp,
-		    f.high_temp, f.rainfall, f.humid,
-		    f.yield, f.area, f.file_no,
-		    f.use, c.code_nm btype_code, co.code_nm wstep_code,
-		    cod.code_nm item_code 
+		SELECT
+		f.fdiary_no, f.writer, f.content,
+		f.reg_dt, f.weather, f.low_temp,
+		f.high_temp, f.rainfall, f.humid,
+		f.yield, f.area, files.file_nm
+		file_no,
+		f.use, c.code_nm btype_code, co.code_nm wstep_code,
+		cod.code_nm item_code
 		FROM farmdiary f
 		JOIN codes c
-		ON f.btype_code = c.code_no
+		ON f.btype_code =
+		c.code_no
 		JOIN codes co
-		ON f.wstep_code = co.code_no
+		ON
+		f.wstep_code = co.code_no
 		JOIN codes cod
-		ON f.item_code = cod.code_no
-		where f.reg_dt &gt;= TO_DATE(#{startDate }, 'YYYY-MM-DD')
-			and f.reg_dt &lt;= TO_DATE(#{endDate }, 'YYYY-MM-DD')
-			or f.item_code = #{item_code }
-			or f.wstep_code = #{wstep_code }
-		ORDER BY f.reg_dt desc								
-  	
+		ON
+		f.item_code = cod.code_no
+		JOIN files files
+		ON f.file_no = files.file_no
+		ORDER BY f.reg_dt desc
 	</select>
-	
+
+	<!-- ggy_20210303 : code 품목 리스트 조회. -->
+	<select id="selectAllItem_codeList" resultType="codesVo">
+		SELECT *
+		FROM
+		codes
+		WHERE parent_code = '100'
+		or parent_code = '200'
+		or parent_code =
+		'300'
+		or parent_code = '400'
+		AND use = 'Y'
+	</select>
+
+	<!-- ggy_20210303 : code 작업단계 리스트 조회. -->
+	<select id="selectAllWstep_codeList" resultType="codesVo">
+		SELECT *
+		FROM
+		codes
+		WHERE parent_code = '1'
+		OR parent_code = '2'
+		OR parent_code = '3'
+		OR parent_code = '4'
+		OR parent_code = '5'
+		OR parent_code = '6'
+		OR
+		parent_code = '7'
+		AND use = 'Y'
+	</select>
+
+	<!-- ggy_20210305 : code 사업유형단계 리스트 조회. -->
+	<select id="selectAllBtype_codeList" resultType="codesVo">
+		SELECT *
+		FROM
+		codes
+		WHERE parent_code = 'b'
+		AND use = 'Y'
+	</select>
+
+	<!-- ggy_20210303 : 페이징 처리하여 영농일지 검색 조회 -->
+	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo"
+		parameterType="farmdiaryVo">
+		SELECT
+		f.fdiary_no, f.writer, f.content, f.reg_dt,
+		f.weather, f.low_temp, f.high_temp, f.rainfall, f.humid,
+		f.yield,
+		f.area, files.file_nm file_no, f.use, c.code_nm btype_code, co.code_nm
+		wstep_code, cod.code_nm item_code
+		FROM farmdiary f
+		JOIN codes c
+		ON
+		f.btype_code = c.code_no
+		JOIN codes co
+		ON
+		f.wstep_code = co.code_no
+		JOIN
+		codes cod
+		ON f.item_code = cod.code_no
+		JOIN files files
+		ON f.file_no =
+		files.file_no
+		where f.reg_dt &gt;=
+		TO_DATE(#{startDate }, 'YYYY-MM-DD')
+		AND f.reg_dt &lt;= TO_DATE(#{endDate }, 'YYYY-MM-DD')
+		OR f.item_code =
+		#{item_code }
+		OR f.wstep_code = #{wstep_code }
+		ORDER BY f.reg_dt desc
+	</select>
+
 	<!-- 등록된 영농일지 보는거 03/04 (경찬) -->
 	<select id="fsurCount" parameterType="String"
 		resultType="Integer">
-		select count(*)
-		from farmdiary
-		where writer = #{user_id}
+		SELECT count(*)
+		FROM farmdiary
+		WHERE writer = #{user_id}
 	</select>
 
-	
+	<!-- ggy_20210305 : 해당 영농일지 조회 -->
+	<select id="selectFarmdiaryInfo" resultType="farmdiaryVo"
+		parameterType="int">
+		SELECT
+		f.fdiary_no, f.writer, f.content,
+		f.reg_dt,
+		f.weather, f.low_temp,
+		f.high_temp, f.rainfall, f.humid,
+		f.yield,
+		f.area, files.file_nm file_no,
+		f.use, c.code_nm btype_code, co.code_nm
+		wstep_code,
+		cod.code_nm item_code
+		FROM farmdiary f
+		JOIN codes c
+		ON
+		f.btype_code = c.code_no
+		JOIN codes co
+		ON
+		f.wstep_code = co.code_no
+		JOIN
+		codes cod
+		ON f.item_code = cod.code_no
+		JOIN files files
+		ON f.file_no =
+		files.file_no
+		WHERE f.fdiary_no =
+		#{fdiary_no }
+	</select>
 
-	
-	
+	<!-- ggy_20210305 : 일지 등록때 파일 있으면 파일 등록 -->
+	<insert id="registFiles" parameterType="filesVo">
+		INSERT INTO files VALUES(
+		seq_files.NEXTVAL, #{file_nm },
+		#{file_path }, 'farmdiary', #{writer },
+		#{ori_post_no }, 'Y')
+	</insert>
 
+	<!-- ggy_20210305 : 일지 등록을 위한 등록된 파일 정보 가져오기 -->
+	<select id="selectFilesInfo" resultType="filesVo"
+		parameterType="String">
+		SELECT *
+		FROM files
+		WHERE ori_table_nm = 'farmdiary'
+		AND
+		file_nm = #{file_nm }
+	</select>
+
+	<!-- ggy_20210305 : 일지 등록 -->
+	<insert id="registFarmdiary" parameterType="filesVo">
+		INSERT INTO farmdiary
+		VALUES(seq_farmdiary.NEXTVAL,
+		#{writer }, #{content },
+		sysdate,
+		#{weather }, #{low_temp },
+		#{high_temp }, #{rainfall }, #{humid },
+		#{yield }, #{area }, #{file_no }, #{use },
+		#{btype_code }, #{wstep_code
+		}, #{item_code })
+	</insert>
 </mapper>
-
