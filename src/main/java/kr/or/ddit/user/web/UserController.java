@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.ddit.codes.service.CodesServiceImpl;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
 import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
@@ -36,6 +37,9 @@ public class UserController {
 
 	@Resource(name = "fsurpportService")
 	private FsurpportServiceImpl fsurpportService;
+
+	@Resource(name = "codesService")
+	private CodesServiceImpl codesService;
 
 	// 메인 가기
 	// 20210302_KJH items - > codes 변경
@@ -203,6 +207,14 @@ public class UserController {
 		model.addAttribute("data", userService.selectAllUser());
 
 		return "userExcelDownloadView";
+	}
+
+	// 모든 코드를 조회하는거 03/06 (경찬)
+	@RequestMapping("codesView")
+	public String codesView() {
+		codesService.allCodes();
+		
+		return "";
 	}
 
 }
