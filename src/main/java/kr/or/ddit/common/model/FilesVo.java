@@ -10,11 +10,11 @@ public class FilesVo {
 	private String writer;
 	private int ori_post_no;
 	private String use;
-
+	
 	public int getFile_no() {
 		return file_no;
 	}
-
+	
 	public void setFile_no(int file_no) {
 		this.file_no = file_no;
 	}

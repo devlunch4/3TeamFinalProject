@@ -1,5 +1,7 @@
 package kr.or.ddit.user.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // 20210226_KKC_MyPage
@@ -28,12 +30,12 @@ public class UserVo {
 		setUser_id(userid);
 		setUser_pw(pass);
 	}
-	
+
 	public UserVo(String user_pw, int login_fail_cnt) {
 		setUser_pw(user_pw);
 		setLogin_fail_cnt(login_fail_cnt);
 	}
-	
+
 	public String getUser_id() {
 		return user_id;
 	}
