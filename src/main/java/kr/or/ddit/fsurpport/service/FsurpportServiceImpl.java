@@ -14,6 +14,7 @@ import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
+import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.fsurpport.repository.FsurpportDao;
 
 @Service("fsurpportService")
@@ -43,17 +44,30 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.selectAllItem_codeList();
 	}
 
-	// ggy_20210303 : 등록된 작업단계코드 리스트 조회
+	// ggy_20210306 : 등록된 작업단계코드 리스트 조회 수정
 	@Override
-	public List<CodesVo> selectAllWstep_codeList() {
-		return fsurpportDao.selectAllWstep_codeList();
+	public List<CodesVo> selectAllW_step_codeList() {
+		return fsurpportDao.selectAllW_step_codeList();
 	}
 
 	// ggy_20210305 : 등록된 사업유형 조회
-	public List<CodesVo> selectAllBtype_codeList() {
-		return fsurpportDao.selectAllBtype_codeList();
+	public List<CodesVo> selectAllB_type_codeList() {
+		return fsurpportDao.selectAllB_type_codeList();
 	}
+	
 
+	// ggy_20210305 : 등록한 나만의 영농일지-간편등록 목록 조회
+	@Override
+	public List<MySimpleCodeVo> selectMySimpleCodeList(String user_id) {
+		return fsurpportDao.selectMySimpleCodeList(user_id);
+	}
+	
+	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
+	@Override
+	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
+		return fsurpportDao.selectMySimpleCodeInfo(mySimpleCodeVo);
+	}
+	
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
 	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
@@ -64,8 +78,8 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 	// ggy_20210305 : 해당 일지 조회
 	@Override
-	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
-		return fsurpportDao.selectFarmdiaryInfo(fdiary_no);
+	public FarmdiaryVo selectFarmdiaryInfo(int f_diary_no) {
+		return fsurpportDao.selectFarmdiaryInfo(f_diary_no);
 	}
 
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
@@ -123,5 +137,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
+
+	
 
 }

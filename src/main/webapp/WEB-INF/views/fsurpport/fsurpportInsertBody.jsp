@@ -34,34 +34,28 @@
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">간편 등록</label>
-		<select name="">
+		<select name="" onchange="location.href=this.value">
 			<option value="">선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
-				<option onclick="location.href='${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }
-					value="${mySimpleCodeList.my_simple_code }">
-					${mySimpleCodeList.item_code }-
-					${mySimpleCodeList.bsn_code }-
-					${mySimpleCodeList.area }
+				<option 
+					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }&user_id=${S_USER.user_id}">
+					${mySimpleCodeList.alias }
 				</option>
 			</c:forEach>
 		</select>
 		
 	</div>
 	
-	<div class="form-group col-md-6">
-		<label class="small mb-6" for="input_grdgd_nm">품목</label>
-		<select name="">
-			<option value="">선택</option>
-		</select>
-		<a href="${pageContext.request.contextPath}/fsurpport/simpleInsertView"> 
-			<input name="input_grdgd_nm" type="button" value="간편 등록">
-		</a>
-	</div>
 
 	<div class="form-group col-md-6">
 		<label class="small mb-6" for="input_difficulty">작업단계</label>
 		<select name="">
 			<option value="">선택</option>
+			<c:forEach items="${workstepsList }" var="workstepsList" >
+				<option value="${workstepsList.code_no }"
+				<c:if test="${selectMySimpleCodeInfo.b_type_code eq workstepsList.code_nm }">selected</c:if>
+				>${workstepsList.code_nm }</option>
+			</c:forEach>
 		</select>
 	</div>
 
@@ -91,7 +85,11 @@
 
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">날씨정보</label>
-		<input id="input_cls_code" name="input_cls_code" name="" type="date" class="form-control py-4">
+		
+		<select>
+			<option></option>
+		</select>
+		
 	</div>
 
 	<div class="form-group">

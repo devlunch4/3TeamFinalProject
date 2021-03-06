@@ -125,7 +125,7 @@
 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>
 										<td>${farmdiaryList.item_code }</td>
-										<td>${farmdiaryList.wstep_code }</td>
+										<td>${farmdiaryList.w_step_code }</td>
 										<td></td>
 										<td></td>
 										<td>
