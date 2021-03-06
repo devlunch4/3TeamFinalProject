@@ -99,7 +99,11 @@
 
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">날씨정보</label>
-		<input id="input_cls_code" name="input_cls_code" name="" type="date" class="form-control py-4">
+		
+		<select>
+			<option></option>
+		</select>
+		
 	</div>
 
 	<div class="form-group">
