@@ -1,12 +1,11 @@
 package kr.or.ddit.user.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // 20210226_KKC_MyPage
 // UserVo 생성 02-27 10시16분 (경찬)
 // UserVo 수정 03-03 15시06분 (예슬)
+// UserVo 생성 03-06 17시06분 (경찬)
 public class UserVo {
 
 	public String user_id; // 유저아이디
@@ -21,7 +20,7 @@ public class UserVo {
 	public int file_no; // 파일번호
 	public int login_fail_cnt; // 로그인 실패수
 	public Date logout_dt; // 로그아웃 시간
-	public String use; // 사용여부
+	public String use_yn; // 사용여부
 
 	public UserVo() {
 	}
@@ -132,20 +131,20 @@ public class UserVo {
 		this.logout_dt = logout_dt;
 	}
 
-	public String getUse() {
-		return use;
+	public String getUse_yn() {
+		return use_yn;
 	}
 
-	public void setUse(String use) {
-		this.use = use;
+	public void setUse_yn(String use_yn) {
+		this.use_yn = use_yn;
 	}
 
 	@Override
 	public String toString() {
 		return "UserVo [user_id=" + user_id + ", user_nm=" + user_nm + ", user_pw=" + user_pw + ", email=" + email
 				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zip=" + zip + ", mobile=" + mobile + ", reg_dt=" + reg_dt
-				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt + ", use="
-				+ use + "]";
+				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt
+				+ ", use_yn=" + use_yn + "]";
 	}
 
 }

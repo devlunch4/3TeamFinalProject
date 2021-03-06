@@ -36,7 +36,7 @@
 		메소드가 리턴하는 객체를 스프링 빈으로 등록한다. -->
 	<!-- sqlSeccionFactory 스프링 빈은 SqlSessionFactoryBean 타입이 아니라 SqlSeccionFacory 
 		타입이다. -->
-
+	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation"

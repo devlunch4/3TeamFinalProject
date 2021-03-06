@@ -21,32 +21,32 @@ public class ExcelDownloadView extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		
 		response.setContentType("application/vnd.ms-excel; charset=UTF-8");
 		response.setHeader("Content-Disposition", "attachment; filename=text.xlsx");
 		// Header : List<String>
 		// data : List<UserVo>
-
+		
 		List<String> header = (List<String>) model.get("header");
 		List<UserVo> data = (List<UserVo>) model.get("data");
-
+		
 		// excel 파일 생성
 		XSSFWorkbook book = new XSSFWorkbook();
 		// 시트생성
 		Sheet sheet = book.createSheet("users");
-
+		
 		// row / col 생성
 		int rownum = 0;
 		int colnum = 0;
 		Row row = sheet.createRow(rownum++); // row 가로 만들기
-
+		
 		for (String h : header) {
 			Cell cell = row.createCell(colnum++); // cell 세로 만들기
 			cell.setCellValue(h);
 		}
-
+		
 		data.size();
-
+		
 		for (UserVo d : data) {
 			colnum = 0;
 			Row r = sheet.createRow(rownum++);
@@ -56,7 +56,7 @@ public class ExcelDownloadView extends AbstractView {
 			String dateToStr = dateFormat.format(d.getReg_dt());
 			r.createCell(colnum++).setCellValue(dateToStr);
 		}
-
+		
 		book.write(response.getOutputStream());
 	}
 }
