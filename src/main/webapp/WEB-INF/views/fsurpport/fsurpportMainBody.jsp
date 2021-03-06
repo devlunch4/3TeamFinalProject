@@ -24,7 +24,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 					<option value="${itemsList.code_no }">${itemsList.code_nm }</option>
 				</c:forEach>
 			</select>
-			<select name="wstep_code" style="margin-left: 10%;">
+			<select name="w_step_code" style="margin-left: 10%;">
 				<option value="">전체</option>
 				<c:forEach items="${workstepsList }" var="workstepsList">
 					<option value="${workstepsList.code_no }">${workstepsList.code_nm }</option>
@@ -62,7 +62,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" aria-sort="ascending">사진</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">일자</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="ITEM_CODE: activate to sort column ascending">품목</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="WSTEP_CODE: activate to sort column ascending">작업단계</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="W_STEP_CODE: activate to sort column ascending">작업단계</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -75,15 +75,15 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 							</tfoot>
 							<tbody>
 								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView?fdiary_no=${farmdiaryList.fdiary_no }'" >
+									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView?f_diary_no=${farmdiaryList.f_diary_no }'" >
 										<td>
-											<img src="${farmdiaryList.file_no }" >
+											<img src="${farmdiaryList.file_nm }" >
 										</td>
 										<td>
 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>
 										<td>${farmdiaryList.item_code }</td>
-										<td>${farmdiaryList.wstep_code }</td>
+										<td>${farmdiaryList.w_step_code }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

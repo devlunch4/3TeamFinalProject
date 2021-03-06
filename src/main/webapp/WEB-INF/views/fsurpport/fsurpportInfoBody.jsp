@@ -15,7 +15,7 @@
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작업단계</label>
-		<input class="form-control py-4" id="input_difficulty" name="" type="text" value="${farmdiaryList.wstep_code }" required="required">
+		<input class="form-control py-4" id="input_difficulty" name="" type="text" value="${farmdiaryList.w_step_code }" required="required">
 	</div>
 	<div class="form-group ">
 		<label class="small mb-1" for="input_plant_prd">작업내용</label> <br>
@@ -29,12 +29,12 @@
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">사진 등록</label> 
-		<img src="${farmdiaryList.file_no }">
+		<img src="${farmdiaryList.file_nm }">
 	</div>
 	
 	<c:choose>
 		<c:when test="${S_USER.user_id.equals('farmdiaryList.writer') }">
-			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?fdiary_no=${farmdiaryList.fdiary_no }">수정</a> 
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?f_diary_no=${farmdiaryList.f_diary_no }">수정</a> 
 			<a class="btn btn-primary" href="#">삭제</a>
 		</c:when>
 		<c:otherwise></c:otherwise>

@@ -38,7 +38,7 @@ public class FsurpportController {
 		logger.debug("/finalProject/main 진입");
 
 		model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList());
-		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
 		return "tiles.fsurpport.fsurpportMain";
@@ -48,12 +48,15 @@ public class FsurpportController {
 	@RequestMapping(path = "searchAllFsurpportList", method = { RequestMethod.POST })
 	public String searchAllFsurpportList(HttpServletRequest req, Model model) {
 		logger.debug("searchAllFsurpportList 진입");
-
+		
+		logger.debug("값 확인 startDate : {}, endDate : {}", req.getParameter("startDate"), req.getParameter("endDate"));
+		
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
 
 		if (req.getParameter("startDate") != null && !req.getParameter("startDate").equals("")) {
 			logger.debug("1");
 			farmdiaryVo.setStartDate(req.getParameter("startDate").replace("-", ""));
+			logger.debug("farmdiaryVo.getStartDate() : {} ", farmdiaryVo.getStartDate());
 		} else {
 			logger.debug("-1");
 			farmdiaryVo.setStartDate("");
@@ -62,6 +65,7 @@ public class FsurpportController {
 		if (req.getParameter("endDate") != null && !req.getParameter("endDate").equals("")) {
 			logger.debug("2");
 			farmdiaryVo.setEndDate(req.getParameter("endDate").replace("-", ""));
+			logger.debug("farmdiaryVo.getEndDate() : {} ", farmdiaryVo.getEndDate());
 		} else {
 			logger.debug("-2");
 			farmdiaryVo.setEndDate("");
@@ -75,12 +79,12 @@ public class FsurpportController {
 			farmdiaryVo.setItem_code("");
 		}
 
-		if (req.getParameter("wstep_code") != null && !req.getParameter("wstep_code").equals("")) {
+		if (req.getParameter("w_step_code") != null && !req.getParameter("w_step_code").equals("")) {
 			logger.debug("4");
-			farmdiaryVo.setWstep_code(req.getParameter("wstep_code"));
+			farmdiaryVo.setW_step_code(req.getParameter("w_step_code"));
 		} else {
 			logger.debug("-4");
-			farmdiaryVo.setWstep_code("");
+			farmdiaryVo.setW_step_code("");
 		}
 
 		if (farmdiaryVo.getStartDate() != null && !farmdiaryVo.getStartDate().equals("")
@@ -88,7 +92,7 @@ public class FsurpportController {
 			logger.debug("값 있으니 searchAllFarmdiaryList로 DB 조회");
 			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryList(farmdiaryVo));
 
-			model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
 			return "tiles.fsurpport.fsurpportMain";
@@ -100,9 +104,9 @@ public class FsurpportController {
 
 	// ggy_20210305 : 농업지원-영농일지 내 일지 상세조회를 위한 진입페이지
 	@RequestMapping("infoView")
-	public String infoView(int fdiary_no, Model model) {
+	public String infoView(int f_diary_no, Model model) {
 
-		model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(fdiary_no));
+		model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(f_diary_no));
 
 		return "tiles.fsurpport.fsurpportInfo";
 	}
@@ -114,15 +118,14 @@ public class FsurpportController {
 		logger.debug("insertView 진입 user_id : "+user_id);
 		
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
-		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
-		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 
 		return "tiles.fsurpport.fsurpportInsert";
 	}
 	
 	// ggy_20210305 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치
 	@RequestMapping("selectMySimpleCodeInfo")
-	public String selectMySimpleCodeInfo(String user_id, String my_simple_code, Model model) {
+	public String selectMySimpleCodeInfo(String user_id, int my_simple_code, Model model) {
 		
 		MySimpleCodeVo mySimpleCodeVo = new MySimpleCodeVo();
 		mySimpleCodeVo.setMy_simple_code(my_simple_code);
@@ -132,10 +135,10 @@ public class FsurpportController {
 		
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
 		model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
-		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 		
-		logger.debug("selectMySimpleCodeInfo item_code : {}, bsn_code : {}",fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getItem_code(), fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getBsn_code());
+		logger.debug("selectMySimpleCodeInfo item_code : {}, bsn_code : {}",fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getItem_code(), fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code());
 		
 		return "tiles.fsurpport.fsurpportInsert";
 	}
@@ -144,9 +147,9 @@ public class FsurpportController {
 	@RequestMapping("simpleInsertView")
 	public String simpleInsertView(Model model) {
 
-		model.addAttribute("workstepsList", fsurpportService.selectAllWstep_codeList());
+		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-		model.addAttribute("btypeList", fsurpportService.selectAllBtype_codeList());
+		model.addAttribute("btypeList", fsurpportService.selectAllB_type_codeList());
 
 		return "tiles.fsurpport.fsurpportSimpleInsert";
 	}
@@ -183,8 +186,8 @@ public class FsurpportController {
 		}
 
 		filesVo = fsurpportService.selectFilesInfo(filesVo.getFile_nm());
-
-		farmdiaryVo.setFdiary_no(filesVo.getFile_no());
+		
+		farmdiaryVo.setF_diary_no(filesVo.getFile_no());
 
 		int registFarmdiaryCnt = fsurpportService.registFarmdiary(farmdiaryVo);
 

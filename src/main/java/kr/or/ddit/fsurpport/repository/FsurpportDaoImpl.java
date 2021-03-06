@@ -37,16 +37,16 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.selectList("fsurpports.selectAllItem_codeList");
 	}
 
-	// ggy_20210303 : 등록된 작업단계 리스트 조회
+	// ggy_20210306 : 등록된 작업단계 리스트 조회 수정
 	@Override
-	public List<CodesVo> selectAllWstep_codeList() {
-		return template.selectList("fsurpports.selectAllWstep_codeList");
+	public List<CodesVo> selectAllW_step_codeList() {
+		return template.selectList("fsurpports.selectAllW_step_codeList");
 	}
 	
 	// ggy_20210305 : 등록된 사업유형 리스트 조회
 	@Override
-	public List<CodesVo> selectAllBtype_codeList() {
-		return template.selectList("fsurpports.selectAllBtype_codeList");
+	public List<CodesVo> selectAllB_type_codeList() {
+		return template.selectList("fsurpports.selectAllB_type_codeList");
 	}
 
 	// ggy_20210305 : 등록한 나만의 영농일지-간편등록 목록 조회
@@ -70,8 +70,8 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	
 	// ggy_20210305 : 해당 일지 정보 조회
 	@Override
-	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
-		return template.selectOne("fsurpports.selectFarmdiaryInfo", fdiary_no);
+	public FarmdiaryVo selectFarmdiaryInfo(int f_diary_no) {
+		return template.selectOne("fsurpports.selectFarmdiaryInfo", f_diary_no);
 	}
 	
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록

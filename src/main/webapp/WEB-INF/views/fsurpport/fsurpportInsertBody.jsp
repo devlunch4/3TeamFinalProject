@@ -46,20 +46,6 @@
 		
 	</div>
 	
-	<div class="form-group col-md-6">
-		<label class="small mb-6" for="input_grdgd_nm">품목</label>
-		<select name="">
-			<option value="">선택</option>
-			<c:forEach items="${itemsList }" var="itemsList">
-				<option value="${itemsList.code_no }"
-					<c:if test="${selectMySimpleCodeInfo.item_code eq itemsList.code_nm }">selected</c:if> >
-					${itemsList.code_nm }</option>
-			</c:forEach>
-		</select>
-		<a href="${pageContext.request.contextPath}/fsurpport/simpleInsertView"> 
-			<input name="input_grdgd_nm" type="button" value="간편 등록">
-		</a>
-	</div>
 
 	<div class="form-group col-md-6">
 		<label class="small mb-6" for="input_difficulty">작업단계</label>
@@ -67,7 +53,7 @@
 			<option value="">선택</option>
 			<c:forEach items="${workstepsList }" var="workstepsList" >
 				<option value="${workstepsList.code_no }"
-				<c:if test="${selectMySimpleCodeInfo.bsn_code eq workstepsList.code_nm }">selected</c:if>
+				<c:if test="${selectMySimpleCodeInfo.b_type_code eq workstepsList.code_nm }">selected</c:if>
 				>${workstepsList.code_nm }</option>
 			</c:forEach>
 		</select>

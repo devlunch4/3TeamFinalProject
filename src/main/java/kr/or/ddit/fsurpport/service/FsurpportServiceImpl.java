@@ -44,15 +44,15 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.selectAllItem_codeList();
 	}
 
-	// ggy_20210303 : 등록된 작업단계코드 리스트 조회
+	// ggy_20210306 : 등록된 작업단계코드 리스트 조회 수정
 	@Override
-	public List<CodesVo> selectAllWstep_codeList() {
-		return fsurpportDao.selectAllWstep_codeList();
+	public List<CodesVo> selectAllW_step_codeList() {
+		return fsurpportDao.selectAllW_step_codeList();
 	}
 
 	// ggy_20210305 : 등록된 사업유형 조회
-	public List<CodesVo> selectAllBtype_codeList() {
-		return fsurpportDao.selectAllBtype_codeList();
+	public List<CodesVo> selectAllB_type_codeList() {
+		return fsurpportDao.selectAllB_type_codeList();
 	}
 	
 
@@ -78,8 +78,8 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 	// ggy_20210305 : 해당 일지 조회
 	@Override
-	public FarmdiaryVo selectFarmdiaryInfo(int fdiary_no) {
-		return fsurpportDao.selectFarmdiaryInfo(fdiary_no);
+	public FarmdiaryVo selectFarmdiaryInfo(int f_diary_no) {
+		return fsurpportDao.selectFarmdiaryInfo(f_diary_no);
 	}
 
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록

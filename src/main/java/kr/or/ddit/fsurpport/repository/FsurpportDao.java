@@ -18,11 +18,11 @@ public interface FsurpportDao {
 	// ggy_20210303: 등록된 품목 조회
 	List<CodesVo> selectAllItem_codeList();
 
-	// ggy_20210303 : 등록된 작업단계 조회
-	List<CodesVo> selectAllWstep_codeList();
+	// ggy_20210306 : 등록된 작업단계 조회 수정
+	List<CodesVo> selectAllW_step_codeList();
 	
 	// ggy_20210305 : 등록된 사업유형 조회
-	List<CodesVo> selectAllBtype_codeList();
+	List<CodesVo> selectAllB_type_codeList();
 	
 	// ggy_20210305 : 등록한 나만의 영농일지-간편등록 목록 조회
 	List<MySimpleCodeVo> selectMySimpleCodeList(String user_id);
@@ -34,7 +34,7 @@ public interface FsurpportDao {
 	List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo);
 	
 	// ggy_20210305 : 해당 일지 정보 조회
-	FarmdiaryVo selectFarmdiaryInfo(int fdiary_no);
+	FarmdiaryVo selectFarmdiaryInfo(int f_diary_no);
 	
 	// ggy_20210305 : 일지 등록때 파일 있으면 파일 등록
 	int registFiles(FilesVo filesVo);
