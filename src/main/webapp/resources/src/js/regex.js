@@ -53,7 +53,8 @@ function email_check(){
 	email_regex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
 	if (!(email_regex.test(email_value))) {
-		$(".email_status").css("display", "block");
+		$(".email_status_ok").css("display", "none");
+		$(".email_status_not_ok").css("display", "block");
 		$(".email_status").html("이메일 주소를 형식에 맞게 입력해주세요.");
 		return false;
 	}else{
@@ -70,7 +71,8 @@ function mobile_check(){
 	mobile_regex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
 
 	if (!(mobile_regex.test(mobile_value))) {
-		$(".mobile_status").css("display", "block");
+		$(".mobile_status_ok").css("display", "none");
+		$(".mobile_status_not_ok").css("display", "block");
 		$(".mobile_status").html("핸드폰번호를 올바르게 입력해주세요.");
 		return false;
 	}else{
