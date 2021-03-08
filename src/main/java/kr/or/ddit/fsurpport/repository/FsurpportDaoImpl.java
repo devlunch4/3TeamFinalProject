@@ -54,11 +54,30 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<MySimpleCodeVo> selectMySimpleCodeList(String user_id) {
 		return template.selectList("fsurpports.selectMySimpleCodeList", user_id);
 	}
+	
 
 	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
 	@Override
 	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
 		return template.selectOne("fsurpports.selectMySimpleCodeInfo", mySimpleCodeVo);
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 사업 유형 코드 조회
+	@Override
+	public CodesVo selectB_type_code_no(String code_no) {
+		return template.selectOne("fsurpports.selectB_type_code_no", code_no);
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 품목 코드 조회
+	@Override
+	public CodesVo selectItem_type_code_no(String code_no) {
+		return template.selectOne("fsurpports.selectItem_type_code_no", code_no);
+	}
+
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	@Override
+	public int registMySimpleCode(MySimpleCodeVo mySimpleCodeVo) {
+		return template.insert("fsurpports.registMySimpleCode", mySimpleCodeVo);
 	}
 	
 	// ggy_20210303 : 등록된 일지 조건 검색
@@ -132,6 +151,10 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int fsurCount(String user_id) {
 		return template.selectOne("fsurpports.fsurCount", user_id);
 	}
+
+	
+	
+	
 
 
 	

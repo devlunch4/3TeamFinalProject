@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FmanageVo;
@@ -149,9 +150,42 @@ public class FsurpportController {
 
 		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-		model.addAttribute("btypeList", fsurpportService.selectAllB_type_codeList());
+		model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
 
 		return "tiles.fsurpport.fsurpportSimpleInsert";
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	@RequestMapping(path = "registMySimpleCode", method = { RequestMethod.POST })
+	public String registMySimpleCode(MySimpleCodeVo mySimpleCodeVo,  Model model) {
+		
+		String user_id = mySimpleCodeVo.getOwner();
+		
+		String b_type_code_nm = fsurpportService.selectB_type_code_no(mySimpleCodeVo.getB_type_code()).getCode_nm();
+		String item_code_nm = fsurpportService.selectB_type_code_no(mySimpleCodeVo.getItem_code()).getCode_nm();
+		
+		String code_alias = b_type_code_nm + "-"+ item_code_nm; 
+		
+		mySimpleCodeVo.setCode_alias( code_alias );
+		
+		int registCnt = fsurpportService.registMySimpleCode(mySimpleCodeVo);
+		
+		logger.debug("registCnt :" + registCnt);
+		
+		if(registCnt == 1) {
+			
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
+			return "tiles.fsurpport.fsurpportInsert";
+		} else {
+			
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+			return "tiles.fsurpport.fsurpportSimpleInsert";
+		}
+		
+		
 	}
 
 	// ggy_20210302 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지

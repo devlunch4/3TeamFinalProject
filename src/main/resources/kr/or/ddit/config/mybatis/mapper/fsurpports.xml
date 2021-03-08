@@ -92,6 +92,33 @@
 		
 	</select>
 	
+	<!-- ggy_20210308 : mysimplecode code_alias 등록을 위해 사업 유형 조회. -->
+	<select id="selectB_type_code_no" parameterType="String"
+		resultType="codesVo">
+		
+		SELECT *
+		FROM codes
+		where code_no = #{code_no }
+		
+	</select>
+	
+	<!-- ggy_20210308 : mysimplecode code_alias 등록을 위해 품목 조회. -->
+	<select id="selectItem_type_code_no" parameterType="String"
+		resultType="codesVo">
+		
+		SELECT *
+		FROM codes
+		where code_no = #{code_no }
+		
+	</select>
+	
+	<!-- ggy_20210308 : mysimplecode에 나의 간편등록 내용물을 등록 -->
+	<insert id="registMySimpleCode" parameterType="mySimpleCodeVo">
+		insert into mysimplecode values(seq_mysimplecode.NEXTVAL, #{owner },
+										#{item_code }, #{b_type_code },
+										#{code_alias }, #{area }, 'Y')
+	</insert>
+	
 	<!-- ggy_20210306 : 페이징 처리하여 영농일지 검색 조회 -->
 	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo"
 		parameterType="farmdiaryVo">

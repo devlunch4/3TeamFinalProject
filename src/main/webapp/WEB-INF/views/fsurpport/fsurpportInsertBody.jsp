@@ -34,6 +34,8 @@
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">간편 등록</label>
+		<input type="button" value="간편등록" class="btn btn-primary"
+		onclick="location.href='${pageContext.request.contextPath}/fsurpport/simpleInsertView'">
 		<select name="" onchange="location.href=this.value">
 			<option value="">선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">

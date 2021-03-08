@@ -67,6 +67,23 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
 		return fsurpportDao.selectMySimpleCodeInfo(mySimpleCodeVo);
 	}
+
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 사업 유형 코드 조회
+	@Override
+	public CodesVo selectB_type_code_no(String code_no) {
+		return fsurpportDao.selectB_type_code_no(code_no);
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 품목 코드 조회
+	@Override
+	public CodesVo selectItem_type_code_no(String code_no) {
+		return fsurpportDao.selectItem_type_code_no(code_no);
+	}
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	@Override
+	public int registMySimpleCode(MySimpleCodeVo mySimpleCodeVo) {
+		return fsurpportDao.registMySimpleCode(mySimpleCodeVo);
+	}
 	
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
@@ -137,6 +154,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
+	
 
 	
 
