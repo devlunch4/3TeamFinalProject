@@ -45,11 +45,14 @@ public interface FsurpportDao {
 	// ggy_20210305 : 해당 일지 정보 조회
 	FarmdiaryVo selectFarmdiaryInfo(int f_diary_no);
 	
+	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
+	MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo);
+	
 	// ggy_20210305 : 일지 등록때 파일 있으면 파일 등록
 	int registFiles(FilesVo filesVo);
 	
-	// ggy_20210305 : 일지 등록을 위한 등록된 파일 정보 가져오기
-	FilesVo selectFilesInfo(String file_nm);
+	// ggy_20210308 : 일지 등록을 위한 등록된 파일 정보 가져오기
+	FilesVo selectFilesInfo(int file_no);
 
 	// ggy_20210305 : 일지 등록
 	int registFarmdiary(FarmdiaryVo farmdiaryVo);

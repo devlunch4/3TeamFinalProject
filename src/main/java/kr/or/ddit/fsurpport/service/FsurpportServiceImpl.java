@@ -98,17 +98,23 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FarmdiaryVo selectFarmdiaryInfo(int f_diary_no) {
 		return fsurpportDao.selectFarmdiaryInfo(f_diary_no);
 	}
-
+	
+	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
+	@Override
+	public MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo) {
+		return fsurpportDao.selectMySimpleCode_noInfo(mySimpleCodeVo);
+	}
+	
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
 		return fsurpportDao.registFiles(filesVo);
 	}
 
-	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
+	// ggy_20210308 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
 	@Override
-	public FilesVo selectFilesInfo(String file_nm) {
-		return fsurpportDao.selectFilesInfo(file_nm);
+	public FilesVo selectFilesInfo(int file_no) {
+		return fsurpportDao.selectFilesInfo(file_no);
 	}
 
 	// ggy_20210305 : 영농일지 등록

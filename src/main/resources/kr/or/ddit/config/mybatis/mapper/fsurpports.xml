@@ -187,30 +187,46 @@
 		ON f.file_no = files.file_no
 		WHERE f.f_diary_no = #{f_diary_no }
 	</select>
-
-	<!-- ggy_20210306 : 일지 등록때 파일 있으면 파일 등록 -->
-	<insert id="registFiles" parameterType="filesVo">
+	
+	<!-- ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기 -->
+	<select id="selectMySimpleCode_noInfo" resultType="mySimpleCodeVo"
+		parameterType="mySimpleCodeVo">
+		SELECT *
+		FROM mysimplecode
+		WHERE owner = #{owner }
+		and my_simple_code = #{my_simple_code }
+	</select>
+	
+	<!-- ggy_20210308 : 일지 등록때 파일 있으면 파일 등록 -->
+	<insert id="registFiles" parameterType="filesVo" >
+		
+		
 		INSERT INTO files VALUES(
 		seq_files.NEXTVAL, #{file_nm },
 		#{file_path }, 'Y')
+		
+		<selectKey keyProperty = "file_no" resultType="int" order="AFTER">
+			select seq_files.currval from dual
+		</selectKey>
+		
 	</insert>
 
 	<!-- ggy_20210306 : 일지 등록을 위한 등록된 파일 정보 가져오기 -->
 	<select id="selectFilesInfo" resultType="filesVo"
-		parameterType="String">
+		parameterType="int">
 		SELECT *
 		FROM files
-		WHERE file_nm = #{file_nm }
+		WHERE file_no = #{file_no }
 	</select>
 
 	<!-- ggy_20210306 : 일지 등록 -->
 	<insert id="registFarmdiary" parameterType="filesVo">
 		INSERT INTO farmdiary
 		VALUES(seq_farmdiary.NEXTVAL,
-		#{writer }, #{my_simple_code } #{content },
+		#{writer }, #{my_simple_code }, #{content },
 		sysdate, #{weather }, #{low_temp },
 		#{high_temp }, #{rainfall }, #{humid },
-		#{yield }, #{area }, #{file_no }, #{use_yn },
+		#{yield }, #{area }, #{file_no }, 'Y',
 		#{b_type_code }, #{w_step_code }, #{item_code })
 	</insert>
 </mapper>

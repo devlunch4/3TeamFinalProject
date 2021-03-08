@@ -93,6 +93,12 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.selectOne("fsurpports.selectFarmdiaryInfo", f_diary_no);
 	}
 	
+	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
+	@Override
+	public MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo) {
+		return template.selectOne("fsurpports.selectMySimpleCode_noInfo", mySimpleCodeVo);
+	}
+	
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
@@ -101,8 +107,8 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	
 	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
 	@Override
-	public FilesVo selectFilesInfo(String file_nm) {
-		return template.selectOne("fsurpports.selectFilesInfo", file_nm);
+	public FilesVo selectFilesInfo(int file_no) {
+		return template.selectOne("fsurpports.selectFilesInfo", file_no);
 	}
 	
 	// ggy_20210305 : 영농일지 등록
@@ -151,6 +157,8 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int fsurCount(String user_id) {
 		return template.selectOne("fsurpports.fsurCount", user_id);
 	}
+	
+	
 
 	
 	
