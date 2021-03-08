@@ -28,15 +28,13 @@
 						<td style="width: 50%;">${facility.location}</td>
 					</tr>
 					<tr>
-						<td style="width: 50%;">장비명:${msrrec.msr_code}</td>
+					<!--20210308_KJH 장비명을 use_yn으로 받고있음 -->
+						<td style="width: 50%;">장비명:${msrrec.use_yn}</td>
 						<td style="width: 50%;">온도:${msrrec.msr_temp}</td>
 					</tr>
 					<tr>
 						<td style="width: 50%;">습도:${msrrec.msr_humid}</td>
 						<td style="width: 50%;">조도:${msrrec.msr_bright}</td>
-					</tr>
-					<tr>
-						<td colspan="2">내용없음</td>
 					</tr>
 				</table>
 			</div>
