@@ -196,7 +196,7 @@ public class UserController {
 		model.addAttribute("userList", userList);
 		return "tiles.user.allUser";
 	}
-
+	
 	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
 	@RequestMapping("userExcelDownload")
 	public String userExcelDownload(Model model) {
