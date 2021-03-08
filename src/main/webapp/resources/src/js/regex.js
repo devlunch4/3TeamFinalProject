@@ -18,23 +18,16 @@ function user_nm_check(){
 function user_id_check(){
 	user_id_value = $('#user_id').val().trim();
 	
-	id_regex = /^[a-z]+[a-z0-9]{5,19}$/;
+	id_regex = /^[a-z]+[a-z0-9]{3,19}$/;
 	if(!(id_regex.test(user_id_value))){
+		$(".id_status").html("아이디는 영소문자로 시작하는 4~20자 영문자 또는 숫자이어야 합니다.");
 		return false;
+	}else{
+		$(".id_status").css("display", "none");
 	}
 	return true;
 }
 
-
-function idcheck() {
-	idvalue = $('#user_id').val().trim();
-
-	idreg = /^[a-z]+[a-z0-9]{5,19}$/;
-	if (!(idreg.test(idvalue))) {
-		return false;
-	}
-	return true;
-}
 
 //비밀번호 정규식 체크
 function user_pw_check(){

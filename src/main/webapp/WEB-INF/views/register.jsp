@@ -32,19 +32,16 @@
 	    		})
 	    		
 	    		//아이디입력
-	    		$("#user_id").keyup(function(){
-	    			
-	    			status_txt = "아이디는 영소문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다."
-	    			
-	    			if(!idcheck()){
-	    				$(".id_status").html(status_txt);
+// 	    		$("#user_id").keyup(function(){
+	    		$("#test").on("click",function(){
+	    			if(!user_id_check()){
 	    				return false;
 	    			}
 	    			
 	    			user_id_value = $("#user_id").val().trim();
 	    			
 	    			$.ajax({
-	    				url : "join/id_check",
+	    				url : "/join/id_check",
 	    				type : "post",
 	    				data : {
 	    					"user_id" : user_id_value
@@ -111,6 +108,7 @@
         
     </head>
     <body class="bg-primary">
+    	<input type="button" id="test" value="test">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
