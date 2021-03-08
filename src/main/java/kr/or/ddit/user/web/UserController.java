@@ -159,13 +159,13 @@ public class UserController {
 	@RequestMapping("userDetail")
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
-
+		
 		// 시설카운트
 		int fcount = fsurpportService.fmanageCount(user_id);
-
+		
 		// 일지카운트
 		int ffcount = fsurpportService.fsurCount(user_id);
-
+		
 		model.addAttribute("user", user);
 		model.addAttribute("count", fcount);
 		model.addAttribute("ffcount", ffcount);
@@ -211,10 +211,20 @@ public class UserController {
 
 	// 모든 코드를 조회하는거 03/06 (경찬)
 	@RequestMapping("codesView")
-	public String codesView() {
-		codesService.allCodes();
-		
-		return "";
+	public String codesView(Model model) {
+		List<CodesVo> codeList = codesService.allCodes();
+		model.addAttribute("codeList", codeList);
+		return "tiles.user.allCodes";
 	}
+	
+	// 코드 상세정보를 조회 03/08 (경찬)
+	@RequestMapping("codeDetail")
+	public String codeDetail(Model model, String code_seq) {
+		CodesVo code = codesService.selectCodes(code_seq);
+		
+		model.addAttribute("code", code);
+		return "tiles.user.codeDetail";
+	}
+	
 
 }

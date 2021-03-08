@@ -1,5 +1,7 @@
 package kr.or.ddit.codes.repository;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,8 +18,14 @@ public class CodesDaoImpl implements CodesDao {
 
 	// 모든 코드정보 조회 03/06 (경찬)
 	@Override
-	public CodesVo allCodes( ) {
-		return tempplate.selectOne("codes.selectAllCodes");
+	public List<CodesVo> allCodes() {
+		return tempplate.selectList("codes.selectAllCodes");
 	}
-	
+
+	// 해당 코드상세 정보 조회 03/08 (경찬)
+	@Override
+	public CodesVo selectCodes(String code_seq) {
+		return tempplate.selectOne("codes.selectCodes", code_seq);
+	}
+
 }

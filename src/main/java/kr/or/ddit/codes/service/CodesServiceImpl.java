@@ -1,5 +1,7 @@
 package kr.or.ddit.codes.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,8 +20,13 @@ public class CodesServiceImpl implements CodesService {
 
 	// 모든 코드정보 조회 03/06 (경찬)
 	@Override
-	public CodesVo allCodes() {
+	public List<CodesVo> allCodes() {
 		return codesDao.allCodes();
+	}
+
+	@Override
+	public CodesVo selectCodes(String code_seq) {
+		return codesDao.selectCodes(code_seq);
 	}
 
 }
