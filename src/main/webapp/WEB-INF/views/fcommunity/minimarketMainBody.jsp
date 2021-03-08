@@ -93,11 +93,13 @@
 								</c:forEach>
 								
 								<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketInfoView'" >
-									<td>test</td>
-									<td><img src=""></td>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
+								  <c:forEach items="${noticelist }" var="notice">
+										<td>${noticelist. }</td>
+										<td><img src=""></td>
+										<td></td>
+										<td></td>
+										<td></td>
+								  </c:forEach>
 								</tr>
 								
 							</tbody>

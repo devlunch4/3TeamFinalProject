@@ -6,6 +6,7 @@
 
 <configuration>
 	<typeAliases>
+		
 
 		<typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo" />
 
@@ -19,8 +20,12 @@
 		<!-- 20210305KWS GardenguidesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo"
 			alias="gardenguideVo" />
-<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo"
-			alias="guideSqlVo" />
+		
+			
+		<!-- 20210306 SHS FcommunityVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FcommunityVo" alias="FcommunityVo" />
+		
+		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
 
 
 		<!-- 2021-03-04KJH FcltmngVo typeAliases -->
