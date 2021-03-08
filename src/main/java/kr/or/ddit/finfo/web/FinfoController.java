@@ -102,7 +102,7 @@ public class FinfoController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// 파일 하드 저장 끝
+		// 파일 하드 저장 끝 추후 테이블 수정요망
 
 		// 신규 정보 저장시작
 		logger.debug("NEW 입력된 정보gardenguidesVo : {}", gardenguidesVo);
