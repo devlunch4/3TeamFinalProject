@@ -34,4 +34,16 @@ public class FinfoDaoImpl implements FinfoDao {
 		return tempplate.insert("guides.insertGuide", gardenguideVo);
 	}
 
+	// 20210308 KWS 텃밭 가이드 수정
+	@Override
+	public int updateGuide(GardenguideVo gardenguideVo) {
+		return tempplate.update("guides.updateGuide", gardenguideVo);
+	}
+
+	// 20210308 KWS 텃밭 가이드 삭제(use_yn값 N 수정)
+	@Override
+	public int deleteGuide(GardenguideVo gardenguideVo) {
+		return tempplate.update("guides.deleteGuide", gardenguideVo);
+	}
+
 }

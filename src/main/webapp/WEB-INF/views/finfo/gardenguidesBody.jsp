@@ -2,24 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
 <script>
 	// 수정 버튼 클릭시 이동 
 	$(function() {
 		$("#modifyBtn").on("click", function() {
+			var xguide_code = ${gardenguidesVo.guide_code};
+			$("#xguide_code").val(xguide_code);
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "gardenguidesUpdate");
 			$("#frm").submit();
 		});
-	})
-	// 삭제 버튼 클릭시 이동
-	$(function() {
-		$("#deleteBtn").on("click", function() {
-			$("#frm").attr("method", "post");
-			$("#frm").attr("action", "gardenguidesDelete");
-			$("#frm").submit();
-		});
-	})
+	});
+
 	//초성검색
 	$(function() {
 		$(".chosungc").on("click", function() {
@@ -47,7 +41,7 @@
 <div>
 	<!-- 관리자 전용 등록 이동 버튼 활성 -->
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn-success btn-lg btn-block col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
+		<button type="button" class="btn-success btn-lg col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
 	</c:if>
 </div>
 
@@ -81,13 +75,13 @@
 				<!-- <button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button> -->
 				<!-- 코어 태그 사용 -->
 				<c:set var="chkList" value="${gardenguidesList.size() }" />
-				
+
 				<div>
 					<c:if test="${chkList == 0 }">
-				<span class="bg-warning">조회된 값이 없습니다.</span>
-				</c:if>
+						<span class="bg-warning">조회된 값이 없습니다.</span>
+					</c:if>
 				</div>
-				
+
 				<c:forEach var="gardenguidesList" items="${gardenguidesList}">
 					<button type="button" <c:set var="checkcode" value="${gardenguidesList.guide_code}" /> <c:choose>
     <c:when test="${checkcode  eq xguide_code }">
@@ -110,7 +104,7 @@
 				<div class="">
 					<div class="row">
 						<div class="imgwrap">
-							<img src="/images/upload/farm_guide_info/144609103235500023.jpg" alt="144609103235500023.jpg">
+							<img src="/images/upload/farm_guide_info/${gardenguidesVo.file_no }" alt="${gardenguidesVo.file_no }">
 						</div>
 
 						<table class="table table-bordered col-sx-12">
@@ -146,6 +140,10 @@
 								<td style="width: 30%">재배TIP!</td>
 								<td style="width: 70%">${gardenguidesVo.plant_tip }</td>
 							</tr>
+							<tr>
+								<td style="width: 30%">재배내용</td>
+								<td style="width: 70%">${gardenguidesVo.plant_content }</td>
+							</tr>
 							<%-- <tr>
 								<td style="width: 30%">작성일</td>
 								<td style="width: 70%">${gardenguidesVo.reg_dt }</td>
@@ -161,9 +159,9 @@
 
 		<c:if test="${S_USER.user_id.equals('admin') }">
 			<!-- 관리자 전용 삭제 이동 버튼 활성 -->
-			<!-- <button type="button" id="deleteBtn" class="btn btn-danger btn-lg btn-block col-md-3 float-left mt-4">텃밭가이드 삭제</button> -->
+			<!-- <button type="button" id="deleteBtn" class="btn btn-danger btn-lg  col-md-3 float-left mt-4">텃밭가이드 삭제</button> -->
 			<!-- 관리자 전용 수정 이동 버튼 활성 -->
-			<button type="button" id="modifyBtn" class="btn-warning btn-lg btn-block col-md-3 float-right mt-4">텃밭가이드 수정</button>
+			<button type="button" id="modifyBtn" class="btn-warning btn-lg col-md-3 float-right mt-4">텃밭가이드 수정</button>
 		</c:if>
 	</div>
 </div>

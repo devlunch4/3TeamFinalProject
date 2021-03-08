@@ -96,7 +96,7 @@ public class FinfoController {
 		// 파일 하드 저장 시작
 		logger.debug("NEW 파일 정보 file_nm2: {}", file_nm2.getOriginalFilename());
 		try {
-			file_nm2.transferTo(new File("d:\\upload\\" + file_nm2.getOriginalFilename()));
+			file_nm2.transferTo(new File("c:\\3teamfinalproject\\guide_img\\" + file_nm2.getOriginalFilename()));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -106,13 +106,18 @@ public class FinfoController {
 
 		// 신규 정보 저장시작
 		logger.debug("NEW 입력된 정보gardenguidesVo : {}", gardenguidesVo);
-		logger.debug("NEW in FileLength: {}", file_nm2.getOriginalFilename().length());
+		logger.debug("test-value// need file_no: {}", file_nm2.getOriginalFilename().length());
+
+		// Files 테이블에 넣고 해당 번호 출력.후 setFile_no 설정 필요
 		gardenguidesVo.setFile_no(file_nm2.getOriginalFilename().length());
 
+		// Insert 수행
 		int insertGuide = finfoService.insertGuide(gardenguidesVo);
-		logger.debug("NEW 신규 가이드 저장 완료 : {}", insertGuide);
+		logger.debug("NEW 신규 텃밭가이드 저장 완료 : {}", insertGuide);
 		// 신규 정보 저장 끝
 
+		///////////////////////////////////////////////////
+		// 가이드 페이지로 이동
 		String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
 		model.addAttribute("chosungArr", chosungArr);
 
@@ -132,26 +137,49 @@ public class FinfoController {
 		return "tiles.finfo.gardenguides";
 	}
 
-	// KWS 텃밭 가이드 수정페이지 이동 (재배정보 수정 페이지 진입)20210305
+	// KWS 텃밭 가이드 수정페이지 이동 (재배정보 수정 페이지 진입)20210305+20210308
 	@RequestMapping(path = "gardenguidesUpdate", method = { RequestMethod.POST })
-	public String gardenguidesUpdate(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
+	public String gardenguidesUpdate(Model model, int xguide_code) {
 		logger.debug("IN gardenguidesUpdate()");
-		logger.debug("Vo : {}", gardenguidesVo);
-		if (file_nm2 != null) {
-			logger.debug("file_nm2: {}", file_nm2.getOriginalFilename());
-		} else {
-			logger.debug("file_nm2: null");
-		}
+		// 해당 가이드 글번호 보내기
+		model.addAttribute("xguide_code", xguide_code);
+		GardenguideVo gardenguidesVo = finfoService.selectGuide(xguide_code);
+		model.addAttribute("gardenguidesVo", gardenguidesVo);
 		return "tiles.finfo.gardenguidesUpdate";
 	}
 
-	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305
+	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305+20210308
 	@RequestMapping(path = "gardenguidesUpdateBtn", method = { RequestMethod.POST })
 	public String gardenguidesUpdateBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesUpdateBtn()");
 		logger.debug("Vo : {}", gardenguidesVo);
 		logger.debug("file_nm: {}", file_nm2.getOriginalFilename());
+		if (file_nm2.getSize() > 0) {
+			logger.debug("새로운 파일로 변경됨.");
+			// 파일 테이블에 경로저장.
+			logger.debug("{}", file_nm2.getOriginalFilename());
+			gardenguidesVo.setFile_no(file_nm2.getOriginalFilename().length());
+		}
+		// update 수행
+		int updateGuide = finfoService.updateGuide(gardenguidesVo);
+		logger.debug("NEW 신규 텃밭가이드 수정 완료 : {}", updateGuide);
+
+		// 송신 set
+		int xguide_code = Integer.parseInt(gardenguidesVo.getGuide_code());
+		model.addAttribute("xguide_code", xguide_code);
+		GardenguideVo gardenguidesVo1 = finfoService.selectGuide(xguide_code);
+		model.addAttribute("gardenguidesVo", gardenguidesVo1);
 		return "tiles.finfo.gardenguides";
+	}
+
+	// KWS 텃밭 가이드 삭제처리 (use_yn : y>>>N) 20210308
+	@RequestMapping(path = "gardenguidesDelete", method = { RequestMethod.POST })
+	public String gardenguidesdelete(Model model, int xguide_code, GardenguideVo gardenguidesVo) {
+		logger.debug("IN gardenguidesDelete()");
+		logger.debug("삭제처리될 xguide_code : {}", xguide_code);
+		int updateGuide = finfoService.deleteGuide(gardenguidesVo);
+		logger.debug("use_yn: N처리 : {}", updateGuide);
+		return "redirect:/finfo/gardenguides";
 	}
 
 	// ggy_20210304 : 농업정보 - 품종정보 진입

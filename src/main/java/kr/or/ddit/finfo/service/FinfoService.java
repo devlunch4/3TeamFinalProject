@@ -15,4 +15,10 @@ public interface FinfoService {
 
 	// 20210308 KWS 텃밭 가이드 신규 등록
 	int insertGuide(GardenguideVo gardenguideVo);
+
+	// 20210308 KWS 텃밭 가이드 수정
+	int updateGuide(GardenguideVo gardenguideVo);
+
+	// 20210308 KWS 텃밭 가이드 삭제(use_yn값 N 수정)
+	int deleteGuide(GardenguideVo gardenguideVo);
 }
