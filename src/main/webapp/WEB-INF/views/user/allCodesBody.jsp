@@ -52,15 +52,15 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${codeList }" var="code">
-										<tr class="code" data-codeseq="${code.code_seq }">
-											<td>${code.code_no }</td>
-											<td>${code.code_nm }</td>
-											<td>${code.use_yn }</td>
-										</tr>
+									<tr class="code" data-codeseq="${code.code_seq }">
+										<td>${code.code_no }</td>
+										<td>${code.code_nm }</td>
+										<td>${code.use_yn }</td>
+									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						<a class="btn btn-default pull-right" href="excelDownload">사용자 엑셀다운로드</a>
+						<a class="btn btn-default pull-right" href="CodeExcelDownload">코드 엑셀다운로드</a>
 					</div>
 				</div>
 			</div>

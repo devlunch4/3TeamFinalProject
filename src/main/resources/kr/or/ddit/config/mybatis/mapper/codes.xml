@@ -8,7 +8,8 @@
 
 	<!-- 분류코드로 품목(작물명)찾기(_yn 수정) -->
 	<select id="selectcodes" resultType="codesVo">
-		select code_no,code_nm,parent_code,use_yn
+		select
+		code_no,code_nm,parent_code,use_yn
 		from codes
 	</select>
 
@@ -26,5 +27,10 @@
 		WHERE code_seq = #{value}
 	</select>
 
+	<update id="modifyCode" parameterType="codesVo">
+		update codes set code_no = 	#{code_no}, code_nm = #{code_nm}, parent_code = #{parent_code}, use_yn = #{use_yn}
+		where code_seq = #{code_seq}
+	</update>
+	
 </mapper>
 

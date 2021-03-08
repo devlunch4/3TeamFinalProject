@@ -8,7 +8,11 @@ public interface CodesDao {
 
 	// 모든 코드정보 조회 03/06 (경찬)
 	List<CodesVo> allCodes();
-	
+
 	// 해당 코드상세 정보 조회 03/08 (경찬)
 	CodesVo selectCodes(String code_seq);
+
+	// 해당 코드 정보수정 03/08 (경찬)
+	CodesVo modifyCode(CodesVo codesVo);
+
 }

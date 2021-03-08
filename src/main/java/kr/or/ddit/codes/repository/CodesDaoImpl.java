@@ -27,5 +27,11 @@ public class CodesDaoImpl implements CodesDao {
 	public CodesVo selectCodes(String code_seq) {
 		return tempplate.selectOne("codes.selectCodes", code_seq);
 	}
+	
+	// 해당 코드 정보수정 03/08 (경찬)
+	@Override
+	public CodesVo modifyCode(CodesVo codesVo) {
+		return tempplate.selectOne("codes.modifyCode", codesVo);
+	}
 
 }

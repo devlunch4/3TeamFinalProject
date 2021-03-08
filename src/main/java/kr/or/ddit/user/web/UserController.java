@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -159,13 +160,13 @@ public class UserController {
 	@RequestMapping("userDetail")
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
-		
+
 		// 시설카운트
 		int fcount = fsurpportService.fmanageCount(user_id);
-		
+
 		// 일지카운트
 		int ffcount = fsurpportService.fsurCount(user_id);
-		
+
 		model.addAttribute("user", user);
 		model.addAttribute("count", fcount);
 		model.addAttribute("ffcount", ffcount);
@@ -187,15 +188,18 @@ public class UserController {
 	}
 
 	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
+	// 수정 03/08 (경찬)
 	@RequestMapping("modifyUser2")
-	public String modifyUser2(UserVo userVo) {
+	public String modifyUser2(UserVo userVo, Model model) {
 		userVo = userService.modifyUser(userVo);
+		List<UserVo> userList = userService.selectAllUser();
+		model.addAttribute("userList", userList);
 		return "tiles.user.allUser";
 	}
 
 	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
-	@RequestMapping("excelDownload")
-	public String excelDownLoad(Model model) {
+	@RequestMapping("userExcelDownload")
+	public String userExcelDownload(Model model) {
 		List<String> header = new ArrayList<String>();
 		header.add("아이디");
 		header.add("이름");
@@ -216,15 +220,47 @@ public class UserController {
 		model.addAttribute("codeList", codeList);
 		return "tiles.user.allCodes";
 	}
-	
+
 	// 코드 상세정보를 조회 03/08 (경찬)
 	@RequestMapping("codeDetail")
 	public String codeDetail(Model model, String code_seq) {
 		CodesVo code = codesService.selectCodes(code_seq);
-		
 		model.addAttribute("code", code);
 		return "tiles.user.codeDetail";
 	}
-	
+
+	// 모든 코드정보 엑셀 다운로드 03/08 (경찬)
+	@RequestMapping("CodeExcelDownload")
+	public String excelDownLoad(Model model) {
+		List<String> header = new ArrayList<String>();
+		header.add("코드번호");
+		header.add("코드이름");
+		header.add("상위코드");
+		header.add("사용여부");
+
+		model.addAttribute("header", header);
+
+		List<CodesVo> data = new ArrayList<CodesVo>();
+		model.addAttribute("data", codesService.allCodes());
+
+		return "CodeExcelDownloadView";
+	}
+
+	// 관리자가 코드수정 하는거 03/08 (경찬)
+	@RequestMapping("modifyCode")
+	public String modifyCode(String code_seq, Model model) {
+		CodesVo code = codesService.selectCodes(code_seq);
+		model.addAttribute("code", code);
+		return "tiles.user.modifyCode";
+	}
+
+	// 관리자가 코드수정 하는거 03/08 (경찬)
+	@RequestMapping("modifyCode2")
+	public String modifyCode2(CodesVo codesVo, Model model) {
+		codesVo = codesService.modifyCode(codesVo);
+		List<CodesVo> codesList = codesService.allCodes();
+		model.addAttribute("codeList", codesList);
+		return "tiles.user.allCodes";
+	}
 
 }

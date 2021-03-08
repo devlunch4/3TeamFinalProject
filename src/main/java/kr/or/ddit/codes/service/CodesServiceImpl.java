@@ -29,4 +29,9 @@ public class CodesServiceImpl implements CodesService {
 		return codesDao.selectCodes(code_seq);
 	}
 
+	@Override
+	public CodesVo modifyCode(CodesVo codesVo) {
+		return codesDao.modifyCode(codesVo);
+	}
+
 }
