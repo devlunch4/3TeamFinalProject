@@ -1,5 +1,7 @@
 package kr.or.ddit.finfo.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,7 +33,7 @@ public class FinfoController {
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
 
-	// KWS 텃밭 가이드 (재배정보 진입) 수정 20210305
+	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305
 	@RequestMapping("gardenguides")
 	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
 			@RequestParam(defaultValue = "1") int xguide_code) {
@@ -64,7 +66,6 @@ public class FinfoController {
 
 		GuideSqlVo guideSqlVo = new GuideSqlVo(sqlwhere1, sqlwhere2);
 
-		//
 		// 초성 글자 보내기
 		model.addAttribute("chosung", chosung);
 		// 초성 검색 관련 이름 리스트 보내기
@@ -79,8 +80,6 @@ public class FinfoController {
 		return "tiles.finfo.gardenguides";
 	}
 
-	////////////////////
-
 	// KWS 텃밭 가이드 등록페이지이동 (재배정보 등록페이지 진입)
 	@RequestMapping("gardenguidesInsert") // get
 	public String gardenguidesInsert(Model model) {
@@ -88,12 +87,48 @@ public class FinfoController {
 		return "tiles.finfo.gardenguidesInsert";
 	}
 
+	// 추가 수정 20210308 KWS 완료
 	// KWS 텃밭 가이드 등록페이지완료 (재배정보 등록완료)
 	@RequestMapping(path = "gardenguidesInsertBtn", method = { RequestMethod.POST })
 	public String gardenguidesInsertBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesInsertBtn()");
-		logger.debug("Vo : {}", gardenguidesVo);
-		logger.debug("file_nm: {}", file_nm2.getOriginalFilename());
+
+		// 파일 하드 저장 시작
+		logger.debug("NEW 파일 정보 file_nm2: {}", file_nm2.getOriginalFilename());
+		try {
+			file_nm2.transferTo(new File("d:\\upload\\" + file_nm2.getOriginalFilename()));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// 파일 하드 저장 끝
+
+		// 신규 정보 저장시작
+		logger.debug("NEW 입력된 정보gardenguidesVo : {}", gardenguidesVo);
+		logger.debug("NEW in FileLength: {}", file_nm2.getOriginalFilename().length());
+		gardenguidesVo.setFile_no(file_nm2.getOriginalFilename().length());
+
+		int insertGuide = finfoService.insertGuide(gardenguidesVo);
+		logger.debug("NEW 신규 가이드 저장 완료 : {}", insertGuide);
+		// 신규 정보 저장 끝
+
+		String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
+		model.addAttribute("chosungArr", chosungArr);
+
+		//
+		// 초성 글자 보내기
+		model.addAttribute("chosung", "ㄱ");
+		// 초성 검색 관련 이름 리스트 보내기
+		GuideSqlVo guideSqlVo = new GuideSqlVo("가", "나");
+		List<GardenguideVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
+		model.addAttribute("gardenguidesList", gardenguidesList);
+
+		// 해당 가이드 글번호 보내기
+		model.addAttribute("xguide_code", 1);
+		// 헤당 가이드 글 보내기
+		GardenguideVo gardenguidesVo1 = finfoService.selectGuide(1);
+		model.addAttribute("gardenguidesVo", gardenguidesVo1);
 		return "tiles.finfo.gardenguides";
 	}
 

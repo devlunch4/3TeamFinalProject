@@ -10,7 +10,7 @@
 	action="${pageContext.request.contextPath}/finfo/gardenguidesInsertBtn"
 	method="post">
 
-	<!-- 글쓰기 summernote-->
+	<!-- 글쓰기 summernote--> 
 	<!-- <textarea id="summernote" name="summernote"></textarea>
 			<script>
 				$('#summernote')
@@ -39,15 +39,15 @@
 															'help' ] ] ]
 								});
 			</script> -->
-	<input class="form-control py-4" id="grdgd_code" name="grdgd_code"
-		type="text" readonly="readonly" value="grdgd_code시퀀스">
+	<input class="form-control py-4" id="guide_code" name="guide_code"
+		type="text" readonly="readonly" value="guide_code_자동입력">
 
 	<div class="form-row">
 		<div class="col-md-3">
 			<div class="form-group">
 				<label class="small" for="writer">작성자</label> <input
 					class="form-control py-4" id="writer" name="writer" type="text"
-					placeholder="작성자" readonly="readonly" value="작성자-자동입력">
+					placeholder="작성자" readonly="readonly" value="${S_USER.user_id }">
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -60,8 +60,8 @@
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
-				<label class="small" for="use">사용여부</label> <input
-					class="form-control py-4" id="use" name="use" type="text"
+				<label class="small" for="use_yn">사용여부</label> <input
+					class="form-control py-4" id="use_yn" name="use_yn" type="text"
 					placeholder="Y-자동입력" value="Y-자동입력" required="required"
 					readonly="readonly">
 			</div>
@@ -71,15 +71,15 @@
 	<div class="form-row">
 		<div class="col-md-3">
 			<div class="form-group ">
-				<label class="small mb-1" for="cls_code">분류명</label> <input
-					class="form-control py-4" id="cls_code" name="cls_code" type="text"
+				<label class="small mb-1" for="class_code">분류명</label> <input
+					class="form-control py-4" id="class_code" name="class_code" type="text"
 					placeholder="분류명 입력 ex)가지과" required="required">
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="form-group ">
-				<label class="small mb-1" for="grdgd_nm">품목명</label> <input
-					class="form-control py-4" id="grdgd_nm" name="grdgd_nm" type="text"
+				<label class="small mb-1" for="item_code">품목명</label> <input
+					class="form-control py-4" id="item_code" name="item_code" type="text"
 					placeholder="품목명 입력 ex)가지" required="required">
 			</div>
 		</div>
@@ -102,15 +102,15 @@
 	<div class="form-row">
 		<div class="col-md-3">
 			<div class="form-group">
-				<label class="small mb-1" for="plant_prd">재배시기</label> <input
-					class="form-control py-4" id="plant_prd" name="plant_prd"
+				<label class="small mb-1" for="grow_start_time">재배시기</label> <input
+					class="form-control py-4" id="grow_start_time" name="grow_start_time"
 					type="text" placeholder="재배시기 입력 ex)3월중순~6월하순" required="required">
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="form-group">
-				<label class="small mb-1" for="grow_prd">재배기간</label> <input
-					class="form-control py-4" id="grow_prd" name="grow_prd" type="text"
+				<label class="small mb-1" for="grow_time">재배기간</label> <input
+					class="form-control py-4" id="grow_time" name="grow_time" type="text"
 					placeholder="재배기간 입력 ex)3개월" required="required">
 			</div>
 		</div>
@@ -129,7 +129,6 @@
 					placeholder="제철(계절) ex)봄/여름/가을/겨울" required="required">
 			</div>
 		</div>
-
 	</div>
 
 	<div class="form-row">
@@ -146,9 +145,6 @@
 					class="form-control py-4" id="damage" name="damage" type="text"
 					placeholder="연작피해 입력 ex)없음/있음" required="required">
 			</div>
-
-
-
 		</div>
 
 	</div>

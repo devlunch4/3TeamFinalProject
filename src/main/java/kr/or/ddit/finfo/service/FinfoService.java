@@ -12,4 +12,7 @@ public interface FinfoService {
 
 	// 20210305 KWS 텃밭 가이드 리스트 초성 조회 (쿼리문으로 조회)
 	List<GardenguideVo> selectGuideList(GuideSqlVo guideSqlVo);
+
+	// 20210308 KWS 텃밭 가이드 신규 등록
+	int insertGuide(GardenguideVo gardenguideVo);
 }

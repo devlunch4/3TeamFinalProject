@@ -28,4 +28,10 @@ public class FinfoDaoImpl implements FinfoDao {
 		return tempplate.selectList("guides.selectGuideList", guideSqlVo);
 	}
 
+	// 20210308 KWS 텃밭 가이드 신규 등록
+	@Override
+	public int insertGuide(GardenguideVo gardenguideVo) {
+		return tempplate.insert("guides.insertGuide", gardenguideVo);
+	}
+
 }

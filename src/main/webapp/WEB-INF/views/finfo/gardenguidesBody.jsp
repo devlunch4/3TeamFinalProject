@@ -47,7 +47,7 @@
 <div>
 	<!-- 관리자 전용 등록 이동 버튼 활성 -->
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
+		<button type="button" class="btn-success btn-lg btn-block col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
 	</c:if>
 </div>
 
@@ -161,9 +161,9 @@
 
 		<c:if test="${S_USER.user_id.equals('admin') }">
 			<!-- 관리자 전용 삭제 이동 버튼 활성 -->
-			<button type="button" id="deleteBtn" class="btn btn-warning btn-lg btn-block col-md-3 float-left mt-4">텃밭가이드 삭제</button>
+			<!-- <button type="button" id="deleteBtn" class="btn btn-danger btn-lg btn-block col-md-3 float-left mt-4">텃밭가이드 삭제</button> -->
 			<!-- 관리자 전용 수정 이동 버튼 활성 -->
-			<button type="button" id="modifyBtn" class="btn btn-success btn-lg btn-block col-md-3 float-right mt-4">텃밭가이드 수정</button>
+			<button type="button" id="modifyBtn" class="btn-warning btn-lg btn-block col-md-3 float-right mt-4">텃밭가이드 수정</button>
 		</c:if>
 	</div>
 </div>

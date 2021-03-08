@@ -28,4 +28,10 @@ public class FinfoServiceImpl implements FinfoService {
 		return finfoDao.selectGuideList(guideSqlVo);
 	}
 
+	// 20210308 KWS 텃밭 가이드 신규 등록
+	@Override
+	public int insertGuide(GardenguideVo gardenguideVo) {
+		return finfoDao.insertGuide(gardenguideVo);
+	}
+
 }
