@@ -239,7 +239,7 @@ public class FsurpportController {
 		fhistoryVo.setHistory_no(fvo.getHistory_no());
 		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
 
-		model.addAttribute("facility", fvo);
+		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
 
 		return "tiles.fsurpport.facilityInfo";

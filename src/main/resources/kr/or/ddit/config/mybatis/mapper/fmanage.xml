@@ -25,13 +25,14 @@
 	<!-- 20210308KJH 수정 -->
 	<select id="fmanageInfo" resultType="fmanageVo"
 		parameterType="String">
-	select fh.history_no history_no,fm.manage_no,fm.location,usr.user_nm
-	owner,cod.code_nm item_code,mse.msr_nm use_yn
+	select fh.history_no history_no,fm.manage_no,fm.location,usr.user_nm owner,fm.info
+	,cod.code_nm item_code,mse.msr_nm use_yn
 	from
 	fhistory fh, fmanage fm,msrequip mse,users usr,codes cod
 	where fh.release_dt &gt; sysdate
 	and mse.msr_code = fh.msr_code
 	and fm.owner = usr.user_id
+	and fm.manage_no = fh.manage_no
 	and cod.code_no = fm.item_code
 	and fm.manage_no = #{manage_no}
 	</select>
@@ -51,21 +52,64 @@
 		and fh.history_no = #{history_no}
 	</select>
 
-	<!-- 센서 기록 조회 -->
-	<!-- 20210306KJH 삭제 -->
-	<select id="myfanalysisInfo" resultType="msrrecVo">
-		
-	</select>
-
 	<!-- 센서 목록 조회 -->
 	<!-- 20210306KJH 삭제 -->
 	<select id="msrequipList" resultType="msrequipVo" parameterType="String">
-		
+	select fm.manage_no msr_code,ms.MSR_NM from fmanage fm , fhistory fh, MSREQUIP ms
+	where fm.manage_no = fh.manage_no
+	and fm.owner = #{owner}
+	and fh.use_yn = 'Y'
+    and fh.MSR_CODE = ms.MSR_CODE
+	order by fm.manage_no desc
 	</select>
 	
 	<!-- 내 시설 실시간 관측 -->
-	<!-- 20210306KJH 삭제 -->
-	<select id="mymaxmsrrecList" resultType="mymaxmrreclistVo" parameterType="msrrecVo">
+	<!-- 20210308KJH 수정 -->
+	<select id="mymaxmsrrecList" resultType="mymaxmrreclistVo" parameterType="fhistoryVo">
+	select fh.history_no history_no,fm.manage_no,fm.location,usr.user_nm
+	owner,cod.code_nm item_code,mse.msr_nm msr_nm, ms.msr_reg_dt reg_dt,ms.msr_temp
+	,ms.msr_humid,ms.msr_bright
+	from
+	fhistory fh, fmanage fm,msrequip
+	mse,users usr,codes cod, mserec ms
+	where fh.release_dt > sysdate
+	and mse.msr_code = fh.msr_code
+	and fm.owner = usr.user_id
+	and fm.manage_no = fh.manage_no
+	and cod.code_no = fm.item_code
+	and ms.msr_code = fh.msr_code
+	and fh.manage_no = ${manage_no}
+	and ms.msr_reg_dt = (select max(ms.msr_reg_dt)
+	msr_reg_dt from mserec ms,fhistory fh
+	where ms.msr_code = fh.msr_code
+	and fh.manage_no = ${manage_no})
+	and ms.msr_code = fh.msr_code
+	</select>
 	
+	
+	<!-- 센서 기록 조회 -->
+	<!-- 20210308KJH 수정 -->
+	<select id="myfanalysisInfo" resultType="mymaxmrreclistVo" parameterType="mymaxmrreclistVo">
+<!-- 	select fh.manage_no,to_date(to_char(ms.msr_reg_dt,'yyyy-mm-dd')) reg_dt, -->
+<!-- 	round(avg(nvl(ms.msr_temp, 0))) msr_temp, -->
+<!-- 	round(avg(nvl(ms.msr_humid, 0))) msr_humid, -->
+<!-- 	round(avg(nvl(ms.msr_bright , 0))) msr_bright -->
+<!-- 	from fmanage fm ,fhistory fh, mserec ms -->
+<!-- 	where fm.manage_no = fh.manage_no -->
+<!-- 	and fh.msr_code = ms.msr_code -->
+<!-- 	and fm.manage_no = #{manage_no} -->
+<!-- 	and ms.msr_reg_dt &lt; sysdate-#{number} -->
+<!-- 	and ms.msr_reg_dt &gt; sysdate-#{number}-1 -->
+<!-- 	group by fh.manage_no,to_char(ms.msr_reg_dt,'yyyy-mm-dd') -->
+	select
+    round(avg(nvl(ms.msr_temp, 0))) msr_temp,
+	round(avg(nvl(ms.msr_humid, 0))) msr_humid,
+	round(avg(nvl(ms.msr_bright , 0))) msr_bright
+    from fmanage fm ,fhistory fh, mserec ms
+    where fm.manage_no = fh.manage_no
+	and fh.msr_code = ms.msr_code
+    and fm.manage_no = #{manage_no}
+    and ms.msr_reg_dt &lt; sysdate -#{number}
+    and ms.msr_reg_dt &gt; sysdate -#{number}-1
 	</select>
 </mapper>

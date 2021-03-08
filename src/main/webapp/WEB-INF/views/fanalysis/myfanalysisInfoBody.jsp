@@ -17,18 +17,22 @@
 $(function(){
 	$("#week").on("click",function(){
 		$("#w_date").val("7");
+		$("#selec").val($("#select").val());
 		$("#read").submit();
 	});
 	
 	$("#month").on("click",function(){
 		$("#m_date").val("30");
+		$("#selec").val($("#select").val());
 		$("#read").submit();
 	});
 	
 	$("#btn_search").on("click",function(){
 		$("#d_date").val($("#dateserch").val());
+		$("#selec").val($("#select").val());
 		$("#read").submit();
 	});
+	
 })
 </script>
 
@@ -37,16 +41,20 @@ $(function(){
 	<input type="hidden" id = "w_date" name="week" >
 	<input type="hidden" id = "m_date" name="month">
 	<input type="hidden" id = "d_date" name="day" >
+	<input type="hidden" id = "selec" name="selec" value="${selc}">
 </form>
 
 <!-- 20210304_KJH items -> 내 시설 관측 -->
 <h3 class="mt-4">내 시설 관측</h3>
-
-<c:forEach items="${msrequipList}" var="msrequip">
-${msrequip.msr_nm}<br>${msrequip.msr_code}
+<select id = "select">
+<c:forEach items="${msrequipList}" var="msrequip" varStatus="status">
+	<option id = "${status.index}" value="${msrequip.msr_code}">${msrequip.msr_nm}</option>
 </c:forEach>
+</select>
 <br>
-<c:forEach items="${msrrecVo}" var="msrrec">
+${manage_no}
+<br>
+<c:forEach items="${mmmList}" var="msrrec">
 <%-- <c:if test="${NULL ne msrrec}"> --%>
 ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 <%-- </c:if> --%>
@@ -92,16 +100,16 @@ ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 		var chBar = document.getElementById("myChart"); 
 		var chartData = { labels: 
 			[
-				<c:forEach items="${msrrecVo}" var="msrrec" varStatus="status">
+				<c:forEach items="${mmmList}" var="msrrec" varStatus="status">
 
-				'${status.count}',
+				'${status.index}',
 
 			</c:forEach>
 				], 
 			datasets: [
 				{ data: [
 
-					<c:forEach items="${msrrecVo}" var="msrrec">
+					<c:forEach items="${mmmList}" var="msrrec">
 					${msrrec.msr_temp},
 					</c:forEach>
 					
@@ -109,7 +117,7 @@ ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 					backgroundColor: colors[0] }, 
 					{ data: [
 
-						<c:forEach items="${msrrecVo}" var="msrrec">
+						<c:forEach items="${mmmList}" var="msrrec">
 
 						${msrrec.msr_humid},
 
@@ -119,7 +127,7 @@ ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 						backgroundColor: colors[1] }, 
 						{ data: [
 
-							<c:forEach items="${msrrecVo}" var="msrrec">
+							<c:forEach items="${mmmList}" var="msrrec">
 							${msrrec.msr_bright},
 							</c:forEach>
 							

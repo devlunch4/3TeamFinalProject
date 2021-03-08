@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <script>
 	//20210304_KJH 5초마다 새로고침
 	$(function() {
-
-		setTimeout("location.reload()", 5000);
-
+	      setTimeout('location.reload()',10000); 
 	});
 </script>
 
@@ -17,24 +14,27 @@
 	<h3 class="card-header">총게시글 :</h3>
 	<div class="card-body text-left ">
 		<div class="">
-			<div class="row">
+			<div class="row" id ="info">
 				<table class="table table-bordered col-sx-12" style="text-align: center;">
 					<tr>
-						<td style="width: 50%;">${facility.manage_no}</td>
-						<td style="width: 50%;">${facility.owner}</td>
+						<td style="width: 50%;">${fmanage.manage_no}</td>
+						<td style="width: 50%;">${fmanage.owner}</td>
 					</tr>
 					<tr>
-						<td style="width: 50%;">${facility.item_code}</td>
-						<td style="width: 50%;">${facility.location}</td>
+						<td style="width: 50%;">${fmanage.item_code}</td>
+						<td style="width: 50%;">${fmanage.location}</td>
 					</tr>
 					<tr>
 					<!--20210308_KJH 장비명을 use_yn으로 받고있음 -->
-						<td style="width: 50%;">장비명:${msrrec.use_yn}</td>
+						<td style="width: 50%;">장비명:${fmanage.use_yn}</td>
 						<td style="width: 50%;">온도:${msrrec.msr_temp}</td>
+				<tr>
 					</tr>
-					<tr>
 						<td style="width: 50%;">습도:${msrrec.msr_humid}</td>
 						<td style="width: 50%;">조도:${msrrec.msr_bright}</td>
+					</tr>
+					<tr>
+						<td colspan="2">${fmanage.info}</td>
 					</tr>
 				</table>
 			</div>
