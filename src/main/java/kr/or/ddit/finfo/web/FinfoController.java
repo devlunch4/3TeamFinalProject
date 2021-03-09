@@ -1,10 +1,14 @@
 package kr.or.ddit.finfo.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +40,7 @@ public class FinfoController {
 	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305
 	@RequestMapping("gardenguides")
 	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
-			@RequestParam(defaultValue = "1") int xguide_code) {
+			@RequestParam(defaultValue = "0") int xguide_code) {
 		logger.debug("IN gardenguides()");
 		logger.debug("초성 : {}", chosung);
 		logger.debug("xguide_code : {}", xguide_code);
@@ -63,13 +67,21 @@ public class FinfoController {
 			logger.debug("검색 where 조건1: {}, {}", sqlwhere1, sqlwhere2);
 		}
 		logger.debug("검색 where 조건 최종: {}, {}", sqlwhere1, sqlwhere2);
-
 		GuideSqlVo guideSqlVo = new GuideSqlVo(sqlwhere1, sqlwhere2);
-
 		// 초성 글자 보내기
 		model.addAttribute("chosung", chosung);
 		// 초성 검색 관련 이름 리스트 보내기
 		List<GardenguideVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
+
+		// 검색 조건시 조회 리스트가 없는 경우 처리.
+		if (gardenguidesList.size() == 0) {
+			logger.debug("값 확인1 gardenguidesList.size(): {}", gardenguidesList.size());
+			xguide_code = 0;
+		}
+		if (gardenguidesList.size() != 0 && xguide_code == 0) {
+			logger.debug("값 확인2 gardenguidesList.size() : {}", gardenguidesList.size());
+			xguide_code = Integer.parseInt(gardenguidesList.get(0).getGuide_code());
+		}
 		model.addAttribute("gardenguidesList", gardenguidesList);
 
 		// 해당 가이드 글번호 보내기
@@ -96,20 +108,22 @@ public class FinfoController {
 		// 파일 하드 저장 시작
 		logger.debug("NEW 파일 정보 file_nm2: {}", file_nm2.getOriginalFilename());
 		try {
-			file_nm2.transferTo(new File("c:\\3teamfinalproject\\guide_img\\" + file_nm2.getOriginalFilename()));
+			file_nm2.transferTo(new File("c:\\fdown\\guide_img\\" + gardenguidesVo.getItem_code() + ".jpg"));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// 파일 하드 저장 끝 추후 테이블 수정요망
+		// 파일 하드 저장 끝 추후 테이블 수정요망>>파일테이블 미사용
 
 		// 신규 정보 저장시작
 		logger.debug("NEW 입력된 정보gardenguidesVo : {}", gardenguidesVo);
-		logger.debug("test-value// need file_no: {}", file_nm2.getOriginalFilename().length());
+		logger.debug("실제 저장 경로 c:\\fdown\\guide_img\\{}.jpg", gardenguidesVo.getItem_code());
 
 		// Files 테이블에 넣고 해당 번호 출력.후 setFile_no 설정 필요
-		gardenguidesVo.setFile_no(file_nm2.getOriginalFilename().length());
+		// 실제론 해당 경로 저장. filetable 미사용
+		gardenguidesVo.setFile_no(0);
+		logger.debug("test-value// setting file_no: {}", 0);
 
 		// Insert 수행
 		int insertGuide = finfoService.insertGuide(gardenguidesVo);
@@ -203,5 +217,39 @@ public class FinfoController {
 
 		return "tiles.finfo.itemFarmManualsMain";
 
+	}
+
+	// 이미지파일 보기
+	// localhost/finfo/guideimg
+	@RequestMapping("guideimg")
+	public void guideimg(int guide_code, HttpServletRequest req, HttpServletResponse resp) {
+		// 이미지로 설정
+		logger.debug("~~~~~ 수행 진입 guideimg()");
+		resp.setContentType("image");
+
+		GardenguideVo gardenguidesVo = finfoService.selectGuide(guide_code);
+
+		String path = "";
+		String chkint = gardenguidesVo.getItem_code();
+		if (chkint == null) {
+			path = "C:\\fdown\\guide_img\\unknown.jpg";
+		} else {
+			path = "C:\\fdown\\guide_img\\" + gardenguidesVo.getItem_code() + ".jpg";
+		}
+		logger.debug("경로 확인 path : {} ", path);
+
+		try {
+			FileInputStream fis = new FileInputStream(path);
+			ServletOutputStream sos = resp.getOutputStream();
+			byte[] buff = new byte[512];
+			while (fis.read(buff) != -1) {
+				sos.write(buff);
+			}
+			fis.close();
+			sos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.debug("수행 완료 guideimg()");
 	}
 }

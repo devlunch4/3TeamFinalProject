@@ -6,7 +6,11 @@
 	// 수정 버튼 클릭시 이동 
 	$(function() {
 		$("#modifyBtn").on("click", function() {
-			var xguide_code = ${gardenguidesVo.guide_code};
+			var xguide_code = $
+			{
+				xguide_code
+			}
+			;
 			$("#xguide_code").val(xguide_code);
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "gardenguidesUpdate");
@@ -100,57 +104,57 @@
 		<br>
 		<div class="card mt-2 col-sm-12 px-0">
 			<h3 class="card-header">${gardenguidesVo.item_code }</h3>
-			<div class="card-body text-left ">
-				<div class="">
-					<div class="row">
-						<div class="imgwrap">
-							<img src="/images/upload/farm_guide_info/${gardenguidesVo.file_no }" alt="${gardenguidesVo.file_no }">
-						</div>
+			<div class="card-body">
+				<!-- 이미지 보이기 -->
+				<!-- 리소스에서 -->
+				<div class="text-center">
+					<%-- 	<img src="${pageContext.request.contextPath}/resources/guide_img/${gardenguidesVo.item_code }.jpg" alt="${gardenguidesVo.file_no }"> --%>
+					<!-- 로컬 저장에서 -->
+					<img class="mb-4" src="${pageContext.request.contextPath}/finfo/guideimg?guide_code=${gardenguidesVo.guide_code }" alt="${gardenguidesVo.guide_code }" style="width: 100%; max-width: 200px; height: 100%;" align="middle">
+				</div>
 
-						<table class="table table-bordered col-sx-12">
-							<tr>
-								<td style="width: 30%">분류</td>
-								<td style="width: 70%">${gardenguidesVo.class_code }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">원산지</td>
-								<td style="width: 70%">${gardenguidesVo.origin }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">생육온도</td>
-								<td style="width: 70%">${gardenguidesVo.temperature }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">연작피해</td>
-								<td style="width: 70%">${gardenguidesVo.damage }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">제철</td>
-								<td style="width: 70%">${gardenguidesVo.season }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">효과</td>
-								<td style="width: 70%">${gardenguidesVo.effect }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">주요성분</td>
-								<td style="width: 70%">${gardenguidesVo.ingredient }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">재배TIP!</td>
-								<td style="width: 70%">${gardenguidesVo.plant_tip }</td>
-							</tr>
-							<tr>
-								<td style="width: 30%">재배내용</td>
-								<td style="width: 70%">${gardenguidesVo.plant_content }</td>
-							</tr>
-							<%-- <tr>
+				<table class="table table-bordered col-sx-12">
+					<tr>
+						<td style="width: 30%">분류</td>
+						<td style="width: 70%">${gardenguidesVo.class_code }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">원산지</td>
+						<td style="width: 70%">${gardenguidesVo.origin }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">생육온도</td>
+						<td style="width: 70%">${gardenguidesVo.temperature }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">연작피해</td>
+						<td style="width: 70%">${gardenguidesVo.damage }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">제철</td>
+						<td style="width: 70%">${gardenguidesVo.season }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">효과</td>
+						<td style="width: 70%">${gardenguidesVo.effect }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">주요성분</td>
+						<td style="width: 70%">${gardenguidesVo.ingredient }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">재배TIP!</td>
+						<td style="width: 70%">${gardenguidesVo.plant_tip }</td>
+					</tr>
+					<tr>
+						<td style="width: 30%">재배내용</td>
+						<td style="width: 70%">${gardenguidesVo.plant_content }</td>
+					</tr>
+					<%-- <tr>
 								<td style="width: 30%">작성일</td>
 								<td style="width: 70%">${gardenguidesVo.reg_dt }</td>
 							</tr> --%>
-						</table>
-					</div>
-				</div>
+				</table>
 			</div>
 		</div>
 	</form>
