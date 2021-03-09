@@ -18,7 +18,7 @@
 	});
 </script>
 
-<form id="frm" action="${pageContext.request.contextPath}/user/userDetail">
+<form id="frm" action="${pageContext.request.contextPath}/user/userDetail" method="post">
 	<input type="hidden" id="userid" name="user_id" value="" />
 </form>
 
@@ -65,7 +65,12 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<a class="btn btn-default pull-right" href="excelDownload">사용자 엑셀다운로드</a>
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="" id="" class="btn btn-primary ">
+								<a class="btn btn-default pull-right" href="userExcelDownload">사용자 엑셀다운로드</a>
+							</button>
+						</div>
+
 					</div>
 				</div>
 			</div>

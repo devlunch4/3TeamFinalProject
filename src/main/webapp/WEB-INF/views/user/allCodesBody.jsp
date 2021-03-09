@@ -15,7 +15,7 @@
 	});
 </script>
 
-<form id="frm" action="${pageContext.request.contextPath}/user/codeDetail">
+<form id="frm" action="${pageContext.request.contextPath}/user/codeDetail" method="post">
 	<input type="hidden" id="code_seq" name="code_seq" value="" />
 </form>
 
@@ -60,11 +60,14 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<a class="btn btn-default pull-right" href="CodeExcelDownload">코드 엑셀다운로드</a>
+
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="" id="" class="btn btn-primary ">
+								<a class="btn btn-default pull-right" href="CodeExcelDownload">코드 엑셀다운로드</a>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-

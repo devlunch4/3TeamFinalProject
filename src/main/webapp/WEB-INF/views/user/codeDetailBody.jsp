@@ -5,7 +5,7 @@
 <script>
 	$(function() {
 		$("#modifyBtn").on("click", function() {
-			$("#frm").attr("method", "get");
+			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "modifyCode");
 			$("#frm").submit();
 		});
