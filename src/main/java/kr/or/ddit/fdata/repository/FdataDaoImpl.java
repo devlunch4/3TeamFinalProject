@@ -22,4 +22,9 @@ public class FdataDaoImpl implements FdataDao {
 		return tempplate.selectList("codes.selectAllCodes");
 	}
 
+	@Override
+	public CodesVo selectCode(String str) {
+		return tempplate.selectOne("codes.selectCode",str);
+	}
+
 }

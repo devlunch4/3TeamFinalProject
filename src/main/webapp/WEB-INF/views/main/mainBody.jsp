@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="../resources/datepicker/css/bootstrap-datepicker.css">
 <script src="../resources/datepicker/js/bootstrap-datepicker.js"></script>
@@ -60,132 +61,138 @@ $(function(){
 <h3 class="mt-4">시세분석</h3>
 
 <div class="form-group">
-	<!-- 현재날짜를 넘지 않게 max값 지정 -->
-	<c:set var="now" value="<%=new java.util.Date()%>" />
-	<c:set var="sysd">
-		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
-	</c:set>
-	<input type="date" id="dateserch" class="form-control" value="${mydate}" max="${sysd}"> 
-	
-	<br>
 
-	<form id="select" action="${pageContext.request.contextPath}/user/main">
-		<input type="hidden" id="c_code" name="parent_code" value="">
-		<input type="hidden" id="i_code" name="code_no" value=""> 
-		<input type="hidden" id="d_code" name="sdate" value="">
-	</form>
+	<div class="form-group col-xs-12 m-0">
+		<!-- 현재날짜를 넘지 않게 max값 지정 -->
+		<c:set var="now" value="<%=new java.util.Date()%>" />
+		<c:set var="sysd">
+			<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
+		</c:set>
+		<input type="date" id="dateserch" class="form-control mb-4" value="${mydate}" max="${sysd}">
 
-	<table class="table table-bordered col-sx-12" style="font-size: 15px;">
-		<tr class="col-sx-">
-			<td class="table-active">부류</td>
-		</tr>
-		<tr>
-			<td>
-				<select id="category" class="form-control data-style="btn-primary">
-					<option value="100">식량작물</option>
-					<option value="200">채소류</option>
-				</select>
-			</td>
-		</tr>
-	</table>
-	<table class="table table-bordered" style="font-size: 15px;">
-		<tr>
-			<td class="table-active">품목</td>
-		</tr>
-		<tr>
-			<td>
-				<select id="item1" class="form-control">
-					<c:forEach items="${codesList}" var="codes">
-						<c:if test="${codes.parent_code=='100'}">
-							<option value="${codes.code_no}">${codes.code_nm}</option>
-						</c:if>
+		<form id="select" action="${pageContext.request.contextPath}/user/main">
+			<input type="hidden" id="c_code" name="parent_code" value="">
+			<input type="hidden" id="i_code" name="code_no" value="">
+			<input type="hidden" id="d_code" name="sdate" value="">
+		</form>
+	</div>
+	<div class="form-group col-xs-12">
+		<div class="float-left col-md-6 p-1">
+			<table class="table table-bordered " style="font-size: 15px;">
+				<tr>
+					<td class="table-active ">부류</td>
+				</tr>
+				<tr>
+					<td><select id="category" class="form-control">
+							<option value="100">식량작물</option>
+							<option value="200">채소류</option>
+					</select></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="float-left col-md-6 p-1">
+			<table class="table table-bordered " style="font-size: 15px;">
+				<tr>
+					<td class="table-active ">품목</td>
+				</tr>
+				<tr>
+					<td><select id="item1" class="form-control">
+							<c:forEach items="${codesList}" var="codes">
+								<c:if test="${codes.parent_code=='100'}">
+									<option value="${codes.code_no}">${codes.code_nm}</option>
+								</c:if>
+							</c:forEach>
+					</select> <select id="item2" class="form-control" style="display: none">
+							<c:forEach items="${codesList}" var="codes">
+								<c:if test="${codes.parent_code=='200'}">
+									<option value="${codes.code_no}">${codes.code_nm}</option>
+								</c:if>
+							</c:forEach>
+					</select></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="form-group ">
+		<button id="btn_search" class="btn-secondery btn-lg col-md-3 float-right mb-4">조회하기</button>
+	</div>
+
+	<div class="form-group ">
+		<div class="table-responsive">
+			<table class="table table-bordered dataTable" style="font-size: 15px;">
+				<tr>
+					<th class="table-active">구분</th>
+					<c:forEach items="${target}" var="tar">
+						<th>${tar}</th>
 					</c:forEach>
-				</select> 
-				<select id="item2" class="form-control" style="display: none">
-					<c:forEach items="${codesList}" var="codes">
-						<c:if test="${codes.parent_code=='200'}">
-							<option value="${codes.code_no}">${codes.code_nm}</option>
-						</c:if>
+				</tr>
+
+				<tr>
+					<td class="table-active">평균</td>
+					<c:forEach items="${average}" var="avg">
+						<td>${avg}</td>
 					</c:forEach>
-				</select>
-			</td>
-		</tr>
-	</table>
-	<button id="btn_search" class="btn btn-secondary">조회하기</button>
+				</tr>
 
-	<br>
-	<br>
-	
-	<table class="table table-bordered" style="font-size: 15px;">
-		<tr>
-			<th class="table-active">구분</th>
-			<c:forEach items="${target}" var="tar">
-				<th>${tar}</th>
-			</c:forEach>
-		</tr>
+				<tr>
+					<td class="table-active">최고값</td>
+					<c:forEach items="${maxvalue}" var="maxval">
+						<td>${maxval}</td>
+					</c:forEach>
+				</tr>
 
-		<tr>
-			<td class="table-active">평균</td>
-			<c:forEach items="${average}" var="avg">
-				<td>${avg}</td>
-			</c:forEach>
-		</tr>
+				<tr>
+					<td class="table-active">최저값</td>
+					<c:forEach items="${minvalue}" var="minval">
+						<td>${minval}</td>
+					</c:forEach>
+				</tr>
 
-		<tr>
-			<td class="table-active">최고값</td>
-			<c:forEach items="${maxvalue}" var="maxval">
-				<td>${maxval}</td>
-			</c:forEach>
-		</tr>
-
-		<tr>
-			<td class="table-active">최저값</td>
-			<c:forEach items="${minvalue}" var="minval">
-				<td>${minval}</td>
-			</c:forEach>
-		</tr>
-
-		<tr>
-			<td class="table-active">등락률</td>
-			<c:forEach items="${flrate}" var="rate">
-				<td>${rate}</td>
-			</c:forEach>
-		</tr>
-	</table>
-
-	<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+				<tr>
+					<td class="table-active">등락률</td>
+					<c:forEach items="${flrate}" var="rate">
+						<td>${rate}</td>
+					</c:forEach>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="form-group ">
+		<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+	</div>
 </div>
 
-	<!--         <p>똑똑한 농부들</p> -->
-	<!--         <div class="row"> -->
-	<!--             <div class="col-xl-6"> -->
-	<!--                 <div class="card mb-4"> -->
-	<!--                     <div class="card-header"> -->
-	<!--                         <i class="fas fa-chart-area mr-1"></i> -->
-	<!--                         농산물 시세분석 -->
-	<!--                     </div> -->
-	<%--                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div> --%>
-	<!--                 </div> -->
-	<!--             </div> -->
-	<!--             <div class="col-xl-6"> -->
-	<!--                 <div class="card mb-4"> -->
-	<!--                     <div class="card-header"> -->
-	<!--                         <i class="fas fa-chart-bar mr-1"></i> -->
-	<!--                         Bar Chart Example -->
-	<!--                     </div> -->
-	<%--                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div> --%>
-	<!--                 </div> -->
-	<!--             </div> -->
-	<!--         </div> -->
-	<!--         <div class="card mb-4"> -->
-	<!--             <div class="card-header"> -->
-	<!--                 <i class="fas fa-table mr-1"></i> -->
-	<!--                 DataTable Example -->
-	<!--             </div> -->
+<!--         <p>똑똑한 농부들</p> -->
+<!--         <div class="row"> -->
+<!--             <div class="col-xl-6"> -->
+<!--                 <div class="card mb-4"> -->
+<!--                     <div class="card-header"> -->
+<!--                         <i class="fas fa-chart-area mr-1"></i> -->
+<!--                         농산물 시세분석 -->
+<!--                     </div> -->
+<%--                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div> --%>
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="col-xl-6"> -->
+<!--                 <div class="card mb-4"> -->
+<!--                     <div class="card-header"> -->
+<!--                         <i class="fas fa-chart-bar mr-1"></i> -->
+<!--                         Bar Chart Example -->
+<!--                     </div> -->
+<%--                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div> --%>
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--         <div class="card mb-4"> -->
+<!--             <div class="card-header"> -->
+<!--                 <i class="fas fa-table mr-1"></i> -->
+<!--                 DataTable Example -->
+<!--             </div> -->
 
-	<!--         </div> -->
+<!--         </div> -->
 
-	
+
 
 <script> 
 	$(document).ready(function(){

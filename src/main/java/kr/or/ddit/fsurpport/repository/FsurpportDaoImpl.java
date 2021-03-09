@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -54,11 +55,30 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<MySimpleCodeVo> selectMySimpleCodeList(String user_id) {
 		return template.selectList("fsurpports.selectMySimpleCodeList", user_id);
 	}
+	
 
 	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
 	@Override
 	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
 		return template.selectOne("fsurpports.selectMySimpleCodeInfo", mySimpleCodeVo);
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 사업 유형 코드 조회
+	@Override
+	public CodesVo selectB_type_code_no(String code_no) {
+		return template.selectOne("fsurpports.selectB_type_code_no", code_no);
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 품목 코드 조회
+	@Override
+	public CodesVo selectItem_type_code_no(String code_no) {
+		return template.selectOne("fsurpports.selectItem_type_code_no", code_no);
+	}
+
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	@Override
+	public int registMySimpleCode(MySimpleCodeVo mySimpleCodeVo) {
+		return template.insert("fsurpports.registMySimpleCode", mySimpleCodeVo);
 	}
 	
 	// ggy_20210303 : 등록된 일지 조건 검색
@@ -74,16 +94,27 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.selectOne("fsurpports.selectFarmdiaryInfo", f_diary_no);
 	}
 	
-	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
+	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
+	@Override
+	public MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo) {
+		return template.selectOne("fsurpports.selectMySimpleCode_noInfo", mySimpleCodeVo);
+	}
+	
+	// ggy_20210309 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
-		return template.insert("fsurpports.registFiles", filesVo);
+		
+		template.insert("fsurpports.registFiles", filesVo);
+		
+		logger.debug("등록후 file_no값 : "+filesVo.getFile_no());
+		
+		return filesVo.getFile_no();
 	}
 	
 	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
 	@Override
-	public FilesVo selectFilesInfo(String file_nm) {
-		return template.selectOne("fsurpports.selectFilesInfo", file_nm);
+	public FilesVo selectFilesInfo(int file_no) {
+		return template.selectOne("fsurpports.selectFilesInfo", file_no);
 	}
 	
 	// ggy_20210305 : 영농일지 등록
@@ -103,18 +134,18 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<FmanageVo> myfmanageList() {
 		return template.selectList("fmanage.myfmanageList");
 	}
-	// 20210302_KJH 시설 상세조회
+	// 20210308_KJH 시설 상세조회 수정
 	@Override
 	public FmanageVo fmanageInfo(String str) {
 		return template.selectOne("fmanage.fmanageInfo", str);
 	}
 
-	// 20210304_KJH 시설 최근 측정정보 조회
+	// 20210308_KJH 시설 최근 측정정보 조회 수정
 	@Override
-	public MsrrecVo latelyData(String msr_code) {
-		return template.selectOne("fmanage.latelyData",msr_code);
+	public MsrrecVo latelyData(FhistoryVo fhistoryVo) {
+		return template.selectOne("fmanage.latelyData",fhistoryVo);
 	}
-	// 20210304_KJH 보유 장비 조회
+	// 20210308_KJH 보유 장비 조회 수정
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return template.selectList("fmanage.msrequipList",owner);
@@ -132,6 +163,12 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int fsurCount(String user_id) {
 		return template.selectOne("fsurpports.fsurCount", user_id);
 	}
+	
+	
+
+	
+	
+	
 
 
 	

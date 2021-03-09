@@ -25,20 +25,24 @@
 
 <h3 class="mt-4">영농일지 등록</h3>
 
-<form action="#" method="post">
+<form action="${pageContext.request.contextPath}/fsurpport/registFarmdiary" method="post" enctype="multipart/form-data">
 	
-	<div class="form-group col-md-2">
-		<label class="small mb-1" for="input_cls_code">등록일</label>
-		<input id="input_cls_code" name="input_cls_code" name="reg_dt" type="date" class="form-control py-4">
-	</div>
+	<input type="text" name="writer" value="${S_USER.user_id }" required="required">
+	
+	<c:if test="${selectMySimpleCodeInfo.my_simple_code != null }">
+		<label class="small mb-1" for="input_cls_code">my_simple_code코드 : </label>
+		<input type="text" name="my_simple_code" value="${selectMySimpleCodeInfo.my_simple_code }" required="required">
+	</c:if>
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">간편 등록</label>
-		<select name="" onchange="location.href=this.value">
+		<input type="button" value="간편등록" class="btn btn-primary" 
+		onclick="location.href='${pageContext.request.contextPath}/fsurpport/simpleInsertView'">
+		<select name="" onchange="location.href=this.value" >
 			<option value="">선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
 				<option 
-					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?my_simple_code=${mySimpleCodeList.my_simple_code }&user_id=${S_USER.user_id}">
+					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?user_id=${S_USER.user_id }&my_simple_code=${mySimpleCodeList.my_simple_code }">
 					${mySimpleCodeList.code_alias }
 				</option>
 			</c:forEach>
@@ -46,15 +50,30 @@
 		
 	</div>
 	
+	<div class="form-group col-md-2">
+	
+		<c:if test="${selectMySimpleCodeInfo.b_type_code != null }">
+			<label class="small mb-1" for="input_cls_code">사업유형 : </label>
+			<input type="text" name="b_type_code" value="${selectMySimpleCodeInfo.b_type_code }" readonly="readonly" required="required">
+		</c:if>
+		
+		<c:if test="${selectMySimpleCodeInfo.item_code != null }">
+			<label class="small mb-1" for="input_cls_code">품목 : </label>
+			<input type="text" name="item_code" value="${selectMySimpleCodeInfo.item_code }" readonly="readonly" required="required">
+		</c:if>
+		
+		<c:if test="${selectMySimpleCodeInfo.area != null }">
+			<label class="small mb-1" for="input_cls_code">면적 : </label>
+			<input type="text" name="area" value="${selectMySimpleCodeInfo.area }" readonly="readonly" required="required">
+		</c:if>
+	</div>
 
 	<div class="form-group col-md-6">
 		<label class="small mb-6" for="input_difficulty">작업단계</label>
-		<select name="">
+		<select name="w_step_code">
 			<option value="">선택</option>
 			<c:forEach items="${workstepsList }" var="workstepsList" >
-				<option value="${workstepsList.code_no }"
-				<c:if test="${selectMySimpleCodeInfo.b_type_code eq workstepsList.code_nm }">selected</c:if>
-				>${workstepsList.code_nm }</option>
+				<option value="${workstepsList.code_no }">${workstepsList.code_nm }</option>
 			</c:forEach>
 		</select>
 	</div>
@@ -63,7 +82,7 @@
 		<label class="small mb-1" for="input_plant_prd">작업내용</label> <br>
 
 		<!-- 글쓰기 summernote-->
-		<textarea id="summernote" name="summernote"></textarea>
+		<textarea id="summernote" name="content"></textarea>
 		<script>
 	      	$('#summernote').summernote({
 		        placeholder: 'Hello SUMMERNOTE',
@@ -86,12 +105,48 @@
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">날씨정보</label>
 		
-		<select>
-			<option></option>
+		<select name="weather">
+			<option value="">선택</option>
+			<option value="맑음">맑음</option>
+			<option value="구름조금">구름조금</option>
+			<option value="구름많음">구름많음</option>
+			<option value="흐림">흐림</option>
+			<option value="비">비</option>
+			<option value="눈">눈</option>
+			<option value="비/눈">비/눈</option>
+			<option value="흐리고_가끔_비">흐리고 가끔 비</option>
+			<option value="흐리고_가끔_눈">흐리고 가끔 눈</option>
+			<option value="흐리고_가끔_비/눈">흐리고 가끔 비/눈</option>
 		</select>
 		
 	</div>
-
+		
+	<div class="form-group">
+		<label class="small mb-1" for="input_plant_prd">최저 온도</label> 
+		<input type="text" name="low_temp" value="" class="form-control py-4" required="required">
+	</div>
+	
+	<div class="form-group">
+		<label class="small mb-1"  for="input_plant_prd">최고 온도</label> 
+		<input type="text" name="high_temp" value="" class="form-control py-4" required="required">
+	</div>
+	
+	<div class="form-group">
+		<label class="small mb-1" for="input_plant_prd">강수량</label> 
+		<input type="text" name="rainfall" value="" class="form-control py-4" required="required">
+	</div>
+	
+	<div class="form-group">
+		<label class="small mb-1"  for="input_plant_prd">습도</label> 
+		<input type="text" name="humid" value="" class="form-control py-4" required="required">
+	</div>
+	
+	<div class="form-group">
+		<label class="small mb-1"  for="input_plant_prd">수확량</label> 
+		<input type="text" name="yield" value="" class="form-control py-4"required="required">
+	</div>
+	
+	
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">사진 등록</label>
 
@@ -102,7 +157,7 @@
 
 			<div class="mailbox-attachment-info">
 				<div class="">
-					<input id="picture" class="form" type="file" name="picture" accept=".gif, .jpg, .png" style="height: 37px;" />
+					<input id="picture" class="form" type="file" name="file_file" accept=".gif, .jpg, .png" style="height: 37px;" />
 				</div>
 			</div>
 		</div>

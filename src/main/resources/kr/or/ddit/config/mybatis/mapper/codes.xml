@@ -5,7 +5,6 @@
 
 <mapper namespace="codes">
 	<!-- 품목 쿼리 -->
-
 	<!-- 모든 코드 조회하는거 03/06 (경찬) -->
 	<select id="selectAllCodes" resultType="codesVo">
 		select *
@@ -19,11 +18,18 @@
 		FROM codes
 		WHERE code_seq = #{value}
 	</select>
-
+  
+<!-- 해당 코드정보 수정 03/08 (경찬) -->
 	<update id="modifyCode" parameterType="codesVo">
 		update codes set code_no = 	#{code_no}, code_nm = #{code_nm}, parent_code = #{parent_code}, use_yn = #{use_yn}
 		where code_seq = #{code_seq}
 	</update>
-	
+  
+<!-- 20210309_KJH 특정 코드찾기 -->
+<select id="selectCode" resultType="codesVo" parameterType="String">
+	    select code_no,code_nm,use_yn 
+    from codes where code_no = #{code_no}
+</select>
+
 </mapper>
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -67,6 +68,23 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
 		return fsurpportDao.selectMySimpleCodeInfo(mySimpleCodeVo);
 	}
+
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 사업 유형 코드 조회
+	@Override
+	public CodesVo selectB_type_code_no(String code_no) {
+		return fsurpportDao.selectB_type_code_no(code_no);
+	}
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 품목 코드 조회
+	@Override
+	public CodesVo selectItem_type_code_no(String code_no) {
+		return fsurpportDao.selectItem_type_code_no(code_no);
+	}
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	@Override
+	public int registMySimpleCode(MySimpleCodeVo mySimpleCodeVo) {
+		return fsurpportDao.registMySimpleCode(mySimpleCodeVo);
+	}
 	
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
@@ -81,17 +99,23 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FarmdiaryVo selectFarmdiaryInfo(int f_diary_no) {
 		return fsurpportDao.selectFarmdiaryInfo(f_diary_no);
 	}
-
+	
+	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
+	@Override
+	public MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo) {
+		return fsurpportDao.selectMySimpleCode_noInfo(mySimpleCodeVo);
+	}
+	
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
 		return fsurpportDao.registFiles(filesVo);
 	}
 
-	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
+	// ggy_20210308 : 영농일지 등록을 위한 등록된 파일 정보 가져오기
 	@Override
-	public FilesVo selectFilesInfo(String file_nm) {
-		return fsurpportDao.selectFilesInfo(file_nm);
+	public FilesVo selectFilesInfo(int file_no) {
+		return fsurpportDao.selectFilesInfo(file_no);
 	}
 
 	// ggy_20210305 : 영농일지 등록
@@ -106,21 +130,21 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.myfmanageList();
 	}
 
-	// 20210302_KJH 시설 상세조회
+	// 20210308_KJH 시설 상세조회 수정
 	@Override
 	public FmanageVo fmanageInfo(String str) {
 		return fsurpportDao.fmanageInfo(str);
 
 	}
 
-	// 20210304_KJH 최근 측정값 조회
+	// 20210308_KJH 최근 측정값 조회 수정
 	@Override
-	public MsrrecVo latelyData(String msr_code) {
+	public MsrrecVo latelyData(FhistoryVo fhistoryVo) {
 
-		return fsurpportDao.latelyData(msr_code);
+		return fsurpportDao.latelyData(fhistoryVo);
 	}
 
-	// 20210304_KJH 보유 장비 조회
+	// 20210308_KJH 보유 장비 조회 수정
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return fsurpportDao.msrequipList(owner);
@@ -137,6 +161,7 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
+	
 
 	
 
