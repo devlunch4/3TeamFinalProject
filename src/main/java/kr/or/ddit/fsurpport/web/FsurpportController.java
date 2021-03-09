@@ -83,17 +83,21 @@ public class FsurpportController {
 		if (req.getParameter("item_code") != null && !req.getParameter("item_code").equals("")) {
 			logger.debug("3");
 			farmdiaryVo.setItem_code(req.getParameter("item_code"));
+			logger.debug("item : "+req.getParameter("item_code"));
 		} else {
 			logger.debug("-3");
 			farmdiaryVo.setItem_code("");
+			logger.debug("item : "+req.getParameter("item_code"));
 		}
 
-		if (req.getParameter("w_step_code") != null && !req.getParameter("w_step_code").equals("")) {
+		if (req.getParameter("writer") != null && !req.getParameter("writer").equals("")) {
 			logger.debug("4");
-			farmdiaryVo.setW_step_code(req.getParameter("w_step_code"));
+			farmdiaryVo.setWriter(req.getParameter("writer"));
+			logger.debug("writer : "+req.getParameter("writer"));
 		} else {
 			logger.debug("-4");
-			farmdiaryVo.setW_step_code("");
+			farmdiaryVo.setWriter("");
+			logger.debug("writer : "+req.getParameter("writer"));
 		}
 
 		if (farmdiaryVo.getStartDate() != null && !farmdiaryVo.getStartDate().equals("")
@@ -515,7 +519,31 @@ public class FsurpportController {
 		}
 		
 	}
-
+	
+	// ggy_20210309 : 농업지원-영농일지 내 일지 삭제
+	@RequestMapping("deleteFarmdiary")
+	public String deleteFarmdiary( String writer, int f_diary_no ) {
+		
+		logger.debug("deleteFarmdiary 진입");
+		
+		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
+		farmdiaryVo.setWriter(writer);
+		farmdiaryVo.setF_diary_no(f_diary_no);
+		
+		logger.debug("deleteFarmdiary 삭제 시작전 ");
+		
+		int deleteCnt = fsurpportService.deleteFarmdiary(farmdiaryVo);
+		
+		logger.debug("deleteCnt : "+deleteCnt);
+		
+		if (deleteCnt == 1) {
+			return "redirect:/fsurpport/main?user_id="+writer;
+		}else {	
+			return "redirect:/fsurpport/infoView?f_diary_no="+f_diary_no;
+		}
+		
+	}
+	
 	/* 시설관리 영역 */
 
 	// KJH_20210302

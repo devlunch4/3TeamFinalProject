@@ -66,7 +66,8 @@
 	<c:choose>
 		<c:when test="${S_USER.user_id == farmdiaryList.writer }">
 			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a> 
-			<a class="btn btn-primary" href="#">삭제</a>
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }"
+				onclick="alert('삭제합니다.');">삭제</a>
 		</c:when>
 		<c:otherwise></c:otherwise>
 	</c:choose>
