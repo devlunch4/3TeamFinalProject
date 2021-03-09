@@ -5,11 +5,34 @@
 
 <mapper namespace="community">
 
-<!-- 	Fcommunity 글 리스트 조회 -->
+	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
 	<select id="selectmarket" resultType="FcommunityVo">
-		SELECT * from market
+		SELECT * FROM market
 	</select>
 	
+	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
+	<select id="selectonemarket"  resultType="FcommunityVo" parameterType="int">
+		SELECT * FROM market WHERE market_no = #{market_no}
+	</select>
 	
+	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
+	<insert id="registermarket" parameterType="FcommunityVo">
+		INSERT INTO market
+		(market_no,writer,head_code,title,item_code,content,price,reg_dt,thumbnail,mobile,hit,use_yn) 
+        VALUES (
+        		 (SELECT NVL(MAX(market_no),0)+1 from market),
+                 #{writer},
+                 #{head_code},
+                 #{title},
+                 #{item_code},
+                 #{content},
+                 #{price},
+                 sysdate,
+                 #{thumbnail},
+                 #{mobile},
+                 #{hit},
+                 #{use_yn}
+                 ); 
+	</insert>
 	
 </mapper>

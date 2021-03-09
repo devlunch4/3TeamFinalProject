@@ -20,6 +20,29 @@ public class FcommunityVo {
 	
 	public FcommunityVo() {}
 	
+	
+
+	
+	public FcommunityVo(int market_no, String writer, int head_code, String title, String item_code, String content,
+		String price, Date reg_dt, String thumbnail, String mobile, int hit, String use_yn) {
+		super();
+		this.market_no = market_no;
+		this.writer = writer;
+		this.head_code = head_code;
+		this.title = title;
+		this.item_code = item_code;
+		this.content = content;
+		this.price = price;
+		this.reg_dt = reg_dt;
+		this.thumbnail = thumbnail;
+		this.mobile = mobile;
+		this.hit = hit;
+		this.use_yn = use_yn;
+	}
+
+
+
+
 	public int getMarket_no() {
 		return market_no;
 	}

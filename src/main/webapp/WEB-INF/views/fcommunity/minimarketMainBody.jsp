@@ -4,6 +4,21 @@
 
 <h3 class="mt-4">미니장터</h3>
 
+<script>
+   
+    	$(function(){
+    		$('.board').on("click",function(){
+    			
+    			var market_no = $(this).data("market_no");
+    			$('#market_no').val(market_no);
+    			$('#frm').attr("action","${pageContext.request.contextPath}/fcommunity/minimarketInfoView");
+    			$('#frm').attr("method","get");
+    			$('#frm').submit();
+    			
+    		});
+    })
+    </script>
+
 	<c:if test="${S_USER != null }">
 		<button type="button" class=" btn btn-success " 
 		onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketRegistView'" 
@@ -28,8 +43,7 @@
 </div>
 
 	<div class="card-body text-left p-1" style="float: right;">
-	
-		<form action="#" method="post">
+			<form action="#" method="post">
 				<select name="" >
 					<option value="">카테고리 선택</option>
 <%-- 					<c:forEach items="" var=""> --%>
@@ -38,8 +52,12 @@
 				</select>
 				<input type="text" name="" >
 				<input type="submit" value="검색">
-		</form>
-	</div>
+			</form>
+		</div>
+
+  	<form id = "frm" action="${pageContext.request.contextPath}/fcommunity/minimarketView" method="get">
+		<input type="hidden" id="market_no" name="market_no" value="">
+	</form>
 
 <div class="card mt-2 col-sm-12 px-0">
 	<div class="card-body">
@@ -53,6 +71,7 @@
 						<div id="dataTable_filter" class="dataTables_filter"></div>
 					</div>
 				</div>
+				
 				<div class="row">
 					<div class="col-sm-12">
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
@@ -70,40 +89,41 @@
 									aria-label="REG_DT: activate to sort column ascending">작성일시</th>
 								</tr>
 							</thead>
-							<tfoot>
-								<tr>
-									<th rowspan="1" colspan="1">판매상태</th>
-									<th rowspan="1" colspan="1"></th>
-									<th rowspan="1" colspan="1">제목</th>
-									<th rowspan="1" colspan="1">작성자</th>
-									<th rowspan="1" colspan="1">작성일시</th>
-								</tr>
-							</tfoot>
 							<tbody>
-								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketInfoView'" >
-										<td></td>
-										<td><img src=""></td>
-										<td>${farmdiaryList.item_code }</td>
-										<td>${farmdiaryList.w_step_code }</td>
-										<td>
-											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
-										</td>
-									</tr>
-								</c:forEach>
+<%-- 								<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
+<%-- 									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketInfoView'" > --%>
+<!-- 										<td></td> -->
+<!-- 										<td><img src=""></td> -->
+<%-- 										<td>${farmdiaryList.item_code }</td> --%>
+<%-- 										<td>${farmdiaryList.w_step_code }</td> --%>
+<!-- 										<td> -->
+<%-- 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" /> --%>
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<%-- 								</c:forEach> --%>
 								
-								<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketInfoView'" >
-								  <c:forEach items="${noticelist }" var="notice">
-										<td>${noticelist. }</td>
-										<td><img src=""></td>
-										<td></td>
-										<td></td>
-										<td></td>
-								  </c:forEach>
+								<c:forEach items="${noticelist }" var="notice">
+									<tr class="board" data-market_no="${notice.market_no }" >
+										<td>${notice.head_code }</td>
+										<td>${notice.thumbnail }</td>
+										<td>${notice.title }</td>
+										<td>${notice.writer }</td>
+										<td><fmt:formatDate value="${notice.reg_dt }" pattern="yyyy-MM-dd"/></td>
 								</tr>
+								  </c:forEach>
 								
 							</tbody>
+							<tfoot>
+<!-- 								<tr> -->
+<!-- 									<th rowspan="1" colspan="1">판매상태</th> -->
+<!-- 									<th rowspan="1" colspan="1"></th> -->
+<!-- 									<th rowspan="1" colspan="1">제목</th> -->
+<!-- 									<th rowspan="1" colspan="1">작성자</th> -->
+<!-- 									<th rowspan="1" colspan="1">작성일시</th> -->
+<!-- 								</tr> -->
+							</tfoot>
 						</table>
+						
 					</div>
 				</div>
 			</div>

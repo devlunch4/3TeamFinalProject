@@ -21,5 +21,20 @@ public class FcommunityDaoImpl implements FcommunityDao {
 		
 		return template.selectList("community.selectmarket");
 	}
+	
+	// 20210309_SHS - 미니장터 게시글 작성
+	@Override
+	public FcommunityVo selectonemarket(int market_no) {
+		
+		return template.selectOne("community.selectonemarket", market_no);
+	}
+	
+	// 20210309_SHS - 미니장터 게시글 작성
+	@Override
+	public int registermarket(FcommunityVo coVo) {
+		
+		return template.insert("community.registermarket", coVo);
+	}
+
 
 }
