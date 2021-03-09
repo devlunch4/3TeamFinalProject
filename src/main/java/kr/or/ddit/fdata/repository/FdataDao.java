@@ -8,7 +8,7 @@ public interface FdataDao {
 
 	// 20210302_KJH
 	// codes 리스트 전체조회
-	List<CodesVo> selectcodes();
+	List<CodesVo> selectAllCodes();
 
 	CodesVo selectCode(String str);
 }

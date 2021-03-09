@@ -45,7 +45,7 @@ public class LoginController {
 		}
 	}
 
-	// 누구?
+	// 누구? 누구얔!
 	@RequestMapping(path = "view2", method = { RequestMethod.GET })
 	public String view2() {
 		logger.debug("iNN login controller >> view");

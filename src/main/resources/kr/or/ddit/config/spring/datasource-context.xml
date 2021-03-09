@@ -28,15 +28,18 @@
 		<property name="initialSize" value="3" />
 	</bean>
 
-	<bean id="userExcelDownloadView"
-		class="kr.or.ddit.view.ExcelDownloadView" />
+	<bean id="UserExcelDownloadView"
+		class="kr.or.ddit.view.UserExcelDownloadView" />
+	
+	<bean id="CodeExcelDownloadView"
+		class="kr.or.ddit.view.CodeExcelDownloadView" />
 
 	<!-- Class 이름 class 이름 -->
 	<!-- FactoryBean인터페이스를 구현한 클래스를 스프링 빈으로 등록할 경우 FactoryBean 인터페이스의 getObject 
 		메소드가 리턴하는 객체를 스프링 빈으로 등록한다. -->
 	<!-- sqlSeccionFactory 스프링 빈은 SqlSessionFactoryBean 타입이 아니라 SqlSeccionFacory 
 		타입이다. -->
-	
+
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation"

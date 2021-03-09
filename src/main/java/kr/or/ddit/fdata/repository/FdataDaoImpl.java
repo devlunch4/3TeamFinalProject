@@ -18,8 +18,8 @@ public class FdataDaoImpl implements FdataDao {
 	// 20210302_KJH
 	// codes 리스트 전체조회
 	@Override
-	public List<CodesVo> selectcodes() {
-		return tempplate.selectList("codes.selectcodes");
+	public List<CodesVo> selectAllCodes() {
+		return tempplate.selectList("codes.selectAllCodes");
 	}
 
 	@Override
