@@ -1,12 +1,16 @@
 package kr.or.ddit.user.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.codes.service.CodesServiceImpl;
 import kr.or.ddit.common.model.CodesVo;
@@ -44,7 +49,6 @@ public class UserController {
 	// 메인 가기
 	// 20210302_KJH items - > codes 변경
 	@RequestMapping("main") // 모든 사용자 정보 조회
-
 	public String main(Model model, CodesVo codesVo, String sdate) {
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
@@ -74,7 +78,6 @@ public class UserController {
 
 			System.out.println((doc.select("tr").get(12)).select("td").size());
 			int docsize = (doc.select("tr").get(12)).select("td").size();
-
 			List<String> target = new ArrayList<String>();
 			target.add(((doc.select("tr").get(11)).select("th").get(1)).text());
 			target.add(((doc.select("tr").get(11)).select("th").get(docsize - 4)).text());
@@ -126,14 +129,14 @@ public class UserController {
 			e1.printStackTrace();
 		}
 
-		List<CodesVo> codesList = fdataService.selectcodes();
+		List<CodesVo> codesList = fdataService.selectAllCodes();
 		model.addAttribute("codesList", codesList);
 
 		return "tiles.main.main";
 	}
 
 	// 로그인한 회원이 자기정보 보는거 02/26(경찬)
-	@RequestMapping("myPage")
+	@RequestMapping(path = "myPage", method = { RequestMethod.GET })
 	public String myPage(UserVo userVo) {
 		return "tiles.user.userinfo";
 	}
@@ -156,7 +159,7 @@ public class UserController {
 	}
 
 	// 관리자가 회원상세정보 보는거 03/03 (경찬)
-	@RequestMapping("userDetail")
+	@RequestMapping(path = "userDetail", method = { RequestMethod.POST })
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
 
@@ -174,28 +177,31 @@ public class UserController {
 	}
 
 	// 회원탈퇴 누르면 use가 n으로 변하는거 03/04 (경찬)
-	@RequestMapping("deleteUser")
+	@RequestMapping(path = "deleteUser", method = { RequestMethod.POST })
 	public String deleteUser(String user_id) {
 		UserVo user = userService.deleteUser(user_id);
 		return "redirect:/user/allUser";
 	}
 
 	// 회원이 정보수정 하는거 03/05(경찬)
-	@RequestMapping("modifyUser")
+	@RequestMapping(path = "modifyUser", method = { RequestMethod.POST })
 	public String modifyUser(UserVo userVo) {
 		return "tiles.user.modifyUser";
 	}
 
 	// 관리자가 비밀번호 로그인횟수 수정 03/04 (경찬)
-	@RequestMapping("modifyUser2")
-	public String modifyUser2(UserVo userVo) {
+	// 수정 03/08 (경찬)
+	@RequestMapping(path = "modifyUser2", method = { RequestMethod.POST })
+	public String modifyUser2(UserVo userVo, Model model) {
 		userVo = userService.modifyUser(userVo);
+		List<UserVo> userList = userService.selectAllUser();
+		model.addAttribute("userList", userList);
 		return "tiles.user.allUser";
 	}
 
 	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
-	@RequestMapping("excelDownload")
-	public String excelDownLoad(Model model) {
+	@RequestMapping("userExcelDownload")
+	public String userExcelDownload(Model model) {
 		List<String> header = new ArrayList<String>();
 		header.add("아이디");
 		header.add("이름");
@@ -206,15 +212,80 @@ public class UserController {
 		List<UserVo> data = new ArrayList<UserVo>();
 		model.addAttribute("data", userService.selectAllUser());
 
-		return "userExcelDownloadView";
+		return "UserExcelDownloadView";
 	}
 
 	// 모든 코드를 조회하는거 03/06 (경찬)
 	@RequestMapping("codesView")
-	public String codesView() {
-		codesService.allCodes();
-		
-		return "";
+	public String codesView(Model model) {
+		List<CodesVo> codeList = codesService.allCodes();
+		model.addAttribute("codeList", codeList);
+		return "tiles.user.allCodes";
+	}
+
+	// 코드 상세정보를 조회 03/08 (경찬)
+	@RequestMapping(path = "codeDetail", method = { RequestMethod.POST })
+	public String codeDetail(Model model, String code_seq) {
+		CodesVo code = codesService.selectCodes(code_seq);
+		model.addAttribute("code", code);
+		return "tiles.user.codeDetail";
+	}
+
+	// 모든 코드정보 엑셀 다운로드 03/08 (경찬)
+	@RequestMapping("CodeExcelDownload")
+	public String excelDownLoad(Model model) {
+		List<String> header = new ArrayList<String>();
+		header.add("코드번호");
+		header.add("코드이름");
+		header.add("상위코드");
+		header.add("사용여부");
+
+		model.addAttribute("header", header);
+
+		List<CodesVo> data = new ArrayList<CodesVo>();
+		model.addAttribute("data", codesService.allCodes());
+
+		return "CodeExcelDownloadView";
+	}
+
+	// 관리자가 코드수정 하는거 03/08 (경찬)
+	@RequestMapping(path = "modifyCode", method = { RequestMethod.POST })
+	public String modifyCode(String code_seq, Model model) {
+		CodesVo code = codesService.selectCodes(code_seq);
+		model.addAttribute("code", code);
+		return "tiles.user.modifyCode";
+	}
+
+	// 관리자가 코드수정 하는거 03/08 (경찬)
+	@RequestMapping("modifyCode2")
+	public String modifyCode2(CodesVo codesVo, Model model) {
+		codesVo = codesService.modifyCode(codesVo);
+		List<CodesVo> codesList = codesService.allCodes();
+		model.addAttribute("codeList", codesList);
+		return "tiles.user.allCodes";
+	}
+
+	// 로그인하고 메인페이지 가기전에 비번입력하는거 03/09 (경찬)
+	@RequestMapping(path = "userCheck", method = { RequestMethod.GET })
+	public String userCheck() {
+		return "tiles.user.userCheck";
+	}
+
+	// 로그인하고 메인페이지 가기전에 비번입력하는거 03/09 (경찬)
+	@RequestMapping(path = "userCheck2", method = { RequestMethod.POST })
+	public String userCheck2(UserVo userVo, String input_pass, HttpSession session, HttpServletResponse response)
+			throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
+		if (input_pass.equals(dbUser.getUser_pw())) {
+			return "redirect:/user/myPage";
+		} else {
+			return "tiles.user.checkFail";
+		}
+
 	}
 
 }

@@ -18,8 +18,14 @@ public class FdataServiceImpl implements FdataService {
 	// 20210302_KJH
 	// codes 리스트 전체조회
 	@Override
-	public List<CodesVo> selectcodes() {
-		return fdataDao.selectcodes();
+	public List<CodesVo> selectAllCodes() {
+		return fdataDao.selectAllCodes();
+	}
+
+	@Override
+	public CodesVo selectCode(String str) {
+		// TODO Auto-generated method stub
+		return fdataDao.selectCode(str);
 	}
 
 }

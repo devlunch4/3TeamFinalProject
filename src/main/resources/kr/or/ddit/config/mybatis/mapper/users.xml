@@ -24,8 +24,8 @@
 	<!-- 20210304_LYS_Login3 -->
 	<!-- 사용자 추가 - 회원가입 -->
 	<insert id="insertUser" parameterType="userVo">
-		INSERT INTO users(user_id, user_pw, user_nm, email, addr1, addr2, zip, mobile, reg_dt, file_no, login_fail_cnt, logout_dt, use)
-		VALUES (#{user_id}, #{user_pw}, #{user_nm}, #{email}, #{addr1},	#{addr2}, #{zip}, #{mobile}, sysdate, null, null, sysdate, 'Y')
+		INSERT INTO users(user_id, user_pw, user_nm, email, addr1, addr2, zip, mobile, reg_dt, file_no, login_fail_cnt, login_dt, use_yn)
+		VALUES (#{user_id}, #{user_pw}, #{user_nm}, #{email}, #{addr1},	#{addr2}, #{zip}, #{mobile}, sysdate, null, 0, sysdate, 'Y')
 	</insert>
 	
 	

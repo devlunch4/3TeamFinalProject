@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -65,17 +66,17 @@ public interface FsurpportService {
 	
 	/* 시설관리 영역 */
 
-	// 20210302_KJH 시설리스트 조회
+	// 20210308_KJH 시설리스트 조회 수정
 	List<FmanageVo> myfmanageList();
 
-	// 20210302_KJH 시설 상세조회
+	// 20210308_KJH 시설 상세조회 수정
 	FmanageVo fmanageInfo(String str);
 
 	
 	// 20210304_KJH 시설 최근 측정정보 조회
-	MsrrecVo latelyData(String msr_code);
+	MsrrecVo latelyData(FhistoryVo fhistoryVo);
 	
-	// 20210304_KJH 보유 장비 조회
+	// 20210308_KJH 보유 장비 조회 수정
 	List<MsrequipVo> msrequipList(String owner); 
 
 

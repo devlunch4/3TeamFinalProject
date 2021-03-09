@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -142,18 +143,18 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<FmanageVo> myfmanageList() {
 		return template.selectList("fmanage.myfmanageList");
 	}
-	// 20210302_KJH 시설 상세조회
+	// 20210308_KJH 시설 상세조회 수정
 	@Override
 	public FmanageVo fmanageInfo(String str) {
 		return template.selectOne("fmanage.fmanageInfo", str);
 	}
 
-	// 20210304_KJH 시설 최근 측정정보 조회
+	// 20210308_KJH 시설 최근 측정정보 조회 수정
 	@Override
-	public MsrrecVo latelyData(String msr_code) {
-		return template.selectOne("fmanage.latelyData",msr_code);
+	public MsrrecVo latelyData(FhistoryVo fhistoryVo) {
+		return template.selectOne("fmanage.latelyData",fhistoryVo);
 	}
-	// 20210304_KJH 보유 장비 조회
+	// 20210308_KJH 보유 장비 조회 수정
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return template.selectList("fmanage.msrequipList",owner);
