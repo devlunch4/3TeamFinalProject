@@ -25,10 +25,10 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	@Resource(name = "sqlSessionTemplate")
 	private SqlSessionTemplate template;
 
-	// ggy_20210303 : 등록된 영농일지 전체 리스트 조회
+	// ggy_20210309 : 등록된 영농일지 해당유저 전체 리스트 조회
 	@Override
-	public List<FarmdiaryVo> selectAllFsurpportList() {
-		return template.selectList("fsurpports.selectAllFsurpportList");
+	public List<FarmdiaryVo> selectAllFsurpportList(String user_id) {
+		return template.selectList("fsurpports.selectAllFsurpportList", user_id);
 	}
 
 	// ggy_20210303 : 등록된 품목 코드 리스트 조회
@@ -122,8 +122,17 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.insert("fsurpports.registFarmdiary", farmdiaryVo);
 	}
 	
+	// ggy_20210309 : 영농일지 일지내용 수정
+	@Override
+	public int modifyFarmdiaryInfo(FarmdiaryVo farmdiaryVo) {
+		return template.update("fsurpports.modifyFarmdiaryInfo", farmdiaryVo);
+	}
 	
-	
+	// ggy_20210309 : 영농일지 파일 삭제 시파일 코드 삭제
+	@Override
+	public int deleteFile_no(int file_no) {
+		return template.update("fsurpports.deleteFile_no",file_no);
+	}
 	
 	
 	/* 시설관리 영역 */
@@ -162,6 +171,9 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int fsurCount(String user_id) {
 		return template.selectOne("fsurpports.fsurCount", user_id);
 	}
+	
+	
+	
 	
 	
 

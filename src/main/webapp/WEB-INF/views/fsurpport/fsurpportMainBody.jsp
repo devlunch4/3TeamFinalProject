@@ -77,7 +77,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
 									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView?f_diary_no=${farmdiaryList.f_diary_no }'" >
 										<td>
-											<img src="${farmdiaryList.file_nm }" >
+											<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }" width="50" height="50" >
 										</td>
 										<td>
 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />

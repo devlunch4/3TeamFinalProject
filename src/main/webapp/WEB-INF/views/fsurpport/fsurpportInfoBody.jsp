@@ -11,30 +11,61 @@
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_grdgd_nm">품목</label>
-		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text" value="${farmdiaryList.item_code }" required="required">
+		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text" value="${farmdiaryList.item_code }" required="required" readonly="readonly">
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작업단계</label>
-		<input class="form-control py-4" id="input_difficulty" name="" type="text" value="${farmdiaryList.w_step_code }" required="required">
+		<input class="form-control py-4" id="input_difficulty" name="" type="text" value="${farmdiaryList.w_step_code }" required="required" readonly="readonly">
 	</div>
 	<div class="form-group ">
 		<label class="small mb-1" for="input_plant_prd">작업내용</label> <br>
-		<textarea rows="auto" cols="auto" name="" style="resize: none;" class="form-control py-4">
+		<textarea rows="auto" cols="auto"id="summernote" name="content" class="form-control py-4">
 			${farmdiaryList.content }
 		</textarea>
+		<script>
+	      	$('#summernote').summernote({
+		        placeholder: 'Hello SUMMERNOTE',
+		        tabsize: 2,
+		        height: 120,
+		        toolbar: [
+		          ['style', ['style']],
+		          ['font', ['bold', 'underline', 'clear']],
+		          ['color', ['color']],
+		          ['para', ['ul', 'ol', 'paragraph']],
+		          ['table', ['table']],
+		          ['insert', ['link', 'picture', 'video']],
+		          ['view', ['fullscreen', 'codeview', 'help']]
+		        ]
+	   	   });
+    	</script>
+		
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">날씨정보</label>
-		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.weather }" required="required">
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.weather }" readonly="readonly">
+		<label class="small mb-1" for="input_plant_prd">최저온도</label> 
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.low_temp }" readonly="readonly">
+		<label class="small mb-1" for="input_plant_prd">최고온도</label> 
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.high_temp }" readonly="readonly">
+		<label class="small mb-1" for="input_plant_prd">강수량</label> 
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.rainfall }" readonly="readonly">
+		<label class="small mb-1" for="input_plant_prd">습도</label> 
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.humid }" readonly="readonly">
+		<label class="small mb-1" for="input_plant_prd">수확량</label> 
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.yield }" readonly="readonly">
 	</div>
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">사진 등록</label> 
-		<img src="${farmdiaryList.file_nm }">
+		<label class="small mb-1" for="input_plant_prd">면적</label><br> 
+		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.area }" readonly="readonly">
+	</div>
+	<div class="form-group">
+		<label class="small mb-1" for="input_plant_prd">사진</label><br> 
+		<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }"  >
 	</div>
 	
 	<c:choose>
-		<c:when test="${S_USER.user_id.equals('farmdiaryList.writer') }">
-			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?f_diary_no=${farmdiaryList.f_diary_no }">수정</a> 
+		<c:when test="${S_USER.user_id == farmdiaryList.writer }">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a> 
 			<a class="btn btn-primary" href="#">삭제</a>
 		</c:when>
 		<c:otherwise></c:otherwise>
