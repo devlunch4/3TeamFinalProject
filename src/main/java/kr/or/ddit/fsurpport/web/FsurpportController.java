@@ -19,6 +19,7 @@ import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
