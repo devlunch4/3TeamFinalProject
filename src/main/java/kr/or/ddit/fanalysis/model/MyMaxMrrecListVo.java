@@ -4,31 +4,53 @@ import java.util.Date;
 
 public class MyMaxMrrecListVo {
 	
+	private String history_no;
+	private String manage_no;
 	private String location;
-	private String msr_code;
-	private String code_nm;
+	private String owner;
+	private String item_code;
+	private String msr_nm;
 	private Date reg_dt;
 	private String msr_temp;
 	private String msr_humid;
 	private String msr_bright;
+	private int number;
 	
+	public String getHistory_no() {
+		return history_no;
+	}
+	public void setHistory_no(String history_no) {
+		this.history_no = history_no;
+	}
+	public String getManage_no() {
+		return manage_no;
+	}
+	public void setManage_no(String manage_no) {
+		this.manage_no = manage_no;
+	}
 	public String getLocation() {
 		return location;
 	}
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getMsr_code() {
-		return msr_code;
+	public String getOwner() {
+		return owner;
 	}
-	public void setMsr_code(String msr_code) {
-		this.msr_code = msr_code;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
-	public String getCode_nm() {
-		return code_nm;
+	public String getItem_code() {
+		return item_code;
 	}
-	public void setCode_nm(String code_nm) {
-		this.code_nm = code_nm;
+	public void setItem_code(String item_code) {
+		this.item_code = item_code;
+	}
+	public String getMsr_nm() {
+		return msr_nm;
+	}
+	public void setMsr_nm(String msr_nm) {
+		this.msr_nm = msr_nm;
 	}
 	public Date getReg_dt() {
 		return reg_dt;
@@ -54,12 +76,20 @@ public class MyMaxMrrecListVo {
 	public void setMsr_bright(String msr_bright) {
 		this.msr_bright = msr_bright;
 	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
 	@Override
 	public String toString() {
-		return "MyMaxMrrecListVo [location=" + location + ", msr_code=" + msr_code + ", code_nm=" + code_nm
-				+ ", reg_dt=" + reg_dt + ", msr_temp=" + msr_temp + ", msr_humid=" + msr_humid + ", msr_bright="
-				+ msr_bright + "]";
+		return "MyMaxMrrecListVo [history_no=" + history_no + ", manage_no=" + manage_no + ", location=" + location
+				+ ", owner=" + owner + ", item_code=" + item_code + ", msr_nm=" + msr_nm + ", reg_dt=" + reg_dt
+				+ ", msr_temp=" + msr_temp + ", msr_humid=" + msr_humid + ", msr_bright=" + msr_bright + ", number="
+				+ number + "]";
 	}
+	
 	
 	
 }

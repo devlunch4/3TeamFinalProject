@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
@@ -147,21 +148,21 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.myfmanageList();
 	}
 
-	// 20210302_KJH 시설 상세조회
+	// 20210308_KJH 시설 상세조회 수정
 	@Override
 	public FmanageVo fmanageInfo(String str) {
 		return fsurpportDao.fmanageInfo(str);
 
 	}
 
-	// 20210304_KJH 최근 측정값 조회
+	// 20210308_KJH 최근 측정값 조회 수정
 	@Override
-	public MsrrecVo latelyData(String msr_code) {
+	public MsrrecVo latelyData(FhistoryVo fhistoryVo) {
 
-		return fsurpportDao.latelyData(msr_code);
+		return fsurpportDao.latelyData(fhistoryVo);
 	}
 
-	// 20210304_KJH 보유 장비 조회
+	// 20210308_KJH 보유 장비 조회 수정
 	@Override
 	public List<MsrequipVo> msrequipList(String owner) {
 		return fsurpportDao.msrequipList(owner);

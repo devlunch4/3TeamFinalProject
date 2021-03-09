@@ -62,7 +62,7 @@
 		</div>
 	</div>
 
-	<script src="${pageContext.request.contextPath}/resources/src/js/jquery.slim.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/src/js/jquery.slim.min.js"></script> --%>
 	<script src="${pageContext.request.contextPath}/resources/src/js/bootstrap.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/src/js/scripts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/src/js/Chart.min.js"></script>

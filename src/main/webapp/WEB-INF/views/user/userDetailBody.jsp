@@ -6,13 +6,13 @@
 <script>
 $(function(){
 	$("#modifyBtn").on("click", function(){
-		$("#frm").attr("method", "get");
+		$("#frm").attr("method", "post");
 		$("#frm").attr("action", "modifyUser2");
 		$("#frm").submit();
 	});
 	
 	$("#deleteBtn").on("click", function(){
-		$("#frm").attr("method", "get");
+		$("#frm").attr("method", "post");
 		$("#frm").attr("action", "deleteUser");
 		$("#frm").submit();
 	});

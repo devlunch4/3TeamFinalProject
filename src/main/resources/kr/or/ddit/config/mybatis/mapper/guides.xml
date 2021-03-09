@@ -6,17 +6,49 @@
 <mapper namespace="guides">
 
 	<!-- 텃밭가이드 코드로 검색 또는 최초 조회 -->
-	<select id="selectGuide" resultType="gardenguideVo"
-		parameterType="Integer">
+	<select id="selectGuide" resultType="gardenguideVo" parameterType="Integer">
 		SELECT * FROM GARDENGUIDE WHERE GUIDE_CODE = #{value}
 	</select>
 
 	<!-- 텃밭가이드 코드로 검색 또는 최초 조회 -->
-	<select id="selectGuideList" resultType="gardenguideVo"
-		parameterType="guideSqlVo">
+	<select id="selectGuideList" resultType="gardenguideVo" parameterType="guideSqlVo">
 		SELECT * FROM GARDENGUIDE WHERE ITEM_CODE >=
 		#{sqlwhere1}
 		and ITEM_CODE <![CDATA[ < ]]>
-		#{sqlwhere2}
+		#{sqlwhere2} and USE_YN = 'Y'
 	</select>
+
+	<!-- 텃밭가이드 신규 등록 -->
+
+	<insert id="insertGuide" parameterType="gardenguideVo">
+		Insert into GARDENGUIDE
+		(GUIDE_CODE,WRITER,CLASS_CODE,ITEM_CODE,DIFFICULTY,
+		GROW_START_TIME,GROW_TIME,ORIGIN,TEMPERATURE,DAMAGE,
+		SEASON,EFFECT,INGREDIENT,PLANT_TIP,PLANT_CONTENT,
+		FILE_NO,REG_DT,USE_YN)
+		values
+		(SEQ_GARDENGUIDE.NEXTVAL,#{writer},#{class_code},#{item_code},#{difficulty},
+		#{grow_start_time},#{grow_time},#{origin},#{temperature},#{damage},
+		#{season},#{effect},#{ingredient},#{plant_tip},#{plant_content},
+		#{file_no},SYSDATE,'Y')
+	</insert>
+
+	<update id="updateGuide" parameterType="gardenguideVo">
+		update GARDENGUIDE
+		set
+		WRITER =#{writer},CLASS_CODE=#{class_code},ITEM_CODE=#{item_code},DIFFICULTY=#{difficulty},
+		GROW_START_TIME =#{grow_start_time},GROW_TIME=#{grow_time},ORIGIN=#{origin},
+		TEMPERATURE=#{temperature},DAMAGE=#{damage},
+		SEASON=#{season},EFFECT=#{effect},INGREDIENT=#{ingredient},
+		PLANT_TIP=#{plant_tip},PLANT_CONTENT=#{plant_content},
+		FILE_NO=#{file_no},USE_YN=#{use_yn}
+		where GUIDE_CODE = #{guide_code}
+	</update>
+
+	<update id="deleteGuide" parameterType="gardenguideVo">
+		update GARDENGUIDE
+		set USE_YN= 'N'
+		where GUIDE_CODE = #{guide_code}
+	</update>
+
 </mapper>

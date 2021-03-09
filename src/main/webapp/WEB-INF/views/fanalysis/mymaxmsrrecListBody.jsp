@@ -39,8 +39,8 @@
 					
 					<tr>
 						<td style="width: 25%;">${mrrecList.location}</td>
-						<td style="width: 15%;">${mrrecList.msr_code}</td>
-						<td style="width: 15%;">${mrrecList.code_nm}</td>
+						<td style="width: 15%;">${mrrecList.msr_nm}</td>
+						<td style="width: 15%;">${mrrecList.item_code}</td>
 						<td style="width: 15%;">${dt}</td>
 						<td style="width: 10%;">${mrrecList.msr_temp}</td>
 						<td style="width: 10%;">${mrrecList.msr_humid}</td>

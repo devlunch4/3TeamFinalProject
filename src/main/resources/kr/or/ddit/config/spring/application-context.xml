@@ -37,6 +37,7 @@
 
 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 	</bean>
+	
 	<!-- 파일 다운로드 뷰 관련 빈 생성 -->
 	<bean id="fd" class="kr.or.ddit.view.FileDownloadView"></bean>
 

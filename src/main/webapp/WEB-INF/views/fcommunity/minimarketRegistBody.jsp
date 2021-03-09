@@ -8,21 +8,21 @@
 
 
 
-<form action="" method="post">
+<form action="${pageContext.request.contextPath }/fcommunity/minimarketRegist" method="post">
 
 	<div class="form-group">
 		<label class="small mb-1" for="input_cls_code">제목</label> 
-		<input class="form-control py-4" id="input_cls_code" name="" type="text"
+		<input class="form-control py-4" id="input_cls_code" name="title" type="text"
 			value=""  >
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_grdgd_nm">작성일시</label> 
-		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
+		<input class="form-control py-4" id="input_grdgd_nm" name="reg_dt" type="text"
 			value=""  >
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작성자</label><br>
-		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
+		<input class="form-control py-4" id="input_grdgd_nm" name="writer" type="text"
 			value="" >
 	</div>
 	
@@ -55,15 +55,12 @@
 				</div>
 			</div>
 		</div>
-				
 	</div>
 	
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">내용</label><br>
-			<textarea id="summernote" name="summernote"></textarea>
+			<textarea id="summernote" name="content"></textarea>
 	</div>
-	
-
 	
 	<br>
 	<input class="btn btn-primary" type="submit" value="작성 완료">

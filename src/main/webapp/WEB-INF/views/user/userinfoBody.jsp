@@ -7,13 +7,13 @@
 	$(function() {
 		
 		$("#modifyBtn").on("click", function() {
-			$("#frm").attr("method", "get");
+			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "modifyUser");
 			$("#frm").submit();
 		});
 		
 		$("#deleteBtn").on("click", function() {
-			$("#frm").attr("method", "get");
+			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "deleteUser");
 			$("#frm").submit();
 		});
@@ -86,7 +86,6 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="button" id="deleteBtn" class="btn btn-primary">회원탈퇴</button>
 					<button type="button" id="modifyBtn" class="btn btn-primary">정보수정</button>
-					<!-- 					<button type="button" id="back" class="btn btn-primary">뒤로가기</button> -->
 				</div>
 			</div>
 

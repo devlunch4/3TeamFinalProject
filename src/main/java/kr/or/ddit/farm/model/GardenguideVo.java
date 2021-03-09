@@ -6,7 +6,7 @@ public class GardenguideVo {
 	private String writer;
 	private String class_code;
 	private String item_code;
-	private String difficulty;
+	private int difficulty;
 	private String grow_start_time;
 	private String grow_time;
 	private String origin;
@@ -17,7 +17,7 @@ public class GardenguideVo {
 	private String ingredient;
 	private String plant_tip;
 	private String plant_content;
-	private String file_no;
+	private int file_no;
 	private String reg_dt;
 	private String use_yn;
 
@@ -25,9 +25,9 @@ public class GardenguideVo {
 		super();
 	}
 
-	public GardenguideVo(String guide_code, String writer, String class_code, String item_code, String difficulty,
+	public GardenguideVo(String guide_code, String writer, String class_code, String item_code, int difficulty,
 			String grow_start_time, String grow_time, String origin, String temperature, String damage, String season,
-			String effect, String ingredient, String plant_tip, String plant_content, String file_no, String reg_dt,
+			String effect, String ingredient, String plant_tip, String plant_content, int file_no, String reg_dt,
 			String use_yn) {
 		super();
 		this.guide_code = guide_code;
@@ -48,6 +48,16 @@ public class GardenguideVo {
 		this.file_no = file_no;
 		this.reg_dt = reg_dt;
 		this.use_yn = use_yn;
+	}
+
+	@Override
+	public String toString() {
+		return "GardenguideVo [guide_code=" + guide_code + ", writer=" + writer + ", class_code=" + class_code
+				+ ", item_code=" + item_code + ", difficulty=" + difficulty + ", grow_start_time=" + grow_start_time
+				+ ", grow_time=" + grow_time + ", origin=" + origin + ", temperature=" + temperature + ", damage="
+				+ damage + ", season=" + season + ", effect=" + effect + ", ingredient=" + ingredient + ", plant_tip="
+				+ plant_tip + ", plant_content=" + plant_content + ", file_no=" + file_no + ", reg_dt=" + reg_dt
+				+ ", use_yn=" + use_yn + "]";
 	}
 
 	public String getGuide_code() {
@@ -82,11 +92,11 @@ public class GardenguideVo {
 		this.item_code = item_code;
 	}
 
-	public String getDifficulty() {
+	public int getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(String difficulty) {
+	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
 
@@ -170,11 +180,11 @@ public class GardenguideVo {
 		this.plant_content = plant_content;
 	}
 
-	public String getFile_no() {
+	public int getFile_no() {
 		return file_no;
 	}
 
-	public void setFile_no(String file_no) {
+	public void setFile_no(int file_no) {
 		this.file_no = file_no;
 	}
 
@@ -192,16 +202,6 @@ public class GardenguideVo {
 
 	public void setUse_yn(String use_yn) {
 		this.use_yn = use_yn;
-	}
-
-	@Override
-	public String toString() {
-		return "GardenguideVo [guide_code=" + guide_code + ", writer=" + writer + ", class_code=" + class_code
-				+ ", item_code=" + item_code + ", difficulty=" + difficulty + ", grow_start_time=" + grow_start_time
-				+ ", grow_time=" + grow_time + ", origin=" + origin + ", temperature=" + temperature + ", damage="
-				+ damage + ", season=" + season + ", effect=" + effect + ", ingredient=" + ingredient + ", plant_tip="
-				+ plant_tip + ", plant_content=" + plant_content + ", file_no=" + file_no + ", reg_dt=" + reg_dt
-				+ ", use_yn=" + use_yn + "]";
 	}
 
 }
