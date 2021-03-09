@@ -6,11 +6,7 @@
 	// 수정 버튼 클릭시 이동 
 	$(function() {
 		$("#modifyBtn").on("click", function() {
-			var xguide_code = $
-			{
-				xguide_code
-			}
-			;
+			var xguide_code = ${xguide_code};
 			$("#xguide_code").val(xguide_code);
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "gardenguidesUpdate");
@@ -43,9 +39,12 @@
 
 <h3 class="mt-4">텃밭가이드(재배정보)</h3>
 <div>
+	<c:if test="${S_USER.user_id.equals('admin') }">
+		<button type="button" class="btn-success btn-lg col-md-3 mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesAll'">등록글 목록보기</button>
+	</c:if>
 	<!-- 관리자 전용 등록 이동 버튼 활성 -->
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn-success btn-lg col-md-3 float-right mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
+		<button type="button" class="btn-success btn-lg col-md-3 mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
 	</c:if>
 </div>
 

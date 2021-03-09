@@ -167,22 +167,36 @@ public class FinfoController {
 	public String gardenguidesUpdateBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesUpdateBtn()");
 		logger.debug("Vo : {}", gardenguidesVo);
-		logger.debug("file_nm: {}", file_nm2.getOriginalFilename());
+		logger.debug("수정할 파일명 file_nm: {}", file_nm2.getOriginalFilename());
 		if (file_nm2.getSize() > 0) {
-			logger.debug("새로운 파일로 변경됨.");
-			// 파일 테이블에 경로저장.
-			logger.debug("{}", file_nm2.getOriginalFilename());
-			gardenguidesVo.setFile_no(file_nm2.getOriginalFilename().length());
+			logger.debug("수정파일 등록 확인 및 저장 시작");
+			// 파일 하드 저장 시작
+			logger.debug("수정될 파일 정보 file_nm2: {}", file_nm2.getOriginalFilename());
+			try {
+				file_nm2.transferTo(new File("c:\\fdown\\guide_img\\" + gardenguidesVo.getItem_code() + ".jpg"));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			logger.debug("수정파일 등록 확인 및 저장 수행 완료");
+			// 파일 하드 저장 끝 추후 테이블 수정요망>>파일테이블 미사용
 		}
+		
 		// update 수행
 		int updateGuide = finfoService.updateGuide(gardenguidesVo);
 		logger.debug("NEW 신규 텃밭가이드 수정 완료 : {}", updateGuide);
+
+		//초성 세팅
+		String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
+		model.addAttribute("chosungArr", chosungArr);
 
 		// 송신 set
 		int xguide_code = Integer.parseInt(gardenguidesVo.getGuide_code());
 		model.addAttribute("xguide_code", xguide_code);
 		GardenguideVo gardenguidesVo1 = finfoService.selectGuide(xguide_code);
 		model.addAttribute("gardenguidesVo", gardenguidesVo1);
+		logger.debug("~~~텃밭가이드 수정 완료");
 		return "tiles.finfo.gardenguides";
 	}
 
@@ -194,6 +208,16 @@ public class FinfoController {
 		int updateGuide = finfoService.deleteGuide(gardenguidesVo);
 		logger.debug("use_yn: N처리 : {}", updateGuide);
 		return "redirect:/finfo/gardenguides";
+	}
+
+	// gardenguidesAllist
+	// 20210309 KWS 텃밭 가이드 목록으로 모두보기
+	@RequestMapping(path = "gardenguidesAll", method = { RequestMethod.POST })
+	public String gardenguidesAll(Model model, GardenguideVo gardenguidesVo) {
+
+		// List<GardenguideVo>
+
+		return "redirect:/finfo/gardenguidesall";
 	}
 
 	// ggy_20210304 : 농업정보 - 품종정보 진입
