@@ -99,10 +99,15 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.selectOne("fsurpports.selectMySimpleCode_noInfo", mySimpleCodeVo);
 	}
 	
-	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
+	// ggy_20210309 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
-		return template.insert("fsurpports.registFiles", filesVo);
+		
+		template.insert("fsurpports.registFiles", filesVo);
+		
+		logger.debug("등록후 file_no값 : "+filesVo.getFile_no());
+		
+		return filesVo.getFile_no();
 	}
 	
 	// ggy_20210305 : 영농일지 등록을 위한 등록된 파일 정보 가져오기

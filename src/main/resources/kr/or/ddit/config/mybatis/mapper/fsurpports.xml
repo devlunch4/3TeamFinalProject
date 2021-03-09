@@ -197,17 +197,17 @@
 		and my_simple_code = #{my_simple_code }
 	</select>
 	
-	<!-- ggy_20210308 : 일지 등록때 파일 있으면 파일 등록 -->
+	<!-- ggy_20210309 : 일지 등록때 파일 있으면 파일 등록 -->
 	<insert id="registFiles" parameterType="filesVo" >
+		
+		<selectKey keyProperty = "file_no" resultType="int" order="BEFORE">
+			select seq_files.NEXTVAL from dual
+		</selectKey>
 		
 		
 		INSERT INTO files VALUES(
-		seq_files.NEXTVAL, #{file_nm },
+		#{file_no }, #{file_nm },
 		#{file_path }, 'Y')
-		
-		<selectKey keyProperty = "file_no" resultType="int" order="AFTER">
-			select seq_files.currval from dual
-		</selectKey>
 		
 	</insert>
 
