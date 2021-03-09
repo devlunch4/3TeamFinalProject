@@ -3,27 +3,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <h3 class="mt-4">미니장터 게시판 상세 조회</h3>
+ 	
 
 <div class="form-group">
 	<label class="small mb-1" for="input_cls_code">제목</label> 
-	<input class="form-control py-4" id="input_cls_code" name="" type="text"
-		value="" readonly="readonly">
+	<input class="form-control py-4" id="input_cls_code" name="title" type="text"
+		value="${detaillist.title }" readonly="readonly">
 </div>
 <div class="form-group">
 	<label class="small mb-1" for="input_grdgd_nm">작성일시</label> 
-	<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
-		value="" readonly="readonly">
+	<input class="form-control py-4" id="input_grdgd_nm" name="reg_dt" type="text"
+		value="<fmt:formatDate value="${detaillist.reg_dt }" pattern="yyyy-MM-dd"/>" readonly="readonly">
 </div>
 <div class="form-group">
 	<label class="small mb-1" for="input_difficulty">작성자</label><br>
-	<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
-		value="" readonly="readonly">
+	<input class="form-control py-4" id="input_grdgd_nm" name="writer" type="text"
+		value="${detaillist.writer }" readonly="readonly">
 </div>
 
 <div class="form-group">
 	<label class="small mb-1" for="input_difficulty">내용</label><br>
-	<textarea rows="auto" cols="auto" name="" style="resize: none;" class="form-control py-4" readonly="readonly">
-	</textarea>
+	<textarea rows="auto" cols="auto" name="content" style="resize: none;" class="form-control py-4" readonly="readonly">
+	${detaillist.content }</textarea>
 </div>
 
 <div class="form-group">
