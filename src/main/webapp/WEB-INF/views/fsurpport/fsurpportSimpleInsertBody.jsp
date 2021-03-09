@@ -3,54 +3,41 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <h3 class="mt-4">간편등록</h3>
-<!-- 		<button type="button" class=" btn btn-success "  -->
-<%-- 		onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'"  --%>
-<!-- 		class=" btn btn-outline-dark m-1">텃밭가이드 등록</button> -->
 
-<button type="button" class=" btn btn-success " onclick="location.href='#'" class=" btn btn-outline-dark m-1">간편 등록</button>
 
-<div class="card mt-2 col-sm-12">
-	<div class="card-body text-left p-1">
-		<span class="">품목</span> <br>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄱ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄴ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄷ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㄹ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅁ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅂ</button>
-		<button type="button" onclick="#" class=" btn btn-primary m-1">ㅅ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅇ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅈ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅊ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅋ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅌ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅍ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">ㅎ</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">기타</button>
+<form action="${pageContext.request.contextPath}/fsurpport/registMySimpleCode" method="post">
+	<input type="text" name="owner" value="${S_USER.user_id }">
+	<input type="text" name="user_id" value="${S_USER.user_id }">
+	
+	<div class="card mt-2 col-sm-12">
+	
+		<div class="form-group col-md-6">
+			<label class="small mb-6" for="input_grdgd_nm">사업유형</label> 
+			<select name="b_type_code">
+				<option value="">선택</option>
+				<c:forEach items="${b_typeList }" var="b_typeList">
+					<option value="${b_typeList.code_no }">${b_typeList.code_nm }</option>
+				</c:forEach>
+			</select>
+		</div>
+	
+		<div class="form-group col-md-6">
+			<label class="small mb-6" for="input_grdgd_nm">품목</label> 
+			<select name="item_code">
+				<option value="">선택</option>
+				<c:forEach items="${itemsList }" var="itemsList">
+					<option value="${itemsList.code_no }">${itemsList.code_nm }</option>
+				</c:forEach>
+			</select>
+		</div>
+	
+		<div class="form-group">
+			<label  class="small mb-1" for="input_plant_prd">면적(m2)</label> 
+			<input name="area" id="input_cls_code" type="text" class="form-control py-4" required="required">
+		</div>
+		
+		
 	</div>
-	<div class="card-body text-left p-1">
-		<span class="">품명</span> <br>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">아스파라거스</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양배추</button>
-		<button type="button" onclick="#" class=" btn btn-primary m-1">양상추</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">양파</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">오이</button>
-		<button type="button" onclick="#" class=" btn btn-outline-dark m-1">옥수수</button>
-	</div>
+	<input type="submit"  value="간편등록" class="btn btn-primary">	
 
-	<div class="form-group col-md-6">
-		<label class="small mb-6" for="input_grdgd_nm">품목</label> <select name="">
-			<option value="">선택</option>
-		</select>
-	</div>
-
-	<div class="form-group col-md-6">
-		<label class="small mb-6" for="input_grdgd_nm">사업유형</label> <select name="">
-			<option value="">선택</option>
-		</select>
-	</div>
-
-	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">면적(m2)</label> <input id="input_cls_code" name="input_cls_code" name="" type="text" class="form-control py-4">
-	</div>
-</div>
+</form>

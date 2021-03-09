@@ -30,17 +30,29 @@ public interface FsurpportDao {
 	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
 	MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo);
 
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 사업 유형 코드 조회
+	CodesVo selectB_type_code_no(String code_no);
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 품목 코드 조회
+	CodesVo selectItem_type_code_no(String code_no);
+	
+	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	int registMySimpleCode( MySimpleCodeVo mySimpleCodeVo );
+
 	// ggy_20210303 : 등록된 일지 조건 검색
 	List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo);
 	
 	// ggy_20210305 : 해당 일지 정보 조회
 	FarmdiaryVo selectFarmdiaryInfo(int f_diary_no);
 	
+	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
+	MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo);
+	
 	// ggy_20210305 : 일지 등록때 파일 있으면 파일 등록
 	int registFiles(FilesVo filesVo);
 	
-	// ggy_20210305 : 일지 등록을 위한 등록된 파일 정보 가져오기
-	FilesVo selectFilesInfo(String file_nm);
+	// ggy_20210308 : 일지 등록을 위한 등록된 파일 정보 가져오기
+	FilesVo selectFilesInfo(int file_no);
 
 	// ggy_20210305 : 일지 등록
 	int registFarmdiary(FarmdiaryVo farmdiaryVo);
