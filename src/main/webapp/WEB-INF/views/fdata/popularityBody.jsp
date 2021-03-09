@@ -1,39 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- 인기 농작물 페이지 -->
-<!-- 20210302_KJH main 추가 -->
+<!-- 20210308_KJH 인기 농작물 수정 -->
 <h1 class="mt-4">인기 농작물</h1>
 <div class="card mt-2 col-sm-12 px-0">
 	<h3 class="card-header">총게시글 :</h3>
 	<div class="card-body text-left ">
-		<div class="">
-			<div class="row">
-				<div class="row">
-					<ul>
-						<c:forEach items="${most}" var="mostList" varStatus="status1"
-							end="4">
-							<ui>${mostList}</ui>
-						</c:forEach>
-					</ul>
-				</div>
-				<ul>
-					<c:forEach items="${most}" var="mostList" varStatus="status1"
-						begin="5" end="9">
-						<ui>${mostList}</ui>
+		<div class="row">
+			<div class="form-row">
+				<div class="col-sm-12">
+					<c:forEach items="${mostfileList}" var="mostList" varStatus="status1" end="8">
+						<button type="button" class="btn-change m-1 " id="img_btn" style="font-size: 0.6em; background-image: url('${pageContext.request.contextPath}/resources/goodslist/${mostList.code_nm}');width: 77px;height: 80px;"><br><br><br><br>${mostList.code_no}</button>
+
 					</c:forEach>
-				</ul>
-				<br>
-				<c:forEach items="${most}" var="mostList" varStatus="status1" begin="10" end="14">
-					${mostList}
-				</c:forEach>
-				<br>
-				<br>
+				</div>
 			</div>
+			<br>
 		</div>
-		
+
 		<li class="list-group-item" style="font-size: 13px">
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">데이터명 : 실시간 경락가격(전자경매속보)</li>
@@ -47,8 +33,7 @@
 
 			<dl class="tool">
 				<li class="list-group-item">조사방법</li>
-				<li class="list-group-item"><span>도매법인별 전자경매결과</span> → <span>관리사무소(공사)</span>
-					→ <span>인터넷(경락정보 전송표준) </span> → <span>농정원[농업ON]전송</span></li>
+				<li class="list-group-item"><span>도매법인별 전자경매결과</span> → <span>관리사무소(공사)</span> → <span>인터넷(경락정보 전송표준) </span> → <span>농정원[농업ON]전송</span></li>
 			</dl>
 
 			<ul class="list-group list-group-flush">

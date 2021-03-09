@@ -10,4 +10,5 @@ public interface FdataDao {
 	// codes 리스트 전체조회
 	List<CodesVo> selectcodes();
 
+	CodesVo selectCode(String str);
 }

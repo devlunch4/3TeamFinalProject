@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.fdata.service.FdataServiceImpl;
 
@@ -26,7 +27,7 @@ public class FdataController {
 	//인기작물 크롤링
 	@RequestMapping("popularity")
 	public String popularity(Model model) {
-		
+		List<CodesVo> mostfileList = new ArrayList<CodesVo>();
 		Document doc;
 		try {
 			doc = 
@@ -42,6 +43,8 @@ public class FdataController {
 			List<String> most = new ArrayList<String>();
 			for(int i = 0; i < most2.length; i++) {
 			most.add(most2[i]);
+			System.out.println(most2[i]);
+			mostfileList.add(fdataService.selectCode(most2[i]));
 			}
 			
 			model.addAttribute("most",most2);
@@ -49,11 +52,8 @@ public class FdataController {
 			e.printStackTrace();
 		}
 		FarmdiaryVo fm = new FarmdiaryVo();
-		
-		List<FarmdiaryVo> mostfile = new ArrayList<FarmdiaryVo>();
-		
-		
-		
+
+		model.addAttribute("mostfileList",mostfileList);
 		return "tiles.fdata.popularity";
 	}
 	

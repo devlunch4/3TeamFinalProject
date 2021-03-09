@@ -10,6 +10,7 @@ public class FhistoryVo {
 	private Date release_dt;
 	private Date setup_dt;
 	private String use_yn;
+	
 	public String getHistory_no() {
 		return history_no;
 	}

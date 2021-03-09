@@ -16,7 +16,12 @@
  <select id="selectAllCodes" resultType="codesVo">
 	select *
 	from codes
-</select>	
+</select>
+<!-- 20210309_KJH 특정 코드찾기 -->
+<select id="selectCode" resultType="codesVo" parameterType="String">
+	    select code_no,code_nm,use_yn 
+    from codes where code_no = #{code_no}
+</select>
  
 </mapper>
 

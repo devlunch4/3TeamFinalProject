@@ -22,4 +22,10 @@ public class FdataServiceImpl implements FdataService {
 		return fdataDao.selectcodes();
 	}
 
+	@Override
+	public CodesVo selectCode(String str) {
+		// TODO Auto-generated method stub
+		return fdataDao.selectCode(str);
+	}
+
 }
