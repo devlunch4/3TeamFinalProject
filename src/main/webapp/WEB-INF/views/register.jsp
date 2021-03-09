@@ -24,23 +24,31 @@
 	    
         $(function(){
 	    		
-    		verify_cnt = 0;
     		code="";
 			num="";
+			verify_id = 0 //아이디 중복검사
+			verify_code = 0 //인증코드 미입력 확인
 			
     		//이름 입력
     		$("#user_nm").keyup(function(){
+    			status_nm = 0;
 				// 정규식체크 regex.js 에 있는 함수
     			if(!user_nm_check()){
     				return false;
+    				status_nm = 0
+    			}else{
+    				status_nm = 1
     			}
     		})
     		
     		//아이디입력
     		$("#user_id").keyup(function(){
-    			
+    			status_id = 0;
     			if(!user_id_check()){
+    				status_id = 0
     				return false;
+    			}else{
+    				status_id = 1
     			}
     			
     			user_id_value = $("#user_id").val().trim();
@@ -48,6 +56,7 @@
     				return true;
     			}
     			
+    			//아이디중복검사
     			$.ajax({
     				url : "${pageContext.request.contextPath}/join/id_check",
     				type : "post",
@@ -61,12 +70,15 @@
 		    				$(".id_status_ok").css("display", "none");
 		    				$(".id_status_taken").css("display", "block");
 		    				$(".id_status_taken").html(id_status_taken_from_idCheck);
+		    				verify_id = 0
     				
     					}else if(res.id_status_ok){
     						id_status_ok_from_idCheck = res.id_status_ok;
     						$(".id_status_taken").css("display", "none");
 		    				$(".id_status_ok").css("display", "block");
 		    				$(".id_status_ok").html(id_status_ok_from_idCheck);
+		    				verify_id = 1
+		    				
     					}
     				},
     				error : function(xhr){
@@ -74,47 +86,59 @@
     				},
     				dataType : "json"
     			})
-    			
     		})
     		
     		
     		//비밀번호 입력
     		$("#user_pw").keyup(function(){
+    			status_pw = 0;
+    			
     			if(!user_pw_check()){
+    				status_pw = 0
     				return false;
+    			}else{
+    				status_pw = 1
     			}
     		})
     		
     		//두번째 비밀번호 입력 확인
     		$("#confirm_user_pw").keyup(function(){
-    			
+    			status_confirm_pw = 0
     			user_pw_value = $('#user_pw').val().trim();
     			confirm_user_pw_value = $('#confirm_user_pw').val().trim();
     			
     			if(user_pw_value!=confirm_user_pw_value){
     				$(".confirm_pw").html("비밀번호가 일치하지 않습니다.");
+    				status_confirm_pw = 0
     			}else{
     				$(".confirm_pw").css("display", "none");
+    				status_confirm_pw = 1
     			}
     		})
     		
     		
     		//핸드폰 정규식 체크
     		$("#mobile").keyup(function(){
+    			status_mobile = 0
     			if(!mobile_check()){
+    				status_mobile = 0
     				return false;
+    			}else{
+    				status_mobile = 1
     			}
     		})
     		
     		
     		//핸드폰 인증하기 버튼 눌렀을때 
     		$("#btn_mobile").on("click", function(){
-    			
     			mobile_value = $('#mobile').val().trim();
     			
     			//핸드폰번호 형식 안맞으면 인증버튼 실행 안되게
     			if(!mobile_check()){
+    				status_mobile = 0
     				return false;
+    			}else{
+    				status_mobile = 1
     			}
     			
     			$.ajax({
@@ -139,6 +163,7 @@
     		
     		//핸드폰 인증코드 입력시
     		$("#confirm_mobile").keyup(function(){
+    			status_mobile_btn = 0
     			confirm_mobile_value = $("#confirm_mobile").val().trim();
     			
     			if(confirm_mobile_value > 5){
@@ -151,11 +176,12 @@
 	    			$("#btn_mobile").attr("disabled", true);
 	    			$(".confirm_mobile_success").css("display", "block");
 	    			$(".confirm_mobile_status").html("핸드폰 인증 확인되었습니다.");
-	    			verify_cnt++;
+	    			status_mobile_btn = 1
     			}else{
 	    			$(".confirm_mobile_success").css("display", "none");
 	    			$(".confirm_mobile_fail").css("display", "block");
 	    			$(".confirm_mobile_status").html("인증번호가 맞지 않습니다. 다시 입력해주세요.");
+	    			status_mobile_btn = 0
     			}
     		})
     		
@@ -163,8 +189,12 @@
     		
     		//이메일 정규식 체크
     		$("#email").keyup(function(){
+    			status_email = 0
     			if(!email_check()){
+    				status_email = 0
     				return false;
+    			}else{
+    				status_email = 1
     			}
     		})
     		
@@ -174,7 +204,10 @@
     			
     			//이메일 형식 안맞으면 인증버튼 실행 안되게
     			if(!email_check()){
+    				status_email = 0
     				return false;
+    			}else{
+    				status_email = 1
     			}
     			
     			$.ajax({
@@ -199,6 +232,7 @@
     		
     		//이메일 인증코드 입력시
     		$("#confirm_email").keyup(function(){
+    			status_email_btn = 0
     			confirm_email_value = $("#confirm_email").val().trim();
     			
     			if(confirm_email_value > 5){
@@ -211,11 +245,12 @@
 	    			$("#btn_email").attr("disabled", true);
 	    			$(".confirm_email_success").css("display", "block");
 	    			$(".confirm_email_status").html("이메일 인증 확인되었습니다.");
-	    			verify_cnt++;
+	    			status_email_btn = 1
     			}else{
 	    			$(".confirm_email_success").css("display", "none");
 	    			$(".confirm_email_fail").css("display", "block");
 	    			$(".confirm_email_status").html("인증번호가 맞지 않습니다. 다시 입력해주세요.");
+	    			status_email_btn = 0
     			}
     		})
     		
@@ -239,39 +274,49 @@
     		
 	    	//회원가입 버튼 누를때
 	    	$("#btn_join").on("click", function(){
-	    			
+	    		
+	    		//미입력시 알림문구
 	    		if(!user_nm_check()){
 	    			$(".name_status").html("이름을 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
-	    			return false;
 	    		}
+	    		alert("이름통과 ")
 	    		if(!user_id_check()){
 	    			$(".id_status").html("아이디를 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
-	    			return false;
 	    		}
+	    		alert("아이디통과")
 	    		if(!user_pw_check()){
 	    			$(".pw_status").html("비밀번호를 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
-	    			return false;
 	    		}
-	    		if(!email_check()){
-	    			$(".email_status").html("이메일을 입력해주세요.");
-	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
-	    			return false;
-	    		}
+	    		alert("비밀번호통과")
 	    		if(!mobile_check()){
 	    			$(".mobile_status").html("핸드폰번호를 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
-	    			return false;
 	    		}
-	    		if(verify_cnt==1 || verify_cnt==0){
-	    			$(".btn_join_txt").html("모든 인증을 완료해주세요.");
+	    		alert("핸드폰번호통과")
+	    		if(!email_check()){
+	    			$(".email_status").html("이메일을 입력해주세요.");
+	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
 	    		}
 	    		
-	    		
+	    		//빈칸 체크
+    			if( $("#user_nm").val()!="" && $("#user_id").val()!="" && $("#user_pw").val()!=""  && $("#confirm_user_pw").val()!=""  
+    					&& $("#mobile").val()!=""  && $("#confirm_mobile").val()!=""  && $("#email").val()!="" && $("#confirm_email").val()!=""){
+    			}else{
+    				$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
+    				return false;
+    			}
+    				
+	    		//모든 정규식,미입력 등등 확인
+	    		if(status_nm == 0 || status_id == 0 || verify_id == 0 || status_pw == 0 || status_confirm_pw == 0 || status_mobile == 0 || status_mobile_btn == 0 || status_email == 0 || status_email_btn == 0){
+	    			$(".btn_join_txt").html("다시 한번 확인해주세요.");
+	    		}else{
+	    			$(".btn_join_txt").css("display", "none");
+	    			$("#frm").submit();
+	    		}
 	    	})
-	    	
     	})
     	
     	
@@ -383,7 +428,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group mt-4 mb-0">
-                                            	<button type="submit" id="btn_join" class="btn btn-primary btn-block">회원가입하기</button>
+                                            	<button type="button" id="btn_join" class="btn btn-primary btn-block">회원가입하기</button>
                                             	<p class="status_txt btn_join_txt"></p>
                                            	</div>
                                         </form>
