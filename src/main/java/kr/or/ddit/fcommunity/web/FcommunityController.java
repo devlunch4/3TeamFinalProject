@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ddit.farm.model.FcommunityVo;
 import kr.or.ddit.fcommunity.service.FcommunityService;
-import oracle.net.ns.Communication;
 
 @RequestMapping("fcommunity")
 @Controller
