@@ -27,6 +27,7 @@
 		and cod.use_yn = 'Y'
 		and files.use_yn ='Y'
 		and writer = #{writer }
+		ORDER BY reg_dt desc
 	</select>
 
 	<!-- ggy_20210306 : code 품목 리스트 조회. -->
@@ -146,8 +147,8 @@
 		where f.reg_dt &gt;=
 		TO_DATE(#{startDate }, 'YYYY-MM-DD')
 		AND f.reg_dt &lt; TO_DATE(#{endDate }, 'YYYY-MM-DD')+1
-		OR f.item_code = #{item_code }
-		OR f.w_step_code = #{w_step_code }
+		AND f.writer = #{writer }
+		AND f.item_code = #{item_code }
         AND f.use_yn = 'Y'
         AND c.use_yn = 'Y'
         AND co.use_yn = 'Y'
@@ -258,6 +259,13 @@
 	</update>
 	
 
+	<!-- ggy_20210309 : 영농일지 삭제 -->
+	<update id="deleteFarmdiary" parameterType="farmdiaryVo" >
+		update farmdiary set use_yn = 'N' 
+		where writer = #{writer }
+		and f_diary_no = #{f_diary_no }
+	</update>
+		
 	<!--전체 품목별 비율 -->
 	<!--<select id="">
 	select count(fa.ITEM_CODE) YIELD,fa.item_code, co.CODE_NM

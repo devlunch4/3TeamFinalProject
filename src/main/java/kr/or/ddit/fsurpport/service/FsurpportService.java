@@ -64,6 +64,9 @@ public interface FsurpportService {
 	// ggy_20210309 : 영농일지 파일 삭제 시파일 코드 삭제
 	int deleteFile_no(int file_no);
 	
+	// ggy_20210309 : 해당 영농일지 삭제
+	int deleteFarmdiary(FarmdiaryVo farmdiaryVo);
+	
 	/* 시설관리 영역 */
 
 	// 20210308_KJH 시설리스트 조회 수정

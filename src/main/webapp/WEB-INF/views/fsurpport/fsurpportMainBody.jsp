@@ -17,20 +17,16 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 			<input type="date" name="endDate" value="" class=" btn btn-outline-dark m-1">
 		</div>
 		<div class="card-body text-left p-1">
-			<label>*품목</label> <label style="margin-left: 10%;">*작업단계</label> <br>
+			<label>*품목</label> <br>
 			<select name="item_code">
 				<option value="">전체</option>
 				<c:forEach items="${itemsList }" var="itemsList">
 					<option value="${itemsList.code_no }">${itemsList.code_nm }</option>
 				</c:forEach>
 			</select>
-			<select name="w_step_code" style="margin-left: 10%;">
-				<option value="">전체</option>
-				<c:forEach items="${workstepsList }" var="workstepsList">
-					<option value="${workstepsList.code_no }">${workstepsList.code_nm }</option>
-				</c:forEach>
-			</select>
 		</div>
+		
+		<input type="hidden" name="writer" value="${S_USER.user_id }" style="margin-left: 20%;" readonly="readonly">
 		<input type="submit" value="조회	" style="margin-left: 20%;">
 	</form>
 </div>

@@ -135,6 +135,11 @@ public class FsurpportDaoImpl implements FsurpportDao {
 		return template.update("fsurpports.deleteFile_no",file_no);
 	}
 	
+	// ggy_20210309 : 해당 영농일지 삭제
+	@Override
+	public int deleteFarmdiary(FarmdiaryVo farmdiaryVo) {
+		return template.update("fsurpports.deleteFarmdiary",farmdiaryVo);
+	}
 	
 	/* 시설관리 영역 */
 
@@ -172,6 +177,8 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int fsurCount(String user_id) {
 		return template.selectOne("fsurpports.fsurCount", user_id);
 	}
+	
+	
 	
 	
 	

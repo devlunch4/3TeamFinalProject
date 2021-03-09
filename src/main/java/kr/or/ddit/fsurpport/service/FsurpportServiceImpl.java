@@ -136,6 +136,12 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.deleteFile_no(file_no);
 	}
 	
+	// ggy_20210309 : 해당 영농일지 삭제
+	@Override
+	public int deleteFarmdiary(FarmdiaryVo farmdiaryVo) {
+		return fsurpportDao.deleteFarmdiary(farmdiaryVo);
+	}
+	
 	/* 시설관리 영역 */
 	@Override
 	public List<FmanageVo> myfmanageList() {
@@ -173,6 +179,8 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
+	
+	
 	
 	
 
