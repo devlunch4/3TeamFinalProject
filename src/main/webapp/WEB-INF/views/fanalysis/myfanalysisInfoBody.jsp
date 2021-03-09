@@ -32,8 +32,9 @@ $(function(){
 		$("#selec").val($("#select").val());
 		$("#read").submit();
 	});
-	
+	$("#select").val("${selec}").prop("selected", true);
 })
+
 </script>
 
 <form action="${pageContext.request.contextPath}/fanalysis/myfanalysisInfo" id="read" method="post">
@@ -41,7 +42,7 @@ $(function(){
 	<input type="hidden" id = "w_date" name="week" >
 	<input type="hidden" id = "m_date" name="month">
 	<input type="hidden" id = "d_date" name="day" >
-	<input type="hidden" id = "selec" name="selec" value="${selc}">
+	<input type="hidden" id = "selec" name="selec" >
 </form>
 
 <!-- 20210304_KJH items -> 내 시설 관측 -->

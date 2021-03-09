@@ -55,6 +55,9 @@ public class FanalysisController {
 		List<MyMaxMrrecListVo> mmmList = new ArrayList<MyMaxMrrecListVo>();
 		mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
 		
+
+		model.addAttribute("selec",msrequipList.get(0).getMsr_code());
+		
 		model.addAttribute("manage_no", msrequipList.get(0).getMsr_code());
 		model.addAttribute("msrequipList", msrequipList);
 		model.addAttribute("mmmList", mmmList);
@@ -119,6 +122,7 @@ public class FanalysisController {
 			
 		}
 		
+		model.addAttribute("selec",selec);
 		model.addAttribute("manage_no", msrequipList.get(0).getMsr_code());
 		model.addAttribute("msrequipList", msrequipList);
 		model.addAttribute("mmmList", mmmList);
