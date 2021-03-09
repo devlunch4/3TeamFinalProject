@@ -1,11 +1,14 @@
 package kr.or.ddit.fsurpport.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +47,7 @@ public class FsurpportController {
 		logger.debug("/finalProject/main 진입");
 		
 		if(user_id != null) {
-			model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList());
+			model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList(user_id));
 		}
 		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
@@ -166,8 +169,9 @@ public class FsurpportController {
 		return "tiles.fsurpport.fsurpportInsert";
 		
 	}
+
 	
-	// ggy_20210305 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치
+	// ggy_20210309 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치
 	@RequestMapping("selectMySimpleCodeInfo")
 	public String selectMySimpleCodeInfo(String user_id, int my_simple_code, Model model) {
 		
@@ -310,9 +314,208 @@ public class FsurpportController {
 
 	// ggy_20210304 : 농업지원-영농일지 내 일지 수정을 위한 진입페이지
 	@RequestMapping("ModifyView")
-	public String ModifyView() {
-
+	public String ModifyView( String writer, int f_diary_no, int my_simple_code, Model model) {
+		
+		MySimpleCodeVo mySimpleCodeVo = new MySimpleCodeVo();
+		
+		mySimpleCodeVo.setOwner(writer);
+		mySimpleCodeVo.setMy_simple_code(my_simple_code);
+		
+		if(writer != null) {
+			model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
+			model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(f_diary_no));
+			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(writer));
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+			model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
+			
+		}
+		
 		return "tiles.fsurpport.fsurpportModify";
+	}
+	
+	
+	// ggy_20210309 : 농업지원-영농일지 내 일지 내용 수정후 수정 완료
+	@RequestMapping(path = "modifyFarmdiary", method = { RequestMethod.POST })
+	public String modifyFarmdiary( HttpServletRequest req, MultipartFile file_file, Model model) {
+		
+		logger.debug("modifyFarmdiary 진입 ");
+		
+		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
+		
+		
+		MySimpleCodeVo mySimpleCodeVo1 = new MySimpleCodeVo();
+		mySimpleCodeVo1.setOwner(req.getParameter("writer"));
+		logger.debug("writer : "+req.getParameter("writer"));
+		
+		mySimpleCodeVo1.setMy_simple_code(Integer.parseInt(req.getParameter("my_simple_code")));
+		logger.debug("my_simple_code : "+req.getParameter("my_simple_code"));
+		
+		mySimpleCodeVo1 = fsurpportService.selectMySimpleCode_noInfo(mySimpleCodeVo1);
+		
+		farmdiaryVo.setF_diary_no( Integer.parseInt(req.getParameter("f_diary_no")) );
+		logger.debug("f_diary_no : "+req.getParameter("f_diary_no"));
+		
+		farmdiaryVo.setWriter(req.getParameter("writer"));
+		logger.debug("writer : "+req.getParameter("writer"));
+		
+		farmdiaryVo.setMy_simple_code( Integer.parseInt(req.getParameter("my_simple_code")) );
+		logger.debug("my_simple_code : "+req.getParameter("my_simple_code"));
+		
+		farmdiaryVo.setContent(req.getParameter("content"));
+		logger.debug("content : "+req.getParameter("content"));
+		
+		farmdiaryVo.setWeather(req.getParameter("weather"));
+		logger.debug("weather : "+req.getParameter("weather"));
+		
+		farmdiaryVo.setLow_temp( Integer.parseInt(req.getParameter("low_temp")) );
+		logger.debug("low_temp : "+req.getParameter("low_temp"));
+		
+		farmdiaryVo.setHigh_temp( Integer.parseInt(req.getParameter("high_temp")) );
+		logger.debug("high_temp : "+req.getParameter("high_temp"));
+		
+		farmdiaryVo.setRainfall( Integer.parseInt(req.getParameter("rainfall")) );
+		logger.debug("rainfall : "+req.getParameter("rainfall"));
+		
+		farmdiaryVo.setHumid( Integer.parseInt(req.getParameter("humid")) );
+		logger.debug("humid : "+req.getParameter("humid"));
+		
+		farmdiaryVo.setYield( Integer.parseInt(req.getParameter("yield")) );
+		logger.debug("yield : "+req.getParameter("yield"));
+		
+		farmdiaryVo.setArea( Integer.parseInt(req.getParameter("area")) );
+		logger.debug("area : "+req.getParameter("area"));
+		
+		farmdiaryVo.setB_type_code(mySimpleCodeVo1.getB_type_code());
+		logger.debug("b_type_code : "+mySimpleCodeVo1.getB_type_code());
+		
+		farmdiaryVo.setW_step_code(req.getParameter("w_step_code"));
+		logger.debug("w_step_code : "+req.getParameter("w_step_code"));
+		
+		farmdiaryVo.setItem_code(mySimpleCodeVo1.getItem_code());
+		logger.debug("item_code : "+mySimpleCodeVo1.getItem_code());
+		
+		
+		FilesVo filesVo = new FilesVo(); 
+		
+		if(req.getParameter("file_nm") != null && !req.getParameter("file_nm").equals("") ) {
+			
+			logger.debug("값 있다.");
+			
+			
+			FarmdiaryVo farmdiaryVo1 = new FarmdiaryVo();
+			
+			farmdiaryVo1 = fsurpportService.selectFarmdiaryInfo(farmdiaryVo.getF_diary_no());
+			
+			farmdiaryVo.setFile_no(farmdiaryVo1.getFile_no());
+			logger.debug("file_no : "+farmdiaryVo1.getFile_no());
+			
+			
+			
+		}
+		
+		
+		else {
+			//if(file_file !=null && !file_file.equals(""))
+			
+			logger.debug("새파일 등록이전에 첨부파일만 삭제인지 확인");
+			
+			logger.debug("file : "+file_file.getOriginalFilename());
+			
+			if(file_file.getOriginalFilename().equals("")) {
+				
+				logger.debug("file_file는 '' ");
+			}
+			
+			if(req.getParameter("file_nm").equals("") && file_file.getOriginalFilename().equals("") || file_file.getOriginalFilename() == null ) {
+				
+				logger.debug("첨부파일 없애서 파일 번호 없애기");
+				
+				FarmdiaryVo farmdiaryVo2 = new FarmdiaryVo();
+				
+				farmdiaryVo2 = fsurpportService.selectFarmdiaryInfo(farmdiaryVo.getF_diary_no());
+				
+				farmdiaryVo.setFile_no(farmdiaryVo2.getFile_no());
+				logger.debug("file_no : "+farmdiaryVo2.getFile_no());
+				
+				int deleteCnt = 0;
+				if(farmdiaryVo2.getFile_no() > 0) {
+					
+					deleteCnt = fsurpportService.deleteFile_no(farmdiaryVo2.getFile_no());
+					
+					logger.debug("deleteCnt : "+deleteCnt);
+					
+					if(deleteCnt == 1) {
+						farmdiaryVo.setFile_no(0);
+						logger.debug("file_no : "+farmdiaryVo.getFile_no());
+					}
+				}
+				
+				
+			} else {
+				logger.debug("파일 등록 시작.");
+			
+				String upload_path = "c:\\fdown\\";
+	
+				try {
+	
+					file_file.transferTo(new File(upload_path + file_file.getOriginalFilename()));
+	
+					filesVo.setFile_nm("");
+					filesVo.setFile_nm(file_file.getOriginalFilename());
+					filesVo.setFile_path(upload_path + filesVo.getFile_nm());
+				} catch (IllegalStateException | IOException e) {
+					filesVo.setFile_nm("");
+				}
+				
+				int registFilesCnt = fsurpportService.registFiles(filesVo);
+	
+				logger.debug("registFilesCnt : " + registFilesCnt);
+	
+				if (registFilesCnt < 1) {
+					model.addAttribute("farmdiaryList"+ farmdiaryVo);
+					logger.debug("파일 등록 실패");
+					return "redirect:/fsurpport/fsurpportInsert";
+				}
+	
+				filesVo = fsurpportService.selectFilesInfo(registFilesCnt);
+				
+				farmdiaryVo.setFile_no(filesVo.getFile_no());
+			}
+			
+		}
+		
+		logger.debug("수정전 file_no 값 : "+ farmdiaryVo.getFile_no());
+		logger.debug("수정 시작 : ");
+		
+		int modifyCnt = fsurpportService.modifyFarmdiaryInfo(farmdiaryVo);
+		
+		logger.debug("수정후 값 : "+modifyCnt);
+		
+		if (modifyCnt == 1) {
+			
+			logger.debug("수정 완료 ");
+			logger.debug("f_diary_no : "+farmdiaryVo.getF_diary_no());
+			
+			return "redirect:/fsurpport/infoView?f_diary_no="+farmdiaryVo.getF_diary_no();
+		}
+		else {
+			logger.debug("수정 실패");
+			
+			MySimpleCodeVo mySimpleCodeVo = new MySimpleCodeVo();
+			mySimpleCodeVo.setOwner(farmdiaryVo.getWriter());
+			mySimpleCodeVo.setMy_simple_code(farmdiaryVo.getMy_simple_code());
+			
+			model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
+			model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(farmdiaryVo.getF_diary_no()));
+			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(farmdiaryVo.getWriter()));
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
+			model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
+			
+			return "tiles.fsurpport.fsurpportModify";
+		}
+		
 	}
 
 	/* 시설관리 영역 */
@@ -363,4 +566,54 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.facilityupdate";
 	}
+	
+	// ggy_20210309 : 파일 경로
+	@RequestMapping("filePath")
+	public void profile( HttpServletResponse resp, String file_nm, HttpServletRequest req ) {
+		
+		logger.debug("filePath 진입");
+		resp.setContentType("image");
+		
+		// userid 파라미터를 이용하여
+		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
+		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+		
+		String path = "";
+		if(file_nm==null && !file_nm.equals("")) {
+			logger.debug("file_nm이 null");
+			
+			path = req.getServletContext().getRealPath("c:\\fdown\\unknown.png");
+			logger.debug("path : "+path);
+		} else {
+			
+			logger.debug("file_nm이 null 아니다.");
+			path = "c:\\fdown\\"+file_nm;
+			logger.debug("path : "+path);
+		}
+		
+		logger.debug("path : {}",path);
+		
+		
+		try {
+			
+			FileInputStream fis = new FileInputStream(path);
+			ServletOutputStream sos = resp.getOutputStream();
+			
+			byte[] buff = new byte[512];
+			
+			while(fis.read(buff) != -1) {
+				
+				sos.write(buff);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
+	
 }

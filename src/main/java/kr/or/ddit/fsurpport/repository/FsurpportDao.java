@@ -13,8 +13,8 @@ import kr.or.ddit.farm.model.MySimpleCodeVo;
 
 public interface FsurpportDao {
 
-	// ggy_20210303: 등록된 품목 리스트 조회
-	List<FarmdiaryVo> selectAllFsurpportList();
+	// ggy_20210309: 유저의 등록된 품목 리스트 조회
+	List<FarmdiaryVo> selectAllFsurpportList(String user_id);
 
 	// ggy_20210303: 등록된 품목 조회
 	List<CodesVo> selectAllItem_codeList();
@@ -57,6 +57,12 @@ public interface FsurpportDao {
 
 	// ggy_20210305 : 일지 등록
 	int registFarmdiary(FarmdiaryVo farmdiaryVo);
+	
+	// ggy_20210309 : 영농일지 일지내용 수정
+	int modifyFarmdiaryInfo(FarmdiaryVo farmdiaryVo);
+	
+	// ggy_20210309 : 영농일지 파일 삭제 시파일 코드 삭제
+	int deleteFile_no(int file_no);
 	
 	/* 시설관리 영역 */
 	// 20210302_KJH 시설리스트 조회

@@ -31,8 +31,8 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 	// ggy_20210303 : 등록된 일지 전체 리스트 조회
 	@Override
-	public List<FarmdiaryVo> selectAllFsurpportList() {
-		return fsurpportDao.selectAllFsurpportList();
+	public List<FarmdiaryVo> selectAllFsurpportList(String user_id) {
+		return fsurpportDao.selectAllFsurpportList(user_id);
 	}
 
 	public FsurpportServiceImpl(FsurpportDao fsurpportDao) {
@@ -123,7 +123,19 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int registFarmdiary(FarmdiaryVo farmdiaryVo) {
 		return fsurpportDao.registFarmdiary(farmdiaryVo);
 	}
-
+	
+	// ggy_20210309 : 영농일지 일지내용 수정
+	@Override
+	public int modifyFarmdiaryInfo(FarmdiaryVo farmdiaryVo) {
+		return fsurpportDao.modifyFarmdiaryInfo(farmdiaryVo);
+	}
+	
+	// ggy_20210309 : 영농일지 파일 삭제 시파일 코드 삭제
+	@Override
+	public int deleteFile_no(int file_no) {
+		return fsurpportDao.deleteFile_no(file_no);
+	}
+	
 	/* 시설관리 영역 */
 	@Override
 	public List<FmanageVo> myfmanageList() {
@@ -161,6 +173,9 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
+	
+	
+
 	
 
 	
