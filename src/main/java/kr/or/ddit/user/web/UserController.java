@@ -129,7 +129,7 @@ public class UserController {
 			e1.printStackTrace();
 		}
 
-		List<CodesVo> codesList = fdataService.selectcodes();
+		List<CodesVo> codesList = fdataService.selectAllCodes();
 		model.addAttribute("codesList", codesList);
 
 		return "tiles.main.main";
