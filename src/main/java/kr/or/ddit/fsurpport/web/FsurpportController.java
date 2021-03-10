@@ -3,6 +3,9 @@ package kr.or.ddit.fsurpport.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,6 +13,10 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,6 +32,7 @@ import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
+import kr.or.ddit.user.model.UserVo;
 
 @RequestMapping("fsurpport")
 @Controller
@@ -545,6 +553,83 @@ public class FsurpportController {
 		}
 		
 	}
+	
+	// ggy_20210310 : 농업지원-영농일지 일지 목록들 다운로드
+	@RequestMapping("excelFamrdiaryList")
+	public void excelFamrdiaryList(String user_id, HttpServletResponse response, Model model) throws IOException {
+		
+		List<String> header = new ArrayList<String>();
+		header.add("f_diary_no");
+		header.add("writer");
+		header.add("my_simple_code");
+		header.add("content");
+		header.add("reg_dt");
+		header.add("weather");
+		header.add("low_temp");
+		header.add("high_temp");
+		header.add("rainfall");
+		header.add("humid");
+		header.add("yield");
+		header.add("area");
+		header.add("file_nm");
+		header.add("b_type_code");
+		header.add("w_step_code");
+		header.add("item_code");
+
+
+
+		response.setContentType("application/vnd.ms-excel; charset=UTF-8");
+		response.setHeader("Content-Disposition", "attachment; filename=text.xlsx");
+
+		List<FarmdiaryVo> data = fsurpportService.selectAllFsurpportList(user_id);
+
+		// excel 파일 생성
+		XSSFWorkbook book = new XSSFWorkbook();
+		// 시트생성
+		Sheet sheet = book.createSheet("farmdiary");
+
+		// row / col 생성
+		int rownum = 0;
+		int colnum = 0;
+		Row row = sheet.createRow(rownum++); // row 가로 만들기
+
+		for (String h : header) {
+			Cell cell = row.createCell(colnum++); // cell 세로 만들기
+			cell.setCellValue(h);
+		}
+
+		data.size();
+
+		for (FarmdiaryVo d : data) {
+			colnum = 0;
+			Row r = sheet.createRow(rownum++);
+			r.createCell(colnum++).setCellValue(d.getF_diary_no());
+			r.createCell(colnum++).setCellValue(d.getWriter());
+			r.createCell(colnum++).setCellValue(d.getMy_simple_code());
+			r.createCell(colnum++).setCellValue(d.getContent());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			String dateToStr = dateFormat.format(d.getReg_dt());
+			r.createCell(colnum++).setCellValue(d.getWeather());
+			r.createCell(colnum++).setCellValue(d.getLow_temp());
+			r.createCell(colnum++).setCellValue(d.getHigh_temp());
+			r.createCell(colnum++).setCellValue(d.getRainfall());
+			r.createCell(colnum++).setCellValue(d.getHumid());
+			r.createCell(colnum++).setCellValue(d.getYield());
+			r.createCell(colnum++).setCellValue(d.getArea());
+			r.createCell(colnum++).setCellValue(d.getFile_nm());
+			r.createCell(colnum++).setCellValue(d.getB_type_code());
+			r.createCell(colnum++).setCellValue(d.getW_step_code());
+			r.createCell(colnum++).setCellValue(d.getItem_code());
+			r.createCell(colnum++).setCellValue(dateToStr);
+		}
+
+		book.write(response.getOutputStream());
+	}
+	
+		
+		
+	
+	
 	
 	/* 시설관리 영역 */
 
