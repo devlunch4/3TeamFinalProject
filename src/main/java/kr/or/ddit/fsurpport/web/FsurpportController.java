@@ -13,9 +13,17 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -558,6 +566,16 @@ public class FsurpportController {
 	@RequestMapping("excelFamrdiaryList")
 	public void excelFamrdiaryList(String user_id, HttpServletResponse response, Model model) throws IOException {
 		
+		response.setContentType("application/vnd.ms-excel; charset=UTF-8");
+		response.setHeader("Content-Disposition", "attachment; filename=text.xlsx");
+
+		List<FarmdiaryVo> data = fsurpportService.selectAllFsurpportList(user_id);
+
+		// excel 파일 생성
+		XSSFWorkbook book = new XSSFWorkbook();
+		// 시트생성
+		Sheet sheet = book.createSheet("farmdiary");
+		
 		List<String> header = new ArrayList<String>();
 		header.add("f_diary_no");
 		header.add("writer");
@@ -576,17 +594,17 @@ public class FsurpportController {
 		header.add("w_step_code");
 		header.add("item_code");
 
-
-
-		response.setContentType("application/vnd.ms-excel; charset=UTF-8");
-		response.setHeader("Content-Disposition", "attachment; filename=text.xlsx");
-
-		List<FarmdiaryVo> data = fsurpportService.selectAllFsurpportList(user_id);
-
-		// excel 파일 생성
-		XSSFWorkbook book = new XSSFWorkbook();
-		// 시트생성
-		Sheet sheet = book.createSheet("farmdiary");
+		CellStyle rowStyle = book.createCellStyle();
+		rowStyle.setAlignment(HorizontalAlignment.CENTER);
+		rowStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		
+		rowStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+		rowStyle.setFillPattern(FillPatternType.BRICKS);
+		
+		Font headerFont = book.createFont();
+		
+		
+		
 
 		// row / col 생성
 		int rownum = 0;
@@ -596,6 +614,10 @@ public class FsurpportController {
 		for (String h : header) {
 			Cell cell = row.createCell(colnum++); // cell 세로 만들기
 			cell.setCellValue(h);
+			
+			cell.setCellStyle(rowStyle);
+			headerFont.setFontName(h);
+			headerFont.setColor(IndexedColors.GREEN.getIndex());
 		}
 
 		data.size();
