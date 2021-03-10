@@ -29,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -279,33 +280,42 @@ public class FsurpportController {
 		
 
 		FilesVo filesVo = new FilesVo();
-
-		String upload_path = "c:\\fdown\\";
-
-		try {
-
-			file_file.transferTo(new File(upload_path + file_file.getOriginalFilename()));
-
-			filesVo.setFile_nm("");
-			filesVo.setFile_nm(file_file.getOriginalFilename());
-			filesVo.setFile_path(upload_path + filesVo.getFile_nm());
-		} catch (IllegalStateException | IOException e) {
-			filesVo.setFile_nm("");
-		}
-
-		int registFilesCnt = fsurpportService.registFiles(filesVo);
-
-		logger.debug("registFilesCnt : " + registFilesCnt);
-
-		if (registFilesCnt < 1) {
-			model.addAttribute("farmdiaryList", farmdiaryVo);
-			logger.debug("파일 등록 실패");
-			return "redirect:/fsurpport/fsurpportInsert";
-		}
-
-		filesVo = fsurpportService.selectFilesInfo(registFilesCnt);
 		
-		farmdiaryVo.setFile_no(filesVo.getFile_no());
+		if ( file_file.getSize() > 0 ) {
+			
+			logger.debug("file 있다.");
+			
+			String path = "c:\\fdown\\";
+	
+			try {
+	
+				file_file.transferTo(new File(path + file_file.getOriginalFilename()));
+	
+				filesVo.setFile_nm("");
+				filesVo.setFile_nm(file_file.getOriginalFilename());
+				filesVo.setFile_path(path + filesVo.getFile_nm());
+				} catch (IllegalStateException | IOException e) {
+					filesVo.setFile_nm("");
+				}
+			
+				
+			int registFilesCnt = fsurpportService.registFiles(filesVo);
+	
+			logger.debug("registFilesCnt : " + registFilesCnt);
+	
+			if (registFilesCnt < 1) {
+				model.addAttribute("farmdiaryList", farmdiaryVo);
+				logger.debug("파일 등록 실패");
+				return "redirect:/fsurpport/fsurpportInsert";
+			}
+			
+			filesVo = fsurpportService.selectFilesInfo(registFilesCnt);
+			
+			farmdiaryVo.setFile_no(filesVo.getFile_no());
+		} else {
+			logger.debug("파일없다.");
+			farmdiaryVo.setFile_no(0);
+		}
 		
 		MySimpleCodeVo mySimpleCodeVo = new MySimpleCodeVo();
 		mySimpleCodeVo.setOwner(farmdiaryVo.getWriter());
@@ -602,9 +612,6 @@ public class FsurpportController {
 		rowStyle.setFillPattern(FillPatternType.BRICKS);
 		
 		Font headerFont = book.createFont();
-		
-		
-		
 
 		// row / col 생성
 		int rownum = 0;
@@ -648,8 +655,7 @@ public class FsurpportController {
 		book.write(response.getOutputStream());
 	}
 	
-		
-		
+	// ggy_20210310 : 농업지원-영농일지 일지 목록들 pdf 다운로드
 	
 	
 	

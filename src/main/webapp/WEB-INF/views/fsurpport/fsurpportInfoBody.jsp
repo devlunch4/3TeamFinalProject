@@ -19,27 +19,11 @@
 	</div>
 	<div class="form-group ">
 		<label class="small mb-1" for="input_plant_prd">작업내용</label> <br>
-		<textarea rows="auto" cols="auto"id="summernote" name="content" class="form-control py-4">
-			${farmdiaryList.content }
-		</textarea>
-		<script>
-	      	$('#summernote').summernote({
-		        placeholder: 'Hello SUMMERNOTE',
-		        tabsize: 2,
-		        height: 120,
-		        toolbar: [
-		          ['style', ['style']],
-		          ['font', ['bold', 'underline', 'clear']],
-		          ['color', ['color']],
-		          ['para', ['ul', 'ol', 'paragraph']],
-		          ['table', ['table']],
-		          ['insert', ['link', 'picture', 'video']],
-		          ['view', ['fullscreen', 'codeview', 'help']]
-		        ]
-	   	   });
-    	</script>
-		
+			<div name="content" >
+				${farmdiaryList.content }
+			</div>
 	</div>
+	
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">날씨정보</label>
 		<input class="form-control py-4" id="input_plant_prd" name="" type="text" value="${farmdiaryList.weather }" readonly="readonly">
