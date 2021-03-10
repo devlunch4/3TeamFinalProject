@@ -252,6 +252,48 @@
 		    <version>2.2</version>
 		</dependency>
 		
+		<!-- 20210310_ggy : pdf사용을 위해 등록 -->
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itextpdf</artifactId>
+		    <version>5.5.13</version>
+		</dependency>
+		 
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itext-pdfa -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itext-pdfa</artifactId>
+		    <version>5.5.13</version>
+		    <scope>test</scope>
+		</dependency>
+		 
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itext-xtra -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itext-xtra</artifactId>
+		    <version>5.5.13</version>
+		</dependency>
+		 
+		<!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
+		<dependency>
+		    <groupId>com.itextpdf.tool</groupId>
+		    <artifactId>xmlworker</artifactId>
+		    <version>5.5.13</version>
+		</dependency>
+		 
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/font-asian -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>font-asian</artifactId>
+		    <version>7.1.6</version>
+		    <scope>test</scope>
+		</dependency>
+
+		
+				
+		
+		
 
 	</dependencies>
 

@@ -31,8 +31,11 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 	</form>
 </div>
 
-<input type="button" value="다운로드" class=" btn btn-success " 
+<input type="button" value="EXCEL다운로드" class=" btn btn-success " 
 onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'">
+
+<input type="button" value="PDF다운로드" class=" btn btn-success " 
+onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF?user_id=${S_USER.user_id }'">
 
 <!-- 설명 시작 -->
 <div class="card mt-2 col-sm-12 px-0">
