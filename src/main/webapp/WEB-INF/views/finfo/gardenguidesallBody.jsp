@@ -7,28 +7,28 @@
 <script>
 	//문서 로딩이 완료되고 나서 실행되는 영역
 	$(function() {
-		$(".user").on("click", function() {
-			var user_id = $(this).data("userid");
-			$("#userid").val(user_id);
+		$(".guidecode").on("click", function() {
+			var guidecode = $(this).data("guidecode");
+			$("#xguide_code").val(guidecode);
 			$("#frm").submit();
 		});
 	});
 </script>
 
-<form id="frm" action="${pageContext.request.contextPath}/user/userDetail" method="post">
-	<input type="hidden" id="userid" name="user_id" value="" />
+<form id="frm" action="${pageContext.request.contextPath}/finfo/gardenguidesUpdate" method="post">
+	<input type="hidden" id="xguide_code" name="xguide_code" value="" />
 </form>
 
-<h3 class="mt-4">텃밭가이드 글 전체모기(목록)</h3>
+<h3 class="mt-4">텃밭가이드 글 전체보기(목록)</h3>
 
 <div class="card mb-4">
 	<div class="card-header">
 		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                <path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path>
-                                </svg>
-		<!-- <i class="fas fa-table mr-1"></i> Font Awesome fontawesome.com -->
-		전체사용자 조회
+<path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path>
+</svg>
+		전체 텃밭가이드 조회
 	</div>
+
 	<div class="card-body">
 		<div class="table-responsive">
 			<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -45,29 +45,56 @@
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 101px;" aria-sort="ascending">이름</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 164px;">ID</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">가입일</th>
+									<th class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">GUIDE_CODE(seq)<br>등록순번
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">CLASS_CODE<br>부류명
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">ITEM_CODE<br>품목명
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">DIFFICULTY<br>난이도
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">ORIGIN<br>원산지
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">TEMPERATURE<br>생육온도
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">DAMAGE<br>피해
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">SEASON<br>제철
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">REG_DT<br>등록날짜
+									</th>
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">USE_YN<br>사용여부
+									</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${guide }" var="user">
-									<c:if test="${user.use_yn == 'Y'}">
-										<tr class="user" data-userid="${user.user_id }">
-											<td>${user.user_nm }</td>
-											<td>${user.user_id }</td>
-											<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd" /></td>
-										</tr>
-									</c:if>
+								<c:forEach items="${guidelists }" var="guidelist">
+									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
+									<tr class="guidecode" data-guidecode="${guidelist.guide_code }">
+										<td>${guidelist.guide_code }</td>
+										<td>${guidelist.class_code }</td>
+										<td>${guidelist.item_code }</td>
+										<td>${guidelist.difficulty }</td>
+										<td>${guidelist.origin }</td>
+										<td>${guidelist.temperature }</td>
+										<td>${guidelist.damage }</td>
+										<td>${guidelist.season }</td>
+										<td>${guidelist.reg_dt}</td>
+										<td>${guidelist.use_yn }</td>
+									</tr>
+									<%-- </c:if> --%>
 								</c:forEach>
 							</tbody>
 						</table>
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="" id="" class="btn btn-primary ">
-								<a class="btn btn-default pull-right" href="">사용자 엑셀다운로드</a>
+
+						<%--
+ 						<div class="col-sm-offset-2 col-sm-10">
+							<input type="hidden" id="guidelistExcel" name="guidelistExcel" value="${guidelists }" />
+							<button type="button" id="" class="btn btn-primary " onclick="">
+								<a class="btn" href="">가이드엑셀다운로드</a>
 							</button>
 						</div>
-
+ --%>
 					</div>
 				</div>
 			</div>
