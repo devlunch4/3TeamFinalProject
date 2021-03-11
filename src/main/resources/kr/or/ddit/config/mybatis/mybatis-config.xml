@@ -23,7 +23,7 @@
 		
 			
 		<!-- 20210306 SHS FcommunityVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.FcommunityVo" alias="FcommunityVo" />
+		<typeAlias type="kr.or.ddit.farm.model.MarketVo" alias="MarketVo" />
 		
 		<!-- 20210309 SHS FileVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FilesVo" alias="FilesVo" />
@@ -62,7 +62,7 @@
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/guides.xml" />
 		
 		<!-- 20210307 SHS FcommunityVo mappers -->
-		<mapper resource="kr/or/ddit/config/mybatis/mapper/Fcommunity.xml" />
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/Market.xml" />
 		
 		<!-- 20210309 SHS FilesVo mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/files.xml" />

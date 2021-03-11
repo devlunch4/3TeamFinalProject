@@ -1,4 +1,4 @@
-package kr.or.ddit.fcommunity.web;
+package kr.or.ddit.market.web;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,28 +15,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.or.ddit.farm.model.FcommunityVo;
+import kr.or.ddit.farm.model.MarketVo;
 import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
-import kr.or.ddit.fcommunity.service.FcommunityServiceImpl;
 import kr.or.ddit.fcommunityfiles.service.FilesServiceImpl;
 import kr.or.ddit.fileutill.FileUtil;
+import kr.or.ddit.market.service.MarketServiceImpl;
 import kr.or.ddit.marketfiles.service.MarketFilesServiceImpl;
+import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.user.service.UserServiceImpl;
 
 @RequestMapping("fcommunity")
 @Controller
-public class FcommunityController {
+public class MarketController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(FcommunityController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MarketController.class);
 	
 	@Resource(name = "FcommuintyService")
-	private FcommunityServiceImpl commuityService;
+	private MarketServiceImpl marketService;
 	
 	@Resource(name = "filesService")
 	private FilesServiceImpl filesService;
 	
 	@Resource(name = "marketfilesService")
 	private MarketFilesServiceImpl marketfilesService;
+	
+	@Resource(name = "userService")
+	private UserService userService;
 	
 	// ggy_20210304 : 커뮤니티 공지사항 진입
 	@RequestMapping("noticesView") 
@@ -73,8 +78,8 @@ public class FcommunityController {
 	@RequestMapping("minimarketView") 
 	public String minimarketView(Model model) {
 		
-		logger.debug("정보",commuityService.selectmarket());
-		model.addAttribute("noticelist", commuityService.selectmarket());
+		logger.debug("정보",marketService.selectmarket());
+		model.addAttribute("noticelist", marketService.selectmarket());
 		
 		logger.debug("IN minimarketView()");
 		
@@ -85,7 +90,7 @@ public class FcommunityController {
 	@RequestMapping("minimarketInfoView")
 	public String minimarketInfoView(Model model, int market_no) {
 		
-		model.addAttribute("detaillist",commuityService.selectonemarket(market_no));
+		model.addAttribute("detaillist",marketService.selectonemarket(market_no));
 		
 		logger.debug("IN minimarketInfoView()");
 		logger.debug("{}",market_no);
@@ -106,43 +111,49 @@ public class FcommunityController {
 	@RequestMapping("minimarketRegistView")
 	public String minimarketRegistView(Model model) {
 		
+		
 		logger.debug("IN minimarketRegistView()");
 		
 		return "tiles.fcommunity.minimarketRegist";
 	}
 	
-	// shs_20210309 : 커뮤니티 미니장터 글 작성
+		// shs_20210309 : 커뮤니티 미니장터 글 작성
 		@RequestMapping(path = "minimarketRegist", method = RequestMethod.POST)
-		public String minimarketRegist(Model model, FcommunityVo coVo, FilesVo filesVo, MarketFilesVo mkVo ,MultipartFile file) {
+		public String minimarketRegist(Model model, MarketVo coVo,FilesVo fileVo, MultipartFile file) {
 			
-			int MarketInsert = 0;
-			int FilesInsert = 0;
-			int MarketFilesInsert = 0;
+			int marketcnt = 0;
+			int filescnt = 0;
 			
 			logger.debug("IN minimarketRegistView()");
+			fileVo.setFile_nm(file.getOriginalFilename());
+			fileVo.setFile_path(file.getOriginalFilename());
 			
-			filesVo.setFile_nm(file.getOriginalFilename());
-			filesVo.setFile_path(file.getOriginalFilename());
+			
 			
 			try {
 				String fileExtension = FileUtil.getFileExtension(file.getOriginalFilename());
-				String realFileName = "c:\\fdown\\" + UUID.randomUUID().toString()+fileExtension;
+				String realFileName = "c:/upload/" + UUID.randomUUID().toString()+fileExtension;
 				
 				file.transferTo(new File(realFileName));
-				filesVo.setFile_nm(file.getOriginalFilename());
+				fileVo.setFile_path(file.getOriginalFilename());
 				
-				filesVo.setFile_path(file.getOriginalFilename());
+				fileVo.setFile_path(realFileName);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+				
+			marketcnt = marketService.registermarket(coVo);
+			filescnt = filesService.registerfiles(fileVo);
+			logger.debug("쿼리문",filescnt);
 			
 			
-			MarketInsert = commuityService.registermarket(coVo);
-			FilesInsert = filesService.registerfiles(filesVo);
-			MarketFilesInsert = marketfilesService.registerfiles(mkVo);
+			if(marketcnt == 1 && filescnt != 0) {
+				logger.debug("업데이트 완료");
+				return "redirect:/fcommunity/minimarketView";
+			}else {
+				return "tiles.fcommunity.minimarketRegist";
+			}
 			
-			
-			return "tiles.fcommunity.minimarketRegist";
 		}
 	
 	

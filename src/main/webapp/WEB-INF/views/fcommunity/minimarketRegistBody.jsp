@@ -8,18 +8,18 @@
 
 
 
-<form action="${pageContext.request.contextPath }/fcommunity/minimarketRegist" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath }/fcommunity/minimarketRegist" method="post", enctype="multipart/form-data">
 
 	<div class="form-group">
 		<label class="small mb-1" for="input_cls_code">제목</label> 
 		<input class="form-control py-4" id="input_cls_code" name="title" type="text"
 			value=""  >
 	</div>
-	<div class="form-group">
-		<label class="small mb-1" for="input_grdgd_nm">작성일시</label> 
-		<input class="form-control py-4" id="input_grdgd_nm" name="reg_dt" type="text"
-			value=""  >
-	</div>
+<!-- 	<div class="form-group"> -->
+<!-- 		<label class="small mb-1" for="input_grdgd_nm">작성일시</label>  -->
+<!-- 		<input class="form-control py-4" id="input_grdgd_nm" name="reg_dt" type="text" -->
+<!-- 			value=""  > -->
+<!-- 	</div> -->
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작성자</label><br>
 		<input class="form-control py-4" id="input_grdgd_nm" name="writer" type="text"
@@ -29,7 +29,7 @@
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">카테고리</label><br>
 		
-		<select name="">
+		<select >
 			<option value="">카테고리 선택</option>
 <%-- 			<c:forEach items="" var=""> --%>
 <!-- 				<option value=""></option> -->

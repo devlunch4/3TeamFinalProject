@@ -16,6 +16,8 @@
     			$('#frm').submit();
     			
     		});
+    		
+    		
     })
     </script>
 
@@ -103,13 +105,16 @@
 <%-- 								</c:forEach> --%>
 								
 								<c:forEach items="${noticelist }" var="notice">
+								
 									<tr class="board" data-market_no="${notice.market_no }" >
 										<td>${notice.head_code }</td>
-										<td>${notice.thumbnail }</td>
+										<td><img id="pictureViewImg" src="${cp }/fcommunity/marketprofile?emp_id=${detailUser.emp_id}"
+										style="width: 100%; height: 100%;"/></td>
 										<td>${notice.title }</td>
 										<td>${notice.writer }</td>
 										<td><fmt:formatDate value="${notice.reg_dt }" pattern="yyyy-MM-dd"/></td>
-								</tr>
+									</tr>
+									
 								  </c:forEach>
 								
 							</tbody>

@@ -23,7 +23,7 @@
         		 (SELECT NVL(MAX(file_no),0)+1 from files),
                  #{file_nm},
                  #{file_path},
-                 #{use_yn}
+                 'y'
                  )
 	 </insert>
 	

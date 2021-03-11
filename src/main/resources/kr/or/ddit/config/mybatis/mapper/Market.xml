@@ -3,36 +3,36 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="community">
+<mapper namespace="market">
 
 	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectmarket" resultType="FcommunityVo">
+	<select id="selectmarket" resultType="MarketVo">
 		SELECT * FROM market
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectonemarket"  resultType="FcommunityVo" parameterType="int">
+	<select id="selectonemarket"  resultType="MarketVo" parameterType="int">
 		SELECT * FROM market WHERE market_no = #{market_no}
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
-	<insert id="registermarket" parameterType="FcommunityVo">
+	<insert id="registermarket" parameterType="MarketVo">
 		INSERT INTO market
 		(market_no,writer,head_code,title,item_code,content,price,reg_dt,thumbnail,mobile,hit,use_yn) 
         VALUES (
         		 (SELECT NVL(MAX(market_no),0)+1 from market),
                  #{writer},
-                 #{head_code},
+                 0,
                  #{title},
-                 #{item_code},
+                 0,
                  #{content},
-                 #{price},
+                 2,
                  sysdate,
-                 #{thumbnail},
-                 #{mobile},
-                 #{hit},
-                 #{use_yn}
-                 ); 
+                 '',
+                 '222',
+                 2,
+                 'y'
+                 ) 
 	</insert>
 	
 </mapper>
