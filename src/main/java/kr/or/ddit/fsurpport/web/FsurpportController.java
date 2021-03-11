@@ -289,6 +289,7 @@ public class FsurpportController {
 		farmdiaryVo.setW_step_code(req.getParameter("w_step_code"));
 		farmdiaryVo.setWeather(req.getParameter("weather"));
 		farmdiaryVo.setWriter(req.getParameter("writer"));
+		farmdiaryVo.setYield(Integer.parseInt(req.getParameter("yield")));
 
 		FilesVo filesVo = new FilesVo();
 
