@@ -46,4 +46,10 @@ public class FinfoDaoImpl implements FinfoDao {
 		return tempplate.update("guides.deleteGuide", gardenguideVo);
 	}
 
+	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
+	@Override
+	public List<GardenguideVo> selectGuideAll() {
+		return tempplate.selectList("guides.selectGuideAll");
+	}
+
 }
