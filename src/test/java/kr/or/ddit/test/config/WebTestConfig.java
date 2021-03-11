@@ -12,7 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@ContextConfiguration(locations = { "classpath:/kr/or/ddit/config/spring/application-context.xml",
+@ContextConfiguration(locations = { "classpath:/kr/or/ddit/config/spring/datasource-context.xml",
+		"classpath:/kr/or/ddit/config/spring/application-context.xml",
 		"classpath:/kr/or/ddit/config/spring/root-context.xml" })
 @WebAppConfiguration // 스프링 환경을 web기반의 application context로 생성, 컨트롤러 환경 테스트시 필요
 @RunWith(SpringJUnit4ClassRunner.class)
