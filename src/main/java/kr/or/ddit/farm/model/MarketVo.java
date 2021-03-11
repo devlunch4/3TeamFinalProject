@@ -3,7 +3,7 @@ package kr.or.ddit.farm.model;
 import java.util.Date;
 
 //shs_20210308 : FcommuintyVo 수정
-public class FcommunityVo {
+public class MarketVo {
 	
 	private int market_no;
 	private String writer;
@@ -18,12 +18,12 @@ public class FcommunityVo {
 	private int hit;
 	private String use_yn;
 	
-	public FcommunityVo() {}
+	public MarketVo() {}
 	
 	
 
 	
-	public FcommunityVo(int market_no, String writer, int head_code, String title, String item_code, String content,
+	public MarketVo(int market_no, String writer, int head_code, String title, String item_code, String content,
 		String price, Date reg_dt, String thumbnail, String mobile, int hit, String use_yn) {
 		super();
 		this.market_no = market_no;

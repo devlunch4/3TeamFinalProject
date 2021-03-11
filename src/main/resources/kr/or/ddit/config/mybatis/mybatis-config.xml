@@ -19,9 +19,22 @@
 
 		<!-- 20210305KWS GardenguidesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo" alias="gardenguideVo" />
+		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
+
+<!-- ??? -->
+<typeAlias type="kr.or.ddit.farm.model.FcommunityVo" alias="FcommunityVo" />
 
 		<!-- 20210306 SHS FcommunityVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.FcommunityVo" alias="FcommunityVo" />
+		<typeAlias type="kr.or.ddit.farm.model.MarketVo" alias="MarketVo" />
+		
+		<!-- 20210309 SHS FileVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FilesVo" alias="FilesVo" />
+		
+		<!-- 20210309 SHS FileVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.MarketFilesVo" alias="MarketFilesVo" />
+		
+		
+
 
 		<!-- 20210309_LYS_Q&A - 문의사항 - QNA테이블 -->
 		<typeAlias type="kr.or.ddit.farm.model.FqnaVo" alias="fqnaVo" />
@@ -38,11 +51,15 @@
 		<!-- 2021-03-06KJH MsrequipVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FhistoryVo" alias="fhistoryVo" />
 
+
 		<!-- ggy_20210305 FilesVo 만듬 -->
 		<typeAlias type="kr.or.ddit.common.model.FilesVo" alias="filesVo" />
-		
-		<!-- 주석 달아주세요 -->
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo" alias="farmdiaryVo" />
+				
+		<!-- 주석 달아주세요 -->
+
+
+
 		
 		<!-- ggy_20210305 MySimpleCodeVo 만듬 -->
 		<typeAlias type="kr.or.ddit.farm.model.MySimpleCodeVo" alias="mySimpleCodeVo" />
@@ -65,9 +82,20 @@
 
 		<!-- 20210305 KWS GardenguidesVo mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/guides.xml" />
+
+<!-- ??? -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/Fcommunity.xml" />
 		
+				
+		<!-- 20210307 SHS FcommunityVo mappers -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/Market.xml" />
+		
+		<!-- 20210309 SHS FilesVo mappers -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/files.xml" />
 
+		<!-- 20210309 SHS FilesVo mappers -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/marketfiles.xml" />
+		
 	</mappers>
 
 </configuration>
