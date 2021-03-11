@@ -48,7 +48,7 @@
             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}">영농일지</a>
-                    <a class="nav-link" href="${pageContext.request.contextPath }/fsurpport/facilityList">시설관리</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath }/fsurpport/fmanageList">시설관리</a>
                 </nav>
                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">

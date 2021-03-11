@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
+import kr.or.ddit.farm.model.FarmdiaryVo;
 
 @Repository("fdataDao")
 public class FdataDaoImpl implements FdataDao {
@@ -25,6 +26,18 @@ public class FdataDaoImpl implements FdataDao {
 	@Override
 	public CodesVo selectCode(String str) {
 		return tempplate.selectOne("codes.selectCode",str);
+	}
+
+	
+	@Override
+	public List<FarmdiaryVo> farmCount() {
+		return tempplate.selectList("fsurpports.farmCount");
+	}
+	
+	// 20210310_KJH 날짜조건 품목비율
+	@Override
+	public List<FarmdiaryVo> datefarmCount(FarmdiaryVo vo) {
+		return tempplate.selectList("fsurpports.datefarmCount",vo);
 	}
 
 }

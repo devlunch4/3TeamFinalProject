@@ -65,9 +65,9 @@
 <%-- 	<script src="${pageContext.request.contextPath}/resources/src/js/jquery.slim.min.js"></script> --%>
 	<script src="${pageContext.request.contextPath}/resources/src/js/bootstrap.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/src/js/scripts.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/src/js/Chart.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/src/assets/demo/chart-area-demo.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/src/assets/demo/chart-bar-demo.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/src/js/Chart.min.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/src/assets/demo/chart-area-demo.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/src/assets/demo/chart-bar-demo.js"></script> --%>
 	<script src="${pageContext.request.contextPath}/resources/src/js/jquery.dataTables.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/src/js/dataTables.bootstrap4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/src/assets/demo/datatables-demo.js"></script>
