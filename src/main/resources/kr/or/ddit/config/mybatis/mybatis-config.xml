@@ -17,6 +17,11 @@
 		<!-- 2021-03-03KJH fmanageVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.FmanageVo" alias="fmanageVo" />
 
+		
+		<!-- 2021-03-11 FnoticeVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.FnoticeVo" alias="fnoticeVo" />
+
+
 		<!-- 20210305KWS GardenguidesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo" alias="gardenguideVo" />
 		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />

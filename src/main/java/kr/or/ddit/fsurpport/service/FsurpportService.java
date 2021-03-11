@@ -75,7 +75,6 @@ public interface FsurpportService {
 	// 20210308_KJH 시설 상세조회 수정
 	FmanageVo fmanageInfo(String str);
 
-	
 	// 20210304_KJH 시설 최근 측정정보 조회
 	MsrrecVo latelyData(FhistoryVo fhistoryVo);
 	

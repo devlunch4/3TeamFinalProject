@@ -80,5 +80,11 @@ public class UserService implements UserServiceImpl {
 		return userDao.modifyUser(userVo);
 	}
 
+//20210310_KKC_1110
+	@Override
+	public UserVo modifyUser2(UserVo userVo) {
+		return userDao.modifyUser2(userVo);
+	}
+
 
 }

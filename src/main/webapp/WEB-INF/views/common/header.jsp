@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-	<a class="navbar-brand" id="logo" href="#"><img src="${pageContext.request.contextPath}/resources/src/img/logo.png" alt="똑똑한 농부들" /></a>
+	<a class="navbar-brand" id="logo" href="${pageContext.request.contextPath}/user/main""><img src="${pageContext.request.contextPath}/resources/src/img/logo.png" alt="똑똑한 농부들"/></a>
 	<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
 		<i class="fas fa-bars"></i>
 	</button>

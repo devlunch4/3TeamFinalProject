@@ -4,11 +4,9 @@
 
 <h3 class="mt-4">공지사항</h3>
 
-	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView'" 
-		class=" btn btn-outline-dark m-1">공지사항 등록</button>
-	</c:if>
+<c:if test="${S_USER.user_id.equals('admin') }">
+	<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView'" class=" btn btn-outline-dark m-1">공지사항 등록</button>
+</c:if>
 
 
 <!-- 설명 시작 -->
@@ -35,45 +33,19 @@
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-									 aria-label="NOTICE_NO: activate to sort column descending" aria-sort="ascending"></th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="TITLE: activate to sort column ascending">제목</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="WRITER: activate to sort column ascending">작성자</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-									aria-label="REG_DT: activate to sort column ascending">작성일시</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column ascending">제목</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">작성일시</th>
 								</tr>
 							</thead>
-							<tfoot>
-								<tr>
-									<th rowspan="1" colspan="1"></th>
-									<th rowspan="1" colspan="1">제목</th>
-									<th rowspan="1" colspan="1">작성자</th>
-									<th rowspan="1" colspan="1">작성일시</th>
-								</tr>
-							</tfoot>
+
 							<tbody>
-								<c:forEach items="${farmdiaryList }" var="farmdiaryList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'" >
-										<td></td>
-										<td>${farmdiaryList.item_code }</td>
-										<td>${farmdiaryList.w_step_code }</td>
-										<td>
-											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
-										</td>
+								<c:forEach items="${noticeList }" var="noticeList">
+									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'">
+										<td>${noticeList.title }</td>
+										<td><fmt:formatDate value="${noticeList.reg_dt }" pattern="yyyy.MM.dd" /></td>
 									</tr>
 								</c:forEach>
-								
-								<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'" >
-										<td></td>
-										<td>test</td>
-										<td>test</td>
-										<td>
-											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
-										</td>
-									</tr>
-								
+
 							</tbody>
 						</table>
 					</div>

@@ -88,5 +88,11 @@ public class UserDao implements UserDaoImpl {
 	}
 
 
+	// 사용자가 개인정보 수정 03/10 (경찬)
+	@Override
+	public UserVo modifyUser2(UserVo userVo) {
+		return template.selectOne("users.modifyUser2", userVo);
+	}
+	
 
 }
