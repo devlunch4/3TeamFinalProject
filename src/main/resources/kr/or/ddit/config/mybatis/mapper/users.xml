@@ -43,9 +43,9 @@
 	</select>
 
 
-	<!-- 사용자 정보 수정 03/05 (경찬)-->
+	<!-- 관리자 사용자 정보 수정 03/05 (경찬)-->
 	<update id="modifyUser" parameterType="userVo">
-		update users set  user_pw = #{user_pw},  login_fail_cnt = #{login_fail_cnt}
+		update users set  user_pw = #{user_pw},  login_fail_cnt = #{login_fail_cnt}, use_yn = #{use_yn}
 		where user_id = #{user_id}
 	</update>
 
@@ -54,5 +54,12 @@
 		UPDATE users set use_yn = 'N'
 		WHERE user_id=#{user_id}
 	</update>
+	
+	<!-- 유저가 개인정보 수정 03/10 (경찬) -->
+	<update id="modifyUser2" parameterType="userVo">
+		update  users set user_nm = #{user_nm}, user_pw = #{user_pw}, email = #{email}, addr1 = #{addr1}, addr2 = #{addr2}, zip = #{zip}, mobile = #{mobile}
+		where user_id = #{user_id}
+	</update>
+	
 	
 </mapper>

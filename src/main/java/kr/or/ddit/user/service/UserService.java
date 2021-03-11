@@ -60,4 +60,9 @@ public class UserService implements UserServiceImpl {
 		return userDao.modifyUser(userVo);
 	}
 
+	@Override
+	public UserVo modifyUser2(UserVo userVo) {
+		return userDao.modifyUser2(userVo);
+	}
+
 }

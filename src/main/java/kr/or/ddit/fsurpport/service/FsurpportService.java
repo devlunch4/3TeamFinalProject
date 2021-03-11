@@ -75,13 +75,11 @@ public interface FsurpportService {
 	// 20210308_KJH 시설 상세조회 수정
 	FmanageVo fmanageInfo(String str);
 
-	
 	// 20210304_KJH 시설 최근 측정정보 조회
 	MsrrecVo latelyData(FhistoryVo fhistoryVo);
 	
 	// 20210308_KJH 보유 장비 조회 수정
 	List<MsrequipVo> msrequipList(String owner); 
-
 
 	// 등록된 시설 카운트 03/04 (경찬)
 	int fmanageCount(String user_id);

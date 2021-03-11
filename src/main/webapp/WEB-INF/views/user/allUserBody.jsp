@@ -55,13 +55,11 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${userList }" var="user">
-									<c:if test="${user.use_yn == 'Y'}">
 										<tr class="user" data-userid="${user.user_id }">
 											<td>${user.user_nm }</td>
 											<td>${user.user_id }</td>
 											<td><fmt:formatDate value="${user.reg_dt }" pattern="yyyy.MM.dd" /></td>
 										</tr>
-									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>

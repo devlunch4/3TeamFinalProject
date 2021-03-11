@@ -287,5 +287,12 @@ public class UserController {
 		}
 
 	}
+	
+	// 사용자가 개인정보 수정하는거 03/10 (경찬)
+	@RequestMapping(path = "modifyUser3", method = { RequestMethod.POST })
+	public String modifyUser2(UserVo userVo) {
+		userVo = userService.modifyUser2(userVo);
+		return "tiles.main.main";
+	}
 
 }

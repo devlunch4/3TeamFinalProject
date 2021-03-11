@@ -5,22 +5,25 @@
 
 <script>
 	$(function() {
-		
+
 		$("#modifyBtn").on("click", function() {
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "modifyUser");
 			$("#frm").submit();
 		});
-		
+
 		$("#deleteBtn").on("click", function() {
-			$("#frm").attr("method", "post");
-			$("#frm").attr("action", "deleteUser");
-			$("#frm").submit();
+			var con_test = confirm("정말로 탈퇴하시겠습니까??");
+			if (con_test == true) {
+				 alert("탈퇴완료");
+				$("#frm").attr("method", "post");
+				$("#frm").attr("action", "deleteUser");
+				$("#frm").submit();
+			} else if (con_test == false) {
+				alert("취소");
+			}
+
 		});
-	
-// 		$("#back").on("click", function() {
-// 			window.history.back();
-// 		});
 
 	});
 </script>

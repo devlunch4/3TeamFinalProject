@@ -26,4 +26,7 @@ public interface UserServiceImpl {
 	// 관리자가 사용자 수정 03/05 (경찬)
 	UserVo modifyUser(UserVo userVo);
 
+	// 사용자가 개인정보 수정 03/10 (경찬)
+	UserVo modifyUser2(UserVo userVo);
+
 }

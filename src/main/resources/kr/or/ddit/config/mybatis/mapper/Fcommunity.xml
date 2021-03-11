@@ -35,4 +35,10 @@
                  ); 
 	</insert>
 	
+	<!-- 	20210309 모든 공지사항 조회 (경찬) -->
+	<select id="selectAllNoticeList"  resultType="fnoticeVo">
+				select *
+				from notice
+	</select>
+	
 </mapper>
