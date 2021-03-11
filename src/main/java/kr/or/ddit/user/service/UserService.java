@@ -35,20 +35,20 @@ public class UserService implements UserServiceImpl {
 	public String selectUse_yn(String user_id) {
 		return userDao.selectUse_yn(user_id);
 	}
-	
+
 	// 20210309_LYS_Q&A - 로그인 실패시
-	// 로그인 실패하면 login_fail_cnt 카운트 
+	// 로그인 실패하면 login_fail_cnt 카운트
 	@Override
 	public int updateLoginFailCnt(String user_id) {
 		return userDao.updateLoginFailCnt(user_id);
 	}
-	
+
 	// 20210309_LYS_Q&A - 지금까지 실패한 로그인 카운트
 	@Override
 	public int sumLoginFailCnt(String user_id) {
 		return userDao.sumLoginFailCnt(user_id);
 	}
-	
+
 	// 20210304_LYS_Login3 - 회원가입 구현
 	// 사용자 정보 추가
 	@Override
@@ -85,6 +85,5 @@ public class UserService implements UserServiceImpl {
 	public UserVo modifyUser2(UserVo userVo) {
 		return userDao.modifyUser2(userVo);
 	}
-
 
 }

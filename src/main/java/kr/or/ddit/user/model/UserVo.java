@@ -147,7 +147,5 @@ public class UserVo {
 				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt
 				+ ", use_yn=" + use_yn + "]";
 	}
-	
-	
 
 }

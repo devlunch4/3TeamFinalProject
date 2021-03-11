@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.or.ddit.farm.model.FcommunityVo;
 import kr.or.ddit.farm.model.FnoticeVo;
 import kr.or.ddit.fcommunity.service.FcommunityService;
 import kr.or.ddit.notice.service.FnoticeService;
-
-
 
 @RequestMapping("fcommunity")
 @Controller
@@ -58,7 +55,6 @@ public class FcommunityController {
 
 		return "tiles.fcommunity.noticesModify";
 	}
-
 
 	// --------------------------문의사항
 

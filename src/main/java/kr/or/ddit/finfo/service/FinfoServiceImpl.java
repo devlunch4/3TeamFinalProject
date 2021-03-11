@@ -46,7 +46,7 @@ public class FinfoServiceImpl implements FinfoService {
 	public int deleteGuide(GardenguideVo gardenguideVo) {
 		return finfoDao.deleteGuide(gardenguideVo);
 	}
-	
+
 	// 20210311_ggy : 품목 리스트 조회
 	@Override
 	public List<CodesVo> itemFarmManualsList() {

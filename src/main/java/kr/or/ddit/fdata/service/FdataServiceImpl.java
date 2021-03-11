@@ -23,13 +23,11 @@ public class FdataServiceImpl implements FdataService {
 		return fdataDao.selectAllCodes();
 	}
 
-	
 	@Override
 	public CodesVo selectCode(String str) {
 		// TODO Auto-generated method stub
 		return fdataDao.selectCode(str);
 	}
-
 
 	@Override
 	public List<FarmdiaryVo> farmCount() {
@@ -43,6 +41,5 @@ public class FdataServiceImpl implements FdataService {
 		// TODO Auto-generated method stub
 		return fdataDao.datefarmCount(vo);
 	}
-	
 
 }

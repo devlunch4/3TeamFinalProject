@@ -245,9 +245,8 @@ public class FinfoController {
 	@RequestMapping("itemFarmManualsView")
 	public String itemFarmManualsView(Model model) {
 
-		
-		model.addAttribute("itemList",finfoService.itemFarmManualsList());
-		
+		model.addAttribute("itemList", finfoService.itemFarmManualsList());
+
 		return "tiles.finfo.itemFarmManualsMain";
 	}
 

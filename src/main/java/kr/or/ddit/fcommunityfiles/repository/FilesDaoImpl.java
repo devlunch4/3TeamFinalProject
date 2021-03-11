@@ -10,21 +10,21 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.farm.model.FilesVo;
 
 @Repository("filesDao")
-public class FilesDaoImpl implements FilesDao{
-	
-	@Resource(name="sqlSessionTemplate")
+public class FilesDaoImpl implements FilesDao {
+
+	@Resource(name = "sqlSessionTemplate")
 	private SqlSessionTemplate template;
-	
-	//	20210310 SHS - Files 리스트 조회
+
+	// 20210310 SHS - Files 리스트 조회
 	@Override
 	public List<FilesVo> selectfiles() {
 		return template.selectList("files.selectfiles");
 	}
 
-	//	20210310 SHS - Files 등록 하기
+	// 20210310 SHS - Files 등록 하기
 	@Override
 	public int registerfiles(FilesVo filesVo) {
 		return template.insert("files.registerfiles", filesVo);
 	}
-	
+
 }

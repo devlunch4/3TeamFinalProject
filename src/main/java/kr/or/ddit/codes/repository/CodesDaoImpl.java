@@ -8,7 +8,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
-import kr.or.ddit.farm.model.MsrrecVo;
 
 @Repository("codesDao")
 public class CodesDaoImpl implements CodesDao {
@@ -27,7 +26,7 @@ public class CodesDaoImpl implements CodesDao {
 	public CodesVo selectCodes(String code_seq) {
 		return tempplate.selectOne("codes.selectCodes", code_seq);
 	}
-	
+
 	// 해당 코드 정보수정 03/08 (경찬)
 	@Override
 	public CodesVo modifyCode(CodesVo codesVo) {

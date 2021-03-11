@@ -22,7 +22,7 @@ public interface FinfoDao {
 
 	// 20210308 KWS 텃밭 가이드 삭제(use_yn값 N 수정)
 	int deleteGuide(GardenguideVo gardenguideVo);
-	
+
 	// 20210311_ggy : 품목 리스트 조회
 	List<CodesVo> itemFarmManualsList();
 

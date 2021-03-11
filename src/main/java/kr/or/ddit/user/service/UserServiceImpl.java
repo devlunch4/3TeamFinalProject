@@ -12,14 +12,14 @@ public interface UserServiceImpl {
 
 	// 로그인을 한 사용자의 사용여부(use_yn) 확인 LYS - 03/11
 	String selectUse_yn(String user_id);
-		
+
 	// 로그인 실패하면 login_fail_cnt 카운트 LYS - 03/11
 	int updateLoginFailCnt(String user_id);
-		
+
 	// login_fail_cnt 몇개인지 더한거 select LYS - 03/11
-	//- 지금까지 실패한 로그인 카운트
+	// - 지금까지 실패한 로그인 카운트
 	int sumLoginFailCnt(String user_id);
-	
+
 	// 20210304_LYS_Login3 - 회원가입 구현
 	// 사용자 정보 추가
 	int insertUser(UserVo userVo);
@@ -35,7 +35,6 @@ public interface UserServiceImpl {
 
 	// 관리자가 사용자 수정 03/05 (경찬)
 	UserVo modifyUser(UserVo userVo);
-
 
 	// 사용자가 개인정보 수정 03/10 (경찬)
 	UserVo modifyUser2(UserVo userVo);

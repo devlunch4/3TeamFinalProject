@@ -44,29 +44,29 @@ public class FanalysisController {
 		System.out.println(userVo.getUser_id());
 
 		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
-		
+
 		System.out.println(msrequipList.size());
 
 		MyMaxMrrecListVo MyMaxMrrecListVo = new MyMaxMrrecListVo();
 		MyMaxMrrecListVo.setManage_no(msrequipList.get(0).getMsr_code());
 		MyMaxMrrecListVo.setNumber(0);
-		
+
 //		msrrecVo = fanalysisService.myfanalysisInfo(msrrecVo);
 		List<MyMaxMrrecListVo> mmmList = new ArrayList<MyMaxMrrecListVo>();
 		mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
-		
 
-		model.addAttribute("selec",msrequipList.get(0).getMsr_code());
-		
+		model.addAttribute("selec", msrequipList.get(0).getMsr_code());
+
 		model.addAttribute("manage_no", msrequipList.get(0).getMsr_code());
 		model.addAttribute("msrequipList", msrequipList);
 		model.addAttribute("mmmList", mmmList);
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
-	
+
 	// 20210308_KJH 내 시설 관측정보 조회 수정
 	@RequestMapping(path = "myfanalysisInfo", method = { RequestMethod.POST })
-	public String myfanalysisInfo(Model model, HttpSession session,String week,String month,String day,String selec) {
+	public String myfanalysisInfo(Model model, HttpSession session, String week, String month, String day,
+			String selec) {
 
 		UserVo userVo = new UserVo();
 
@@ -74,82 +74,82 @@ public class FanalysisController {
 		System.out.println(userVo.getUser_id());
 
 		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
-		
+
 		System.out.println(msrequipList.size());
 
 		MyMaxMrrecListVo MyMaxMrrecListVo = new MyMaxMrrecListVo();
 		MyMaxMrrecListVo.setManage_no(selec);
 		MyMaxMrrecListVo.setNumber(0);
-		
+
 		List<MyMaxMrrecListVo> mmmList = new ArrayList<MyMaxMrrecListVo>();
-		if(week != null && week.equals("7")) {
-			for(int i = 0; i < 7 ; i++) {
-			MyMaxMrrecListVo.setNumber(i);
-			mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
-			};
+		if (week != null && week.equals("7")) {
+			for (int i = 0; i < 7; i++) {
+				MyMaxMrrecListVo.setNumber(i);
+				mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
+			}
+			;
 		}
-		
-		if(month != null && month.equals("30")) {
-			for(int i = 0; i < 30 ; i++) {
-			MyMaxMrrecListVo.setNumber(i);
-			mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
-			};
+
+		if (month != null && month.equals("30")) {
+			for (int i = 0; i < 30; i++) {
+				MyMaxMrrecListVo.setNumber(i);
+				mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
+			}
+			;
 		}
-		if(day != null && day.length()>0) {
-			
+		if (day != null && day.length() > 0) {
+
 			Calendar getToday = Calendar.getInstance();
-			getToday.setTime(new Date()); //금일 날짜
-			
+			getToday.setTime(new Date()); // 금일 날짜
 
 			Date date;
 			try {
 				date = new SimpleDateFormat("yyyy-MM-dd").parse(day);
 				Calendar cmpDate = Calendar.getInstance();
-				cmpDate.setTime(date); //특정 일자
-				
-				long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-				int diffDays =(int) diffSec / (24*60*60); //일자수 차이
+				cmpDate.setTime(date); // 특정 일자
 
-				
-				for(int i = 0; i < diffDays ; i++) {
+				long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
+				int diffDays = (int) diffSec / (24 * 60 * 60); // 일자수 차이
+
+				for (int i = 0; i < diffDays; i++) {
 					MyMaxMrrecListVo.setNumber(i);
 					mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
-					};
+				}
+				;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
-		model.addAttribute("selec",selec);
+
+		model.addAttribute("selec", selec);
 		model.addAttribute("manage_no", msrequipList.get(0).getMsr_code());
 		model.addAttribute("msrequipList", msrequipList);
 		model.addAttribute("mmmList", mmmList);
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
-	
-	
+
 	// 20210305_KJH 내 시설 실시간 관측 조회
 	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.GET })
-	public String mymaxmsrrecList(Model model , HttpSession session) {
-		
+	public String mymaxmsrrecList(Model model, HttpSession session) {
+
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
 		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
-		
+
 		List<MyMaxMrrecListVo> maxmrrecList = new ArrayList<MyMaxMrrecListVo>();
-		
+
 		FhistoryVo fhistoryVo = new FhistoryVo();
-		
-		for(int i = 0; i < msrequipList.size(); i++ ) {
+
+		for (int i = 0; i < msrequipList.size(); i++) {
 			String msrcode = msrequipList.get(i).getMsr_code();
 			fhistoryVo.setManage_no(msrcode);
 			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
 		}
-		
-		model.addAttribute("maxmrrecList",maxmrrecList);
+
+		model.addAttribute("maxmrrecList", maxmrrecList);
 		return "tiles.fanalysis.mymaxmsrrecList";
 	}
 }

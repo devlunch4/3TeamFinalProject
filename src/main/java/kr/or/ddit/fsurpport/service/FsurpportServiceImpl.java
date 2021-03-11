@@ -55,14 +55,13 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<CodesVo> selectAllB_type_codeList() {
 		return fsurpportDao.selectAllB_type_codeList();
 	}
-	
 
 	// ggy_20210305 : 등록한 나만의 영농일지-간편등록 목록 조회
 	@Override
 	public List<MySimpleCodeVo> selectMySimpleCodeList(String user_id) {
 		return fsurpportDao.selectMySimpleCodeList(user_id);
 	}
-	
+
 	// ggy_20210305 : 등록한 나만의 영농일지-나의 간편등록 조회 해서 배치
 	@Override
 	public MySimpleCodeVo selectMySimpleCodeInfo(MySimpleCodeVo mySimpleCodeVo) {
@@ -74,18 +73,19 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public CodesVo selectB_type_code_no(String code_no) {
 		return fsurpportDao.selectB_type_code_no(code_no);
 	}
-	
+
 	// ggy_20210308 : 농업지원-영농일지 내 간편등록을 위해 품목 코드 조회
 	@Override
 	public CodesVo selectItem_type_code_no(String code_no) {
 		return fsurpportDao.selectItem_type_code_no(code_no);
 	}
+
 	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
 	@Override
 	public int registMySimpleCode(MySimpleCodeVo mySimpleCodeVo) {
 		return fsurpportDao.registMySimpleCode(mySimpleCodeVo);
 	}
-	
+
 	// ggy_20210303 : 등록된 일지 조건 검색
 	@Override
 	public List<FarmdiaryVo> searchAllFarmdiaryList(FarmdiaryVo farmdiaryVo) {
@@ -99,13 +99,13 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FarmdiaryVo selectFarmdiaryInfo(int f_diary_no) {
 		return fsurpportDao.selectFarmdiaryInfo(f_diary_no);
 	}
-	
+
 	// ggy_20210308 : 일지 등록을 위해 일지 정보 가져오기
 	@Override
 	public MySimpleCodeVo selectMySimpleCode_noInfo(MySimpleCodeVo mySimpleCodeVo) {
 		return fsurpportDao.selectMySimpleCode_noInfo(mySimpleCodeVo);
 	}
-	
+
 	// ggy_20210305 : 영농일지 등록때 파일 있으면 파일 등록
 	@Override
 	public int registFiles(FilesVo filesVo) {
@@ -123,25 +123,25 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int registFarmdiary(FarmdiaryVo farmdiaryVo) {
 		return fsurpportDao.registFarmdiary(farmdiaryVo);
 	}
-	
+
 	// ggy_20210309 : 영농일지 일지내용 수정
 	@Override
 	public int modifyFarmdiaryInfo(FarmdiaryVo farmdiaryVo) {
 		return fsurpportDao.modifyFarmdiaryInfo(farmdiaryVo);
 	}
-	
+
 	// ggy_20210309 : 영농일지 파일 삭제 시파일 코드 삭제
 	@Override
 	public int deleteFile_no(int file_no) {
 		return fsurpportDao.deleteFile_no(file_no);
 	}
-	
+
 	// ggy_20210309 : 해당 영농일지 삭제
 	@Override
 	public int deleteFarmdiary(FarmdiaryVo farmdiaryVo) {
 		return fsurpportDao.deleteFarmdiary(farmdiaryVo);
 	}
-	
+
 	/* 시설관리 영역 */
 	@Override
 	public List<FmanageVo> myfmanageList() {
@@ -179,7 +179,6 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int fsurCount(String user_id) {
 		return fsurpportDao.fsurCount(user_id);
 	}
-	
 
 	// 20210310_KJH 사용 가능한 장비 체크
 	@Override
@@ -187,24 +186,24 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.availableList(vo);
 	}
 
-
 	// 20210310_KJH 내 장비리스트 조회
 	@Override
 	public List<MsrequipVo> msrList(String str) {
 		return fsurpportDao.msrList(str);
 	}
+
 	// 20210311_KJH 시설등록
 	@Override
 	public int insertFmanage(FmanageVo fmanagvo) {
 		return fsurpportDao.insertFmanage(fmanagvo);
 	}
-	
+
 	// 20210311_KJH fhistory 등록
 	@Override
 	public int insertFhistory(FhistoryVo fhistoryVo) {
 		return fsurpportDao.insertFhistory(fhistoryVo);
 	}
-	
+
 	// 20210311_KJH Fmanage 조회
 	@Override
 	public FmanageVo updatefmanageInfo(String str) {

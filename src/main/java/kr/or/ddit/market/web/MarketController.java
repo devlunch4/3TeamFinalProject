@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.or.ddit.farm.model.MarketVo;
 import kr.or.ddit.farm.model.FilesVo;
-import kr.or.ddit.farm.model.MarketFilesVo;
+import kr.or.ddit.farm.model.MarketVo;
 import kr.or.ddit.fcommunityfiles.service.FilesServiceImpl;
 import kr.or.ddit.fileutill.FileUtil;
 import kr.or.ddit.market.service.MarketServiceImpl;
 import kr.or.ddit.marketfiles.service.MarketFilesServiceImpl;
 import kr.or.ddit.user.service.UserService;
-import kr.or.ddit.user.service.UserServiceImpl;
 
 @RequestMapping("market")
 @Controller

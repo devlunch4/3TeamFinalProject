@@ -1,12 +1,13 @@
 package kr.or.ddit.farm.model;
 
 public class MarketFilesVo {
-	
+
 	private int file_record_no;
 	private int market_no;
 	private int file_no;
-	
-	public MarketFilesVo() {}
+
+	public MarketFilesVo() {
+	}
 
 	public MarketFilesVo(int file_record_no, int market_no, int file_no) {
 		super();
@@ -44,7 +45,5 @@ public class MarketFilesVo {
 		return "MarketFilesVo [file_record_no=" + file_record_no + ", market_no=" + market_no + ", file_no=" + file_no
 				+ "]";
 	}
-	
-	
-	
+
 }

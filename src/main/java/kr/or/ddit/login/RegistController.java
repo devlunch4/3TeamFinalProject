@@ -43,49 +43,48 @@ public class RegistController {
 		return "register";
 	}
 
-	//	20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
+	// 20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
 	@RequestMapping(path = "id_check", method = RequestMethod.POST)
 	public String idCheck(String user_id, Model model) {
-		
+
 		logger.debug("iNN RegistController >> idCheck");
 		String user_id_check = userService.checkForDuplicateId(user_id);
-		
-		if(user_id_check != null) {
+
+		if (user_id_check != null) {
 			String id_status_taken = "가입된 아이디입니다.";
 			model.addAttribute("id_status_taken", id_status_taken);
-		}else {
+		} else {
 			String id_status_ok = "사용 가능한 아이디입니다.";
 			model.addAttribute("id_status_ok", id_status_ok);
 		}
 		return "jsonView";
 	}
-	
-	
-	//20210308_LYS_Join2 - 이메일인증
-	@RequestMapping(path="email_verify", method = RequestMethod.POST)
+
+	// 20210308_LYS_Join2 - 이메일인증
+	@RequestMapping(path = "email_verify", method = RequestMethod.POST)
 	public String email_verify(String email, Model model) {
-		
+
 		String a[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-		String b[] = { "as", "bb", "cq", "dy", "ex", "fv", "gf", "ha", "ir", "jn", "kc", "lg", "mp", "ni", "ok", "pm", "qn", "rb", "sc",
-				"tq", "ur", "vx", "wb", "xf", "yj", "za" };
-		String c[] = { "AU", "BC", "CB", "DE", "Ed", "Fv", "Gr", "HQ", "IB", "Jb", "Ku", "L4", "M7", "Ng", "O2", "Pf", "Qq", "Rd", "Sv",
-				"Th", "Ut", "Vm", "Wp", "Xf", "gY", "Zs" };
+		String b[] = { "as", "bb", "cq", "dy", "ex", "fv", "gf", "ha", "ir", "jn", "kc", "lg", "mp", "ni", "ok", "pm",
+				"qn", "rb", "sc", "tq", "ur", "vx", "wb", "xf", "yj", "za" };
+		String c[] = { "AU", "BC", "CB", "DE", "Ed", "Fv", "Gr", "HQ", "IB", "Jb", "Ku", "L4", "M7", "Ng", "O2", "Pf",
+				"Qq", "Rd", "Sv", "Th", "Ut", "Vm", "Wp", "Xf", "gY", "Zs" };
 		String d[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-		
+
 		String Brandom1 = (a[new Random().nextInt(a.length)]);
 		String Brandom2 = (b[new Random().nextInt(a.length)]);
 		String Brandom3 = (c[new Random().nextInt(a.length)]);
 		String Brandom4 = (d[new Random().nextInt(a.length)]);
-		
-		String code = Brandom1+Brandom2+Brandom3+Brandom4;
+
+		String code = Brandom1 + Brandom2 + Brandom3 + Brandom4;
 
 		model.addAttribute("code", code);
 
-		//인증코드를 보내는 이메일	
+		// 인증코드를 보내는 이메일
 		String host = "smtp.naver.com";
 		final String user = "test_for_develop@naver.com";
 		final String password = "smartFarmers";
-		
+
 		String to = email;
 
 		Properties props = new Properties();
@@ -121,30 +120,28 @@ public class RegistController {
 		}
 		return "jsonView";
 	}
-	
-	
-	//20210308_LYS_Join2 - 핸드폰인증
-	@RequestMapping(path="mobile_verify", method = RequestMethod.POST)
+
+	// 20210308_LYS_Join2 - 핸드폰인증
+	@RequestMapping(path = "mobile_verify", method = RequestMethod.POST)
 	public String mobile_verify(String mobile, Model model) {
-		
-		
+
 		String api_key = "NCSO84P8OV8CL2LC";
 		String api_secret = "0EVDBPVNWPT5K4S8FKIWXEYDK0VSXFD8";
 		Message coolsms = new Message(api_key, api_secret);
 
 		String a[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-		String b[] = { "as", "bb", "cq", "dy", "ex", "fv", "gf", "ha", "ir", "jn", "kc", "lg", "mp", "ni", "ok", "pm", "qn", "rb", "sc",
-				"tq", "ur", "vx", "wb", "xf", "yj", "za" };
-		String c[] = { "AU", "BC", "CB", "DE", "Ed", "Fv", "Gr", "HQ", "IB", "Jb", "Ku", "L4", "M7", "Ng", "O2", "Pf", "Qq", "Rd", "Sv",
-				"Th", "Ut", "Vm", "Wp", "Xf", "gY", "Zs" };
+		String b[] = { "as", "bb", "cq", "dy", "ex", "fv", "gf", "ha", "ir", "jn", "kc", "lg", "mp", "ni", "ok", "pm",
+				"qn", "rb", "sc", "tq", "ur", "vx", "wb", "xf", "yj", "za" };
+		String c[] = { "AU", "BC", "CB", "DE", "Ed", "Fv", "Gr", "HQ", "IB", "Jb", "Ku", "L4", "M7", "Ng", "O2", "Pf",
+				"Qq", "Rd", "Sv", "Th", "Ut", "Vm", "Wp", "Xf", "gY", "Zs" };
 		String d[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-		
+
 		String Brandom1 = (a[new Random().nextInt(a.length)]);
 		String Brandom2 = (b[new Random().nextInt(a.length)]);
 		String Brandom3 = (c[new Random().nextInt(a.length)]);
 		String Brandom4 = (d[new Random().nextInt(a.length)]);
-		
-		String num = Brandom1+Brandom2+Brandom3+Brandom4;
+
+		String num = Brandom1 + Brandom2 + Brandom3 + Brandom4;
 
 		model.addAttribute("num", num);
 
@@ -152,7 +149,7 @@ public class RegistController {
 		params.put("to", mobile); // 수신전화번호
 		params.put("from", "01029937927"); // 발신전화번호.
 		params.put("type", "SMS");
-		params.put("text", "인증코드 : " + num +" 입니다");
+		params.put("text", "인증코드 : " + num + " 입니다");
 		params.put("app_version", "test app 1.2"); // application name and version
 
 		try {
@@ -163,7 +160,7 @@ public class RegistController {
 			System.out.println(e.getCode());
 		}
 		return "jsonView";
-		
+
 	}
 
 	// 20210304_LYS_Login3 - 회원가입 구현
