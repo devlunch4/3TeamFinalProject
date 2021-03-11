@@ -23,6 +23,10 @@ public class FcommunityController {
 	@Resource(name = "FcommuintyService")
 	private FcommunityService commuityService;
 	
+	
+	
+	// --------------------------공지사항
+	
 	// ggy_20210304 : 커뮤니티 공지사항 진입
 	@RequestMapping("noticesView") 
 	public String noticesView(Model model) {
@@ -53,6 +57,12 @@ public class FcommunityController {
 		
 		return "tiles.fcommunity.noticesModify";
 	}
+	
+	
+	
+	
+	
+	// --------------------------미니장터
 	
 	// ggy_20210304 : 커뮤니티 미니장터 진입
 	@RequestMapping("minimarketView") 
@@ -97,14 +107,28 @@ public class FcommunityController {
 	}
 	
 	// shs_20210309 : 커뮤니티 미니장터 글 작성
-		@RequestMapping(path = "minimarketRegist", method = RequestMethod.POST)
-		public String minimarketRegist(Model model, FcommunityVo coVo) {
-			
-			logger.debug("IN minimarketRegistView()");
-			
-			return "tiles.fcommunity.minimarketRegist";
-		}
+	@RequestMapping(path = "minimarketRegist", method = RequestMethod.POST)
+	public String minimarketRegist(Model model, FcommunityVo coVo) {
+		
+		logger.debug("IN minimarketRegistView()");
+		
+		return "tiles.fcommunity.minimarketRegist";
+	}
 	
+	
+	
+	
+	
+	// --------------------------문의사항
+	
+	// 20210309_LYS_Q&A : 커뮤니티 문의사항 페이지 진입
+	@RequestMapping(path="qnaView")
+	public String qnaView() {
+		logger.debug("IN minimarketView()");
+		
+		return "tiles.fcommunity.qnaMain";
+		
+	}
 	
 	
 }
