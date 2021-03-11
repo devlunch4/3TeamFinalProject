@@ -8,12 +8,16 @@ $(function(){
 		var num = $("#category").val();
 // 		alert("부류코드 값:"+num);
 		if(num == 100){
-			$("#item2").css("display","none")
-			$("#item1").css("display","")
+			$("#item2").css("display","none");
+			$("#item2").attr('name',"_");
+			$("#item1").css("display","");
+			$("#item1").attr('name',"item_code");
 		}
 		if(num == 200){
-			$("#item2").css("display","")
-			$("#item1").css("display","none")
+			$("#item2").css("display","");
+			$("#item2").attr('name',"item_code");
+			$("#item1").css("display","none");
+			$("#item1").attr('name',"_");
 		}
 	})
 	
@@ -22,8 +26,8 @@ $(function(){
 		if($("#category").val() == 100){
 			item = $("#item1").val();
 		}else if($("#category").val() == 200){
-			item = $("#item2").val();
-		}
+			item =$("#item2").val();
+		} 
 		
 		$("#c_code").val($("#category").val());
 		$("#i_code").val(item);
@@ -35,17 +39,16 @@ $(function(){
 	if(${itemcategorycode} =='100'){
 		
 		$("#item2").hide();
-		$("#item2").attr('name',"_")
+
 		$("#item1").show();
-		$("#item1").attr('name',"item_code")
+
 		
 	$("#item1").val("${itemcode}").prop("selected",true);
 	}else if(${itemcategorycode} =='200'){
 		
 		$("#item2").show();		
-		$("#item2").attr('name',"item_code")
 		$("#item1").hide();
-		$("#item1").attr('name',"_")
+
 
 		
 	$("#item2").val("${itemcode}").prop("selected",true);
@@ -60,10 +63,11 @@ $(function(){
 	<div class="card-body text-left ">
 		<div class="">
 			<div class="row">
-				<form action="${pageContext.request.contextPath}/fsurpport/fmanageInsert" method="post">
+				<form action="${pageContext.request.contextPath}/fsurpport/fmanageUpdate" method="post">
 					<table class="table table-bordered col-sx-12" style="text-align: center;">
+						<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
 						<tr>
-							<td class="col12">농장주 : <label>${fmanage.owner}</label>
+							<td colspan="2">농장주 : <label>${fmanage.owner}</label>
 							<input type="hidden" name="owner" value="${fmanage.owner}">
 							</td>
 						</tr>
@@ -92,16 +96,16 @@ $(function(){
 							<td colspan="2">장소 : <input type="text" name="location" value="${fmanage.location}" required="required"/>
 							</td>
 						</tr>
+<!-- 						<tr> -->
+<!-- 							<td colspan="2">장비 :  -->
+<!-- 							<label></label> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr>
-							<td colspan="2">장비 : 
-							<label></label>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2"><textarea id="summernote" name="info"></textarea></td>
+							<td colspan="2"><textarea id="summernote" name="info">${fmanage.info}</textarea></td>
 						</tr>
 					</table>
-					<button type="submit" class="btn btn-primary">등록하기</button>
+					<button type="submit" class="btn btn-primary">저장</button>
 				</form>
 			</div>
 		</div>

@@ -154,5 +154,16 @@
 	from fmanage where manage_no = #{manage_no}
 	</select>
 	
+	<!-- 0311_KJH update -->
+	<update id="fmanageUpdate" parameterType="fmanageVo">
+	update fmanage set location = #{location}, info = #{info},item_code = #{item_code}
+    where manage_no = #{manage_no}
+	</update>
+	
+	<!-- 0311_KJH delete -->
+	<update id="fmanageDelete" parameterType="fmanageVo">
+	update fmanage set use_yn = 'N'
+    where manage_no = #{manage_no}
+	</update>
 	
 </mapper>

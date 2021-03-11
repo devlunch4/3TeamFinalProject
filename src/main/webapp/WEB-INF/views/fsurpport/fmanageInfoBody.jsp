@@ -38,8 +38,8 @@
 					</tr>
 				</table>
 			</div>
-			<button type="button" class="btn btn-warning float-left" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageUpdate?manage_no=${fmanage.manage_no}'">수정하기</button>
-			<button type="button" class="btn btn-danger float-left" style="margin-left: 5px;">삭제하기</button>
+			<button type="button" class="btn btn-warning float-left" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageUpdatePage?manage_no=${fmanage.manage_no}'">수정하기</button>
+			<button type="button" class="btn btn-danger float-left" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageDelete?manage_no=${fmanage.manage_no}'" style="margin-left: 5px;">삭제하기</button>
 		</div>
 	</div>
 </div>

@@ -103,4 +103,8 @@ public interface FsurpportDao {
 	
 	// 20210311_KJH Fmanage 조회
 	FmanageVo updatefmanageInfo(String str);
+	
+	int fmanageUpdate(FmanageVo fmanageVo);
+	
+	int fmanageDelete(FmanageVo fmanageVo);
 }

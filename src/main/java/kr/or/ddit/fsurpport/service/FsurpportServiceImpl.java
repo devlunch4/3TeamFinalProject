@@ -210,4 +210,15 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FmanageVo updatefmanageInfo(String str) {
 		return fsurpportDao.updatefmanageInfo(str);
 	}
+	
+	@Override
+	public int fmanageUpdate(FmanageVo fmanageVo) {
+		return fsurpportDao.fmanageUpdate(fmanageVo);
+	}
+	
+	@Override
+	public int fmanageDelete(FmanageVo fmanageVo) {
+		// TODO Auto-generated method stub
+		return fsurpportDao.fmanageDelete(fmanageVo);
+	}
 }

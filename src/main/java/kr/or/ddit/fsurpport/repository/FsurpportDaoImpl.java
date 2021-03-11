@@ -209,4 +209,16 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public FmanageVo updatefmanageInfo(String str) {
 		return template.selectOne("fmanage.updatefmanageInfo",str);
 	}
+	
+	@Override
+	public int fmanageUpdate(FmanageVo fmanageVo) {
+		// TODO Auto-generated method stub
+		return template.update("fmanage.fmanageUpdate",fmanageVo);
+	}
+	
+	@Override
+	public int fmanageDelete(FmanageVo fmanageVo) {
+		// TODO Auto-generated method stub
+		return template.update("fmanage.fmanageDelete",fmanageVo);
+	}
 }

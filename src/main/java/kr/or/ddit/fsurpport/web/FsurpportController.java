@@ -651,25 +651,63 @@ public class FsurpportController {
 		return "redirect:/fsurpport/fmanageList";
 	}
 	
-	
-	// KJH_20210302
+	// KJH_20210311
 	// 농업양식 - 시설관리 관리중인 시설 업데이트 페이지
-	@RequestMapping("fmanageUpdate")
-	public String fmanageupdate(Model model, String manage_no) {
+	@RequestMapping("fmanageUpdatePage")
+	public String fmanageupdatePage(Model model, String manage_no) {
 		
 		FmanageVo fvo = fsurpportService.updatefmanageInfo(manage_no);
 		CodesVo cvo = fdataService.selectCode(fvo.getItem_code());
-		
-		
+		logger.debug("{},{}",cvo.getParent_code(),cvo.getCode_no());
 
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("itemcategorycode", cvo.getParent_code());
-		model.addAttribute("itemcode", fvo.getItem_code());
+		model.addAttribute("itemcode", cvo.getCode_no());
 		
 		model.addAttribute("codesList", fsurpportService.selectAllItem_codeList());
 
 		return "tiles.fsurpport.fmanageUpdate";
 	}
+	
+	// KJH_20210311
+	// 농업양식 - 시설관리 관리중인 시설 업데이트
+	@RequestMapping(path = "fmanageUpdate",method = { RequestMethod.POST })
+	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
+		
+		fsurpportService.fmanageUpdate(fmanageVo);
+		return "redirect:/fsurpport/fmanageInfo?manage_no="+fmanageVo.getManage_no();
+	}
+	
+	// KJH_20210311
+	// 농업양식 - 시설관리 관리중인 시설 업데이트
+	@RequestMapping(path = "fmanageDelete",method = { RequestMethod.GET })
+	public String fmanagedelete(Model model, FmanageVo fmanageVo) {
+		
+		fsurpportService.fmanageDelete(fmanageVo);
+		return "redirect:/fsurpport/fmanageList";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// ggy_20210309 : 파일 경로
 	@RequestMapping("filePath")
