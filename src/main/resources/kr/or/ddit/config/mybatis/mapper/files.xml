@@ -6,17 +6,17 @@
 <mapper namespace="files">
 
 	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectfiles" resultType="FilesVo">
+	<select id="selectfiles" resultType="filesVo">
 		SELECT * FROM files
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectonefiles"  resultType="FilesVo" parameterType="int">
+	<select id="selectonefiles"  resultType="filesVo" parameterType="int">
 		SELECT * FROM files WHERE file_no = #{file_no}
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
-	<insert id="registerfiles" parameterType="FilesVo">
+	<insert id="registerfiles" parameterType="filesVo">
 		INSERT INTO files
 		(file_no,file_nm,file_path,use_yn) 
         VALUES (

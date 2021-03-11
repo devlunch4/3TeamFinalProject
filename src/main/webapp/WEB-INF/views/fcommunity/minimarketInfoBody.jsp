@@ -39,7 +39,7 @@
 		</textarea>
 <%-- 		<c:if test="${S_USER.user_id.equals('admin') }"> --%>
 			<a class="btn btn-primary"
-				href="${pageContext.request.contextPath }/fcommunity/noticesModify">댓글 수정</a>
+				href="${pageContext.request.contextPath }/market/noticesModify">댓글 수정</a>
 			<a class="btn btn-primary" href="#">댓글 삭제</a>
 <%-- 		</c:if> --%>
 	</c:forEach>
@@ -60,7 +60,7 @@
 
 <%-- <c:if test="${S_USER.user_id.equals('admin') }"> --%>
 	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath }/fcommunity/minimarketModifyView">수정</a>
+		href="${pageContext.request.contextPath }/market/minimarketModifyView">수정</a>
 	<a class="btn btn-primary" href="#">삭제</a>
 <%-- </c:if> --%>
 

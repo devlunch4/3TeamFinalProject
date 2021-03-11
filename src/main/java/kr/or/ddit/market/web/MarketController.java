@@ -25,13 +25,13 @@ import kr.or.ddit.marketfiles.service.MarketFilesServiceImpl;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceImpl;
 
-@RequestMapping("fcommunity")
+@RequestMapping("market")
 @Controller
 public class MarketController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MarketController.class);
 
-	@Resource(name = "FcommuintyService")
+	@Resource(name = "marketService")
 	private MarketServiceImpl marketService;
 
 	@Resource(name = "filesService")

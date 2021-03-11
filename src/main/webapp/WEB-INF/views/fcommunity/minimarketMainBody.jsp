@@ -11,7 +11,7 @@
     			
     			var market_no = $(this).data("market_no");
     			$('#market_no').val(market_no);
-    			$('#frm').attr("action","${pageContext.request.contextPath}/fcommunity/minimarketInfoView");
+    			$('#frm').attr("action","${pageContext.request.contextPath}/market/minimarketInfoView");
     			$('#frm').attr("method","get");
     			$('#frm').submit();
     			
@@ -23,11 +23,11 @@
 
 	<c:if test="${S_USER != null }">
 		<button type="button" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketRegistView'" 
+		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'" 
 		class=" btn btn-outline-dark m-1">미니장터 글 작성</button>
 	</c:if>
 		<button type="button" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketRegistView'" 
+		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'" 
 		class=" btn btn-outline-dark m-1">미니장터 글 작성</button>
 
 
@@ -57,7 +57,7 @@
 			</form>
 		</div>
 
-  	<form id = "frm" action="${pageContext.request.contextPath}/fcommunity/minimarketView" method="get">
+  	<form id = "frm" action="${pageContext.request.contextPath}/market/minimarketView" method="get">
 		<input type="hidden" id="market_no" name="market_no" value="">
 	</form>
 
@@ -108,7 +108,7 @@
 								
 									<tr class="board" data-market_no="${notice.market_no }" >
 										<td>${notice.head_code }</td>
-										<td><img id="pictureViewImg" src="${cp }/fcommunity/marketprofile?emp_id=${detailUser.emp_id}"
+										<td><img id="pictureViewImg" src="${cp }/market/marketprofile?emp_id=${detailUser.emp_id}"
 										style="width: 100%; height: 100%;"/></td>
 										<td>${notice.title }</td>
 										<td>${notice.writer }</td>

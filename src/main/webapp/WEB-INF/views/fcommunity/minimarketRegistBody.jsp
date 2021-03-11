@@ -8,7 +8,7 @@
 
 
 
-<form action="${pageContext.request.contextPath }/fcommunity/minimarketRegist" method="post", enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath }/market/minimarketRegist" method="post", enctype="multipart/form-data">
 
 	<div class="form-group">
 		<label class="small mb-1" for="input_cls_code">제목</label> 

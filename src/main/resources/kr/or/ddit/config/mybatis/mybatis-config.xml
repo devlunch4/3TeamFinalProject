@@ -21,14 +21,14 @@
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo" alias="gardenguideVo" />
 		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
 
-<!-- ??? -->
+<!-- ??? temp. -->
 <typeAlias type="kr.or.ddit.farm.model.FcommunityVo" alias="FcommunityVo" />
 
-		<!-- 20210306 SHS FcommunityVo typeAliases -->
+		<!-- 20210306 SHS MarketVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MarketVo" alias="MarketVo" />
 		
 		<!-- 20210309 SHS FileVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.FilesVo" alias="FilesVo" />
+	<!-- 	<typeAlias type="kr.or.ddit.farm.model.FilesVo" alias="FilesVo" /> -->
 		
 		<!-- 20210309 SHS FileVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MarketFilesVo" alias="MarketFilesVo" />

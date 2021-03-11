@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.farm.model.MarketVo;
 import kr.or.ddit.market.repository.MarketDao;
 
-@Service("FcommuintyService")
+@Service("marketService")
 public class MarketServiceImpl implements MarketService {
 
-	@Resource(name = "FcommunityDao")
+	@Resource(name = "marketDao")
 	private MarketDao dao;
 
 	// 20210308_SHS - 미니장터 게시글 리스트 조회

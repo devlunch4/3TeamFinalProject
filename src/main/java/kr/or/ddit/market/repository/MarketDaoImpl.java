@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.farm.model.MarketVo;
 
-@Repository("FcommunityDao")
+@Repository("marketDao")
 public class MarketDaoImpl implements MarketDao {
 
 	@Resource(name = "sqlSessionTemplate")
