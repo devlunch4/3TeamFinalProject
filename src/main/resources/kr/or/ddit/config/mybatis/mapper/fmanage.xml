@@ -10,6 +10,7 @@
 		SELECT
 		manage_no,owner,location,info,reg_dt,use_yn
 		FROM fmanage
+		order by reg_dt desc
 	</select>
 
 	<!-- 등록된 시설 보는거 03/04 (경찬) -->
@@ -53,7 +54,7 @@
 	</select>
 
 	<!-- 센서 목록 조회 -->
-	<!-- 20210306KJH 삭제 -->
+	<!-- 20210306KJH -->
 	<select id="msrequipList" resultType="msrequipVo" parameterType="String">
 	select fm.manage_no msr_code,ms.MSR_NM from fmanage fm , fhistory fh, MSREQUIP ms
 	where fm.manage_no = fh.manage_no
@@ -112,4 +113,46 @@
     and ms.msr_reg_dt &lt; sysdate -#{number}
     and ms.msr_reg_dt &gt; sysdate -#{number}-1
 	</select>
+	
+	
+	<!-- 센서 목록 조회 -->
+	<select id="msrList" resultType="msrequipVo" parameterType="String">
+		select *
+		from msrequip
+		where owner = #{owner}
+	</select>
+	
+	<!--0310_KJH 사용 가능한 센서목록 조회 -->
+	<select id="availableList" resultType="int" parameterType="msrequipVo">
+	select count(*)
+	from msrequip ms,fhistory fh,fmanage fm
+	where ms.msr_code = fh.msr_code
+	and fh.manage_no = fm.manage_no
+	and ms.owner = #{owner}
+	and ms.msr_code = #{msr_code}
+	and ms.use_yn = 'Y'
+	</select>
+	
+	<!-- 0311_KJH 시설 등록 -->
+	<insert id="insertFmanage" parameterType="fmanageVo" useGeneratedKeys="true"
+    keyColumn="manage_no" keyProperty="manage_no">
+	insert into fmanage 
+	(manage_no,owner,location,info,item_code,reg_dt,use_yn) 
+	values (seq_fmanage.nextval,#{owner},#{location},#{info},#{item_code},sysdate,'Y')
+	</insert>
+	
+	<!-- 0311_KJH Fhistory 등록-->
+	<insert id="insertFhistory" parameterType="fhistoryVo">
+	insert into fhistory
+	(history_no,manage_no,msr_code,release_dt,setup_dt,use_yn)
+	values (seq_FHISTORY.NEXTVAL,#{manage_no},#{msr_code},to_date('9999-12-01','yyyy-mm-dd'),sysdate,'Y')
+	</insert>
+	
+	<!-- 0311_KJH update를 위한 단순조회 -->
+	<select id="updatefmanageInfo" parameterType="String" resultType="fmanageVo">
+	select manage_no,owner,location,info,item_code,reg_dt,use_yn
+	from fmanage where manage_no = #{manage_no}
+	</select>
+	
+	
 </mapper>

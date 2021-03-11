@@ -71,10 +71,27 @@ public interface FsurpportDao {
 	// 20210308_KJH 보유 장비 조회 수정
 	List<MsrequipVo> msrequipList(String owner); 
 
+
 	// 등록된 시설 카운트 03/04 (경찬)
 	int fmanageCount(String user_id);
 	
 	// 등록된 일지 카운트 03/04 (경찬)
 	int fsurCount(String user_id);
+	
+	
+	
+	// 20210310_KJH 사용 가능한 장비 체크
+	int availableList(MsrequipVo vo);
 
+	// 20210310_KJH 내 장비리스트 조회
+	List<MsrequipVo> msrList(String str);
+	
+	// 20210311_KJH 시설등록
+	int insertFmanage(FmanageVo fmanagvo);
+	
+	// 20210311_KJH fhistory 등록
+	int insertFhistory(FhistoryVo fhistoryVo);
+	
+	// 20210311_KJH Fmanage 조회
+	FmanageVo updatefmanageInfo(String str);
 }

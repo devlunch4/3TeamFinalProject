@@ -162,7 +162,32 @@ public class FsurpportServiceImpl implements FsurpportService {
 		return fsurpportDao.fsurCount(user_id);
 	}
 	
+	// 20210310_KJH 사용 가능한 장비 체크
+	@Override
+	public int availableList(MsrequipVo vo) {
+		return fsurpportDao.availableList(vo);
+	}
 
+	// 20210310_KJH 내 장비리스트 조회
+	@Override
+	public List<MsrequipVo> msrList(String str) {
+		return fsurpportDao.msrList(str);
+	}
+	// 20210311_KJH 시설등록
+	@Override
+	public int insertFmanage(FmanageVo fmanagvo) {
+		return fsurpportDao.insertFmanage(fmanagvo);
+	}
 	
-
+	// 20210311_KJH fhistory 등록
+	@Override
+	public int insertFhistory(FhistoryVo fhistoryVo) {
+		return fsurpportDao.insertFhistory(fhistoryVo);
+	}
+	
+	// 20210311_KJH Fmanage 조회
+	@Override
+	public FmanageVo updatefmanageInfo(String str) {
+		return fsurpportDao.updatefmanageInfo(str);
+	}
 }
