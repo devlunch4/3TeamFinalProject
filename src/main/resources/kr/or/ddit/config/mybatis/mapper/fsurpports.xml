@@ -5,8 +5,8 @@
 
 <mapper namespace="fsurpports">
 
-	<!-- ggy_20210306 : 영농일지 전체 리스트 조회 -->
-	<select id="selectAllFsurpportList" resultType="farmdiaryVo">
+	<!-- ggy_20210309 : 영농일지 전체 리스트 조회 -->
+	<select id="selectAllFsurpportList" resultType="farmdiaryVo" parameterType="String">
 		select f.f_diary_no, f.writer, f.my_simple_code, 
 		    f.content, f.reg_dt, f.weather, f.low_temp, 
 		    f.high_temp, f.rainfall, f.humid, 
@@ -26,6 +26,8 @@
 		and co.use_yn = 'Y'
 		and cod.use_yn = 'Y'
 		and files.use_yn ='Y'
+		and writer = #{writer }
+		ORDER BY reg_dt desc
 	</select>
 
 	<!-- ggy_20210306 : code 품목 리스트 조회. -->
@@ -124,7 +126,7 @@
 		parameterType="farmdiaryVo">
 		
 		SELECT
-		f.f_diary_no, f.writer, f.content, f.reg_dt,
+		f.f_diary_no, f.writer, f.my_simple_code, f.content, f.reg_dt,
 		f.weather, f.low_temp, f.high_temp, f.rainfall, f.humid,
 		f.yield,
 		f.area, files.file_nm file_nm, c.code_nm b_type_code, co.code_nm
@@ -145,8 +147,8 @@
 		where f.reg_dt &gt;=
 		TO_DATE(#{startDate }, 'YYYY-MM-DD')
 		AND f.reg_dt &lt; TO_DATE(#{endDate }, 'YYYY-MM-DD')+1
-		OR f.item_code = #{item_code }
-		OR f.w_step_code = #{w_step_code }
+		AND f.writer = #{writer }
+		AND f.item_code = #{item_code }
         AND f.use_yn = 'Y'
         AND c.use_yn = 'Y'
         AND co.use_yn = 'Y'
@@ -168,7 +170,7 @@
 	<select id="selectFarmdiaryInfo" resultType="farmdiaryVo"
 		parameterType="int">
 		SELECT
-		f.f_diary_no, f.writer, f.content,
+		f.f_diary_no, f.writer, f.my_simple_code, f.content,
 		f.reg_dt,
 		f.weather, f.low_temp,
 		f.high_temp, f.rainfall, f.humid,
@@ -230,7 +232,42 @@
 		#{b_type_code }, #{w_step_code }, #{item_code })
 	</insert>
 	
+	<!-- ggy_20210309 : 일지 내용 수정 -->
+	<update id="modifyFarmdiaryInfo" parameterType="farmdiaryVo">
+		update farmdiary set 
+			my_simple_code = #{my_simple_code },
+			content = #{content },
+			weather = #{weather },
+			low_temp = #{low_temp },
+			high_temp = #{high_temp },
+			rainfall = #{rainfall },
+			humid = #{humid },
+			yield = #{yield },
+			area = #{area },
+			file_no = #{file_no },
+			b_type_code = #{b_type_code },
+			w_step_code = #{w_step_code },
+			item_code = #{item_code }
+		where writer = #{writer }
+		and f_diary_no = #{f_diary_no }
+	</update>
+	
+	<!-- ggy_20210309 : 영농일지에 첨부된 파일 삭제 -->
+	<update id="deleteFile_no" parameterType="int" >
+		update files set use_yn = 'N' 
+		WHERE file_no = #{file_no }
+	</update>
+	
+
+	<!-- ggy_20210309 : 영농일지 삭제 -->
+	<update id="deleteFarmdiary" parameterType="farmdiaryVo" >
+		update farmdiary set use_yn = 'N' 
+		where writer = #{writer }
+		and f_diary_no = #{f_diary_no }
+	</update>
+		
 	<!--전체 품목별 비율 -->
+
 	<select id="farmCount" resultType="farmdiaryVo">
 	select count(code_nm) yield,code_nm content  from (
     select usr.USER_ID, co.CODE_NM
