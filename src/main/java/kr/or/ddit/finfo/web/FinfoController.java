@@ -182,12 +182,12 @@ public class FinfoController {
 			logger.debug("수정파일 등록 확인 및 저장 수행 완료");
 			// 파일 하드 저장 끝 추후 테이블 수정요망>>파일테이블 미사용
 		}
-		
+
 		// update 수행
 		int updateGuide = finfoService.updateGuide(gardenguidesVo);
 		logger.debug("NEW 신규 텃밭가이드 수정 완료 : {}", updateGuide);
 
-		//초성 세팅
+		// 초성 세팅
 		String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
 		model.addAttribute("chosungArr", chosungArr);
 
@@ -210,15 +210,21 @@ public class FinfoController {
 		return "redirect:/finfo/gardenguides";
 	}
 
-	// gardenguidesAllist
+	// gardenguidesAll
 	// 20210309 KWS 텃밭 가이드 목록으로 모두보기
-	@RequestMapping(path = "gardenguidesAll", method = { RequestMethod.POST })
+	@RequestMapping(path = "gardenguidesAll", method = { RequestMethod.GET })
 	public String gardenguidesAll(Model model, GardenguideVo gardenguidesVo) {
-
-		// List<GardenguideVo>
-
-		return "redirect:/finfo/gardenguidesall";
+		logger.debug("IN gardenguidesAll()");
+		List<GardenguideVo> guidelists = finfoService.selectGuideAll();
+		logger.debug("IN 123123");
+		model.addAttribute("guidelists", guidelists);
+		logger.debug("IN 123123123123123");
+		return "tiles.finfo.gardenguidesall";
 	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
 
 	// ggy_20210304 : 농업정보 - 품종정보 진입
 	@RequestMapping("raceInfosView")
@@ -238,13 +244,16 @@ public class FinfoController {
 	// 20210311_ggy : 농업정보 - 품목별영농매뉴얼 진입
 	@RequestMapping("itemFarmManualsView")
 	public String itemFarmManualsView(Model model) {
+
 		
 		model.addAttribute("itemList",finfoService.itemFarmManualsList());
 		
 		return "tiles.finfo.itemFarmManualsMain";
-
 	}
 
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
 	// 이미지파일 보기
 	// localhost/finfo/guideimg
 	@RequestMapping("guideimg")

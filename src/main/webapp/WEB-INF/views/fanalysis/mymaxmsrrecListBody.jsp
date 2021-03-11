@@ -32,7 +32,7 @@
 						<th style="width: 10%;">조도</th>
 					</tr>
 					<c:forEach items="${maxmrrecList}" var="mrrecList">
-					
+					<c:if test="${fn:length(mrrecList.location) gt 0}">
 						<c:set var="dt">
 							<fmt:formatDate value="${mrrecList.reg_dt}" pattern="yyyy-MM-dd" />
 						</c:set>
@@ -46,6 +46,7 @@
 						<td style="width: 10%;">${mrrecList.msr_humid}</td>
 						<td style="width: 10%;">${mrrecList.msr_bright}</td>
 					</tr>
+					</c:if>
 					</c:forEach>
 				</table>
 			</div>

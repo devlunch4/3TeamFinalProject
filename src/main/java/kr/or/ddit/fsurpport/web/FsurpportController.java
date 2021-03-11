@@ -1,16 +1,22 @@
 package kr.or.ddit.fsurpport.web;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -34,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -44,13 +51,19 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+
+import kr.or.ddit.common.model.CodesVo;
+
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
 import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
+import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.farm.model.MySimpleCodeVo;
+import kr.or.ddit.fdata.service.FdataServiceImpl;
 import kr.or.ddit.fsurpport.service.FsurpportService;
+import kr.or.ddit.user.model.UserVo;
 
 
 @RequestMapping("fsurpport")
@@ -61,6 +74,9 @@ public class FsurpportController {
 
 	@Resource(name = "fsurpportService")
 	private FsurpportService fsurpportService;
+	
+	@Resource(name = "fdataService")
+	private FdataServiceImpl fdataService;
 	
 	public FsurpportController() {
 		logger.debug("fsurpport 진입");
@@ -819,21 +835,22 @@ public class FsurpportController {
 
 	// KJH_20210302
 	// 농업지원 - 시설관리 관리중인 시설 리스트 조회페이지
-	@RequestMapping("facilityList")
-	public String facilityList(Model model) {
+	@RequestMapping("fmanageList")
+	public String fmanageList(Model model) {
 
 		List<FmanageVo> fmanageList = fsurpportService.myfmanageList();
 
 		model.addAttribute("fmanageList", fmanageList);
 
-		return "tiles.fsurpport.facilityList";
+		return "tiles.fsurpport.fmanageList";
 	}
 
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지
-	@RequestMapping("facilityInfo")
-	public String facility(Model model, FmanageVo fmanage) {
+	@RequestMapping("fmanageInfo")
+	public String fmanage(Model model, FmanageVo fmanage) {
 
+		
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
 
 		// KJH_20210308 측정 정보 조회 수정
@@ -845,23 +862,86 @@ public class FsurpportController {
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
 
-		return "tiles.fsurpport.facilityInfo";
+		return "tiles.fsurpport.fmanageInfo";
 	}
 
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 등록 페이지
-	@RequestMapping("facilityInsert")
-	public String facilityInsert() {
+	@RequestMapping("fmanageInsertPage")
+	public String fmanageInsertPage(Model model, HttpSession session) {
+		String itemcategorycode = "100";
+		String itemcode = "111";
+		
+		UserVo userVo = new UserVo();
 
-		return "tiles.fsurpport.facilityInsert";
+		userVo = (UserVo) session.getAttribute("S_USER");
+		List<MsrequipVo> myList = fsurpportService.msrList(userVo.getUser_id());
+		
+		List<MsrequipVo> okList = new ArrayList<MsrequipVo>();
+		
+		for(int i = 0; i < myList.size(); i++) {
+			MsrequipVo vo = new MsrequipVo();
+			vo.setMsr_code(myList.get(i).getMsr_code());
+			vo.setOwner(userVo.getUser_id());
+			int count = fsurpportService.availableList(vo);
+			if(count == 0) {
+				vo.setMsr_code(myList.get(i).getMsr_code());
+				vo.setOwner(userVo.getUser_id());
+				vo.setMsr_nm(myList.get(i).getMsr_nm());
+				vo.setUse_yn(myList.get(i).getUse_yn());
+				okList.add(vo);
+			}
+		}
+		
+		model.addAttribute("itemcategorycode", itemcategorycode);
+		model.addAttribute("itemcode", itemcode);
+		
+		model.addAttribute("codesList", fsurpportService.selectAllItem_codeList());
+		model.addAttribute("okList",okList);
+		return "tiles.fsurpport.fmanageInsert";
 	}
+	
+	
+	//20210311 시설 등록하기
+	@RequestMapping("fmanageInsert")
+	public String fmanageInsert(Model model, HttpSession session, FmanageVo fmanageVo, String msr_code) {
+		
+		if(msr_code == null || msr_code == "") {
+			msr_code = "x";
+		}
+		logger.debug("vo : {}",fmanageVo);
+		logger.debug("msr_code : {}",msr_code);
+		
+		fsurpportService.insertFmanage(fmanageVo);
+		System.out.println(fmanageVo.getManage_no());
+		
+		FhistoryVo fhistoryVo = new FhistoryVo();
+		fhistoryVo.setManage_no(fmanageVo.getManage_no());
+		fhistoryVo.setMsr_code(msr_code);
+		fsurpportService.insertFhistory(fhistoryVo);
 
+		
+		return "redirect:/fsurpport/fmanageList";
+	}
+	
+	
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 업데이트 페이지
-	@RequestMapping("facilityupdate")
-	public String facilityupdate() {
+	@RequestMapping("fmanageUpdate")
+	public String fmanageupdate(Model model, String manage_no) {
+		
+		FmanageVo fvo = fsurpportService.updatefmanageInfo(manage_no);
+		CodesVo cvo = fdataService.selectCode(fvo.getItem_code());
+		
+		
 
-		return "tiles.fsurpport.facilityupdate";
+		model.addAttribute("fmanage", fvo);
+		model.addAttribute("itemcategorycode", cvo.getParent_code());
+		model.addAttribute("itemcode", fvo.getItem_code());
+		
+		model.addAttribute("codesList", fsurpportService.selectAllItem_codeList());
+
+		return "tiles.fsurpport.fmanageUpdate";
 	}
 	
 	// ggy_20210309 : 파일 경로

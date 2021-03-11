@@ -35,4 +35,12 @@
                  ); 
 	</insert>
 	
+	<select id="selectAllQna" resultType="fqnaVo">
+		SELECT * FROM qna
+	</select>
+	
+	
+	
+	
+	
 </mapper>
