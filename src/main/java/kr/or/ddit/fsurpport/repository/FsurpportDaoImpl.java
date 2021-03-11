@@ -206,4 +206,28 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public FmanageVo updatefmanageInfo(String str) {
 		return template.selectOne("fmanage.updatefmanageInfo", str);
 	}
+	
+	// 20210311_KJH Fmanage 업데이트
+	@Override
+	public int fmanageUpdate(FmanageVo fmanageVo) {
+		return template.update("fmanage.fmanageUpdate",fmanageVo);
+	}
+	
+	// 20210311_KJH Fmanage 업데이트(삭제)
+	@Override
+	public int fmanageDelete(FmanageVo fmanageVo) {
+		return template.update("fmanage.fmanageDelete",fmanageVo);
+	}
+	
+	// 20210311_KJH fhistory 업데이트(삭제)
+	@Override
+	public int fhistoryDelete(FmanageVo fmanageVo) {
+		return template.update("fmanage.fhistoryDelete",fmanageVo);
+	}
+
+	// 20210311_KJH 내 수확량 조회
+	@Override
+	public List<FarmdiaryVo> myYield(FarmdiaryVo vo) {
+		return template.selectList("fsurpports.myYield",vo);
+	}
 }

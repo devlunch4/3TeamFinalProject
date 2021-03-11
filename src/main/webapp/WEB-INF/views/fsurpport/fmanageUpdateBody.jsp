@@ -9,11 +9,15 @@ $(function(){
 // 		alert("부류코드 값:"+num);
 		if(num == 100){
 			$("#item2").css("display","none")
+			$("#item2").attr('name',"_")
 			$("#item1").css("display","")
+			$("#item1").attr('name',"item_code")
 		}
 		if(num == 200){
 			$("#item2").css("display","")
+			$("#item2").attr('name',"item_code")
 			$("#item1").css("display","none")
+			$("#item1").attr('name',"_")
 		}
 	})
 	
@@ -35,17 +39,14 @@ $(function(){
 	if(${itemcategorycode} =='100'){
 		
 		$("#item2").hide();
-		$("#item2").attr('name',"_")
 		$("#item1").show();
-		$("#item1").attr('name',"item_code")
+
 		
 	$("#item1").val("${itemcode}").prop("selected",true);
 	}else if(${itemcategorycode} =='200'){
 		
 		$("#item2").show();		
-		$("#item2").attr('name',"item_code")
 		$("#item1").hide();
-		$("#item1").attr('name',"_")
 
 		
 	$("#item2").val("${itemcode}").prop("selected",true);
@@ -92,13 +93,13 @@ $(function(){
 							<td colspan="2">장소 : <input type="text" name="location" value="${fmanage.location}" required="required"/>
 							</td>
 						</tr>
+<!-- 						<tr> -->
+<!-- 							<td colspan="2">장비 :  -->
+<!-- 							<label></label> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr>
-							<td colspan="2">장비 : 
-							<label></label>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2"><textarea id="summernote" name="info"></textarea></td>
+							<td colspan="2"><textarea id="summernote" name="info">${fmanage.info}</textarea></td>
 						</tr>
 					</table>
 					<button type="submit" class="btn btn-primary">등록하기</button>

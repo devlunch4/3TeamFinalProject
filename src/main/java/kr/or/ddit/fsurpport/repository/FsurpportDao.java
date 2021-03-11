@@ -100,4 +100,16 @@ public interface FsurpportDao {
 
 	// 20210311_KJH Fmanage 조회
 	FmanageVo updatefmanageInfo(String str);
+	
+	// 20210311_KJH Fmanage 업데이트
+	int fmanageUpdate(FmanageVo fmanageVo);
+	
+	// 20210311_KJH Fmanage 업데이트(삭제)
+	int fmanageDelete(FmanageVo fmanageVo);
+	
+	// 20210311_KJH fhistory 업데이트(삭제)
+	int fhistoryDelete(FmanageVo fmanageVo);
+	
+	// 20210311_KJH 내 수확량 조회
+	List<FarmdiaryVo> myYield(FarmdiaryVo vo);
 }

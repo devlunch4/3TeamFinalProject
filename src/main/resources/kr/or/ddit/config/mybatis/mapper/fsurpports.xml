@@ -293,5 +293,17 @@
     )group by code_nm
 	</select>
 	
+	<!-- 0311_KJH 날짜조건 수확량 조회-->
+	<select id="myYield" resultType="farmdiaryVo" parameterType="farmdiaryVo">
+	select co.code_no item_code, co.code_nm content ,sum(fa.yield) yield
+    from farmdiary fa ,codes co ,users usr
+    where co.code_no = fa.item_code
+    and usr.user_id = fa.writer
+    and fa.reg_dt &gt; to_date(#{b_type_code},'yyyy-mm-dd')+1
+    and fa.reg_dt &lt; to_date(#{w_step_code},'yyyy-mm-dd')+1
+    and fa.writer = #{writer}
+    group by co.code_nm,co.code_no
+	</select>
+	
 	
 </mapper>

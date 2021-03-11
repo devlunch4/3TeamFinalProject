@@ -122,7 +122,7 @@
 		where owner = #{owner}
 	</select>
 	
-	<!--0310_KJH 사용 가능한 센서목록 조회 -->
+	<!--0310_KJH 사용 가능한 센서목록 조회 (0311수정)-->
 	<select id="availableList" resultType="int" parameterType="msrequipVo">
 	select count(*)
 	from msrequip ms,fhistory fh,fmanage fm
@@ -130,7 +130,8 @@
 	and fh.manage_no = fm.manage_no
 	and ms.owner = #{owner}
 	and ms.msr_code = #{msr_code}
-	and ms.use_yn = 'Y'
+	and fh.use_yn = 'Y'
+    and ms.USE_YN = 'Y'
 	</select>
 	
 	<!-- 0311_KJH 시설 등록 -->
@@ -154,5 +155,24 @@
 	from fmanage where manage_no = #{manage_no}
 	</select>
 	
+	<!-- 0311_KJH update -->
+	<update id="fmanageUpdate" parameterType="fmanageVo">
+	update fmanage set location = #{location}, info = #{info},item_code = #{item_code}
+    where manage_no = #{manage_no}
+	</update>
 	
+	<!-- 0311_KJH delete -->
+	<update id="fmanageDelete" parameterType="fmanageVo">
+	update fmanage set use_yn = 'N'
+    where manage_no = #{manage_no}
+	</update>
+	
+	<!-- 0311_KJH delete -->
+	<update id="fhistoryDelete" parameterType="fmanageVo">
+	update fhistory set release_dt = sysdate ,use_yn = 'N'
+    where manage_no = #{manage_no}
+	</update>
+	
+	
+
 </mapper>

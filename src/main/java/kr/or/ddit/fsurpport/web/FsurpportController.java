@@ -816,15 +816,45 @@ public class FsurpportController {
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지
 	@RequestMapping("fmanageInfo")
-	public String fmanage(Model model, FmanageVo fmanage) {
-
+	public String fmanage(Model model, FmanageVo fmanage,HttpSession session) {
+System.out.println(fmanage);
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
-
+System.out.println(fvo);
 		// KJH_20210308 측정 정보 조회 수정
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fvo.getManage_no());
 		fhistoryVo.setHistory_no(fvo.getHistory_no());
 		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
+		
+		UserVo userVo = new UserVo();
+
+		userVo = (UserVo) session.getAttribute("S_USER");
+		List<MsrequipVo> myList = fsurpportService.msrList(userVo.getUser_id());
+
+		List<MsrequipVo> okList = new ArrayList<MsrequipVo>();
+
+		for (int i = 0; i < myList.size(); i++) {
+			MsrequipVo vo = new MsrequipVo();
+			vo.setMsr_code(myList.get(i).getMsr_code());
+			vo.setOwner(userVo.getUser_id());
+			
+			int count = fsurpportService.availableList(vo);
+			
+			System.out.println(count);
+			if (count == 0) {
+				vo.setMsr_code(myList.get(i).getMsr_code());
+				vo.setOwner(userVo.getUser_id());
+				vo.setMsr_nm(myList.get(i).getMsr_nm());
+				vo.setUse_yn(myList.get(i).getUse_yn());
+				okList.add(vo);
+			}
+		}
+		
+		
+		
+		
+		
+		model.addAttribute("okList",okList);
 
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
@@ -850,7 +880,9 @@ public class FsurpportController {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
+			
 			int count = fsurpportService.availableList(vo);
+
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -871,8 +903,7 @@ public class FsurpportController {
 	// 20210311 시설 등록하기
 	@RequestMapping("fmanageInsert")
 	public String fmanageInsert(Model model, HttpSession session, FmanageVo fmanageVo, String msr_code) {
-
-		if (msr_code == null || msr_code == "") {
+		if (msr_code == null || msr_code.length() > 0) {
 			msr_code = "x";
 		}
 		logger.debug("vo : {}", fmanageVo);
@@ -905,6 +936,117 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.fmanageUpdate";
 	}
+	
+	// KJH_20210311
+	// 농업양식 - 시설관리 관리중인 시설 업데이트
+	@RequestMapping(path = "fmanageUpdate",method = { RequestMethod.POST })
+	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
+		
+		fsurpportService.fmanageUpdate(fmanageVo);
+		return "redirect:/fsurpport/fmanageInfo?manage_no="+fmanageVo.getManage_no();
+	}
+	
+	// KJH_20210311
+	// 농업양식 - 시설관리 관리중인 시설 업데이트
+	@RequestMapping(path = "fmanageDelete",method = { RequestMethod.GET })
+	public String fmanagedelete(Model model, FmanageVo fmanageVo) {
+		
+		fsurpportService.fmanageDelete(fmanageVo);
+		fsurpportService.fhistoryDelete(fmanageVo);
+		
+		
+		return "redirect:/fsurpport/fmanageList";
+	}
+	
+	// KJH_20210311
+	// 농업양식 - 시설관리 관리중인 시설 장비변경
+	@RequestMapping(path = "msrequipChange",method = { RequestMethod.GET })
+	public String msrequipChange(Model model, String manage_no,String msr_code) {
+		if (msr_code == null || msr_code.length() < 0) {
+			msr_code = "x";
+		}
+		
+		FmanageVo fmanageVo = new FmanageVo();
+		fmanageVo.setManage_no(manage_no);
+		
+		fsurpportService.fhistoryDelete(fmanageVo);
+		
+		FhistoryVo fhistoryVo = new FhistoryVo();
+		fhistoryVo.setManage_no(manage_no);
+		fhistoryVo.setMsr_code(msr_code);
+		fsurpportService.insertFhistory(fhistoryVo);
+		
+		return "redirect:/fsurpport/fmanageInfo?manage_no="+manage_no;
+	}
+	
+	// 20210311_KJH 내 수확량 조회
+	@RequestMapping(path = "myYield",method = { RequestMethod.GET })
+	public String myYield(Model model, String selec, String sdate, String edate,HttpSession session) {
+		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
+		
+		UserVo userVo = new UserVo();
+
+		userVo = (UserVo) session.getAttribute("S_USER");
+
+		if (selec == null || selec.equals("all") || sdate == null || edate == null) {
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setWriter(userVo.getUser_id());
+			vo.setB_type_code("2000-01-01");
+			vo.setW_step_code("5555-12-30");
+			
+			farmCount = fsurpportService.myYield(vo);
+		}
+
+		else if (selec.equals("week")) {
+			try {
+
+				String[] dt = sdate.split("~");
+				String sd = dt[0];
+				String ed = dt[1];
+
+				FarmdiaryVo vo = new FarmdiaryVo();
+				vo.setWriter(userVo.getUser_id());
+				vo.setB_type_code(sd);
+				vo.setW_step_code(ed);
+
+				farmCount = fsurpportService.myYield(vo);
+			} catch (Exception e) {
+				model.addAttribute("farmCount", farmCount);
+				return "tiles.fdata.ratio";
+			}
+		} else if (selec.equals("month")) {
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setWriter(userVo.getUser_id());
+			vo.setB_type_code(sdate + "-01");
+
+			String[] dt = edate.split("-");
+			int eyy = Integer.parseInt(dt[0]);// 2021
+			int emm = Integer.parseInt(dt[1]) + 1;// 04
+			if (emm > 12) {
+				emm = 1;
+				eyy += 1;
+			}
+			String edt = "" + eyy + "-" + emm + "-01";
+			vo.setW_step_code(edt);
+			System.out.println("" + sdate + "" + eyy);
+
+			farmCount = fsurpportService.myYield(vo);
+		} else if (selec.equals("year")) {
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setB_type_code(sdate + "-01-01");
+			String edt = "" + (Integer.parseInt(edate));
+			vo.setW_step_code(edt + "-12-31");
+			vo.setWriter(userVo.getUser_id());
+			farmCount = fsurpportService.myYield(vo);
+		}
+
+		model.addAttribute("farmCount", farmCount);
+		return "tiles.fanalysis.myYield";
+	}
+
+	
+	
+	
 
 	// ggy_20210309 : 파일 경로
 	@RequestMapping("filePath")

@@ -20,11 +20,11 @@
 
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
-<h4 class="mt-2">품목별 비율</h4>
+<h4 class="mt-2">수확량 분석</h4>
 <div class="card mt-2 col-sm-12 px-0">
 	<h5 class="card-header">총게시글 :</h5>
-	
-	<form action="${pageContext.request.contextPath}/fdata/ratio" id="selec">
+		<!-- 20210311_KJH 내 수확량 조회-->
+	<form action="${pageContext.request.contextPath}/fsurpport/myYield" id="selec">
 		<input type="hidden" id="selctype" name = "selec" value="week">
 		<input type="hidden" id="sval" name="sdate">
 		<input type="hidden" id="eval" name="edate">

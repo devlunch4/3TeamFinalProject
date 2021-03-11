@@ -76,7 +76,6 @@ public class UserController {
 					+ "&kindcode=&productrankcode=0&convert_kg_yn=N").get();
 //		    Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday=2021-03-02&itemcategorycode=100&itemcode=111&kindcode=&productrankcode=0&convert_kg_yn=N").get();
 
-			System.out.println((doc.select("tr").get(12)).select("td").size());
 			int docsize = (doc.select("tr").get(12)).select("td").size();
 			List<String> target = new ArrayList<String>();
 			target.add(((doc.select("tr").get(11)).select("th").get(1)).text());
@@ -84,8 +83,6 @@ public class UserController {
 			target.add(((doc.select("tr").get(11)).select("th").get(docsize - 3)).text());
 			target.add(((doc.select("tr").get(11)).select("th").get(docsize - 2)).text());
 			target.add(((doc.select("tr").get(11)).select("th").get(docsize - 1)).text());
-			System.out.println((doc.select("tr").get(11)).select("th").get(1));
-			System.out.println((doc.select("tr").get(11)).select("th").get(docsize - 1));
 
 			List<String> average = new ArrayList<String>();
 			average.add(((doc.select("tr").get(12)).select("td").get(1)).text());
