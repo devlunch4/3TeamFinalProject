@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.finfo.repository.FinfoDaoImpl;
@@ -44,6 +45,18 @@ public class FinfoServiceImpl implements FinfoService {
 	@Override
 	public int deleteGuide(GardenguideVo gardenguideVo) {
 		return finfoDao.deleteGuide(gardenguideVo);
+	}
+	
+	// 20210311_ggy : 품목 리스트 조회
+	@Override
+	public List<CodesVo> itemFarmManualsList() {
+		return finfoDao.itemFarmManualsList();
+	}
+
+	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
+	@Override
+	public List<GardenguideVo> selectGuideAll() {
+		return finfoDao.selectGuideAll();
 	}
 
 }

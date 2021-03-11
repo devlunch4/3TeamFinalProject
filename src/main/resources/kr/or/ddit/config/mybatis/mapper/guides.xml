@@ -33,6 +33,7 @@
 		#{file_no},SYSDATE,'Y')
 	</insert>
 
+	<!-- 텃밭가이드 수정 -->
 	<update id="updateGuide" parameterType="gardenguideVo">
 		update GARDENGUIDE
 		set
@@ -45,10 +46,28 @@
 		where GUIDE_CODE = #{guide_code}
 	</update>
 
+	<!-- 텃밭가이드 글삭제 수정-user_yn -->
 	<update id="deleteGuide" parameterType="gardenguideVo">
 		update GARDENGUIDE
 		set USE_YN= 'N'
 		where GUIDE_CODE = #{guide_code}
 	</update>
+	
+	<!-- ggy_20210311 : code 품목 리스트 조회. itemmanualVo -->
+	<select id="itemFarmManualsList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = '100'
+		or parent_code = '200'
+		or parent_code = '300'
+		or parent_code = '400'
+		and use_yn = 'Y'
+	</select>
+	
+
+	<!-- 텃밭가이드 전체글 조회-관리자용 -->
+	<select id="selectGuideAll" resultType="gardenguideVo">
+		SELECT * FROM GARDENGUIDE ORDER BY guide_code DESC
+	</select>
 
 </mapper>

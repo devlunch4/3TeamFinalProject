@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="marketfiles">
+
+	<!-- 	20210309 SHS - MarketFiles 파일 조회 -->
+	<select id="selectfiles" resultType="MarketFilesVo">
+		SELECT * FROM marketfiles
+	</select>
+	
+	<!-- 	20210309 SHS - MarketFiles 파일 선택 조회 -->
+	<select id="selectonemarketfiles"  resultType="MarketFilesVo" parameterType="int">
+		SELECT * FROM marketfiles WHERE file_no = #{file_no}
+	</select>
+	
+	<!-- 	20210309 SHS - MarketFiles 파일 등록 -->
+	<insert id="registermarketfiles" parameterType="MarketFilesVo">
+		INSERT INTO marketfiles
+		(file_record_no,market_no,file_no) 
+        VALUES (
+        		 (SELECT NVL(MAX(file_record_no),0)+1 from marketfiles),
+                 #{market_no},
+                 (SELECT NVL(MAX(file_no),0)+1 from marketfiles)
+                 )
+	 </insert>
+	
+</mapper>

@@ -30,7 +30,32 @@ public class UserDao implements UserDaoImpl {
 	public UserVo selectUser(String user_id) {
 		return template.selectOne("users.selectUser", user_id);
 	}
+	
+	// 20210309_LYS_Q&A - 로그인 할 때
+	// 로그인을 한 사용자의 사용여부(use_yn) 확인
+	@Override
+	public String selectUse_yn(String user_id) {
+		return template.selectOne("users.selectUse_yn", user_id);
+	}
+	
+	// 20210309_LYS_Q&A - 로그인 실패시 카운트
+	@Override
+	public int updateLoginFailCnt(String user_id){
+		return template.update("users.updateLoginFailCnt", user_id);
+	}
 
+	// 20210309_LYS_Q&A - 지금까지 실패한 로그인 카운트
+	@Override
+	public int sumLoginFailCnt(String user_id) {
+		return template.selectOne("users.sumLoginFailCnt", user_id);
+	}
+
+	// 20210305_LYS_Join - 아이디 중복 체크
+	@Override
+	public String checkForDuplicateId(String user_id) {
+		return template.selectOne("users.checkForDuplicateId", user_id);
+	}
+	
 	// 20210304_LYS_Login3 - 회원가입 구현
 	// 사용자 정보 추가
 	@Override
@@ -38,12 +63,6 @@ public class UserDao implements UserDaoImpl {
 		return template.update("users.insertUser", userVo);
 	}
 	
-	// 20210305_LYS_Join - 아이디 중복 체크
-	@Override
-	public String checkForDuplicateId(String user_id) {
-		return template.selectOne("users.checkForDuplicateId", user_id);
-	}
-
 	// 전체 사용자 정보 조회 (경찬)
 	@Override
 	public List<UserVo> selectAllUser() {
@@ -68,11 +87,12 @@ public class UserDao implements UserDaoImpl {
 		return template.selectOne("users.modifyUser", userVo);
 	}
 
+
 	// 사용자가 개인정보 수정 03/10 (경찬)
 	@Override
 	public UserVo modifyUser2(UserVo userVo) {
 		return template.selectOne("users.modifyUser2", userVo);
 	}
 	
-	
+
 }

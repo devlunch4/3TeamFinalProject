@@ -25,7 +25,7 @@
 							<tr>
 								<td style="width: 10%;">${fmanage.manage_no}</td>
 								<td style="width: 10%;">${fmanage.owner}</td>
-								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 								<td style="width: 30%;">${dt}</td>
 							</tr>
 						</c:if>
@@ -33,14 +33,14 @@
 							<tr>
 								<td style="width: 10%;">${fmanage.manage_no}</td>
 								<td style="width: 10%;">${fmanage.owner}</td>
-								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/facilityInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
+								<td style="width: 50%;"><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 								<td style="width: 30%;">${dt}</td>
 							</tr>
 						</c:if>
 					</c:forEach>
 				</table>
 			</div>
-			<a href="${pageContext.request.contextPath}/fsurpport/facilityInsert" class="btn btn-primary">시설등록</a>
+			<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary">시설등록</a>
 		</div>
 	</div>
 </div>

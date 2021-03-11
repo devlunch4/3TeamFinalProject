@@ -5,9 +5,8 @@
 
 <mapper namespace="community">
 
-	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectmarket" resultType="FcommunityVo">
-		SELECT * FROM market
+	<select id="selectAllQna" resultType="fqnaVo">
+		SELECT * FROM qna
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
@@ -41,4 +40,5 @@
 				from notice
 	</select>
 	
+
 </mapper>

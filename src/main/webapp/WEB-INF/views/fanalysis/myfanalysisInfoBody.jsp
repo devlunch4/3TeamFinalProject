@@ -49,7 +49,9 @@ $(function(){
 <h3 class="mt-4">내 시설 관측</h3>
 <select id = "select">
 <c:forEach items="${msrequipList}" var="msrequip" varStatus="status">
+<c:if test="${'장비가 없습니다.' ne msrequip.msr_nm}">
 	<option id = "${status.index}" value="${msrequip.msr_code}">${msrequip.msr_nm}</option>
+</c:if>
 </c:forEach>
 </select>
 <br>

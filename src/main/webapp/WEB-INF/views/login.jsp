@@ -10,6 +10,7 @@
         <meta name="author" content="" />
         <title>똑똑한 농부들 로그인 페이지</title>
         <link href="${pageContext.request.contextPath}/resources/src/css/styles.css" rel="stylesheet" />
+        <link href="${pageContext.request.contextPath}/resources/src/css/f_styles.css" rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resources/src/js/all.min.js"></script>
 	
 		<script type="text/javascript">
@@ -23,6 +24,7 @@
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
+<%--                         <a href="${pageContext.request.contextPath}/user/main"><img src="${pageContext.request.contextPath}/resources/src/img/logo.png" alt="똑똑한 농부들"/></a> --%>
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">로그인</h3></div>
@@ -44,11 +46,12 @@
                                                     <label class="custom-control-label" for="rememberId">아이디 기억하기</label>
                                                 </div>
                                             </div>
-                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="#">아이디를 잊어버리셨나요?</a>
-                                                <a class="small" href="#">비밀번호를 잊어버리셨나요?</a>
-                                                <button class="btn btn-primary" type="submit">로그인</button>
-                                            </div>
+                                            	<div class="forgot_id_pw">
+	                                                <a class="small" href="#">아이디를 잊어버리셨나요?</a>
+	                                                <a class="small" href="#">비밀번호를 잊어버리셨나요?</a>
+	                                                <a class="small" href="${pageContext.request.contextPath}/user/main">메인페이지로 돌아가기</a>
+                                                </div>
+                                                <button class="btn-login btn btn-primary" type="submit">로그인</button>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
@@ -64,7 +67,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div class="text-muted">Copyright &copy; 똑똑한 농부들 2021</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

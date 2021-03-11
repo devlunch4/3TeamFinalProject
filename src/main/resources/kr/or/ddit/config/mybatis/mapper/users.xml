@@ -10,31 +10,52 @@
 		FROM users ORDER
 		BY user_id
 	</select>
-	
-	<!-- 20210304_LYS_Login3 - 주석 적은 날 기준-->
+
+	<!-- 20210304_LYS_Login3 -->
 	<!-- 로그인 구현 -->
-	<select id="selectUser" resultType="userVo"
-		parameterType="String">
+	<select id="selectUser" resultType="userVo" parameterType="String">
 		SELECT *
 		FROM users
 		WHERE user_id = #{value}
 	</select>
 
+	<!-- 20210309_LYS_Q&A -->
+	<!-- 로그인을 한 사용자의 사용여부(use_yn) 확인 -->
+	<select id="selectUse_yn" resultType="String" parameterType="String">
+		SELECT use_yn
+		FROM users
+		WHERE user_id = #{value}
+	</select>
 	
+	<!-- 20210309_LYS_Q&A -->
+	<!-- 로그인 실패하면 login_fail_cnt 카운트 -->
+	<update id="updateLoginFailCnt" parameterType="String">
+		UPDATE users SET login_fail_cnt = login_fail_cnt + 1
+		WHERE user_id = #{value}
+	</update>
+
+	<!-- 20210309_LYS_Q&A -->
+	<!-- 로그인 몇번 실패했나 카운트 - 지금까지 실패한 로그인 카운트 -->
+	<select id="sumLoginFailCnt" resultType="int" parameterType="String">
+		SELECT SUM(login_fail_cnt)
+		FROM users
+		WHERE user_id = #{value}
+	</select>
+
 	<!-- 20210304_LYS_Login3 -->
 	<!-- 사용자 추가 - 회원가입 -->
 	<insert id="insertUser" parameterType="userVo">
 		INSERT INTO users(user_id, user_pw, user_nm, email, addr1, addr2, zip, mobile, reg_dt, file_no, login_fail_cnt, login_dt, use_yn)
-		VALUES (#{user_id}, #{user_pw}, #{user_nm}, #{email}, #{addr1},	#{addr2}, #{zip}, #{mobile}, sysdate, null, 0, sysdate, 'Y')
+		VALUES (#{user_id}, #{user_pw}, #{user_nm}, #{email}, #{addr1}, #{addr2}, #{zip}, #{mobile}, sysdate, null, 0, sysdate, 'Y')
 	</insert>
-	
-	
+
+
 	<!-- 20210304_LYS_Login3 -->
 	<!-- 회원가입시, 아이디 중복체크 -->
 	<select id="checkForDuplicateId" parameterType="string" resultType="string">
 		SELECT user_id FROM users WHERE user_id=#{user_id}
-	</select>	
-	
+	</select>
+
 	<!-- 전체 사용자수 조회 -->
 	<select id="selectAllUserCnt" resultType="int">
 		SELECT COUNT(*)
@@ -46,6 +67,10 @@
 	<!-- 관리자 사용자 정보 수정 03/05 (경찬)-->
 	<update id="modifyUser" parameterType="userVo">
 		update users set  user_pw = #{user_pw},  login_fail_cnt = #{login_fail_cnt}, use_yn = #{use_yn}
+
+	<!-- 사용자 정보 수정 03/05 (경찬) -->
+	<update id="modifyUser" parameterType="userVo">
+		update users set user_pw = #{user_pw}, login_fail_cnt = #{login_fail_cnt}
 		where user_id = #{user_id}
 	</update>
 
@@ -54,12 +79,12 @@
 		UPDATE users set use_yn = 'N'
 		WHERE user_id=#{user_id}
 	</update>
+
 	
 	<!-- 유저가 개인정보 수정 03/10 (경찬) -->
 	<update id="modifyUser2" parameterType="userVo">
 		update  users set user_nm = #{user_nm}, user_pw = #{user_pw}, email = #{email}, addr1 = #{addr1}, addr2 = #{addr2}, zip = #{zip}, mobile = #{mobile}
 		where user_id = #{user_id}
 	</update>
-	
 	
 </mapper>

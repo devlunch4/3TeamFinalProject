@@ -7,15 +7,15 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import kr.or.ddit.farm.model.FcommunityVo;
 import kr.or.ddit.farm.model.FnoticeVo;
 import kr.or.ddit.fcommunity.service.FcommunityService;
 import kr.or.ddit.notice.service.FnoticeService;
+
+
 
 @RequestMapping("fcommunity")
 @Controller
@@ -106,6 +106,17 @@ public class FcommunityController {
 		logger.debug("IN minimarketRegistView()");
 
 		return "tiles.fcommunity.minimarketRegist";
+	}
+
+	// --------------------------문의사항
+
+	// 20210309_LYS_Q&A : 커뮤니티 문의사항 페이지 진입
+	@RequestMapping(path = "qnaView")
+	public String qnaView() {
+		logger.debug("IN minimarketView()");
+
+		return "tiles.fcommunity.qnaMain";
+
 	}
 
 }

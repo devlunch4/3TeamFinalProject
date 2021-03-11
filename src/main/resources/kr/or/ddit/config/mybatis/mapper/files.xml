@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="files">
+
+	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
+	<select id="selectfiles" resultType="filesVo">
+		SELECT * FROM files
+	</select>
+	
+	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
+	<select id="selectonefiles"  resultType="filesVo" parameterType="int">
+		SELECT * FROM files WHERE file_no = #{file_no}
+	</select>
+	
+	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
+	<insert id="registerfiles" parameterType="filesVo">
+		INSERT INTO files
+		(file_no,file_nm,file_path,use_yn) 
+        VALUES (
+        		 (SELECT NVL(MAX(file_no),0)+1 from files),
+                 #{file_nm},
+                 #{file_path},
+                 'y'
+                 )
+	 </insert>
+	
+</mapper>

@@ -177,20 +177,36 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int fsurCount(String user_id) {
 		return template.selectOne("fsurpports.fsurCount", user_id);
 	}
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
 
 
 	
-
-
+	// 20210310_KJH 사용 가능한 장비 체크
+	@Override
+	public int availableList(MsrequipVo vo) {
+		return template.selectOne("fmanage.availableList",vo);
+	}
+	
+	// 20210310_KJH 내 장비리스트 조회
+	@Override
+	public List<MsrequipVo> msrList(String str) {
+		return template.selectList("fmanage.msrList",str);
+	}
+	
+	// 20210311_KJH 시설등록
+	@Override
+	public int insertFmanage(FmanageVo fmanagvo) {
+		return template.insert("fmanage.insertFmanage",fmanagvo);
+	}
+	
+	// 20210311_KJH fhistory 등록
+	@Override
+	public int insertFhistory(FhistoryVo fhistoryVo) {
+		return template.insert("fmanage.insertFhistory",fhistoryVo);
+	}
+	
+	// 20210311_KJH Fmanage 조회
+	@Override
+	public FmanageVo updatefmanageInfo(String str) {
+		return template.selectOne("fmanage.updatefmanageInfo",str);
+	}
 }

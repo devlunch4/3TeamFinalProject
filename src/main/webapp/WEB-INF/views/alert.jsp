@@ -4,11 +4,11 @@
 <%@ page session="true" %>
 <html>
 <head>
-    <title>로그아웃 알림창</title>
+    <title>알림창</title>
 </head>
 <body>
 <script>
-    alert("${msg }");
+    alert("${msg}");
     location.href="${pageContext.request.contextPath}${url}";
 </script>
 </body>
