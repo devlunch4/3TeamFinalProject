@@ -132,14 +132,14 @@ public class MarketController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		logger.debug("coVo : {}", coVo);
 		marketcnt = marketService.registermarket(coVo);
 		filescnt = filesService.registerfiles(fileVo);
 		logger.debug("쿼리문", filescnt);
 
 		if (marketcnt == 1 && filescnt != 0) {
 			logger.debug("업데이트 완료");
-			return "redirect:/fcommunity/minimarketView";
+			return "redirect:/market/minimarketView";
 		} else {
 			return "tiles.fcommunity.minimarketRegist";
 		}

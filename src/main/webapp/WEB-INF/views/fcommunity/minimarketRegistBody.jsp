@@ -22,7 +22,7 @@
 <!-- 	</div> -->
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작성자</label><br>
-		<input class="form-control py-4" id="input_grdgd_nm" name="writer" type="text"
+		<input class="form-control py-4" id="writer" name="writer" type="text"
 			value="" >
 	</div>
 	
