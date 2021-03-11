@@ -20,7 +20,7 @@
 		<!-- 20210305KWS GardenguidesVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo"
 			alias="gardenguideVo" />
-		
+		 
 			
 		<!-- 20210306 SHS FcommunityVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MarketVo" alias="MarketVo" />
