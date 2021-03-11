@@ -686,7 +686,7 @@ public class FsurpportController {
 		
 		//		List<FarmdiaryVo> farmdiaryList = fsurpportService.selectAllFsurpportList(user_id);
 		
-		String result = ""; // 초기값이 null이 들어가면 오류가 발생될수 있기 때문에 공백을 지정
+//		String result = ""; // 초기값이 null이 들어가면 오류가 발생될수 있기 때문에 공백을 지정
 		 
         try {
             Document document = new Document(); // pdf문서를 처리하는 객체
@@ -704,7 +704,7 @@ public class FsurpportController {
  
             Font font = new Font(baseFont, 12); // 폰트의 사이즈를 12픽셀로 한다.
  
-            PdfPTable table = new PdfPTable(4); // 4개의 셀을 가진 테이블 객체를 생성 (pdf파일에 나타날 테이블)
+            PdfPTable table = new PdfPTable(15); // 4개의 셀을 가진 테이블 객체를 생성 (pdf파일에 나타날 테이블)
             Chunk chunk = new Chunk("영농일지 리스트", font); // 타이틀 객체를 생성 (타이틀의 이름을 장바구니로 하고 위에 있는 font를 사용)
             Paragraph ph = new Paragraph(chunk);
             ph.setAlignment(Element.ALIGN_CENTER);
@@ -780,7 +780,7 @@ public class FsurpportController {
  
 //            List<CartDTO> items = cartService.listCart("park"); // 서비스로부터 id값을 매개값으로 주어서 장바구니목록을 가져온다.
             List<FarmdiaryVo> farmdiaryList = fsurpportService.selectAllFsurpportList(user_id);
- 
+
 //            for (int i = 0; i < farmdiaryList.size(); i++) {
            	for (FarmdiaryVo f : farmdiaryList) {
 //                CartDTO dto = farmdiaryList.get(i); // 레코드에 값들을 꺼내서 dto에 저장
@@ -838,11 +838,11 @@ public class FsurpportController {
             }
             document.add(table); // 웹접근 객체에 table를 저장한다.
             document.close(); // 저장이 끝났으면 document객체를 닫는다.
-            result = "pdf 파일이 생성되었습니다.";
+//            result = "pdf 파일이 생성되었습니다.";
  
         } catch (Exception e) {
             e.printStackTrace();
-            result = "pdf 파일 생성 실패...";
+//            result = "pdf 파일 생성 실패...";
         }
         
         logger.debug("종료");
