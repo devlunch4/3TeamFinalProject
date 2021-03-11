@@ -50,5 +50,17 @@
 		set USE_YN= 'N'
 		where GUIDE_CODE = #{guide_code}
 	</update>
+	
+	<!-- ggy_20210311 : code 품목 리스트 조회. itemmanualVo -->
+	<select id="itemFarmManualsList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = '100'
+		or parent_code = '200'
+		or parent_code = '300'
+		or parent_code = '400'
+		and use_yn = 'Y'
+	</select>
+	
 
 </mapper>

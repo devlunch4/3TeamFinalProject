@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 
@@ -44,6 +45,12 @@ public class FinfoDaoImpl implements FinfoDao {
 	@Override
 	public int deleteGuide(GardenguideVo gardenguideVo) {
 		return tempplate.update("guides.deleteGuide", gardenguideVo);
+	}
+	
+	// 20210311_ggy : 품목 리스트 조회
+	@Override
+	public List<CodesVo> itemFarmManualsList() {
+		return tempplate.selectList("guides.itemFarmManualsList");
 	}
 
 }

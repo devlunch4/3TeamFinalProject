@@ -43,6 +43,9 @@
 
 		<!-- 20210305 KJH MyMaxMrrecListVo typeAliases -->
 		<typeAlias type="kr.or.ddit.fanalysis.model.MyMaxMrrecListVo" alias="mymaxmrreclistVo" />
+
+		<!-- 20210311_ggy ItemmanualVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.ItemmanualVo" alias="itemmanualVo" />
 	</typeAliases>
 
 	<mappers>
@@ -57,6 +60,7 @@
 		<!-- 20210305 KWS GardenguidesVo mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/guides.xml" />
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/Fcommunity.xml" />
+		
 
 	</mappers>
 

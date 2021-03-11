@@ -33,10 +33,11 @@
 <div class="card mt-2 col-sm-12">
 	<div class="card-body text-left p-1">
 		<span class="">품목</span> <br>
-<%-- 		<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
+		<c:forEach items="${itemList }" var="itemList">
 			<ul>
+				<li>${itemList.code_nm }
 				<li>test<input onclick="location.href='#'" type="button" value="다운로드"></li>
 			</ul>
-<%-- 		</c:forEach> --%>
+		</c:forEach>
 	</div>
 </div>
