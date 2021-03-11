@@ -241,9 +241,13 @@ public class FinfoController {
 		return "tiles.finfo.weeklyFarmInfosMain";
 	}
 
-	// ggy_20210304 : 농업정보 - 품목별영농매뉴얼 진입
+	// 20210311_ggy : 농업정보 - 품목별영농매뉴얼 진입
 	@RequestMapping("itemFarmManualsView")
 	public String itemFarmManualsView(Model model) {
+
+		
+		model.addAttribute("itemList",finfoService.itemFarmManualsList());
+		
 		return "tiles.finfo.itemFarmManualsMain";
 	}
 
