@@ -36,4 +36,10 @@ public class MarketDaoImpl implements MarketDao {
 		return template.insert("market.registermarket", coVo);
 	}
 
+	@Override
+	public int modifymarket(MarketVo coVo) {
+		
+		return template.update("market.modifymarket", coVo);
+	}
+
 }

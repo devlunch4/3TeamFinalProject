@@ -12,18 +12,18 @@
 
 	<div class="form-group">
 		<label class="small mb-1" for="input_cls_code">제목</label> 
-		<input class="form-control py-4" id="input_cls_code" name="" type="text"
-			value=""  >
+		<input class="form-control py-4" id="input_cls_code" name="title" type="text"
+			value="${detaillist1.title }"  >
 	</div>
-	<div class="form-group">
-		<label class="small mb-1" for="input_grdgd_nm">작성일시</label> 
-		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
-			value=""  >
-	</div>
+<!-- 	<div class="form-group"> -->
+<!-- 		<label class="small mb-1" for="input_grdgd_nm">작성일시</label>  -->
+<!-- 		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text" -->
+<!-- 			value=""  > -->
+<!-- 	</div> -->
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작성자</label><br>
 		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
-			value="" >
+			value="${S_USER.user_id }" >
 	</div>
 	
 	<div class="form-group">
@@ -31,6 +31,10 @@
 		
 		<select name="">
 			<option value="">카테고리 선택</option>
+				<option>판매중</option>
+				<option>판매완료</option>
+				<option>구매중</option>
+				<option>구매완료</option>
 <%-- 			<c:forEach items="" var=""> --%>
 <!-- 				<option value=""></option> -->
 <%-- 			</c:forEach> --%>
@@ -60,7 +64,7 @@
 	
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">내용</label><br>
-			<textarea id="summernote" name="summernote"></textarea>
+			<textarea id="summernote" name="content">${detaillist1.content }</textarea>
 	</div>
 	
 

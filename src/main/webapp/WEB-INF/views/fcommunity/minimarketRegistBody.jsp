@@ -18,12 +18,14 @@
 <!-- 	<div class="form-group"> -->
 <!-- 		<label class="small mb-1" for="input_grdgd_nm">작성일시</label>  -->
 <!-- 		<input class="form-control py-4" id="input_grdgd_nm" name="reg_dt" type="text" -->
-<!-- 			value=""  > -->
+<%-- 			value="<fmt:formatDate value="${market.reg_dt }" pattern="yyyy-MM-dd"/>"  > --%>
 <!-- 	</div> -->
+	
+	
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">작성자</label><br>
 		<input class="form-control py-4" id="writer" name="writer" type="text"
-			value="" >
+			value="${S_USER.user_id }" readonly="readonly">
 	</div>
 	
 	<div class="form-group">
@@ -31,6 +33,10 @@
 		
 		<select >
 			<option value="">카테고리 선택</option>
+				<option>판매중</option>
+				<option>판매완료</option>
+				<option>구매중</option>
+				<option>구매완료</option>
 <%-- 			<c:forEach items="" var=""> --%>
 <!-- 				<option value=""></option> -->
 <%-- 			</c:forEach> --%>

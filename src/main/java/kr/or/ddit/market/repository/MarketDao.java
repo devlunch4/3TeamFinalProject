@@ -14,5 +14,8 @@ public interface MarketDao {
 
 	// 20210309_SHS - 미니장터 게시글 작성
 	int registermarket(MarketVo coVo);
+	
+	// 20210312_SHS - 미니장터 게시글 수정
+	int modifymarket(MarketVo coVo);
 
 }

@@ -26,9 +26,9 @@
 		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'" 
 		class=" btn btn-outline-dark m-1">미니장터 글 작성</button>
 	</c:if>
-		<button type="button" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'" 
-		class=" btn btn-outline-dark m-1">미니장터 글 작성</button>
+<!-- 		<button type="button" class=" btn btn-success "  -->
+<%-- 		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'"  --%>
+<!-- 		class=" btn btn-outline-dark m-1">미니장터 글 작성</button> -->
 
 
 <!-- 설명 시작 -->
@@ -49,7 +49,10 @@
 				<select name="" >
 					<option value="">카테고리 선택</option>
 <%-- 					<c:forEach items="" var=""> --%>
-						<option value=""></option>
+						<option value="1">판매중</option>
+						<option value="2">판매완료</option>
+						<option value="3">구매중</option>
+						<option value="4">구매완료</option>
 <%-- 					</c:forEach> --%>
 				</select>
 				<input type="text" name="" >
@@ -107,8 +110,24 @@
 								<c:forEach items="${noticelist }" var="notice">
 								
 									<tr class="board" data-market_no="${notice.market_no }" >
-										<td>${notice.head_code }</td>
-										<td><img id="pictureViewImg" src="${cp }/market/marketprofile?emp_id=${detailUser.emp_id}"
+									<c:choose>
+										<c:when test="${notice.head_code == 1 }">
+											<td style="color:green">판매중</td>
+										</c:when>
+										<c:when test="${notice.head_code == 2 }">
+											<td style="color:red">판매완료</td>
+										</c:when>
+										<c:when test="${notice.head_code == 3 }">
+											<td style="color:blue">구매중</td>
+										</c:when>
+										<c:when test="${notice.head_code == 4 }">
+											<td style="color:red">구매완료</td>
+										</c:when>
+										<c:otherwise >
+										<td>선택안함</td>
+										</c:otherwise>
+									</c:choose>
+										<td><img id="pictureViewImg" src="${cp }/market/marketprofile?fileno=${filelist.file_no}"
 										style="width: 100%; height: 100%;"/></td>
 										<td>${notice.title }</td>
 										<td>${notice.writer }</td>

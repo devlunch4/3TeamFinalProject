@@ -32,5 +32,12 @@ public class MarketServiceImpl implements MarketService {
 	public int registermarket(MarketVo coVo) {
 		return dao.registermarket(coVo);
 	}
+	
+	// 20210312_SHS - 미니장터 게시글 수정
+	@Override
+	public int modifymarket(MarketVo coVo) {
+		
+		return dao.modifymarket(coVo);
+	}
 
 }

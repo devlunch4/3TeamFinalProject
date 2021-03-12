@@ -22,7 +22,7 @@
         VALUES (
         		 (SELECT NVL(MAX(market_no),0)+1 from market),
                  #{writer},
-                 0,
+                 #{head_code},
                  #{title},
                  0,
                  #{content},
@@ -34,5 +34,9 @@
                  'y'
                  ) 
 	</insert>
+	
+	<update id="modifymarket" parameterType="MarketVo">
+		UPDATE market set market title = #{title} , thumbnail = #{thumbnail}, content = #{content} WHERE market_no = #{market_no} 
+	</update>
 	
 </mapper>

@@ -40,7 +40,7 @@ public class MarketController {
 
 	@Resource(name = "userService")
 	private UserService userService;
-
+	
 	// ggy_20210304 : 커뮤니티 공지사항 진입
 	@RequestMapping("noticesView")
 	public String noticesView(Model model) {
@@ -94,18 +94,33 @@ public class MarketController {
 
 	// ggy_20210304 : 커뮤니티 미니장터 수정 페이지 진입
 	@RequestMapping("minimarketModifyView")
-	public String minimarketModify(Model model) {
+	public String minimarketModifyView(Model model,int market_no) {
 
+		model.addAttribute("detaillist1", marketService.selectonemarket(market_no));
 		logger.debug("IN minimarketModifyView()");
 
 		return "tiles.fcommunity.minimarketModify";
 	}
+	
+		// ggy_20210304 : 커뮤니티 미니장터 수정완료
+		@RequestMapping("minimarketModify")
+		public String minimarketModify(Model model) {
+				
+			logger.debug("IN minimarketModifyView()");
+			
+
+			return "tiles.fcommunity.minimarketModify";
+		}
+	
 
 	// ggy_20210304 : 커뮤니티 미니장터 글 작성 페이지 진입
 	@RequestMapping("minimarketRegistView")
 	public String minimarketRegistView(Model model) {
+		
+		
 
 		logger.debug("IN minimarketRegistView()");
+		model.addAttribute("market", marketService.selectmarket());
 
 		return "tiles.fcommunity.minimarketRegist";
 	}
