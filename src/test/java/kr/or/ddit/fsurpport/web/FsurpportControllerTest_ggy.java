@@ -209,8 +209,83 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 		.andDo(print());
 	}
 	
+	// ggy_20210313 : 농업지원-영농일지 내 일지 내용 수정후 수정 완료_OK
+	@Test
+	public void modifyFarmdiaryTest() throws Exception {
+	
+	ClassPathResource resource = new ClassPathResource("kr/or/ddit/upload/test.jpg");
+	
+	MockMultipartFile file = new MockMultipartFile("file_file", "test.jpg", "image/png", new byte[512]);
 	
 	
+	mockMvc.perform(fileUpload("/fsurpport/modifyFarmdiary").file(file)
+			.param("f_diary_no", "85")
+			.param("area", "500")
+			.param("b_type_code", "1")
+			.param("content", "testCode_test")
+			.param("high_temp", "0")
+			.param("humid", "0")
+			.param("item_code", "317")
+			.param("low_temp", "0")
+			.param("my_simple_code", "84")
+			.param("rainfall", "0")
+			.param("w_step_code", "24")
+			.param("weather", "비")
+			.param("writer", "brown")
+			.param("yield", "800")
+			.param("file_nm", "")
+			
+			)
+	.andExpect(redirectedUrl("/fsurpport/infoView?f_diary_no=85"))
+	.andExpect(status().is3xxRedirection())
+	.andDo(print());
+	}
+	
+//	// ggy_20210309 : 농업지원-영농일지 내 일지 삭제_OK
+//	@Test
+//	public void deleteFarmdiaryTest() throws Exception {
+//		
+//		mockMvc.perform(post("/fsurpport/deleteFarmdiary")
+//				.param("writer", "1")
+//				.param("f_diary_no", "1")
+//				)
+//		.andExpect(redirectedUrl("/fsurpport/main?user_id=1"))
+//		.andExpect(status().is3xxRedirection())
+//		.andDo(print());
+//	}
+	
+	// ggy_20210309 : 농업지원-영농일지 일지 목록들 다운로드_OK
+	@Test
+	public void excelFamrdiaryListTest() throws Exception {
+		
+		mockMvc.perform(post("/fsurpport/excelFamrdiaryList")
+				.param("user_id", "brown")
+				)
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
+	
+	// ggy_20210309 : 농업지원-영농일지 일지 목록들 pdf 열기_OK
+	@Test
+	public void farmdiaryListPDFTest() throws Exception {
+		
+		mockMvc.perform(post("/fsurpport/farmdiaryListPDF.pdf")
+				.param("user_id", "brown")
+				)
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
+	
+	// ggy_20210309 : 파일 경로_OK
+	@Test
+	public void filePathTest() throws Exception {
+		
+		mockMvc.perform(post("/fsurpport/filePath")
+				.param("file_nm", "test.jpg")
+				)
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
 	
 	
 	
