@@ -35,11 +35,19 @@ public class MarketDaoImpl implements MarketDao {
 
 		return template.insert("market.registermarket", coVo);
 	}
-
+	
+	// 20210312_SHS - 미니장터 게시글 작성완료
 	@Override
 	public int modifymarket(MarketVo coVo) {
 		
 		return template.update("market.modifymarket", coVo);
+	}
+	
+	//	20210312_SHS - 미니장터 게시글 카테고리 별 조회
+	@Override
+	public MarketVo selectkate(int head_code) {
+		
+		return template.selectOne("market.selectkate", template);
 	}
 
 }

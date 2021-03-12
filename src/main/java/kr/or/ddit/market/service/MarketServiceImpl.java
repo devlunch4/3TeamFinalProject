@@ -40,4 +40,9 @@ public class MarketServiceImpl implements MarketService {
 		return dao.modifymarket(coVo);
 	}
 
+	@Override
+	public MarketVo selectkate(int head_code) {
+		return dao.selectkate(head_code);
+	}
+
 }

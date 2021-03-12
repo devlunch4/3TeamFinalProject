@@ -5,14 +5,19 @@
 
 <mapper namespace="market">
 
-	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
+	<!-- 	20210309 SHS - Market 글 리스트 조회 -->
 	<select id="selectmarket" resultType="MarketVo">
 		SELECT * FROM market
 	</select>
 	
-	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
+	<!-- 	20210309 SHS - Market 글 리스트 조회 -->
 	<select id="selectonemarket"  resultType="MarketVo" parameterType="int">
 		SELECT * FROM market WHERE market_no = #{market_no}
+	</select>
+	
+	<!-- 	20210309 SHS - Market 카테고리 별 조회 -->
+	<select id="selectkate" resultType="MarketVo" parameterType="int">
+		SELECT * FROM market WHERE head_code = #{head_code}
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
@@ -34,6 +39,8 @@
                  'y'
                  ) 
 	</insert>
+	
+	
 	
 	<update id="modifymarket" parameterType="MarketVo">
 		UPDATE market set market title = #{title} , thumbnail = #{thumbnail}, content = #{content} WHERE market_no = #{market_no} 

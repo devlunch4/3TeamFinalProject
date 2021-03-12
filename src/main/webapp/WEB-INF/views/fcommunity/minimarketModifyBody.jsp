@@ -29,12 +29,12 @@
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">카테고리</label><br>
 		
-		<select name="">
+		<select id="kete" name="">
 			<option value="">카테고리 선택</option>
-				<option>판매중</option>
-				<option>판매완료</option>
-				<option>구매중</option>
-				<option>구매완료</option>
+				<option id="one">판매중</option>
+				<option id="two">판매완료</option>
+				<option id="three">구매중</option>
+				<option id="four">구매완료</option>
 <%-- 			<c:forEach items="" var=""> --%>
 <!-- 				<option value=""></option> -->
 <%-- 			</c:forEach> --%>

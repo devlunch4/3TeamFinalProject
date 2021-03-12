@@ -7,6 +7,7 @@
 <script>
    
     	$(function(){
+    		
     		$('.board').on("click",function(){
     			
     			var market_no = $(this).data("market_no");
@@ -17,9 +18,14 @@
     			
     		});
     		
-    		
+    		$('#kategory').on('change',function(){
+    			var head_code = $('#head_code').val();
+    			$('#katefrm').submit();
+    			
+    		})
     })
     </script>
+
 
 	<c:if test="${S_USER != null }">
 		<button type="button" class=" btn btn-success " 
@@ -45,18 +51,18 @@
 </div>
 
 	<div class="card-body text-left p-1" style="float: right;">
-			<form action="#" method="post">
-				<select name="" >
+			<form id="katefrm" action="${pageContext.request.contextPath}/market/minimarketkate" method="post">
+				<select id="head_code" >
 					<option value="">카테고리 선택</option>
 <%-- 					<c:forEach items="" var=""> --%>
-						<option value="1">판매중</option>
-						<option value="2">판매완료</option>
-						<option value="3">구매중</option>
-						<option value="4">구매완료</option>
+						<option id="one" value="1">판매중</option>
+						<option id="two" value="2">판매완료</option>
+						<option id="three" value="3">구매중</option>
+						<option id="four" value="4">구매완료</option>
 <%-- 					</c:forEach> --%>
 				</select>
-				<input type="text" name="" >
-				<input type="submit" value="검색">
+<!-- 				<input type="text" name="" > -->
+<!-- 				<input type="submit" value="검색"> -->
 			</form>
 		</div>
 
@@ -94,7 +100,7 @@
 									aria-label="REG_DT: activate to sort column ascending">작성일시</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="kategory">
 <%-- 								<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
 <%-- 									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketInfoView'" > --%>
 <!-- 										<td></td> -->

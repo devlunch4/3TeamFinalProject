@@ -79,6 +79,15 @@ public class MarketController {
 
 		return "tiles.fcommunity.minimarketMain";
 	}
+	
+		// ggy_20210304 : 커뮤니티 미니장터 진입
+		@RequestMapping(path = "minimarketkate", method = RequestMethod.POST)
+		public String minimarketkate(Model model,int head_code) {
+
+			model.addAttribute(marketService.selectkate(head_code));
+
+			return "tiles.fcommunity.minimarketMain";
+		}
 
 	// ggy_20210304 : 커뮤니티 미니장터 상세정보 진입
 	@RequestMapping("minimarketInfoView")
