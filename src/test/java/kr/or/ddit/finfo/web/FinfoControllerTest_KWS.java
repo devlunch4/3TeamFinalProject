@@ -61,7 +61,6 @@ public class FinfoControllerTest_KWS extends WebTestConfig {
 				.andDo(print());
 	}
 
-	// guideimg
 	@Test // KWS 텃밭 가이드 이미지 보기 불러오기 테스트 20210311
 	public void guideimgTest() throws Exception {
 		mockMvc.perform(get("/finfo/guideimg?guide_code=0")).andExpect(status().isOk()).andDo(print());

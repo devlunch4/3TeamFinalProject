@@ -14,7 +14,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>똑똑한 농부들 - 해당 게시판 EL로 넣기</title>
+<title>똑똑한 농부들</title>
 
 <link href="${pageContext.request.contextPath}/resources/src/css/styles.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/src/css/f_styles.css" rel="stylesheet" />

@@ -162,7 +162,7 @@ public class FinfoController {
 		return "tiles.finfo.gardenguidesUpdate";
 	}
 
-	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305+20210308 
+	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305+20210308
 	@RequestMapping(path = "gardenguidesUpdateBtn", method = { RequestMethod.POST })
 	public String gardenguidesUpdateBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesUpdateBtn()");
@@ -210,7 +210,6 @@ public class FinfoController {
 		return "redirect:/finfo/gardenguides";
 	}
 
-	// gardenguidesAll
 	// 20210309 KWS 텃밭 가이드 목록으로 모두보기 TEST OK
 	@RequestMapping(path = "gardenguidesAll", method = { RequestMethod.GET })
 	public String gardenguidesAll(Model model, GardenguideVo gardenguidesVo) {
@@ -218,6 +217,32 @@ public class FinfoController {
 		List<GardenguideVo> guidelists = finfoService.selectGuideAll();
 		model.addAttribute("guidelists", guidelists);
 		return "tiles.finfo.gardenguidesall";
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+	// 20210312 KWS 제철정보 페이지 이동 GET
+	@RequestMapping(path = "seasonInfos", method = { RequestMethod.GET })
+	public String seasionInfos(Model model) {
+		logger.debug("IN seasonInfos()");
+		
+		//봄
+		List<GardenguideVo> springlist = finfoService.selectSeasons("%봄%");
+		logger.debug("봄검색 첫번째 인덱스: {}",springlist.get(0));
+		model.addAttribute("springlist", springlist);
+		//여름
+		List<GardenguideVo> summerlist = finfoService.selectSeasons("%여름%");
+		model.addAttribute("summerlist", summerlist);
+		//가을
+		List<GardenguideVo> autumnlist = finfoService.selectSeasons("%가을%");
+		model.addAttribute("autumnlist", autumnlist);
+		//겨울
+		List<GardenguideVo> winterlist = finfoService.selectSeasons("%겨울%");
+		model.addAttribute("winterlist", winterlist);
+		
+		return "tiles.finfo.seasoninfos";
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -284,4 +309,5 @@ public class FinfoController {
 		}
 		logger.debug("수행 완료 guideimg()");
 	}
+
 }

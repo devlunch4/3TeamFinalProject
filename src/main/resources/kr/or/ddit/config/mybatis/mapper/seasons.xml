@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="seasons">
+
+	<!-- 텃밭가이드 계절로 검색 또는 최초 조회 -->
+	<select id="selectSeasons" resultType="gardenguideVo" parameterType="String">
+		SELECT * FROM gardenguide WHERE season LIKE #{value} ORDER BY item_code
+	</select>
+
+</mapper>
