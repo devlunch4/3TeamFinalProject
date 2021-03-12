@@ -30,6 +30,8 @@ public class FsurpportDaoTest_ggy extends ModelTestConfig {
 		
 		assertEquals(9, farmdiaryList.size());
 	}
+	
+	
 
 	
 }
