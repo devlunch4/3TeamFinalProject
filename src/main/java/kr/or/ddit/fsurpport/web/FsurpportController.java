@@ -802,7 +802,7 @@ public class FsurpportController {
 	/* 시설관리 영역 */
 
 	// KJH_20210302
-	// 농업지원 - 시설관리 관리중인 시설 리스트 조회페이지
+	// 농업지원 - 시설관리 관리중인 시설 리스트 조회페이지 ok
 	@RequestMapping("fmanageList")
 	public String fmanageList(Model model) {
 
@@ -814,12 +814,10 @@ public class FsurpportController {
 	}
 
 //	 KJH_20210308 수정
-//	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지
+//	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
 	@RequestMapping("fmanageInfo")
 	public String fmanage(Model model, FmanageVo fmanage,HttpSession session) {
-System.out.println(fmanage);
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
-System.out.println(fvo);
 		// KJH_20210308 측정 정보 조회 수정
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fvo.getManage_no());
@@ -840,7 +838,6 @@ System.out.println(fvo);
 			
 			int count = fsurpportService.availableList(vo);
 			
-			System.out.println(count);
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -850,12 +847,7 @@ System.out.println(fvo);
 			}
 		}
 		
-		
-		
-		
-		
 		model.addAttribute("okList",okList);
-
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
 
@@ -863,7 +855,7 @@ System.out.println(fvo);
 	}
 
 	// KJH_20210302
-	// 농업양식 - 시설관리 관리중인 시설 등록 페이지
+	// 농업양식 - 시설관리 관리중인 시설 등록 페이지 ok
 	@RequestMapping("fmanageInsertPage")
 	public String fmanageInsertPage(Model model, HttpSession session) {
 		String itemcategorycode = "100";
@@ -900,17 +892,14 @@ System.out.println(fvo);
 		return "tiles.fsurpport.fmanageInsert";
 	}
 
-	// 20210311 시설 등록하기
+	// 20210311 시설 등록하기 ok
 	@RequestMapping("fmanageInsert")
 	public String fmanageInsert(Model model, HttpSession session, FmanageVo fmanageVo, String msr_code) {
 		if (msr_code == null || msr_code.length() > 0) {
 			msr_code = "x";
 		}
-		logger.debug("vo : {}", fmanageVo);
-		logger.debug("msr_code : {}", msr_code);
 
 		fsurpportService.insertFmanage(fmanageVo);
-		System.out.println(fmanageVo.getManage_no());
 
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fmanageVo.getManage_no());
@@ -921,7 +910,7 @@ System.out.println(fvo);
 	}
 
 	// KJH_20210302
-	// 농업양식 - 시설관리 관리중인 시설 업데이트 페이지
+	// 농업양식 - 시설관리 관리중인 시설 업데이트 페이지 ok
 	@RequestMapping("fmanageUpdate")
 	public String fmanageupdate(Model model, String manage_no) {
 
@@ -938,7 +927,7 @@ System.out.println(fvo);
 	}
 	
 	// KJH_20210311
-	// 농업양식 - 시설관리 관리중인 시설 업데이트
+	// 농업양식 - 시설관리 관리중인 시설 업데이트 ok
 	@RequestMapping(path = "fmanageUpdate",method = { RequestMethod.POST })
 	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
 		
@@ -947,7 +936,7 @@ System.out.println(fvo);
 	}
 	
 	// KJH_20210311
-	// 농업양식 - 시설관리 관리중인 시설 업데이트
+	// 농업양식 - 시설관리 관리중인 시설 삭제 ok
 	@RequestMapping(path = "fmanageDelete",method = { RequestMethod.GET })
 	public String fmanagedelete(Model model, FmanageVo fmanageVo) {
 		
@@ -959,7 +948,7 @@ System.out.println(fvo);
 	}
 	
 	// KJH_20210311
-	// 농업양식 - 시설관리 관리중인 시설 장비변경
+	// 농업양식 - 시설관리 관리중인 시설 장비변경 ok
 	@RequestMapping(path = "msrequipChange",method = { RequestMethod.GET })
 	public String msrequipChange(Model model, String manage_no,String msr_code) {
 		if (msr_code == null || msr_code.length() < 0) {
@@ -979,7 +968,7 @@ System.out.println(fvo);
 		return "redirect:/fsurpport/fmanageInfo?manage_no="+manage_no;
 	}
 	
-	// 20210311_KJH 내 수확량 조회
+	// 20210311_KJH 내 수확량 조회 ok
 	@RequestMapping(path = "myYield",method = { RequestMethod.GET })
 	public String myYield(Model model, String selec, String sdate, String edate,HttpSession session) {
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
@@ -988,7 +977,7 @@ System.out.println(fvo);
 
 		userVo = (UserVo) session.getAttribute("S_USER");
 
-		if (selec == null || selec.equals("all") || sdate == null || edate == null) {
+		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
 			FarmdiaryVo vo = new FarmdiaryVo();
 			vo.setWriter(userVo.getUser_id());
 			vo.setB_type_code("2000-01-01");
@@ -1012,7 +1001,7 @@ System.out.println(fvo);
 				farmCount = fsurpportService.myYield(vo);
 			} catch (Exception e) {
 				model.addAttribute("farmCount", farmCount);
-				return "tiles.fdata.ratio";
+				return "tiles.fanalysis.myYield";
 			}
 		} else if (selec.equals("month")) {
 			FarmdiaryVo vo = new FarmdiaryVo();
@@ -1028,7 +1017,6 @@ System.out.println(fvo);
 			}
 			String edt = "" + eyy + "-" + emm + "-01";
 			vo.setW_step_code(edt);
-			System.out.println("" + sdate + "" + eyy);
 
 			farmCount = fsurpportService.myYield(vo);
 		} else if (selec.equals("year")) {

@@ -58,5 +58,11 @@ public class FinfoServiceImpl implements FinfoService {
 	public List<GardenguideVo> selectGuideAll() {
 		return finfoDao.selectGuideAll();
 	}
+	
+	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
+	@Override
+	public GardenguideVo guide_codeselect(String str) {
+		return finfoDao.guide_codeselect(str);
+	}
 
 }

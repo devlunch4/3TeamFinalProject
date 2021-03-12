@@ -47,8 +47,8 @@ public class UserController {
 	private CodesServiceImpl codesService;
 
 	// 메인 가기
-	// 20210302_KJH items - > codes 변경
-	@RequestMapping("main") // 모든 사용자 정보 조회
+	// 20210302_KJH items - > codes 변경 test ok
+	@RequestMapping("main")
 	public String main(Model model, CodesVo codesVo, String sdate) {
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
@@ -70,11 +70,10 @@ public class UserController {
 		}
 		// Jsoup라이브러리를 사용한 크롤링
 		Document doc;
-		try {// regday="+mydate+"
+		try {
 			doc = Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday="
 					+ mydate + "&itemcategorycode=" + itemcategorycode + "&itemcode=" + itemcode
 					+ "&kindcode=&productrankcode=0&convert_kg_yn=N").get();
-//		    Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday=2021-03-02&itemcategorycode=100&itemcode=111&kindcode=&productrankcode=0&convert_kg_yn=N").get();
 
 			int docsize = (doc.select("tr").get(12)).select("td").size();
 			List<String> target = new ArrayList<String>();
@@ -123,7 +122,6 @@ public class UserController {
 			model.addAttribute("mydate", mydate);
 
 		} catch (IOException e1) {
-			e1.printStackTrace();
 		}
 
 		List<CodesVo> codesList = fdataService.selectAllCodes();

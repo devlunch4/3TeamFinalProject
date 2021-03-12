@@ -28,5 +28,8 @@ public interface FinfoService {
 
 	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
 	List<GardenguideVo> selectGuideAll();
+	
+	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
+	GardenguideVo guide_codeselect(String str);
 
 }

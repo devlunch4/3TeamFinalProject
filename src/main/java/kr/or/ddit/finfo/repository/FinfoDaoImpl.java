@@ -58,5 +58,9 @@ public class FinfoDaoImpl implements FinfoDao {
 	public List<GardenguideVo> selectGuideAll() {
 		return tempplate.selectList("guides.selectGuideAll");
 	}
-
+	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
+	@Override
+	public GardenguideVo guide_codeselect(String str) {
+		return tempplate.selectOne("guides.guide_codeselect",str);
+}
 }

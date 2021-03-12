@@ -18,14 +18,14 @@ public class FanalysisServiceImpl implements FanalysisService {
 	public FanalysisServiceImpl() {
 	}
 
-	// 20210304_KJH 내 시설 관측정보 조회
+	// 20210304_KJH 내 시설 관측정보 조회 test ok
 	@Override
 	public MyMaxMrrecListVo myfanalysisInfo(MyMaxMrrecListVo mymaxmrreclistVo) {
 
 		return fanalysisDao.myfanalysisInfo(mymaxmrreclistVo);
 	}
 
-	// 20210305_KJH 내 시설 실시간 관측 조회
+	// 20210305_KJH 내 시설 실시간 관측 조회 test ok
 	@Override
 	public MyMaxMrrecListVo mymaxmsrrecList(FhistoryVo fhistoryVo) {
 		return fanalysisDao.mymaxmsrrecList(fhistoryVo);

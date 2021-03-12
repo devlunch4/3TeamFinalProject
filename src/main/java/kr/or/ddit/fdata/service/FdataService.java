@@ -12,8 +12,9 @@ public interface FdataService {
 
 	CodesVo selectCode(String str);
 
+	//OK
 	List<FarmdiaryVo> farmCount();
 
-	// 20210310_KJH 날짜조건 품목비율
+	// 20210310_KJH 날짜조건 품목비율 OK
 	List<FarmdiaryVo> datefarmCount(FarmdiaryVo vo);
 }
