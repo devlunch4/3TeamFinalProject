@@ -37,7 +37,7 @@ public class FinfoController {
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
 
-	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305 TESTOK
+	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305 TEST OK
 	@RequestMapping("gardenguides")
 	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
 			@RequestParam(defaultValue = "0") int xguide_code) {
@@ -93,7 +93,7 @@ public class FinfoController {
 	}
 
 	// KWS 텃밭 가이드 등록페이지이동 (재배정보 등록페이지 진입)
-	@RequestMapping("gardenguidesInsert") // get TESTOK
+	@RequestMapping("gardenguidesInsert") // get TEST OK
 	public String gardenguidesInsert(Model model) {
 		logger.debug("IN gardenguidesInsert()");
 		return "tiles.finfo.gardenguidesInsert";
@@ -162,7 +162,7 @@ public class FinfoController {
 		return "tiles.finfo.gardenguidesUpdate";
 	}
 
-	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305+20210308
+	// KWS 텃밭 가이드 수정페이지완료 (재배정보 수정완료)20210305+20210308 
 	@RequestMapping(path = "gardenguidesUpdateBtn", method = { RequestMethod.POST })
 	public String gardenguidesUpdateBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesUpdateBtn()");
@@ -200,9 +200,9 @@ public class FinfoController {
 		return "tiles.finfo.gardenguides";
 	}
 
-	// KWS 텃밭 가이드 삭제처리 (use_yn : y>>>N) 20210308
+	// KWS 텃밭 가이드 삭제처리 (use_yn : y>>>N) 20210308 TEST OK
 	@RequestMapping(path = "gardenguidesDelete", method = { RequestMethod.POST })
-	public String gardenguidesdelete(Model model, int xguide_code, GardenguideVo gardenguidesVo) {
+	public String gardenguideDelete(Model model, int xguide_code, GardenguideVo gardenguidesVo) {
 		logger.debug("IN gardenguidesDelete()");
 		logger.debug("삭제처리될 xguide_code : {}", xguide_code);
 		int updateGuide = finfoService.deleteGuide(gardenguidesVo);
@@ -211,14 +211,12 @@ public class FinfoController {
 	}
 
 	// gardenguidesAll
-	// 20210309 KWS 텃밭 가이드 목록으로 모두보기
+	// 20210309 KWS 텃밭 가이드 목록으로 모두보기 TEST OK
 	@RequestMapping(path = "gardenguidesAll", method = { RequestMethod.GET })
 	public String gardenguidesAll(Model model, GardenguideVo gardenguidesVo) {
 		logger.debug("IN gardenguidesAll()");
 		List<GardenguideVo> guidelists = finfoService.selectGuideAll();
-		logger.debug("IN 123123");
 		model.addAttribute("guidelists", guidelists);
-		logger.debug("IN 123123123123123");
 		return "tiles.finfo.gardenguidesall";
 	}
 
@@ -255,7 +253,7 @@ public class FinfoController {
 	//////////////////////////////////////////////////////////////////////////
 	// 이미지파일 보기
 	// localhost/finfo/guideimg
-	@RequestMapping("guideimg") //가이드 이미지 보기 KWS 20210309
+	@RequestMapping("guideimg") // 가이드 이미지 보기 KWS 20210309 TEST OK
 	public void guideimg(int guide_code, HttpServletRequest req, HttpServletResponse resp) {
 		// 이미지로 설정
 		logger.debug("~~~~~ 수행 진입 guideimg()");

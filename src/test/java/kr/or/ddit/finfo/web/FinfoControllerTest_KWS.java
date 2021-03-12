@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -71,6 +72,35 @@ public class FinfoControllerTest_KWS extends WebTestConfig {
 		mockMvc.perform(post("/finfo/gardenguidesUpdate").param("xguide_code", "0"))
 				.andExpect(view().name("tiles.finfo.gardenguidesUpdate")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("xguide_code", "gardenguidesVo")).andDo(print());
+	}
+
+	@Test // KWS 텃밭 가이드 수정페이지 수정 테스트 20210311
+	public void gardenguidesUpdateBtnTest() throws Exception {
+		// 이미지파일 설정
+		ClassPathResource resource = new ClassPathResource("test/test_mastercard.jpg");
+		MockMultipartFile file_nm2 = new MockMultipartFile("file_nm2", "test_mastercard.jpg", "image/jpg",
+				resource.getInputStream());
+		// 등록수행
+		mockMvc.perform(fileUpload("/finfo/gardenguidesUpdateBtn").file(file_nm2).param("guide_code", "0")
+				.param("writer", "test").param("class_code", "과").param("item_code", "이름").param("difficulty", "1")
+				.param("grow_start_time", "0월").param("grow_time", "0개월").param("origin", "우주")
+				.param("temperature", "0도").param("damage", "0없음").param("season", "0계절").param("effect", "0효과")
+				.param("ingredient", "0성분").param("plant_tip", "0팁").param("plant_content", "0내용").param("file_no", "0")
+				.param("reg_dt", "20210303").param("use_yn", "Y")).andExpect(view().name("tiles.finfo.gardenguides"))
+				.andExpect(status().isOk())
+				.andExpect(model().attributeExists("chosungArr", "xguide_code", "gardenguidesVo")).andDo(print());
+	}
+
+	@Test // KWS 텃밭 가이드 삭제처리 테스트 20210311
+	public void gardenguideDeleteTest() throws Exception {
+		mockMvc.perform(post("/finfo/gardenguidesDelete").param("xguide_code", "0").param("guide_code", "0"))
+				.andExpect(redirectedUrl("/finfo/gardenguides")).andExpect(status().is3xxRedirection()).andDo(print());
+	}
+
+	@Test // KWS 텃밭 가이드 관리자용 목록조회 테스트 20210311
+	public void gardenguidesAllTest() throws Exception {
+		mockMvc.perform(get("/finfo/gardenguidesAll")).andExpect(view().name("tiles.finfo.gardenguidesall"))
+				.andExpect(status().isOk()).andExpect(model().attributeExists("guidelists")).andDo(print());
 	}
 
 }
