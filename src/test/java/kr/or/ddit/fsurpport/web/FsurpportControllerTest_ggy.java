@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -35,7 +36,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 	@Test
 	public void mainTest() throws Exception {
 		
-		mockMvc.perform(post("/fsurpport/main").param("user_id", "brown") )
+		mockMvc.perform(get("/fsurpport/main").param("user_id", "brown") )
 				.andExpect(view().name("tiles.fsurpport.fsurpportMain"))
 				.andExpect(model().attributeExists("farmdiaryList", "workstepsList", "itemsList"))
 				.andExpect(status().isOk())
@@ -63,7 +64,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 	@Test
 	public void infoViewTest() throws Exception {
 		
-		mockMvc.perform(post("/fsurpport/infoView")
+		mockMvc.perform(get("/fsurpport/infoView")
 				.param("f_diary_no", "23")
 				)
 		.andExpect(view().name("tiles.fsurpport.fsurpportInfo"))
@@ -77,7 +78,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 	@Test
 	public void insertViewTest() throws Exception {
 		
-		mockMvc.perform(post("/fsurpport/insertView")
+		mockMvc.perform(get("/fsurpport/insertView")
 				.param("owner", "brown")
 				)
 		.andExpect(view().name("tiles.fsurpport.fsurpportInsert"))
@@ -93,7 +94,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 	@Test
 	public void selectMySimpleCodeInsertViewTest() throws Exception {
 		
-		mockMvc.perform(post("/fsurpport/selectMySimpleCodeInsertView")
+		mockMvc.perform(get("/fsurpport/selectMySimpleCodeInsertView")
 				.param("owner", "brown")
 				.param("my_simple_code", "26")
 				)
@@ -105,11 +106,11 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 		.andDo(print());
 	}
 	
-	// ggy_20210309 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치_OK
+	// ggy_20210313 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치_OK
 	@Test
 	public void selectMySimpleCodeInfoTest() throws Exception {
 		
-		mockMvc.perform(post("/fsurpport/selectMySimpleCodeInfo")
+		mockMvc.perform(get("/fsurpport/selectMySimpleCodeInfo")
 				.param("user_id", "brown")
 				.param("my_simple_code", "26")
 				)
@@ -121,6 +122,92 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 		.andDo(print());
 	}
 	
+	
+	// ggy_20210313 : 농업지원-영농일지 내 일지 간편등록를 위한 진입페이지_OK
+	@Test
+	public void simpleInsertViewTest() throws Exception {
+		
+		mockMvc.perform(get("/fsurpport/simpleInsertView")
+				)
+		.andExpect(view().name("tiles.fsurpport.fsurpportSimpleInsert"))
+		.andExpect(model().attributeExists("workstepsList"
+				, "itemsList"
+				, "b_typeList"
+				))
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
+	
+//	// ggy_20210313 : 농업지원-영농일지 내 간편등록 작성한걸 등록_OK
+//	@Test
+//	public void registMySimpleCodeTest() throws Exception {
+//		
+//		mockMvc.perform(post("/fsurpport/registMySimpleCode")
+//				.param("owner", "brown")
+//				.param("user_id", "brown")
+//				.param("b_type_code", "1")
+//				.param("item_code", "317")
+//				.param("area", "500")
+//				)
+//		.andExpect(view().name("tiles.fsurpport.fsurpportInsert"))
+//		.andExpect(model().attributeExists("workstepsList"
+//				, "itemsList"
+//				, "mySimpleCodeList"
+//				))
+//		.andExpect(status().isOk())
+//		.andDo(print());
+//	}
+	
+//	// ggy_20210313 : 농업지원-영농일지 내 일지 등록_OK
+//	@Test
+//	public void registFarmdiaryTest() throws Exception {
+//		
+//		ClassPathResource resource = new ClassPathResource("kr/or/ddit/upload/test.jpg");
+//		
+//		MockMultipartFile file = new MockMultipartFile("file_file", "test.jpg", "image/png", new byte[512]);
+//		
+//		
+//		mockMvc.perform(fileUpload("/fsurpport/registFarmdiary").file(file)
+//				.param("area", "500")
+//				.param("b_type_code", "1")
+//				.param("content", "testCode_test")
+//				.param("high_temp", "0")
+//				.param("humid", "0")
+//				.param("item_code", "317")
+//				.param("low_temp", "0")
+//				.param("my_simple_code", "84")
+//				.param("rainfall", "0")
+//				.param("w_step_code", "24")
+//				.param("weather", "비")
+//				.param("writer", "brown")
+//				.param("yield", "800")
+//				
+//				)
+//		.andExpect(redirectedUrl("/fsurpport/main?user_id=brown"))
+//		.andExpect(status().is3xxRedirection())
+//		.andDo(print());
+//	}
+	
+
+	// ggy_20210313 : 농업지원-영농일지 내 일지 수정을 위한 진입페이지_OK
+	@Test
+	public void ModifyViewTest() throws Exception {
+		
+		mockMvc.perform(get("/fsurpport/ModifyView")
+				.param("writer", "brown")
+				.param("f_diary_no", "85")
+				.param("my_simple_code", "84")
+				)
+		.andExpect(view().name("tiles.fsurpport.fsurpportModify"))
+		.andExpect(model().attributeExists("workstepsList"
+				, "itemsList"
+				, "b_typeList"
+				,"farmdiaryList"
+				,"mySimpleCodeList"
+				))
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
 	
 	
 	
