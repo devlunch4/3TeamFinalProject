@@ -55,7 +55,14 @@ public class LoginController {
 
 		// 아이디가 널이아니고 use_yn이 Y이고 비밀번호가 일치하면 로그인 가능
 		if (dbUser != null && use_yn.equals("Y") && userVo.getUser_pw().equals(dbUser.getUser_pw())) {
+			
+			//로그인 성공했을때 login_fail_cnt 카운트 0으로 리셋
+			userService.updateLoginFailCnt_reset(userVo.getUser_id());
+	
+			logger.debug("dbUser : {}", dbUser);
+			
 			session.setAttribute("S_USER", dbUser);
+			
 			return "redirect:/user/main";
 		} // 아이디가 널이아니고 use_yn이 Y이지만 비밀번호가 틀림 -> login_fail_cnt 1 증가
 		else if (dbUser != null && use_yn.equals("Y") && !userVo.getUser_pw().equals(dbUser.getUser_pw())) {
@@ -69,7 +76,7 @@ public class LoginController {
 				// 이유는 모르겠는데 update+1 쿼리를 실행했는데 바로 적용이 안되서 뷰에서 카운트 뽑아내려고 ++
 				login_fail_cnt++;
 				model.addAttribute("msg", "비밀번호가 일치하지 않습니다. \\n아이디 '" + dbUser.getUser_id() + "' 로그인 " + login_fail_cnt
-						+ "회 오류, 5회 오류 시 로그인이 불가능 합니다.");
+						+ "회 오류입니다. \\n5회 오류 시 로그인이 불가능 합니다.");
 				model.addAttribute("url", "/login/view");
 				return "alert";
 
