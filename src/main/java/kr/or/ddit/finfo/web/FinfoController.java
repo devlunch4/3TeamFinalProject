@@ -37,7 +37,7 @@ public class FinfoController {
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
 
-	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305
+	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305 TESTOK
 	@RequestMapping("gardenguides")
 	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
 			@RequestParam(defaultValue = "0") int xguide_code) {
@@ -93,14 +93,14 @@ public class FinfoController {
 	}
 
 	// KWS 텃밭 가이드 등록페이지이동 (재배정보 등록페이지 진입)
-	@RequestMapping("gardenguidesInsert") // get
+	@RequestMapping("gardenguidesInsert") // get TESTOK
 	public String gardenguidesInsert(Model model) {
 		logger.debug("IN gardenguidesInsert()");
 		return "tiles.finfo.gardenguidesInsert";
 	}
 
 	// 추가 수정 20210308 KWS 완료
-	// KWS 텃밭 가이드 등록페이지완료 (재배정보 등록완료)
+	// KWS 텃밭 가이드 등록페이지완료 (재배정보 등록완료) TEST OK
 	@RequestMapping(path = "gardenguidesInsertBtn", method = { RequestMethod.POST })
 	public String gardenguidesInsertBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesInsertBtn()");
@@ -255,7 +255,7 @@ public class FinfoController {
 	//////////////////////////////////////////////////////////////////////////
 	// 이미지파일 보기
 	// localhost/finfo/guideimg
-	@RequestMapping("guideimg")
+	@RequestMapping("guideimg") //가이드 이미지 보기 KWS 20210309
 	public void guideimg(int guide_code, HttpServletRequest req, HttpServletResponse resp) {
 		// 이미지로 설정
 		logger.debug("~~~~~ 수행 진입 guideimg()");
