@@ -18,7 +18,7 @@
 		<typeAlias type="kr.or.ddit.farm.model.FmanageVo" alias="fmanageVo" />
 
 		
-		<!-- 2021-03-11 FnoticeVo typeAliases -->
+		<!-- 2021-03-11 FnoticeVo typeAliases (경찬) -->
 		<typeAlias type="kr.or.ddit.farm.model.FnoticeVo" alias="fnoticeVo" />
 
 

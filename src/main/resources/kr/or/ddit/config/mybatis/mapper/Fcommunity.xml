@@ -8,37 +8,46 @@
 	<select id="selectAllQna" resultType="fqnaVo">
 		SELECT * FROM qna
 	</select>
-	
-	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectonemarket"  resultType="FcommunityVo" parameterType="int">
+
+	<!-- 20210309 SHS - Fcommunity 글 리스트 조회 -->
+	<select id="selectonemarket" resultType="FcommunityVo"
+		parameterType="int">
 		SELECT * FROM market WHERE market_no = #{market_no}
 	</select>
-	
-	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
+
+	<!-- 20210309 SHS - Fcommunity 글 등록 -->
 	<insert id="registermarket" parameterType="FcommunityVo">
 		INSERT INTO market
-		(market_no,writer,head_code,title,item_code,content,price,reg_dt,thumbnail,mobile,hit,use_yn) 
-        VALUES (
-        		 (SELECT NVL(MAX(market_no),0)+1 from market),
-                 #{writer},
-                 #{head_code},
-                 #{title},
-                 #{item_code},
-                 #{content},
-                 #{price},
-                 sysdate,
-                 #{thumbnail},
-                 #{mobile},
-                 #{hit},
-                 #{use_yn}
-                 ); 
+		(market_no,writer,head_code,title,item_code,content,price,reg_dt,thumbnail,mobile,hit,use_yn)
+		VALUES (
+		(SELECT NVL(MAX(market_no),0)+1 from market),
+		#{writer},
+		#{head_code},
+		#{title},
+		#{item_code},
+		#{content},
+		#{price},
+		sysdate,
+		#{thumbnail},
+		#{mobile},
+		#{hit},
+		#{use_yn}
+		);
 	</insert>
-	
-	<!-- 	20210309 모든 공지사항 조회 (경찬) -->
-	<select id="selectAllNoticeList"  resultType="fnoticeVo">
-				select *
-				from notice
+
+	<!-- 20210309 모든 공지사항 조회 (경찬) -->
+	<select id="selectAllNoticeList" resultType="fnoticeVo">
+		select *
+		from notice
 	</select>
-	
+
+	<!-- 20210312 해당 공지사항 클릭 상세정보 (경찬) -->
+	<select id="selectNotice" resultType="fnoticeVo"
+		parameterType="Integer">
+		SELECT *
+		FROM notice
+		WHERE notice_no = #{value}
+	</select>
+
 
 </mapper>
