@@ -49,6 +49,12 @@ public class UserService implements UserServiceImpl {
 		return userDao.sumLoginFailCnt(user_id);
 	}
 
+	// 20210311_LYS_Q&A2 - 로그인 성공했을때 login_fail_cnt 카운트 0으로 리셋
+	@Override
+	public int updateLoginFailCnt_reset(String user_id) {
+		return userDao.updateLoginFailCnt_reset(user_id);
+	}
+	
 	// 20210304_LYS_Login3 - 회원가입 구현
 	// 사용자 정보 추가
 	@Override
@@ -80,10 +86,11 @@ public class UserService implements UserServiceImpl {
 		return userDao.modifyUser(userVo);
 	}
 
-//20210310_KKC_1110
+	//20210310_KKC_1110
 	@Override
 	public UserVo modifyUser2(UserVo userVo) {
 		return userDao.modifyUser2(userVo);
 	}
+
 
 }

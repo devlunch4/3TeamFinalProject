@@ -12,6 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+// 20210311 KWS
+
 @ContextConfiguration(locations = { "classpath:/kr/or/ddit/config/spring/datasource-context.xml",
 		"classpath:/kr/or/ddit/config/spring/application-context.xml",
 		"classpath:/kr/or/ddit/config/spring/root-context.xml" })

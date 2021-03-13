@@ -49,7 +49,7 @@ public class UserController {
 	// 메인 가기
 	// 20210302_KJH items - > codes 변경
 	@RequestMapping("main") // 모든 사용자 정보 조회
-	public String main(Model model, CodesVo codesVo, String sdate) {
+	public String main(Model model, CodesVo codesVo, String sdate, HttpSession session, UserVo userVo) {
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
@@ -131,7 +131,10 @@ public class UserController {
 
 		List<CodesVo> codesList = fdataService.selectAllCodes();
 		model.addAttribute("codesList", codesList);
-
+		
+		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
+		session.setAttribute("S_USER", dbUser);
+		
 		return "tiles.main.main";
 	}
 
