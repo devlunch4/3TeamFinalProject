@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
 <h3 class="mt-4">미니장터 게시판 상세 조회</h3>
  	
 
@@ -59,6 +65,7 @@
 </div>
 
 <%-- <c:if test="${S_USER.user_id.equals('admin') }"> --%>
+	<a class="btn btn-primary" href="#" onclick="goBack()">돌아가기</a>
 	<a class="btn btn-primary"
 		href="${pageContext.request.contextPath }/market/minimarketModifyView?market_no=${detaillist.market_no }">수정</a>
 	<a class="btn btn-primary" href="#">삭제</a>

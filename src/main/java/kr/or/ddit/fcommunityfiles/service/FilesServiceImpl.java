@@ -29,4 +29,10 @@ public class FilesServiceImpl implements FilesService {
 		return dao.registerfiles(filesVo);
 	}
 
+	@Override
+	public FilesVo selectonefiles(String file_path) {
+		
+		return dao.selectonefiles(file_path);
+	}
+
 }

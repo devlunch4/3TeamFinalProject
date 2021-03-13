@@ -74,19 +74,20 @@ public class MarketController {
 
 		logger.debug("정보", marketService.selectmarket());
 		model.addAttribute("noticelist", marketService.selectmarket());
+		model.addAttribute("filelist",filesService.selectfiles());
 
 		logger.debug("IN minimarketView()");
 
 		return "tiles.fcommunity.minimarketMain";
 	}
 	
-		// ggy_20210304 : 커뮤니티 미니장터 진입
+		// shs_20210313 : 미니장터 카테고리별 조회
 		@RequestMapping(path = "minimarketkate", method = RequestMethod.POST)
 		public String minimarketkate(Model model,int head_code) {
 
 			model.addAttribute(marketService.selectkate(head_code));
 
-			return "tiles.fcommunity.minimarketMain";
+			return "redirect:/market/minimarketView";
 		}
 
 	// ggy_20210304 : 커뮤니티 미니장터 상세정보 진입

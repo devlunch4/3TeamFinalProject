@@ -133,7 +133,7 @@
 										<td>선택안함</td>
 										</c:otherwise>
 									</c:choose>
-										<td><img id="pictureViewImg" src="${cp }/market/marketprofile?fileno=${filelist.file_no}"
+										<td><img id="pictureViewImg" src="${cp }/market/marketprofile?fileno=${file.file_no}"
 										style="width: 100%; height: 100%;"/></td>
 										<td>${notice.title }</td>
 										<td>${notice.writer }</td>

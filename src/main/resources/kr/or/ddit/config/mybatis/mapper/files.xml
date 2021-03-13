@@ -11,8 +11,8 @@
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 리스트 조회 -->
-	<select id="selectonefiles"  resultType="filesVo" parameterType="int">
-		SELECT * FROM files WHERE file_no = #{file_no}
+	<select id="selectonefiles"  resultType="filesVo" parameterType="String">
+		SELECT * FROM files WHERE file_path = #{file_path}
 	</select>
 	
 	<!-- 	20210309 SHS - Fcommunity 글 등록 -->
