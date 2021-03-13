@@ -67,8 +67,8 @@
 	<!-- 내 시설 실시간 관측 -->
 	<!-- 20210308KJH 수정 -->
 	<select id="mymaxmsrrecList" resultType="mymaxmrreclistVo" parameterType="fhistoryVo">
-	select fh.history_no history_no,fm.manage_no,fm.location,usr.user_nm
-	owner,cod.code_nm item_code,mse.msr_nm msr_nm, ms.msr_reg_dt reg_dt,ms.msr_temp
+	select fh.history_no history_no,fm.manage_no,fm.location,usr.user_nm owner,
+	cod.code_nm item_code,mse.msr_nm msr_nm, ms.msr_reg_dt reg_dt,ms.msr_temp
 	,ms.msr_humid,ms.msr_bright
 	from
 	fhistory fh, fmanage fm,msrequip
@@ -79,11 +79,11 @@
 	and fm.manage_no = fh.manage_no
 	and cod.code_no = fm.item_code
 	and ms.msr_code = fh.msr_code
-	and fh.manage_no = ${manage_no}
+	and fh.manage_no = #{manage_no}
 	and ms.msr_reg_dt = (select max(ms.msr_reg_dt)
 	msr_reg_dt from mserec ms,fhistory fh
 	where ms.msr_code = fh.msr_code
-	and fh.manage_no = ${manage_no})
+	and fh.manage_no = #{manage_no})
 	and ms.msr_code = fh.msr_code
 	</select>
 	
@@ -91,17 +91,6 @@
 	<!-- 센서 기록 조회 -->
 	<!-- 20210308KJH 수정 -->
 	<select id="myfanalysisInfo" resultType="mymaxmrreclistVo" parameterType="mymaxmrreclistVo">
-<!-- 	select fh.manage_no,to_date(to_char(ms.msr_reg_dt,'yyyy-mm-dd')) reg_dt, -->
-<!-- 	round(avg(nvl(ms.msr_temp, 0))) msr_temp, -->
-<!-- 	round(avg(nvl(ms.msr_humid, 0))) msr_humid, -->
-<!-- 	round(avg(nvl(ms.msr_bright , 0))) msr_bright -->
-<!-- 	from fmanage fm ,fhistory fh, mserec ms -->
-<!-- 	where fm.manage_no = fh.manage_no -->
-<!-- 	and fh.msr_code = ms.msr_code -->
-<!-- 	and fm.manage_no = #{manage_no} -->
-<!-- 	and ms.msr_reg_dt &lt; sysdate-#{number} -->
-<!-- 	and ms.msr_reg_dt &gt; sysdate-#{number}-1 -->
-<!-- 	group by fh.manage_no,to_char(ms.msr_reg_dt,'yyyy-mm-dd') -->
 	select
     round(avg(nvl(ms.msr_temp, 0))) msr_temp,
 	round(avg(nvl(ms.msr_humid, 0))) msr_humid,
@@ -110,8 +99,8 @@
     where fm.manage_no = fh.manage_no
 	and fh.msr_code = ms.msr_code
     and fm.manage_no = #{manage_no}
-    and ms.msr_reg_dt &lt; sysdate -#{number}
-    and ms.msr_reg_dt &gt; sysdate -#{number}-1
+    and ms.msr_reg_dt &lt; sysdate -${number}
+    and ms.msr_reg_dt &gt; sysdate -${number}-1
 	</select>
 	
 	
@@ -122,7 +111,7 @@
 		where owner = #{owner}
 	</select>
 	
-	<!--0310_KJH 사용 가능한 센서목록 조회 -->
+	<!--0310_KJH 사용 가능한 센서목록 조회 (0311수정)-->
 	<select id="availableList" resultType="int" parameterType="msrequipVo">
 	select count(*)
 	from msrequip ms,fhistory fh,fmanage fm
@@ -130,7 +119,8 @@
 	and fh.manage_no = fm.manage_no
 	and ms.owner = #{owner}
 	and ms.msr_code = #{msr_code}
-	and ms.use_yn = 'Y'
+	and fh.use_yn = 'Y'
+    and ms.USE_YN = 'Y'
 	</select>
 	
 	<!-- 0311_KJH 시설 등록 -->
@@ -154,5 +144,24 @@
 	from fmanage where manage_no = #{manage_no}
 	</select>
 	
+	<!-- 0311_KJH update -->
+	<update id="fmanageUpdate" parameterType="fmanageVo">
+	update fmanage set location = #{location}, info = #{info},item_code = #{item_code}
+    where manage_no = #{manage_no}
+	</update>
 	
+	<!-- 0311_KJH delete -->
+	<update id="fmanageDelete" parameterType="fmanageVo">
+	update fmanage set use_yn = 'N'
+    where manage_no = #{manage_no}
+	</update>
+	
+	<!-- 0311_KJH delete -->
+	<update id="fhistoryDelete" parameterType="fmanageVo">
+	update fhistory set release_dt = sysdate ,use_yn = 'N'
+    where manage_no = #{manage_no}
+	</update>
+	
+	
+
 </mapper>

@@ -97,6 +97,7 @@ $(function(){
 						<tr>
 							<td colspan="2">장비 : 
 							<select name="msr_code">
+							<option>장비없음</option>
 									<c:forEach items="${okList}" var="ok">
 										<option value="${ok.msr_code}">${ok.msr_nm}</option>
 									</c:forEach>

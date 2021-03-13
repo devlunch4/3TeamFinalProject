@@ -12,8 +12,14 @@
 			<div class="form-row">
 				<div class="col-sm-12">
 					<c:forEach items="${mostfileList}" var="mostList" varStatus="status1" end="8">
-						<button type="button" class="btn-change m-1 " id="img_btn" style="font-size: 0.6em; background-image: url('${pageContext.request.contextPath}/resources/goodslist/${mostList.code_nm}');width: 77px;height: 80px;"><br><br><br><br>${mostList.code_no}</button>
-
+						<button type="button" class="btn-change m-1 " 
+						id="img_btn" 
+						style="font-size: 0.6em; background-image: url('${pageContext.request.contextPath}/resources/goodslist/${mostList.code_nm}');width: 77px;height: 80px;"
+						onclick="location.href = '${pageContext.request.contextPath }/fdata/popularityselect?Item_code=${mostList.code_no}'">
+							<br>
+							<br>
+							<br>
+							<br>${mostList.code_no}</button>
 					</c:forEach>
 				</div>
 			</div>

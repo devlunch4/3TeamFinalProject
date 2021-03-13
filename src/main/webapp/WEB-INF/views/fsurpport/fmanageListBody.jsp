@@ -21,7 +21,7 @@
 						<c:set var="dt">
 							<fmt:formatDate value="${fmanage.reg_dt}" pattern="yyyy-MM-dd" />
 						</c:set>
-						<c:if test="${fmanage.owner == S_USER.user_id}">
+						<c:if test="${fmanage.owner == S_USER.user_id && fmanage.use_yn == 'Y'}">
 							<tr>
 								<td style="width: 10%;">${fmanage.manage_no}</td>
 								<td style="width: 10%;">${fmanage.owner}</td>

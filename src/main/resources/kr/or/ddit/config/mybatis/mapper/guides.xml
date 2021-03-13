@@ -69,5 +69,12 @@
 	<select id="selectGuideAll" resultType="gardenguideVo">
 		SELECT * FROM GARDENGUIDE ORDER BY guide_code DESC
 	</select>
+	
+	
+	<!--20210312_KJH 텃밭가이트 이름으로 조회 -->
+	<select id="guide_codeselect" resultType="gardenguideVo" parameterType="String">
+		select * from gardenguide
+        where item_code = #{item_code}
+	</select>
 
 </mapper>

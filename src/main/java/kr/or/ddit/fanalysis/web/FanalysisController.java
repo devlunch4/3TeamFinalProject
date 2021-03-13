@@ -34,18 +34,14 @@ public class FanalysisController {
 	@Resource(name = "fanalysisService")
 	private FanalysisServiceImpl fanalysisService;
 
-	// 20210308_KJH 내 시설 관측정보 조회 수정
+	// 20210308_KJH 내 시설 관측정보 조회 수정 test ok
 	@RequestMapping(path = "myfanalysisInfo", method = { RequestMethod.GET })
 	public String myfanalysisInfo(Model model, HttpSession session) {
 
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
-		System.out.println(userVo.getUser_id());
-
 		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
-
-		System.out.println(msrequipList.size());
 
 		MyMaxMrrecListVo MyMaxMrrecListVo = new MyMaxMrrecListVo();
 		MyMaxMrrecListVo.setManage_no(msrequipList.get(0).getMsr_code());
@@ -63,7 +59,7 @@ public class FanalysisController {
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
 
-	// 20210308_KJH 내 시설 관측정보 조회 수정
+	// 20210308_KJH 내 시설 관측정보 조회 수정 test ok
 	@RequestMapping(path = "myfanalysisInfo", method = { RequestMethod.POST })
 	public String myfanalysisInfo(Model model, HttpSession session, String week, String month, String day,
 			String selec) {
@@ -71,11 +67,8 @@ public class FanalysisController {
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
-		System.out.println(userVo.getUser_id());
 
 		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
-
-		System.out.println(msrequipList.size());
 
 		MyMaxMrrecListVo MyMaxMrrecListVo = new MyMaxMrrecListVo();
 		MyMaxMrrecListVo.setManage_no(selec);
@@ -95,7 +88,6 @@ public class FanalysisController {
 				MyMaxMrrecListVo.setNumber(i);
 				mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
 			}
-			;
 		}
 		if (day != null && day.length() > 0) {
 
@@ -115,10 +107,8 @@ public class FanalysisController {
 					MyMaxMrrecListVo.setNumber(i);
 					mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
 				}
-				;
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 
 		}
@@ -130,7 +120,7 @@ public class FanalysisController {
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
 
-	// 20210305_KJH 내 시설 실시간 관측 조회
+	// 20210305_KJH 내 시설 실시간 관측 조회 test ok
 	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.GET })
 	public String mymaxmsrrecList(Model model, HttpSession session) {
 

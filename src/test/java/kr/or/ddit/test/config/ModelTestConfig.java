@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+
 //설정 정보를 넘겨주기 20210311 KWS
 @ContextConfiguration(locations = { "classpath:/kr/or/ddit/config/spring/datasource-context.xml",
 		"classpath:/kr/or/ddit/config/spring/root-context.xml" })

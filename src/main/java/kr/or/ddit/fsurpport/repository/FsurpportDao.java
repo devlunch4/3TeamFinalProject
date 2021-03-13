@@ -68,16 +68,16 @@ public interface FsurpportDao {
 	int deleteFarmdiary(FarmdiaryVo farmdiaryVo);
 
 	/* 시설관리 영역 */
-	// 20210302_KJH 시설리스트 조회
+	// 20210302_KJH 시설리스트 조회 ok
 	List<FmanageVo> myfmanageList();
 
-	// 20210308_KJH 시설 상세조회 수정
+	// 20210308_KJH 시설 상세조회 수정 ok
 	FmanageVo fmanageInfo(String str);
 
-	// 20210308_KJH 시설 최근 측정정보 조회 수정
+	// 20210308_KJH 시설 최근 측정정보 조회 수정 ok
 	MsrrecVo latelyData(FhistoryVo fhistoryVo);
 
-	// 20210308_KJH 보유 장비 조회 수정
+	// 20210308_KJH 보유 장비 조회 수정 ok
 	List<MsrequipVo> msrequipList(String owner);
 
 	// 등록된 시설 카운트 03/04 (경찬)
@@ -86,18 +86,30 @@ public interface FsurpportDao {
 	// 등록된 일지 카운트 03/04 (경찬)
 	int fsurCount(String user_id);
 
-	// 20210310_KJH 사용 가능한 장비 체크
+	// 20210310_KJH 사용 가능한 장비 체크 ok
 	int availableList(MsrequipVo vo);
 
-	// 20210310_KJH 내 장비리스트 조회
+	// 20210310_KJH 내 장비리스트 조회 ok
 	List<MsrequipVo> msrList(String str);
 
-	// 20210311_KJH 시설등록
+	// 20210311_KJH 시설등록 ok
 	int insertFmanage(FmanageVo fmanagvo);
 
-	// 20210311_KJH fhistory 등록
+	// 20210311_KJH fhistory 등록 ok
 	int insertFhistory(FhistoryVo fhistoryVo);
 
-	// 20210311_KJH Fmanage 조회
+	// 20210311_KJH Fmanage 조회 ok
 	FmanageVo updatefmanageInfo(String str);
+	
+	// 20210311_KJH Fmanage 업데이트 ok
+	int fmanageUpdate(FmanageVo fmanageVo);
+	
+	// 20210311_KJH Fmanage 업데이트(삭제) ok
+	int fmanageDelete(FmanageVo fmanageVo);
+	
+	// 20210311_KJH fhistory 업데이트(삭제) ok
+	int fhistoryDelete(FmanageVo fmanageVo);
+	
+	// 20210311_KJH 내 수확량 조회 ok
+	List<FarmdiaryVo> myYield(FarmdiaryVo vo);
 }

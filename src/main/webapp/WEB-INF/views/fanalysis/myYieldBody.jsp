@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 <!-- 0309_KJH datepiker -->
@@ -20,14 +19,12 @@
 
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
-<h4 class="mt-2">품목별 비율</h4>
+<h4 class="mt-2">수확량 분석</h4>
 <div class="card mt-2 col-sm-12 px-0">
 	<h5 class="card-header">총게시글 :</h5>
-	
-	<form action="${pageContext.request.contextPath}/fdata/ratio" id="selec">
-		<input type="hidden" id="selctype" name = "selec" value="week">
-		<input type="hidden" id="sval" name="sdate">
-		<input type="hidden" id="eval" name="edate">
+	<!-- 20210311_KJH 내 수확량 조회-->
+	<form action="${pageContext.request.contextPath}/fsurpport/myYield" id="selec">
+		<input type="hidden" id="selctype" name="selec" value="week"> <input type="hidden" id="sval" name="sdate"> <input type="hidden" id="eval" name="edate">
 	</form>
 
 
@@ -46,18 +43,14 @@
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
 	<div class="input-group">
-		<input type="text" id="week-picker" value="입력칸을 클릭하여 주 선택" name="week" class="col-12  text-center"> 
-		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col-6"> 
-		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col-6"> 
-		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col-6"> 
-		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col-6">
+		<input type="text" id="week-picker" value="입력칸을 클릭하여 주 선택" name="week" class="col-12  text-center"> <input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col-6"> <input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col-6"> <input type="text" id="syear-picker" name="syear" style="display: none;" class="col-6"> <input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col-6">
 	</div>
 
-	
+
 	<div class="form-group text-center">
 		<button id="sel" class="col-4">조회하기</button>
 	</div>
-	
+
 	<div class="align-center px-0">
 		<div class="container px-0">
 			<div class="col-12">
@@ -65,9 +58,9 @@
 				<div id="multilineLabel"></div>
 
 			</div>
-				<c:if test="${fn:length(farmCount) == 0}">
+			<c:if test="${fn:length(farmCount) == 0}">
 				<div class="col-12 text-center">검색된 통계가 없습니다.</div>
-				</c:if>
+			</c:if>
 		</div>
 	</div>
 </div>
