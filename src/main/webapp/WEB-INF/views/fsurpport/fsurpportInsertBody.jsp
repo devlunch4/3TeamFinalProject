@@ -38,8 +38,8 @@
 		<label class="small mb-1" for="input_cls_code">간편 등록</label>
 		<input type="button" value="간편등록" class="btn btn-primary" 
 		onclick="location.href='${pageContext.request.contextPath}/fsurpport/simpleInsertView'">
-		<select name="" onchange="location.href=this.value" >
-			<option value="">선택</option>
+		<select name="" onchange="location.href=this.value" required="required" >
+			<option value="" disabled="disabled" >선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
 				<option 
 					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?user_id=${S_USER.user_id }&my_simple_code=${mySimpleCodeList.my_simple_code }">
@@ -70,8 +70,8 @@
 
 	<div class="form-group col-md-6">
 		<label class="small mb-6" for="input_difficulty">작업단계</label>
-		<select name="w_step_code">
-			<option value="">선택</option>
+		<select name="w_step_code" required="required">
+			<option value="" disabled="disabled">선택</option>
 			<c:forEach items="${workstepsList }" var="workstepsList" >
 				<option value="${workstepsList.code_no }">${workstepsList.code_nm }</option>
 			</c:forEach>
@@ -105,8 +105,8 @@
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">날씨정보</label>
 		
-		<select name="weather">
-			<option value="">선택</option>
+		<select name="weather" required="required">
+			<option value="" disabled="disabled">선택</option>
 			<option value="맑음">맑음</option>
 			<option value="구름조금">구름조금</option>
 			<option value="구름많음">구름많음</option>
@@ -167,4 +167,7 @@
 
 
 	<input type="submit" value="등록" class="btn btn-primary">
+	<input type="button" value="취소" onClick="history.go(-1)">
+<!-- 	<button type="button" class=" btn btn-success" style="float: rigth;" -->
+<%-- onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >취소</button> --%>
 </form>
