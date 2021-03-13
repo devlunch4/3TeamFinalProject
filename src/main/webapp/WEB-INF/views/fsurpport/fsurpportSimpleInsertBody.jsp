@@ -38,6 +38,7 @@
 		
 		
 	</div>
-	<input type="submit"  value="간편등록" class="btn btn-primary">	
+	<input type="submit"  value="간편등록" class="btn btn-primary">
+	<input class="btn btn-primary" type="button" value="취소" onClick="history.go(-1)">	
 
 </form>

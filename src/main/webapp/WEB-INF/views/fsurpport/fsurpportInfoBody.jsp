@@ -56,7 +56,7 @@
 		<c:otherwise></c:otherwise>
 	</c:choose>
 	
-	<input type="button" value="취소" onClick="history.go(-1)">
+	<input class="btn btn-primary" type="button" value="취소" onClick="history.go(-1)">
 <!-- 	<button type="button" class="btn btn-primary" style="float: rigth;" -->
 <%-- onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >목록이동</button> --%>
 	

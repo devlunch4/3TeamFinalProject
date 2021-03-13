@@ -42,6 +42,7 @@
 			<option value=""  >선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
 				<option 
+					<c:if test="${selectMySimpleCodeInfo.my_simple_code eq mySimpleCodeList.my_simple_code }">selected="selected"</c:if>
 					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?user_id=${S_USER.user_id }&my_simple_code=${mySimpleCodeList.my_simple_code }">
 					${mySimpleCodeList.code_alias }
 				</option>
@@ -167,7 +168,6 @@
 
 
 	<input type="submit" value="등록" class="btn btn-primary">
-	<input type="button" value="취소" onClick="history.go(-1)">
-<!-- 	<button type="button" class=" btn btn-success" style="float: rigth;" -->
-<%-- onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >취소</button> --%>
+	<button type="button" class=" btn btn-success" style="float: rigth;"
+	onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >취소</button>
 </form>
