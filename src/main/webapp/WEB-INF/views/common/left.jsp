@@ -1,13 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+
     <div class="sb-sidenav-menu">
         <div class="nav">
         
         
             <div class="sb-sidenav-menu-heading">test</div>
             
+          
+          	<!-- 관리자 로그인시 확인 -->
+			<c:choose>
+				<c:when test="${S_USER.getUser_id() eq 'admin' }">
+					<a class="nav-link" href="${pageContext.request.contextPath}/user/allUser">
+						<div class="sb-nav-link-icon">
+							<i class="fas fa-users-cog fa-fw"></i>
+						</div> 회원관리
+					</a> 
+				</c:when>
+				<c:otherwise></c:otherwise>
+			</c:choose>
+          
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                 농업데이터
@@ -81,3 +95,4 @@
         </div>
     </div>
 </nav>	
+
