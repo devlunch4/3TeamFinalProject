@@ -280,22 +280,18 @@
 	    			$(".name_status").html("이름을 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
 	    		}
-	    		alert("이름통과 ")
 	    		if(!user_id_check()){
 	    			$(".id_status").html("아이디를 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
 	    		}
-	    		alert("아이디통과")
 	    		if(!user_pw_check()){
 	    			$(".pw_status").html("비밀번호를 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
 	    		}
-	    		alert("비밀번호통과")
 	    		if(!mobile_check()){
 	    			$(".mobile_status").html("핸드폰번호를 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
 	    		}
-	    		alert("핸드폰번호통과")
 	    		if(!email_check()){
 	    			$(".email_status").html("이메일을 입력해주세요.");
 	    			$(".btn_join_txt").html("모든 빈칸을 채워주세요.");
