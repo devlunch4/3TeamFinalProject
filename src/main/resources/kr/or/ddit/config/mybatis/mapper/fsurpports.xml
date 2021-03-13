@@ -7,7 +7,7 @@
 
 	<!-- ggy_20210309 : 영농일지 전체 리스트 조회 -->
 	<select id="selectAllFsurpportList" resultType="farmdiaryVo" parameterType="String">
-		select f.f_diary_no, f.writer, f.my_simple_code, 
+		select f.f_diary_no, f.writer, f.my_simple_code, mysim.code_alias code_alias, 
 		    f.content, f.reg_dt, f.weather, f.low_temp, 
 		    f.high_temp, f.rainfall, f.humid, 
 		    f.yield, f.area, files.file_nm file_nm, 
@@ -21,11 +21,14 @@
 		ON f.item_code = cod.code_no
 		JOIN files files
 		ON f.file_no = files.file_no
+        JOIN mysimplecode mysim
+        ON f.my_simple_code = mysim.my_simple_code
 		where f.use_yn = 'Y'
 		and c.use_yn = 'Y'
 		and co.use_yn = 'Y'
 		and cod.use_yn = 'Y'
 		and files.use_yn ='Y'
+        and mysim.use_yn = 'Y'
 		and writer = #{writer }
 		ORDER BY reg_dt desc
 	</select>
@@ -125,35 +128,33 @@
 	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo"
 		parameterType="farmdiaryVo">
 		
-		SELECT
-		f.f_diary_no, f.writer, f.my_simple_code, f.content, f.reg_dt,
-		f.weather, f.low_temp, f.high_temp, f.rainfall, f.humid,
-		f.yield,
-		f.area, files.file_nm file_nm, c.code_nm b_type_code, co.code_nm
-		w_step_code, cod.code_nm item_code
-		FROM farmdiary f
+		select f.f_diary_no, f.writer, f.my_simple_code, mysim.code_alias code_alias, 
+		    f.content, f.reg_dt, f.weather, f.low_temp, 
+		    f.high_temp, f.rainfall, f.humid, 
+		    f.yield, f.area, files.file_nm file_nm, 
+		    c.code_nm b_type_code, co.code_nm w_step_code, cod.code_nm item_code
+		from farmdiary f
 		JOIN codes c
-		ON
-		f.b_type_code = c.code_no
+		ON f.b_type_code = c.code_no
 		JOIN codes co
-		ON
-		f.w_step_code = co.code_no
-		JOIN
-		codes cod
+		ON f.w_step_code = co.code_no
+		JOIN codes cod
 		ON f.item_code = cod.code_no
 		JOIN files files
-		ON f.file_no =
-		files.file_no
+		ON f.file_no = files.file_no
+        JOIN mysimplecode mysim
+        ON f.my_simple_code = mysim.my_simple_code
 		where f.reg_dt &gt;=
 		TO_DATE(#{startDate }, 'YYYY-MM-DD')
 		AND f.reg_dt &lt; TO_DATE(#{endDate }, 'YYYY-MM-DD')+1
 		AND f.writer = #{writer }
 		AND f.item_code = #{item_code }
         AND f.use_yn = 'Y'
-        AND c.use_yn = 'Y'
-        AND co.use_yn = 'Y'
-        AND cod.use_yn = 'Y'
-        AND files.use_yn = 'Y'
+		and c.use_yn = 'Y'
+		and co.use_yn = 'Y'
+		and cod.use_yn = 'Y'
+		and files.use_yn ='Y'
+        and mysim.use_yn = 'Y'
 		ORDER BY f.reg_dt desc
 		
 	</select>

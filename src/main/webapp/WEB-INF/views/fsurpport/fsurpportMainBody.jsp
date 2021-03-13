@@ -5,7 +5,7 @@
 <h3 class="mt-4">영농일지</h3>
 
 <button type="button" class=" btn btn-success " 
-onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?owner=${S_USER.user_id }'" class=" btn btn-outline-dark m-1">영농일지 등록</button>
+onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?owner=${S_USER.user_id }'" >영농일지 등록</button>
 
 <div class="card mt-2 col-sm-12">
 	<!-- 품목 선택 해서 조회하는 부분 -->
@@ -13,21 +13,34 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 
 		<div class="card-body text-left p-1">
 			<span class="">가나다순</span> <br>
-			<input type="date" name="startDate" value="" class=" btn btn-outline-dark m-1">
-			<input type="date" name="endDate" value="" class=" btn btn-outline-dark m-1">
+			<c:choose>
+				<c:when test="${searchFarmdiaryValue != null }">
+					<input type="date" name="startDate" 
+					value="${searchFarmdiaryValue.startDate }" class=" btn btn-outline-dark m-1">
+					<input type="date" name="endDate" 
+					value="${searchFarmdiaryValue.endDate }" class=" btn btn-outline-dark m-1">
+				</c:when>
+				
+				<c:otherwise>
+					<input type="date" name="startDate" value="" class=" btn btn-outline-dark m-1">
+					<input type="date" name="endDate" value="" class=" btn btn-outline-dark m-1">
+				</c:otherwise>			
+			</c:choose>
 		</div>
 		<div class="card-body text-left p-1">
 			<label>*품목</label> <br>
 			<select name="item_code">
 				<option value="">전체</option>
 				<c:forEach items="${itemsList }" var="itemsList">
-					<option value="${itemsList.code_no }">${itemsList.code_nm }</option>
+					<option value="${itemsList.code_no }" 
+					<c:if test="${searchFarmdiaryValue.item_code eq itemsList.code_no }">selected="selected"</c:if>
+					>${itemsList.code_nm }</option>
 				</c:forEach>
 			</select>
 		</div>
 		
 		<input type="hidden" name="writer" value="${S_USER.user_id }" style="margin-left: 20%;" readonly="readonly">
-		<input type="submit" value="조회	" style="margin-left: 20%;">
+		<input type="submit" value="조회" style="margin-left: 20%;">
 	</form>
 </div>
 
@@ -59,6 +72,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 							<thead>
 								<tr role="row">
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" aria-sort="ascending">사진</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="CODE_ALIAS: activate to sort column descending" aria-sort="ascending">간편등록내용</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">일자</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="ITEM_CODE: activate to sort column ascending">품목</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="W_STEP_CODE: activate to sort column ascending">작업단계</th>
@@ -67,6 +81,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 							<tfoot>
 								<tr>
 									<th rowspan="1" colspan="1">사진</th>
+									<th rowspan="1" colspan="1">간편등록내용</th>
 									<th rowspan="1" colspan="1">일자</th>
 									<th rowspan="1" colspan="1">품목</th>
 									<th rowspan="1" colspan="1">작업단계</th>
@@ -78,6 +93,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 										<td>
 											<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }" width="50" height="50" >
 										</td>
+										<td>${farmdiaryList.code_alias }</td>
 										<td>
 											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>
