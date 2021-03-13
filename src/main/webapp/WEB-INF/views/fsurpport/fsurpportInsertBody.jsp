@@ -39,7 +39,7 @@
 		<input type="button" value="간편등록" class="btn btn-primary" 
 		onclick="location.href='${pageContext.request.contextPath}/fsurpport/simpleInsertView'">
 		<select name="" onchange="location.href=this.value" required="required" >
-			<option value="" disabled="disabled" >선택</option>
+			<option value=""  >선택</option>
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
 				<option 
 					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?user_id=${S_USER.user_id }&my_simple_code=${mySimpleCodeList.my_simple_code }">
