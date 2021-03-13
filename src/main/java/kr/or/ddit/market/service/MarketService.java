@@ -2,6 +2,7 @@ package kr.or.ddit.market.service;
 
 import java.util.List;
 
+import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
 
 public interface MarketService {
@@ -13,7 +14,7 @@ public interface MarketService {
 	MarketVo selectonemarket(int market_no);
 	
 	// 20210309_SHS - 미니장터 카테고리 별 조회
-	MarketVo selectkate(int head_code);
+	List<MarketVo> selectkate(int head_code);
 
 	// 20210309_SHS - 미니장터 게시글 작성
 	int registermarket(MarketVo coVo);

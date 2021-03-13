@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
 
 @Repository("marketDao")
@@ -45,9 +46,9 @@ public class MarketDaoImpl implements MarketDao {
 	
 	//	20210312_SHS - 미니장터 게시글 카테고리 별 조회
 	@Override
-	public MarketVo selectkate(int head_code) {
+	public List<MarketVo> selectkate(int head_code) {
 		
-		return template.selectOne("market.selectkate", template);
+		return template.selectList("market.selectkate", head_code);
 	}
 
 }

@@ -31,10 +31,10 @@
 		
 		<select id="kete" name="">
 			<option value="">카테고리 선택</option>
-				<option id="one">판매중</option>
-				<option id="two">판매완료</option>
-				<option id="three">구매중</option>
-				<option id="four">구매완료</option>
+				<option id="one" <c:if test="${detaillist1.head_code eq '1'}">selected </c:if>>판매중</option>
+				<option id="two" <c:if test="${detaillist1.head_code eq '2'}">selected </c:if>>판매완료</option>
+				<option id="three" <c:if test="${detaillist1.head_code eq '3'}">selected </c:if>>구매중</option>
+				<option id="four" <c:if test="${detaillist1.head_code eq '4'}">selected </c:if>>구매완료</option>
 <%-- 			<c:forEach items="" var=""> --%>
 <!-- 				<option value=""></option> -->
 <%-- 			</c:forEach> --%>

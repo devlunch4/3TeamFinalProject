@@ -30,7 +30,7 @@ function goBack() {
 <div class="form-group">
 	<label class="small mb-1" for="input_difficulty">내용</label><br>
 	<textarea rows="auto" cols="auto" name="content" style="resize: none;" class="form-control py-4" readonly="readonly">
-	${detaillist.content }</textarea>
+	<c:out value='${detaillist.content.replaceAll("\\\<.*?\\\>","")}' /></textarea>
 </div>
 
 <div class="form-group">

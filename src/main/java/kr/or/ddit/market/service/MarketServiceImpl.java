@@ -39,9 +39,10 @@ public class MarketServiceImpl implements MarketService {
 		
 		return dao.modifymarket(coVo);
 	}
-
+	
+	// 20210312_SHS - 미니장터 카테고리별 조회
 	@Override
-	public MarketVo selectkate(int head_code) {
+	public List<MarketVo> selectkate(int head_code) {
 		return dao.selectkate(head_code);
 	}
 

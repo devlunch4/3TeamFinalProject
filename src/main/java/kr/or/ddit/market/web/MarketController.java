@@ -84,10 +84,12 @@ public class MarketController {
 		// shs_20210313 : 미니장터 카테고리별 조회
 		@RequestMapping(path = "minimarketkate", method = RequestMethod.POST)
 		public String minimarketkate(Model model,int head_code) {
+			
+			model.addAttribute("noticelist",marketService.selectkate(head_code));
+			model.addAttribute("filelist",filesService.selectfiles());
+			model.addAttribute("returnHeadCode",head_code);
 
-			model.addAttribute(marketService.selectkate(head_code));
-
-			return "redirect:/market/minimarketView";
+			return "tiles.fcommunity.minimarketMain";
 		}
 
 	// ggy_20210304 : 커뮤니티 미니장터 상세정보 진입
