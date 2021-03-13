@@ -59,4 +59,10 @@ public class FinfoServiceImpl implements FinfoService {
 		return finfoDao.selectGuideAll();
 	}
 
+	// 20210311 KWS 제철정보 조회
+	@Override
+	public List<GardenguideVo> selectSeasons(String season) {
+		return finfoDao.selectSeasons(season);
+	}
+
 }
