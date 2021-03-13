@@ -13,6 +13,11 @@
 			$("#frm").submit();
 		});
 	});
+	
+	
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 </script>
 
 <form id="frm" action="${pageContext.request.contextPath}/finfo/gardenguidesUpdate" method="post">
@@ -68,19 +73,20 @@
 								</tr>
 							</thead>
 							<tbody>
+
 								<c:forEach items="${guidelists }" var="guidelist">
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
-									<tr class="guidecode" data-guidecode="${guidelist.guide_code }">
-										<td>${guidelist.guide_code }</td>
-										<td>${guidelist.class_code }</td>
-										<td>${guidelist.item_code }</td>
-										<td>${guidelist.difficulty }</td>
-										<td>${guidelist.origin }</td>
-										<td>${guidelist.temperature }</td>
-										<td>${guidelist.damage }</td>
-										<td>${guidelist.season }</td>
-										<td>${guidelist.reg_dt}</td>
-										<td>${guidelist.use_yn }</td>
+									<tr data-guidecode="${guidelist.guide_code }">
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.guide_code }</td>
+										<td class="guidecode" data-guidecode="${guidelist.guide_code }" data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.class_code }</td>
+										<td class="guidecode" data-guidecode="${guidelist.guide_code }" data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.item_code }</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.difficulty }</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.origin }</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.temperature }</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.damage }</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.season }</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.reg_dt}</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.use_yn }</td>
 									</tr>
 									<%-- </c:if> --%>
 								</c:forEach>

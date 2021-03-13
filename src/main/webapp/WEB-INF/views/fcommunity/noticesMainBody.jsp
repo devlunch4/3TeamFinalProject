@@ -9,6 +9,7 @@
 </c:if>
 
 
+
 <!-- 설명 시작 -->
 <div class="card mt-2 col-sm-12 px-0">
 	<div class="card-header">
@@ -33,6 +34,7 @@
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column ascending">공지번호</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column ascending">제목</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">작성일시</th>
 								</tr>
@@ -41,6 +43,7 @@
 							<tbody>
 								<c:forEach items="${noticeList }" var="noticeList">
 									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'">
+										<td>${noticeList.notice_no }</td>
 										<td>${noticeList.title }</td>
 										<td><fmt:formatDate value="${noticeList.reg_dt }" pattern="yyyy.MM.dd" /></td>
 									</tr>
@@ -48,6 +51,7 @@
 
 							</tbody>
 						</table>
+						<input name="notice_no" value="${noticeList.notice_no }" hidden="hidden" />
 					</div>
 				</div>
 			</div>

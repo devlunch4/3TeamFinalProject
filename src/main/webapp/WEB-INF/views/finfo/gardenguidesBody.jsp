@@ -60,17 +60,14 @@
 
 				<!-- 코어 태그 사용 -->
 				<c:forEach var="chosungArr" items="${chosungArr}">
-					<button type="button" <c:set var="checkc" value="${chosung }" /> 
-					<c:choose>
-					    <c:when test="${checkc  eq chosungArr }">
-					       class=" btn btn-primary m-1 chosungc"
-					    </c:when>
-					    <c:otherwise>
-					        class=" btn btn-outline-dark m-1 chosungc"
-					    </c:otherwise>
-					</c:choose> 
-					data-chosung="${chosungArr }">${chosungArr }
-					</button>
+					<button type="button" <c:set var="checkc" value="${chosung }" /> <c:choose>
+    <c:when test="${checkc  eq chosungArr }">
+       class=" btn btn-primary m-1 chosungc"
+    </c:when>
+    <c:otherwise>
+        class=" btn btn-outline-dark m-1 chosungc"
+    </c:otherwise>
+</c:choose> data-chosung="${chosungArr }">${chosungArr }</button>
 				</c:forEach>
 			</div>
 

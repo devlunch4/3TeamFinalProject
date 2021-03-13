@@ -18,13 +18,16 @@ public class FnoticeServiceImpl implements FnoticeService {
 	public FnoticeServiceImpl() {
 	}
 
-	public FnoticeServiceImpl(FnoticeDao FnoticeDao) {
-		this.FnoticeDao = FnoticeDao;
-	}
-
+	// 20210311 전체 공지사항 조회 (경찬)
 	@Override
 	public List<FnoticeVo> selectAllNoticeList() {
 		return FnoticeDao.selectAllNoticeList();
+	}
+
+	// 20210312 해당 공지사항 상세조회 (경찬)
+	@Override
+	public FnoticeVo selcetNotice(int notice_no) {
+		return FnoticeDao.selcetNotice(notice_no);
 	}
 
 }
