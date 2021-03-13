@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class testController {
 
-//<<<<<<< 20210226_KKC_MyPage
+////<<<<<<< 20210226_KKC_MyPage
 	// 테스트 - 부트스트랩 잘 열리는지 컨트롤러
 	@RequestMapping("test404")
 	public String test404() {
