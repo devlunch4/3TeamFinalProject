@@ -13,7 +13,7 @@ public class Controller extends WebTestConfig{
 	
 	@Test
 	public void mian() throws Exception{
-		mockMvc.perform(get("/user/main")
+		mockMvc.perform(get("/user/main") 
 				.param("sdate", "2021-03-01")
 				.param("parent_code", "100")
 				.param("code_no", "111"))
