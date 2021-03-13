@@ -11,4 +11,7 @@ public interface FilesDao {
 
 	// 20210310_SHS - 미니장터 파일 등록
 	int registerfiles(FilesVo filesVo);
+	
+	// 20210313_SHS - 파일 조회
+	FilesVo selectonefiles(String file_path);
 }

@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
 <h3 class="mt-4">미니장터 게시판 상세 조회</h3>
  	
 
@@ -24,7 +30,7 @@
 <div class="form-group">
 	<label class="small mb-1" for="input_difficulty">내용</label><br>
 	<textarea rows="auto" cols="auto" name="content" style="resize: none;" class="form-control py-4" readonly="readonly">
-	${detaillist.content }</textarea>
+	<c:out value='${detaillist.content.replaceAll("\\\<.*?\\\>","")}' /></textarea>
 </div>
 
 <div class="form-group">
@@ -59,8 +65,9 @@
 </div>
 
 <%-- <c:if test="${S_USER.user_id.equals('admin') }"> --%>
+	<a class="btn btn-primary" href="#" onclick="goBack()">돌아가기</a>
 	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath }/market/minimarketModifyView">수정</a>
+		href="${pageContext.request.contextPath }/market/minimarketModifyView?market_no=${detaillist.market_no }">수정</a>
 	<a class="btn btn-primary" href="#">삭제</a>
 <%-- </c:if> --%>
 

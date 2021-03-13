@@ -7,6 +7,7 @@
 <script>
    
     	$(function(){
+    		
     		$('.board').on("click",function(){
     			
     			var market_no = $(this).data("market_no");
@@ -19,16 +20,30 @@
     		
     		
     })
+    
+    
+    function kateSearch(val){
+    		if(val == null || val == ''){
+    			alert("카테고리 조건을 선택해주세요");
+    			return;
+    		}
+    		$('#katefrm').attr("action","${pageContext.request.contextPath}/market/minimarketkate");
+			$('#katefrm').attr("method","post");
+			$('#head_code').val(val);
+			$('#katefrm').submit();
+    		
+    	}
     </script>
+
 
 	<c:if test="${S_USER != null }">
 		<button type="button" class=" btn btn-success " 
 		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'" 
 		class=" btn btn-outline-dark m-1">미니장터 글 작성</button>
 	</c:if>
-		<button type="button" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'" 
-		class=" btn btn-outline-dark m-1">미니장터 글 작성</button>
+<!-- 		<button type="button" class=" btn btn-success "  -->
+<%-- 		onclick="location.href='${pageContext.request.contextPath}/market/minimarketRegistView'"  --%>
+<!-- 		class=" btn btn-outline-dark m-1">미니장터 글 작성</button> -->
 
 
 <!-- 설명 시작 -->
@@ -45,20 +60,21 @@
 </div>
 
 	<div class="card-body text-left p-1" style="float: right;">
-			<form action="#" method="post">
-				<select name="" >
+				<select id="search_head_code"  onchange="kateSearch(this.value);">
 					<option value="">카테고리 선택</option>
-<%-- 					<c:forEach items="" var=""> --%>
-						<option value=""></option>
-<%-- 					</c:forEach> --%>
+						<option id="one" value="1" <c:if test="${returnHeadCode eq '1'}">selected </c:if> >판매중</option>
+						<option id="two" value="2" <c:if test="${returnHeadCode eq '2'}">selected </c:if>>판매완료</option>
+						<option id="three" value="3" <c:if test="${returnHeadCode eq '3'}">selected </c:if>>구매중</option>
+						<option id="four" value="4" <c:if test="${returnHeadCode eq '4'}">selected </c:if>>구매완료</option>
 				</select>
-				<input type="text" name="" >
-				<input type="submit" value="검색">
-			</form>
 		</div>
 
   	<form id = "frm" action="${pageContext.request.contextPath}/market/minimarketView" method="get">
 		<input type="hidden" id="market_no" name="market_no" value="">
+	</form>
+	
+  	<form id = "katefrm" action="${pageContext.request.contextPath}/market/minimarketkate" method="get">
+		<input type="hidden" id="head_code" name="head_code" value="">
 	</form>
 
 <div class="card mt-2 col-sm-12 px-0">
@@ -91,7 +107,7 @@
 									aria-label="REG_DT: activate to sort column ascending">작성일시</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="kategory">
 <%-- 								<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
 <%-- 									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/minimarketInfoView'" > --%>
 <!-- 										<td></td> -->
@@ -107,9 +123,25 @@
 								<c:forEach items="${noticelist }" var="notice">
 								
 									<tr class="board" data-market_no="${notice.market_no }" >
-										<td>${notice.head_code }</td>
-										<td><img id="pictureViewImg" src="${cp }/market/marketprofile?emp_id=${detailUser.emp_id}"
-										style="width: 100%; height: 100%;"/></td>
+									<c:choose>
+										<c:when test="${notice.head_code == 1 }">
+											<td style="color:green">판매중</td>
+										</c:when>
+										<c:when test="${notice.head_code == 2 }">
+											<td style="color:red">판매완료</td>
+										</c:when>
+										<c:when test="${notice.head_code == 3 }">
+											<td style="color:blue">구매중</td>
+										</c:when>
+										<c:when test="${notice.head_code == 4 }">
+											<td style="color:red">구매완료</td>
+										</c:when>
+										<c:otherwise >
+										<td>선택안함</td>
+										</c:otherwise>
+									</c:choose>
+										<td><img id="pictureViewImg" src="${cp }/market/marketprofile="
+										style="width: 100%; height: 100%;"></td>
 										<td>${notice.title }</td>
 										<td>${notice.writer }</td>
 										<td><fmt:formatDate value="${notice.reg_dt }" pattern="yyyy-MM-dd"/></td>

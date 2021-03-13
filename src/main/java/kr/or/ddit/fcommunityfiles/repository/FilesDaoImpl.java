@@ -27,4 +27,10 @@ public class FilesDaoImpl implements FilesDao {
 		return template.insert("files.registerfiles", filesVo);
 	}
 
+	@Override
+	public FilesVo selectonefiles(String file_path) {
+		
+		return template.selectOne(file_path);
+	}
+
 }

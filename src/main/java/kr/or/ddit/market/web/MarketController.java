@@ -40,7 +40,7 @@ public class MarketController {
 
 	@Resource(name = "userService")
 	private UserService userService;
-
+	
 	// ggy_20210304 : 커뮤니티 공지사항 진입
 	@RequestMapping("noticesView")
 	public String noticesView(Model model) {
@@ -74,11 +74,23 @@ public class MarketController {
 
 		logger.debug("정보", marketService.selectmarket());
 		model.addAttribute("noticelist", marketService.selectmarket());
+		model.addAttribute("filelist",filesService.selectfiles());
 
 		logger.debug("IN minimarketView()");
 
 		return "tiles.fcommunity.minimarketMain";
 	}
+	
+		// shs_20210313 : 미니장터 카테고리별 조회
+		@RequestMapping(path = "minimarketkate", method = RequestMethod.POST)
+		public String minimarketkate(Model model,int head_code) {
+			
+			model.addAttribute("noticelist",marketService.selectkate(head_code));
+			model.addAttribute("filelist",filesService.selectfiles());
+			model.addAttribute("returnHeadCode",head_code);
+
+			return "tiles.fcommunity.minimarketMain";
+		}
 
 	// ggy_20210304 : 커뮤니티 미니장터 상세정보 진입
 	@RequestMapping("minimarketInfoView")
@@ -94,18 +106,33 @@ public class MarketController {
 
 	// ggy_20210304 : 커뮤니티 미니장터 수정 페이지 진입
 	@RequestMapping("minimarketModifyView")
-	public String minimarketModify(Model model) {
+	public String minimarketModifyView(Model model,int market_no) {
 
+		model.addAttribute("detaillist1", marketService.selectonemarket(market_no));
 		logger.debug("IN minimarketModifyView()");
 
 		return "tiles.fcommunity.minimarketModify";
 	}
+	
+		// ggy_20210304 : 커뮤니티 미니장터 수정완료
+		@RequestMapping("minimarketModify")
+		public String minimarketModify(Model model) {
+				
+			logger.debug("IN minimarketModifyView()");
+			
+
+			return "tiles.fcommunity.minimarketModify";
+		}
+	
 
 	// ggy_20210304 : 커뮤니티 미니장터 글 작성 페이지 진입
 	@RequestMapping("minimarketRegistView")
 	public String minimarketRegistView(Model model) {
+		
+		
 
 		logger.debug("IN minimarketRegistView()");
+		model.addAttribute("market", marketService.selectmarket());
 
 		return "tiles.fcommunity.minimarketRegist";
 	}
@@ -132,14 +159,14 @@ public class MarketController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		logger.debug("coVo : {}", coVo);
 		marketcnt = marketService.registermarket(coVo);
 		filescnt = filesService.registerfiles(fileVo);
 		logger.debug("쿼리문", filescnt);
 
 		if (marketcnt == 1 && filescnt != 0) {
 			logger.debug("업데이트 완료");
-			return "redirect:/fcommunity/minimarketView";
+			return "redirect:/market/minimarketView";
 		} else {
 			return "tiles.fcommunity.minimarketRegist";
 		}
