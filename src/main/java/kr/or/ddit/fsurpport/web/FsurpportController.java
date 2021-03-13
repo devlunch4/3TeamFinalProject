@@ -94,11 +94,13 @@ public class FsurpportController {
 		logger.debug("값 확인 startDate : {}, endDate : {}", req.getParameter("startDate"), req.getParameter("endDate"));
 
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
+		FarmdiaryVo searchFarmdiaryValue_farmdiaryVo = new FarmdiaryVo();
 
 		if (req.getParameter("startDate") != null && !req.getParameter("startDate").equals("")) {
 			logger.debug("1");
 			farmdiaryVo.setStartDate(req.getParameter("startDate").replace("-", ""));
 			logger.debug("farmdiaryVo.getStartDate() : {} ", farmdiaryVo.getStartDate());
+			searchFarmdiaryValue_farmdiaryVo.setStartDate(req.getParameter("startDate"));
 		} else {
 			logger.debug("-1");
 			farmdiaryVo.setStartDate("");
@@ -108,6 +110,7 @@ public class FsurpportController {
 			logger.debug("2");
 			farmdiaryVo.setEndDate(req.getParameter("endDate").replace("-", ""));
 			logger.debug("farmdiaryVo.getEndDate() : {} ", farmdiaryVo.getEndDate());
+			searchFarmdiaryValue_farmdiaryVo.setEndDate(req.getParameter("endDate"));
 		} else {
 			logger.debug("-2");
 			farmdiaryVo.setEndDate("");
@@ -117,6 +120,7 @@ public class FsurpportController {
 			logger.debug("3");
 			farmdiaryVo.setItem_code(req.getParameter("item_code"));
 			logger.debug("item : " + req.getParameter("item_code"));
+			searchFarmdiaryValue_farmdiaryVo.setItem_code(req.getParameter("item_code"));
 		} else {
 			logger.debug("-3");
 			farmdiaryVo.setItem_code("");
@@ -127,11 +131,13 @@ public class FsurpportController {
 			logger.debug("4");
 			farmdiaryVo.setWriter(req.getParameter("writer"));
 			logger.debug("writer : " + req.getParameter("writer"));
+			searchFarmdiaryValue_farmdiaryVo.setWriter(req.getParameter("writer"));
 		} else {
 			logger.debug("-4");
 			farmdiaryVo.setWriter("");
 			logger.debug("writer : " + req.getParameter("writer"));
 		}
+		model.addAttribute("searchFarmdiaryValue", searchFarmdiaryValue_farmdiaryVo);
 
 		if (farmdiaryVo.getStartDate() != null && !farmdiaryVo.getStartDate().equals("")
 				&& farmdiaryVo.getEndDate() != null && !farmdiaryVo.getEndDate().equals("")) {
@@ -289,6 +295,7 @@ public class FsurpportController {
 		farmdiaryVo.setW_step_code(req.getParameter("w_step_code"));
 		farmdiaryVo.setWeather(req.getParameter("weather"));
 		farmdiaryVo.setWriter(req.getParameter("writer"));
+		farmdiaryVo.setYield(Integer.parseInt(req.getParameter("yield")));
 
 		FilesVo filesVo = new FilesVo();
 

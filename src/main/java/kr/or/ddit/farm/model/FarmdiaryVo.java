@@ -22,11 +22,22 @@ public class FarmdiaryVo {
 	private String b_type_code;
 	private String w_step_code;
 	private String item_code;
-
+	
 	private String startDate;
 	private String endDate;
 
 	private String file_nm;
+	
+	private String code_alias;
+	
+
+	public String getCode_alias() {
+		return code_alias;
+	}
+
+	public void setCode_alias(String code_alias) {
+		this.code_alias = code_alias;
+	}
 
 	public String getFile_nm() {
 		return file_nm;

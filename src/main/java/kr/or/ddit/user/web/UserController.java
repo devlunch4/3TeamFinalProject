@@ -126,7 +126,10 @@ public class UserController {
 
 		List<CodesVo> codesList = fdataService.selectAllCodes();
 		model.addAttribute("codesList", codesList);
-
+		
+		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
+		session.setAttribute("S_USER", dbUser);
+		
 		return "tiles.main.main";
 	}
 

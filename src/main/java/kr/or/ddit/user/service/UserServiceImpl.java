@@ -19,6 +19,9 @@ public interface UserServiceImpl {
 	// login_fail_cnt 몇개인지 더한거 select LYS - 03/11
 	// - 지금까지 실패한 로그인 카운트
 	int sumLoginFailCnt(String user_id);
+	
+	// 로그인 성공하면 login_fail_cnt 0으로 리셋 LYS - 03/11
+	int updateLoginFailCnt_reset(String user_id);
 
 	// 20210304_LYS_Login3 - 회원가입 구현
 	// 사용자 정보 추가

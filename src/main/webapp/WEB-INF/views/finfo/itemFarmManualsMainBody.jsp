@@ -12,32 +12,40 @@
 <div class="card mt-2 col-sm-12">
 	<div class="card-body text-left p-1">
 		<span class="">품목</span> <br>
-		<%-- 		<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
+<!-- 			<button type="button" onclick="location.href='#'"  -->
+<!-- 			class=" btn btn-primary m-1"></button> -->
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">벼</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">밭농사</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">버섯</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">약초</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">채소</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">과수</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">화훼</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">축산</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">사료작물</button>
+			<button type="button" onclick="location.href='#'" 
+			class=" btn btn-outline-dark m-1">잠업</button>
 			
-			<c:choose>
-				<c:when test="">
-					<button type="button" onclick="location.href='#'" 
-					class=" btn btn-primary m-1">ㄱ</button>
-				</c:when>
-				
-				<c:otherwise>
-					<button type="button" onclick="location.href='#'" 
-					class=" btn btn-outline-dark m-1">ㄱ</button>
-				</c:otherwise>
-			</c:choose>
-			
-		<%-- 		</c:forEach> --%>
 	</div>
 </div>
 
 <div class="card mt-2 col-sm-12">
 	<div class="card-body text-left p-1">
 		<span class="">품목</span> <br>
-		<c:forEach items="${itemList }" var="itemList">
+<%-- 		<c:forEach items="${itemList }" var="itemList"> --%>
 			<ul>
-				<li>${itemList.code_nm }
+<%-- 				<li>${itemList.code_nm } --%>
 				<li>test<input onclick="location.href='#'" type="button" value="다운로드"></li>
 			</ul>
-		</c:forEach>
+<%-- 		</c:forEach> --%>
 	</div>
 </div>

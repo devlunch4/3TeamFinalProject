@@ -47,20 +47,36 @@ public class FinfoDaoImpl implements FinfoDao {
 		return tempplate.update("guides.deleteGuide", gardenguideVo);
 	}
 
+	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
+	@Override
+	public List<GardenguideVo> selectGuideAll() {
+		return tempplate.selectList("guides.selectGuideAll");
+	}
+
+	// 20210311 KWS 제철정보 조회
+	@Override
+	public List<GardenguideVo> selectSeasons(String season) {
+		return tempplate.selectList("seasons.selectSeasons", season);
+	}
+
+	// ////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////
+  
+  	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
+	@Override
+	public GardenguideVo guide_codeselect(String str) {
+		return tempplate.selectOne("guides.guide_codeselect",str);
+}
+  
+	// ////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////
+	// ////////////////////////////////////////////////////////////////
 	// 20210311_ggy : 품목 리스트 조회
 	@Override
 	public List<CodesVo> itemFarmManualsList() {
 		return tempplate.selectList("guides.itemFarmManualsList");
 	}
 
-	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
-	@Override
-	public List<GardenguideVo> selectGuideAll() {
-		return tempplate.selectList("guides.selectGuideAll");
-	}
-	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
-	@Override
-	public GardenguideVo guide_codeselect(String str) {
-		return tempplate.selectOne("guides.guide_codeselect",str);
-}
+
 }

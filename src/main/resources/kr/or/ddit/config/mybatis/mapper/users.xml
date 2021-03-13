@@ -41,6 +41,13 @@
 		FROM users
 		WHERE user_id = #{value}
 	</select>
+	
+	<!-- 20210311_LYS_Q&A2 -->
+	<!-- 로그인 성공했을때 login_fail_cnt 카운트 0으로 리셋 -->
+	<update id="updateLoginFailCnt_reset" parameterType="String">
+		UPDATE users SET login_fail_cnt = 0
+		WHERE user_id = #{value}
+	</update>
 
 	<!-- 20210304_LYS_Login3 -->
 	<!-- 사용자 추가 - 회원가입 -->

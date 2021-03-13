@@ -37,7 +37,7 @@ public class FinfoController {
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
 
-	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305
+	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305 TEST OK
 	@RequestMapping("gardenguides")
 	public String gardenguides(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
 			@RequestParam(defaultValue = "0") int xguide_code) {
@@ -93,14 +93,14 @@ public class FinfoController {
 	}
 
 	// KWS 텃밭 가이드 등록페이지이동 (재배정보 등록페이지 진입)
-	@RequestMapping("gardenguidesInsert") // get
+	@RequestMapping("gardenguidesInsert") // get TEST OK
 	public String gardenguidesInsert(Model model) {
 		logger.debug("IN gardenguidesInsert()");
 		return "tiles.finfo.gardenguidesInsert";
 	}
 
 	// 추가 수정 20210308 KWS 완료
-	// KWS 텃밭 가이드 등록페이지완료 (재배정보 등록완료)
+	// KWS 텃밭 가이드 등록페이지완료 (재배정보 등록완료) TEST OK
 	@RequestMapping(path = "gardenguidesInsertBtn", method = { RequestMethod.POST })
 	public String gardenguidesInsertBtn(Model model, GardenguideVo gardenguidesVo, MultipartFile file_nm2) {
 		logger.debug("IN gardenguidesInsertBtn()");
@@ -200,9 +200,9 @@ public class FinfoController {
 		return "tiles.finfo.gardenguides";
 	}
 
-	// KWS 텃밭 가이드 삭제처리 (use_yn : y>>>N) 20210308
+	// KWS 텃밭 가이드 삭제처리 (use_yn : y>>>N) 20210308 TEST OK
 	@RequestMapping(path = "gardenguidesDelete", method = { RequestMethod.POST })
-	public String gardenguidesdelete(Model model, int xguide_code, GardenguideVo gardenguidesVo) {
+	public String gardenguideDelete(Model model, int xguide_code, GardenguideVo gardenguidesVo) {
 		logger.debug("IN gardenguidesDelete()");
 		logger.debug("삭제처리될 xguide_code : {}", xguide_code);
 		int updateGuide = finfoService.deleteGuide(gardenguidesVo);
@@ -210,16 +210,39 @@ public class FinfoController {
 		return "redirect:/finfo/gardenguides";
 	}
 
-	// gardenguidesAll
-	// 20210309 KWS 텃밭 가이드 목록으로 모두보기
+	// 20210309 KWS 텃밭 가이드 목록으로 모두보기 TEST OK
 	@RequestMapping(path = "gardenguidesAll", method = { RequestMethod.GET })
 	public String gardenguidesAll(Model model, GardenguideVo gardenguidesVo) {
 		logger.debug("IN gardenguidesAll()");
 		List<GardenguideVo> guidelists = finfoService.selectGuideAll();
-		logger.debug("IN 123123");
 		model.addAttribute("guidelists", guidelists);
-		logger.debug("IN 123123123123123");
 		return "tiles.finfo.gardenguidesall";
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+	// 20210312 KWS 제철정보 페이지 이동 GET
+	@RequestMapping(path = "seasonInfos", method = { RequestMethod.GET })
+	public String seasionInfos(Model model) {
+		logger.debug("IN seasonInfos()");
+		
+		//봄
+		List<GardenguideVo> springlist = finfoService.selectSeasons("%봄%");
+		logger.debug("봄검색 첫번째 인덱스: {}",springlist.get(0));
+		model.addAttribute("springlist", springlist);
+		//여름
+		List<GardenguideVo> summerlist = finfoService.selectSeasons("%여름%");
+		model.addAttribute("summerlist", summerlist);
+		//가을
+		List<GardenguideVo> autumnlist = finfoService.selectSeasons("%가을%");
+		model.addAttribute("autumnlist", autumnlist);
+		//겨울
+		List<GardenguideVo> winterlist = finfoService.selectSeasons("%겨울%");
+		model.addAttribute("winterlist", winterlist);
+		
+		return "tiles.finfo.seasoninfos";
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -255,7 +278,7 @@ public class FinfoController {
 	//////////////////////////////////////////////////////////////////////////
 	// 이미지파일 보기
 	// localhost/finfo/guideimg
-	@RequestMapping("guideimg")
+	@RequestMapping("guideimg") // 가이드 이미지 보기 KWS 20210309 TEST OK
 	public void guideimg(int guide_code, HttpServletRequest req, HttpServletResponse resp) {
 		// 이미지로 설정
 		logger.debug("~~~~~ 수행 진입 guideimg()");
@@ -286,4 +309,5 @@ public class FinfoController {
 		}
 		logger.debug("수행 완료 guideimg()");
 	}
+
 }

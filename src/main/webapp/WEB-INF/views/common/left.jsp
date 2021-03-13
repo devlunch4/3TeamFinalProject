@@ -1,13 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+
     <div class="sb-sidenav-menu">
         <div class="nav">
         
         
             <div class="sb-sidenav-menu-heading">test</div>
             
+          
+          	<!-- 관리자 로그인시 확인 -->
+			<c:choose>
+				<c:when test="${S_USER.getUser_id() eq 'admin' }">
+					<a class="nav-link" href="${pageContext.request.contextPath}/user/allUser">
+						<div class="sb-nav-link-icon">
+							<i class="fas fa-users-cog fa-fw"></i>
+						</div> 회원관리
+					</a> 
+				</c:when>
+				<c:otherwise></c:otherwise>
+			</c:choose>
+          
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                 농업데이터
@@ -31,7 +45,7 @@
             <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/gardenguides">텃밭가이드</a>
-                    <a class="nav-link" href="layout-sidenav-light.html">제철작물</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/finfo/seasonInfos">제철작물</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/raceInfosView">품종정보</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/weeklyFarmInfosView">주간 농사정보</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/finfo/itemFarmManualsView">품목별 영농매뉴얼</a>
@@ -81,3 +95,4 @@
         </div>
     </div>
 </nav>	
+
