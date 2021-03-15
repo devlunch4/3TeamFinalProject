@@ -44,4 +44,9 @@ public class FanalysisServiceImpl implements FanalysisService {
 		return fanalysisDao.avgFmanage(msrrecVo);
 	}
 
+	@Override
+	public List<MyMaxMrrecListVo> selectTempList() {
+		// TODO Auto-generated method stub
+		return fanalysisDao.selectTempList();
+	}
 }

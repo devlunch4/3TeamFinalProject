@@ -20,4 +20,7 @@ public interface FanalysisService {
 	
 	// 20210315_KJH 내 시설 평균 관측정보 조회 ver 2
 	MsrrecVo avgFmanage(MsrrecVo msrrecVo);
+	
+	// 20210315_KJH 작물의 적정온도 조회
+	List<MyMaxMrrecListVo> selectTempList();
 }

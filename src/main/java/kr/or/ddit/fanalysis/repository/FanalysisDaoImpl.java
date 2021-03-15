@@ -40,4 +40,9 @@ public class FanalysisDaoImpl implements FanalysisDao {
 		return tempplate.selectOne("fmanage.avgFmanage", msrrecVo);
 	}
 
+	@Override
+	public List<MyMaxMrrecListVo> selectTempList() {
+		// TODO Auto-generated method stub
+		return tempplate.selectList("fmanage.selectTempList");
+	}
 }

@@ -137,6 +137,7 @@ public class FanalysisController {
 			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
 		}
 
+		model.addAttribute("tempList",fanalysisService.selectTempList());
 		model.addAttribute("maxmrrecList", maxmrrecList);
 		return "tiles.fanalysis.mymaxmsrrecList";
 	}
@@ -160,6 +161,7 @@ public class FanalysisController {
 			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
 		}
 
+		model.addAttribute("tempList",fanalysisService.selectTempList());
 		model.addAttribute("maxmrrecList", maxmrrecList);
 		return "/ajax/mymaxmsrrecList";
 	}

@@ -193,6 +193,19 @@
 	and msr_reg_dt &gt;= sysdate-${msr_no}-1
 	</select>
 	
+	<!-- 텃밭 가이드로부터 받은 온도정보 가공 -->
+	<select id="selectTempList" resultType="mymaxmrreclistVo">
+	select ga.item_code,ga.temperature,
+	nvl(substr(ga.temperature,
+	0,instr(ga.temperature, '~')-1),
+	substr(ga.temperature,
+	0,instr(ga.temperature, '℃')-1)) number1,
+	replace((substr(ga.temperature,
+	instr(ga.temperature, '~')+1)),'℃','') number2
+	from gardenguide ga, codes co
+	where ga.item_code = co.code_nm
+	and ga.temperature like '%℃'
+	</select>
 	
 
 </mapper>

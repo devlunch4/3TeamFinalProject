@@ -108,7 +108,7 @@ $(function(){
 							<td colspan="2"><textarea id="summernote" name="info"></textarea></td>
 						</tr>
 					</table>
-					<button type="submit" class="btn btn-primary">저장</button>
+					<button type="submit" class="btn btn-primary float-right">저장</button>
 				</form>
 			</div>
 		</div>

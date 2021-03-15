@@ -8,8 +8,12 @@
 <div class="card mt-2 col-sm-12 px-0">
 	<h3 class="card-header">총게시글 :</h3>
 	<div class="card-body text-left ">
+	<div class="mt-2 col-sm-2 px-0 float-right">			
+		<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary p-2 float-right">시설등록</a>
+		</div> 
+		<br><br><br>	
 		<div class="">
-			<div class="row">
+		<div class="row">
 				<table class="table table-bordered col-sx-12">
 					<tr>
 						<th style="width: 10%;">시설번호</th>
@@ -40,7 +44,8 @@
 					</c:forEach>
 				</table>
 			</div>
-			<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary">시설등록</a>
-		</div>
+			<div class="mt-2 col-sm-2 px-0 float-right">			
+		<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary p-2 float-right">시설등록</a>
+		</div> </div>     
 	</div>
 </div>

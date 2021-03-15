@@ -123,9 +123,10 @@ setInterval(function() {
 		</div>
 	</div>
 	<div class="card-body text-center pt-0">
+		<button type="button" class="btn btn-info  col-md-3 my-1 " id="formbtn">장비변경</button>
 		<button type="button" class="btn btn-warning  col-md-3 my-1 " onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageUpdate?manage_no=${fmanage.manage_no}'">수정하기</button>
 		<button type="button" class="btn btn-danger  col-md-3 my-1 " onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageDelete?manage_no=${fmanage.manage_no}&msr_code=${fmanage.use_yn}'">삭제하기</button>
-		<button type="button" class="btn btn-warning  col-md-3 my-1 " id="formbtn">장비변경</button>
+
 
 		 
 	<form action="${pageContext.request.contextPath }/fsurpport/msrequipChange">
