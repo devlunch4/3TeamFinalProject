@@ -97,6 +97,7 @@ public class MarketController {
 	public String minimarketInfoView(Model model, int market_no) {
 
 		model.addAttribute("detaillist", marketService.selectonemarket(market_no));
+	
 
 		logger.debug("IN minimarketInfoView()");
 		logger.debug("{}", market_no);
@@ -115,14 +116,42 @@ public class MarketController {
 	}
 	
 		// ggy_20210304 : 커뮤니티 미니장터 수정완료
-		@RequestMapping("minimarketModify")
-		public String minimarketModify(Model model) {
+		@RequestMapping(path = "minimarketModify", method = RequestMethod.POST)
+		public String minimarketModify(Model model, MarketVo coVo, FilesVo fileVo, MultipartFile file) {
 				
 			logger.debug("IN minimarketModifyView()");
 			
+			int marketcnt = 0;
+			int filescnt = 0;
 
-			return "tiles.fcommunity.minimarketModify";
+			logger.debug("IN minimarketRegistView()");
+			fileVo.setFile_nm(file.getOriginalFilename());
+			fileVo.setFile_path(file.getOriginalFilename());
+
+			try {
+				String fileExtension = FileUtil.getFileExtension(file.getOriginalFilename());
+				String realFileName = "c:/upload/" + UUID.randomUUID().toString() + fileExtension;
+
+				file.transferTo(new File(realFileName));
+				fileVo.setFile_path(file.getOriginalFilename());
+
+				fileVo.setFile_path(realFileName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			logger.debug("coVo : {}", coVo);
+			marketcnt = marketService.modifymarket(coVo);
+			logger.debug("쿼리문", filescnt);
+
+			if (marketcnt == 1 && filescnt != 0) {
+				logger.debug("업데이트 완료");
+				return "redirect:/market/minimarketView";
+			} else {
+				return "tiles.fcommunity.minimarketModify";
+			}
+
 		}
+		
 	
 
 	// ggy_20210304 : 커뮤니티 미니장터 글 작성 페이지 진입
