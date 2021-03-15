@@ -46,19 +46,19 @@
 		<label class="small mb-1" for="input_plant_prd">사진</label><br> 
 		<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }"  >
 	</div>
-	
-	<c:choose>
-		<c:when test="${S_USER.user_id == farmdiaryList.writer }">
-			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a> 
-			<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }"
-				onclick="alert('삭제합니다.');">삭제</a>
-		</c:when>
-		<c:otherwise></c:otherwise>
-	</c:choose>
-	
-	<input class="btn btn-primary" type="button" value="취소" onClick="history.go(-1)">
-<!-- 	<button type="button" class="btn btn-primary" style="float: rigth;" -->
-<%-- onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >목록이동</button> --%>
-	
+	<div class="float-right">
+		<c:choose>
+			<c:when test="${S_USER.user_id == farmdiaryList.writer }">
+				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }"
+					onclick="alert('삭제합니다.');">삭제</a>
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
+		
+		<input class="btn btn-primary" type="button" value="취소" onClick="history.go(-1)">
+<!-- 		<button type="button" class="btn btn-primary" style="float: rigth;" -->
+<%-- 		onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >목록이동</button> --%>
+	</div>
 </form>
 

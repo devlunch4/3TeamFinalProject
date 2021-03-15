@@ -68,6 +68,13 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
+						
+						<input type="button" value="영농일지_EXCEL다운로드" style="float: right;" class=" btn btn-success " 
+						onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'">
+						
+						<input type="button" value="영농일지_PDF다운로드" style="float: right;" class=" btn btn-success " 
+						onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'">
+						
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
@@ -107,11 +114,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 				</div>
 			</div>
 		</div>
-		<input type="button" value="영농일지_EXCEL다운로드" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'">
 		
-		<input type="button" value="영농일지_PDF다운로드" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'">
 	</div>
 	
 	
