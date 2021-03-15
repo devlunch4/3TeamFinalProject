@@ -13,9 +13,8 @@
 			$("#frm").submit();
 		});
 	});
-	
-	
-	$(function () {
+
+	$(function() {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
 </script>
@@ -25,7 +24,11 @@
 </form>
 
 <h3 class="mt-4">텃밭가이드 글 전체보기(목록)</h3>
-
+<div class="">
+	<div class="text-right col-12 p-0">
+		<button class="btn-warning btn-lg col-xs-4 col-md-3 mb-2" type="button" id="listBtn" name="listBtn" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguides'">목록으로</button>
+	</div>
+</div>
 <div class="card mb-4">
 	<div class="card-header">
 		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
@@ -50,25 +53,35 @@
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
-									<th class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">GUIDE_CODE(seq)<br>등록순번
+									<th class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">
+										<!-- GUIDE_CODE(seq) --> <br>-등록순번
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">CLASS_CODE<br>부류명
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">
+										<!-- CLASS_CODE --> <br>부류명
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">ITEM_CODE<br>품목명
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- ITEM_CODE --> <br>품목명
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">DIFFICULTY<br>난이도
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- DIFFICULTY --> <br>난이도
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">ORIGIN<br>원산지
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- ORIGIN --> <br>원산지
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">TEMPERATURE<br>생육온도
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- TEMPERATURE --> <br>생육온도
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">DAMAGE<br>피해
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- DAMAGE --> <br>피해
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">SEASON<br>제철
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- SEASON --> <br>제철
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">REG_DT<br>등록날짜
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- REG_DT --> <br>등록날짜
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">USE_YN<br>사용여부
+									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+										<!-- USE_YN --> <br>사용여부
 									</th>
 								</tr>
 							</thead>
@@ -107,4 +120,8 @@
 		</div>
 	</div>
 </div>
-
+<div class="">
+	<div class="text-right col-12 p-0">
+		<button class="btn-warning btn-lg col-xs-4 col-md-3 mb-2" type="button" id="listBtn" name="listBtn" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguides'">목록으로</button>
+	</div>
+</div>

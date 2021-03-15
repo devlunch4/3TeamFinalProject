@@ -38,14 +38,14 @@
 </script>
 
 <h3 class="mt-4">텃밭가이드(재배정보)</h3>
-<div>
-	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn-success btn-lg col-md-3 mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesAll'">등록글 목록보기</button>
-	</c:if>
+<div class="">
+<div class="text-right col-12 p-0">
 	<!-- 관리자 전용 등록 이동 버튼 활성 -->
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn-success btn-lg col-md-3 mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">텃밭가이드 등록</button>
+		<button type="button" class="btn-success btn-lg col-xs-4 col-md-3 mb-2" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">신규등록</button>
+		<button type="button" class="btn-success btn-lg col-xs-4 col-md-3 mb-2" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesAll'">글목록보기</button>
 	</c:if>
+</div>
 </div>
 
 <div>
@@ -88,10 +88,10 @@
 				<c:forEach var="gardenguidesList" items="${gardenguidesList}">
 					<button type="button" <c:set var="checkcode" value="${gardenguidesList.guide_code}" /> <c:choose>
     <c:when test="${checkcode  eq xguide_code }">
-       class=" btn btn-primary m-1  onebtn"
+       class="btn btn-primary m-1  onebtn"
     </c:when>
     <c:otherwise>
-        class=" btn btn-outline-dark m-1  onebtn"
+        class="btn btn-outline-dark m-1  onebtn"
     </c:otherwise>
 </c:choose> data-onebtn="${gardenguidesList.guide_code }">${gardenguidesList.item_code}</button>
 				</c:forEach>
@@ -164,7 +164,7 @@
 			<!-- 관리자 전용 삭제 이동 버튼 활성 -->
 			<!-- <button type="button" id="deleteBtn" class="btn btn-danger btn-lg  col-md-3 float-left mt-4">텃밭가이드 삭제</button> -->
 			<!-- 관리자 전용 수정 이동 버튼 활성 -->
-			<button type="button" id="modifyBtn" class="btn-warning btn-lg col-md-3 float-right mt-4">텃밭가이드 수정</button>
+			<button type="button" id="modifyBtn" class="btn-warning btn-lg col-xs-1 col-md-2 float-right mt-4">수정</button>
 		</c:if>
 	</div>
 </div>
