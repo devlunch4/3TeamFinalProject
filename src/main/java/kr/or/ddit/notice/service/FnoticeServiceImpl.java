@@ -30,4 +30,9 @@ public class FnoticeServiceImpl implements FnoticeService {
 		return FnoticeDao.selcetNotice(notice_no);
 	}
 
+	@Override
+	public FnoticeVo deletenotice(int notice_no) {
+		return FnoticeDao.deletenotice(notice_no);
+	}
+
 }

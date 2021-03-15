@@ -21,6 +21,6 @@
 
 <c:if test="${S_USER.user_id.equals('admin') }">
 <a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/noticesModify">수정</a>
-<a class="btn btn-primary" href="#">삭제</a>
+<a class="btn btn-primary" href="noticesDelete">삭제</a>
 </c:if>
 

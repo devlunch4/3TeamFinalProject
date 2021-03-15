@@ -58,6 +58,19 @@ public class FcommunityController {
 		return "tiles.fcommunity.noticesModify";
 	}
 
+	// 20210315 공지사항 삭제 (경찬)
+	@RequestMapping("noticesDelete")
+	public String noticesDelete(int notice_no, Model model) {
+
+		List<FnoticeVo> noticeList = fnoticeService.selectAllNoticeList();
+
+		FnoticeVo notice = fnoticeService.deletenotice(notice_no);
+		
+		model.addAttribute("noticeList", noticeList);
+
+		return "tiles.fcommunity.noticesMain";
+	}
+
 	// --------------------------문의사항
 
 	// 20210309_LYS_Q&A : 커뮤니티 문의사항 페이지 진입

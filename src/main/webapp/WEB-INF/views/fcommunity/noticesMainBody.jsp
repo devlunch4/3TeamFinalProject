@@ -42,7 +42,7 @@
 
 							<tbody>
 								<c:forEach items="${noticeList }" var="noticeList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'">
+									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView?notice_no=${noticeList.notice_no }'">
 										<td>${noticeList.notice_no }</td>
 										<td>${noticeList.title }</td>
 										<td><fmt:formatDate value="${noticeList.reg_dt }" pattern="yyyy.MM.dd" /></td>
@@ -51,7 +51,6 @@
 
 							</tbody>
 						</table>
-						<input name="notice_no" value="${noticeList.notice_no }" hidden="hidden" />
 					</div>
 				</div>
 			</div>
