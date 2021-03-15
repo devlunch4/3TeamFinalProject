@@ -72,10 +72,16 @@ public class FinfoDaoImpl implements FinfoDao {
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
-	// 20210311_ggy : 품목 리스트 조회
+	// 20210315_ggy : 품목 리스트 조회
 	@Override
-	public List<CodesVo> itemFarmManualsList() {
-		return tempplate.selectList("guides.itemFarmManualsList");
+	public List<CodesVo> itemFarmManualsList(String code_no) {
+		return tempplate.selectList("guides.itemFarmManualsList", code_no);
+	}
+	
+	// 20210315_ggy : 품목 분류 리스트 조회
+	@Override
+	public List<CodesVo> itemClassList() {
+		return tempplate.selectList("guides.itemClassList");
 	}
 
 

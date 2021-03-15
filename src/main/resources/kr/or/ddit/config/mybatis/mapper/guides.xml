@@ -53,14 +53,36 @@
 		where GUIDE_CODE = #{guide_code}
 	</update>
 	
-	<!-- ggy_20210311 : code 품목 리스트 조회. itemmanualVo -->
-	<select id="itemFarmManualsList" resultType="codesVo">
-		select *
+	<!-- ggy_20210315 : code 품목 리스트 조회. itemmanualVo -->
+	<select id="itemFarmManualsList" parameterType="String" 
+							resultType="codesVo">
+		select 
+			code_no
+			,code_nm
+			,parent_code
 		from codes
-		where parent_code = '100'
-		or parent_code = '200'
-		or parent_code = '300'
-		or parent_code = '400'
+		where parent_code in 
+		    (select code_no
+		    from codes
+		    where parent_code = 
+		        (select code_no
+		        from codes
+		        where parent_code = 'i')
+		    and code_no = #{code_no })
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- ggy_20210315 : code 품목 분류 리스트 조회. itemmanualVo -->
+	<select id="itemClassList" resultType="codesVo">
+		select 
+			code_no
+			,code_nm
+			,parent_code
+	    from codes
+	    where parent_code = 
+	        (select code_no
+	        from codes
+	        where parent_code = 'i')
 		and use_yn = 'Y'
 	</select>
 	

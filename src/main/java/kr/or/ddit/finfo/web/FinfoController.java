@@ -264,12 +264,23 @@ public class FinfoController {
 		return "tiles.finfo.weeklyFarmInfosMain";
 	}
 
-	// 20210311_ggy : 농업정보 - 품목별영농매뉴얼 진입
+	// 20210315_ggy : 농업정보 - 품목별영농매뉴얼 진입
 	@RequestMapping("itemFarmManualsView")
 	public String itemFarmManualsView(Model model) {
 
-		model.addAttribute("itemList", finfoService.itemFarmManualsList());
+		model.addAttribute("itemClassList", finfoService.itemClassList());
 
+		return "tiles.finfo.itemFarmManualsMain";
+	}
+	
+	// 20210315_ggy : 농업정보 - 품목별영농매뉴얼 진입
+	@RequestMapping("itemManualsList")
+	public String itemManualsList(String code_no, Model model) {
+		
+		model.addAttribute("itemClassList", finfoService.itemClassList());
+		model.addAttribute("itemList", finfoService.itemFarmManualsList(code_no));
+		model.addAttribute("selectItemCode_ode_no", code_no);
+		
 		return "tiles.finfo.itemFarmManualsMain";
 	}
 

@@ -49,9 +49,16 @@ public class FinfoServiceImpl implements FinfoService {
 
 	// 20210311_ggy : 품목 리스트 조회
 	@Override
-	public List<CodesVo> itemFarmManualsList() {
-		return finfoDao.itemFarmManualsList();
+	public List<CodesVo> itemFarmManualsList(String code_no) {
+		return finfoDao.itemFarmManualsList(code_no);
 	}
+	
+	// 20210315_ggy : 품목 분류 리스트 조회
+	@Override
+	public List<CodesVo> itemClassList() {
+		return finfoDao.itemClassList();
+	}
+	
 
 	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
 	@Override
