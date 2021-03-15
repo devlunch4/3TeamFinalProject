@@ -6,11 +6,24 @@
 
 <script>
 	//20210305_KJH 10초마다 새로고침
-	$(function() {
+// 	$(function() {
 
-		setTimeout("location.reload()", 10000);
+// 		setTimeout("location.reload()", 10000);
 
-	});
+// 	});
+	$(function(){
+	setInterval(function() {
+    $.ajax({
+        // type을 설정합니다.
+        type : 'POST',
+        url : "${pageContext.request.contextPath}/fanalysis/mymaxmsrrecList",
+        data : '',
+        success : function (data) {
+        	$('#tb').html(data);
+        }
+    });
+}, 5000);
+});
 </script>
 
 <!-- 20210305_KJH 시설정보 조회 -->
@@ -21,7 +34,7 @@
 	<div class="card-body text-left ">
 		<div class="">
 			<div class="row">
-				<table class="table table-bordered col-sx-12" style="text-align: center;">
+				<table class="table table-bordered col-sx-12 text-center" id="tb">
 					<tr>
 						<th style="width: 25%;">장소</th>
 						<th style="width: 15%;">장비명</th>

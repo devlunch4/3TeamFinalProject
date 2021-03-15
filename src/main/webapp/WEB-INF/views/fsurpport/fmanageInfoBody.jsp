@@ -7,40 +7,57 @@
 
 
 	//20210304_KJH 5초마다 새로고침
-	$(function() {
-		setTimeout('location.reload()', 10000);
-		$("#formbtn").on("click",function(){
+// 	$(function() {
+// 		setTimeout('location.reload()', 10000);
+// 		$("#formbtn").on("click",function(){
 			
-			if($("#chform").css("display") == 'none'){
-				$("#chform").show();
-				$("#save").show();
-		}else{
-			$("#chform").hide();
-			$("#save").hide();
-		}
-		});
+// 			if($("#chform").css("display") == 'none'){
+// 				$("#chform").show();
+// 				$("#save").show();
+// 		}else{
+// 			$("#chform").hide();
+// 			$("#save").hide();
+// 		}
+// 		});
 
-	});	
+
+// 	setInterval(function() {
+        
+//         $.ajax({
+//             type: "POST",
+//             url: "${pageContext.request.contextPath}/fsurpport/fmanageInfo",
+//             data: { "manage_no" : ${fmanage.manage_no},
+//                 	"history_no" : ${fmanage.history_no},
+//                 	dataType:"text",
+//             success: function(data) {
+//             	 $('#output').val(data);
+//             }, error: function() {
+
+//             }
+//         } 
+//         });
+// 	}, 5000);
+
 	
 	function goBack() {
 	    window.history.back();
 	}
-// 	});
-// $(function(){
-// setInterval(function() {
-//     $.ajax({
-//         // type을 설정합니다.
-//         type : 'GET',
-//         url : "${pageContext.request.contextPath}/fsurpport/fmanageInfo",
-//         // 사용자가 입력하여 id로 넘어온 값을 서버로 보냅니다.
-//         data : {"manage_no" : '${fmanage.manage_no}'},
-//         // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
-//         success : function (data) {
-//         	$("#temp").val(${msrrec.msr_temp})
-//         }
-//     });
-// }, 5000);
-// });
+$(function(){
+setInterval(function() {
+    $.ajax({
+        // type을 설정합니다.
+        type : 'POST',
+        url : "${pageContext.request.contextPath}/fsurpport/fmanageInfo",
+        // 사용자가 입력하여 id로 넘어온 값을 서버로 보냅니다.
+        data : {"manage_no" : '${fmanage.manage_no}'},
+//         dataType : "json",
+        // 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
+        success : function (data) {
+        	$('#tb').html(data);
+        }
+    });
+}, 5000);
+});
 
 // setInterval(function(){
 
@@ -69,13 +86,13 @@
 <h3 class="mt-4">시설관리</h3>
 
  <div class="card mt-2 col-sm-12 px-0">
-
+<input type="text" id="output">
 	<h3 class="card-header">총게시글 :</h3>
 	<div class="card-body text-left ">
 		<div class="">
 				<input type="button" class="btn_list" value="목록으로" onclick="goBack()">
 			<div class="row" id="info">
-				<table class="table table-bordered col-sx-12" style="text-align: center;">
+				<table class="table table-bordered col-sx-12" style="text-align: center;" id="tb">
 					<tr>
 						<td style="width: 50%;">게시글 번호:${fmanage.manage_no}</td>
 						<td style="width: 50%;">소유자 이름:${fmanage.owner}</td>

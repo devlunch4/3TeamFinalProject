@@ -1,5 +1,7 @@
 package kr.or.ddit.fanalysis.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.fanalysis.repository.FanalysisDao;
 import kr.or.ddit.farm.model.FhistoryVo;
+import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 
 @Service("fanalysisService")
@@ -29,6 +32,16 @@ public class FanalysisServiceImpl implements FanalysisService {
 	@Override
 	public MyMaxMrrecListVo mymaxmsrrecList(FhistoryVo fhistoryVo) {
 		return fanalysisDao.mymaxmsrrecList(fhistoryVo);
+	}
+
+	@Override
+	public List<FmanageVo> selectFmanage(String str) {
+		return fanalysisDao.selectFmanage(str);
+	}
+
+	@Override
+	public MsrrecVo avgFmanage(MsrrecVo msrrecVo) {
+		return fanalysisDao.avgFmanage(msrrecVo);
 	}
 
 }
