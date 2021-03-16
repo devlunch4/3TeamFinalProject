@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -75,8 +76,8 @@ public class UserController {
 			doc = Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday="
 					+ mydate + "&itemcategorycode=" + itemcategorycode + "&itemcode=" + itemcode
 					+ "&kindcode=&productrankcode=0&convert_kg_yn=N").get();
-
 			int docsize = (doc.select("tr").get(12)).select("td").size();
+
 			List<String> target = new ArrayList<String>();
 			target.add(((doc.select("tr").get(11)).select("th").get(1)).text());
 			target.add(((doc.select("tr").get(11)).select("th").get(docsize - 4)).text());
