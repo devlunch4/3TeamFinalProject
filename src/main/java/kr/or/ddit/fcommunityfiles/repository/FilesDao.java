@@ -13,5 +13,5 @@ public interface FilesDao {
 	int registerfiles(FilesVo filesVo);
 	
 	// 20210313_SHS - 파일 조회
-	FilesVo selectonefiles(String file_path);
+	FilesVo selectonefiles(int file_no);
 }

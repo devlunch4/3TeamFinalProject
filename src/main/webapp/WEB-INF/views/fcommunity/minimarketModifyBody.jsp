@@ -8,8 +8,8 @@
 
 
 
-<form action="" method="post">
-
+<form action="${pageContext.request.contextPath }/market/minimarketModify" method="post">
+	<input type="hidden" value="${filelist.file_no}">
 	<div class="form-group">
 		<label class="small mb-1" for="input_cls_code">제목</label> 
 		<input class="form-control py-4" id="input_cls_code" name="title" type="text"
@@ -49,7 +49,9 @@
 			style="text-align: center; width: 100%;">
 			<div class="mailbox-attachment-icon has-img" id="pictureView"
 					style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto;">
-				<img id="pictureViewImg" style="width: 100%; height: 100%;" />
+				
+				<img src="../images/${filelist.file_path}" id="pictureViewImg" style="width: 100%; height: 100%;" />
+				
 			</div>
 					
 			<div class="mailbox-attachment-info">

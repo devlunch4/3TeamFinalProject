@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 
 @Repository("finfoDao")
 public class FinfoDaoImpl implements FinfoDao {
@@ -72,10 +73,28 @@ public class FinfoDaoImpl implements FinfoDao {
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
-	// 20210311_ggy : 품목 리스트 조회
+	// 20210316_ggy : 품목 리스트 조회
 	@Override
-	public List<CodesVo> itemFarmManualsList() {
-		return tempplate.selectList("guides.itemFarmManualsList");
+	public List<CodesVo> itemFarmManualsList(String code_no) {
+		return tempplate.selectList("guides.itemFarmManualsList", code_no);
+	}
+	
+	// 20210316_ggy : 품목 분류 리스트 조회
+	@Override
+	public List<CodesVo> itemClassList() {
+		return tempplate.selectList("guides.itemClassList");
+	}
+	
+	// 20210316_ggy : 품목 메뉴얼 등록
+	@Override
+	public int registItemMenual(ItemmanualVo itemmanualVo) {
+		return tempplate.insert("guides.registItemMenual",itemmanualVo);
+	}
+	
+	// 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회
+	@Override
+	public List<ItemmanualVo> selectItemmanualFilenmList() {
+		return tempplate.selectList("guides.selectItemmanualFilenmList");
 	}
 
 

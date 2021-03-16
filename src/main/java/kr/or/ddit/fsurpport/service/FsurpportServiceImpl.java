@@ -47,8 +47,8 @@ public class FsurpportServiceImpl implements FsurpportService {
 
 	// ggy_20210306 : 등록된 작업단계코드 리스트 조회 수정
 	@Override
-	public List<CodesVo> selectAllW_step_codeList() {
-		return fsurpportDao.selectAllW_step_codeList();
+	public List<CodesVo> selectAllW_step_codeList(String parent_code) {
+		return fsurpportDao.selectAllW_step_codeList(parent_code);
 	}
 
 	// ggy_20210305 : 등록된 사업유형 조회

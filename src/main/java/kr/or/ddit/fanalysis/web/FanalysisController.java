@@ -41,20 +41,19 @@ public class FanalysisController {
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
-		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
 
-		MyMaxMrrecListVo MyMaxMrrecListVo = new MyMaxMrrecListVo();
-		MyMaxMrrecListVo.setManage_no(msrequipList.get(0).getMsr_code());
-		MyMaxMrrecListVo.setNumber(0);
+		List<FmanageVo> fmanageList = fanalysisService.selectFmanage(userVo.getUser_id());
+
+		MsrrecVo msrrecVo = new MsrrecVo();
+		msrrecVo.setMsr_code(fmanageList.get(0).getManage_no());
+		msrrecVo.setMsr_no(0);
 
 //		msrrecVo = fanalysisService.myfanalysisInfo(msrrecVo);
-		List<MyMaxMrrecListVo> mmmList = new ArrayList<MyMaxMrrecListVo>();
-		mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
+		List<MsrrecVo> mmmList = new ArrayList<MsrrecVo>();
+		mmmList.add(fanalysisService.avgFmanage(msrrecVo));
 
-		model.addAttribute("selec", msrequipList.get(0).getMsr_code());
-
-		model.addAttribute("manage_no", msrequipList.get(0).getMsr_code());
-		model.addAttribute("msrequipList", msrequipList);
+		model.addAttribute("selec", fmanageList.get(0).getManage_no());
+		model.addAttribute("fmanageList", fmanageList);
 		model.addAttribute("mmmList", mmmList);
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
@@ -68,25 +67,25 @@ public class FanalysisController {
 
 		userVo = (UserVo) session.getAttribute("S_USER");
 
-		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
+		List<FmanageVo> fmanageList = fanalysisService.selectFmanage(userVo.getUser_id());
 
-		MyMaxMrrecListVo MyMaxMrrecListVo = new MyMaxMrrecListVo();
-		MyMaxMrrecListVo.setManage_no(selec);
-		MyMaxMrrecListVo.setNumber(0);
+		MsrrecVo msrrecVo = new MsrrecVo();
+		msrrecVo.setMsr_code(selec);
+		msrrecVo.setMsr_no(0);
 
-		List<MyMaxMrrecListVo> mmmList = new ArrayList<MyMaxMrrecListVo>();
+		List<MsrrecVo> mmmList = new ArrayList<MsrrecVo>();
 		if (week != null && week.equals("7")) {
 			for (int i = 0; i < 7; i++) {
-				MyMaxMrrecListVo.setNumber(i);
-				mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
+				msrrecVo.setMsr_no(i);
+				mmmList.add(fanalysisService.avgFmanage(msrrecVo));
 			}
-			;
+			
 		}
 
 		if (month != null && month.equals("30")) {
 			for (int i = 0; i < 30; i++) {
-				MyMaxMrrecListVo.setNumber(i);
-				mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
+				msrrecVo.setMsr_no(i);
+				mmmList.add(fanalysisService.avgFmanage(msrrecVo));
 			}
 		}
 		if (day != null && day.length() > 0) {
@@ -104,8 +103,8 @@ public class FanalysisController {
 				int diffDays = (int) diffSec / (24 * 60 * 60); // 일자수 차이
 
 				for (int i = 0; i < diffDays; i++) {
-					MyMaxMrrecListVo.setNumber(i);
-					mmmList.add(fanalysisService.myfanalysisInfo(MyMaxMrrecListVo));
+					msrrecVo.setMsr_no(i);
+					mmmList.add(fanalysisService.avgFmanage(msrrecVo));
 				}
 			} catch (ParseException e) {
 				
@@ -114,8 +113,7 @@ public class FanalysisController {
 		}
 
 		model.addAttribute("selec", selec);
-		model.addAttribute("manage_no", msrequipList.get(0).getMsr_code());
-		model.addAttribute("msrequipList", msrequipList);
+		model.addAttribute("fmanageList", fmanageList);
 		model.addAttribute("mmmList", mmmList);
 		return "tiles.fanalysis.myfanalysisInfo";
 	}
@@ -139,7 +137,32 @@ public class FanalysisController {
 			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
 		}
 
+		model.addAttribute("tempList",fanalysisService.selectTempList());
 		model.addAttribute("maxmrrecList", maxmrrecList);
 		return "tiles.fanalysis.mymaxmsrrecList";
+	}
+	
+	// 20210315_KJH 내 시설 실시간 관측 조회 ajax
+	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.POST })
+	public String mymaxmsrrecListpost(Model model, HttpSession session) {
+
+		UserVo userVo = new UserVo();
+
+		userVo = (UserVo) session.getAttribute("S_USER");
+		List<MsrequipVo> msrequipList = fsurpportService.msrequipList(userVo.getUser_id());
+
+		List<MyMaxMrrecListVo> maxmrrecList = new ArrayList<MyMaxMrrecListVo>();
+
+		FhistoryVo fhistoryVo = new FhistoryVo();
+
+		for (int i = 0; i < msrequipList.size(); i++) {
+			String msrcode = msrequipList.get(i).getMsr_code();
+			fhistoryVo.setManage_no(msrcode);
+			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
+		}
+
+		model.addAttribute("tempList",fanalysisService.selectTempList());
+		model.addAttribute("maxmrrecList", maxmrrecList);
+		return "/ajax/mymaxmsrrecList";
 	}
 }
