@@ -67,7 +67,7 @@ function goBack() {
 <%-- <c:if test="${S_USER.user_id.equals('admin') }"> --%>
 	<a class="btn btn-primary" href="#" onclick="goBack()">돌아가기</a>
 	<a class="btn btn-primary"
-		href="${pageContext.request.contextPath }/market/minimarketModifyView?market_no=${detaillist.market_no }">수정</a>
+		href="${pageContext.request.contextPath }/market/minimarketModifyView?market_no=${detaillist.market_no} " >수정</a>
 	<a class="btn btn-primary" href="#">삭제</a>
 <%-- </c:if> --%>
 

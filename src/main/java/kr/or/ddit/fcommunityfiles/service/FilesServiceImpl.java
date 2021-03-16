@@ -30,9 +30,9 @@ public class FilesServiceImpl implements FilesService {
 	}
 
 	@Override
-	public FilesVo selectonefiles(String file_path) {
+	public FilesVo selectonefiles(int file_no) {
 		
-		return dao.selectonefiles(file_path);
+		return dao.selectonefiles(file_no);
 	}
 
 }

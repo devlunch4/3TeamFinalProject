@@ -28,9 +28,9 @@ public class FilesDaoImpl implements FilesDao {
 	}
 
 	@Override
-	public FilesVo selectonefiles(String file_path) {
+	public FilesVo selectonefiles(int file_no) {
 		
-		return template.selectOne(file_path);
+		return template.selectOne("files.selectonefiles", file_no);
 	}
 
 }
