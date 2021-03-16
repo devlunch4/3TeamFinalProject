@@ -86,6 +86,24 @@
 		and use_yn = 'Y'
 	</select>
 	
+	<!-- 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회 -->
+	<select id="selectItemmanualFilenmList" resultType="itemmanualVo">
+		SELECT i.manual_code manual_code
+		    , i.writer writer
+		    , i.ifm_nm ifm_nm
+		    , i.file_no file_no
+		    , i.item_code item_code
+		    , f.file_nm file_nm
+		FROM itemmanual i
+		JOIN files f
+		ON i.file_no = f.file_no
+		JOIN codes c
+		ON i.item_code = c.code_no
+		WHERE i.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+		AND c.use_yn = 'Y'
+	</select>
+	
 	<!-- 20210316_ggy : 품목 메뉴얼 등록 -->
 	<insert id="registItemMenual" parameterType="itemmanualVo">
 		insert into itemmanual values(

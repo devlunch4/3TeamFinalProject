@@ -73,22 +73,28 @@ public class FinfoDaoImpl implements FinfoDao {
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
-	// 20210315_ggy : 품목 리스트 조회
+	// 20210316_ggy : 품목 리스트 조회
 	@Override
 	public List<CodesVo> itemFarmManualsList(String code_no) {
 		return tempplate.selectList("guides.itemFarmManualsList", code_no);
 	}
 	
-	// 20210315_ggy : 품목 분류 리스트 조회
+	// 20210316_ggy : 품목 분류 리스트 조회
 	@Override
 	public List<CodesVo> itemClassList() {
 		return tempplate.selectList("guides.itemClassList");
 	}
 	
-	// 20210315_ggy : 품목 메뉴얼 등록
+	// 20210316_ggy : 품목 메뉴얼 등록
 	@Override
 	public int registItemMenual(ItemmanualVo itemmanualVo) {
 		return tempplate.insert("guides.registItemMenual",itemmanualVo);
+	}
+	
+	// 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회
+	@Override
+	public List<ItemmanualVo> selectItemmanualFilenmList() {
+		return tempplate.selectList("guides.selectItemmanualFilenmList");
 	}
 
 

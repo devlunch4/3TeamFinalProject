@@ -10,27 +10,21 @@
 		<span class="">품목</span> <br>
 		
 			<c:forEach items="${itemClassList }" var="itemClassList">
-				
 					
-					<c:choose>
-						<c:when test="${itemClassList.code_no eq selectItemCode_ode_no }">
+				<c:choose>
+					<c:when test="${itemClassList.code_no eq selectItemCode_ode_no }">
 							
-							<button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/finfo/itemManualsList?code_no=${itemClassList.code_no }'"
-							>
-							${itemClassList.code_nm }
-							</button>
-<%-- 					<c:if test="${itemClassList.code_no eq selectItemCode_ode_no }">selected="selected"</c:if> --%>
+						<button class="btn btn-primary" 
+						onclick="location.href='${pageContext.request.contextPath}/finfo/itemManualsList?code_no=${itemClassList.code_no }'"
+						>${itemClassList.code_nm }</button>
 					</c:when>
 					
 					<c:otherwise>
 						<button class="btn btn" onclick="location.href='${pageContext.request.contextPath}/finfo/itemManualsList?code_no=${itemClassList.code_no }'"
-						>
-						${itemClassList.code_nm }
-						</button>
+						>${itemClassList.code_nm }</button>
 						
 					</c:otherwise>
-					</c:choose>
-					
+				</c:choose>
 					
 			</c:forEach>
 		
@@ -41,28 +35,34 @@
 
 <div class="card mt-2 col-sm-12">
 	<div class="card-body text-left p-1">
-		<span class="">품목</span> <br>
-<!-- 			<ul> -->
-<!-- 				<li>test<input onclick="location.href='#'" type="button" value="다운로드"></li> -->
-<!-- 			</ul> -->
-				
-				<br>결과22 <br>
-				
-				<div class="col-xs-12 col-md-12 col-sm-12 text-left" >
-				<c:forEach items="${itemList }" var="itemList">
-					<button 
-						onclick="location.href='${pageContext.request.contextPath}/finfo/filePath?file_nm=기계이앙재배.hwp'"
-					class="col-xs-3">${itemList.code_nm }</button>
-					
-				</c:forEach>
-				</div>
-			
+		<span class="">품목</span> <br> <br>결과33 <br>
+
+		<div class="col-xs-12 col-md-12 col-sm-12 text-left">
 		
-	
+			<c:forEach items="${itemList }" var="itemList">
+				<c:forEach items="${selectItemmanualFilenmList }" var="selectItemmanualFilenmList">
+
+					<c:choose>
+						<c:when test="${selectItemmanualFilenmList.item_code eq itemList.code_no}">
+							<button onclick="location.href='${pageContext.request.contextPath}/finfo/filePath?file_nm=${selectItemmanualFilenmList.file_nm }'" class="col-xs-3">${itemList.code_nm }</button>
+						</c:when>
+
+						<c:otherwise>
+						</c:otherwise>
+
+					</c:choose>
+
+				</c:forEach>
+			</c:forEach>
 			
+		</div>
+
+
+
+
 	</div>
 </div>
-	<c:if test="${S_USER.user_id.equals('admin') }">
+<c:if test="${S_USER.user_id.equals('admin') }">
 	<button 
 		onclick="location.href='${pageContext.request.contextPath}/finfo/registItemMenualView?user_id=${S_USER.user_id }'"
 		class="float-right btn btn-primary">등록</button>

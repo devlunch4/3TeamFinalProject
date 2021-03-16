@@ -284,9 +284,12 @@ public class FinfoController {
 	@RequestMapping("itemManualsList")
 	public String itemManualsList(String code_no, Model model) {
 		
+		logger.debug("itemManualsList 진입");
+		
 		model.addAttribute("itemClassList", finfoService.itemClassList());
 		model.addAttribute("itemList", finfoService.itemFarmManualsList(code_no));
 		model.addAttribute("selectItemCode_ode_no", code_no);
+		model.addAttribute("selectItemmanualFilenmList", finfoService.selectItemmanualFilenmList());
 		
 		return "tiles.finfo.itemFarmManualsMain";
 	}
