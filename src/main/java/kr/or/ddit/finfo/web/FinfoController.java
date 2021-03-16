@@ -3,6 +3,7 @@ package kr.or.ddit.finfo.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -282,6 +283,24 @@ public class FinfoController {
 		model.addAttribute("selectItemCode_ode_no", code_no);
 		
 		return "tiles.finfo.itemFarmManualsMain";
+	}
+	
+	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 다운로드
+	@RequestMapping("filePath")
+	public void profile(HttpServletResponse resp, String file_nm, HttpServletRequest req) throws IOException {
+		
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+		byte fileByte[] = org.apache.commons.io.FileUtils
+				.readFileToByteArray(new File("c:\\fdown\\finfomunal\\" + file_nm));
+
+		resp.setContentType("application/octet-stream");
+		resp.setContentLength(fileByte.length);
+		resp.setHeader("Content-Disposition",
+				"attachment; fileName=\"" + URLEncoder.encode(file_nm, "UTF-8") + "\";");
+		resp.getOutputStream().write(fileByte);
+		resp.getOutputStream().flush();
+		resp.getOutputStream().close();
+
 	}
 
 	//////////////////////////////////////////////////////////////////////////

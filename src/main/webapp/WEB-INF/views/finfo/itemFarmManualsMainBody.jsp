@@ -54,7 +54,9 @@
 				
 				<div class="col-xs-12 col-md-12 col-sm-12 text-left" >
 				<c:forEach items="${itemList }" var="itemList">
-					<button class="col-xs-3">${itemList.code_nm }</button>
+					<button 
+						onclick="location.href='${pageContext.request.contextPath}/finfo/filePath?file_nm=기계이앙재배.hwp'"
+					class="col-xs-3">${itemList.code_nm }</button>
 					
 				</c:forEach>
 				</div>
