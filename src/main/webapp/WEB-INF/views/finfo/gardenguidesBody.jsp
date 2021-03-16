@@ -13,11 +13,8 @@
 	// 수정 버튼 클릭시 이동 
 	$(function() {
 		$("#modifyBtn").on("click", function() {
-			var xguide_code = $
-			{
-				xguide_code
-			}
-			;
+			var xguide_code = ${xguide_code	};
+			console.log("xguide_code : "+xguide_code)
 			$("#xguide_code").val(xguide_code);
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "gardenguidesUpdate");
@@ -40,7 +37,7 @@
 		$(".onebtn").on("click", function() {
 			var onebtn = $(this).data("onebtn");
 			$("#xguide_code").val(onebtn);
-			console.log(onebtn);
+			console.log("onebtn : "+onebtn);
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "gardenguides");
 			$("#frm").submit();
