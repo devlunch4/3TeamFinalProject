@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 import kr.or.ddit.finfo.service.FinfoServiceImpl;
+import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 
 /**
  * 
@@ -37,6 +40,9 @@ public class FinfoController {
 	// 필요한 스프링 빈 호출
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
+	
+	@Resource(name = "fsurpportService")
+	private FsurpportServiceImpl fsurpportService;
 
 	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305 TEST OK
 	@RequestMapping("gardenguides")
@@ -284,6 +290,90 @@ public class FinfoController {
 		
 		return "tiles.finfo.itemFarmManualsMain";
 	}
+	
+	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 업로드 진입
+	@RequestMapping("registItemMenualView")
+	public String registItemMenualView(String user_id, Model model) {
+		
+		logger.debug("registItemMenualView 진입");
+		logger.debug("user_id 값 :{} ",user_id);
+		
+		if(!user_id.equals("admin")) {
+			logger.debug("관리자가 아님");
+			return "redirect:/finfo/itemFarmManualsView";
+		}
+		
+		model.addAttribute("itemClassList", finfoService.itemClassList());
+		
+		return "tiles.finfo.registItemFarmManual";
+		
+	}
+	
+	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 등록을 위한 품목 분류 조회
+	@RequestMapping("registSelectItemList")
+	public String registSelectItemList(String code_no, Model model) {
+		
+		logger.debug("registSelectItemList 진입");
+		
+		model.addAttribute("itemClassList", finfoService.itemClassList());
+		model.addAttribute("itemList", finfoService.itemFarmManualsList(code_no));
+		model.addAttribute("selectItemCode_ode_no", code_no);
+		
+		return "tiles.finfo.registItemFarmManual";
+	}
+	
+	
+	
+	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 등록
+	@RequestMapping("registItemMenual")
+	public String registItemMenual(HttpServletRequest req, MultipartFile file_file, Model model) {
+		
+		logger.debug("registItemMenual 진입");
+		
+		ItemmanualVo itemmanualVo = new ItemmanualVo();
+		
+		itemmanualVo.setIfm_nm(req.getParameter("ifm_nm"));
+		itemmanualVo.setItem_code(req.getParameter("item_code"));
+		itemmanualVo.setWriter(req.getParameter("writer"));
+		
+		FilesVo filesVo = new FilesVo();
+
+		if (file_file.getSize() > 0) {
+
+			logger.debug("file 있다.");
+
+			String path = "c:\\fdown\\finfomunal\\";
+
+			try {
+
+				file_file.transferTo(new File(path + file_file.getOriginalFilename()));
+
+				filesVo.setFile_nm("");
+				filesVo.setFile_nm(file_file.getOriginalFilename());
+				filesVo.setFile_path(path + filesVo.getFile_nm());
+			} catch (IllegalStateException | IOException e) {
+				filesVo.setFile_nm("");
+			}
+
+			int registFilesCnt = fsurpportService.registFiles(filesVo);
+
+			logger.debug("registFilesCnt : " + registFilesCnt);
+
+			itemmanualVo.setFile_no(registFilesCnt);
+
+		} else {
+			logger.debug("파일없다.");
+			itemmanualVo.setFile_no(0);
+		}
+		
+		int registCnt = finfoService.registItemMenual(itemmanualVo);
+		
+		
+		return"redirect:/finfo/itemFarmManualsView";
+		
+	}
+	
+	
 	
 	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 다운로드
 	@RequestMapping("filePath")

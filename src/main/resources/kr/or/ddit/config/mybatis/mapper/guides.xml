@@ -86,6 +86,12 @@
 		and use_yn = 'Y'
 	</select>
 	
+	<!-- 20210316_ggy : 품목 메뉴얼 등록 -->
+	<insert id="registItemMenual" parameterType="itemmanualVo">
+		insert into itemmanual values(
+				seq_itemmanual.nextval, 
+				#{writer }, #{ifm_nm }, sysdate, #{file_no }, #{item_code }, 'Y')
+	</insert>
 
 	<!-- 텃밭가이드 전체글 조회-관리자용 -->
 	<select id="selectGuideAll" resultType="gardenguideVo">

@@ -4,10 +4,6 @@
 
 <h3 class="mt-4">품목별 영농 메뉴얼</h3>
 
-<c:if test="${S_USER.user_id.equals('admin') }">
-	<button type="button" class=" btn btn-success " 
-	onclick="location.href='#'" class=" btn btn-outline-dark m-1">간편 등록</button>
-</c:if>
 
 <div class="card mt-2 col-sm-12">
 	<div class="col-xs-12 col-md-12 card-body text-left p-1">
@@ -66,3 +62,8 @@
 			
 	</div>
 </div>
+	<c:if test="${S_USER.user_id.equals('admin') }">
+	<button 
+		onclick="location.href='${pageContext.request.contextPath}/finfo/registItemMenualView?user_id=${S_USER.user_id }'"
+		class="float-right btn btn-primary">등록</button>
+	</c:if>

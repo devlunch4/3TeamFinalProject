@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 import kr.or.ddit.finfo.repository.FinfoDaoImpl;
 
 @Service("finfoService")
@@ -76,6 +77,12 @@ public class FinfoServiceImpl implements FinfoService {
 	@Override
 	public List<GardenguideVo> selectSeasons(String season) {
 		return finfoDao.selectSeasons(season);
+	}
+	
+	// 20210315_ggy : 품목 메뉴얼 등록
+	@Override
+	public int registItemMenual(ItemmanualVo itemmanualVo) {
+		return finfoDao.registItemMenual(itemmanualVo);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 
 @Repository("finfoDao")
 public class FinfoDaoImpl implements FinfoDao {
@@ -82,6 +83,12 @@ public class FinfoDaoImpl implements FinfoDao {
 	@Override
 	public List<CodesVo> itemClassList() {
 		return tempplate.selectList("guides.itemClassList");
+	}
+	
+	// 20210315_ggy : 품목 메뉴얼 등록
+	@Override
+	public int registItemMenual(ItemmanualVo itemmanualVo) {
+		return tempplate.insert("guides.registItemMenual",itemmanualVo);
 	}
 
 

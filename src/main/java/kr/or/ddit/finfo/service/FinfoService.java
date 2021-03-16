@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 
 public interface FinfoService {
 
@@ -29,6 +30,9 @@ public interface FinfoService {
 	// 20210315_ggy : 품목 분류 리스트 조회
 	List<CodesVo> itemClassList();
 
+	// 20210315_ggy : 품목 메뉴얼 등록
+	int registItemMenual(ItemmanualVo itemmanualVo);
+	
 	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
 	List<GardenguideVo> selectGuideAll();
 	
