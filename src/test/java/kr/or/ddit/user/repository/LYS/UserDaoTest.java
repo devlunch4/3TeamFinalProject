@@ -56,22 +56,16 @@ public class UserDaoTest extends WebTestConfig{
 	}
 	
 	// 회원가입 구현
-//	@Test
-//	public void insertUser() {
-//		/*** Given ***/
-//		UserVo userVo = new UserVo();
-//		userVo.setUser_id("test12345");
-//		userVo.setUser_nm("홍길동");
-//		userVo.setUser_pw("1234qwer!");
-//		userVo.setEmail("test@test.com");
-//		
-//		/*** When ***/
-//		
-//		
-//		/*** Then ***/
-//		assertEquals(0, userVo.getLogin_fail_cnt());
-//	}
-	
+	@Test
+	public void insertUser() {
+		/*** Given ***/
+		
+		/*** When ***/
+		
+		
+		/*** Then ***/
+		assertNotNull(userDao);
+	}	
 	
 
 }
