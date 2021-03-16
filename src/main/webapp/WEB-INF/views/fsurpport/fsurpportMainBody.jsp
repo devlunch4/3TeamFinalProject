@@ -67,8 +67,15 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12">
-						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+					<div class="col-xs-12 col-md-12 col-sm-12 ">
+					
+					<input type="button" value="EXCEL다운로드" class="float-right btn btn-success col-xs-2 col-md-2   " 
+					onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'">
+							
+					<input type="button" value="PDF다운로드" class="float-right btn btn-success col-xs-2 col-md-2  " 
+					onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'">
+							
+						<table class="col-xs-6 col-md-12 table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" aria-sort="ascending">사진</th>
@@ -107,11 +114,7 @@ onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?
 				</div>
 			</div>
 		</div>
-		<input type="button" value="영농일지_EXCEL다운로드" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'">
 		
-		<input type="button" value="영농일지_PDF다운로드" class=" btn btn-success " 
-		onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'">
 	</div>
 	
 	

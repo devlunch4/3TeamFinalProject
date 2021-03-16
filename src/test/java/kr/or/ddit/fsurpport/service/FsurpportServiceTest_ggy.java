@@ -57,7 +57,7 @@ public class FsurpportServiceTest_ggy extends ModelTestConfig {
 		/***Given***/
 		
 		/***When***/
-		List<CodesVo> codesList = fsurpportService.selectAllW_step_codeList();
+		List<CodesVo> codesList = fsurpportService.selectAllW_step_codeList("1");
 		
 		/***Then***/
 		

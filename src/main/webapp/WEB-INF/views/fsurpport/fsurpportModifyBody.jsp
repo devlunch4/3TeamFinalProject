@@ -171,6 +171,8 @@
 	</div>
 
 
-
-	<input type="submit" value="수정 완료" class="btn btn-primary">
+	<div class="float-right">
+		<input type="submit"  value="저장" class="btn btn-primary">
+		<input class="btn btn-primary" type="button" value="취소" onClick="history.go(-1)">
+	</div>
 </form>

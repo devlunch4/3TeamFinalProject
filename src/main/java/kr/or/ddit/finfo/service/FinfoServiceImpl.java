@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 import kr.or.ddit.finfo.repository.FinfoDaoImpl;
 
 @Service("finfoService")
@@ -47,10 +48,28 @@ public class FinfoServiceImpl implements FinfoService {
 		return finfoDao.deleteGuide(gardenguideVo);
 	}
 
-	// 20210311_ggy : 품목 리스트 조회
+	// 20210316_ggy : 품목 리스트 조회
 	@Override
-	public List<CodesVo> itemFarmManualsList() {
-		return finfoDao.itemFarmManualsList();
+	public List<CodesVo> itemFarmManualsList(String code_no) {
+		return finfoDao.itemFarmManualsList(code_no);
+	}
+	
+	// 20210316_ggy : 품목 분류 리스트 조회
+	@Override
+	public List<CodesVo> itemClassList() {
+		return finfoDao.itemClassList();
+	}
+
+	// 20210316_ggy : 품목 메뉴얼 등록
+	@Override
+	public int registItemMenual(ItemmanualVo itemmanualVo) {
+		return finfoDao.registItemMenual(itemmanualVo);
+	}
+
+	// 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회
+	@Override
+	public List<ItemmanualVo> selectItemmanualFilenmList() {
+		return finfoDao.selectItemmanualFilenmList();
 	}
 
 	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
@@ -70,5 +89,7 @@ public class FinfoServiceImpl implements FinfoService {
 	public List<GardenguideVo> selectSeasons(String season) {
 		return finfoDao.selectSeasons(season);
 	}
+	
+	
 
 }
