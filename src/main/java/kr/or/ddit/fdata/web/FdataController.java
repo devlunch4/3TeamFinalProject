@@ -76,8 +76,7 @@ public class FdataController {
 	@RequestMapping("ratio")
 	public String ratio(Model model, String selec, String sdate, String edate) {
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
-		System.out.println("dd"+edate);
-		logger.debug("dd"+edate);
+		logger.debug("edate value : {}", edate);
 
 		
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {

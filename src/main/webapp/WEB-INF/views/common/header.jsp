@@ -20,7 +20,7 @@
 	<!-- Navbar-->
 	<ul class="navbar-nav ml-auto ml-md-0">
 		<c:if test="${S_USER != null}">
-			<li class="m-auto"><span class="text-white">${S_USER.user_id } 님 반갑습니다! </span></li>
+			<li class="m-auto"><span class="text-white" style="font-size: 0.5rem">${S_USER.user_id }</span></li>
 		</c:if>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
