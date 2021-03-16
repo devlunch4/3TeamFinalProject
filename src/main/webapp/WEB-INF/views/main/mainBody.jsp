@@ -27,6 +27,8 @@ $(function(){
 	})
 	
 	$("#btn_search").on("click",function(){
+		$(".loadspin").show();
+		
 		var item;
 		if($("#category").val() == 100){
 			item = $("#item1").val();
@@ -56,6 +58,10 @@ $(function(){
 	}
 })
 </script>
+
+
+
+
 
 <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
 <h3 class="mt-4">시세분석</h3>
@@ -91,6 +97,7 @@ $(function(){
 			</table>
 		</div>
 
+
 		<div class="float-left col-md-6 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
@@ -114,7 +121,16 @@ $(function(){
 			</table>
 		</div>
 	</div>
-	<div class="form-group ">
+
+	<!-- spinner -->
+	<div class="loading loadspin " style="position: relative; z-index: 1; width: 100%; height: 100%; display: none;">
+		<div class="spinner-border loadspin" role="status" style="display: block; position: fixed; z-index: 1031; top: 40%; left: 48%; display: none;">
+			<span class="sr-only loadspin " style="display: none;">Loading...</span>
+		</div>
+	</div>
+
+
+	<div class="form-group">
 		<button id="btn_search" class="btn-secondery btn-lg col-md-3 float-right mb-4">조회하기</button>
 	</div>
 
