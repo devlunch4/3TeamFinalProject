@@ -6,7 +6,6 @@
 <h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
 
 <form id="grdguidefrm" enctype="multipart/form-data" action="${pageContext.request.contextPath}/finfo/gardenguidesInsertBtn" method="post">
-
 	<!-- 글쓰기 summernote-->
 	<!-- <textarea id="summernote" name="summernote"></textarea>
 			<script>
@@ -151,10 +150,15 @@
 ▷ 호박은 사용 용도에 따라 애호박, 단호박, 맷돌호박, 꽃호박, 약호박 등 매우 다양하지만, 일반적으로 텃밭에서는 애호박과 호박잎을 이용하는 종류를 많이 재배한다." required="required" style="resize: none; overflow-y: visible; height: 100px;"></textarea>
 	</div>
 	<div class="form-group">
-		<label class="small" for="file_nm2">파일추가</label>
+		<label class="small" for="file_nm2">파일추가</label><br>
 		<input type="file" id="file_nm2" name="file_nm2" accept="image/png, image/jpeg">
+		<hr>
 	</div>
-
-	<button class="btn btn-success btn-lg col-md-3 float-right" type="submit" id="insertBtn" name="insertBtn">등 록</button>
+	<div class="">
+		<div class="text-right col-12 p-0">
+			<button class="btn-warning btn-lg col-xs-4 col-md-3 mb-2" type="button" id="listBtn" name="listBtn" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguides'">목록으로</button>
+			<button class="btn-success btn-lg col-xs-4 col-md-3 mb-2" type="submit" id="insertBtn" name="insertBtn">등록</button>
+		</div>
+	</div>
 </form>
 

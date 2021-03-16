@@ -163,14 +163,15 @@
 ▷ 호박은 사용 용도에 따라 애호박, 단호박, 맷돌호박, 꽃호박, 약호박 등 매우 다양하지만, 일반적으로 텃밭에서는 애호박과 호박잎을 이용하는 종류를 많이 재배한다." required="required" style="resize: none; overflow-y: visible; height: 100px;">${gardenguidesVo.plant_content }</textarea>
 	</div>
 	<div class="form-group">
-		<label class="small" for="file_nm2">파일추가</label>
+		<label class="small" for="file_nm2">파일추가</label><br>
 		<input type="file" id="file_nm2" name="file_nm2" accept="image/png, image/jpeg" value="">
+		<hr>
 	</div>
-	<div class="">
+	<div class="text-right col-12 p-0">
 		<!-- 관리자 전용 삭제 이동 버튼 활성 -->
-		<button class="btn-danger btn-lg mt-4 col-md-3 float-left" type="button" id="deleteBtn" name="deleteBtn">삭제</button>
+		<button class="btn-danger btn-lg mt-2 col-md-3 " type="button" id="deleteBtn" name="deleteBtn">삭제</button>
 		<!-- 관리자 전용 수정완료  버튼 활성 -->
-		<button class="btn-warning btn-lg mt-4 col-md-3 float-right" type="submit" id="updateBtn" name="updateBtn">수 정</button>
+		<button class="btn-warning btn-lg mt-2 col-md-3 " type="submit" id="updateBtn" name="updateBtn">수 정</button>
 		<hr>
 	</div>
 </form>
