@@ -96,6 +96,26 @@ public class FinfoDaoImpl implements FinfoDao {
 	public List<ItemmanualVo> selectItemmanualFilenmList() {
 		return tempplate.selectList("guides.selectItemmanualFilenmList");
 	}
+	
+	// 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회
+	@Override
+	public ItemmanualVo selectModifyItemMenualInfo(int manual_code) {
+		return tempplate.selectOne("guides.selectModifyItemMenualInfo",manual_code);
+	}
+	
+	// 20210317_ggy : 품목 메뉴얼 수정
+	@Override
+	public int modifyItemMenualInfo(ItemmanualVo itemmanualVo) {
+		return tempplate.update("guides.modifyItemMenualInfo", itemmanualVo);
+	}
+
+	// 20210317_ggy : 품목 메뉴얼 삭제
+	@Override
+	public int deleteItemMenualInfo(ItemmanualVo itemmanualVo) {
+		return tempplate.update("guides.deleteItemMenualInfo", itemmanualVo);
+	}
+	
+	
 
 
 }
