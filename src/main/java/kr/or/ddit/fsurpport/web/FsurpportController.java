@@ -1094,7 +1094,64 @@ public class FsurpportController {
 		model.addAttribute("farmCount", farmCount);
 		return "tiles.fanalysis.myYield";
 	}
+	
+	
+	
+	
+	
+	
+	
+	// KJH_20210317
+	// 시설리스트 페이지
+	@RequestMapping(path = "msrequipList",method = { RequestMethod.GET })
+	public String msrequipList(Model model, HttpSession session,String check) {
+		model.addAttribute("check",check);
+		UserVo userVo = new UserVo();
 
+		userVo = (UserVo) session.getAttribute("S_USER");
+		
+		if(userVo.user_id.equals("admin")) {
+			model.addAttribute("msrList",fsurpportService.msrallList());
+			return "tiles.fsurpport.msrequipList";
+		}else {
+		
+		model.addAttribute("msrList",fsurpportService.msrList(userVo.user_id));
+		
+		return "tiles.fsurpport.msrequipList";
+		}
+	}
+	
+	
+	// KJH_20210317
+	// 장치 수정
+	@RequestMapping(path = "msrUpdate",method = { RequestMethod.GET })
+	public String msrUpdate(Model model, HttpSession session, MsrequipVo msrequipVo) {
+
+		fsurpportService.msrUpdate(msrequipVo);
+		
+		return "redirect:/fsurpport/msrequipList";
+	}
+	
+	// 20210317_KJH 사용자 장비 등록
+	@RequestMapping(path = "msrSet",method = { RequestMethod.GET })
+	public String msrSet(Model model, HttpSession session, MsrequipVo msrequipVo) {
+		
+		UserVo userVo = new UserVo();
+
+		userVo = (UserVo) session.getAttribute("S_USER");
+		
+		msrequipVo.setOwner(userVo.getUser_id());
+		
+		int cnt = fsurpportService.msrSelect(msrequipVo.getMsr_code());
+		if(cnt == 1) {
+		fsurpportService.msrSet(msrequipVo);
+		}else {
+			model.addAttribute("check","해당 코드로 장비를 등록할 수 없습니다.");
+		}
+		
+		return "redirect:/fsurpport/msrequipList";
+	}
+	
 	
 	
 	
