@@ -17,7 +17,7 @@ import kr.or.ddit.user.repository.UserDaoImpl;
 
 public class userController extends WebTestConfig {
 
-	@Resource(name = "userDao")
+	@Resource(name = "UserDao")
 	private UserDaoImpl userDao;
 
 	// 관리자가 모든 회원 보는거 (경찬) 3/16
