@@ -121,23 +121,23 @@
 								<c:forEach items="${noticelist }" var="notice">
 								
 									<tr class="board" data-market_no="${notice.market_no }" >
-									<c:choose>
-										<c:when test="${notice.head_code == 1 }">
-											<td style="color:green">판매중</td>
-										</c:when>
-										<c:when test="${notice.head_code == 2 }">
-											<td style="color:red">판매완료</td>
-										</c:when>
-										<c:when test="${notice.head_code == 3 }">
-											<td style="color:blue">구매중</td>
-										</c:when>
-										<c:when test="${notice.head_code == 4 }">
-											<td style="color:red">구매완료</td>
-										</c:when>
-										<c:otherwise >
-										<td>선택안함</td>
-										</c:otherwise>
-									</c:choose>
+										<c:choose>
+											<c:when test="${notice.head_code == 1 }">
+												<td style="color:green">판매중</td>
+											</c:when>
+											<c:when test="${notice.head_code == 2 }">
+												<td style="color:red">판매완료</td>
+											</c:when>
+											<c:when test="${notice.head_code == 3 }">
+												<td style="color:blue">구매중</td>
+											</c:when>
+											<c:when test="${notice.head_code == 4 }">
+												<td style="color:red">구매완료</td>
+											</c:when>
+											<c:otherwise >
+											<td>선택안함</td>
+											</c:otherwise>
+										</c:choose>
 										<td><img id="pictureViewImg" src="${cp }/market/marketprofile="
 										style="width: 100%; height: 100%;"></td>
 										<td>${notice.title }</td>

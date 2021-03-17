@@ -75,6 +75,8 @@ public class LoginController {
 
 				// 이유는 모르겠는데 update+1 쿼리를 실행했는데 바로 적용이 안되서 뷰에서 카운트 뽑아내려고 ++
 				login_fail_cnt++;
+				// +추가 : 이유는 update하는 와중에 한번에 바로 코드가 실행이되서 적용이 안됨   
+				
 				model.addAttribute("msg", "비밀번호가 일치하지 않습니다. \\n아이디 '" + dbUser.getUser_id() + "' 로그인 " + login_fail_cnt
 						+ "회 오류입니다. \\n5회 오류 시 로그인이 불가능 합니다.");
 				model.addAttribute("url", "/login/view");

@@ -24,9 +24,6 @@
 		<typeAlias type="kr.or.ddit.farm.model.GardenguideVo" alias="gardenguideVo" />
 		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
 
-		<!-- ??? temp. -->
-		<typeAlias type="kr.or.ddit.farm.model.FcommunityVo" alias="FcommunityVo" />
-
 		<!-- 20210306 SHS MarketVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MarketVo" alias="MarketVo" />
 
@@ -40,7 +37,7 @@
 
 
 		<!-- 20210309_LYS_Q&A - 문의사항 - QNA테이블 -->
-		<typeAlias type="kr.or.ddit.farm.model.FqnaVo" alias="fqnaVo" />
+		<typeAlias type="kr.or.ddit.farm.model.QnaVo" alias="qnaVo" />
 
 		<!-- 주석 달아주세요 -->
 		<typeAlias type="kr.or.ddit.farm.model.GuideSqlVo" alias="guideSqlVo" />
@@ -89,6 +86,8 @@
 		<!-- ??? -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/Fcommunity.xml" />
 
+		<!-- 20210313_LYS_Q&A3 - 문의게시판 xml -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/qna.xml" />
 
 		<!-- 20210307 SHS FcommunityVo mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/Market.xml" />
