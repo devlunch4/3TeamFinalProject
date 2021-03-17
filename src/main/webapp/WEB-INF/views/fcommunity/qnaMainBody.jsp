@@ -29,26 +29,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${farmdiaryList }" var="farmdiaryList">
+							<c:forEach items="${qnaList}" var="qna">
 								<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'">
-									<td></td>
-									<td>${farmdiaryList.item_code }</td>
-									<td>${farmdiaryList.w_step_code }</td>
+									<td>${qna.qna_no}</td>
+									<td>${qna.title}</td>
+									<td>${qna.writer}</td>
 									<td>
-										<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
+										<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy.MM.dd" />
 									</td>
 								</tr>
 							</c:forEach>
-
-							<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'">
-								<td></td>
-								<td>test</td>
-								<td>test</td>
-								<td>
-									<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
-								</td>
-							</tr>
-
 						</tbody>
 					</table>
 				</div>

@@ -4,7 +4,8 @@ import java.sql.Clob;
 import java.sql.Date;
 
 //20210309_LYS_Q&A : FqnaVo 생성
-public class FqnaVo {
+//20210313_LYS_Q&A3(03-16) : QnaVo수정
+public class QnaVo {
 
 	private int qna_no;
 	private int qna_parent_no;
@@ -81,8 +82,9 @@ public class FqnaVo {
 
 	@Override
 	public String toString() {
-		return "FqnaVo [qna_no=" + qna_no + ", qna_parent_no=" + qna_parent_no + ", writer=" + writer + ", title="
+		return "QnaVo [qna_no=" + qna_no + ", qna_parent_no=" + qna_parent_no + ", writer=" + writer + ", title="
 				+ title + ", content=" + content + ", reg_dt=" + reg_dt + ", hit=" + hit + ", use_yn=" + use_yn + "]";
 	}
 
+	
 }
