@@ -2,7 +2,6 @@ package kr.or.ddit.market.service;
 
 import java.util.List;
 
-import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
 
 public interface MarketService {
