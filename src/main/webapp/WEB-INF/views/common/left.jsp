@@ -94,7 +94,7 @@
 			</a>
 			<div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 				<nav class="sb-sidenav-menu-nested nav">
-					<a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/qnaView">문의사항</a> <a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/noticesView">공지사항</a> <a class="nav-link" href="${pageContext.request.contextPath }/market/minimarketView">미니장터</a>
+					<a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/qnaView">문의사항</a> <a class="nav-link" href="${pageContext.request.contextPath }/fnotice/noticesView">공지사항</a> <a class="nav-link" href="${pageContext.request.contextPath }/market/minimarketView">미니장터</a>
 				</nav>
 			</div>
 		</div>

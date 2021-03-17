@@ -6,9 +6,7 @@
 <script>
 	//20210305_KJH 10초마다 새로고침
 	// 	$(function() {
-
 	// 		setTimeout("location.reload()", 10000);
-
 	// 	});
 	$(function() {
 		setInterval(

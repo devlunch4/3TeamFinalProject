@@ -6,7 +6,7 @@
 
 <div class="form-group">
 	<label class="small mb-1" for="input_grdgd_nm">공지번호</label> 
-	<input class="form-control py-4" id="input_grdgd_nm" name="" type="text" value="${notice.notice_no }" readonly="readonly">
+	<input class="form-control py-4" id="input_grdgd_nm" name="notice_no" type="text" value="${notice.notice_no }" readonly="readonly">
 </div>
 
 <div class="form-group">
@@ -20,7 +20,7 @@
 </div>
 
 <c:if test="${S_USER.user_id.equals('admin') }">
-<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/noticesModify">수정</a>
-<a class="btn btn-primary" href="#">삭제</a>
+<a class="btn btn-primary" href="noticesModify">수정</a>
+<a class="btn btn-primary" href="noticesDelete?notice_no=${notice.notice_no }">삭제</a>
 </c:if>
 

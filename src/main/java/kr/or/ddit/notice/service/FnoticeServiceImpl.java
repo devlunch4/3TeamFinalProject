@@ -30,4 +30,16 @@ public class FnoticeServiceImpl implements FnoticeService {
 		return FnoticeDao.selcetNotice(notice_no);
 	}
 
+	// 공지사항 삭제 하는거 03/15 (경찬)
+	@Override
+	public FnoticeVo deletenotice(int notice_no) {
+		return FnoticeDao.deletenotice(notice_no);
+	}
+
+	// 관리자가 공지사항 등록하는거 03/16(경찬)
+	@Override
+	public int insertNotice(FnoticeVo noticeVo) {
+		return FnoticeDao.insertNotice(noticeVo);
+	}
+
 }
