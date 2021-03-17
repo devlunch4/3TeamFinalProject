@@ -54,6 +54,23 @@
 		UPDATE notice set use_yn = 'N'
 		WHERE notice_no = #{value}
 	</update>
+	
+	<insert id="insertNotice" parameterType="fnoticeVo">
+		INSERT INTO notice
+		(notice_no, writer, title,content, reg_dt, file_no, hit, use_yn)
+		VALUES (
+		(SELECT NVL(MAX(notice_no),0)+1 from notice),
+		#{writer},
+        #{title},
+        #{content},
+        sysdate,
+        1,
+        0,
+        'Y'
+		)
+	</insert>
+	
+		
 
 
 </mapper>

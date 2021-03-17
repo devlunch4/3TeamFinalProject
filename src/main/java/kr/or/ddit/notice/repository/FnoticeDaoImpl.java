@@ -33,4 +33,9 @@ public class FnoticeDaoImpl implements FnoticeDao {
 		return template.selectOne("community.deleteNotice", notice_no);
 	}
 
+	@Override
+	public int insertNotice(FnoticeVo noticeVo) {
+		return template.selectOne("community.insertNotice", noticeVo);
+	}
+
 }

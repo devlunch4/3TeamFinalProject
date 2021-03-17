@@ -5,7 +5,7 @@
 <h3 class="mt-4">공지사항</h3>
 
 <c:if test="${S_USER.user_id.equals('admin') }">
-	<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView'" class=" btn btn-outline-dark m-1">공지사항 등록</button>
+	<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fnotice/insertNotice'" class=" btn btn-outline-dark m-1">공지사항 등록</button>
 </c:if>
 
 
@@ -42,13 +42,14 @@
 
 							<tbody>
 								<c:forEach items="${noticeList }" var="noticeList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView?notice_no=${noticeList.notice_no }'">
-										<td>${noticeList.notice_no }</td>
-										<td>${noticeList.title }</td>
-										<td><fmt:formatDate value="${noticeList.reg_dt }" pattern="yyyy.MM.dd" /></td>
-									</tr>
+									<c:if test="${noticeList.use_yn.equals('Y') }">
+										<tr onclick="location.href='${pageContext.request.contextPath}/fnotice/noticesInfoView?notice_no=${noticeList.notice_no }'">
+											<td>${noticeList.notice_no }</td>
+											<td>${noticeList.title }</td>
+											<td><fmt:formatDate value="${noticeList.reg_dt }" pattern="yyyy.MM.dd" /></td>
+										</tr>
+									</c:if>
 								</c:forEach>
-
 							</tbody>
 						</table>
 					</div>

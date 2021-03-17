@@ -14,4 +14,7 @@ public interface FnoticeDao {
 
 	// 공지사항 삭제 하는거 03/15 (경찬)
 	FnoticeVo deletenotice(int notice_no);
+
+	// 관리자가 공지사항 등록하는거 03/16(경찬)
+	int insertNotice(FnoticeVo noticeVo);
 }
