@@ -19,8 +19,8 @@ public interface FsurpportService {
 	// ggy_20210303: 등록된 품목 조회
 	List<CodesVo> selectAllItem_codeList();
 
-	// ggy_20210306 : 등록된 작업단계 조회 수정
-	List<CodesVo> selectAllW_step_codeList();
+	// ggy_20210315 : 등록된 작업단계 조회 수정
+	List<CodesVo> selectAllW_step_codeList(String parent_code);
 
 	// ggy_20210305 : 등록된 사업유형 조회
 	List<CodesVo> selectAllB_type_codeList();

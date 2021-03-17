@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -14,13 +13,13 @@ import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 
 import kr.or.ddit.codes.service.CodesServiceImpl;
 import kr.or.ddit.common.model.CodesVo;
@@ -75,8 +74,8 @@ public class UserController {
 			doc = Jsoup.connect("https://www.kamis.or.kr/customer/price/wholesale/item.do?action=priceinfo&regday="
 					+ mydate + "&itemcategorycode=" + itemcategorycode + "&itemcode=" + itemcode
 					+ "&kindcode=&productrankcode=0&convert_kg_yn=N").get();
-
 			int docsize = (doc.select("tr").get(12)).select("td").size();
+
 			List<String> target = new ArrayList<String>();
 			target.add(((doc.select("tr").get(11)).select("th").get(1)).text());
 			target.add(((doc.select("tr").get(11)).select("th").get(docsize - 4)).text());

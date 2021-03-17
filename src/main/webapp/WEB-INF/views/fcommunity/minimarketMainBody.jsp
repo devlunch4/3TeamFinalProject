@@ -7,7 +7,6 @@
 <script>
    
     	$(function(){
-    		
     		$('.board').on("click",function(){
     			
     			var market_no = $(this).data("market_no");
@@ -18,15 +17,14 @@
     			
     		});
     		
-    		
     })
-    
     
     function kateSearch(val){
     		if(val == null || val == ''){
     			alert("카테고리 조건을 선택해주세요");
     			return;
     		}
+    		
     		$('#katefrm').attr("action","${pageContext.request.contextPath}/market/minimarketkate");
 			$('#katefrm').attr("method","post");
 			$('#head_code').val(val);
