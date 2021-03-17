@@ -21,5 +21,10 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectAllQna();
 	}
 
+	@Override
+	public QnaVo selectOneListQna(int qna_no) {
+		return dao.selectOneListQna(qna_no);
+	}
+
 	
 }

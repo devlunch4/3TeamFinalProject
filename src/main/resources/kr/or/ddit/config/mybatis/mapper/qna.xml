@@ -19,5 +19,22 @@
 		    qna
 	</select>
 	
+	<select id="selectOneListQna" resultType="qnaVo">
+		SELECT
+		    qna_no	
+		    ,qna_parent_no
+		    ,writer
+		    ,title
+		    ,content
+		    ,reg_dt
+		    ,hit
+		    ,use_yn
+		FROM
+		    qna
+		WHERE 
+			qna_no = #{qna_no} 
+	</select>
+	
+	
 
 </mapper>

@@ -21,6 +21,11 @@ public class QnaDaoImpl implements QnaDao {
 		return template.selectList("qna.selectAllQna");
 	}
 
+	@Override
+	public QnaVo selectOneListQna(int qna_no) {
+		return template.selectOne("qna.selectOneListQna", qna_no);
+	}
+
 	
 	
 }

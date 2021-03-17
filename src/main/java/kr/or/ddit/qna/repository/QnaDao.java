@@ -10,5 +10,8 @@ public interface QnaDao {
 	//문의게시판 전체목록
 	List<QnaVo> selectAllQna();
 
+	//문의게시판 상세조회
+	QnaVo selectOneListQna(int qna_no);
+	
 	
 }

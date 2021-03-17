@@ -30,7 +30,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${qnaList}" var="qna">
-								<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/noticesInfoView'">
+								<tr onclick="location.href='${pageContext.request.contextPath}/qna/detailView?qna_no=${qna.qna_no}'">
 									<td>${qna.qna_no}</td>
 									<td>${qna.title}</td>
 									<td>${qna.writer}</td>
