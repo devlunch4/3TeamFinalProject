@@ -27,9 +27,9 @@ public class QnaController {
 	public String view(String user_id, Model model) {
 		logger.debug("IN View() Q&A");
 		
-		if(user_id != null) {
+		/*if(user_id != null) {*/
 			model.addAttribute("qna", qnaService.selectAllQna());
-		}
+//		}
 		return "tiles.fcommunity.qnaMain";
 	}
 

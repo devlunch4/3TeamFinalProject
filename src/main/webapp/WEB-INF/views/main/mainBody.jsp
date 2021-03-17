@@ -11,100 +11,6 @@
 <script src="../resources/datepicker/locales/bootstrap-datepicker.ko.min.js"></script>
 <c:set var="data" value="100" />
 
-<style>
-/*플로팅메뉴 스타일*/
-/* body { */
-/* background-color: #b83737 */
-/*#f2f2f2 */
-/* } */
-
-/* main { */
-/* 	margin-bottom: 200% */ 
-/* } */
-
-.floating-menu {
-	border-radius: 100%;
-	z-index: 999;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	right: 0;
-	position: fixed;
-	display: inline-block;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%)
-}
-
-.main-menu {
-	margin: 0;
-	padding-left: 0;
-	list-style: none
-}
-
-.main-menu li a {
-	display: block;
-	padding: 20px;
-	color: #fff;
-	border-radius: 100%;
-	position: relative;
-	-webkit-transition: none;
-	-o-transition: none;
-	transition: none
-}
-
-.main-menu li a:hover {
-	background: rgba(244, 244, 244, .3)
-}
-
-.menu-bg {
-	background-image: -webkit-linear-gradient(top, #1C5E91 0, #167699 100%);
-	background-image: -o-linear-gradient(top, #1C5E91 0, #167699 100%);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#1C5E91),
-		to(#167699));
-	background-image: linear-gradient(to bottom, #1C5E91 0, #167699 100%);/*백그라운드 색*/
-	background-repeat: repeat-x;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	border-radius: 50px;
-	z-index: -1;
- 	top: 0; 
- 	left: 0; 
- 	-webkit-transition: .1s; 
- 	-o-transition: .1s; 
- 	transition: .1s 
-}
-
-/* .ripple { */
-/* 	position: relative; */
-/* 	overflow: hidden; */
-/* 	transform: translate3d(0, 0, 0) */
-/* } */
-
-/* .ripple:after { */
-/* 	content: ""; */
-/* 	display: block; */
-/* 	position: absolute; */
-/* 	width: 100%; */
-/* 	height: 100%; */
-/* 	top: 0; */
-/* 	left: 0; */
-/* 	pointer-events: none; */
-/* 	background-image: radial-gradient(circle, #000 10%, transparent 10.01%); */
-/* 	background-repeat: no-repeat; */
-/* 	background-position: 50%; */
-/* 	transform: scale(10, 10); */
-/* 	opacity: 0; */
-/* 	transition: transform .5s, opacity 1s */
-/* } */
-
-/* .ripple:active:after { */
-/* 	transform: scale(0, 0); */
-/* 	opacity: .2; */
-/* 	transition: 0s */
-/* } */
-</style>
 <script type="text/javascript">
 $(function(){
 	$("#category").change(function(){
@@ -155,41 +61,6 @@ $(function(){
 $("#").scrollTop($(document).height());
 </script>
 
-<script>
-$(document).ready(function(){
-    $(function () {
-        $('#homeup').click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-var scrollHeight = $(document).height();
-        $('#homedown').click(function () {
-            $('body,html').animate({
-                scrollTop: scrollHeight
-            }, 800);
-            return false;
-        });
-    });
-  
-});
-</script>
-<nav class="floating-menu">
-	<ul class="main-menu">
-		<li><a href="#homeup" id="homeup">
-		↑
-		</a>
-		</li> 
-		<li> <a href="#homedown" id="homedown">
-		<!--<a href="#" class="ripple"> -->
-		↓
-		</a>
-		</li>
-	</ul>
-	<div class="menu-bg"></div>
-</nav>
-
 <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
 
 <h3 class="mt-4">시세분석</h3>
@@ -205,7 +76,9 @@ var scrollHeight = $(document).height();
 		<input type="date" id="dateserch" class="form-control mb-4" value="${mydate}" max="${sysd}">
 
 		<form id="select" action="${pageContext.request.contextPath}/user/main">
-			<input type="hidden" id="c_code" name="parent_code" value=""> <input type="hidden" id="i_code" name="code_no" value=""> <input type="hidden" id="d_code" name="sdate" value="">
+			<input type="hidden" id="c_code" name="parent_code" value="">
+			<input type="hidden" id="i_code" name="code_no" value="">
+			<input type="hidden" id="d_code" name="sdate" value="">
 		</form>
 	</div>
 	<div class="form-group col-xs-12">
