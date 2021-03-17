@@ -53,17 +53,63 @@
 		where GUIDE_CODE = #{guide_code}
 	</update>
 	
-	<!-- ggy_20210311 : code 품목 리스트 조회. itemmanualVo -->
-	<select id="itemFarmManualsList" resultType="codesVo">
-		select *
+	<!-- ggy_20210315 : code 품목 리스트 조회. itemmanualVo -->
+	<select id="itemFarmManualsList" parameterType="String" 
+							resultType="codesVo">
+		select 
+			code_no
+			,code_nm
+			,parent_code
 		from codes
-		where parent_code = '100'
-		or parent_code = '200'
-		or parent_code = '300'
-		or parent_code = '400'
+		where parent_code in 
+		    (select code_no
+		    from codes
+		    where parent_code = 
+		        (select code_no
+		        from codes
+		        where parent_code = 'i')
+		    and code_no = #{code_no })
 		and use_yn = 'Y'
 	</select>
 	
+	<!-- ggy_20210315 : code 품목 분류 리스트 조회. itemmanualVo -->
+	<select id="itemClassList" resultType="codesVo">
+		select 
+			code_no
+			,code_nm
+			,parent_code
+	    from codes
+	    where parent_code = 
+	        (select code_no
+	        from codes
+	        where parent_code = 'i')
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회 -->
+	<select id="selectItemmanualFilenmList" resultType="itemmanualVo">
+		SELECT i.manual_code manual_code
+		    , i.writer writer
+		    , i.ifm_nm ifm_nm
+		    , i.file_no file_no
+		    , i.item_code item_code
+		    , f.file_nm file_nm
+		FROM itemmanual i
+		JOIN files f
+		ON i.file_no = f.file_no
+		JOIN codes c
+		ON i.item_code = c.code_no
+		WHERE i.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+		AND c.use_yn = 'Y'
+	</select>
+	
+	<!-- 20210316_ggy : 품목 메뉴얼 등록 -->
+	<insert id="registItemMenual" parameterType="itemmanualVo">
+		insert into itemmanual values(
+				seq_itemmanual.nextval, 
+				#{writer }, #{ifm_nm }, sysdate, #{file_no }, #{item_code }, 'Y')
+	</insert>
 
 	<!-- 텃밭가이드 전체글 조회-관리자용 -->
 	<select id="selectGuideAll" resultType="gardenguideVo">

@@ -80,7 +80,7 @@ public class FsurpportController {
 		if (user_id != null) {
 			model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList(user_id));
 		}
-		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
 		return "tiles.fsurpport.fsurpportMain";
@@ -144,7 +144,7 @@ public class FsurpportController {
 			logger.debug("값 있으니 searchAllFarmdiaryList로 DB 조회");
 			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryList(farmdiaryVo));
 
-			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
 			return "tiles.fsurpport.fsurpportMain";
@@ -169,7 +169,7 @@ public class FsurpportController {
 
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(owner));
 
-		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 		model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
 
@@ -197,7 +197,7 @@ public class FsurpportController {
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(mySimpleCodeVo.getOwner()));
 
 		logger.debug("111");
-		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		logger.debug("222");
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 		logger.debug("333");
@@ -208,7 +208,7 @@ public class FsurpportController {
 
 	}
 
-	// ggy_20210309 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치
+	// ggy_20210315 : 농업지원-영농일지 간편등록 목록 선택시 값 자동으로 배치
 	@RequestMapping("selectMySimpleCodeInfo")
 	public String selectMySimpleCodeInfo(String user_id, int my_simple_code, Model model) {
 
@@ -221,7 +221,7 @@ public class FsurpportController {
 
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
 		model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
-		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
 		logger.debug("selectMySimpleCodeInfo item_code : {}, bsn_code : {}",
@@ -235,17 +235,17 @@ public class FsurpportController {
 	@RequestMapping("simpleInsertView")
 	public String simpleInsertView(Model model) {
 
-		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 		model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
 
 		return "tiles.fsurpport.fsurpportSimpleInsert";
 	}
 
-	// ggy_20210308 : 농업지원-영농일지 내 간편등록 작성한걸 등록
+	// ggy_20210315 : 농업지원-영농일지 내 간편등록 작성한걸 등록
 	@RequestMapping(path = "registMySimpleCode", method = { RequestMethod.POST })
 	public String registMySimpleCode(MySimpleCodeVo mySimpleCodeVo, Model model) {
-
+		
 		String user_id = mySimpleCodeVo.getOwner();
 
 		String b_type_code_nm = fsurpportService.selectB_type_code_no(mySimpleCodeVo.getB_type_code()).getCode_nm();
@@ -262,13 +262,13 @@ public class FsurpportController {
 
 		if (registCnt == 1) {
 
-			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(b_type_code_nm));
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
 			return "tiles.fsurpport.fsurpportInsert";
 		} else {
 
-			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 			return "tiles.fsurpport.fsurpportSimpleInsert";
 		}
@@ -372,7 +372,8 @@ public class FsurpportController {
 			model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
 			model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(f_diary_no));
 			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(writer));
-			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+			logger.debug("ModifyView의 사업유형값"+fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code());
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 			model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
 
@@ -548,7 +549,7 @@ public class FsurpportController {
 			model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
 			model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(farmdiaryVo.getF_diary_no()));
 			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(farmdiaryVo.getWriter()));
-			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
+//			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 			model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
 
@@ -822,7 +823,7 @@ public class FsurpportController {
 
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
-	@RequestMapping("fmanageInfo")
+	@RequestMapping(path = "fmanageInfo",method = { RequestMethod.GET })
 	public String fmanage(Model model, FmanageVo fmanage,HttpSession session) {
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
 		// KJH_20210308 측정 정보 조회 수정
@@ -860,6 +861,61 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.fmanageInfo";
 	}
+	
+	
+	
+	
+//	 KJH_20210315
+//	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ajax
+	@RequestMapping(path = "fmanageInfo",method = { RequestMethod.POST })
+	public String fmanagepost(Model model, FmanageVo fmanage,HttpSession session) {
+		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
+		// KJH_20210308 측정 정보 조회 수정
+		FhistoryVo fhistoryVo = new FhistoryVo();
+		fhistoryVo.setManage_no(fvo.getManage_no());
+		fhistoryVo.setHistory_no(fvo.getHistory_no());
+		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
+		
+		UserVo userVo = new UserVo();
+
+		userVo = (UserVo) session.getAttribute("S_USER");
+		List<MsrequipVo> myList = fsurpportService.msrList(userVo.getUser_id());
+
+		List<MsrequipVo> okList = new ArrayList<MsrequipVo>();
+
+		for (int i = 0; i < myList.size(); i++) {
+			MsrequipVo vo = new MsrequipVo();
+			vo.setMsr_code(myList.get(i).getMsr_code());
+			vo.setOwner(userVo.getUser_id());
+			
+			int count = fsurpportService.availableList(vo);
+			
+			if (count == 0) {
+				vo.setMsr_code(myList.get(i).getMsr_code());
+				vo.setOwner(userVo.getUser_id());
+				vo.setMsr_nm(myList.get(i).getMsr_nm());
+				vo.setUse_yn(myList.get(i).getUse_yn());
+				okList.add(vo);
+			}
+		}
+		
+		model.addAttribute("okList",okList);
+		model.addAttribute("fmanage", fvo);
+		model.addAttribute("msrrec", mvo);
+
+		return "/ajax/ajaxfmanageInfo";
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 등록 페이지 ok

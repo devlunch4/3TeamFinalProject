@@ -53,7 +53,7 @@ public class FsurpportDaoTest_ggy extends ModelTestConfig {
 		/***Given***/
 		
 		/***When***/
-		List<CodesVo> codesList = fsurpportDao.selectAllW_step_codeList();
+		List<CodesVo> codesList = fsurpportDao.selectAllW_step_codeList("1");
 		
 		/***Then***/
 		

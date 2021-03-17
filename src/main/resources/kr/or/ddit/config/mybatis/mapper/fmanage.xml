@@ -162,6 +162,50 @@
     where manage_no = #{manage_no}
 	</update>
 	
+	<!-- 20210315 KJH 측정값을 찾을 시설코드 찾기 -->
+	<select id="selectFmanage" resultType="fmanageVo" parameterType="String">
+	select mm.manage_no,fm.location from
+	(select fm.manage_no, fm.location from fmanage fm , fhistory fh, msrequip ms
+	where fm.manage_no = fh.manage_no
+	and fm.owner = #{owner}
+	and fh.msr_code = ms.msr_code group by fm.manage_no,fm.location
+	order by manage_no) no,
+	(select fh.manage_no from mserec ms, fhistory fh
+	where fh.msr_code = ms.msr_code
+	group by fh.manage_no) mm,fmanage fm
+	where mm.manage_no = no.manage_no
+	and fm.manage_no = mm.manage_no
+	</select>
+	
+	<!-- 20210315 KJH  fhistory 기반 측정값 조회 -->
+	<select id="avgFmanage" resultType="msrrecVo" parameterType="msrrecVo">
+	select
+	round(avg(nvl(msr_temp, 0))) msr_temp
+	,round(avg(nvl(msr_humid, 0))) msr_humid
+	,round(avg(nvl(msr_bright , 0))) msr_bright
+	from
+	(select * from mserec mc,fhistory fh
+	where mc.msr_code = fh.msr_code
+	and fh.manage_no = #{msr_code}
+	and mc.msr_reg_dt &gt;= fh.setup_dt
+	and mc.msr_reg_dt &lt; fh.release_dt) se
+	where msr_reg_dt &lt;= sysdate-${msr_no}
+	and msr_reg_dt &gt;= sysdate-${msr_no}-1
+	</select>
+	
+	<!-- 텃밭 가이드로부터 받은 온도정보 가공 -->
+	<select id="selectTempList" resultType="mymaxmrreclistVo">
+	select ga.item_code,ga.temperature,
+	nvl(substr(ga.temperature,
+	0,instr(ga.temperature, '~')-1),
+	substr(ga.temperature,
+	0,instr(ga.temperature, '℃')-1)) number1,
+	replace((substr(ga.temperature,
+	instr(ga.temperature, '~')+1)),'℃','') number2
+	from gardenguide ga, codes co
+	where ga.item_code = co.code_nm
+	and ga.temperature like '%℃'
+	</select>
 	
 
 </mapper>

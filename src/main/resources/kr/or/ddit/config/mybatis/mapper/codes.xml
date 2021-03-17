@@ -9,6 +9,7 @@
 	<select id="selectAllCodes" resultType="codesVo">
 		select *
 		from codes
+		where use_yn = 'Y'
 	</select>
 
 	<!-- 해당 코드정보 뽑아오는거 03/08 (경찬) -->

@@ -32,10 +32,12 @@
 
 
 	<div class="input-group">
-		<button id="all" class="col-6">전체</button>
-		<button id="week" class="col-6">주별</button>
-		<button id="month" class="col-6">월별</button>
-		<button id="year" class="col-6">년별</button>
+	<div class = "text-center col-md-12 m-2 p-2">
+		<button id="all" class="btn btn-outline-dark">전체</button>
+		<button id="week" class="btn btn-outline-dark">주별</button> 
+		<button id="month" class="btn btn-outline-dark">월별</button>
+		<button id="year" class="btn btn-outline-dark">년별</button>
+	</div>
 	</div>
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="sysd">
@@ -53,9 +55,10 @@
 		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col-6">
 	</div>
 
-	
+		<div class = "text-center col-md-12 m-2 p-2">
 	<div class="form-group text-center">
-		<button id="sel" class="col-4">조회하기</button>
+		<button id="sel" class="btn btn-outline-dark col-4">조회하기</button>
+	</div>
 	</div>
 	
 	<div class="align-center px-0">

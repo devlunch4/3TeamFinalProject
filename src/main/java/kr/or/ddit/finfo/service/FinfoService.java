@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
+import kr.or.ddit.farm.model.ItemmanualVo;
 
 public interface FinfoService {
 
@@ -23,9 +24,18 @@ public interface FinfoService {
 	// 20210308 KWS 텃밭 가이드 삭제(use_yn값 N 수정)
 	int deleteGuide(GardenguideVo gardenguideVo);
 
-	// 20210311_ggy : 품목 리스트 조회
-	List<CodesVo> itemFarmManualsList();
-
+	// 20210316_ggy : 품목 리스트 조회
+	List<CodesVo> itemFarmManualsList(String code_no);
+	
+	// 20210316_ggy : 품목 분류 리스트 조회
+	List<CodesVo> itemClassList();
+	
+	// 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회
+	List<ItemmanualVo> selectItemmanualFilenmList();
+	
+	// 20210316_ggy : 품목 메뉴얼 등록
+	int registItemMenual(ItemmanualVo itemmanualVo);
+	
 	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
 	List<GardenguideVo> selectGuideAll();
 	

@@ -33,29 +33,28 @@
 		ORDER BY reg_dt desc
 	</select>
 
-	<!-- ggy_20210306 : code 품목 리스트 조회. -->
+	<!-- ggy_20210315 : code 품목 리스트 조회. -->
 	<select id="selectAllItem_codeList" resultType="codesVo">
 		select *
 		from codes
-		where parent_code = '100'
-		or parent_code = '200'
-		or parent_code = '300'
-		or parent_code = '400'
+		where parent_code in 
+		    (select code_no
+		    from codes
+		    where parent_code = 
+		        (select code_no
+		        from codes
+		        where parent_code = 'i'))
 		and use_yn = 'Y'
 	</select>
 
-	<!-- ggy_20210306 : code 작업단계 리스트 조회. -->
-	<select id="selectAllW_step_codeList" resultType="codesVo">
-		SELECT *
-		FROM
-		codes
-		WHERE parent_code = '1'
-		OR parent_code = '2'
-		OR parent_code = '3'
-		OR parent_code = '4'
-		OR parent_code = '5'
-		OR parent_code = '6'
-		OR parent_code = '7'
+	<!-- ggy_20210315 : code 작업단계 리스트 조회. -->
+	<select id="selectAllW_step_codeList" parameterType="String" 
+												resultType="codesVo">
+		select *
+		from codes
+		where parent_code = (select code_no
+		                        from codes
+		                        where code_nm = #{code_nm })
 		AND use_yn = 'Y'
 	</select>
 
@@ -305,6 +304,7 @@
     and fa.writer = #{writer}
     group by co.code_nm,co.code_no
 	</select>
+
 	
 	
 </mapper>

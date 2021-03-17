@@ -22,7 +22,7 @@
         VALUES (
         		 (SELECT NVL(MAX(file_record_no),0)+1 from marketfiles),
                  #{market_no},
-                 (SELECT NVL(MAX(file_no),0)+1 from marketfiles)
+                 #{file_no}
                  )
 	 </insert>
 	
