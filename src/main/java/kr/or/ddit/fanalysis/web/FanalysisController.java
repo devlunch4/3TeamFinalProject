@@ -43,7 +43,10 @@ public class FanalysisController {
 		userVo = (UserVo) session.getAttribute("S_USER");
 
 		List<FmanageVo> fmanageList = fanalysisService.selectFmanage(userVo.getUser_id());
-
+		if(fmanageList.size()==0) {
+			model.addAttribute("novalue","측정값을 확인할 수 있는 시설이 없습니다.");
+			return "tiles.fanalysis.myfanalysisInfo";
+		}
 		MsrrecVo msrrecVo = new MsrrecVo();
 		msrrecVo.setMsr_code(fmanageList.get(0).getManage_no());
 		msrrecVo.setMsr_no(0);

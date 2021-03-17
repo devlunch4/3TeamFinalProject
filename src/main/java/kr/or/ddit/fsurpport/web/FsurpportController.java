@@ -959,7 +959,7 @@ public class FsurpportController {
 	@RequestMapping("fmanageInsert")
 	public String fmanageInsert(Model model, HttpSession session, FmanageVo fmanageVo, String msr_code) {
 		if (msr_code == null || msr_code.length() > 0) {
-			msr_code = "x";
+			msr_code = "X";
 		}
 
 		fsurpportService.insertFmanage(fmanageVo);
@@ -1015,7 +1015,7 @@ public class FsurpportController {
 	@RequestMapping(path = "msrequipChange",method = { RequestMethod.GET })
 	public String msrequipChange(Model model, String manage_no,String msr_code) {
 		if (msr_code == null || msr_code.length() < 0) {
-			msr_code = "x";
+			msr_code = "X";
 		}
 		
 		FmanageVo fmanageVo = new FmanageVo();
