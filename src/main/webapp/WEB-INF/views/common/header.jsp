@@ -34,7 +34,7 @@
 
 .main-menu li a {
 	display: block;
-	padding: 20px;
+	padding: 10px;
 	color: #fff;
 	border-radius: 100%;
 	position: relative;
@@ -159,6 +159,9 @@ var scrollHeight = $(document).height();
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
 				<c:if test="${S_USER != null}">
+				<form action="userCheck" method="POST">
+						<a class="" href="#">최근로그인시간</a>
+					</form>
 					<form action="userCheck" method="POST">
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/user/userCheck">마이페이지</a>
 					</form>

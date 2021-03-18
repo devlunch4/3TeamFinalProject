@@ -54,34 +54,34 @@
 							<thead>
 								<tr role="row">
 									<th class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">
-										<!-- GUIDE_CODE(seq) --> <br>-등록순번
+										<!-- GUIDE_CODE(seq) -->-등록순번
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">
-										<!-- CLASS_CODE --> <br>부류명
+										<!-- CLASS_CODE -->부류명
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- ITEM_CODE --> <br>품목명
+										<!-- ITEM_CODE -->품목명
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- DIFFICULTY --> <br>난이도
+										<!-- DIFFICULTY -->난이도
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- ORIGIN --> <br>원산지
+										<!-- ORIGIN -->원산지
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- TEMPERATURE --> <br>생육온도
+										<!-- TEMPERATURE -->생육온도
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- DAMAGE --> <br>피해
+										<!-- DAMAGE -->피해
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- SEASON --> <br>제철
+										<!-- SEASON -->제철
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- REG_DT --> <br>등록날짜
+										<!-- REG_DT -->등록날짜
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- USE_YN --> <br>사용여부
+										<!-- USE_YN -->사용여부
 									</th>
 								</tr>
 							</thead>
