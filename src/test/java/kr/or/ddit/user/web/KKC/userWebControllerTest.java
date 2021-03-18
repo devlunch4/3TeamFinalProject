@@ -11,30 +11,25 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 
+import kr.or.ddit.test.config.ModelTestConfig;
 import kr.or.ddit.test.config.WebTestConfig;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.repository.UserDaoImpl;
 
-public class userController extends WebTestConfig {
+public class userWebControllerTest extends ModelTestConfig {
 
-	@Resource(name = "userDao")
+	@Resource(name = "UserDao")
 	private UserDaoImpl userDao;
 
-	// 관리자가 모든 회원 보는거 (경찬) 3/16
-	@Test
-	public void allUser() throws Exception {
-		mockMvc.perform(get("/user/allUser")).andExpect(status().isOk()).andExpect(view().name("tiles.user.allUser"));
-	}
-
 	// 모든회원 정보 조회 (경찬) 3/16
-//	@Test
-//	public void userDetail() throws Exception {
-//		/*** Given ***/
-//
-//		/*** When ***/
-//		List<UserVo> userList = userDao.selectAllUser();
-//		/*** Then ***/
-//		assertEquals(38, userList.size());
-//	}
+	@Test
+	public void userDetail() throws Exception {
+		/*** Given ***/
+
+		/*** When ***/
+		List<UserVo> userList = userDao.selectAllUser();
+		/*** Then ***/
+		assertEquals(38, userList.size());
+	}
 
 }

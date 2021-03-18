@@ -23,7 +23,7 @@
 	}
 </script>
 
-<h3 class="mt-4">영농일지 등록</h3>
+<h3 class="mt-4">미니장터 게시글 등록</h3>
 
 <form action="${pageContext.request.contextPath}/fsurpport/registFarmdiary" method="post" enctype="multipart/form-data">
 	
@@ -43,7 +43,7 @@
 			<c:forEach items="${mySimpleCodeList }" var="mySimpleCodeList">
 				<option 
 					<c:if test="${selectMySimpleCodeInfo.my_simple_code eq mySimpleCodeList.my_simple_code }">selected="selected"</c:if>
-					value="${pageContext.request.contextPath}/fsurpport/selectMySimpleCodeInfo?user_id=${S_USER.user_id }&my_simple_code=${mySimpleCodeList.my_simple_code }">
+					value="${pageContext.request.contextPath}/fsurpport/itemFarmManualsList?user_id=${S_USER.user_id }&my_simple_code=${mySimpleCodeList.my_simple_code }">
 					${mySimpleCodeList.code_alias }
 				</option>
 			</c:forEach>

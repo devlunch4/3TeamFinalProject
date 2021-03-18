@@ -45,6 +45,14 @@
 					<c:choose>
 						<c:when test="${selectItemmanualFilenmList.item_code eq itemList.code_no}">
 							<button onclick="location.href='${pageContext.request.contextPath}/finfo/filePath?file_nm=${selectItemmanualFilenmList.file_nm }'" class="col-xs-3">${itemList.code_nm }</button>
+							<c:if test="${S_USER.user_id.equals('admin') }">
+								<button 
+								onclick="location.href='${pageContext.request.contextPath}/finfo/modifyItemMenualView?manual_code=${selectItemmanualFilenmList.manual_code }'" 
+								class="col-xs-3">수정</button>
+								<button 
+								onclick="location.href='${pageContext.request.contextPath}/finfo/deleteItemMenualInfo?manual_code=${selectItemmanualFilenmList.manual_code }&writer=${selectItemmanualFilenmList.writer }'" 
+								class="col-xs-3">삭제</button>
+							</c:if>
 						</c:when>
 
 						<c:otherwise>

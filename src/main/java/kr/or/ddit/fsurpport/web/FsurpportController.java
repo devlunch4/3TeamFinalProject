@@ -221,7 +221,8 @@ public class FsurpportController {
 
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(user_id));
 		model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
-		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
+		model.addAttribute("workstepsList", fsurpportService
+				.selectAllW_step_codeList(fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 
 		logger.debug("selectMySimpleCodeInfo item_code : {}, bsn_code : {}",
@@ -245,7 +246,7 @@ public class FsurpportController {
 	// ggy_20210315 : 농업지원-영농일지 내 간편등록 작성한걸 등록
 	@RequestMapping(path = "registMySimpleCode", method = { RequestMethod.POST })
 	public String registMySimpleCode(MySimpleCodeVo mySimpleCodeVo, Model model) {
-		
+
 		String user_id = mySimpleCodeVo.getOwner();
 
 		String b_type_code_nm = fsurpportService.selectB_type_code_no(mySimpleCodeVo.getB_type_code()).getCode_nm();
@@ -372,8 +373,10 @@ public class FsurpportController {
 			model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
 			model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(f_diary_no));
 			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(writer));
-			logger.debug("ModifyView의 사업유형값"+fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code());
-			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
+			logger.debug(
+					"ModifyView의 사업유형값" + fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code());
+			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(
+					fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
 			model.addAttribute("b_typeList", fsurpportService.selectAllB_type_codeList());
 
@@ -823,15 +826,15 @@ public class FsurpportController {
 
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
-	@RequestMapping(path = "fmanageInfo",method = { RequestMethod.GET })
-	public String fmanage(Model model, FmanageVo fmanage,HttpSession session) {
+	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.GET })
+	public String fmanage(Model model, FmanageVo fmanage, HttpSession session) {
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
 		// KJH_20210308 측정 정보 조회 수정
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fvo.getManage_no());
 		fhistoryVo.setHistory_no(fvo.getHistory_no());
 		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
-		
+
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -843,9 +846,9 @@ public class FsurpportController {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
-			
+
 			int count = fsurpportService.availableList(vo);
-			
+
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -854,28 +857,25 @@ public class FsurpportController {
 				okList.add(vo);
 			}
 		}
-		
-		model.addAttribute("okList",okList);
+
+		model.addAttribute("okList", okList);
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
 
 		return "tiles.fsurpport.fmanageInfo";
 	}
-	
-	
-	
-	
+
 //	 KJH_20210315
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ajax
-	@RequestMapping(path = "fmanageInfo",method = { RequestMethod.POST })
-	public String fmanagepost(Model model, FmanageVo fmanage,HttpSession session) {
+	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
+	public String fmanagepost(Model model, FmanageVo fmanage, HttpSession session) {
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
 		// KJH_20210308 측정 정보 조회 수정
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fvo.getManage_no());
 		fhistoryVo.setHistory_no(fvo.getHistory_no());
 		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
-		
+
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -887,9 +887,9 @@ public class FsurpportController {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
-			
+
 			int count = fsurpportService.availableList(vo);
-			
+
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -898,24 +898,13 @@ public class FsurpportController {
 				okList.add(vo);
 			}
 		}
-		
-		model.addAttribute("okList",okList);
+
+		model.addAttribute("okList", okList);
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
 
 		return "/ajax/ajaxfmanageInfo";
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 등록 페이지 ok
@@ -935,7 +924,7 @@ public class FsurpportController {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
-			
+
 			int count = fsurpportService.availableList(vo);
 
 			if (count == 0) {
@@ -988,54 +977,53 @@ public class FsurpportController {
 
 		return "tiles.fsurpport.fmanageUpdate";
 	}
-	
+
 	// KJH_20210311
 	// 농업양식 - 시설관리 관리중인 시설 업데이트 ok
-	@RequestMapping(path = "fmanageUpdate",method = { RequestMethod.POST })
+	@RequestMapping(path = "fmanageUpdate", method = { RequestMethod.POST })
 	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
-		
+
 		fsurpportService.fmanageUpdate(fmanageVo);
-		return "redirect:/fsurpport/fmanageInfo?manage_no="+fmanageVo.getManage_no();
+		return "redirect:/fsurpport/fmanageInfo?manage_no=" + fmanageVo.getManage_no();
 	}
-	
+
 	// KJH_20210311
 	// 농업양식 - 시설관리 관리중인 시설 삭제 ok
-	@RequestMapping(path = "fmanageDelete",method = { RequestMethod.GET })
+	@RequestMapping(path = "fmanageDelete", method = { RequestMethod.GET })
 	public String fmanagedelete(Model model, FmanageVo fmanageVo) {
-		
+
 		fsurpportService.fmanageDelete(fmanageVo);
 		fsurpportService.fhistoryDelete(fmanageVo);
-		
-		
+
 		return "redirect:/fsurpport/fmanageList";
 	}
-	
+
 	// KJH_20210311
 	// 농업양식 - 시설관리 관리중인 시설 장비변경 ok
-	@RequestMapping(path = "msrequipChange",method = { RequestMethod.GET })
-	public String msrequipChange(Model model, String manage_no,String msr_code) {
+	@RequestMapping(path = "msrequipChange", method = { RequestMethod.GET })
+	public String msrequipChange(Model model, String manage_no, String msr_code) {
 		if (msr_code == null || msr_code.length() < 0) {
 			msr_code = "X";
 		}
-		
+
 		FmanageVo fmanageVo = new FmanageVo();
 		fmanageVo.setManage_no(manage_no);
-		
+
 		fsurpportService.fhistoryDelete(fmanageVo);
-		
+
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(manage_no);
 		fhistoryVo.setMsr_code(msr_code);
 		fsurpportService.insertFhistory(fhistoryVo);
-		
-		return "redirect:/fsurpport/fmanageInfo?manage_no="+manage_no;
+
+		return "redirect:/fsurpport/fmanageInfo?manage_no=" + manage_no;
 	}
-	
+
 	// 20210311_KJH 내 수확량 조회 ok
-	@RequestMapping(path = "myYield",method = { RequestMethod.GET })
-	public String myYield(Model model, String selec, String sdate, String edate,HttpSession session) {
+	@RequestMapping(path = "myYield", method = { RequestMethod.GET })
+	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) {
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
-		
+
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -1045,7 +1033,7 @@ public class FsurpportController {
 			vo.setWriter(userVo.getUser_id());
 			vo.setB_type_code("2000-01-01");
 			vo.setW_step_code("5555-12-30");
-			
+
 			farmCount = fsurpportService.myYield(vo);
 		}
 
@@ -1148,13 +1136,8 @@ public class FsurpportController {
 		}else {
 			model.addAttribute("check","해당 코드로 장비를 등록할 수 없습니다.");
 		}
-		
 		return "redirect:/fsurpport/msrequipList";
 	}
-	
-	
-	
-	
 
 	// ggy_20210309 : 파일 경로
 	@RequestMapping("filePath")

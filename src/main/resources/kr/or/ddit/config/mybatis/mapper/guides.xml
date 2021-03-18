@@ -110,7 +110,47 @@
 				seq_itemmanual.nextval, 
 				#{writer }, #{ifm_nm }, sysdate, #{file_no }, #{item_code }, 'Y')
 	</insert>
-
+	
+	<!-- 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회 -->
+	<select id="selectModifyItemMenualInfo" parameterType="int"
+									resultType="itemmanualVo">
+	
+		SELECT i.manual_code
+		    , i.writer
+		    , i.ifm_nm
+		    , i.file_no
+		    , i.item_code
+		    , f.file_nm
+		    , c.code_nm
+		FROM itemmanual i
+		JOIN files f
+		ON i.file_no = f.file_no
+		JOIN codes c
+		ON i.item_code = c.code_no
+		WHERE i.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+		AND c.use_yn = 'Y'
+		AND i.manual_code = #{manual_code }
+										
+	</select>
+	
+	<!-- 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회 -->
+	<update id="modifyItemMenualInfo" parameterType="itemmanualVo">
+		update itemmanual set 
+				ifm_nm = #{ifm_nm },
+				file_no = #{file_no }
+		where manual_code = #{manual_code }
+		and writer = #{writer }
+	</update>
+	
+	<!-- 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회 -->
+	<update id="deleteItemMenualInfo" parameterType="itemmanualVo">
+		update itemmanual set 
+				use_yn = 'N'
+		where manual_code = #{manual_code }
+		and writer = #{writer }
+	</update>
+	
 	<!-- 텃밭가이드 전체글 조회-관리자용 -->
 	<select id="selectGuideAll" resultType="gardenguideVo">
 		SELECT * FROM GARDENGUIDE ORDER BY guide_code DESC

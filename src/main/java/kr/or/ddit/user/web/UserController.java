@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -50,6 +49,7 @@ public class UserController {
 	// 20210302_KJH items - > codes 변경 test ok
 	@RequestMapping("main")
 	public String main(Model model, CodesVo codesVo, String sdate) {
+		logger.debug("In  main()");
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
@@ -60,13 +60,11 @@ public class UserController {
 
 		if (sdate != null) {
 			mydate = sdate;
-
 		}
 
 		if (codesVo.getCode_no() != null) {
 			itemcategorycode = codesVo.getParent_code();
 			itemcode = codesVo.getCode_no();
-
 		}
 		// Jsoup라이브러리를 사용한 크롤링
 		Document doc;
@@ -126,8 +124,7 @@ public class UserController {
 
 		List<CodesVo> codesList = fdataService.selectAllCodes();
 		model.addAttribute("codesList", codesList);
-		
-		
+
 		return "tiles.main.main";
 	}
 
@@ -176,6 +173,7 @@ public class UserController {
 	@RequestMapping(path = "deleteUser", method = { RequestMethod.POST })
 	public String deleteUser(String user_id) {
 		UserVo user = userService.deleteUser(user_id);
+		logger.debug("in deleteUser() user : {]", user);
 		return "redirect:/user/allUser";
 	}
 
@@ -206,6 +204,7 @@ public class UserController {
 		model.addAttribute("header", header);
 
 		List<UserVo> data = new ArrayList<UserVo>();
+		logger.debug("??? new data : {}", data);
 		model.addAttribute("data", userService.selectAllUser());
 
 		return "UserExcelDownloadView";
@@ -239,6 +238,7 @@ public class UserController {
 		model.addAttribute("header", header);
 
 		List<CodesVo> data = new ArrayList<CodesVo>();
+		logger.debug("??? new data : {}", data);
 		model.addAttribute("data", codesService.allCodes());
 
 		return "CodeExcelDownloadView";
@@ -274,6 +274,7 @@ public class UserController {
 		response.setContentType("text/html; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
+		logger.debug("??? out :{}", out);
 
 		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
 		if (input_pass.equals(dbUser.getUser_pw())) {
@@ -281,7 +282,6 @@ public class UserController {
 		} else {
 			return "tiles.user.checkFail";
 		}
-
 	}
 
 	// 사용자가 개인정보 수정하는거 03/10 (경찬)
