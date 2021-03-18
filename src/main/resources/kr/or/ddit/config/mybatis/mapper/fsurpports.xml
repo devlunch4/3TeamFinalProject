@@ -305,6 +305,33 @@
     group by co.code_nm,co.code_no
 	</select>
 
+	<!-- 0317_KJH 모든 장비 조회 -->
+	<select id="msrallList" resultType="msrequipVo">
+	select msr_code
+	,msr_nm
+	,owner
+	,use_yn
+	from msrequip
+	where msr_code != 'X'
+	</select>
 	
+	<!-- 0317_KJH 장비 정보 수정 -->
+	<update id="msrUpdate" parameterType="msrequipVo">
+	update msrequip set msr_nm = #{msr_nm} ,owner = #{owner, jdbcType=VARCHAR}
+    where msr_code = #{msr_code}
+	</update>
+	
+	<!-- 사용자의 장비 추가 -->
+	<update id="msrSet" parameterType="msrequipVo">
+	update msrequip set owner = #{owner, jdbcType=VARCHAR}
+    where msr_code = #{msr_code}
+	</update>
+	
+	<!-- 입력한 장비코드의 시설유무 체크 -->
+	<select id="msrSelect" resultType="int" parameterType="String">
+	select count(*) from msrequip
+	where msr_code = #{msr_code}
+	and owner is null
+	</select>
 	
 </mapper>

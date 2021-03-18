@@ -230,4 +230,25 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<FarmdiaryVo> myYield(FarmdiaryVo vo) {
 		return template.selectList("fsurpports.myYield",vo);
 	}
+	
+	// 20210317_KJH 전체 장비 조회
+	@Override
+	public List<MsrequipVo> msrallList(){
+		return template.selectList("fsurpports.msrallList");
+	}
+	// 20210317_KJH 장비 업데이트
+	@Override
+	public int msrUpdate(MsrequipVo vo) {
+		return template.update("fsurpports.msrUpdate",vo);
+	}
+	// 20210317_KJH 사용자의 장비 등록
+	@Override
+	public int msrSet(MsrequipVo vo) {
+		return template.update("fsurpports.msrSet",vo);
+	}
+	
+	@Override
+	public int msrSelect(String str) {
+		return template.selectOne("fsurpports.msrSelect",str);
+	}
 }

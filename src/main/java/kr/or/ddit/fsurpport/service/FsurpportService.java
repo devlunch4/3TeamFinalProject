@@ -113,4 +113,16 @@ public interface FsurpportService {
 	
 	// 20210311_KJH 내 수확량 조회 ok
 	List<FarmdiaryVo> myYield(FarmdiaryVo vo);
+	
+	// 20210317_KJH 전체 장비 조회
+	List<MsrequipVo> msrallList();
+	
+	// 20210317_KJH 장비 업데이트
+	int msrUpdate(MsrequipVo vo);
+	
+	// 20210317_KJH 사용자의 장비 등록
+	int msrSet(MsrequipVo vo);
+	
+	//20210317_KJH 사용 가능한 장비인지 체크
+	int msrSelect(String str);
 }

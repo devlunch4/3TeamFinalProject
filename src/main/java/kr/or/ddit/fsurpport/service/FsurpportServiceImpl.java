@@ -226,4 +226,24 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<FarmdiaryVo> myYield(FarmdiaryVo vo) {
 		return fsurpportDao.myYield(vo);
 	}
+	
+	@Override
+	public List<MsrequipVo> msrallList() {
+		return fsurpportDao.msrallList();
+	}
+	
+	@Override
+	public int msrUpdate(MsrequipVo vo) {
+		return fsurpportDao.msrUpdate(vo);
+	}
+	
+	@Override
+	public int msrSet(MsrequipVo vo) {
+		return fsurpportDao.msrSet(vo);
+	}
+	
+	@Override
+	public int msrSelect(String str) {
+		return fsurpportDao.msrSelect(str);
+	}
 }
