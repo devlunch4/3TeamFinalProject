@@ -4,8 +4,10 @@
 
 <h3 class="mt-4">미니장터</h3>
 
-<button type="button" class=" btn btn-success " 
-onclick="location.href='${pageContext.request.contextPath}/fsurpport/insertView?owner=${S_USER.user_id }'" >미니장터게시글 등록</button>
+<c:if test="${S_USER.user_id != null }">
+	<button type="button" class=" btn btn-success " 
+	onclick="location.href='${pageContext.request.contextPath}/fcommunity/registMiniMarketView'" >미니장터게시글 등록</button>
+</c:if>
 
 <div class="card mt-2 col-sm-12">
 	<!-- 품목 선택 해서 조회하는 부분 -->

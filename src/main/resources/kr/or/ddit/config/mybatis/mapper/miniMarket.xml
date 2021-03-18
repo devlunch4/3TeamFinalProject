@@ -26,6 +26,44 @@
 		AND c.use_yn = 'Y'
 		ORDER BY reg_dt desc
 	</select>	
+	
+	<!-- 20210318_ggy : 미니장터 게시글 클릭시 조회수 증가 -->
+	<update id="addHitMiniMarket" parameterType="int">
+		update market set hit = hit+1 
+		where market_no = #{market_no }
+	</update>
+	
+	<!-- 20210318_ggy : 미니장터 게시글 상세조회 -->	
+	<select id="" parameterType="miniMarketVo" 
+					resultType="miniMarketVo">
+		
+		SELECT 
+		    m.market_no
+			, m.writer
+			, m.head_code
+			, m.title
+			, m.item_code
+			, m.content
+			, m.price
+			, m.reg_dt
+			, m.thumbnail
+			, m.mobile
+			, m.hit
+		    , m.thumbnail 
+			, c.code_nm code_nm
+		FROM market m
+		JOIN codes c
+		ON m.item_code = c.code_no
+		WHERE writer = #{writer }
+		AND m.market_no = #{market_no }
+		AND m.use_yn = 'Y'
+		AND c.use_yn = 'Y'
+							
+	</select>
+	
+	<!--  -->
+	
+	<!-- 20210318_ggy : 미니장터 게시글 등록 -->
 		
 
 </mapper>
