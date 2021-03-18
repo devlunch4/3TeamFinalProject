@@ -40,7 +40,7 @@ public class FinfoController {
 	// 필요한 스프링 빈 호출
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
-	
+
 	@Resource(name = "fsurpportService")
 	private FsurpportServiceImpl fsurpportService;
 
@@ -234,21 +234,21 @@ public class FinfoController {
 	@RequestMapping(path = "seasonInfos", method = { RequestMethod.GET })
 	public String seasionInfos(Model model) {
 		logger.debug("IN seasonInfos()");
-		
-		//봄
+
+		// 봄
 		List<GardenguideVo> springlist = finfoService.selectSeasons("%봄%");
-		logger.debug("봄검색 첫번째 인덱스: {}",springlist.get(0));
+		logger.debug("봄검색 첫번째 인덱스: {}", springlist.get(0));
 		model.addAttribute("springlist", springlist);
-		//여름
+		// 여름
 		List<GardenguideVo> summerlist = finfoService.selectSeasons("%여름%");
 		model.addAttribute("summerlist", summerlist);
-		//가을
+		// 가을
 		List<GardenguideVo> autumnlist = finfoService.selectSeasons("%가을%");
 		model.addAttribute("autumnlist", autumnlist);
-		//겨울
+		// 겨울
 		List<GardenguideVo> winterlist = finfoService.selectSeasons("%겨울%");
 		model.addAttribute("winterlist", winterlist);
-		
+
 		return "tiles.finfo.seasoninfos";
 	}
 
@@ -279,66 +279,64 @@ public class FinfoController {
 
 		return "tiles.finfo.itemFarmManualsMain";
 	}
-	
+
 	// 20210315_ggy : 농업정보 - 품목별영농매뉴얼 진입
 	@RequestMapping("itemManualsList")
 	public String itemManualsList(String code_no, Model model) {
-		
+
 		logger.debug("itemManualsList 진입");
-		
+
 		model.addAttribute("itemClassList", finfoService.itemClassList());
 		model.addAttribute("itemList", finfoService.itemFarmManualsList(code_no));
 		model.addAttribute("selectItemCode_ode_no", code_no);
 		model.addAttribute("selectItemmanualFilenmList", finfoService.selectItemmanualFilenmList());
-		
+
 		return "tiles.finfo.itemFarmManualsMain";
 	}
-	
+
 	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 업로드 진입
 	@RequestMapping("registItemMenualView")
 	public String registItemMenualView(String user_id, Model model) {
-		
+
 		logger.debug("registItemMenualView 진입");
-		logger.debug("user_id 값 :{} ",user_id);
-		
-		if(!user_id.equals("admin")) {
+		logger.debug("user_id 값 :{} ", user_id);
+
+		if (!user_id.equals("admin")) {
 			logger.debug("관리자가 아님");
 			return "redirect:/finfo/itemFarmManualsView";
 		}
-		
+
 		model.addAttribute("itemClassList", finfoService.itemClassList());
-		
+
 		return "tiles.finfo.registItemFarmManual";
-		
+
 	}
-	
+
 	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 등록을 위한 품목 분류 조회
 	@RequestMapping("registSelectItemList")
 	public String registSelectItemList(String code_no, Model model) {
-		
+
 		logger.debug("registSelectItemList 진입");
-		
+
 		model.addAttribute("itemClassList", finfoService.itemClassList());
 		model.addAttribute("itemList", finfoService.itemFarmManualsList(code_no));
 		model.addAttribute("selectItemCode_ode_no", code_no);
-		
+
 		return "tiles.finfo.registItemFarmManual";
 	}
-	
-	
-	
+
 	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 등록
 	@RequestMapping("registItemMenual")
 	public String registItemMenual(HttpServletRequest req, MultipartFile file_file, Model model) {
-		
+
 		logger.debug("registItemMenual 진입");
-		
+
 		ItemmanualVo itemmanualVo = new ItemmanualVo();
-		
+
 		itemmanualVo.setIfm_nm(req.getParameter("ifm_nm"));
 		itemmanualVo.setItem_code(req.getParameter("item_code"));
 		itemmanualVo.setWriter(req.getParameter("writer"));
-		
+
 		FilesVo filesVo = new FilesVo();
 
 		if (file_file.getSize() > 0) {
@@ -368,28 +366,25 @@ public class FinfoController {
 			logger.debug("파일없다.");
 			itemmanualVo.setFile_no(0);
 		}
-		
+
 		int registCnt = finfoService.registItemMenual(itemmanualVo);
-		
-		
-		return"redirect:/finfo/itemFarmManualsView";
-		
+		logger.debug("registCnt : {}", registCnt);
+
+		return "redirect:/finfo/itemFarmManualsView";
+
 	}
-	
-	
-	
+
 	// 20210316_ggy : 농업정보 - 품목별영농메뉴얼 다운로드
 	@RequestMapping("filePath")
 	public void profile(HttpServletResponse resp, String file_nm, HttpServletRequest req) throws IOException {
-		
+
 		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
 		byte fileByte[] = org.apache.commons.io.FileUtils
 				.readFileToByteArray(new File("c:\\fdown\\finfomunal\\" + file_nm));
 
 		resp.setContentType("application/octet-stream");
 		resp.setContentLength(fileByte.length);
-		resp.setHeader("Content-Disposition",
-				"attachment; fileName=\"" + URLEncoder.encode(file_nm, "UTF-8") + "\";");
+		resp.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(file_nm, "UTF-8") + "\";");
 		resp.getOutputStream().write(fileByte);
 		resp.getOutputStream().flush();
 		resp.getOutputStream().close();

@@ -1,7 +1,5 @@
 package kr.or.ddit.qna.web;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -9,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.qna.service.QnaService;
 
@@ -26,9 +23,9 @@ public class QnaController {
 	@RequestMapping(path = "view")
 	public String view(String user_id, Model model) {
 		logger.debug("IN View() Q&A");
-		
-		/*if(user_id != null) {*/
-			model.addAttribute("qna", qnaService.selectAllQna());
+
+		/* if(user_id != null) { */
+		model.addAttribute("qna", qnaService.selectAllQna());
 //		}
 		return "tiles.fcommunity.qnaMain";
 	}
