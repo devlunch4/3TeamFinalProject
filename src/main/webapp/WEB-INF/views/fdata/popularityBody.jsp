@@ -7,7 +7,7 @@
 <h1 class="mt-4">인기 농작물</h1>
 <div class="card mt-2 col-sm-12 px-0">
 	<h3 class="card-header">총게시글 :</h3>
-	<div class="card-body text-left ">
+	<div class="card-body text-center">
 		<div class="row">
 			<div class="form-row">
 				<div class="col-sm-12">

@@ -20,14 +20,14 @@ $(function(){
 			<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary p-2 float-right">장비등록</a>
 		</div>
 		<br> <br> <br>
-		<div class="table-responsive small">
+		<div class="table-responsive small p-1">
 
 			<table class="table table-bordered text-center">
 				<tr>
-					<th class="p-0 m-auto">장비코드</th>
-					<th class="p-0 m-auto">장비명</th>
-					<th class="p-0 m-auto">사용자</th>
-					<th class="p-0 m-auto">수정버튼</th>
+					<th class="p-0 m-auto table-active">장비코드</th>
+					<th class="p-0 m-auto table-active">장비명</th>
+					<th class="p-0 m-auto table-active">사용자</th>
+					<th class="p-0 m-auto table-active">수정버튼</th>
 				</tr>
 
 				<c:forEach items="${msrList}" var="msr">
@@ -56,9 +56,9 @@ $(function(){
 						</c:if>
 					</form>
 				</c:forEach>
-
+ 
 				<form action="${pageContext.request.contextPath}/fsurpport/msrSet" method="get">
-					<tr>
+					<tr class="table-active">
 						<th class="p-1">등록할 신규 장비 코드:</th>
 						<td class="p-1" colspan="2"><input type="text" name="msr_code" class="col-12" /></td>
 						<td class="p-1"><input type="submit" value="신규 장비등록" /></td>

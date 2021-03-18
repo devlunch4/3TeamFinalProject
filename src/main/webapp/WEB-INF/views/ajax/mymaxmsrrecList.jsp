@@ -6,14 +6,14 @@
 	<th style="width: 25%;">장소</th>
 	<th style="width: 15%;">장비명</th>
 	<th style="width: 15%;">작물명</th>
-	<th style="width: 15%;">등록일</th>
 	<th style="width: 10%;">온도</th>
 	<th style="width: 10%;">습도</th>
 	<th style="width: 10%;">조도</th>
+	<th style="width: 15%;">등록일</th>
 </tr>
 <c:forEach items="${maxmrrecList}" var="mrrecList">
 
-		<c:if test="${fn:length(mrrecList.location) gt 0}">
+	<c:if test="${fn:length(mrrecList.location) gt 0}">
 
 		<c:set var="dt">
 			<fmt:formatDate value="${mrrecList.reg_dt}" pattern="yyyy-MM-dd" />
@@ -39,13 +39,13 @@
 			</c:if>
 		</c:forEach>
 		<td style="width: 25%;">${mrrecList.location}</td>
-				<td style="width: 15%;">${mrrecList.msr_nm}</td>
-				<td style="width: 15%;">${mrrecList.item_code}</td>
-				<td style="width: 15%;">${dt}</td>
-				<td style="width: 10%;">${mrrecList.msr_temp}</td>
-				<td style="width: 10%;">${mrrecList.msr_humid}</td>
-				<td style="width: 10%;">${mrrecList.msr_bright}</td>
-			</tr>
-		</c:if>
+		<td style="width: 15%;">${mrrecList.msr_nm}</td>
+		<td style="width: 15%;">${mrrecList.item_code}</td>
+		<td style="width: 10%;">${mrrecList.msr_temp}</td>
+		<td style="width: 10%;">${mrrecList.msr_humid}</td>
+		<td style="width: 10%;">${mrrecList.msr_bright}</td>
+		<td style="width: 15%;">${dt}</td>
+		</tr>
+	</c:if>
 
 </c:forEach>

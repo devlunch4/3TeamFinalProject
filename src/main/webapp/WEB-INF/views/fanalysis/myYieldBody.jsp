@@ -63,6 +63,23 @@
 			</c:if>
 		</div>
 	</div>
+
+ 
+	<div class="form-group col-xs-12 pt-3">
+		<div class="float-left col-md-12 p-1  text-center">
+			<table class="table table-bordered " style="font-size: 15px;">
+				<tr>
+					<td class="table-active ">수확량</td>
+				</tr>
+				<tr>
+					<td><select id="category" class="form-control">
+							<option value="100">식량작물</option>
+							<option value="200">채소류</option>
+					</select></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
 
 <script>
