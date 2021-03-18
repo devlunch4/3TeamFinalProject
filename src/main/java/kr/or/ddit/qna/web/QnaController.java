@@ -1,7 +1,5 @@
 package kr.or.ddit.qna.web;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.farm.model.QnaVo;
 import kr.or.ddit.qna.service.QnaService;
+import kr.or.ddit.user.model.UserVo;
 
 @RequestMapping("qna")
 @Controller
@@ -33,11 +32,13 @@ public class QnaController {
 		return "tiles.fcommunity.qnaMain";
 	}
 	
-	
 	//20210317_LYS_Q&A4 : 문의게시판 상세조회 페이지 진입
 	@RequestMapping(path = "detailView", method = RequestMethod.GET)
 	public String DetailView(Model model, int qna_no) {
-		logger.debug("IN DetailView() 문의사항 상세조회 페이지");
+		logger.debug("IN DetailView() 문의사항 상세조회 페이지 진입 & 글번호 : {}", qna_no);
+		
+		//문의게시판 상세페이지 이동시 조회수 상승 쿼리문 실행
+		qnaService.updateHitCnt(qna_no);
 		
 		//qna_no를 파라미터로 상세조회 페이지 진입할때 쿼리문 실행
 		QnaVo qnaVo = (QnaVo)qnaService.selectOneListQna(qna_no);
@@ -50,5 +51,36 @@ public class QnaController {
 		return "tiles.fcommunity.qnaInfo";
 	}
 	
+	//20210317_LYS_Q&A4 : 문의게시판 글 등록페이지 진입
+	@RequestMapping(path = "qnaRegistView", method = RequestMethod.GET)
+	public String QnaRegistView(Model model, HttpSession session) {
+		logger.debug("IN QnaRegistView() 문의게시판 등록 페이지 진입 " );
+		
+		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
+		
+		if(dbUser!=null) {
+			return "tiles.fcommunity.qnaRegist";
+		}else {
+			return "redirect:/qna/view";
+		}
+	}
 
+	//20210317_LYS_Q&A4 : 문의게시판 글 등록
+	@RequestMapping(path="qnaRegist", method = RequestMethod.POST)
+	public String QnaRegist(Model model, QnaVo qnaVo){
+		logger.debug("IN QnaRegistView() 문의게시판 등록 진입/ qnaVo : {}", qnaVo );
+		
+		int qnaRegistCnt = qnaService.insertQna(qnaVo);
+		
+		if(qnaRegistCnt == 1) {
+			logger.debug("등록 완료");
+			return "redirect:/qna/view";
+		}else {
+			return "tiles.fcommunity.qnaRegist";
+		}
+	}
+	
+	
+	
+	
 }

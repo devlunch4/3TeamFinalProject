@@ -1,6 +1,5 @@
 package kr.or.ddit.farm.model;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 //20210309_LYS_Q&A : FqnaVo 생성
@@ -11,7 +10,7 @@ public class QnaVo {
 	private int qna_parent_no;
 	private String writer;
 	private String title;
-	private Clob content;
+	private String content;
 	private Date reg_dt;
 	private int hit;
 	private String use_yn;
@@ -48,11 +47,11 @@ public class QnaVo {
 		this.title = title;
 	}
 
-	public Clob getContent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(Clob content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 

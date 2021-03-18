@@ -41,6 +41,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/qna/qnaRegistView' ">등록</button>
 				</div>
 			</div>
 		</div>
