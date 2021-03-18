@@ -35,11 +35,12 @@
 	<div class="card-body">
 		<div class="table-responsive">
 			<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+			
 				<div class="row">
 					<div class="col-sm-12 col-md-6">
 						<div class="dataTables_length" id="dataTable_length"></div>
 					</div> 
-					
+					  	
 					<div class="col-sm-12 col-md-6">
 						<div id="dataTable_filter" class="dataTables_filter"></div>
 					</div>
@@ -50,16 +51,16 @@
 							<thead>
 								<tr role="row">
 									<th class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">
-										<!-- GUIDE_CODE(seq) --> <br>시설번호
+										<!-- GUIDE_CODE(seq) -->시설번호
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">
-										<!-- CLASS_CODE --> <br>소유자
+										<!-- CLASS_CODE -->소유자
 									</th>
 									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
-										<!-- ITEM_CODE --> <br>시설위치
+										<!-- ITEM_CODE -->시설위치
 									</th>
-									<th class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="">
-										<!-- DIFFICULTY --> <br>등록일
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="">
+										<!-- DIFFICULTY -->등록일
 									</th>
 								</tr>
 							</thead>
@@ -70,10 +71,10 @@
 									</c:set>
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
 									<tr data-guidecode="${fmanage.manage_no }">
-										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.manage_no }</td>
-										<td id = "seow" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
-										<td id = "selo" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다."><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
-										<td id = "sedt" data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
+										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.manage_no }</td>
+										<td id = "seow" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
+										<td id = "selo" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다."><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
+										<td id = "sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
 									</tr>
 									<%-- </c:if> --%>
 								</c:forEach>
