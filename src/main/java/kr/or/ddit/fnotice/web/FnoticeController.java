@@ -70,10 +70,22 @@ public class FnoticeController {
 
 	// 20210316 공지사항 등록 (경찬)
 	@RequestMapping("insertNotice")
-	public String insertNotice(FnoticeVo noticeVO, Model model) {
+	public String insertNotice() {
 		
-		
-		return "";
+		return "tiles.fcommunity.noticeRegist";
 	}
+	
+	// 20210316 공지사항 등록 (경찬)
+		@RequestMapping("insertNotice2")
+		public String insertNotice2(FnoticeVo noticeVO, Model model) {
+			
+			List<FnoticeVo> noticeList = fnoticeService.selectAllNoticeList();
+			
+			model.addAttribute("noticeList", noticeList);
+			
+			fnoticeService.insertNotice(noticeVO);
+			
+			return "tiles.fcommunity.noticesMaina";
+		}
 
 }
