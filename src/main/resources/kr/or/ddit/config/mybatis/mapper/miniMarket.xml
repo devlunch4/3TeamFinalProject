@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="miniMarkets">
+	
+	<select id="selectAllMiniMarketList" resultType="miniMarketVo">
+		SELECT 
+		    m.market_no
+			, m.writer
+			, m.head_code
+			, m.title
+			, m.item_code
+			, m.content
+			, m.price
+			, m.reg_dt
+			, m.thumbnail
+		    , m.mobile
+			, m.hit
+		    , c.code_nm code_nm
+		FROM market m
+		JOIN codes c
+		ON m.item_code = c.code_no
+		WHERE m.use_yn = 'Y'
+		AND c.use_yn = 'Y'
+		ORDER BY reg_dt desc
+	</select>	
+		
+
+</mapper>
