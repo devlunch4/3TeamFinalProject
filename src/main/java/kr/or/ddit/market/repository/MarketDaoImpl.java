@@ -23,7 +23,7 @@ public class MarketDaoImpl implements MarketDao {
 		return template.selectList("market.selectmarket");
 	}
 
-	// 20210309_SHS - 미니장터 게시글 작성
+	// 20210309_SHS - 미니장터 게시글 조회 
 	@Override
 	public MarketVo selectonemarket(int market_no) {
 
