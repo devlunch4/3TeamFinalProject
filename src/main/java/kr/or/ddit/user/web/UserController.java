@@ -250,7 +250,7 @@ public class UserController {
 	@RequestMapping("modifyCode2")
 	public String modifyCode2(CodesVo codesVo, Model model) {
 		logger.debug("In modifyCode2()");
-		logger.debug("codesVo:{}",codesVo);
+		logger.debug("codesVo:{}", codesVo);
 		codesVo = codesService.modifyCode(codesVo);
 		List<CodesVo> codesList = codesService.allCodes();
 		model.addAttribute("codeList", codesList);
