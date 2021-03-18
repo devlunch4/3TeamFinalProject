@@ -12,6 +12,14 @@
 <c:set var="data" value="100" />
 
 <script type="text/javascript">
+$(function() {
+	var offset = $('#gohere').offset();
+	$('html').animate({
+		scrollTop : offset.top
+	}, 300);
+});
+
+
 $(function(){
 	$("#category").change(function(){
 		var num = $("#category").val();
@@ -28,14 +36,12 @@ $(function(){
 	
 	$("#btn_search").on("click",function(){
 		$(".loadspin").show();
-		
 		var item;
 		if($("#category").val() == 100){
 			item = $("#item1").val();
 		}else if($("#category").val() == 200){
 			item = $("#item2").val();
 		}
-		
 		$("#c_code").val($("#category").val());
 		$("#i_code").val(item);
 		$("#d_code").val($("#dateserch").val());
@@ -44,48 +50,44 @@ $(function(){
 	
 	$("#category").val("${itemcategorycode}").prop("selected",true);
 	if(${itemcategorycode}=='100'){
-		
 		$("#item2").css("display","none")
 		$("#item1").css("display","")
-		
 	$("#item1").val("${itemcode}").prop("selected",true);
 	}else if(${itemcategorycode}=='200'){
-		
-		$("#item2").css("display","")
 		$("#item1").css("display","none")
 		
 	$("#item2").val("${itemcode}").prop("selected",true);
 	}
-
 })
 $("#").scrollTop($(document).height());
 </script>
-
 <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
-
 <h3 class="mt-4">시세분석</h3>
-
 <div class="form-group">
-
-	<div class="form-group col-xs-12 m-0">
-		<!-- 현재날짜를 넘지 않게 max값 지정 -->
-		<c:set var="now" value="<%=new java.util.Date()%>" />
-		<c:set var="sysd">
-			<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
-		</c:set>
-		<input type="date" id="dateserch" class="form-control mb-4" value="${mydate}" max="${sysd}">
-
-		<form id="select" action="${pageContext.request.contextPath}/user/main">
-			<input type="hidden" id="c_code" name="parent_code" value="">
-			<input type="hidden" id="i_code" name="code_no" value="">
-			<input type="hidden" id="d_code" name="sdate" value="">
-		</form>
-	</div>
-	<div class="form-group col-xs-12">
-		<div class="float-left col-md-6 p-1">
+	<div class="form-group row">
+		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
-					<td class="table-active ">부류</td>
+					<td class="table-active text-center">날짜선택</td>
+				</tr>
+				<tr>
+					<td>
+						<!-- 현재날짜를 넘지 않게 max값 지정 --> <c:set var="now" value="<%=new java.util.Date()%>" /> <c:set var="sysd">
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
+						</c:set> <input type="date" id="dateserch" class="form-control" value="${mydate}" max="${sysd}">
+					</td>
+				</tr>
+			</table>
+			<form id="select" action="${pageContext.request.contextPath}/user/main">
+				<input type="hidden" id="c_code" name="parent_code" value="">
+				<input type="hidden" id="i_code" name="code_no" value="">
+				<input type="hidden" id="d_code" name="sdate" value="">
+			</form>
+		</div>
+		<div class="col-md-4 p-1">
+			<table class="table table-bordered " style="font-size: 15px;">
+				<tr>
+					<td class="table-active text-center">부류</td>
 				</tr>
 				<tr>
 					<td><select id="category" class="form-control">
@@ -95,12 +97,13 @@ $("#").scrollTop($(document).height());
 				</tr>
 			</table>
 		</div>
-
-
-		<div class="float-left col-md-6 p-1">
+		
+		<div class="gohere" id="gohere"></div>
+		
+		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
-					<td class="table-active ">품목</td>
+					<td class="table-active text-center">품목</td>
 				</tr>
 				<tr>
 					<td><select id="item1" class="form-control">
@@ -121,16 +124,16 @@ $("#").scrollTop($(document).height());
 		</div>
 	</div>
 
+
 	<!-- spinner -->
 	<div class="loading loadspin " style="position: relative; z-index: 1; width: 100%; height: 100%; display: none;">
-		<div class="spinner-border loadspin" role="status" style="display: block; position: fixed; z-index: 1031; top: 40%; left: 48%; display: none;">
+		<div class="spinner-border loadspin" role="status" style="display: block; position: fixed; z-index: 1031; top: 35%; left: 48%; display: none;">
 			<span class="sr-only loadspin " style="display: none;">Loading...</span>
 		</div>
 	</div>
 
-
-	<div class="form-group">
-		<button id="btn_search" class="btn-secondery btn-lg col-md-3 float-right mb-4">조회하기</button>
+	<div class="form-group text-right">
+		<button id="btn_search" class="btn-primary btn-lg col-md-3">조회하기</button>
 	</div>
 
 	<div class="form-group ">
@@ -139,35 +142,35 @@ $("#").scrollTop($(document).height());
 				<tr>
 					<th class="table-active">구분</th>
 					<c:forEach items="${target}" var="tar">
-						<th>${tar}</th>
+						<th class="text-center">${tar}</th>
 					</c:forEach>
 				</tr>
 
 				<tr>
 					<td class="table-active">평균</td>
 					<c:forEach items="${average}" var="avg">
-						<td>${avg}</td>
+						<td class="text-right">${avg}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
 					<td class="table-active">최고값</td>
 					<c:forEach items="${maxvalue}" var="maxval">
-						<td>${maxval}</td>
+						<td class="text-right">${maxval}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
 					<td class="table-active">최저값</td>
 					<c:forEach items="${minvalue}" var="minval">
-						<td>${minval}</td>
+						<td class="text-right">${minval}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
 					<td class="table-active">등락률</td>
 					<c:forEach items="${flrate}" var="rate">
-						<td>${rate}</td>
+						<td class="text-right">${rate}</td>
 					</c:forEach>
 				</tr>
 			</table>
@@ -177,37 +180,6 @@ $("#").scrollTop($(document).height());
 		<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 	</div>
 </div>
-
-<!--         <p>똑똑한 농부들</p> -->
-<!--         <div class="row"> -->
-<!--             <div class="col-xl-6"> -->
-<!--                 <div class="card mb-4"> -->
-<!--                     <div class="card-header"> -->
-<!--                         <i class="fas fa-chart-area mr-1"></i> -->
-<!--                         농산물 시세분석 -->
-<!--                     </div> -->
-<%--                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div> --%>
-<!--                 </div> -->
-<!--             </div> -->
-<!--             <div class="col-xl-6"> -->
-<!--                 <div class="card mb-4"> -->
-<!--                     <div class="card-header"> -->
-<!--                         <i class="fas fa-chart-bar mr-1"></i> -->
-<!--                         Bar Chart Example -->
-<!--                     </div> -->
-<%--                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div> --%>
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--         <div class="card mb-4"> -->
-<!--             <div class="card-header"> -->
-<!--                 <i class="fas fa-table mr-1"></i> -->
-<!--                 DataTable Example -->
-<!--             </div> -->
-
-<!--         </div> -->
-
-
 
 <script> 
 	$(document).ready(function(){

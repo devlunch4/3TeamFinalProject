@@ -49,7 +49,7 @@ public class UserController {
 	// 20210302_KJH items - > codes 변경 test ok
 	@RequestMapping("main")
 	public String main(Model model, CodesVo codesVo, String sdate) {
-		logger.debug("In  main()");
+		logger.debug("In main()");
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
@@ -144,6 +144,7 @@ public class UserController {
 	// 관리자가 회원상세정보 보는거 03/03 (경찬)
 	@RequestMapping(path = "userDetail", method = { RequestMethod.POST })
 	public String userForm(Model model, String user_id) {
+		logger.debug("In userForm()");
 		UserVo user = userService.selectUser(user_id);
 		// 시설카운트
 		int fcount = fsurpportService.fmanageCount(user_id);
@@ -166,6 +167,7 @@ public class UserController {
 	// 회원이 정보수정 하는거 03/05(경찬)
 	@RequestMapping(path = "modifyUser", method = { RequestMethod.POST })
 	public String modifyUser(UserVo userVo) {
+		logger.debug("In modifyUser()");
 		return "tiles.user.modifyUser";
 	}
 
@@ -173,6 +175,7 @@ public class UserController {
 	// 수정 03/08 (경찬)
 	@RequestMapping(path = "modifyUser2", method = { RequestMethod.POST })
 	public String modifyUser2(UserVo userVo, Model model) {
+		logger.debug("In modifyUser2()");
 		userVo = userService.modifyUser(userVo);
 		List<UserVo> userList = userService.selectAllUser();
 		model.addAttribute("userList", userList);
@@ -182,6 +185,7 @@ public class UserController {
 	// 모든 회원정보 엑셀 다운로드 03/05 (경찬)
 	@RequestMapping("userExcelDownload")
 	public String userExcelDownload(Model model) {
+		logger.debug("In userExcelDownload()");
 		List<String> header = new ArrayList<String>();
 		header.add("아이디");
 		header.add("이름");
@@ -246,6 +250,7 @@ public class UserController {
 	@RequestMapping("modifyCode2")
 	public String modifyCode2(CodesVo codesVo, Model model) {
 		logger.debug("In modifyCode2()");
+		logger.debug("codesVo:{}",codesVo);
 		codesVo = codesService.modifyCode(codesVo);
 		List<CodesVo> codesList = codesService.allCodes();
 		model.addAttribute("codeList", codesList);

@@ -74,15 +74,12 @@ public class FsurpportController {
 	// ggy_20210302 : 농업지원-영농일지 내 일지 페이징 목록조회를 위한 진입페이지
 	@RequestMapping("main")
 	public String main(String user_id, Model model) {
-
 		logger.debug("/finalProject/main 진입");
-
 		if (user_id != null) {
 			model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList(user_id));
 		}
 //		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-
 		return "tiles.fsurpport.fsurpportMain";
 	}
 
@@ -90,7 +87,6 @@ public class FsurpportController {
 	@RequestMapping(path = "searchAllFsurpportList", method = { RequestMethod.POST })
 	public String searchAllFsurpportList(HttpServletRequest req, Model model) {
 		logger.debug("searchAllFsurpportList 진입");
-
 		logger.debug("값 확인 startDate : {}, endDate : {}", req.getParameter("startDate"), req.getParameter("endDate"));
 
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();

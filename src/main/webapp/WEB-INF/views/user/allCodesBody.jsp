@@ -41,14 +41,16 @@
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead class="thead-light">
 								<tr role="row">
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 101px;" aria-sort="ascending">코드번호</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 164px;">코드이름</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 71px;">사용여부</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Seq: activate to sort column descending" style="width: auto;" aria-sort="ascending">코드시퀀스</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Num: activate to sort column descending" style="width: auto;">코드번호</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: auto;">코드이름</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="USE: activate to sort column ascending" style="width: auto;">사용여부</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${codeList }" var="code">
 									<tr class="code" data-codeseq="${code.code_seq }">
+										<td class="text-left">${code.code_seq }</td>
 										<td class="text-left">${code.code_no }</td>
 										<td class="text-left">${code.code_nm }</td>
 										<td class="text-center">${code.use_yn }</td>

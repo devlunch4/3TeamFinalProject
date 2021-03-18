@@ -16,12 +16,12 @@
 <div class="container-fluid">
 	<h3 class="mt-4">코드이름 [ ${code.code_nm } ] 의 코드 정보</h3>
 	<form class="form-horizontal" id="frm" role="form">
-		<input type="hidden" name="code_seq" value="${code.code_seq} " />
+		<input type="hidden" name="code_seq" value="${code.code_seq }" />
 
 		<div class="form-group">
-			<label class="small mb-3" for="code_seq">코드 고유번호</label>
+			<label class="small mb-3" for="code_seq1">코드 고유번호</label>
 			<div class="col-sm-10">
-				<input name="code_seq" class="form-control" readonly="readonly" value="${code.code_seq }" />
+				<input name="code_seq1" class="form-control" readonly="readonly" value="${code.code_seq }" />
 			</div>
 		</div>
 
