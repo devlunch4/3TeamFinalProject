@@ -72,7 +72,7 @@
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
 									<tr data-guidecode="${fmanage.manage_no }">
 										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.manage_no }</td>
-										<td id = "seow" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
+										<td class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
 										<td id = "selo" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다."><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 										<td id = "sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
 									</tr>
