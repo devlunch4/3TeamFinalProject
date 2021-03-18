@@ -26,6 +26,9 @@
 
 		<!-- 20210306 SHS MarketVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.MarketVo" alias="MarketVo" />
+		
+		<!-- 20210318_ggy : miniMarketVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.MiniMarketVo" alias="miniMarketVo" />
 
 		<!-- 20210309 SHS FileVo typeAliases -->
 		<!-- <typeAlias type="kr.or.ddit.farm.model.FilesVo" alias="FilesVo" /> -->
@@ -100,6 +103,9 @@
 		
 		<!-- 20210312 KWS seasons mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/seasons.xml" />
+		
+		<!-- 20210318_ggy miniMarket mappers -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/miniMarket.xml" />
 
 	</mappers>
 

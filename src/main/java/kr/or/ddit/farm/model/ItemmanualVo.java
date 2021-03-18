@@ -12,6 +12,8 @@ public class ItemmanualVo {
 	private int file_no;
 	private String item_code;
 	private String file_nm;
+	private String code_nm;
+	
 	public int getManual_code() {
 		return manual_code;
 	}
@@ -54,12 +56,20 @@ public class ItemmanualVo {
 	public void setFile_nm(String file_nm) {
 		this.file_nm = file_nm;
 	}
-	
+	public String getCode_nm() {
+		return code_nm;
+	}
+	public void setCode_nm(String code_nm) {
+		this.code_nm = code_nm;
+	}
 	@Override
 	public String toString() {
 		return "ItemmanualVo [manual_code=" + manual_code + ", writer=" + writer + ", ifm_nm=" + ifm_nm + ", reg_dt="
-				+ reg_dt + ", file_no=" + file_no + ", item_code=" + item_code + ", file_nm=" + file_nm + "]";
+				+ reg_dt + ", file_no=" + file_no + ", item_code=" + item_code + ", file_nm=" + file_nm + ", code_nm="
+				+ code_nm + "]";
 	}
+	
+	
 	
 	
 
