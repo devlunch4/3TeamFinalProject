@@ -30,7 +30,7 @@
 		(notice_no, writer, title,content, reg_dt, file_no, hit, use_yn)
 		VALUES (
 		(SELECT NVL(MAX(notice_no),0)+1 from notice),
-		#{writer},
+		'admin',
         #{title},
         #{content},
         sysdate,
