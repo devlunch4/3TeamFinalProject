@@ -199,6 +199,7 @@ public class UserController {
 	// 모든 코드를 조회하는거 03/06 (경찬)
 	@RequestMapping("codesView")
 	public String codesView(Model model) {
+		logger.debug("In codesView()");
 		List<CodesVo> codeList = codesService.allCodes();
 		model.addAttribute("codeList", codeList);
 		return "tiles.user.allCodes";
@@ -207,6 +208,7 @@ public class UserController {
 	// 코드 상세정보를 조회 03/08 (경찬)
 	@RequestMapping(path = "codeDetail", method = { RequestMethod.POST })
 	public String codeDetail(Model model, String code_seq) {
+		logger.debug("In codeDetail()");
 		CodesVo code = codesService.selectCodes(code_seq);
 		model.addAttribute("code", code);
 		return "tiles.user.codeDetail";
@@ -215,6 +217,7 @@ public class UserController {
 	// 모든 코드정보 엑셀 다운로드 03/08 (경찬)
 	@RequestMapping("CodeExcelDownload")
 	public String excelDownLoad(Model model) {
+		logger.debug("In excelDownLoad()");
 		List<String> header = new ArrayList<String>();
 		header.add("코드번호");
 		header.add("코드이름");
@@ -233,6 +236,7 @@ public class UserController {
 	// 관리자가 코드수정 하는거 03/08 (경찬)
 	@RequestMapping(path = "modifyCode", method = { RequestMethod.POST })
 	public String modifyCode(String code_seq, Model model) {
+		logger.debug("In modifyCode()");
 		CodesVo code = codesService.selectCodes(code_seq);
 		model.addAttribute("code", code);
 		return "tiles.user.modifyCode";
@@ -241,6 +245,7 @@ public class UserController {
 	// 관리자가 코드수정 하는거 03/08 (경찬)
 	@RequestMapping("modifyCode2")
 	public String modifyCode2(CodesVo codesVo, Model model) {
+		logger.debug("In modifyCode2()");
 		codesVo = codesService.modifyCode(codesVo);
 		List<CodesVo> codesList = codesService.allCodes();
 		model.addAttribute("codeList", codesList);
@@ -250,6 +255,7 @@ public class UserController {
 	// 로그인하고 메인페이지 가기전에 비번입력하는거 03/09 (경찬)
 	@RequestMapping(path = "userCheck", method = { RequestMethod.GET })
 	public String userCheck() {
+		logger.debug("In userCheck()");
 		return "tiles.user.userCheck";
 	}
 
@@ -257,6 +263,7 @@ public class UserController {
 	@RequestMapping(path = "userCheck2", method = { RequestMethod.POST })
 	public String userCheck2(UserVo userVo, String input_pass, HttpSession session, HttpServletResponse response)
 			throws IOException {
+		logger.debug("In userCheck2()");
 		response.setContentType("text/html; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
@@ -273,6 +280,7 @@ public class UserController {
 	// 사용자가 개인정보 수정하는거 03/10 (경찬)
 	@RequestMapping(path = "modifyUser3", method = { RequestMethod.POST })
 	public String modifyUser2(UserVo userVo) {
+		logger.debug("In modifyUser2()");
 		userVo = userService.modifyUser2(userVo);
 		return "tiles.main.main";
 	}
