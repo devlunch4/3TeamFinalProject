@@ -53,15 +53,12 @@ public class UserController {
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
-
 		Date date = new Date();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String mydate = transFormat.format(date);
-
 		if (sdate != null) {
 			mydate = sdate;
 		}
-
 		if (codesVo.getCode_no() != null) {
 			itemcategorycode = codesVo.getParent_code();
 			itemcode = codesVo.getCode_no();
@@ -118,19 +115,17 @@ public class UserController {
 			model.addAttribute("itemcategorycode", itemcategorycode);
 			model.addAttribute("itemcode", itemcode);
 			model.addAttribute("mydate", mydate);
-
 		} catch (IOException e1) {
 		}
-
 		List<CodesVo> codesList = fdataService.selectAllCodes();
 		model.addAttribute("codesList", codesList);
-
 		return "tiles.main.main";
 	}
 
 	// 로그인한 회원이 자기정보 보는거 02/26(경찬)
 	@RequestMapping(path = "myPage", method = { RequestMethod.GET })
 	public String myPage(UserVo userVo) {
+		logger.debug("in myPage()");
 		return "tiles.user.userinfo";
 	}
 
@@ -139,15 +134,10 @@ public class UserController {
 	public String allUser(Model model) {
 		logger.debug("in allUser()");
 		long start = System.currentTimeMillis(); // 시작하는 시점 계산
-
 		List<UserVo> userList = userService.selectAllUser();
-
 		long end = System.currentTimeMillis(); // 프로그램이 끝나는 시점 계산
-
 		logger.debug("실행 시간 : " + (end - start) / 1000.0 + "초");
-
 		model.addAttribute("userList", userList);
-
 		return "tiles.user.allUser";
 	}
 
@@ -155,17 +145,13 @@ public class UserController {
 	@RequestMapping(path = "userDetail", method = { RequestMethod.POST })
 	public String userForm(Model model, String user_id) {
 		UserVo user = userService.selectUser(user_id);
-
 		// 시설카운트
 		int fcount = fsurpportService.fmanageCount(user_id);
-
 		// 일지카운트
 		int ffcount = fsurpportService.fsurCount(user_id);
-
 		model.addAttribute("user", user);
 		model.addAttribute("count", fcount);
 		model.addAttribute("ffcount", ffcount);
-
 		return "tiles.user.userDetail";
 	}
 

@@ -9,9 +9,8 @@
 /* } */
 
 /* main { */
-/* 	margin-bottom: 200% */ 
+/* 	margin-bottom: 200% */
 /* } */
-
 .floating-menu {
 	border-radius: 100%;
 	z-index: 999;
@@ -52,18 +51,19 @@
 	background-image: -o-linear-gradient(top, #1C5E91 0, #167699 100%);
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#1C5E91),
 		to(#167699));
-	background-image: linear-gradient(to bottom, #1C5E91 0, #167699 100%);/*백그라운드 색*/
+	background-image: linear-gradient(to bottom, #1C5E91 0, #167699 100%);
+	/*백그라운드 색*/
 	background-repeat: repeat-x;
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	border-radius: 50px;
 	z-index: -1;
- 	top: 0; 
- 	left: 0; 
- 	-webkit-transition: .1s; 
- 	-o-transition: .1s; 
- 	transition: .1s 
+	top: 0;
+	left: 0;
+	-webkit-transition: .1s;
+	-o-transition: .1s;
+	transition: .1s
 }
 
 /* .ripple { */
@@ -98,37 +98,30 @@
 
 <!-- floating right topt bottom -->
 <script>
-$(document).ready(function(){
-    $(function () {
-        $('#homeup').click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-var scrollHeight = $(document).height();
-        $('#homedown').click(function () {
-            $('body,html').animate({
-                scrollTop: scrollHeight
-            }, 800);
-            return false;
-        });
-    });
-  
-});
+	$(document).ready(function() {
+		$(function() {
+			$('#homeup').click(function() {
+				$('body,html').animate({
+					scrollTop : 0
+				}, 800);
+				return false;
+			});
+			var scrollHeight = $(document).height();
+			$('#homedown').click(function() {
+				$('body,html').animate({
+					scrollTop : scrollHeight
+				}, 800);
+				return false;
+			});
+		});
+
+	});
 </script>
 <!-- floating right topt bottom -->
 <nav class="floating-menu">
 	<ul class="main-menu">
-		<li><a href="#homeup" id="homeup">
-		↑
-		</a>
-		</li> 
-		<li> <a href="#homedown" id="homedown">
-		<!--<a href="#" class="ripple"> -->
-		↓
-		</a>
-		</li>
+		<li><a href="#homeup" id="homeup" style="text-decoration: none;">↑</a></li>
+		<li><a href="#homedown" id="homedown" style="text-decoration: none;">↓</a></li>
 	</ul>
 	<div class="menu-bg"></div>
 </nav>
@@ -159,7 +152,7 @@ var scrollHeight = $(document).height();
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
 				<c:if test="${S_USER != null}">
-				<form action="userCheck" method="POST">
+					<form action="userCheck" method="POST">
 						<a class="" href="#">최근로그인시간</a>
 					</form>
 					<form action="userCheck" method="POST">
