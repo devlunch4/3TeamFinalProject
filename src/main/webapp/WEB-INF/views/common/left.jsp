@@ -114,7 +114,7 @@
 				<nav class="sb-sidenav-menu-nested nav">
 					<a class="nav-link" href="${pageContext.request.contextPath }/qna/view">문의사항</a>
 					<a class="nav-link" href="${pageContext.request.contextPath }/fnotice/noticesView">공지사항</a>
-					<a class="nav-link" href="${pageContext.request.contextPath }/market/minimarketView">미니장터</a>
+					<a class="nav-link" href="${pageContext.request.contextPath }/fcommunity/miniMarketView">미니장터</a>
 				</nav>
 			</div>
 		</div>
