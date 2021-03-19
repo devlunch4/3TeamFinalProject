@@ -7,13 +7,13 @@ public class MiniMarketVo {
 	
 	private int market_no;
 	private String writer;
-	private int head_code;
+	private String head_code;
 	private String title;
 	private String item_code;
 	private String content;
 	private String price;
 	private Date reg_dt;
-	private String thumbnail;
+	private int thumbnail;
 	private String mobile;
 	private int hit;
 	private String code_nm;
@@ -30,10 +30,10 @@ public class MiniMarketVo {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public int getHead_code() {
+	public String getHead_code() {
 		return head_code;
 	}
-	public void setHead_code(int head_code) {
+	public void setHead_code(String head_code) {
 		this.head_code = head_code;
 	}
 	public String getTitle() {
@@ -66,10 +66,10 @@ public class MiniMarketVo {
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}
-	public String getThumbnail() {
+	public int getThumbnail() {
 		return thumbnail;
 	}
-	public void setThumbnail(String thumbnail) {
+	public void setThumbnail(int thumbnail) {
 		this.thumbnail = thumbnail;
 	}
 	public String getMobile() {

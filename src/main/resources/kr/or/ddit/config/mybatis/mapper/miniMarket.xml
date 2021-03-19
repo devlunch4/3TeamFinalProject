@@ -61,14 +61,48 @@
 							
 	</select>
 	
-	<!--  -->
+	<!-- 20210319_ggy : 미니장터 게시글 품목 종류 조회 -->
+	<select id="selectItemList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code in 
+		    (select code_no
+		    from codes
+		    where parent_code = 
+		        (select code_no
+		        from codes
+		        where parent_code = 'i'))
+		and use_yn = 'Y'
+	</select>
 	
 	<!-- 20210319_ggy : 미니장터 게시글 등록을 위한 머릿말조회 -->
 	<select id="selectMiniMarketList" resultType="codesVo">
 		select *
 		from codes
 		where parent_code = 'mhead'
+		and use_yn = 'Y'
 	</select>
+	
+	<!-- 20210319_ggy : 게시글 등록 후 게시글 번호 가져오기 -->
+	<insert id="registMiniMarketPost" parameterType="miniMarketVo" >
+		
+		<selectKey keyProperty = "market_no" resultType="int" order="BEFORE">
+			select seq_market.NEXTVAL from dual
+		</selectKey>
+		
+		INSERT INTO market VALUES(
+		#{market_no }, #{writer }, #{head_code },
+		#{title }, #{item_code }, #{content },
+		#{price }, sysdate, #{thumbnail }, #{mobile },
+		0, 'Y')
+		
+	</insert>
+	
+	<!-- 20210319_ggy : 미니장터파일 등록 -->
+	<insert id="registmarketfiles" parameterType="marketFilesVo">
+		INSERT INTO marketfiles VALUES(
+		seq_marketfiles.NEXTVAL, #{market_no }, #{file_no }, 'Y')
+	</insert>
 		
 
 </mapper>

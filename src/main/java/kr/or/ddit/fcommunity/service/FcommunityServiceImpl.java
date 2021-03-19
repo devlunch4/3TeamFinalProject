@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.CodesVo;
+import kr.or.ddit.farm.model.MarketFilesVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 import kr.or.ddit.fcommunity.repository.FcommunityDaoImpl;
 
@@ -29,5 +30,25 @@ public class FcommunityServiceImpl implements FcommunityService{
 	public List<CodesVo> selectMiniMarketList() {
 		return fcommunityDao.selectMiniMarketList();
 	}
+	
+	// 20210319_ggy : 미니장터 게시글 품목 종류 조회
+	@Override
+	public List<CodesVo> selectItemList() {
+		return fcommunityDao.selectItemList();
+	}
+	
+	// 20210319_ggy : 미니장터 게시글 등록
+	@Override
+	public int registMiniMarketPost(MiniMarketVo miniMarketVo) {
+		return fcommunityDao.registMiniMarketPost(miniMarketVo);
+	}
+	
+	// 20210319_ggy : 미니장터파일 등록
+	@Override
+	public int registmarketfiles(MarketFilesVo marketFilesVo) {
+		return fcommunityDao.registmarketfiles(marketFilesVo);
+	}
+	
+
 
 }

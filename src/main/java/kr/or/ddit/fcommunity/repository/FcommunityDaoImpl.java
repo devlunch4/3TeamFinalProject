@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
+import kr.or.ddit.farm.model.MarketFilesVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 
 //20210318_ggy : FcommunityDaoImpl 생성
@@ -28,6 +29,28 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	public List<CodesVo> selectMiniMarketList() {
 		return template.selectList("miniMarkets.selectMiniMarketList");
 	}
+	
+	// 20210319_ggy : 미니장터 게시글 품목 종류 조회
+	@Override
+	public List<CodesVo> selectItemList() {
+		return template.selectList("miniMarkets.selectItemList");
+	}
+	
+	// 20210319_ggy : 미니장터 게시글 등록
+	@Override
+	public int registMiniMarketPost(MiniMarketVo miniMarketVo) {
+		template.insert("miniMarkets.registMiniMarketPost", miniMarketVo);
+		
+		return miniMarketVo.getMarket_no(); 
+	}
+	
+	// 20210319_ggy : 미니장터파일 등록
+	@Override
+	public int registmarketfiles(MarketFilesVo marketFilesVo) {
+		return template.insert("miniMarkets.registmarketfiles", marketFilesVo);
+	}
+	
+	
 	
 	
 	

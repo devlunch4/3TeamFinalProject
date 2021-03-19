@@ -9,6 +9,21 @@
 		$("#picture").change(function() {
 			readURL(this);
 		});
+
+		// file_file1 input의 파일 변경시 이벤트 
+		$("#file_file1").change(function() {
+			readURL(this);
+		});
+
+		// file_file2 input의 파일 변경시 이벤트 
+		$("#file_file2").change(function() {
+			readURL(this);
+		});
+
+		// file_file3 input의 파일 변경시 이벤트 
+		$("#file_file3").change(function() {
+			readURL(this);
+		});
 	});
 
 	function readURL(input) {
@@ -27,14 +42,14 @@
 
 <form action="${pageContext.request.contextPath}/fcommunity/registMiniMarket" method="post" enctype="multipart/form-data">
 	
-	<input type="text" name="writer" value="${S_USER.user_id }" required="required">
+	<input type="text" name="writer" value="${S_USER.user_id }" readonly="readonly" required="required">
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">머릿말:</label>
-		<select name="head_code" onchange="location.href=this.value" required="required" >
+		<select name="head_code" required="required" >
 			<option value="" disabled="disabled">선택</option>
 			<c:forEach items="${miniMarketList }" var="miniMarketList">
-				<option value="${miniMarketList.code_seq }">
+				<option value="${miniMarketList.code_no }">
 					${miniMarketList.code_nm }
 				</option>
 			</c:forEach>
@@ -44,15 +59,20 @@
 	
 	<div class="form-group col-md-2">
 		<label class="small mb-1" for="input_cls_code">품목:</label>
-		<select name="head_code" onchange="location.href=this.value" required="required" >
+		<select name="item_code" required="required" >
 			<option value="" disabled="disabled">선택</option>
-			<c:forEach items="${miniMarketList }" var="miniMarketList">
-				<option value="${miniMarketList.code_seq }">
-					${miniMarketList.code_nm }
+			<c:forEach items="${itemList }" var="itemList">
+				<option value="${itemList.code_no }">
+					${itemList.code_nm }
 				</option>
 			</c:forEach>
 		</select>
 		
+	</div>
+	
+	<div class="form-group">
+		<label class="small mb-1" for="input_plant_prd">제목</label> 
+		<input type="text" name="title" value="" class="form-control py-4" required="required">
 	</div>
 
 	<div class="form-group">
@@ -110,7 +130,7 @@
 		<label class="small mb-1" for="input_plant_prd">첨부파일1</label>
 		<div class="mailbox-attachment-info">
 			<div class="">
-				<input id="picture" class="form" type="file" name="file_file1" accept=".gif, .jpg, .png" style="height: 37px;" />
+				<input id="file_file1" class="form" type="file" name="file_file1" accept="*.*" style="height: 37px;" />
 			</div>
 		</div>
 	</div>
@@ -119,7 +139,7 @@
 		<label class="small mb-1" for="input_plant_prd">첨부파일2</label>
 		<div class="mailbox-attachment-info">
 			<div class="">
-				<input id="picture" class="form" type="file" name="file_file2" accept=".gif, .jpg, .png" style="height: 37px;" />
+				<input id="file_file2" class="form" type="file" name="file_file2" accept="*.*" style="height: 37px;" />
 			</div>
 		</div>
 	</div>
@@ -128,7 +148,7 @@
 		<label class="small mb-1" for="input_plant_prd">첨부파일3</label>
 		<div class="mailbox-attachment-info">
 			<div class="">
-				<input id="picture" class="form" type="file" name="file_file3" accept=".gif, .jpg, .png" style="height: 37px;" />
+				<input id="file_file3" class="form" type="file" name="file_file3" accept="*.*" style="height: 37px;" />
 			</div>
 		</div>
 	</div>
