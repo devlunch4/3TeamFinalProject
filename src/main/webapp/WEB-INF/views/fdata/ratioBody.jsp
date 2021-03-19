@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- 0309_KJH datepiker -->
 <link rel="stylesheet" href="../resources/datepicker/jquery-ui.css" type="text/css" />
 <script src="../resources/datepicker/jquery-ui.js"></script>
-
 <script src="../resources/datepicker/jquery.mtz.monthpicker.js"></script>
 
 <!-- 0309_KJH billboard chart js,css -->
@@ -20,25 +17,24 @@
 
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
-<h4 class="mt-2">품목별 비율</h4>
-<div class="card mt-2 col-sm-12 px-0">
-	<h5 class="card-header">총게시글 :</h5>
-	
+<h3 class="mt-4">품목별 비율</h3>
+<div class="card mt-4 col-sm-12 px-0">
+	<!-- <h5 class="card-header">총게시글 :</h5> -->
+
 	<form action="${pageContext.request.contextPath}/fdata/ratio" id="selec">
-		<input type="hidden" id="selctype" name = "selec" value="week">
+		<input type="hidden" id="selctype" name="selec" value="week">
 		<input type="hidden" id="sval" name="sdate">
 		<input type="hidden" id="eval" name="edate">
 	</form>
 
+	<div class="form-group row text-center m-0">
+		<button id="all" class="btn btn-outline-dark col m-2">전체</button>
+		<button id="week" class="btn btn-outline-dark col m-2 ">주별</button>
+		<button id="month" class="btn btn-outline-dark col m-2">월별</button>
+		<button id="year" class="btn btn-outline-dark col m-2 ">년별</button>
+	</div>
 
-	<div class="input-group">
-	<div class = "text-center col-md-12 m-2 p-2">
-		<button id="all" class="btn btn-outline-dark">전체</button>
-		<button id="week" class="btn btn-outline-dark">주별</button> 
-		<button id="month" class="btn btn-outline-dark">월별</button>
-		<button id="year" class="btn btn-outline-dark">년별</button>
-	</div>
-	</div>
+
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="sysd">
 		<fmt:formatDate value="${now}" pattern="yyyy-'01'" />
@@ -47,30 +43,28 @@
 	<c:set var="sysd2">
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
-	<div class="input-group">
-		<input type="text" id="week-picker" value="입력칸을 클릭하여 주 선택" name="week" class="col-12  text-center"> 
-		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col-6"> 
-		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col-6"> 
-		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col-6"> 
-		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col-6">
+
+	<div class="form-group m-0">
+		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
+		<div class="row text-center">
+			<input type="text" id="week-picker" value="주간 선택" name="week" class="col m-2 text-center btn btn-info">
+			<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col m-2 btn btn-info">
+			<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col m-2 btn btn-info">
+			<input type="text" id="syear-picker" name="syear" style="display: none;" class="col m-2 btn btn-info">
+			<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col m-2 btn btn-info">
+			<button id="sel" class="btn btn-primary col-3 m-2">조 회</button>
+		</div>
 	</div>
 
-		<div class = "text-center col-md-12 m-2 p-2">
-	<div class="form-group text-center">
-		<button id="sel" class="btn btn-outline-dark col-4">조회하기</button>
-	</div>
-	</div>
-	
-	<div class="align-center px-0">
+	<div class="align-center px-0 mb-4">
 		<div class="container px-0">
 			<div class="col-12">
-				<h4 class="mt-2 text-center">품목별 피율</h4>
+				<h4 class="mt-2 text-center">품목별 비율</h4>
 				<div id="multilineLabel"></div>
-
 			</div>
-				<c:if test="${fn:length(farmCount) == 0}">
+			<c:if test="${fn:length(farmCount) == 0}">
 				<div class="col-12 text-center">검색된 통계가 없습니다.</div>
-				</c:if>
+			</c:if>
 		</div>
 	</div>
 </div>
@@ -111,7 +105,6 @@ $(function() {
    var dateFormat = 'yy-mm-dd'
 	   		sstartDate = $.datepicker.formatDate( dateFormat, sstartDate, inst.settings );
             sendDate = $.datepicker.formatDate( dateFormat, sendDate, inst.settings );
-
    $('#week-picker').val(sstartDate + '~' + sendDate);
             
             setTimeout("applyWeeklyHighlight()", 100);
@@ -121,7 +114,6 @@ $(function() {
   }
     });
     
-
     
     var soptions = {
             pattern: 'yyyy-mm'       // input태그에 표시될 형식
@@ -157,7 +149,6 @@ $(function() {
     
     //초기값을 오늘 날짜로 설정
     $('#syear-picker').datepicker('setDate', '-1Y'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-
     
     $("#eyear-picker").datepicker({
         dateFormat: 'yy' //Input Display Format 변경
@@ -175,13 +166,9 @@ $(function() {
     
     //초기값을 오늘 날짜로 설정
     $('#eyear-picker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-
 });
-
 function applyWeeklyHighlight() {
-
  $('.ui-datepicker-calendar tr').each(function() {
-
   if ($(this).parent().get(0).tagName == 'TBODY') {
    $(this).mouseover(function() {
     $(this).find('a').css({
@@ -198,11 +185,8 @@ function applyWeeklyHighlight() {
     $(this).find('a').addClass('ui-state-default');
    });
   }
-
  });
 }
-
-
 $("#week").on("click",function(){
 	$("#selctype").val("week");
 	$("#week-picker").show();
@@ -227,7 +211,6 @@ $("#week").on("click",function(){
 		$("#syear-picker").show();
 		$("#eyear-picker").show();
 });
-
 	$("#sel").on("click",function(){
 		
 		if($("#selctype").val() == "week"){
@@ -254,8 +237,6 @@ $("#week").on("click",function(){
 		$("#selctype").val("all")
 		$("#selec").submit();
 	});
-
-
 //      	var chart = bb.generate({
 //      		  data: {
 //      		    columns: [
@@ -298,40 +279,32 @@ $("#week").on("click",function(){
      		  },
      		  bindto: "#multilineLabel"
      		});
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", 75, false);
      			chart.flush(true);
      		}, 2000);
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", 50, false);
      			chart.flush(true);
      		}, 4000);
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", 25, false);
      			chart.flush(true);
      		}, 6000);
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", -25, false);
      			chart.flush(true);
      		}, 8000);
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", -50, false);
      			chart.flush(true);
      		}, 10000);
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", -75, false);
      			chart.flush(true);
      		}, 12000);
-
      		setTimeout(function() {
      			chart.config("gauge.arcLength", -100, false);
      			chart.flush(true);
      		}, 14000);
-
-</script>
+</script> 

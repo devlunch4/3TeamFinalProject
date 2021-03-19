@@ -69,14 +69,16 @@
 		<div class="float-left col-md-12 p-1  text-center">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
-					<td class="table-active ">수확량</td>
+					<td class="table-active p-0">작물명</td>
+					<td class="table-active p-0">수확량</td>
 				</tr>
+				
+				<c:forEach items="${farmCount}" var="fcount">
 				<tr>
-					<td><select id="category" class="form-control">
-							<option value="100">식량작물</option>
-							<option value="200">채소류</option>
-					</select></td>
-				</tr>
+      		     	<td class="p-0">${fcount.content}</td>
+					<td class="p-0">${fcount.yield}</td>
+					</tr> 
+      		     	</c:forEach>
 			</table>
 		</div>
 	</div>

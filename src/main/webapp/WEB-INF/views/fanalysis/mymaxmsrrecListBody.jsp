@@ -9,19 +9,19 @@
 	// 		setTimeout("location.reload()", 10000);
 	// 	});
 	$(function() {
-		setInterval(
-				function() {
-					$
-							.ajax({
-								// type을 설정합니다.
-								type : 'POST',
-								url : "${pageContext.request.contextPath}/fanalysis/mymaxmsrrecList",
-								data : '',
-								success : function(data) {
-									$('#tb').html(data);
-								}
-							});
-				}, 5000);
+// 		setInterval(
+// 				function() {
+// 					$
+// 							.ajax({
+// 								// type을 설정합니다.
+// 								type : 'POST',
+// 								url : "${pageContext.request.contextPath}/fanalysis/mymaxmsrrecList",
+// 								data : '',
+// 								success : function(data) {
+// 									$('#tb').html(data);
+// 								}
+// 							});
+// 				}, 5000);
 	});
 </script>
 
@@ -29,19 +29,18 @@
 <h3 class="mt-4">시설관리</h3>
 
 <div class="card mt-2 px-0">
-	<h3 class="card-header">총게시글 :</h3>
-	<div class="card-body text-left p-1">
-
+<!-- 	<div class="card-body text-left p-1"> -->
+<div class="row"> 
 		<div class="table-responsive small">
 			<table class="table table-bordered text-center" id="tb">
-				<tr>
-					<th style="width: 25%;">장소</th>
-					<th style="width: 15%;">장비명</th>
-					<th style="width: 15%;">작물명</th>
-					<th style="width: 10%;">온도</th>
-					<th style="width: 10%;">습도</th>
-					<th style="width: 10%;">조도</th>
-					<th style="width: 15%;">등록일</th>
+				<tr class="thead-light"> 
+					<th class="p-0">장소</th>
+					<th class="p-0">장비명</th>
+					<th class="p-0">작물명</th>
+					<th class="p-0">온도</th>
+					<th class="p-0">습도</th>
+					<th class="p-0">조도</th>
+					<th class="p-0">등록일</th>
 				</tr>
 				<c:forEach items="${maxmrrecList}" var="mrrecList" varStatus="stat">
 					<c:if test="${fn:length(mrrecList.location) gt 0}">
@@ -69,17 +68,18 @@
 								<tr>
 							</c:if>
 						</c:forEach>
-						<td style="width: 25%;">${mrrecList.location}</td>
-						<td style="width: 15%;">${mrrecList.msr_nm}</td>
-						<td style="width: 15%;">${mrrecList.item_code}</td>
-						<td style="width: 10%;">${mrrecList.msr_temp}</td>
-						<td style="width: 10%;">${mrrecList.msr_humid}</td>
-						<td style="width: 10%;">${mrrecList.msr_bright}</td>
-						<td style="width: 15%;">${dt}</td>
+						<td class="p-0">${mrrecList.location}</td>
+						<td class="p-0">${mrrecList.msr_nm}</td>
+						<td class="p-0">${mrrecList.item_code}</td>
+						<td class="p-0">${mrrecList.msr_temp}</td>
+						<td class="p-0">${mrrecList.msr_humid}</td>
+						<td class="p-0">${mrrecList.msr_bright}</td>
+						<td class="p-0">${dt}</td>
 						</tr>
 					</c:if>
 				</c:forEach>
 			</table>
 		</div>
+		</div>
 	</div>
-</div>
+<!-- </div> -->

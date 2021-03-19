@@ -21,11 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.common.model.FilesVo;
-import kr.or.ddit.farm.model.ItemmanualVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.farm.model.ItemmanualVo;
-import kr.or.ddit.farm.model.MySimpleCodeVo;
 import kr.or.ddit.finfo.service.FinfoServiceImpl;
 import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 
