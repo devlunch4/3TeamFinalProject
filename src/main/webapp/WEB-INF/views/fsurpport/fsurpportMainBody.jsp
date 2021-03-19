@@ -18,12 +18,12 @@
 				<label class="small ml-2" for="">기간 선택</label>
 				<c:choose>
 					<c:when test="${searchFarmdiaryValue != null }">
-						<input type="date" name="startDate" value="${searchFarmdiaryValue.startDate }" class="btn btn-outline-dark ">
-						<input type="date" name="endDate" value="${searchFarmdiaryValue.endDate }" class="btn btn-outline-dark ">
+						<input type="date" name="startDate" value="${searchFarmdiaryValue.startDate }" class="btn btn-outline-dark " style="width: auto;">
+						<input type="date" name="endDate" value="${searchFarmdiaryValue.endDate }" class="btn btn-outline-dark " style="width: auto;">
 					</c:when>
 					<c:otherwise>
-						<input type="date" name="startDate" value="" class=" btn btn-outline-dark ">
-						<input type="date" name="endDate" value="" class=" btn btn-outline-dark ">
+						<input type="date" name="startDate" value="" class=" btn btn-outline-dark " style="width: auto;">
+						<input type="date" name="endDate" value="" class=" btn btn-outline-dark " style="width: auto;">
 					</c:otherwise>
 				</c:choose>
 			</div>
