@@ -25,6 +25,9 @@ public interface FcommunityService {
 	// 20210319_ggy : 미니장터파일 등록
 	int registmarketfiles(MarketFilesVo marketFilesVo);
 	
+	// 20210319_ggy : 미니장터 게시글 상세 조회
+	MiniMarketVo miniMarketInfo(MiniMarketVo miniMarketVo);
+	
 	
 	
 	

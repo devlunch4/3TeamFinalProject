@@ -50,6 +50,12 @@ public class FcommunityDaoImpl implements FcommunityDao {
 		return template.insert("miniMarkets.registmarketfiles", marketFilesVo);
 	}
 	
+	// 20210319_ggy : 미니장터 게시글 상세 조회
+	@Override
+	public MiniMarketVo miniMarketInfo(MiniMarketVo miniMarketVo) {
+		return template.selectOne("miniMarkets.miniMarketInfo", miniMarketVo);
+	}
+	
 	
 	
 	

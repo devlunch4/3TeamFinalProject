@@ -16,7 +16,8 @@ public class MiniMarketVo {
 	private int thumbnail;
 	private String mobile;
 	private int hit;
-	private String code_nm;
+	private String item_code_nm;
+	private String head_code_nm;
 	
 	public int getMarket_no() {
 		return market_no;
@@ -84,20 +85,28 @@ public class MiniMarketVo {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getCode_nm() {
-		return code_nm;
+	public String getItem_code_nm() {
+		return item_code_nm;
 	}
-	public void setCode_nm(String code_nm) {
-		this.code_nm = code_nm;
+	public void setItem_code_nm(String item_code_nm) {
+		this.item_code_nm = item_code_nm;
+	}
+	public String getHead_code_nm() {
+		return head_code_nm;
+	}
+	public void setHead_code_nm(String head_code_nm) {
+		this.head_code_nm = head_code_nm;
 	}
 	
 	@Override
 	public String toString() {
 		return "MiniMarketVo [market_no=" + market_no + ", writer=" + writer + ", head_code=" + head_code + ", title="
 				+ title + ", item_code=" + item_code + ", content=" + content + ", price=" + price + ", reg_dt="
-				+ reg_dt + ", thumbnail=" + thumbnail + ", mobile=" + mobile + ", hit=" + hit + ", code_nm=" + code_nm
-				+ "]";
+				+ reg_dt + ", thumbnail=" + thumbnail + ", mobile=" + mobile + ", hit=" + hit + ", item_code_nm="
+				+ item_code_nm + ", head_code_nm=" + head_code_nm + "]";
 	}
+	
+	
 	
 	
 	

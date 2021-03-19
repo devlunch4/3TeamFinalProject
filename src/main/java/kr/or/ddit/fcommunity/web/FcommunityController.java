@@ -54,7 +54,7 @@ public class FcommunityController {
 		miniMarketVo.setMarket_no(market_no);
 		miniMarketVo.setWriter(writer);
 		
-//		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo());
+		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		
 		return "tiles.fcommunity.miniMarketInfo";
 	}

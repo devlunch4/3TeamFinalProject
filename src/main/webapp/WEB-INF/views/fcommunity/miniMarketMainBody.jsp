@@ -80,8 +80,9 @@
 						<table class="col-xs-6 col-md-12 table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" aria-sort="ascending">사진</th>
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column descending" aria-sort="ascending">제목</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Head: activate to sort column descending" aria-sort="ascending">머릿말</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" >사진</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column descending" >제목</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="WRITER: activate to sort column ascending">작성자</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="ITEM_CODE_NM: activate to sort column ascending">종류</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">작성날짜</th>
@@ -89,6 +90,7 @@
 							</thead>
 							<tfoot>
 								<tr>
+									<th rowspan="1" colspan="1">머리말</th>
 									<th rowspan="1" colspan="1">사진</th>
 									<th rowspan="1" colspan="1">제목</th>
 									<th rowspan="1" colspan="1">작성자</th>
@@ -98,14 +100,15 @@
 							</tfoot>
 							<tbody>
 								<c:forEach items="${miniMarketList }" var="miniMarketList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fsurpport/infoView?f_diary_no=${miniMarketList.market_no }'" >
+									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/miniMarketInfoView?writer=${S_USER.user_id }&market_no=${miniMarketList.market_no }'" >
+										<td>${miniMarketList.head_code_nm }</td>
 										<td>
 <%-- 											<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${miniMarketList.thumbnail }" width="50" height="50" > --%>
 											<img>
 										</td>
 										<td>${miniMarketList.title }</td>
 										<td>${miniMarketList.writer }</td>
-										<td>${miniMarketList.code_nm }</td>
+										<td>${miniMarketList.item_code_nm }</td>
 										<td>
 											<fmt:formatDate value="${miniMarketList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>

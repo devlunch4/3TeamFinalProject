@@ -10,20 +10,6 @@
 			readURL(this);
 		});
 
-		// file_file1 input의 파일 변경시 이벤트 
-		$("#file_file1").change(function() {
-			readURL(this);
-		});
-
-		// file_file2 input의 파일 변경시 이벤트 
-		$("#file_file2").change(function() {
-			readURL(this);
-		});
-
-		// file_file3 input의 파일 변경시 이벤트 
-		$("#file_file3").change(function() {
-			readURL(this);
-		});
 	});
 
 	function readURL(input) {

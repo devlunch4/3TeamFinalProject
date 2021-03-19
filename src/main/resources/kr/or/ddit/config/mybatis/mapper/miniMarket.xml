@@ -18,10 +18,13 @@
 			, m.thumbnail
 		    , m.mobile
 			, m.hit
-		    , c.code_nm code_nm
+		    , c.code_nm item_code_nm
+            , co.code_nm head_code_nm
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
+        JOIN codes co
+        ON m.head_code = co.code_no
 		WHERE m.use_yn = 'Y'
 		AND c.use_yn = 'Y'
 		ORDER BY reg_dt desc
@@ -33,8 +36,8 @@
 		where market_no = #{market_no }
 	</update>
 	
-	<!-- 20210318_ggy : 미니장터 게시글 상세조회 -->	
-	<select id="" parameterType="miniMarketVo" 
+	<!-- 20210319_ggy : 미니장터 게시글 상세조회 -->	
+	<select id="miniMarketInfo" parameterType="miniMarketVo" 
 					resultType="miniMarketVo">
 		
 		SELECT 
@@ -47,17 +50,20 @@
 			, m.price
 			, m.reg_dt
 			, m.thumbnail
-			, m.mobile
+		    , m.mobile
 			, m.hit
-		    , m.thumbnail 
-			, c.code_nm code_nm
+		    , c.code_nm item_code_nm
+            , co.code_nm head_code_nm
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
-		WHERE writer = #{writer }
-		AND m.market_no = #{market_no }
-		AND m.use_yn = 'Y'
+        JOIN codes co
+        ON m.head_code = co.code_no
+		WHERE m.use_yn = 'Y'
 		AND c.use_yn = 'Y'
+		AND writer = #{writer }
+		AND m.market_no = #{market_no }
+		ORDER BY reg_dt desc
 							
 	</select>
 	
