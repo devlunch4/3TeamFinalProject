@@ -45,7 +45,7 @@
 	</c:set>
 
 	<div class="form-group m-0">
-		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 :</label>
+		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 		<div class="row text-center">
 			<input type="text" id="week-picker" value="주간 선택" name="week" class="col m-2 text-center btn btn-info">
 			<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col m-2 btn btn-info">
