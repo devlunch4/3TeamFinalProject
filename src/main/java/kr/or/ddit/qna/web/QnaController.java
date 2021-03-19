@@ -54,7 +54,7 @@ public class QnaController {
 	//20210317_LYS_Q&A4 : 문의게시판 글 등록페이지 진입
 	@RequestMapping(path = "qnaRegistView", method = RequestMethod.GET)
 	public String QnaRegistView(Model model, HttpSession session) {
-		logger.debug("IN QnaRegistView() 문의게시판 등록 페이지 진입 " );
+		logger.debug("IN QnaRegistView() 문의게시판 등록 페이지");
 		
 		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
 		
@@ -68,7 +68,7 @@ public class QnaController {
 	//20210317_LYS_Q&A4 : 문의게시판 글 등록
 	@RequestMapping(path="qnaRegist", method = RequestMethod.POST)
 	public String QnaRegist(Model model, QnaVo qnaVo){
-		logger.debug("IN QnaRegistView() 문의게시판 등록 진입/ qnaVo : {}", qnaVo );
+		logger.debug("IN QnaRegistView() 문의게시판 등록 / qnaVo : {}", qnaVo );
 		
 		int qnaRegistCnt = qnaService.insertQna(qnaVo);
 		
@@ -80,7 +80,53 @@ public class QnaController {
 		}
 	}
 	
+	//20210319_LYS_Q&A5 문의게시판 게시글 수정페이지 진입
+	@RequestMapping(path = "qnaModifyView", method = RequestMethod.GET)
+	public String QnaModifyView(Model model, int qna_no) {
+		logger.debug("IN QnaModify() 문의게시판 게시글 수정페이지");
+		
+		//qna_no를 파라미터로 상세조회 페이지 진입할때 쿼리문 실행
+		QnaVo qnaVo = (QnaVo)qnaService.selectOneListQna(qna_no);
+		logger.debug("IN DetailView() qnaVo : {}", qnaVo);
+		
+		//qnaModifyBody.jsp에서 qnaVo 가져오기위해서
+		model.addAttribute("qna", qnaVo);
+		logger.debug("IN DetailView() 문의사항 수정페이지 qna_no : {}", qna_no);
+
+		
+		return "tiles.fcommunity.qnaModify";
+	}
 	
+	//20210319_LYS_Q&A5 문의게시판 게시글 수정
+	@RequestMapping(path = "qnaModify", method = RequestMethod.POST)
+	public String QnaModify(Model model, QnaVo qnaVo) {
+		logger.debug("IN QnaModify() 문의게시판 게시글 수정페이지");
+		
+		int qnaModifyCnt = qnaService.updateQna(qnaVo);
+		
+		if(qnaModifyCnt==1) {
+			logger.debug("수정 완료");
+			return "redirect:/qna/view";
+		}else {
+			logger.debug("수정 실패");
+			return "tiles.fcommunity.qnaModify";
+		}
+	}
+	
+	//20210319_LYS_Q&A5 문의게시판 게시글 삭제
+	@RequestMapping(path="qnaDelete")
+	public String QnaDelete(int qna_no) {
+		
+		int qnaDeleteCnt = qnaService.updateUseynToN(qna_no);
+		
+		if(qnaDeleteCnt==1) {
+			logger.debug("삭제 완료");
+			return "redirect:/qna/view";
+		}else {
+			logger.debug("삭제 실패");
+			return "tiles.fcommunity.qnaInfo";
+		}
+	}
 	
 	
 }

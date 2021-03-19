@@ -32,8 +32,8 @@
 </div>
 
 <c:if test="${S_USER.user_id.equals('admin') || S_USER.user_id.equals(qna.writer)}">
-<a class="btn btn-primary" href="qnaModify?qna_no=${qna.qna_no}">수정</a>
-<a class="btn btn-primary" href="qnaDelete?qna_no=${qna.qna_no}">삭제</a>
+	<a class="btn btn-primary" href="qnaModifyView?qna_no=${qna.qna_no}">수정</a>
+	<a class="btn btn-primary" href="qnaDelete?qna_no=${qna.qna_no}">삭제</a>
 </c:if>
 
 

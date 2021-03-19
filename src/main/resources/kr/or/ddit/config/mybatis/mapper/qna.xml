@@ -66,6 +66,22 @@
 		)
 	</insert>
 	
+	<!-- 20210319_LYS_Q&A5 문의게시판 게시글 수정 -->
+	<update id="updateQna" parameterType="qnaVo">
+		UPDATE qna
+		SET
+		    title = #{title}
+		    ,content = #{content}
+		WHERE
+		    qna_no = #{qna_no}	
+	</update>
 	
-	
+	<!-- 20210319_LYS_Q&A5 문의게시판 게시글 삭제 -->
+	<update id="updateUseynToN" parameterType="int">
+		UPDATE qna
+		SET
+		    use_yn = 'N'
+		WHERE
+		    qna_no = #{qna_no}	
+	</update>
 </mapper>
