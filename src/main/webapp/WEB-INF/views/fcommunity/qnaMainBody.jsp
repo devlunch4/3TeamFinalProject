@@ -30,14 +30,16 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${qnaList}" var="qna">
-								<tr onclick="location.href='${pageContext.request.contextPath}/qna/detailView?qna_no=${qna.qna_no}'">
-									<td>${qna.qna_no}</td>
-									<td>${qna.title}</td>
-									<td>${qna.writer}</td>
-									<td>
-										<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy.MM.dd" />
-									</td>
-								</tr>
+								<c:if test="${qna.use_yn.equals('Y')}">
+									<tr onclick="location.href='${pageContext.request.contextPath}/qna/detailView?qna_no=${qna.qna_no}'">
+										<td>${qna.qna_no}</td>
+										<td>${qna.title}</td>
+										<td>${qna.writer}</td>
+										<td>
+											<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy.MM.dd" />
+										</td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>

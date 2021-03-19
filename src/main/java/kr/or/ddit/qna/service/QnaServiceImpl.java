@@ -39,5 +39,17 @@ public class QnaServiceImpl implements QnaService {
 	public int insertQna(QnaVo qnaVo) {
 		return dao.insertQna(qnaVo);
 	}
+
+	//20210319_LYS_Q&A5 문의게시판 게시글 수정
+	@Override
+	public int updateQna(QnaVo qnaVo) {
+		return dao.updateQna(qnaVo);
+	}
+
+	//20210319_LYS_Q&A5 문의게시판 게시글 삭제
+	@Override
+	public int updateUseynToN(int qna_no) {
+		return dao.updateUseynToN(qna_no);
+	}
 	
 }
