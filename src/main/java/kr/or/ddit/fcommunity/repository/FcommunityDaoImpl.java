@@ -56,6 +56,12 @@ public class FcommunityDaoImpl implements FcommunityDao {
 		return template.selectOne("miniMarkets.miniMarketInfo", miniMarketVo);
 	}
 	
+	// 20210319_ggy : 미니장터파일 조회
+	@Override
+	public List<MarketFilesVo> selectMarketFileList(int market_no) {
+		return template.selectList("miniMarkets.selectMarketFileList", market_no);
+	}
+	
 	
 	
 	

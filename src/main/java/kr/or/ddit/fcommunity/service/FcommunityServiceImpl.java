@@ -54,6 +54,12 @@ public class FcommunityServiceImpl implements FcommunityService{
 	public MiniMarketVo miniMarketInfo(MiniMarketVo miniMarketVo) {
 		return fcommunityDao.miniMarketInfo(miniMarketVo);
 	}
+	
+	// 20210319_ggy : 미니장터파일 조회
+	@Override
+	public List<MarketFilesVo> selectMarketFileList(int market_no) {
+		return fcommunityDao.selectMarketFileList(market_no);
+	}
 
 
 }

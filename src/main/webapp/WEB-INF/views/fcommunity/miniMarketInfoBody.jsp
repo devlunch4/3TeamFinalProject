@@ -43,6 +43,17 @@
 		<label class="small mb-1" for="input_plant_prd">썸네일</label><br> 
 		<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }"  >
 	</div>
+	
+	<div class="form-group">
+		<c:if test="${marketFileList != null }">
+			<c:forEach items="${marketFileList }" var="marketFileList" >
+				<input type="text" value="${marketFileList.file_nm }" readonly="readonly">
+				<input type="button" value="삭제">
+				<br>
+			</c:forEach>
+		</c:if>
+	</div>
+		
 	<div class="float-right">
 		<c:choose>
 			<c:when test="${S_USER.user_id == farmdiaryList.writer }">

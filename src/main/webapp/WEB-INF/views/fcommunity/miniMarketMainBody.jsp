@@ -100,7 +100,7 @@
 							</tfoot>
 							<tbody>
 								<c:forEach items="${miniMarketList }" var="miniMarketList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/miniMarketInfoView?writer=${S_USER.user_id }&market_no=${miniMarketList.market_no }'" >
+									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/miniMarketInfoView?writer=${miniMarketList.writer }&market_no=${miniMarketList.market_no }'" >
 										<td>${miniMarketList.head_code_nm }</td>
 										<td>
 <%-- 											<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${miniMarketList.thumbnail }" width="50" height="50" > --%>
