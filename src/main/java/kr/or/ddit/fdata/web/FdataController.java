@@ -22,10 +22,11 @@ import kr.or.ddit.finfo.service.FinfoServiceImpl;
 @RequestMapping("fdata")
 @Controller
 public class FdataController {
+
 	private static final Logger logger = LoggerFactory.getLogger(FdataController.class);
+
 	@Resource(name = "fdataService")
 	private FdataServiceImpl fdataService;
-	
 
 	@Resource(name = "finfoService")
 	private FinfoServiceImpl finfoService;
@@ -34,6 +35,7 @@ public class FdataController {
 	// 인기작물 크롤링 test ok
 	@RequestMapping("popularity")
 	public String popularity(Model model) {
+		logger.debug("IN popularity()");
 		List<CodesVo> mostfileList = new ArrayList<CodesVo>();
 		Document doc;
 		try {
@@ -45,48 +47,38 @@ public class FdataController {
 			List<String> most = new ArrayList<String>();
 			for (int i = 0; i < most2.length; i++) {
 				most.add(most2[i]);
-
 				mostfileList.add(fdataService.selectCode(most2[i]));
 			}
-
 			model.addAttribute("most", most2);
 		} catch (IOException e) {
-
 		}
-
 		model.addAttribute("mostfileList", mostfileList);
 		return "tiles.fdata.popularity";
 	}
-	
-	//20210312_KJH 검색된 인기작물의 정보 페이지로 이동 test ok
+
+	// 20210312_KJH 검색된 인기작물의 정보 페이지로 이동 test ok
 	@RequestMapping("popularityselect")
-	public String popularityselect(Model model,String Item_code) {
-		
+	public String popularityselect(Model model, String Item_code) {
+		logger.debug("IN popularityselect()");
 		String guide_code = finfoService.guide_codeselect(Item_code).getGuide_code();
 		int xguide_code = Integer.parseInt(guide_code);
-		
-		return "redirect:/finfo/gardenguides?xguide_code="+xguide_code;
+		return "redirect:/finfo/gardenguides?xguide_code=" + xguide_code;
 	}
-	
-	
-	
 
 	// 20210302KJH
 	// 품목별 비율 통계 페이지 test ok
 	@RequestMapping("ratio")
 	public String ratio(Model model, String selec, String sdate, String edate) {
+		logger.debug("IN ratio()");
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
 		logger.debug("edate value : {}", edate);
 
-		
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
 			farmCount = fdataService.farmCount();
 			model.addAttribute("farmCount", farmCount);
 			return "tiles.fdata.ratio";
-		}
-		else if (selec.equals("week")) {
+		} else if (selec.equals("week")) {
 			try {
-
 				String[] dt = sdate.split("~");
 				String sd = dt[0];
 				String ed = dt[1];
@@ -112,7 +104,6 @@ public class FdataController {
 			}
 			String edt = "" + eyy + "-" + emm + "-01";
 			vo.setW_step_code(edt);
-
 			farmCount = fdataService.datefarmCount(vo);
 		} else if (selec.equals("year")) {
 			FarmdiaryVo vo = new FarmdiaryVo();
@@ -121,10 +112,7 @@ public class FdataController {
 			vo.setW_step_code(edt + "-12-31");
 			farmCount = fdataService.datefarmCount(vo);
 		}
-
-
 		model.addAttribute("farmCount", farmCount);
 		return "tiles.fdata.ratio";
 	}
-
 }
