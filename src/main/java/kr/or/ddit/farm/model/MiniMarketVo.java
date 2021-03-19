@@ -7,16 +7,17 @@ public class MiniMarketVo {
 	
 	private int market_no;
 	private String writer;
-	private int head_code;
+	private String head_code;
 	private String title;
 	private String item_code;
 	private String content;
 	private String price;
 	private Date reg_dt;
-	private String thumbnail;
+	private int thumbnail;
 	private String mobile;
 	private int hit;
-	private String code_nm;
+	private String item_code_nm;
+	private String head_code_nm;
 	
 	public int getMarket_no() {
 		return market_no;
@@ -30,10 +31,10 @@ public class MiniMarketVo {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public int getHead_code() {
+	public String getHead_code() {
 		return head_code;
 	}
-	public void setHead_code(int head_code) {
+	public void setHead_code(String head_code) {
 		this.head_code = head_code;
 	}
 	public String getTitle() {
@@ -66,10 +67,10 @@ public class MiniMarketVo {
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}
-	public String getThumbnail() {
+	public int getThumbnail() {
 		return thumbnail;
 	}
-	public void setThumbnail(String thumbnail) {
+	public void setThumbnail(int thumbnail) {
 		this.thumbnail = thumbnail;
 	}
 	public String getMobile() {
@@ -84,20 +85,28 @@ public class MiniMarketVo {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getCode_nm() {
-		return code_nm;
+	public String getItem_code_nm() {
+		return item_code_nm;
 	}
-	public void setCode_nm(String code_nm) {
-		this.code_nm = code_nm;
+	public void setItem_code_nm(String item_code_nm) {
+		this.item_code_nm = item_code_nm;
+	}
+	public String getHead_code_nm() {
+		return head_code_nm;
+	}
+	public void setHead_code_nm(String head_code_nm) {
+		this.head_code_nm = head_code_nm;
 	}
 	
 	@Override
 	public String toString() {
 		return "MiniMarketVo [market_no=" + market_no + ", writer=" + writer + ", head_code=" + head_code + ", title="
 				+ title + ", item_code=" + item_code + ", content=" + content + ", price=" + price + ", reg_dt="
-				+ reg_dt + ", thumbnail=" + thumbnail + ", mobile=" + mobile + ", hit=" + hit + ", code_nm=" + code_nm
-				+ "]";
+				+ reg_dt + ", thumbnail=" + thumbnail + ", mobile=" + mobile + ", hit=" + hit + ", item_code_nm="
+				+ item_code_nm + ", head_code_nm=" + head_code_nm + "]";
 	}
+	
+	
 	
 	
 	

@@ -34,7 +34,7 @@
 		<!-- <typeAlias type="kr.or.ddit.farm.model.FilesVo" alias="FilesVo" /> -->
 
 		<!-- 20210309 SHS FileVo typeAliases -->
-		<typeAlias type="kr.or.ddit.farm.model.MarketFilesVo" alias="MarketFilesVo" />
+		<typeAlias type="kr.or.ddit.farm.model.MarketFilesVo" alias="marketFilesVo" />
 
 
 
