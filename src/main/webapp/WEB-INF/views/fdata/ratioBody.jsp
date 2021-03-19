@@ -22,9 +22,7 @@
 	<!-- <h5 class="card-header">총게시글 :</h5> -->
 
 	<form action="${pageContext.request.contextPath}/fdata/ratio" id="selec">
-		<input type="hidden" id="selctype" name="selec" value="week">
-		<input type="hidden" id="sval" name="sdate">
-		<input type="hidden" id="eval" name="edate">
+		<input type="hidden" id="selctype" name="selec" value="week"> <input type="hidden" id="sval" name="sdate"> <input type="hidden" id="eval" name="edate">
 	</form>
 
 	<div class="form-group row text-center m-0">
@@ -47,11 +45,7 @@
 	<div class="form-group m-0">
 		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 		<div class="row text-center">
-			<input type="text" id="week-picker" value="주간 선택" name="week" class="col m-2 text-center btn btn-info">
-			<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col m-2 btn btn-info">
-			<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col m-2 btn btn-info">
-			<input type="text" id="syear-picker" name="syear" style="display: none;" class="col m-2 btn btn-info">
-			<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col m-2 btn btn-info">
+			<input type="text" id="week-picker" value="주간 선택" name="week" class="col m-2 text-center btn btn-info"> <input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col m-2 btn btn-info"> <input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col m-2 btn btn-info"> <input type="text" id="syear-picker" name="syear" style="display: none;" class="col m-2 btn btn-info"> <input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col m-2 btn btn-info">
 			<button id="sel" class="btn btn-primary col-3 m-2">조 회</button>
 		</div>
 	</div>
@@ -67,7 +61,32 @@
 			</c:if>
 		</div>
 	</div>
+
+	<div class="form-group col-xs-12 pt-5">
+		<div class="float-left col-md-12 p-1  text-center">
+			<table class="table table-bordered " style="font-size: 15px;">
+			<thead>
+				<tr>
+					<td class="table-active px-0 py-1">작물명</td>
+					<td class="table-active px-0 py-1">수확량</td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${farmCount}" var="fcount">
+					<tr>
+						<td class="px-0 py-1">${fcount.content}</td>
+						<td class="px-0 py-1">${fcount.yield}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+		</div>
+	</div>
+
 </div>
+
+
+
 
 <script>
 $(function() {
@@ -307,4 +326,4 @@ $("#week").on("click",function(){
      			chart.config("gauge.arcLength", -100, false);
      			chart.flush(true);
      		}, 14000);
-</script> 
+</script>
