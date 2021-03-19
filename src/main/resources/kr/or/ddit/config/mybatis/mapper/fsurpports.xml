@@ -52,7 +52,7 @@
 												resultType="codesVo">
 		select *
 		from codes
-		where parent_code = (select code_no
+		where parent_code in (select code_no
 		                        from codes
 		                        where code_nm = #{code_nm })
 		AND use_yn = 'Y'

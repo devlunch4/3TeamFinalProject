@@ -18,10 +18,13 @@
 			, m.thumbnail
 		    , m.mobile
 			, m.hit
-		    , c.code_nm code_nm
+		    , c.code_nm item_code_nm
+            , co.code_nm head_code_nm
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
+        JOIN codes co
+        ON m.head_code = co.code_no
 		WHERE m.use_yn = 'Y'
 		AND c.use_yn = 'Y'
 		ORDER BY reg_dt desc
@@ -33,8 +36,8 @@
 		where market_no = #{market_no }
 	</update>
 	
-	<!-- 20210318_ggy : 미니장터 게시글 상세조회 -->	
-	<select id="" parameterType="miniMarketVo" 
+	<!-- 20210319_ggy : 미니장터 게시글 상세조회 -->	
+	<select id="miniMarketInfo" parameterType="miniMarketVo" 
 					resultType="miniMarketVo">
 		
 		SELECT 
@@ -47,23 +50,81 @@
 			, m.price
 			, m.reg_dt
 			, m.thumbnail
-			, m.mobile
+		    , m.mobile
 			, m.hit
-		    , m.thumbnail 
-			, c.code_nm code_nm
+		    , c.code_nm item_code_nm
+            , co.code_nm head_code_nm
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
-		WHERE writer = #{writer }
-		AND m.market_no = #{market_no }
-		AND m.use_yn = 'Y'
+        JOIN codes co
+        ON m.head_code = co.code_no
+		WHERE m.use_yn = 'Y'
 		AND c.use_yn = 'Y'
+		AND writer = #{writer }
+		AND m.market_no = #{market_no }
+		ORDER BY reg_dt desc
 							
 	</select>
 	
-	<!--  -->
+	<!-- 20210319_ggy : 미니장터 게시글 상세 조회때 첨부파일 조회 -->
+	<select id="selectMarketFileList" parameterType="int" 
+			resultType="marketFilesVo">
+		SELECT 
+		    m.file_record_no
+		    , m.market_no
+		    , m.file_no
+		    , f.file_nm
+		FROM marketfiles m
+		JOIN files f
+		ON m.file_no = f.file_no
+		WHERE market_no = #{market_no }
+		AND m.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+	</select>
 	
-	<!-- 20210318_ggy : 미니장터 게시글 등록 -->
+	<!-- 20210319_ggy : 미니장터 게시글 품목 종류 조회 -->
+	<select id="selectItemList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code in 
+		    (select code_no
+		    from codes
+		    where parent_code = 
+		        (select code_no
+		        from codes
+		        where parent_code = 'i'))
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- 20210319_ggy : 미니장터 게시글 등록을 위한 머릿말조회 -->
+	<select id="selectMiniMarketList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = 'mhead'
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- 20210319_ggy : 게시글 등록 후 게시글 번호 가져오기 -->
+	<insert id="registMiniMarketPost" parameterType="miniMarketVo" >
+		
+		<selectKey keyProperty = "market_no" resultType="int" order="BEFORE">
+			select seq_market.NEXTVAL from dual
+		</selectKey>
+		
+		INSERT INTO market VALUES(
+		#{market_no }, #{writer }, #{head_code },
+		#{title }, #{item_code }, #{content },
+		#{price }, sysdate, #{thumbnail }, #{mobile },
+		0, 'Y')
+		
+	</insert>
+	
+	<!-- 20210319_ggy : 미니장터파일 등록 -->
+	<insert id="registmarketfiles" parameterType="marketFilesVo">
+		INSERT INTO marketfiles VALUES(
+		seq_marketfiles.NEXTVAL, #{market_no }, #{file_no }, 'Y')
+	</insert>
 		
 
 </mapper>

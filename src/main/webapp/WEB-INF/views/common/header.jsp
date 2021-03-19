@@ -19,10 +19,11 @@
 	right: 0;
 	position: fixed;
 	display: inline-block;
-	top: 50%;
+	top: 35%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
-	transform: translateY(-50%)
+	transform: translateY(-50%);
+	opacity: 0.3;
 }
 
 .main-menu {
