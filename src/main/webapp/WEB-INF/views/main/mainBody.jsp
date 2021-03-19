@@ -64,7 +64,7 @@ $("#").scrollTop($(document).height());
 <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
 <h3 class="mt-4">시세분석</h3>
 <div class="form-group">
-	<div class="form-group row">
+	<div class="form-group row mb-0">
 		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
@@ -97,11 +97,12 @@ $("#").scrollTop($(document).height());
 				</tr>
 			</table>
 		</div>
-		
-		<div class="gohere" id="gohere"></div>
-		
+
+
+
 		<div class="col-md-4 p-1">
-			<table class="table table-bordered " style="font-size: 15px;">
+			<div class="gohere" id="gohere"></div>
+			<table class="table table-bordered" style="font-size: 15px;">
 				<tr>
 					<td class="table-active text-center">품목</td>
 				</tr>
@@ -124,16 +125,15 @@ $("#").scrollTop($(document).height());
 		</div>
 	</div>
 
-
 	<!-- spinner -->
 	<div class="loading loadspin " style="position: relative; z-index: 1; width: 100%; height: 100%; display: none;">
-		<div class="spinner-border loadspin" role="status" style="display: block; position: fixed; z-index: 1031; top: 35%; left: 48%; display: none;">
+		<div class="spinner-border loadspin" role="status" style="position: fixed; z-index: 1031; top: 35%; left: 48%; display: none;">
 			<span class="sr-only loadspin " style="display: none;">Loading...</span>
 		</div>
 	</div>
 
 	<div class="form-group text-right">
-		<button id="btn_search" class="btn-primary btn-lg col-md-3">조회하기</button>
+		<button id="btn_search" class="btn btn-primary col-md-3">조회하기</button>
 	</div>
 
 	<div class="form-group ">
