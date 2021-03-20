@@ -51,7 +51,7 @@ import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.farm.model.MySimpleCodeVo;
-import kr.or.ddit.fdata.service.FdataServiceImpl;
+import kr.or.ddit.fdata.service.FdataService;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 import kr.or.ddit.user.model.UserVo;
 
@@ -65,7 +65,7 @@ public class FsurpportController {
 	private FsurpportService fsurpportService;
 
 	@Resource(name = "fdataService")
-	private FdataServiceImpl fdataService;
+	private FdataService fdataService;
 
 	public FsurpportController() {
 		logger.debug("fsurpport 진입");

@@ -9,16 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //클래스명과 동일해서 길게 표현됨
-@org.aspectj.lang.annotation.Aspect
+/*@org.aspectj.lang.annotation.Aspect*/
 public class Aspect {
 	private static final Logger logger = LoggerFactory.getLogger(Aspect.class);
 
-	@Pointcut("execution(* kr.or.ddit..service.*.*(..))")
-	public void dummy() {
-	}
+	/*
+	 * @Pointcut("execution(* kr.or.ddit..service.*.*(..))") public void dummy() { }
+	 */
 
 	// 특정 메소드가 실행되기전에 실행 되어야할 공통의 관심사항
-	@Before("dummy()")
+	/* @Before("dummy()") */
 	public void beforeMethod(JoinPoint joinPoint) {
 		logger.debug("Aspect.beforeMethod()");
 		// 모든 메소드가 실행될때
@@ -29,7 +29,7 @@ public class Aspect {
 	// 메소드의 원래 로직
 	// 메소드 실행후 -공통 관심사항
 	// 타입이 Object 이다
-	@Around("dummy()")
+	/* @Around("dummy()") */
 	public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 
 		//////////////
