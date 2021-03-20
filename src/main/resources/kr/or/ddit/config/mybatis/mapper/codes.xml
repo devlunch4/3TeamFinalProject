@@ -32,5 +32,22 @@
     from codes where code_no = #{code_no}
 </select>
 
+<!-- 20210320_KJH sd코드 insert -->
+<insert id="sdcodeInsert" parameterType="standarditemcodeVo">
+	insert into standarditemcode values (#{lclasscode}
+,#{lclassname}
+,#{mclasscode}
+,#{mclassname}
+,#{sclasscode}
+,#{sclassname}
+,sysdate
+,sysdate)
+</insert>
+
+<!-- 20210320_KJH sd코드 delete -->
+<delete id="allsdcodeDelete">
+truncate table standarditemcode
+</delete>
+
 </mapper>
 

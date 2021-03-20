@@ -58,6 +58,9 @@
 		<!-- ggy_20210305 FilesVo 만듬 -->
 		<typeAlias type="kr.or.ddit.common.model.FilesVo" alias="filesVo" />
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo" alias="farmdiaryVo" />
+		
+		<!-- 2021-03-20 KJH Standarditemcode -->
+		<typeAlias type="kr.or.ddit.batch.model.StandarditemcodeVo" alias="standarditemcodeVo" />
 
 		<!-- 주석 달아주세요 -->
 
