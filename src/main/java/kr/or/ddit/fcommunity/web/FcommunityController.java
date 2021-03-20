@@ -1,10 +1,13 @@
 package kr.or.ddit.fcommunity.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -253,6 +256,49 @@ public class FcommunityController {
 		return"redirect:/fcommunity/miniMarketView";
 	}	
 	
+	// ggy_20210320 : 파일 경로
+	@RequestMapping("filePath")
+	public void profile(HttpServletResponse resp, String file_nm, HttpServletRequest req) {
+
+		logger.debug("filePath 진입");
+		resp.setContentType("image");
+
+		// userid 파라미터를 이용하여
+		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
+		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+
+		String path = "";
+		if (file_nm == null && !file_nm.equals("")) {
+			logger.debug("file_nm이 null");
+
+			path = req.getServletContext().getRealPath("c:\\fdown\\unknown.png");
+			logger.debug("path : " + path);
+		} else {
+
+			logger.debug("file_nm이 null 아니다.");
+			path = "c:\\fdown\\" + file_nm;
+			logger.debug("path : " + path);
+		}
+
+		logger.debug("path : {}", path);
+
+		try {
+
+			FileInputStream fis = new FileInputStream(path);
+			ServletOutputStream sos = resp.getOutputStream();
+
+			byte[] buff = new byte[512];
+
+			while (fis.read(buff) != -1) {
+
+				sos.write(buff);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	
 }

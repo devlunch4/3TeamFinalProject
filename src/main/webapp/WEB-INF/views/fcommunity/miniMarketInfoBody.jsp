@@ -41,7 +41,7 @@
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">썸네일</label><br> 
-		<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }"  >
+		<img src="${pageContext.request.contextPath}/fcommunity/filePath?file_nm=${miniMarketInfo.thumbnail_file_nm }"  >
 	</div>
 	
 	<div class="form-group">
