@@ -60,6 +60,12 @@ public class FcommunityServiceImpl implements FcommunityService{
 	public List<MarketFilesVo> selectMarketFileList(int market_no) {
 		return fcommunityDao.selectMarketFileList(market_no);
 	}
+	
+	// 20210320 : 미니장터 게시글 조회수 증가
+	@Override
+	public int addHitMiniMarket(int market_no) {
+		return fcommunityDao.addHitMiniMarket(market_no);
+	}
 
 
 }

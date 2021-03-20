@@ -30,4 +30,7 @@ public interface FcommunityDao {
 	// 20210319_ggy : 미니장터파일 조회
 	List<MarketFilesVo> selectMarketFileList(int market_no);
 	
+	// 20210320 : 미니장터 게시글 조회수 증가
+	int addHitMiniMarket(int market_no);
+	
 }

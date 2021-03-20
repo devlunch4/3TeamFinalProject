@@ -63,6 +63,13 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	}
 	
 	
+	// 20210320 : 미니장터 게시글 조회수 증가
+	@Override
+	public int addHitMiniMarket(int market_no) {
+		return template.update("miniMarkets.addHitMiniMarket", market_no);
+	}
+	
+	
 	
 	
 	

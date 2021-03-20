@@ -65,6 +65,8 @@ public class FcommunityController {
 		miniMarketVo.setMarket_no(market_no);
 		miniMarketVo.setWriter(writer);
 		
+		fcommunityService.addHitMiniMarket(market_no);
+		
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
 		
