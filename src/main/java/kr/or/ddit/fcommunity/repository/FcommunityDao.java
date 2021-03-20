@@ -10,7 +10,7 @@ import kr.or.ddit.farm.model.MiniMarketVo;
 public interface FcommunityDao {
 	
 	// 20210318_ggy : 미니장터 글 전체 조회
-	List<MiniMarketVo> selectAllMiniMarketList();
+	List<MiniMarketVo> selectAllMiniMarketList(MiniMarketVo miniMarketVo);
 	
 	// 20210319_ggy: 미니장터 등록을 위한 머릿맛 코드 조회
 	List<CodesVo> selectMiniMarketList();

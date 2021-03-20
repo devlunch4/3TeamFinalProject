@@ -35,11 +35,19 @@ public class FcommunityController {
 	
 	// 20210318_ggy : 미니장터 조회
 	@RequestMapping("miniMarketView")
-	public String miniMarketView(Model model) {
+	public String miniMarketView(MiniMarketVo miniMarketVo, Model model) {
 		
 		logger.debug("IN miniMarketView()");
 		
-		model.addAttribute("miniMarketList", fcommunityService.selectAllMiniMarketList());
+		
+		model.addAttribute("miniMarketList", fcommunityService.selectAllMiniMarketList(miniMarketVo));
+		model.addAttribute("itemList", fcommunityService.selectItemList());
+		
+		if(miniMarketVo.getItem_code() != null && !miniMarketVo.getItem_code().equals("")) {
+			logger.debug("miniMarketVo.getItem_code()의 값 : {}", miniMarketVo.getItem_code());
+			model.addAttribute("selectItemCodeValue", miniMarketVo.getItem_code());
+			model.addAttribute("selectTitleValue", miniMarketVo.getTitle());
+		}
 		
 		return "tiles.fcommunity.miniMarketMain";
 	}

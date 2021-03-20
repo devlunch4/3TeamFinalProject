@@ -21,8 +21,8 @@ public class FcommunityServiceImpl implements FcommunityService{
 	
 	// 20210318_ggy : 미니장터 글 전체 조회
 	@Override
-	public List<MiniMarketVo> selectAllMiniMarketList() {
-		return fcommunityDao.selectAllMiniMarketList();
+	public List<MiniMarketVo> selectAllMiniMarketList(MiniMarketVo miniMarketVo) {
+		return fcommunityDao.selectAllMiniMarketList(miniMarketVo);
 	}
 	
 	// 20210319_ggy: 미니장터 등록을 위한 머릿맛 코드 조회

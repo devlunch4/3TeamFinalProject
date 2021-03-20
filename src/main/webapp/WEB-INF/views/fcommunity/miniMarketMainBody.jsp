@@ -11,38 +11,19 @@
 
 <div class="card mt-2 col-sm-12">
 	<!-- 품목 선택 해서 조회하는 부분 -->
-	<form action="${pageContext.request.contextPath }/fsurpport/searchAllFsurpportList" method="post">
-
-		<div class="card-body text-left p-1">
-			<span class="">가나다순</span> <br>
-			<c:choose>
-				<c:when test="${searchFarmdiaryValue != null }">
-					<input type="date" name="startDate" 
-					value="${searchFarmdiaryValue.startDate }" class=" btn btn-outline-dark m-1">
-					<input type="date" name="endDate" 
-					value="${searchFarmdiaryValue.endDate }" class=" btn btn-outline-dark m-1">
-				</c:when>
-				
-				<c:otherwise>
-					<input type="date" name="startDate" value="" class=" btn btn-outline-dark m-1">
-					<input type="date" name="endDate" value="" class=" btn btn-outline-dark m-1">
-				</c:otherwise>			
-			</c:choose>
-		</div>
-		<div class="card-body text-left p-1">
-			<label>*품목</label> <br>
-			<select name="item_code">
-				<option value="">전체</option>
-				<c:forEach items="${itemsList }" var="itemsList">
-					<option value="${itemsList.code_no }" 
-					<c:if test="${searchFarmdiaryValue.item_code eq itemsList.code_no }">selected="selected"</c:if>
-					>${itemsList.code_nm }</option>
-				</c:forEach>
-			</select>
-		</div>
+	<form action="${pageContext.request.contextPath }/fcommunity/miniMarketView" method="post">
+		<span class="">품목 선택</span> <br>
+			
+		<select name="item_code" class="btn btn-outline-dark ">
+			<option value="">전체</option>
+			<c:forEach items="${itemList }" var="itemList">
+				<option value="${itemList.code_no }" <c:if test="${selectItemCodeValue eq itemList.code_no }">selected="selected"</c:if>>${itemList.code_nm }</option>
+			</c:forEach>
+		</select>
+			
+		<input type="text" name="title" value="${selectTitleValue }" required="required">
+		<input type="submit" value="조회" >
 		
-		<input type="hidden" name="writer" value="${S_USER.user_id }" style="margin-left: 20%;" readonly="readonly">
-		<input type="submit" value="조회" style="margin-left: 20%;">
 	</form>
 </div>
 
