@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.fanalysis.service.FanalysisService;
+
 import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;

@@ -5,6 +5,11 @@ import java.util.Properties;
 import java.util.Random;
 
 import javax.annotation.Resource;
+
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import net.nurigo.java_sdk.api.Message;
+import org.json.simple.JSONObject;
+
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -12,7 +17,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,9 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.service.UserService;
-import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import kr.or.ddit.user.service.UserServiceImpl;
 
 @RequestMapping("join")
 @Controller
@@ -32,7 +34,7 @@ public class RegistController {
 
 	// 필요한 스프링 빈 호출
 	@Resource(name = "userService")
-	private UserService userService;
+	private UserServiceImpl userService;
 
 //	20210302_LYS_Login2 - 회원가입페이지로 이동
 	@RequestMapping(path = "view", method = { RequestMethod.GET })

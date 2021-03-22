@@ -22,10 +22,7 @@ import kr.or.ddit.fileutill.FileUtil;
 import kr.or.ddit.market.service.MarketService;
 import kr.or.ddit.marketfiles.service.MarketFilesService;
 import kr.or.ddit.user.service.UserService;
-
-@RequestMapping("market")
-@Controller
-public class MarketController {
+import kr.or.ddit.user.service.UserService;public class MarketController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MarketController.class);
 

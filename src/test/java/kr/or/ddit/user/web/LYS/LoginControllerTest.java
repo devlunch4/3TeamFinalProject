@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import org.junit.Test;
 
 import kr.or.ddit.test.config.WebTestConfig;
-import kr.or.ddit.user.service.UserServiceImpl;
+import kr.or.ddit.user.service.UserService;
 
 /**
  * @RunWith(SpringJUnit4ClassRunner.class) 를 사용해야 실제 스프링에 사용되는 빈을 설정하여 불러올수있다
@@ -24,7 +24,7 @@ import kr.or.ddit.user.service.UserServiceImpl;
 public class LoginControllerTest extends WebTestConfig{
 
 	@Resource(name="userService")
-	private UserServiceImpl userService;
+	private UserService userService;
 	
 	// 20210313_LYS_Q&A
 	// 로그인 페이지로 이동
