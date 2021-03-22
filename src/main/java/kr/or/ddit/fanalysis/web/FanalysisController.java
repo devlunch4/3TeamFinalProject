@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
-import kr.or.ddit.fanalysis.service.FanalysisServiceImpl;
+import kr.or.ddit.fanalysis.service.FanalysisService;
 import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
+import kr.or.ddit.fsurpport.service.FsurpportService;
 import kr.or.ddit.user.model.UserVo;
 
 @RequestMapping("fanalysis")
@@ -29,10 +29,10 @@ import kr.or.ddit.user.model.UserVo;
 public class FanalysisController {
 
 	@Resource(name = "fsurpportService")
-	private FsurpportServiceImpl fsurpportService;
+	private FsurpportService fsurpportService;
 
 	@Resource(name = "fanalysisService")
-	private FanalysisServiceImpl fanalysisService;
+	private FanalysisService fanalysisService;
 
 	// 20210308_KJH 내 시설 관측정보 조회 수정 test ok
 	@RequestMapping(path = "myfanalysisInfo", method = { RequestMethod.GET })

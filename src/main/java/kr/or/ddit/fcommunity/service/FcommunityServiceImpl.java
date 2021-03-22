@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
-import kr.or.ddit.fcommunity.repository.FcommunityDaoImpl;
+import kr.or.ddit.fcommunity.repository.FcommunityDao;
 
 // 20210318_ggy : FcommunityServiceImpl 생성
 
@@ -17,7 +17,7 @@ import kr.or.ddit.fcommunity.repository.FcommunityDaoImpl;
 public class FcommunityServiceImpl implements FcommunityService{
 	
 	@Resource(name = "fcommunityDao")
-	private FcommunityDaoImpl fcommunityDao;
+	private FcommunityDao fcommunityDao;
 	
 	// 20210318_ggy : 미니장터 글 전체 조회
 	@Override

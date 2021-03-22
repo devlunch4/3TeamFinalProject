@@ -10,13 +10,13 @@ import org.junit.Test;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.fdata.service.FdataServiceImpl;
+import kr.or.ddit.fdata.service.FdataService;
 import kr.or.ddit.test.config.ModelTestConfig;
 
 public class Service extends ModelTestConfig{
 
 	@Resource(name = "fdataService")
-	private FdataServiceImpl fdataService;
+	private FdataService fdataService;
 
 
 	@Test

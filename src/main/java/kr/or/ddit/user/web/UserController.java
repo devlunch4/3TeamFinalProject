@@ -20,12 +20,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.or.ddit.codes.service.CodesServiceImpl;
+import kr.or.ddit.codes.service.CodesService;
 import kr.or.ddit.common.model.CodesVo;
-import kr.or.ddit.fdata.service.FdataServiceImpl;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
+import kr.or.ddit.fdata.service.FdataService;
+import kr.or.ddit.fsurpport.service.FsurpportService;
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.service.UserServiceImpl;
+import kr.or.ddit.user.service.UserService;
 
 @RequestMapping("user")
 @Controller
@@ -34,16 +34,16 @@ public class UserController {
 
 	// 필요한 스프링 빈 호출
 	@Resource(name = "userService")
-	private UserServiceImpl userService;
+	private UserService userService;
 
 	@Resource(name = "fdataService")
-	private FdataServiceImpl fdataService;
+	private FdataService fdataService;
 
 	@Resource(name = "fsurpportService")
-	private FsurpportServiceImpl fsurpportService;
+	private FsurpportService fsurpportService;
 
 	@Resource(name = "codesService")
-	private CodesServiceImpl codesService;
+	private CodesService codesService;
 
 	// 메인 가기
 	// 20210302_KJH items - > codes 변경 test ok

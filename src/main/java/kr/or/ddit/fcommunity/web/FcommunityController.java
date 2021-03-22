@@ -20,8 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
-import kr.or.ddit.fcommunity.service.FcommunityServiceImpl;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
+import kr.or.ddit.fcommunity.service.FcommunityService;
+import kr.or.ddit.fsurpport.service.FsurpportService;
 
 // 20210318_ggy : 미니장터 controller 생성
 @RequestMapping("fcommunity")
@@ -31,10 +31,10 @@ public class FcommunityController {
 	private static final Logger logger = LoggerFactory.getLogger(FcommunityController.class);
 	
 	@Resource(name = "fcommunityService")
-	private FcommunityServiceImpl fcommunityService;
+	private FcommunityService fcommunityService;
 	
 	@Resource(name = "fsurpportService")
-	private FsurpportServiceImpl fsurpportService;
+	private FsurpportService fsurpportService;
 	
 	// 20210318_ggy : 미니장터 조회
 	@RequestMapping("miniMarketView")
@@ -300,6 +300,24 @@ public class FcommunityController {
 			e.printStackTrace();
 		}
 
+	}
+	
+	// 20210322_ggy : 미니장터 게시글 수정을 위한 진입 및 상세 조회
+	@RequestMapping("modifyMiniMarketView")
+	public String modifyMiniMarketView(String writer, int market_no, Model model) {
+
+		logger.debug("selectMiniMarketInfo 진입");
+
+		MiniMarketVo miniMarketVo = new MiniMarketVo();
+		miniMarketVo.setMarket_no(market_no);
+		miniMarketVo.setWriter(writer);
+
+		fcommunityService.addHitMiniMarket(market_no);
+
+		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
+		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
+
+		return "tiles.fcommunity.modifyMiniMarket";
 	}
 	
 	

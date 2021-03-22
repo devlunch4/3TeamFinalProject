@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.fdata.repository.FdataDaoImpl;
+import kr.or.ddit.fdata.repository.FdataDao;
 
 @Service("fdataService")
 public class FdataServiceImpl implements FdataService {
 
 	@Resource(name = "fdataDao")
-	private FdataDaoImpl fdataDao;
+	private FdataDao fdataDao;
 
 	// 20210302_KJH
 	// codes 리스트 전체조회

@@ -17,10 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
-import kr.or.ddit.fcommunityfiles.service.FilesServiceImpl;
+import kr.or.ddit.fcommunityfiles.service.FilesService;
 import kr.or.ddit.fileutill.FileUtil;
-import kr.or.ddit.market.service.MarketServiceImpl;
-import kr.or.ddit.marketfiles.service.MarketFilesServiceImpl;
+import kr.or.ddit.market.service.MarketService;
+import kr.or.ddit.marketfiles.service.MarketFilesService;
 import kr.or.ddit.user.service.UserService;
 
 @RequestMapping("market")
@@ -30,13 +30,13 @@ public class MarketController {
 	private static final Logger logger = LoggerFactory.getLogger(MarketController.class);
 
 	@Resource(name = "marketService")
-	private MarketServiceImpl marketService;
+	private MarketService marketService;
 
 	@Resource(name = "filesService")
-	private FilesServiceImpl filesService;
+	private FilesService filesService;
 
 	@Resource(name = "marketfilesService")
-	private MarketFilesServiceImpl marketfilesService;
+	private MarketFilesService marketfilesService;
 
 	@Resource(name = "userService")
 	private UserService userService;

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">미니장터 게시글 조회</h3>
+<h3 class="mt-4">미니장터 게시글 수정페이지</h3>
 
 <form>
 	
@@ -57,8 +57,8 @@
 	<div class="float-right">
 		<c:choose>
 			<c:when test="${S_USER.user_id == miniMarketInfo.writer }">
-				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/modifyMiniMarketView?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }">수정</a> 
-				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/deleteFarmdiary?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }"
+				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a> 
+				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }"
 					onclick="alert('삭제합니다.');">삭제</a>
 			</c:when>
 			<c:otherwise></c:otherwise>

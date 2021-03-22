@@ -7,13 +7,13 @@ import javax.annotation.Resource;
 import org.junit.Test;
 
 import kr.or.ddit.farm.model.GardenguideVo;
-import kr.or.ddit.finfo.repository.FinfoDaoImpl;
+import kr.or.ddit.finfo.repository.FinfoDao;
 import kr.or.ddit.test.config.ModelTestConfig;
 
 public class Dao extends ModelTestConfig{
 	
 	@Resource(name = "finfoDao")
-	private FinfoDaoImpl finfoDao;
+	private FinfoDao finfoDao;
 	
 	@Test
 	public void guide_codeselect() {
