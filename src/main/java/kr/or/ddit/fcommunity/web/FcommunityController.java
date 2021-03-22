@@ -319,11 +319,19 @@ public class FcommunityController {
 		model.addAttribute("miniMarketList", fcommunityService.selectMiniMarketList());
 		model.addAttribute("itemList", fcommunityService.selectItemList());
 		
+		logger.debug("marketFileList의 값 : {}",fcommunityService.selectMarketFileList(market_no));
+		
+		if(fcommunityService.selectMarketFileList(market_no) != null) {
+			logger.debug("null이 아니다.");
+		}
+		if(fcommunityService.selectMarketFileList(market_no) == null) {
+			logger.debug("nullㅇ이다.");
+		}
 		
 		return "tiles.fcommunity.modifyMiniMarket";
 	}
 	
-	// 20210318_ggy : 미니장터 게시글 등록을 위한 진입
+	// 20210318_ggy : 미니장터 게시글 수정
 	@RequestMapping(path = "modifyMiniMarket", method = { RequestMethod.POST })
 	public String modifyMiniMarket(
 			HttpServletRequest req, 
@@ -368,8 +376,11 @@ public class FcommunityController {
 		}
 		else {
 			
+			
+			
+//			if (req.getParameter("file_nm1").equals("") ) {
 			if (req.getParameter("file_nm1").equals("") && file_file1.getOriginalFilename().equals("")
-					|| file_file1.getOriginalFilename() == null) {
+				|| file_file1.getOriginalFilename() == null) {
 				
 				logger.debug("file_nm1의 첨부파일 없다.");
 				
@@ -380,7 +391,7 @@ public class FcommunityController {
 				int deleteMiniMarketFilesCnt = fcommunityService.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
 				
 				if(deleteMiniMarketFilesCnt==1) {
-					logger.debug("첨부파일 삭제");
+					logger.debug("file_nm1의 첨부파일 삭제");
 				}
 				
 				MarketFilesVo marketFilesVo1 = new MarketFilesVo();
@@ -419,8 +430,8 @@ public class FcommunityController {
 					logger.debug("첨부 파일없다.");
 				}
 				
-			
 			}
+			
 		}
 		
 		logger.debug("미니장터 게시글 수정 시작전");
