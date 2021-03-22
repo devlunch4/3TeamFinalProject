@@ -53,7 +53,7 @@ public class FinfoServiceImpl implements FinfoService {
 	public List<CodesVo> itemFarmManualsList(String code_no) {
 		return finfoDao.itemFarmManualsList(code_no);
 	}
-	
+
 	// 20210316_ggy : 품목 분류 리스트 조회
 	@Override
 	public List<CodesVo> itemClassList() {
@@ -77,7 +77,7 @@ public class FinfoServiceImpl implements FinfoService {
 	public List<GardenguideVo> selectGuideAll() {
 		return finfoDao.selectGuideAll();
 	}
-	
+
 	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
 	@Override
 	public GardenguideVo guide_codeselect(String str) {
@@ -89,24 +89,23 @@ public class FinfoServiceImpl implements FinfoService {
 	public List<GardenguideVo> selectSeasons(String season) {
 		return finfoDao.selectSeasons(season);
 	}
-	
+
 	// 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회
 	@Override
 	public ItemmanualVo selectModifyItemMenualInfo(int manual_code) {
 		return finfoDao.selectModifyItemMenualInfo(manual_code);
 	}
-	
+
 	// 20210317_ggy : 품목 메뉴얼 수정
 	@Override
 	public int modifyItemMenualInfo(ItemmanualVo itemmanualVo) {
 		return finfoDao.modifyItemMenualInfo(itemmanualVo);
 	}
-	
+
 	// 20210317_ggy : 품목 메뉴얼 삭제
 	@Override
 	public int deleteItemMenualInfo(ItemmanualVo itemmanualVo) {
 		return finfoDao.deleteItemMenualInfo(itemmanualVo);
 	}
-	
 
 }

@@ -26,25 +26,25 @@ public interface FinfoDao {
 
 	// 20210316_ggy : 품목 리스트 조회
 	List<CodesVo> itemFarmManualsList(String code_no);
-		
+
 	// 20210316_ggy : 품목 분류 리스트 조회
 	List<CodesVo> itemClassList();
-	
+
 	// 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회
 	List<ItemmanualVo> selectItemmanualFilenmList();
-	
+
 	// 20210316_ggy : 품목 메뉴얼 등록
 	int registItemMenual(ItemmanualVo itemmanualVo);
-	
+
 	// 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회
 	ItemmanualVo selectModifyItemMenualInfo(int manual_code);
-	
+
 	// 20210317_ggy : 품목 메뉴얼 수정
 	int modifyItemMenualInfo(ItemmanualVo itemmanualVo);
-	
+
 	// 20210317_ggy : 품목 메뉴얼 삭제
 	int deleteItemMenualInfo(ItemmanualVo itemmanualVo);
-	
+
 	// 20210311 KWS 텃밭가이드 전체 글조회-관리자용
 	List<GardenguideVo> selectGuideAll();
 

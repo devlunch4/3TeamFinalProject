@@ -63,13 +63,13 @@ public class FinfoDaoImpl implements FinfoDao {
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
-  
-  	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
+
+	// 20210312 KJH 텃밭가이드 작물명과 일치하는 대상조회 test ok
 	@Override
 	public GardenguideVo guide_codeselect(String str) {
-		return tempplate.selectOne("guides.guide_codeselect",str);
-}
-  
+		return tempplate.selectOne("guides.guide_codeselect", str);
+	}
+
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
 	// ////////////////////////////////////////////////////////////////
@@ -78,31 +78,31 @@ public class FinfoDaoImpl implements FinfoDao {
 	public List<CodesVo> itemFarmManualsList(String code_no) {
 		return tempplate.selectList("guides.itemFarmManualsList", code_no);
 	}
-	
+
 	// 20210316_ggy : 품목 분류 리스트 조회
 	@Override
 	public List<CodesVo> itemClassList() {
 		return tempplate.selectList("guides.itemClassList");
 	}
-	
+
 	// 20210316_ggy : 품목 메뉴얼 등록
 	@Override
 	public int registItemMenual(ItemmanualVo itemmanualVo) {
-		return tempplate.insert("guides.registItemMenual",itemmanualVo);
+		return tempplate.insert("guides.registItemMenual", itemmanualVo);
 	}
-	
+
 	// 20210316_ggy : 파일 다운로드를 위한 영농메뉴얼 조회
 	@Override
 	public List<ItemmanualVo> selectItemmanualFilenmList() {
 		return tempplate.selectList("guides.selectItemmanualFilenmList");
 	}
-	
+
 	// 20210317_ggy : 품목 메뉴얼 수정을 위한 정보 조회
 	@Override
 	public ItemmanualVo selectModifyItemMenualInfo(int manual_code) {
-		return tempplate.selectOne("guides.selectModifyItemMenualInfo",manual_code);
+		return tempplate.selectOne("guides.selectModifyItemMenualInfo", manual_code);
 	}
-	
+
 	// 20210317_ggy : 품목 메뉴얼 수정
 	@Override
 	public int modifyItemMenualInfo(ItemmanualVo itemmanualVo) {
@@ -114,8 +114,5 @@ public class FinfoDaoImpl implements FinfoDao {
 	public int deleteItemMenualInfo(ItemmanualVo itemmanualVo) {
 		return tempplate.update("guides.deleteItemMenualInfo", itemmanualVo);
 	}
-	
-	
-
 
 }
