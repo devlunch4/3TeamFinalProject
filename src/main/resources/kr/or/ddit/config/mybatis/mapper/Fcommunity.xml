@@ -19,12 +19,7 @@
 		WHERE notice_no = #{value}
 	</select>
 	
-	<!-- 공지사항 삭제 하는거 03/15 (경찬) -->
-	<update id="deleteNotice" parameterType="Integer">
-		UPDATE notice set use_yn = 'N'
-		WHERE notice_no = #{value}
-	</update>
-	
+		
 	<!-- 공지사항 작성하는거 03/15 (경찬) -->
 	<insert id="insertNotice" parameterType="fnoticeVo">
 		INSERT INTO notice
