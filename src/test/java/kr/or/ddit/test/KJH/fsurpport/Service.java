@@ -36,22 +36,22 @@ public class Service extends ModelTestConfig{
 		/***Given***/	
 		
 		/***When***/
-		FmanageVo fmanageVo = fsurpportService.fmanageInfo("2");
+		FmanageVo fmanageVo = fsurpportService.fmanageInfo("3");
 		/***Then***/
-		assertEquals("10", fmanageVo.getHistory_no());
+		assertEquals("21", fmanageVo.getHistory_no());
 	}
 	@Test
 	public void latelyData() {
 		/***Given***/	
 		FhistoryVo fhistoryVo = new FhistoryVo();
-		fhistoryVo.setManage_no("26");
-		fhistoryVo.setHistory_no("49");
+		fhistoryVo.setManage_no("3");
+		fhistoryVo.setHistory_no("21");
 		
 		MsrrecVo msrrecVo = new MsrrecVo();
 		/***When***/
 		msrrecVo = fsurpportService.latelyData(fhistoryVo);
 		/***Then***/
-		assertEquals(27, msrrecVo.getMsr_temp());
+		assertEquals(22, msrrecVo.getMsr_temp());
 	}
 	@Test
 	public void msrequipList() {
@@ -60,14 +60,14 @@ public class Service extends ModelTestConfig{
 		/***When***/
 		List<MsrequipVo> msrequipVo = fsurpportService.msrequipList("brown");
 		/***Then***/
-		assertEquals("내장비", msrequipVo.get(0).getMsr_nm());
+		assertEquals("변경함", msrequipVo.get(0).getMsr_nm());
 	}
 	@Test
 	public void availableList() {
 		/***Given***/	
 		MsrequipVo vo = new MsrequipVo();
 		vo.setOwner("brown");
-		vo.setMsr_code("uno03");
+		vo.setMsr_code("uno01");
 		
 		/***When***/
 		int cnt = fsurpportService.availableList(vo);
@@ -81,78 +81,78 @@ public class Service extends ModelTestConfig{
 		/***When***/
 		List<MsrequipVo> msrequipVo = fsurpportService.msrList("brown");
 		/***Then***/
-		assertEquals("내장비2", msrequipVo.get(0).getMsr_nm());
+		assertEquals("변경함", msrequipVo.get(0).getMsr_nm());
 	}
 	
-	@Test
-	public void insertFmanage() {
-		/***Given***/	
-		FmanageVo fmanageVo = new FmanageVo();
-		fmanageVo.setOwner("brown");
-		fmanageVo.setLocation("ok");
-		fmanageVo.setInfo("no");
-		fmanageVo.setItem_code("111");
-		/***When***/
-		int cnt = fsurpportService.insertFmanage(fmanageVo);
-		/***Then***/
-		assertEquals(1, cnt);
-	}
-	@Test
-	public void insertFhistory() {
-		/***Given***/	
-		FhistoryVo vo = new FhistoryVo();
-		vo.setManage_no("1");
-		vo.setMsr_code("uno04");
-		/***When***/
-		int cnt = fsurpportService.insertFhistory(vo);
-		/***Then***/
-		assertEquals(1, cnt);
-	}
+//	@Test
+//	public void insertFmanage() {
+//		/***Given***/	
+//		FmanageVo fmanageVo = new FmanageVo();
+//		fmanageVo.setOwner("brown");
+//		fmanageVo.setLocation("ok");
+//		fmanageVo.setInfo("no");
+//		fmanageVo.setItem_code("111");
+//		/***When***/
+//		int cnt = fsurpportService.insertFmanage(fmanageVo);
+//		/***Then***/
+//		assertEquals(1, cnt);
+//	}
+//	@Test
+//	public void insertFhistory() {
+//		/***Given***/	
+//		FhistoryVo vo = new FhistoryVo();
+//		vo.setManage_no("1");
+//		vo.setMsr_code("uno04");
+//		/***When***/
+//		int cnt = fsurpportService.insertFhistory(vo);
+//		/***Then***/
+//		assertEquals(1, cnt);
+//	}
 
-	@Test
-	public void updatefmanageInfo() {
-		/***Given***/	
-		/***When***/
-		FmanageVo fmanageVo = fsurpportService.updatefmanageInfo("26");
-		/***Then***/
-		assertEquals("26", fmanageVo.getManage_no());
-	}
+//	@Test
+//	public void updatefmanageInfo() {
+//		/***Given***/	
+//		/***When***/
+//		FmanageVo fmanageVo = fsurpportService.updatefmanageInfo("26");
+//		/***Then***/
+//		assertEquals("26", fmanageVo.getManage_no());
+//	}
 	
-	@Test
-	public void fmanageUpdate() {
-		/***Given***/	
-		FmanageVo fmanageVo = new FmanageVo();
-		fmanageVo.setLocation("333");
-		fmanageVo.setInfo("222");
-		fmanageVo.setItem_code("111");
-		fmanageVo.setManage_no("1");
-		/***When***/
-		int cnt = fsurpportService.fmanageUpdate(fmanageVo);
-		/***Then***/
-		assertEquals(1, cnt);
-	}
+//	@Test
+//	public void fmanageUpdate() {
+//		/***Given***/	
+//		FmanageVo fmanageVo = new FmanageVo();
+//		fmanageVo.setLocation("333");
+//		fmanageVo.setInfo("222");
+//		fmanageVo.setItem_code("111");
+//		fmanageVo.setManage_no("1");
+//		/***When***/
+//		int cnt = fsurpportService.fmanageUpdate(fmanageVo);
+//		/***Then***/
+//		assertEquals(1, cnt);
+//	}
 	
-	@Test
-	public void fmanageDelete() {
-		/***Given***/	
-		FmanageVo fmanageVo = new FmanageVo();
-		fmanageVo.setManage_no("1");
-		/***When***/
-		int cnt = fsurpportService.fmanageDelete(fmanageVo);
-		/***Then***/
-		assertEquals(1, cnt);
-	}
+//	@Test
+//	public void fmanageDelete() {
+//		/***Given***/	
+//		FmanageVo fmanageVo = new FmanageVo();
+//		fmanageVo.setManage_no("1");
+//		/***When***/
+//		int cnt = fsurpportService.fmanageDelete(fmanageVo);
+//		/***Then***/
+//		assertEquals(1, cnt);
+//	}
 	
-	@Test
-	public void fhistoryDelete() {
-		/***Given***/	
-		FmanageVo fmanageVo = new FmanageVo();
-		fmanageVo.setManage_no("1");
-		/***When***/
-		int cnt = fsurpportService.fhistoryDelete(fmanageVo);
-		/***Then***/
-		assertEquals(1, cnt);
-	}
+//	@Test
+//	public void fhistoryDelete() {
+//		/***Given***/	
+//		FmanageVo fmanageVo = new FmanageVo();
+//		fmanageVo.setManage_no("1");
+//		/***When***/
+//		int cnt = fsurpportService.fhistoryDelete(fmanageVo);
+//		/***Then***/
+//		assertEquals(1, cnt);
+//	}
 	
 	@Test
 	public void myYield() {
@@ -164,7 +164,52 @@ public class Service extends ModelTestConfig{
 		/***When***/
 		List<FarmdiaryVo> farmdiaryList = fsurpportService.myYield(vo);
 		/***Then***/
-		assertEquals(6, farmdiaryList.size());
+		assertEquals(2, farmdiaryList.size());
+	}
+	
+	@Test
+	public void msrUpdate() {
+		/***Given***/	
+		MsrequipVo vo = new MsrequipVo();
+		vo.setMsr_code("uno01");
+		vo.setMsr_nm("변경함");
+		vo.setOwner("brown");
+		/***When***/
+		int cnt = fsurpportService.msrUpdate(vo);
+		/***Then***/
+		assertEquals(1, cnt);
+	}
+	
+	@Test
+	public void msrSet() {
+		/***Given***/	
+		MsrequipVo vo = new MsrequipVo();
+		vo.setOwner("1");
+		vo.setMsr_code("test");
+		/***When***/
+		int cnt = fsurpportService.msrSet(vo);
+		/***Then***/
+		assertEquals(1, cnt);
+	}
+	
+	@Test
+	public void msrSelect() {
+		/***Given***/
+		MsrequipVo vo = new MsrequipVo();
+		vo.setMsr_code("test");
+		/***When***/
+		int cnt = fsurpportService.msrSet(vo);
+		/***Then***/
+		assertEquals(1, cnt);
+	}
+	
+	@Test
+	public void msrallList() {
+		/***Given***/
+		/***When***/
+		List<MsrequipVo> vo = fsurpportService.msrallList();
+		/***Then***/
+		assertEquals("test", vo.get(0).getMsr_code());
 	}
 
 }

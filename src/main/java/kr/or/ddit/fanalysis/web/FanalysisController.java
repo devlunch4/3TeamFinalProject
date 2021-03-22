@@ -146,7 +146,7 @@ public class FanalysisController {
 		return "tiles.fanalysis.mymaxmsrrecList";
 	}
 	
-	// 20210315_KJH 내 시설 실시간 관측 조회 ajax
+	// 20210315_KJH 내 시설 실시간 관측 조회 ajax ok
 	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.POST })
 	public String mymaxmsrrecListpost(Model model, HttpSession session) {
 

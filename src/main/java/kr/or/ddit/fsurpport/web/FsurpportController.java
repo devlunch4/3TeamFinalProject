@@ -1107,7 +1107,7 @@ public class FsurpportController {
 	
 	
 	// KJH_20210317
-	// 장치 수정
+	// 장치 수정 ok
 	@RequestMapping(path = "msrUpdate",method = { RequestMethod.GET })
 	public String msrUpdate(Model model, HttpSession session, MsrequipVo msrequipVo) {
 
@@ -1116,7 +1116,7 @@ public class FsurpportController {
 		return "redirect:/fsurpport/msrequipList";
 	}
 	
-	// 20210317_KJH 사용자 장비 등록
+	// 20210317_KJH 사용자 장비 등록 ok
 	@RequestMapping(path = "msrSet",method = { RequestMethod.GET })
 	public String msrSet(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		
