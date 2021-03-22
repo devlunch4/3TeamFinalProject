@@ -20,8 +20,8 @@ public class FcommunityDaoImpl implements FcommunityDao {
 
 	// 20210318_ggy : 미니장터 글 전체 조회
 	@Override
-	public List<MiniMarketVo> selectAllMiniMarketList() {
-		return template.selectList("miniMarkets.selectAllMiniMarketList");
+	public List<MiniMarketVo> selectAllMiniMarketList(MiniMarketVo miniMarketVo) {
+		return template.selectList("miniMarkets.selectAllMiniMarketList", miniMarketVo);
 	}
 	
 	// 20210319_ggy: 미니장터 등록을 위한 머릿맛 코드 조회
@@ -60,6 +60,13 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	@Override
 	public List<MarketFilesVo> selectMarketFileList(int market_no) {
 		return template.selectList("miniMarkets.selectMarketFileList", market_no);
+	}
+	
+	
+	// 20210320 : 미니장터 게시글 조회수 증가
+	@Override
+	public int addHitMiniMarket(int market_no) {
+		return template.update("miniMarkets.addHitMiniMarket", market_no);
 	}
 	
 	

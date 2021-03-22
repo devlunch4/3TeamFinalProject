@@ -17,13 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
 import kr.or.ddit.fanalysis.service.FanalysisService;
-import kr.or.ddit.fanalysis.service.FanalysisServiceImpl;
+
 import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.farm.model.FmanageVo;
 import kr.or.ddit.farm.model.MsrequipVo;
 import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fsurpport.service.FsurpportService;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
 import kr.or.ddit.user.model.UserVo;
 
 @RequestMapping("fanalysis")

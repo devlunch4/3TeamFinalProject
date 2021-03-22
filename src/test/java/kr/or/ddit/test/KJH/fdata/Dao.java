@@ -10,13 +10,13 @@ import org.junit.Test;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.fdata.repository.FdataDaoImpl;
+import kr.or.ddit.fdata.repository.FdataDao;
 import kr.or.ddit.test.config.ModelTestConfig;
 
 public class Dao extends ModelTestConfig{
 	
 	@Resource(name = "fdataDao")
-	private FdataDaoImpl fdataDao;
+	private FdataDao fdataDao;
 
 	@Test
 	public void selectAllCodes() {

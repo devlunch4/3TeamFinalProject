@@ -7,14 +7,14 @@ import javax.annotation.Resource;
 import org.junit.Test;
 
 import kr.or.ddit.fanalysis.model.MyMaxMrrecListVo;
-import kr.or.ddit.fanalysis.service.FanalysisServiceImpl;
+import kr.or.ddit.fanalysis.service.FanalysisService;
 import kr.or.ddit.farm.model.FhistoryVo;
 import kr.or.ddit.test.config.ModelTestConfig;
 
 public class Service extends ModelTestConfig{
 
 	@Resource(name = "fanalysisService")
-	private FanalysisServiceImpl fanalysisService;
+	private FanalysisService fanalysisService;
 
 	@Test
 	public void myfanalysisInfo() {

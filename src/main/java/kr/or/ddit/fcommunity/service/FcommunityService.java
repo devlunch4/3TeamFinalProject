@@ -11,7 +11,7 @@ public interface FcommunityService {
 	
 	
 	// 20210318_ggy : 미니장터 글 전체 조회
-	List<MiniMarketVo> selectAllMiniMarketList();
+	List<MiniMarketVo> selectAllMiniMarketList(MiniMarketVo miniMarketVo);
 	
 	// 20210319_ggy: 미니장터 등록을 위한 머릿맛 코드 조회
 	List<CodesVo> selectMiniMarketList();
@@ -31,6 +31,8 @@ public interface FcommunityService {
 	// 20210319_ggy : 미니장터파일 조회
 	List<MarketFilesVo> selectMarketFileList(int market_no);
 	
+	// 20210320 : 미니장터 게시글 조회수 증가
+	int addHitMiniMarket(int market_no);
 	
 	
 	

@@ -1,10 +1,13 @@
 package kr.or.ddit.fcommunity.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +38,19 @@ public class FcommunityController {
 	
 	// 20210318_ggy : 미니장터 조회
 	@RequestMapping("miniMarketView")
-	public String miniMarketView(Model model) {
+	public String miniMarketView(MiniMarketVo miniMarketVo, Model model) {
 		
 		logger.debug("IN miniMarketView()");
 		
-		model.addAttribute("miniMarketList", fcommunityService.selectAllMiniMarketList());
+		
+		model.addAttribute("miniMarketList", fcommunityService.selectAllMiniMarketList(miniMarketVo));
+		model.addAttribute("itemList", fcommunityService.selectItemList());
+		
+		if(miniMarketVo.getItem_code() != null && !miniMarketVo.getItem_code().equals("")) {
+			logger.debug("miniMarketVo.getItem_code()의 값 : {}", miniMarketVo.getItem_code());
+			model.addAttribute("selectItemCodeValue", miniMarketVo.getItem_code());
+			model.addAttribute("selectTitleValue", miniMarketVo.getTitle());
+		}
 		
 		return "tiles.fcommunity.miniMarketMain";
 	}
@@ -53,6 +64,8 @@ public class FcommunityController {
 		MiniMarketVo miniMarketVo = new MiniMarketVo();
 		miniMarketVo.setMarket_no(market_no);
 		miniMarketVo.setWriter(writer);
+		
+		fcommunityService.addHitMiniMarket(market_no);
 		
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
@@ -245,6 +258,67 @@ public class FcommunityController {
 		return"redirect:/fcommunity/miniMarketView";
 	}	
 	
+	// ggy_20210320 : 파일 경로
+	@RequestMapping("filePath")
+	public void profile(HttpServletResponse resp, String file_nm, HttpServletRequest req) {
+
+		logger.debug("filePath 진입");
+		resp.setContentType("image");
+
+		// userid 파라미터를 이용하여
+		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
+		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
+
+		String path = "";
+		if (file_nm == null && !file_nm.equals("")) {
+			logger.debug("file_nm이 null");
+
+			path = req.getServletContext().getRealPath("c:\\fdown\\unknown.png");
+			logger.debug("path : " + path);
+		} else {
+
+			logger.debug("file_nm이 null 아니다.");
+			path = "c:\\fdown\\" + file_nm;
+			logger.debug("path : " + path);
+		}
+
+		logger.debug("path : {}", path);
+
+		try {
+
+			FileInputStream fis = new FileInputStream(path);
+			ServletOutputStream sos = resp.getOutputStream();
+
+			byte[] buff = new byte[512];
+
+			while (fis.read(buff) != -1) {
+
+				sos.write(buff);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	// 20210322_ggy : 미니장터 게시글 수정을 위한 진입 및 상세 조회
+	@RequestMapping("modifyMiniMarketView")
+	public String modifyMiniMarketView(String writer, int market_no, Model model) {
+
+		logger.debug("selectMiniMarketInfo 진입");
+
+		MiniMarketVo miniMarketVo = new MiniMarketVo();
+		miniMarketVo.setMarket_no(market_no);
+		miniMarketVo.setWriter(writer);
+
+		fcommunityService.addHitMiniMarket(market_no);
+
+		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
+		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
+
+		return "tiles.fcommunity.modifyMiniMarket";
+	}
 	
 	
 }

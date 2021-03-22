@@ -5,7 +5,8 @@
 
 <mapper namespace="miniMarkets">
 	
-	<select id="selectAllMiniMarketList" resultType="miniMarketVo">
+	<select id="selectAllMiniMarketList" parameterType="miniMarketVo" 
+		resultType="miniMarketVo">
 		SELECT 
 		    m.market_no
 			, m.writer
@@ -20,13 +21,29 @@
 			, m.hit
 		    , c.code_nm item_code_nm
             , co.code_nm head_code_nm
+            , f.file_nm thumbnail_file_nm
+            
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
         JOIN codes co
         ON m.head_code = co.code_no
-		WHERE m.use_yn = 'Y'
+        JOIN files f
+	    ON m.thumbnail = f.file_no
+        
+		WHERE 1=1
+        AND m.use_yn = 'Y'
 		AND c.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+        
+        <if test="item_code != null and item_code != ''">
+	        AND m.item_code = #{item_code }
+        </if>
+        
+        <if test="title != null and title != ''">
+	        AND m.title like '%'||#{title }||'%'
+        </if>
+        
 		ORDER BY reg_dt desc
 	</select>	
 	
@@ -54,11 +71,14 @@
 			, m.hit
 		    , c.code_nm item_code_nm
             , co.code_nm head_code_nm
+			, f.file_nm thumbnail_file_nm
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
         JOIN codes co
         ON m.head_code = co.code_no
+		JOIN files f
+		ON m.thumbnail = f.file_no
 		WHERE m.use_yn = 'Y'
 		AND c.use_yn = 'Y'
 		AND writer = #{writer }

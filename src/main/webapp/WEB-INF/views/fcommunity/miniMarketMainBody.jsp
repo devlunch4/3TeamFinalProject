@@ -5,44 +5,19 @@
 <h3 class="mt-4">미니장터</h3>
 
 <c:if test="${S_USER.user_id != null }">
-	<button type="button" class=" btn btn-success " 
-	onclick="location.href='${pageContext.request.contextPath}/fcommunity/registMiniMarketView'" >미니장터게시글 등록</button>
+	<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fcommunity/registMiniMarketView'">미니장터게시글 등록</button>
 </c:if>
 
 <div class="card mt-2 col-sm-12">
 	<!-- 품목 선택 해서 조회하는 부분 -->
-	<form action="${pageContext.request.contextPath }/fsurpport/searchAllFsurpportList" method="post">
+	<form action="${pageContext.request.contextPath }/fcommunity/miniMarketView" method="post">
+		<span class="">품목 선택</span> <br> <select name="item_code" class="btn btn-outline-dark ">
+			<option value="">전체</option>
+			<c:forEach items="${itemList }" var="itemList">
+				<option value="${itemList.code_no }" <c:if test="${selectItemCodeValue eq itemList.code_no }">selected="selected"</c:if>>${itemList.code_nm }</option>
+			</c:forEach>
+		</select> <input type="text" name="title" value="${selectTitleValue }" required="required"> <input type="submit" value="조회">
 
-		<div class="card-body text-left p-1">
-			<span class="">가나다순</span> <br>
-			<c:choose>
-				<c:when test="${searchFarmdiaryValue != null }">
-					<input type="date" name="startDate" 
-					value="${searchFarmdiaryValue.startDate }" class=" btn btn-outline-dark m-1">
-					<input type="date" name="endDate" 
-					value="${searchFarmdiaryValue.endDate }" class=" btn btn-outline-dark m-1">
-				</c:when>
-				
-				<c:otherwise>
-					<input type="date" name="startDate" value="" class=" btn btn-outline-dark m-1">
-					<input type="date" name="endDate" value="" class=" btn btn-outline-dark m-1">
-				</c:otherwise>			
-			</c:choose>
-		</div>
-		<div class="card-body text-left p-1">
-			<label>*품목</label> <br>
-			<select name="item_code">
-				<option value="">전체</option>
-				<c:forEach items="${itemsList }" var="itemsList">
-					<option value="${itemsList.code_no }" 
-					<c:if test="${searchFarmdiaryValue.item_code eq itemsList.code_no }">selected="selected"</c:if>
-					>${itemsList.code_nm }</option>
-				</c:forEach>
-			</select>
-		</div>
-		
-		<input type="hidden" name="writer" value="${S_USER.user_id }" style="margin-left: 20%;" readonly="readonly">
-		<input type="submit" value="조회" style="margin-left: 20%;">
 	</form>
 </div>
 
@@ -54,8 +29,8 @@
                		<path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path>
                 </svg>
 		<h3>미니장터</h3>
-		
-		
+
+
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
@@ -70,19 +45,19 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-md-12 col-sm-12 ">
-					
-<!-- 					<input type="button" value="EXCEL다운로드" class="float-right btn btn-success col-xs-2 col-md-2   "  -->
-<%-- 					onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'"> --%>
-							
-<!-- 					<input type="button" value="PDF다운로드" class="float-right btn btn-success col-xs-2 col-md-2  "  -->
-<%-- 					onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'"> --%>
-							
+
+						<!-- 					<input type="button" value="EXCEL다운로드" class="float-right btn btn-success col-xs-2 col-md-2   "  -->
+						<%-- 					onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'"> --%>
+
+						<!-- 					<input type="button" value="PDF다운로드" class="float-right btn btn-success col-xs-2 col-md-2  "  -->
+						<%-- 					onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'"> --%>
+
 						<table class="col-xs-6 col-md-12 table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Head: activate to sort column descending" aria-sort="ascending">머릿말</th>
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" >사진</th>
-									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column descending" >제목</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending">사진</th>
+									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column descending">제목</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="WRITER: activate to sort column ascending">작성자</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="ITEM_CODE_NM: activate to sort column ascending">종류</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">작성날짜</th>
@@ -100,18 +75,13 @@
 							</tfoot>
 							<tbody>
 								<c:forEach items="${miniMarketList }" var="miniMarketList">
-									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/miniMarketInfoView?writer=${miniMarketList.writer }&market_no=${miniMarketList.market_no }'" >
+									<tr onclick="location.href='${pageContext.request.contextPath}/fcommunity/miniMarketInfoView?writer=${miniMarketList.writer }&market_no=${miniMarketList.market_no }'">
 										<td>${miniMarketList.head_code_nm }</td>
-										<td>
-<%-- 											<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${miniMarketList.thumbnail }" width="50" height="50" > --%>
-											<img>
-										</td>
+										<td><img src="${pageContext.request.contextPath}/fcommunity/filePath?file_nm=${miniMarketList.thumbnail_file_nm }" width="50" height="50"></td>
 										<td>${miniMarketList.title }</td>
 										<td>${miniMarketList.writer }</td>
 										<td>${miniMarketList.item_code_nm }</td>
-										<td>
-											<fmt:formatDate value="${miniMarketList.reg_dt }" pattern="yyyy.MM.dd" />
-										</td>
+										<td><fmt:formatDate value="${miniMarketList.reg_dt }" pattern="yyyy.MM.dd" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -120,8 +90,8 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
-	
-	
+
+
 </div>

@@ -13,7 +13,7 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import kr.or.ddit.fdata.service.FdataServiceImpl;
+import kr.or.ddit.fdata.service.FdataService;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 import kr.or.ddit.test.config.WebTestConfig;
 import kr.or.ddit.user.model.UserVo;
@@ -24,7 +24,7 @@ public class Controller extends WebTestConfig{
 	private FsurpportService fsurpportService;
 
 	@Resource(name = "fdataService")
-	private FdataServiceImpl fdataService;
+	private FdataService fdataService;
 
 	@Test
 	public void fmanageList() throws Exception{

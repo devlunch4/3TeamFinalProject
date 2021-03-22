@@ -7,13 +7,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.farm.model.MarketFilesVo;
-import kr.or.ddit.marketfiles.repository.MarketFilesDaoImpl;
+import kr.or.ddit.marketfiles.repository.MarketFilesDao;
 
 @Service("marketfilesService")
 public class MarketFilesServiceImpl implements MarketFilesService {
 
 	@Resource(name = "marketfilesDao")
-	private MarketFilesDaoImpl dao;
+	private MarketFilesDao dao;
 
 	@Override
 	public List<MarketFilesVo> selectfiles() {

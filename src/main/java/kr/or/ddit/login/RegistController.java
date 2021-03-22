@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.service.UserService;
+import kr.or.ddit.user.service.UserServiceImpl;
 
 @RequestMapping("join")
 @Controller
@@ -34,7 +34,7 @@ public class RegistController {
 
 	// 필요한 스프링 빈 호출
 	@Resource(name = "userService")
-	private UserService userService;
+	private UserServiceImpl userService;
 
 //	20210302_LYS_Login2 - 회원가입페이지로 이동
 	@RequestMapping(path = "view", method = { RequestMethod.GET })
