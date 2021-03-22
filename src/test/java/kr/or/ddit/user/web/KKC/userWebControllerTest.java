@@ -14,12 +14,12 @@ import org.junit.Test;
 import kr.or.ddit.test.config.ModelTestConfig;
 import kr.or.ddit.test.config.WebTestConfig;
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.repository.UserDaoImpl;
+import kr.or.ddit.user.repository.UserDao;
 
 public class userWebControllerTest extends ModelTestConfig {
 
 	@Resource(name = "UserDao")
-	private UserDaoImpl userDao;
+	private UserDao userDao;
 
 	// 모든회원 정보 조회 (경찬) 3/16
 	@Test

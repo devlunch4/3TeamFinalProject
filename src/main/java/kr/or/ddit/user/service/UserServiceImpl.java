@@ -7,18 +7,18 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.repository.UserDaoImpl;
+import kr.or.ddit.user.repository.UserDao;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
 	@Resource(name = "UserDao")
-	private UserDaoImpl userDao;
+	private UserDao userDao;
 
 	public UserServiceImpl() {
 	}
 
-	public UserServiceImpl(UserDaoImpl userDao) {
+	public UserServiceImpl(UserDao userDao) {
 		this.userDao = userDao;
 	}
 
