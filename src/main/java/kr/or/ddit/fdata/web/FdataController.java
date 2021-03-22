@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
-import kr.or.ddit.fdata.service.FdataServiceImpl;
-import kr.or.ddit.finfo.service.FinfoServiceImpl;
+import kr.or.ddit.fdata.service.FdataService;
+import kr.or.ddit.finfo.service.FinfoService;
 
 @RequestMapping("fdata")
 @Controller
@@ -26,10 +26,10 @@ public class FdataController {
 	private static final Logger logger = LoggerFactory.getLogger(FdataController.class);
 
 	@Resource(name = "fdataService")
-	private FdataServiceImpl fdataService;
+	private FdataService fdataService;
 
 	@Resource(name = "finfoService")
-	private FinfoServiceImpl finfoService;
+	private FinfoService finfoService;
 
 	// 20210301KJH
 	// 인기작물 크롤링 test ok

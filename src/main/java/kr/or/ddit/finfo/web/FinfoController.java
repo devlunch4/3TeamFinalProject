@@ -24,8 +24,8 @@ import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.farm.model.ItemmanualVo;
-import kr.or.ddit.finfo.service.FinfoServiceImpl;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
+import kr.or.ddit.finfo.service.FinfoService;
+import kr.or.ddit.fsurpport.service.FsurpportService;
 
 /**
  * 
@@ -39,10 +39,10 @@ public class FinfoController {
 
 	// 필요한 스프링 빈 호출
 	@Resource(name = "finfoService")
-	private FinfoServiceImpl finfoService;
+	private FinfoService finfoService;
 
 	@Resource(name = "fsurpportService")
-	private FsurpportServiceImpl fsurpportService;
+	private FsurpportService fsurpportService;
 
 	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210305 TEST OK
 	@RequestMapping("gardenguides")

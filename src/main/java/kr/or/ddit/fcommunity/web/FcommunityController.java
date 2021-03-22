@@ -17,8 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
-import kr.or.ddit.fcommunity.service.FcommunityServiceImpl;
-import kr.or.ddit.fsurpport.service.FsurpportServiceImpl;
+import kr.or.ddit.fcommunity.service.FcommunityService;
+import kr.or.ddit.fsurpport.service.FsurpportService;
 
 // 20210318_ggy : 미니장터 controller 생성
 @RequestMapping("fcommunity")
@@ -28,10 +28,10 @@ public class FcommunityController {
 	private static final Logger logger = LoggerFactory.getLogger(FcommunityController.class);
 	
 	@Resource(name = "fcommunityService")
-	private FcommunityServiceImpl fcommunityService;
+	private FcommunityService fcommunityService;
 	
 	@Resource(name = "fsurpportService")
-	private FsurpportServiceImpl fsurpportService;
+	private FsurpportService fsurpportService;
 	
 	// 20210318_ggy : 미니장터 조회
 	@RequestMapping("miniMarketView")

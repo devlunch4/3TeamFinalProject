@@ -10,13 +10,13 @@ import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.farm.model.ItemmanualVo;
-import kr.or.ddit.finfo.repository.FinfoDaoImpl;
+import kr.or.ddit.finfo.repository.FinfoDao;
 
 @Service("finfoService")
 public class FinfoServiceImpl implements FinfoService {
 
 	@Resource(name = "finfoDao")
-	private FinfoDaoImpl finfoDao;
+	private FinfoDao finfoDao;
 
 	// 20210305 KWS 텃밭 가이드 조회 (텃밭코드로 조회)
 	@Override

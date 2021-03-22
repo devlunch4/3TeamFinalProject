@@ -8,12 +8,12 @@ import org.junit.Test;
 
 import kr.or.ddit.test.config.WebTestConfig;
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.repository.UserDaoImpl;
+import kr.or.ddit.user.repository.UserDao;
 
 public class UserDaoTest extends WebTestConfig{
 
 	@Resource(name="UserDao")
-	private UserDaoImpl userDao;
+	private UserDao userDao;
 	
 	// userid에 해당하는 사용자 한명의 정보 조회
 	@Test

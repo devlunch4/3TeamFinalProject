@@ -8,12 +8,12 @@ import org.junit.Test;
 
 import kr.or.ddit.test.config.WebTestConfig;
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.service.UserServiceImpl;
+import kr.or.ddit.user.service.UserService;
 
 public class UserServiceTest extends WebTestConfig{
 
 	@Resource(name="userService")
-	private UserServiceImpl userService;
+	private UserService userService;
 	
 	// userid에 해당하는 사용자 한명의 정보 조회
 		@Test

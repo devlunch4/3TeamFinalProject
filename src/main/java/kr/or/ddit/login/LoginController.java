@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.service.UserServiceImpl;
+import kr.or.ddit.user.service.UserService;
 
 @RequestMapping("login")
 @Controller
@@ -21,7 +21,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Resource(name = "userService")
-	private UserServiceImpl userService;
+	private UserService userService;
 
 //	20210302_LYS_Login2 - 로그인페이지로 이동
 	@RequestMapping(path = "view", method = { RequestMethod.GET })
