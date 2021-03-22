@@ -25,6 +25,7 @@
 		WHERE notice_no = #{value}
 	</update>
 	
+	<!-- 공지사항 작성하는거 03/15 (경찬) -->
 	<insert id="insertNotice" parameterType="fnoticeVo">
 		INSERT INTO notice
 		(notice_no, writer, title,content, reg_dt, file_no, hit, use_yn)
@@ -39,6 +40,12 @@
         'Y'
 		)
 	</insert>
+	
+	<!-- 공지사항 수정 하는거 03/19 (경찬) -->
+	<update id="deleteNotice" parameterType="Integer">
+		UPDATE notice set use_yn = 'N'
+		WHERE notice_no = #{value}
+	</update>
 	
 		
 

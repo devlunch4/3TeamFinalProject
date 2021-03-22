@@ -46,11 +46,26 @@ public class FnoticeController {
 
 	// 20210315 공지사항 수정 (경찬)
 	@RequestMapping("noticesModify")
-	public String noticesModify(Model model) {
+	public String noticesModify(Model model, int notice_no) {
 
 		logger.debug("IN noticesModify()");
 
+		FnoticeVo notice = fnoticeService.selcetNotice(notice_no);
+
+		model.addAttribute("notice", notice);
+
 		return "tiles.fcommunity.noticesModify";
+	}
+
+	// 20210319 공지사항 수정 (경찬)
+	@RequestMapping("noticesModify2")
+	public String noticesModify2(FnoticeVo notice, int notice_no) {
+
+		logger.debug("IN noticesModify2()");
+
+		 notice = fnoticeService.selcetNotice(notice_no);
+
+		return "tiles.fcommunity.noticesMain";
 	}
 
 	// 20210315 공지사항 삭제 (경찬)
@@ -71,21 +86,21 @@ public class FnoticeController {
 	// 20210316 공지사항 등록 (경찬)
 	@RequestMapping("insertNotice")
 	public String insertNotice() {
-		
+
 		return "tiles.fcommunity.noticeRegist";
 	}
-	
+
 	// 20210316 공지사항 등록 (경찬)
-		@RequestMapping("insertNotice2")
-		public String insertNotice2(FnoticeVo noticeVO, Model model) {
-			
-			List<FnoticeVo> noticeList = fnoticeService.selectAllNoticeList();
-			
-			model.addAttribute("noticeList", noticeList);
-			
-			fnoticeService.insertNotice(noticeVO);
-			
-			return "tiles.fcommunity.noticesMaina";
-		}
+	@RequestMapping("insertNotice2")
+	public String insertNotice2(FnoticeVo noticeVO, Model model) {
+
+		List<FnoticeVo> noticeList = fnoticeService.selectAllNoticeList();
+
+		model.addAttribute("noticeList", noticeList);
+
+		fnoticeService.insertNotice(noticeVO);
+
+		return "tiles.fcommunity.noticesMain";
+	}
 
 }

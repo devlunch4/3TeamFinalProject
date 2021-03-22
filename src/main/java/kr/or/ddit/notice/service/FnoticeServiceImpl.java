@@ -38,7 +38,7 @@ public class FnoticeServiceImpl implements FnoticeService {
 
 	// 관리자가 공지사항 등록하는거 03/16(경찬)
 	@Override
-	public int insertNotice(FnoticeVo noticeVo) {
+	public FnoticeVo insertNotice(FnoticeVo noticeVo) {
 		return FnoticeDao.insertNotice(noticeVo);
 	}
 
