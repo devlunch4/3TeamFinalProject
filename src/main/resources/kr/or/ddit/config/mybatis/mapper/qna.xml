@@ -8,16 +8,22 @@
 	<!-- 20210317_LYS_Q&A4 문의게시판 전체조회 리스트 -->
 	<select id="selectAllQna" resultType="qnaVo">
 		SELECT
-		    qna_no	
-		    ,qna_parent_no
-		    ,writer
-		    ,title
-		    ,content
-		    ,reg_dt
-		    ,hit
-		    ,use_yn
+		    qna_no,
+		    qna_parent_no,
+		    writer,
+		    LPAD(' ∟ ', 3*(LEVEL-1)) || title as title,
+		    content,
+		    reg_dt,
+		    hit,
+		    use_yn
 		FROM
 		    qna
+		START WITH 
+		    qna_no = qna_parent_no
+		CONNECT BY NOCYCLE PRIOR 
+		    qna_no = qna_parent_no
+		ORDER SIBLINGS BY 
+		    qna_no desc
 	</select>
 	
 	<!-- 20210317_LYS_Q&A4 문의게시판 상세페이지 조회 -->
