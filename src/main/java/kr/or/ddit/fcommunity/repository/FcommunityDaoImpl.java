@@ -69,8 +69,30 @@ public class FcommunityDaoImpl implements FcommunityDao {
 		return template.update("miniMarkets.addHitMiniMarket", market_no);
 	}
 	
+	// 20210322_ggy : 첨부파일 삭제를 위해 파일 이름 정보 찾기
+	@Override
+	public MarketFilesVo selectMarketFilesInfo(int market_no) {
+		return template.selectOne("miniMarkets.selectMarketFilesInfo", market_no);
+	}
+	
+	// 20210322_ggy : 첨부파일 삭제
+	@Override
+	public int deleteMiniMarketFiles(int file_record_no) {
+		return template.update("miniMarkets.deleteMiniMarketFiles", file_record_no);
+	}
+	
+	// 20210322_ggy : 미니장터 게시글 수정
+	@Override
+	public int modifyMiniMarketInfo(MiniMarketVo miniMarketVo) {
+		return template.update("miniMarkets.modifyMiniMarketInfo", miniMarketVo);
+	}
 	
 	
+	
+		
+		
+		
+		
 	
 	
 	

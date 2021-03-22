@@ -32,5 +32,14 @@ public interface FcommunityDao {
 	
 	// 20210320 : 미니장터 게시글 조회수 증가
 	int addHitMiniMarket(int market_no);
+
+	// 20210322_ggy : 첨부파일 삭제를 위해 파일 이름 정보 찾기
+	MarketFilesVo selectMarketFilesInfo(int market_no);
+
+	// 20210322_ggy : 첨부파일 삭제
+	int deleteMiniMarketFiles(int file_record_no);
+
+	// 20210322_ggy : 미니장터 게시글 수정
+	int modifyMiniMarketInfo(MiniMarketVo miniMarketVo);
 	
 }

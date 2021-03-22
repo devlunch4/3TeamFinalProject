@@ -145,6 +145,41 @@
 		INSERT INTO marketfiles VALUES(
 		seq_marketfiles.NEXTVAL, #{market_no }, #{file_no }, 'Y')
 	</insert>
+	
+	<!-- 20210322_ggy : 미니장터 첨부파일 있는지 확인 -->
+	<select id="selectMarketFilesInfo" parameterType="int"
+				resultType="marketFilesVo">
+		SELECT 
+		    m.file_record_no
+		    , m.market_no
+		    , m.file_no
+		    , f.file_nm
+		FROM marketfiles m
+		JOIN files f
+		ON m.file_no = f.file_no
+		WHERE market_no = #{market_no }
+		AND m.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+	</select>
+	
+	<!-- 20210322_ggy : 미니장터 첨부파일 삭제 -->
+	<update id="deleteMiniMarketFiles" parameterType="int">
+		update marketfiles set use_yn = 'N'
+		where file_record_no = #{file_record_no }
+	</update>
+	
+	<update id="modifyMiniMarketInfo" parameterType="miniMarketVo">
 		
-
+		update market set
+			title = #{title }
+			, mobile = #{mobile }
+			, head_code = #{head_code }
+			, item_code = #{item_code }
+			, content = #{content }
+			, price = #{price }
+		where market_no = #{market_no }
+		and writer = #{writer }
+		
+	</update>	
+	
 </mapper>

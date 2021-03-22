@@ -48,7 +48,6 @@
 		<c:if test="${marketFileList != null }">
 			<c:forEach items="${marketFileList }" var="marketFileList" >
 				<input type="text" value="${marketFileList.file_nm }" readonly="readonly">
-				<input type="button" value="삭제">
 				<br>
 			</c:forEach>
 		</c:if>

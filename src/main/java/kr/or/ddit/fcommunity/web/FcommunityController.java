@@ -85,7 +85,7 @@ public class FcommunityController {
 		return "tiles.fcommunity.registMiniMarket";
 	}
 	
-	// 20210318_ggy : 미니장터 게시글 등록을 위한 진입
+	// 20210318_ggy : 미니장터 게시글 등록
 	@RequestMapping(path = "registMiniMarket", method = { RequestMethod.POST })
 	public String registMiniMarket(
 			HttpServletRequest req, 
@@ -316,9 +316,131 @@ public class FcommunityController {
 
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
-
+		model.addAttribute("miniMarketList", fcommunityService.selectMiniMarketList());
+		model.addAttribute("itemList", fcommunityService.selectItemList());
+		
+		
 		return "tiles.fcommunity.modifyMiniMarket";
 	}
+	
+	// 20210318_ggy : 미니장터 게시글 등록을 위한 진입
+	@RequestMapping(path = "modifyMiniMarket", method = { RequestMethod.POST })
+	public String modifyMiniMarket(
+			HttpServletRequest req, 
+			MultipartFile thumbnail_file, 
+			MultipartFile file_file1, 
+			MultipartFile file_file2, 
+			MultipartFile file_file3, 
+			Model model) {
+		
+		logger.debug("modifyMiniMarket 진입");
+		
+		// 게시글 번호
+		int market_no_value = Integer.parseInt(req.getParameter("market_no"));
+		
+		MiniMarketVo miniMarketVo = new MiniMarketVo();
+		
+		miniMarketVo.setMarket_no(market_no_value);
+		miniMarketVo.setWriter(req.getParameter("writer"));
+		miniMarketVo.setTitle(req.getParameter("title"));
+		miniMarketVo.setMobile(req.getParameter("mobile"));
+		miniMarketVo.setHead_code(req.getParameter("head_code"));
+		miniMarketVo.setItem_code(req.getParameter("item_code"));
+		miniMarketVo.setContent(req.getParameter("content"));
+		miniMarketVo.setPrice(req.getParameter("price"));
+		
+		
+		FilesVo filesVo = new FilesVo();
+		
+		// 첨부파일 있는지 확인
+		if (req.getParameter("file_nm1") != null && !req.getParameter("file_nm1").equals("")) {
+
+			logger.debug("file_nm1 값 있다.");
+
+//			MarketFilesVo marketFilesVo = new MarketFilesVo();
+
+//			marketFilesVo = fcommunityService.selectMarketFilesName(req.getParameter("file_nm1"));
+
+//			marketFilesVo.setFile_no(marketFilesVo.getFile_no());
+//			logger.debug("file_nm1의 file_no : " + marketFilesVo.getFile_no());
+			
+
+		}
+		else {
+			
+			if (req.getParameter("file_nm1").equals("") && file_file1.getOriginalFilename().equals("")
+					|| file_file1.getOriginalFilename() == null) {
+				
+				logger.debug("file_nm1의 첨부파일 없다.");
+				
+				MarketFilesVo marketFilesVo = new MarketFilesVo();
+				
+				marketFilesVo = fcommunityService.selectMarketFilesInfo(market_no_value);
+				
+				int deleteMiniMarketFilesCnt = fcommunityService.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
+				
+				if(deleteMiniMarketFilesCnt==1) {
+					logger.debug("첨부파일 삭제");
+				}
+				
+				MarketFilesVo marketFilesVo1 = new MarketFilesVo();
+				
+				// 첨부파일 등록 부분 
+				if (file_file1.getSize() > 0) {
+
+					logger.debug("file1 있다.");
+
+					String path = "c:\\fdown\\miniMarket\\";
+
+					try {
+
+						file_file1.transferTo(new File(path + file_file1.getOriginalFilename()));
+
+						filesVo.setFile_nm("");
+						filesVo.setFile_nm(file_file1.getOriginalFilename());
+						filesVo.setFile_path(path + filesVo.getFile_nm());
+						
+						int registFilesCnt = fsurpportService.registFiles(filesVo);
+						
+						logger.debug("registFilesCnt : " + registFilesCnt);
+						marketFilesVo1.setFile_no(registFilesCnt);
+						
+						marketFilesVo1.setMarket_no(market_no_value);
+						
+						logger.debug("등록전 값 게기글 번호 : {}, 파일 번호 : {}", marketFilesVo1.getMarket_no(), marketFilesVo1.getFile_no());
+						int registmarketfilesCnt =  fcommunityService.registmarketfiles(marketFilesVo1);
+						
+						logger.debug("file_file1 등록 : "+ registmarketfilesCnt);
+					} catch (IllegalStateException | IOException e) {
+						filesVo.setFile_nm("");
+					}
+					
+				} else {
+					logger.debug("첨부 파일없다.");
+				}
+				
+			
+			}
+		}
+		
+		logger.debug("미니장터 게시글 수정 시작전");
+		logger.debug("미니장터 게시글 수정 시작전 값 : {}",miniMarketVo);
+		
+		int modifyMiniMarketInfoCnt = fcommunityService.modifyMiniMarketInfo(miniMarketVo);
+		
+		if(modifyMiniMarketInfoCnt == 1) {
+			logger.debug("미니장터 게시글 수정됨");
+		}
+		
+		logger.debug("미니장터 게시글 수정 종료");
+		
+		return"redirect:/fcommunity/miniMarketView?writer="+req.getParameter("writer")+"&market_no="+market_no_value;
+	}
+	
+	
+	
+	
+	
 	
 	
 }
