@@ -15,6 +15,18 @@
 <link rel="stylesheet" href="../resources/billboard/billboard.css">
 <script src="../resources/billboard/billboard.pkgd.js"></script>
 
+<script type="text/javascript">
+$(function(){
+$('#tb').DataTable({bDestroy : true});
+$('.dataTables_filter input[type="search"]').css(
+	     {'width':'10em'}
+	  );
+$("#tb_filter").addClass('text-right');
+$("#tb_paginate").addClass('text-center');
+$("#tb_info").addClass('text-left p-0');  
+}); 
+</script>
+
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
 <h3 class="mt-4">품목별 비율</h3>
@@ -70,7 +82,7 @@
 
 	<div class="form-group col-xs-12 pt-5">
 		<div class="float-left col-md-12 p-1  text-center">
-			<table class="table table-bordered " style="font-size: 15px;">
+			<table id="tb" class="table table-bordered " style="font-size: 15px;">
 				<thead>
 					<tr>
 						<td class="table-active px-0 py-1">작물명</td>
