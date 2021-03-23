@@ -321,4 +321,12 @@ public class FcommunityController {
 	}
 	
 	
+	// 20210322_ggy : 미니장터 게시글 수정을 위한 진입 및 상세 조회
+	@RequestMapping("chatting")
+	public String chatting(Model model) {
+
+		logger.debug("chatting 진입");
+
+		return "tiles.fcommunity.chatting";
+	}
 }
