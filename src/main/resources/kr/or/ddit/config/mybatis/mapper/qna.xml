@@ -87,8 +87,8 @@
 		    ,use_yn
 		) VALUES (
 		    SEQ_QNA.NEXTVAL
-		    ,#{qna_no}
-		    ,'관리자'
+		    ,#{qna_parent_no}
+		    ,#{writer}
 		    ,#{title}
 		    ,#{content}
 		    ,sysdate

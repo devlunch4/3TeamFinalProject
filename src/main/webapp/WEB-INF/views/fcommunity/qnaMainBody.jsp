@@ -44,7 +44,7 @@
 										<td>${qna.title}</td>
 										<td>${qna.writer}</td>
 										<td>
-											<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy.MM.dd" />
+											<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy-MM-dd" />
 										</td>
 									</tr>
 								</c:if>

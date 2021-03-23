@@ -9,7 +9,7 @@
 <form action="${pageContext.request.contextPath}/qna/qnaRegist" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label class="small mb-1" for="input_grdgd_nm">작성일시</label> 
-		<input class="form-control py-4" id="input_grdgd_nm" name="" type="text"
+		<input class="form-control py-4" id="input_grdgd_nm" name="reg_dt" type="text"
 			value="<c:out value="${today}"/>" readonly="readonly">
 	</div>
 	<div class="form-group">

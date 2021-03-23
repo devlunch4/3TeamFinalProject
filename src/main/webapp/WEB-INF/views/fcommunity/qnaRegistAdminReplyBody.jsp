@@ -20,7 +20,7 @@
 	<div class="form-group">
 		<label class="small mb-1" for="input_cls_code">제목</label> 
 		<input class="form-control py-4" id="input_cls_code" name="title" type="text"
-			value="" >
+			value=" 문의하신 사항에 대한 답변입니다." >
 	</div>
 	<div class="form-group">
 		<label class="small mb-1" for="input_difficulty">내용</label><br>
@@ -30,6 +30,7 @@
 	
 	<div>
 		<input type="hidden" name="qna_no" value="${qna_no}">
+		<input type="hidden" name="qna_parent_no" value="${qna_no}">
 	</div>
 	
 	<input class="btn btn-primary" type="submit" value="등록 완료">
