@@ -51,11 +51,6 @@ $(function(){
 <br>
 ${manage_no}
 <br>
-<c:forEach items="${mmmList}" var="msrrec">
-	<%-- <c:if test="${NULL ne msrrec}"> --%>
-${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
-	<%-- </c:if> --%>
-</c:forEach>
 
 <button class="btn btn-primary float-left" id="week">일주일</button>
 &nbsp;
@@ -80,10 +75,10 @@ ${msrrec.msr_temp},${msrrec.msr_humid},${msrrec.msr_bright}<br>
 	<form id="select" action="${pageContext.request.contextPath}/user/main">
 		<input type="hidden" id="c_code" name="parent_code" value=""> <input type="hidden" id="i_code" name="code_no" value=""> <input type="hidden" id="d_code" name="sdate" value="">
 	</form>
-
+	
 	<button id="btn_search" class="btn btn-secondary">조회하기</button>
 	<br> <br>
-	${novalue}
+	<lable class ="text-danger font-weight-bold">${novalue}</lable>
 	<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 </div>
 

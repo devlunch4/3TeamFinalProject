@@ -43,7 +43,7 @@
 	<c:set var="sysd2">
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
-
+ 
 	<div class="form-group m-0">
 		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 		<div class="row text-center">
@@ -52,7 +52,7 @@
 			<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col m-2 btn btn-info">
 			<input type="text" id="syear-picker" name="syear" style="display: none;" class="col m-2 btn btn-info">
 			<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col m-2 btn btn-info">
-			<button id="sel" class="btn btn-primary col-2 m-2">조 회</button>
+			<button id="sel" class="btn btn-primary col-3 m-2">조 회</button>
 		</div>
 	</div>
 
