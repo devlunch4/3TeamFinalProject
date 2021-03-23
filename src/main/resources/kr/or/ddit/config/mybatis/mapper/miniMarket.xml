@@ -145,6 +145,61 @@
 		INSERT INTO marketfiles VALUES(
 		seq_marketfiles.NEXTVAL, #{market_no }, #{file_no }, 'Y')
 	</insert>
+	
+	<!-- 20210322_ggy : 미니장터 첨부파일 있는지 확인 -->
+	<select id="selectMarketFilesInfo" parameterType="int"
+				resultType="marketFilesVo">
+		SELECT 
+		    m.file_record_no
+		    , m.market_no
+		    , m.file_no
+		    , f.file_nm
+		FROM marketfiles m
+		JOIN files f
+		ON m.file_no = f.file_no
+		WHERE f.file_no = #{file_no }
+		AND m.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+	</select>
+	
+	<!-- 20210322_ggy : 미니장터 첨부파일 삭제 -->
+	<update id="deleteMiniMarketFiles" parameterType="int">
+		update marketfiles set use_yn = 'N'
+		where file_record_no = #{file_record_no }
+	</update>
+	
+	<update id="modifyMiniMarketInfo" parameterType="miniMarketVo">
 		
-
+		update market set
+			title = #{title }
+			, mobile = #{mobile }
+			, head_code = #{head_code }
+			, item_code = #{item_code }
+			, content = #{content }
+			, price = #{price }
+			, thumbnail = #{thumbnail }
+		where market_no = #{market_no }
+		and writer = #{writer }
+		
+	</update>	
+	
+	<!-- 20210323_ggy : 썸네일 파일 있는지 없는지 확인 -->
+	<select id="selectThumbnailFileNo" parameterType="map"
+				resultType="int">
+		SELECT f.file_no
+		FROM files f
+		JOIN market m
+		ON f.file_no = m.thumbnail
+		where file_nm = #{file_nm }
+		and m.market_no = #{market_no }
+		and f.use_yn = 'Y'
+		and m.use_yn = 'Y'
+	</select>
+	
+	<update id="deleteMiniMarketPost" parameterType="map">
+		update market set use_yn = 'N'
+		where writer = #{writer }
+		and market_no = #{market_no }
+	</update>
+	
 </mapper>

@@ -68,10 +68,10 @@ $("#").scrollTop($(document).height());
 		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
-					<td class="table-active text-center">날짜선택</td>
+					<td class="table-active text-center py-1">날짜선택</td>
 				</tr>
-				<tr>
-					<td>
+				<tr class="p-2">
+					<td >
 						<!-- 현재날짜를 넘지 않게 max값 지정 --> <c:set var="now" value="<%=new java.util.Date()%>" /> <c:set var="sysd">
 							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
 						</c:set> <input type="date" id="dateserch" class="form-control" value="${mydate}" max="${sysd}">
@@ -87,9 +87,9 @@ $("#").scrollTop($(document).height());
 		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
-					<td class="table-active text-center">부류</td>
+					<td class="table-active text-center py-1">부류</td>
 				</tr>
-				<tr>
+				<tr class="p-2">
 					<td><select id="category" class="form-control">
 							<option value="100">식량작물</option>
 							<option value="200">채소류</option>
@@ -104,9 +104,9 @@ $("#").scrollTop($(document).height());
 			<div class="gohere" id="gohere"></div>
 			<table class="table table-bordered" style="font-size: 15px;">
 				<tr>
-					<td class="table-active text-center">품목</td>
+					<td class="table-active text-center py-1">품목</td>
 				</tr>
-				<tr>
+				<tr class="p-2">
 					<td><select id="item1" class="form-control">
 							<c:forEach items="${codesList}" var="codes">
 								<c:if test="${codes.parent_code=='100'}">
@@ -137,40 +137,40 @@ $("#").scrollTop($(document).height());
 	</div>
 
 	<div class="form-group ">
-		<div class="table-responsive">
-			<table class="table table-bordered dataTable" style="font-size: 15px;">
+		<div class="table-responsive"> 
+			<table class="table table-bordered dataTable small" style="font-size: 15px;">
 				<tr>
-					<th class="table-active">구분</th>
+					<th class="table-active px-2 py-1 text-center" style="width: 50px;">구분</th>
 					<c:forEach items="${target}" var="tar">
-						<th class="text-center">${tar}</th>
+						<th class="text-center p-1">${tar}</th>
 					</c:forEach>
 				</tr>
-
+ 
 				<tr>
-					<td class="table-active">평균</td>
+					<td class="table-active px-2 py-1 text-center">평균</td>
 					<c:forEach items="${average}" var="avg">
-						<td class="text-right">${avg}</td>
+						<td class="text-center p-1">${avg}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
-					<td class="table-active">최고값</td>
+					<td class="table-active px-2 py-1 text-center">최고값</td>
 					<c:forEach items="${maxvalue}" var="maxval">
-						<td class="text-right">${maxval}</td>
+						<td class="text-center p-1">${maxval}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
-					<td class="table-active">최저값</td>
+					<td class="table-active px-2 py-1 text-center">최저값</td>
 					<c:forEach items="${minvalue}" var="minval">
-						<td class="text-right">${minval}</td>
+						<td class="text-center p-1">${minval}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
-					<td class="table-active">등락률</td>
+					<td class="table-active px-2 py-1 text-center">등락률</td>
 					<c:forEach items="${flrate}" var="rate">
-						<td class="text-right">${rate}</td>
+						<td class="text-center p-1">${rate}</td>
 					</c:forEach>
 				</tr>
 			</table>

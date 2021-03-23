@@ -19,7 +19,7 @@
 		FROM codes
 		WHERE code_seq = #{value}
 	</select>
-  
+
 <!-- 해당 코드정보 수정 03/08 (경찬) -->
 	<update id="modifyCode" parameterType="codesVo">
 		update codes set code_no = 	#{code_no}, code_nm = #{code_nm}, parent_code = #{parent_code}, use_yn = #{use_yn}

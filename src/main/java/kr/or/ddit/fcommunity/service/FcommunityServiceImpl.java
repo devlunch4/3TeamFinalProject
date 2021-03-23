@@ -1,6 +1,7 @@
 package kr.or.ddit.fcommunity.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -65,6 +66,36 @@ public class FcommunityServiceImpl implements FcommunityService{
 	@Override
 	public int addHitMiniMarket(int market_no) {
 		return fcommunityDao.addHitMiniMarket(market_no);
+	}
+
+	// 20210322_ggy : 첨부파일 삭제를 위해 파일 이름 정보 찾기
+	@Override
+	public MarketFilesVo selectMarketFilesInfo(int market_no) {
+		return fcommunityDao.selectMarketFilesInfo(market_no);
+	}
+	
+	// 20210322_ggy : 첨부파일 삭제
+	@Override
+	public int deleteMiniMarketFiles(int file_record_no) {
+		return fcommunityDao.deleteMiniMarketFiles(file_record_no);
+	}
+
+	// 20210322_ggy : 미니장터 게시글 수정
+	@Override
+	public int modifyMiniMarketInfo(MiniMarketVo miniMarketVo) {
+		return fcommunityDao.modifyMiniMarketInfo(miniMarketVo);
+	}
+	
+	// 20210323_ggy : 썸네일 파일 있는지 확인
+	@Override
+	public int selectThumbnailFileNo(Map<String, String> map) {
+		return fcommunityDao.selectThumbnailFileNo(map);
+	}
+	
+	// 20210323_ggy : 미니장터 게시글 삭제
+	@Override
+	public int deleteMiniMarketPost(Map<String, String> map) {
+		return fcommunityDao.deleteMiniMarketPost(map);
 	}
 
 

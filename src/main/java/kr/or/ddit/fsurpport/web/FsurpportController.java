@@ -1006,7 +1006,7 @@ public class FsurpportController {
 	}
 
 	// KJH_20210317
-	// 장치 수정
+	// 장치 수정 ok
 	@RequestMapping(path = "msrUpdate", method = { RequestMethod.GET })
 	public String msrUpdate(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		logger.debug("장치 수정 msrUpdate");
@@ -1014,9 +1014,11 @@ public class FsurpportController {
 
 		return "redirect:/fsurpport/msrequipList";
 	}
-
+  
+  // 20210322_KWS_cleanline_bootstrap
 	// 20210317_KJH 사용자 장비 등록
 	@RequestMapping(path = "msrSet", method = { RequestMethod.GET })
+
 	public String msrSet(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		logger.debug("장비 등록 msrSet");
 		UserVo userVo = new UserVo();

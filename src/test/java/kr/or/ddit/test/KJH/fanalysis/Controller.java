@@ -33,6 +33,26 @@ public class Controller extends WebTestConfig{
 	}
 	
 	
+	
+	@Test
+	public void myfanalysisInfo() throws Exception{
+		UserVo user = new UserVo();
+		user.setUser_id("1");
+		
+		MockHttpSession session = new MockHttpSession();
+	    session.setAttribute("S_USER", user);
+	    MockHttpServletRequest request = new MockHttpServletRequest();
+	    request.setSession(session);
+	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+	    
+		mockMvc.perform(get("/fanalysis/myfanalysisInfo").session(session))
+		.andExpect(status().isOk())
+		.andExpect(view().name("tiles.fanalysis.myfanalysisInfo"));
+	}
+	
+	
+	
+	
 	@Test
 	public void popularitypostweek() throws Exception{
 		UserVo user = new UserVo();
@@ -106,6 +126,22 @@ public class Controller extends WebTestConfig{
 		.andExpect(view().name("tiles.fanalysis.mymaxmsrrecList"));
 	}
 	
+	@Test
+	public void mymaxmsrrecListPost() throws Exception{
+		UserVo user = new UserVo();
+		user.setUser_id("brown");
+		
+		MockHttpSession session = new MockHttpSession();
+	    session.setAttribute("S_USER", user);
+	    MockHttpServletRequest request = new MockHttpServletRequest();
+	    request.setSession(session);
+	    RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+	    
+		mockMvc.perform(post("/fanalysis/mymaxmsrrecList").session(session)
+				)
+		.andExpect(status().isOk())
+		.andExpect(view().name("/ajax/mymaxmsrrecList"));
+	}
 	
 
 }

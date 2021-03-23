@@ -32,7 +32,7 @@ public class LoginController {
 
 //	20210302_LYS_Login2 - 로그인 구현 페이지
 	@RequestMapping(path = "process", method = { RequestMethod.POST })
-	public String loginProcess(UserVo userVo, HttpSession session, Model model) {
+	public String loginProcess(UserVo userVo, HttpSession session, Model model,HttpServletRequest request) {
 		logger.debug("iNN login controller >> loginProcess");
 
 		UserVo dbUser = userService.selectUser(userVo.getUser_id());
@@ -60,6 +60,8 @@ public class LoginController {
 			userService.updateLoginFailCnt_reset(userVo.getUser_id());
 	
 			logger.debug("dbUser : {}", dbUser);
+			
+			session = request.getSession();
 			
 			session.setAttribute("S_USER", dbUser);
 			
