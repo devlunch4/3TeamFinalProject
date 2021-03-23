@@ -6,7 +6,6 @@
 
 <script>
 	$(document).ready(function() {
-
 		// picture input의 파일 변경시 이벤트 
 		$("#picture").change(function() {
 			readURL(this);
@@ -42,7 +41,6 @@
 		function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
-
 			reader.onload = function(e) {
 				$('#pictureViewImg').attr('src', e.target.result);
 			}
@@ -177,15 +175,50 @@
 	</div>
 	
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">첨부 파일목록:</label><br>
+		<label class="small mb-1" for="input_plant_prd">첨부 파일목록222:</label><br>
 		
 		<c:choose>
 			<c:when test="${marketFileList != null && marketFileList.size() > 0 }">
 				<c:forEach var="marketFileList" items="${marketFileList }" begin="0" end="${marketFileList.size() }" step="1" varStatus="i">
 	<%-- 			<c:forEach items="${marketFileList }" var="marketFileList" > --%>
-					<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
-					<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
-					<br>
+					
+					<c:choose>
+						<c:when test="${i.count eq 1 }">
+							<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
+							<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
+						</c:when>
+						
+						<c:otherwise>
+							<input type="text" name="file_nm1" value="" readonly="readonly">
+						</c:otherwise>
+						
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${i.count eq 2 }">
+							<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
+							<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
+						</c:when>
+						
+						<c:otherwise>
+							<input type="text" name="file_nm2" value="" readonly="readonly">
+						</c:otherwise>
+						
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${i.count eq 3 }">
+							<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
+							<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
+						</c:when>
+						
+						<c:otherwise>
+							<input type="text" name="file_nm3" value="" readonly="readonly">
+						</c:otherwise>
+						
+					</c:choose>
+						
+					
 				</c:forEach>
 				
 			</c:when>
@@ -234,3 +267,15 @@
 	</div>
 </form>
 
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
