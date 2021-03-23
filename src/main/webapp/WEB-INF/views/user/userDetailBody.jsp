@@ -34,7 +34,7 @@
 </script>
 
 <div class="container">
-	<h3 class="mt-4">회원아이디 [ ${user.user_id } ] 님 정보</h3>
+	<h3 class="mt-4">회원아이디 [ ${user.user_id } ] 님 정보 - 관리자용</h3>
 	<form class="form-horizontal" id="frm" role="form">
 
 		<div class="form-group row">

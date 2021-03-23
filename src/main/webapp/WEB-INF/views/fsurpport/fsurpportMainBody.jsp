@@ -13,29 +13,39 @@
 		<div class="card-header">
 			<h4>기간/품목 검색</h4>
 		</div>
-		<div class="form-row p-1">
-			<div class="col-md-7 col-xs-12 mb-1">
-				<label class="small ml-2" for="">기간 선택</label>
-				<c:choose>
-					<c:when test="${searchFarmdiaryValue != null }">
-						<input type="date" name="startDate" value="${searchFarmdiaryValue.startDate }" class="btn btn-outline-dark " style="width: auto;">
-						<input type="date" name="endDate" value="${searchFarmdiaryValue.endDate }" class="btn btn-outline-dark " style="width: auto;">
-					</c:when>
-					<c:otherwise>
-						<input type="date" name="startDate" value="" class=" btn btn-outline-dark " style="width: auto;">
-						<input type="date" name="endDate" value="" class=" btn btn-outline-dark " style="width: auto;">
-					</c:otherwise>
-				</c:choose>
+		<div class="form-group p-1 mb-0">
+			<div class="col">
+				<label class="small ml-2 mb-0" for="">기간 선택</label>
+				<div class="">
+					<c:choose>
+						<c:when test="${searchFarmdiaryValue != null }">
+							<input type="date" name="startDate" value="${searchFarmdiaryValue.startDate }" class="btn btn-outline-dark  col-md-5">
+							<input type="date" name="endDate" value="${searchFarmdiaryValue.endDate }" class="btn btn-outline-dark  col-md-5">
+						</c:when>
+						<c:otherwise>
+							<input type="date" name="startDate" value="" class=" btn btn-outline-dark m-1 col-md-5">
+							<input type="date" name="endDate" value="" class=" btn btn-outline-dark m-1 col-md-5">
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
-			<div class="col-md-5 col-xs-12 mb-1">
-				<label class="small ml-2" for="">품목 선택</label> <select name="item_code" class="btn btn-outline-dark ">
-					<option value="">전체</option>
-					<c:forEach items="${itemsList }" var="itemsList">
-						<option value="${itemsList.code_no }" <c:if test="${searchFarmdiaryValue.item_code eq itemsList.code_no }">selected="selected"</c:if>>${itemsList.code_nm }</option>
-					</c:forEach>
-				</select>
-				<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
-				<input class="btn btn-info" type="submit" value="조회">
+		</div>
+		
+		
+		<div class="form-group p-1 mb-0">
+			<div class="col">
+				<label class="small ml-2 mb-0" for="">품목 선택</label>
+				<div>
+					<select name="item_code" class="btn btn-outline-dark m-1 col-md-5" style="width: auto%;">
+						<option value="">전체</option>
+						<c:forEach items="${itemsList }" var="itemsList">
+							<option value="${itemsList.code_no }" <c:if test="${searchFarmdiaryValue.item_code eq itemsList.code_no }">selected="selected"</c:if>>${itemsList.code_nm }</option>
+						</c:forEach>
+					</select>
+					<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
+					<input class="btn btn-info m-1 col-md-5" type="submit" value="조회">
+				</div>
+
 			</div>
 		</div>
 	</div>

@@ -18,45 +18,36 @@
 	<form class="form-horizontal" id="frm" role="form">
 		<input type="hidden" name="code_seq" value="${code.code_seq }" />
 
-		<div class="form-group">
-			<label class="small mb-3" for="code_seq1">코드 고유번호</label>
-			<div class="col-sm-10">
-				<input name="code_seq1" class="form-control" readonly="readonly" value="${code.code_seq }" />
+		<div class="form-group row">
+			<div class="col-sm-3">
+				<label class="small mb-1" for="code_seq1">코드순번</label>
+				<input name="code_seq1" class="form-control text-center" readonly="readonly" value="${code.code_seq }" />
+			</div>
+			<div class="col-sm-3">
+				<label class="small mb-1" for="code_no">코드번호</label>
+				<input name="code_no" class="form-control text-center" readonly="readonly" value="${code.code_no }" />
+			</div>
+			<div class="col-sm-3">
+				<label class="small mb-1" for="code_nm">코드이름</label>
+				<input name="code_nm" class="form-control text-center" readonly="readonly" value="${code.code_nm }" />
+			</div>
+			<div class="col-sm-3">
+				<label class="small mb-1" for="parent_code">상위코드</label>
+				<input name=parent_code class="form-control text-center" readonly="readonly" value="${code.parent_code }" />
 			</div>
 		</div>
 
+		<div class="form-group row">
+			<div class="col-sm-3">
+				<label class="small mb-1" for="use_yn">사용여부</label>
+				<input name="use_yn" class="form-control text-center" readonly="readonly" value="${code.use_yn }" />
+			</div>
+		</div>
 		<div class="form-group">
-			<label class="small mb-1" for="code_no">코드번호</label>
-			<div class="col-sm-10">
-				<input name="code_no" class="form-control" readonly="readonly" value="${code.code_no }" />
+			<div class="text-right">
+				<button type="button" id="modifyBtn" class="btn btn-warning col-sm-3">코드수정</button>
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label class="small mb-1" for="code_nm">코드이름</label>
-			<div class="col-sm-10">
-				<input name="code_nm" class="form-control" readonly="readonly" value="${code.code_nm }" />
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="small mb-1" for="parent_code">상위코드</label>
-			<div class="col-sm-10">
-				<input name=parent_code class="form-control" readonly="readonly" value="${code.parent_code }" />
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="small mb-1" for="use_yn">사용여부</label>
-			<div class="col-sm-10">
-				<input name="use_yn" class="form-control" readonly="readonly" value="${code.use_yn }" />
-			</div>
-		</div>
-
-		<div class="form-group text-right">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="button" id="modifyBtn" class="btn btn-warning">코드수정</button>
-			</div>
-		</div>
 	</form>
 </div>

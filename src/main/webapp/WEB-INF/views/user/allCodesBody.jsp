@@ -19,7 +19,7 @@
 	<input type="hidden" id="code_seq" name="code_seq" value="" />
 </form>
 
-<h3 class="mt-4">코드관리 PC최적화</h3>
+<h3 class="mt-4">코드관리 PC화면</h3>
 <div class="col-xs-12 text-right mb-2">
 	<button type="button" id="" class="btn btn-primary col-xs-3 " onClick="location.href='CodeExcelDownload'">코드 엑셀다운로드</button>
 </div>
@@ -44,6 +44,7 @@
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Seq: activate to sort column descending" style="width: auto;" aria-sort="ascending">코드시퀀스</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Num: activate to sort column descending" style="width: auto;">코드번호</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: auto;">코드이름</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: auto;">부모코드</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="USE: activate to sort column ascending" style="width: auto;">사용여부</th>
 								</tr>
 							</thead>
@@ -53,6 +54,7 @@
 										<td class="text-left">${code.code_seq }</td>
 										<td class="text-left">${code.code_no }</td>
 										<td class="text-left">${code.code_nm }</td>
+										<td class="text-left">${code.parent_code }</td>
 										<td class="text-center">${code.use_yn }</td>
 									</tr>
 								</c:forEach>

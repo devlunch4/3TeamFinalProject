@@ -55,7 +55,7 @@
 		<div class="col-xs-3 mr-1">
 			<div class="form-group m-0">
 				<label class="small m-0" for="my_simple_code">간편코드</label>
-				<input class="form-control text-right" id="my_simple_code" name="my_simple_code" type="text" value="${selectMySimpleCodeInfo.my_simple_code }" required="required" style="width: 100px;">
+				<input class="form-control text-right" id="my_simple_code" name="my_simple_code" type="text" value="${selectMySimpleCodeInfo.my_simple_code }" required="required"  readonly="readonly" style="width: 100px;">
 			</div>
 		</div>
 	</div>
@@ -108,7 +108,7 @@
 			$('#summernote')
 					.summernote(
 							{
-								placeholder : 'Hello SUMMERNOTE',
+								placeholder : '작업내용을 입력하세요.',
 								tabsize : 2,
 								height : 120,
 								toolbar : [
