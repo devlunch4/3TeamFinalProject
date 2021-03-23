@@ -694,10 +694,30 @@ public class FcommunityController {
 		
 		logger.debug("미니장터 게시글 수정 종료");
 		
-		return"redirect:/fcommunity/miniMarketView?writer="+req.getParameter("writer")+"&market_no="+market_no_value;
+		return"redirect:/fcommunity/miniMarketInfoView?writer="+req.getParameter("writer")+"&market_no="+market_no_value;
 	}
 	
-	
+	// 20210323_ggy : 미니장터 게시글 삭제
+	@RequestMapping(path = "deleteMiniMarketPost", method = { RequestMethod.GET })
+	public String deleteMiniMarketPost(
+			String writer, int market_no ) {
+		
+		logger.debug("deleteMiniMarketPost 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+        map.put("writer", writer);
+        map.put("market_no", Integer.toString(market_no));
+        
+        logger.debug("지우기전 값 확인 writer : {}, market_no : {} ", map.get("writer"), map.get("market_no"));
+		
+		int deleteCnt =  fcommunityService.deleteMiniMarketPost(map);
+		
+		if(deleteCnt==1) {
+			logger.debug("삭제 완료");
+		}
+		
+		return"redirect:/fcommunity/miniMarketView";
+	}
 	
 	
 	

@@ -196,4 +196,10 @@
 		and m.use_yn = 'Y'
 	</select>
 	
+	<update id="deleteMiniMarketPost" parameterType="map">
+		update market set use_yn = 'N'
+		where writer = #{writer }
+		and market_no = #{market_no }
+	</update>
+	
 </mapper>

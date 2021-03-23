@@ -101,6 +101,14 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	}
 	
 	
+
+	// 20210323_ggy : 미니장터 게시글 삭제
+	@Override
+	public int deleteMiniMarketPost(Map<String, String> map) {
+		return template.update("miniMarkets.deleteMiniMarketPost", map);
+	}
+	
+	
 	
 		
 		

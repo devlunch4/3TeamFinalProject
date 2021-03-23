@@ -91,6 +91,12 @@ public class FcommunityServiceImpl implements FcommunityService{
 	public int selectThumbnailFileNo(Map<String, String> map) {
 		return fcommunityDao.selectThumbnailFileNo(map);
 	}
+	
+	// 20210323_ggy : 미니장터 게시글 삭제
+	@Override
+	public int deleteMiniMarketPost(Map<String, String> map) {
+		return fcommunityDao.deleteMiniMarketPost(map);
+	}
 
 
 }
