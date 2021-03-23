@@ -9,25 +9,24 @@
 
 			<div class="sb-sidenav-menu-heading">test</div>
 
+			
 			<!-- 채팅 -->
 			<c:choose>
 				<c:when test="${S_USER ne null }">
-					<a class="nav-link" href="${pageContext.request.contextPath}/fsurpport/chatting">
+					<a class="nav-link" href="${pageContext.request.contextPath}/fcommunity/chatting">
 						<div class="sb-nav-link-icon">
 							<i class="fas fa-users-cog fa-fw"></i>
-						</div>
-						채팅
+						</div> 채팅
 					</a>
-					
+
 				</c:when>
 				<c:otherwise></c:otherwise>
 			</c:choose>
-			<a class="nav-link" href="${pageContext.request.contextPath}/user/codesView">
-						<div class="sb-nav-link-icon">
-							<i class="fas fa-users-cog fa-fw"></i>
-						</div>
-						채팅2
-					</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/fcommunity/chatting">
+				<div class="sb-nav-link-icon">
+					<i class="fas fa-users-cog fa-fw"></i>
+				</div> 채팅2
+			</a>
 			
 			<!-- 관리자 로그인시 확인 -->
 			<c:choose>
