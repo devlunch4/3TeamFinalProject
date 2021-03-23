@@ -118,41 +118,43 @@
 					<img class="mb-4" src="${pageContext.request.contextPath}/finfo/guideimg?guide_code=${gardenguidesVo.guide_code }" alt="${gardenguidesVo.guide_code }" style="width: 100%; max-width: 200px; height: 100%;" align="middle">
 				</div>
 
-				<table class="table table-bordered col-sx-12">
+
+
+				<table class="table table-bordered col-sx-12 small">
 					<tr>
-						<td style="width: 30%">분류</td>
+						<td class="table-active text-center" style="width: 30%" >분류</td>
 						<td style="width: 70%">${gardenguidesVo.class_code }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">원산지</td>
+						<td class="table-active text-center" style="width: 30%">원산지</td>
 						<td style="width: 70%">${gardenguidesVo.origin }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">생육온도</td>
+						<td class="table-active text-center" style="width: 30%">생육온도</td>
 						<td style="width: 70%">${gardenguidesVo.temperature }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">연작피해</td>
+						<td class="table-active text-center" style="width: 30%">연작피해</td>
 						<td style="width: 70%">${gardenguidesVo.damage }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">제철</td>
+						<td class="table-active text-center" style="width: 30%">제철</td>
 						<td style="width: 70%">${gardenguidesVo.season }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">효과</td>
+						<td class="table-active text-center"  style="width: 30%">효과</td>
 						<td style="width: 70%">${gardenguidesVo.effect }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">주요성분</td>
+						<td class="table-active text-center" style="width: 30%">주요성분</td>
 						<td style="width: 70%">${gardenguidesVo.ingredient }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">재배TIP!</td>
+						<td class="table-active text-center" style="width: 30%">재배TIP!</td>
 						<td style="width: 70%">${gardenguidesVo.plant_tip }</td>
 					</tr>
 					<tr>
-						<td style="width: 30%">재배내용</td>
+						<td class="table-active text-center" style="width: 30%">재배내용</td>
 						<td style="width: 70%">${gardenguidesVo.plant_content }</td>
 					</tr>
 					<%-- <tr>

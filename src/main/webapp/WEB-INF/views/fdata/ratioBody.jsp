@@ -27,11 +27,11 @@ $("#tb_info").addClass('text-left p-0');
 }); 
 </script>
 
-<!-- Ç°¸ñº° ºñÀ² Åë°è ÆäÀÌÁö -->
-<!-- 20210302_KJH main Ãß°¡ -->
-<h3 class="mt-4">Ç°¸ñº° ºñÀ²</h3>
+<!-- í’ˆëª©ë³„ ë¹„ìœ¨ í†µê³„ í˜ì´ì§€ -->
+<!-- 20210302_KJH main ì¶”ê°€ -->
+<h3 class="mt-4">í’ˆëª©ë³„ ë¹„ìœ¨</h3>
 <div class="card mt-4 col-sm-12 px-0">
-	<!-- <h5 class="card-header">ÃÑ°Ô½Ã±Û :</h5> -->
+	<!-- <h5 class="card-header">ì´ê²Œì‹œê¸€ :</h5> -->
 
 	<form action="${pageContext.request.contextPath}/fdata/ratio" id="selec">
 		<input type="hidden" id="selctype" name="selec" value="week">
@@ -40,10 +40,10 @@ $("#tb_info").addClass('text-left p-0');
 	</form>
 
 	<div class="form-group row text-center m-0">
-		<button id="all" class="btn btn-outline-dark col m-2">ÀüÃ¼</button>
-		<button id="week" class="btn btn-outline-dark col m-2 ">ÁÖº°</button>
-		<button id="month" class="btn btn-outline-dark col m-2">¿ùº°</button>
-		<button id="year" class="btn btn-outline-dark col m-2 ">³âº°</button>
+		<button id="all" class="btn btn-outline-dark col m-2">ì „ì²´</button>
+		<button id="week" class="btn btn-outline-dark col m-2 ">ì£¼ë³„</button>
+		<button id="month" class="btn btn-outline-dark col m-2">ì›”ë³„</button>
+		<button id="year" class="btn btn-outline-dark col m-2 ">ë…„ë³„</button>
 	</div>
 
 
@@ -55,27 +55,30 @@ $("#tb_info").addClass('text-left p-0');
 	<c:set var="sysd2">
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
- 
+
+
+
 	<div class="form-group m-0">
-		<label class=" small mb-1 ml-2 mb-1" for="time">±â°£¼±ÅÃ : ${choice}</label>
-		<div class="row text-center">
-			<input type="text" id="week-picker" value="ÁÖ°£ ¼±ÅÃ" name="week" class="col m-2 text-center btn btn-info">
-			<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col m-2 btn btn-info">
-			<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col m-2 btn btn-info">
-			<input type="text" id="syear-picker" name="syear" style="display: none;" class="col m-2 btn btn-info">
-			<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col m-2 btn btn-info">
-			<button id="sel" class="btn btn-primary col-3 m-2">Á¶ È¸</button>
-		</div>
+		<label class=" small mb-1 ml-2 mb-1" for="time">ê¸°ê°„ì„ íƒ : ${choice}</label>
+	</div>
+	<div class="form-group row text-center m-0">
+		<input type="text" id="week-picker" value="ì£¼ê°„ ì„ íƒ" name="week" class="btn btn-info col m-2">
+		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col  btn btn-info m-2">
+		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col  btn btn-info m-2">
+		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col  btn btn-info m-2">
+		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col  btn btn-info m-2">
+		<button id="sel" class="btn btn-primary col-3 m-2 float-right">ì¡° íšŒ</button>
+
 	</div>
 
 	<div class="align-center px-0 mb-4">
 		<div class="container px-0">
 			<div class="col-12">
-				<h4 class="mt-2 text-center">Ç°¸ñº° ºñÀ²</h4>
+				<h4 class="mt-2 text-center">í’ˆëª©ë³„ ë¹„ìœ¨</h4>
 				<div id="multilineLabel"></div>
 			</div>
 			<c:if test="${fn:length(farmCount) == 0}">
-				<div class="col-12 text-center">°Ë»öµÈ Åë°è°¡ ¾ø½À´Ï´Ù.</div>
+				<div class="col-12 text-center">ê²€ìƒ‰ëœ í†µê³„ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
 			</c:if>
 		</div>
 	</div>
@@ -85,8 +88,8 @@ $("#tb_info").addClass('text-left p-0');
 			<table id="tb" class="table table-bordered " style="font-size: 15px;">
 				<thead>
 					<tr>
-						<td class="table-active px-0 py-1">ÀÛ¹°¸í</td>
-						<td class="table-active px-0 py-1">¼öÈ®·®</td>
+						<td class="table-active px-0 py-1">ì‘ë¬¼ëª…</td>
+						<td class="table-active px-0 py-1">ìˆ˜í™•ëŸ‰</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -111,17 +114,17 @@ $(function() {
 	
     $.datepicker.setDefaults({
         dateFormat: 'yy-mm-dd',
-        prevText: 'ÀÌÀü ´Ş',
-        nextText: '´ÙÀ½ ´Ş',
-//         changeMonth: true, // ¿ùÀ» ¹Ù²Ü¼ö ÀÖ´Â ¼¿·ºÆ® ¹Ú½º¸¦ Ç¥½ÃÇÑ´Ù.
-        changeYear: true, // ³âÀ» ¹Ù²Ü ¼ö ÀÖ´Â ¼¿·ºÆ® ¹Ú½º¸¦ Ç¥½ÃÇÑ´Ù.
-        monthNames: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'],
-        monthNamesShort: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù'],
-        dayNames: ['ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ', '±İ', 'Åä'],
-        dayNamesShort: ['ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ', '±İ', 'Åä'],
-        dayNamesMin: ['ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ', '±İ', 'Åä'],
+        prevText: 'ì´ì „ ë‹¬',
+        nextText: 'ë‹¤ìŒ ë‹¬',
+//         changeMonth: true, // ì›”ì„ ë°”ê¿€ìˆ˜ ìˆëŠ” ì…€ë ‰íŠ¸ ë°•ìŠ¤ë¥¼ í‘œì‹œí•œë‹¤.
+        changeYear: true, // ë…„ì„ ë°”ê¿€ ìˆ˜ ìˆëŠ” ì…€ë ‰íŠ¸ ë°•ìŠ¤ë¥¼ í‘œì‹œí•œë‹¤.
+        monthNames: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'],
+        monthNamesShort: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”'],
+        dayNames: ['ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©', 'ê¸ˆ', 'í† '],
+        dayNamesShort: ['ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©', 'ê¸ˆ', 'í† '],
+        dayNamesMin: ['ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©', 'ê¸ˆ', 'í† '],
         showMonthAfterYear: true,
-        yearSuffix: '³â'
+        yearSuffix: 'ë…„'
     });
 	
     var sstartDate;
@@ -153,56 +156,56 @@ $(function() {
     
     
     var soptions = {
-            pattern: 'yyyy-mm'       // inputÅÂ±×¿¡ Ç¥½ÃµÉ Çü½Ä
-           ,monthNames: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù']         // È­¸é¿¡ º¸¿©ÁÙ ¿ùÀÌ¸§
-           ,openOnFocus: true       // focus½Ã¿¡ ´Ş·ÂÀÌ º¸ÀÏÁö À¯¹«
-           ,disableMonths : [ ]     // ¿ù ºñÈ°¼ºÈ­
+            pattern: 'yyyy-mm'       // inputíƒœê·¸ì— í‘œì‹œë  í˜•ì‹
+           ,monthNames: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”']         // í™”ë©´ì— ë³´ì—¬ì¤„ ì›”ì´ë¦„
+           ,openOnFocus: true       // focusì‹œì— ë‹¬ë ¥ì´ ë³´ì¼ì§€ ìœ ë¬´
+           ,disableMonths : [ ]     // ì›” ë¹„í™œì„±í™”
         };
     
     $("#smonth-picker").monthpicker(soptions,'-1M');
     
     var eoptions = {
-            pattern: 'yyyy-mm'       // inputÅÂ±×¿¡ Ç¥½ÃµÉ Çü½Ä
-           ,monthNames: ['1¿ù', '2¿ù', '3¿ù', '4¿ù', '5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù', '10¿ù', '11¿ù', '12¿ù']         // È­¸é¿¡ º¸¿©ÁÙ ¿ùÀÌ¸§
-           ,openOnFocus: true       // focus½Ã¿¡ ´Ş·ÂÀÌ º¸ÀÏÁö À¯¹«
-           ,disableMonths : [ ]     // ¿ù ºñÈ°¼ºÈ­
+            pattern: 'yyyy-mm'       // inputíƒœê·¸ì— í‘œì‹œë  í˜•ì‹
+           ,monthNames: ['1ì›”', '2ì›”', '3ì›”', '4ì›”', '5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”', '10ì›”', '11ì›”', '12ì›”']         // í™”ë©´ì— ë³´ì—¬ì¤„ ì›”ì´ë¦„
+           ,openOnFocus: true       // focusì‹œì— ë‹¬ë ¥ì´ ë³´ì¼ì§€ ìœ ë¬´
+           ,disableMonths : [ ]     // ì›” ë¹„í™œì„±í™”
         };
     
     $("#emonth-picker").monthpicker(eoptions);
     
     $("#syear-picker").datepicker({
-        dateFormat: 'yy' //Input Display Format º¯°æ
-        ,showOtherMonths: true //ºó °ø°£¿¡ ÇöÀç¿ùÀÇ ¾ÕµÚ¿ùÀÇ ³¯Â¥¸¦ Ç¥½Ã
-        ,showMonthAfterYear:true //³âµµ ¸ÕÀú ³ª¿À°í, µÚ¿¡ ¿ù Ç¥½Ã
-        ,changeYear: true //ÄŞº¸¹Ú½º¿¡¼­ ³â ¼±ÅÃ °¡´É          
-        ,yearSuffix: "³â" //´Ş·ÂÀÇ ³âµµ ºÎºĞ µÚ¿¡ ºÙ´Â ÅØ½ºÆ®
-        ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //´Ş·ÂÀÇ ¿ù ºÎºĞ ÅØ½ºÆ®
-        ,monthNames: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'] //´Ş·ÂÀÇ ¿ù ºÎºĞ Tooltip ÅØ½ºÆ®
-        ,dayNamesMin: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'] //´Ş·ÂÀÇ ¿äÀÏ ºÎºĞ ÅØ½ºÆ®
-        ,dayNames: ['ÀÏ¿äÀÏ','¿ù¿äÀÏ','È­¿äÀÏ','¼ö¿äÀÏ','¸ñ¿äÀÏ','±İ¿äÀÏ','Åä¿äÀÏ'] //´Ş·ÂÀÇ ¿äÀÏ ºÎºĞ Tooltip ÅØ½ºÆ®
-        ,minDate: "-10Y" //ÃÖ¼Ò ¼±ÅÃÀÏÀÚ(-1D:ÇÏ·çÀü, -1M:ÇÑ´ŞÀü, -1Y:ÀÏ³âÀü)
-        ,maxDate: "+0M" //ÃÖ´ë ¼±ÅÃÀÏÀÚ(+1D:ÇÏ·çÈÄ, -1M:ÇÑ´ŞÈÄ, -1Y:ÀÏ³âÈÄ)                
+        dateFormat: 'yy' //Input Display Format ë³€ê²½
+        ,showOtherMonths: true //ë¹ˆ ê³µê°„ì— í˜„ì¬ì›”ì˜ ì•ë’¤ì›”ì˜ ë‚ ì§œë¥¼ í‘œì‹œ
+        ,showMonthAfterYear:true //ë…„ë„ ë¨¼ì € ë‚˜ì˜¤ê³ , ë’¤ì— ì›” í‘œì‹œ
+        ,changeYear: true //ì½¤ë³´ë°•ìŠ¤ì—ì„œ ë…„ ì„ íƒ ê°€ëŠ¥          
+        ,yearSuffix: "ë…„" //ë‹¬ë ¥ì˜ ë…„ë„ ë¶€ë¶„ ë’¤ì— ë¶™ëŠ” í…ìŠ¤íŠ¸
+        ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //ë‹¬ë ¥ì˜ ì›” ë¶€ë¶„ í…ìŠ¤íŠ¸
+        ,monthNames: ['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'] //ë‹¬ë ¥ì˜ ì›” ë¶€ë¶„ Tooltip í…ìŠ¤íŠ¸
+        ,dayNamesMin: ['ì¼','ì›”','í™”','ìˆ˜','ëª©','ê¸ˆ','í† '] //ë‹¬ë ¥ì˜ ìš”ì¼ ë¶€ë¶„ í…ìŠ¤íŠ¸
+        ,dayNames: ['ì¼ìš”ì¼','ì›”ìš”ì¼','í™”ìš”ì¼','ìˆ˜ìš”ì¼','ëª©ìš”ì¼','ê¸ˆìš”ì¼','í† ìš”ì¼'] //ë‹¬ë ¥ì˜ ìš”ì¼ ë¶€ë¶„ Tooltip í…ìŠ¤íŠ¸
+        ,minDate: "-10Y" //ìµœì†Œ ì„ íƒì¼ì(-1D:í•˜ë£¨ì „, -1M:í•œë‹¬ì „, -1Y:ì¼ë…„ì „)
+        ,maxDate: "+0M" //ìµœëŒ€ ì„ íƒì¼ì(+1D:í•˜ë£¨í›„, -1M:í•œë‹¬í›„, -1Y:ì¼ë…„í›„)                
     });                    
     
-    //ÃÊ±â°ªÀ» ¿À´Ã ³¯Â¥·Î ¼³Á¤
-    $('#syear-picker').datepicker('setDate', '-1Y'); //(-1D:ÇÏ·çÀü, -1M:ÇÑ´ŞÀü, -1Y:ÀÏ³âÀü), (+1D:ÇÏ·çÈÄ, -1M:ÇÑ´ŞÈÄ, -1Y:ÀÏ³âÈÄ)            
+    //ì´ˆê¸°ê°’ì„ ì˜¤ëŠ˜ ë‚ ì§œë¡œ ì„¤ì •
+    $('#syear-picker').datepicker('setDate', '-1Y'); //(-1D:í•˜ë£¨ì „, -1M:í•œë‹¬ì „, -1Y:ì¼ë…„ì „), (+1D:í•˜ë£¨í›„, -1M:í•œë‹¬í›„, -1Y:ì¼ë…„í›„)            
     
     $("#eyear-picker").datepicker({
-        dateFormat: 'yy' //Input Display Format º¯°æ
-        ,showOtherMonths: true //ºó °ø°£¿¡ ÇöÀç¿ùÀÇ ¾ÕµÚ¿ùÀÇ ³¯Â¥¸¦ Ç¥½Ã
-        ,showMonthAfterYear:true //³âµµ ¸ÕÀú ³ª¿À°í, µÚ¿¡ ¿ù Ç¥½Ã
-        ,changeYear: true //ÄŞº¸¹Ú½º¿¡¼­ ³â ¼±ÅÃ °¡´É          
-        ,yearSuffix: "³â" //´Ş·ÂÀÇ ³âµµ ºÎºĞ µÚ¿¡ ºÙ´Â ÅØ½ºÆ®
-        ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //´Ş·ÂÀÇ ¿ù ºÎºĞ ÅØ½ºÆ®
-        ,monthNames: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'] //´Ş·ÂÀÇ ¿ù ºÎºĞ Tooltip ÅØ½ºÆ®
-        ,dayNamesMin: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'] //´Ş·ÂÀÇ ¿äÀÏ ºÎºĞ ÅØ½ºÆ®
-        ,dayNames: ['ÀÏ¿äÀÏ','¿ù¿äÀÏ','È­¿äÀÏ','¼ö¿äÀÏ','¸ñ¿äÀÏ','±İ¿äÀÏ','Åä¿äÀÏ'] //´Ş·ÂÀÇ ¿äÀÏ ºÎºĞ Tooltip ÅØ½ºÆ®
-        ,minDate: "-10Y" //ÃÖ¼Ò ¼±ÅÃÀÏÀÚ(-1D:ÇÏ·çÀü, -1M:ÇÑ´ŞÀü, -1Y:ÀÏ³âÀü)
-        ,maxDate: "+0M" //ÃÖ´ë ¼±ÅÃÀÏÀÚ(+1D:ÇÏ·çÈÄ, -1M:ÇÑ´ŞÈÄ, -1Y:ÀÏ³âÈÄ)                
+        dateFormat: 'yy' //Input Display Format ë³€ê²½
+        ,showOtherMonths: true //ë¹ˆ ê³µê°„ì— í˜„ì¬ì›”ì˜ ì•ë’¤ì›”ì˜ ë‚ ì§œë¥¼ í‘œì‹œ
+        ,showMonthAfterYear:true //ë…„ë„ ë¨¼ì € ë‚˜ì˜¤ê³ , ë’¤ì— ì›” í‘œì‹œ
+        ,changeYear: true //ì½¤ë³´ë°•ìŠ¤ì—ì„œ ë…„ ì„ íƒ ê°€ëŠ¥          
+        ,yearSuffix: "ë…„" //ë‹¬ë ¥ì˜ ë…„ë„ ë¶€ë¶„ ë’¤ì— ë¶™ëŠ” í…ìŠ¤íŠ¸
+        ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //ë‹¬ë ¥ì˜ ì›” ë¶€ë¶„ í…ìŠ¤íŠ¸
+        ,monthNames: ['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'] //ë‹¬ë ¥ì˜ ì›” ë¶€ë¶„ Tooltip í…ìŠ¤íŠ¸
+        ,dayNamesMin: ['ì¼','ì›”','í™”','ìˆ˜','ëª©','ê¸ˆ','í† '] //ë‹¬ë ¥ì˜ ìš”ì¼ ë¶€ë¶„ í…ìŠ¤íŠ¸
+        ,dayNames: ['ì¼ìš”ì¼','ì›”ìš”ì¼','í™”ìš”ì¼','ìˆ˜ìš”ì¼','ëª©ìš”ì¼','ê¸ˆìš”ì¼','í† ìš”ì¼'] //ë‹¬ë ¥ì˜ ìš”ì¼ ë¶€ë¶„ Tooltip í…ìŠ¤íŠ¸
+        ,minDate: "-10Y" //ìµœì†Œ ì„ íƒì¼ì(-1D:í•˜ë£¨ì „, -1M:í•œë‹¬ì „, -1Y:ì¼ë…„ì „)
+        ,maxDate: "+0M" //ìµœëŒ€ ì„ íƒì¼ì(+1D:í•˜ë£¨í›„, -1M:í•œë‹¬í›„, -1Y:ì¼ë…„í›„)                
     });                    
     
-    //ÃÊ±â°ªÀ» ¿À´Ã ³¯Â¥·Î ¼³Á¤
-    $('#eyear-picker').datepicker('setDate', 'today'); //(-1D:ÇÏ·çÀü, -1M:ÇÑ´ŞÀü, -1Y:ÀÏ³âÀü), (+1D:ÇÏ·çÈÄ, -1M:ÇÑ´ŞÈÄ, -1Y:ÀÏ³âÈÄ)            
+    //ì´ˆê¸°ê°’ì„ ì˜¤ëŠ˜ ë‚ ì§œë¡œ ì„¤ì •
+    $('#eyear-picker').datepicker('setDate', 'today'); //(-1D:í•˜ë£¨ì „, -1M:í•œë‹¬ì „, -1Y:ì¼ë…„ì „), (+1D:í•˜ë£¨í›„, -1M:í•œë‹¬í›„, -1Y:ì¼ë…„í›„)            
 });
 function applyWeeklyHighlight() {
  $('.ui-datepicker-calendar tr').each(function() {
@@ -251,8 +254,8 @@ $("#week").on("click",function(){
 	$("#sel").on("click",function(){
 		
 		if($("#selctype").val() == "week"){
-			if($("#week-picker").val() =="Å¬¸¯ÇÏ¿© ÁÖ ¼±ÅÃ"){
-				alert("ÁÖ¸¦ ¼±ÅÃÇØ¾ßÇÕ´Ï´Ù.");
+			if($("#week-picker").val() =="í´ë¦­í•˜ì—¬ ì£¼ ì„ íƒ"){
+				alert("ì£¼ë¥¼ ì„ íƒí•´ì•¼í•©ë‹ˆë‹¤.");
 				return;
 			}else{
 			$("#sval").val($("#week-picker").val());

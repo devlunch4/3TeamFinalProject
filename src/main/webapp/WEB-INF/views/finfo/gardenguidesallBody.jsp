@@ -26,6 +26,7 @@
 <h3 class="mt-4">텃밭가이드 글 전체보기(목록)</h3>
 <div class="">
 	<div class="text-right col-12 p-0">
+		<button class="btn-success btn-lg col-xs-4 col-md-3 mb-2" type="button"  onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">신규등록</button>
 		<button class="btn-warning btn-lg col-xs-4 col-md-3 mb-2" type="button" id="listBtn" name="listBtn" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguides'">목록으로</button>
 	</div>
 </div>

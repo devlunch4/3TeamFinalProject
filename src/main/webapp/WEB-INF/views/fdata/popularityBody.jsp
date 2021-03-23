@@ -20,7 +20,7 @@
 			<br>
 		</div>
 		<hr>
-		<div class="form-group pl-1 text-left">
+		<div class="form-group pl-1 text-left small">
 			<dl class="name">
 				<dt>데이터명</dt>
 				<dd>실시간 경락가격(전자경매속보)</dd>
