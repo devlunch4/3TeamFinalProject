@@ -1,6 +1,7 @@
 package kr.or.ddit.fcommunity.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
@@ -32,5 +33,20 @@ public interface FcommunityDao {
 	
 	// 20210320 : 미니장터 게시글 조회수 증가
 	int addHitMiniMarket(int market_no);
+
+	// 20210322_ggy : 첨부파일 삭제를 위해 파일 이름 정보 찾기
+	MarketFilesVo selectMarketFilesInfo(int market_no);
+
+	// 20210322_ggy : 첨부파일 삭제
+	int deleteMiniMarketFiles(int file_record_no);
+
+	// 20210322_ggy : 미니장터 게시글 수정
+	int modifyMiniMarketInfo(MiniMarketVo miniMarketVo);
+
+	// 20210323_ggy : 썸네일 파일 있는지 확인
+	int selectThumbnailFileNo(Map<String, String> map);
+
+	// 20210323_ggy : 미니장터 게시글 삭제
+	int deleteMiniMarketPost(Map<String, String> map);
 	
 }

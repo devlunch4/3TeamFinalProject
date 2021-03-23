@@ -48,7 +48,6 @@
 		<c:if test="${marketFileList != null }">
 			<c:forEach items="${marketFileList }" var="marketFileList" >
 				<input type="text" value="${marketFileList.file_nm }" readonly="readonly">
-				<input type="button" value="삭제">
 				<br>
 			</c:forEach>
 		</c:if>
@@ -58,7 +57,7 @@
 		<c:choose>
 			<c:when test="${S_USER.user_id == miniMarketInfo.writer }">
 				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/modifyMiniMarketView?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }">수정</a> 
-				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/deleteFarmdiary?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }"
+				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/deleteMiniMarketPost?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }"
 					onclick="alert('삭제합니다.');">삭제</a>
 			</c:when>
 			<c:otherwise></c:otherwise>
