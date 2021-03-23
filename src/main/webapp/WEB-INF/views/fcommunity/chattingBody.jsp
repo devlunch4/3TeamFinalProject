@@ -2,14 +2,21 @@
 <div>
 	<button type="button" onclick="openSocket();">대화방 참여</button>
 	<button type="button" onclick="closeSocket();">대회방 나가기</button>
-	<br />
-	<br />
-	<br /> 메세지 입력 : <input type="text" id="sender" value="${S_USER.user_id}" style="display: none;"> <input type="text" id="messageinput">
-	<button type="button" onclick="send();">메세지 전송</button>
-	<button type="button" onclick="javascript:clearText();">대화내용 지우기</button>
+	<br/>
+	<br/>
+	<br/>
+	
+
+<!-- 	<button type="button" onclick="javascript:clearText();">대화내용 지우기</button> -->
 </div>
 <!-- Server responses get written here -->
+<div style="overflow-y:scroll; border:2px solid black; height: 500px;" id="scrollDiv" class="col-12">
 <div id="messages"></div>
+</div>
+<input type="text" id="sender" value="${S_USER.user_id}" style="display: none;"> 
+
+<button type="button" onclick="send();" id="send">메세지 전송</button>
+<input type="text" id="messageinput">
 <!-- websocket javascript -->
 <script type="text/javascript">
         var ws;
@@ -55,11 +62,14 @@
         
         function writeResponse(text){
             messages.innerHTML += "<br/>"+text;
+        	$('#scrollDiv').scrollTop($('#scrollDiv').prop('scrollHeight'));
+        	$('#messageinput').val("");
+        	$('#messageinput').focus();
         }
 
         function clearText(){
             console.log(messages.parentNode);
             messages.parentNode.removeChild(messages)
       	}
-        
+
   </script>
