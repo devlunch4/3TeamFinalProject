@@ -3,6 +3,10 @@ package kr.or.ddit.fcommunity.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -68,7 +72,7 @@ public class FcommunityController {
 		fcommunityService.addHitMiniMarket(market_no);
 		
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
-		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
+		model.addAttribute("marketFileList",  fcommunityService.selectMarketFileList(market_no));
 		
 		return "tiles.fcommunity.miniMarketInfo";
 	}
@@ -306,7 +310,7 @@ public class FcommunityController {
 	@RequestMapping("modifyMiniMarketView")
 	public String modifyMiniMarketView(String writer, int market_no, Model model) {
 
-		logger.debug("selectMiniMarketInfo 진입");
+		logger.debug("modifyMiniMarketView 진입");
 
 		MiniMarketVo miniMarketVo = new MiniMarketVo();
 		miniMarketVo.setMarket_no(market_no);
@@ -316,17 +320,44 @@ public class FcommunityController {
 
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
-		model.addAttribute("miniMarketList", fcommunityService.selectMiniMarketList());
 		model.addAttribute("itemList", fcommunityService.selectItemList());
 		
-		logger.debug("marketFileList의 값 : {}",fcommunityService.selectMarketFileList(market_no));
+//		model.addAttribute("miniMarketList", fcommunityService.selectMiniMarketList());
+
+		List<MarketFilesVo> marketFileList = new ArrayList<MarketFilesVo>();
+		MarketFilesVo marketFilesVoList = new MarketFilesVo();
+		marketFileList = fcommunityService.selectMarketFileList(market_no);
 		
-		if(fcommunityService.selectMarketFileList(market_no) != null) {
-			logger.debug("null이 아니다.");
+		logger.debug("modifyMiniMarketView에 리스트 값 세기전");
+		
+		if(marketFileList.size() < 3) {
+			logger.debug("marketFileList의 사이즈는 3 이하이다.");
+			if(marketFileList.size() == 2) {
+				logger.debug("marketFileList의 사이즈는 2 이다.");
+				marketFilesVoList.setFile_nm("");
+				marketFileList.add(marketFilesVoList);
+				logger.debug("리스트 값 확인 : {}", marketFileList.size());
+			} else if(marketFileList.size() == 1) {
+				logger.debug("marketFileList의 사이즈는 1 이다.");
+				marketFilesVoList.setFile_nm("");
+				marketFileList.add(marketFilesVoList);
+				marketFileList.add(marketFilesVoList);
+				logger.debug("리스트 값 확인 : {}", marketFileList.size());
+				
+			} else if(marketFileList.size() == 0) {
+				logger.debug("marketFileList의 사이즈는 0 이다.");
+				marketFilesVoList.setFile_nm("");
+				marketFileList.add(marketFilesVoList);
+				marketFileList.add(marketFilesVoList);
+				marketFileList.add(marketFilesVoList);
+				logger.debug("리스트 값 확인 : {}", marketFileList.size());
+				
+			}
+			
 		}
-		if(fcommunityService.selectMarketFileList(market_no) == null) {
-			logger.debug("nullㅇ이다.");
-		}
+		
+		model.addAttribute("marketFileList", marketFileList);
+		
 		
 		return "tiles.fcommunity.modifyMiniMarket";
 	}
@@ -360,23 +391,81 @@ public class FcommunityController {
 		
 		FilesVo filesVo = new FilesVo();
 		
-		// 첨부파일 있는지 확인
+		// 썸네일 부분
+		// 썸네일 파일 등록
+		if (thumbnail_file.getSize() > 0) {
+
+			logger.debug("file 있다.");
+
+			String path = "c:\\fdown\\miniMarket\\";
+
+			try {
+
+				thumbnail_file.transferTo(new File(path + thumbnail_file.getOriginalFilename()));
+
+				filesVo.setFile_nm("");
+				filesVo.setFile_nm(thumbnail_file.getOriginalFilename());
+				filesVo.setFile_path(path + filesVo.getFile_nm());
+			} catch (IllegalStateException | IOException e) {
+				miniMarketVo.setThumbnail(0);
+			}
+			
+			
+			Map<String, String> map = new HashMap<String, String>();
+	        map.put("file_nm", filesVo.getFile_nm());
+	        map.put("market_no", Integer.toString(market_no_value));
+	        
+	        logger.debug("검색전 값 확인 1 : {}, 2 : {} ", map.get("file_nm"), map.get("market_no"));
+	        
+	        int selectCnt = fcommunityService.selectThumbnailFileNo(map);
+	        
+	        if(selectCnt >= 1) {
+	        	logger.debug("이미 있는 썸네일 파일");
+	        	logger.debug("썸네일 파일 번호 : "+selectCnt);
+	        	miniMarketVo.setThumbnail(selectCnt);
+	        }else {
+	        	
+	        	logger.debug("썸네일 파일 새로 등록되서 등록 절차 시작");
+			
+	        	int registFilesCnt = fsurpportService.registFiles(filesVo);
+	        	logger.debug("registFilesCnt : " + registFilesCnt);
+	        	logger.debug("registFilesCnt 결과값 문자 확인 : " + Integer.toString(registFilesCnt));
+	        	
+	        	miniMarketVo.setThumbnail(registFilesCnt);
+	        }
+
+
+		} else {
+			logger.debug("파일없다.");
+			
+			if(req.getParameter("thumbnail_file_check") != null && !req.getParameter("thumbnail_file_check").equals("")) {
+				
+				logger.debug("썸네일이 바뀌지 않음");
+				
+				Map<String, String> map = new HashMap<String, String>();
+		        map.put("file_nm", req.getParameter("thumbnail_file_check"));
+		        map.put("market_no", Integer.toString(market_no_value));
+		        
+		        logger.debug("검색전 값 확인 1 : {}, 2 : {} ", map.get("file_nm"), map.get("market_no"));
+		        
+		        int selectCnt = fcommunityService.selectThumbnailFileNo(map);
+		        miniMarketVo.setThumbnail(selectCnt);
+			} else {
+				logger.debug("썸네일 파일도 없다.");
+				miniMarketVo.setThumbnail(0);
+			}
+		}
+		
+		
+		// 첨부파일1 있는지 확인
 		if (req.getParameter("file_nm1") != null && !req.getParameter("file_nm1").equals("")) {
 
 			logger.debug("file_nm1 값 있다.");
 
-//			MarketFilesVo marketFilesVo = new MarketFilesVo();
-
-//			marketFilesVo = fcommunityService.selectMarketFilesName(req.getParameter("file_nm1"));
-
-//			marketFilesVo.setFile_no(marketFilesVo.getFile_no());
-//			logger.debug("file_nm1의 file_no : " + marketFilesVo.getFile_no());
 
 		} else {
 
 			if (req.getParameter("file_nm1").equals("")) {
-//			if (req.getParameter("file_nm1").equals("") && file_file1.getOriginalFilename().equals("")
-//				|| file_file1.getOriginalFilename() == null) {
 
 				logger.debug("file_nm1의 첨부파일 없다.");
 
@@ -432,6 +521,139 @@ public class FcommunityController {
 				logger.debug("첨부 파일없다.");
 			}
 
+		}
+		
+		// 첨부파일2 있는지 확인
+		if (req.getParameter("file_nm2") != null && !req.getParameter("file_nm2").equals("")) {
+			
+			logger.debug("file_nm2 값 있다.");
+			
+			
+		} else {
+			
+			if (req.getParameter("file_nm2").equals("")) {
+				
+				logger.debug("file_nm2의 첨부파일 없다.");
+				
+				MarketFilesVo marketFilesVo = new MarketFilesVo();
+				
+				// 첨부파일 이부분에서 오류
+				marketFilesVo = fcommunityService.selectMarketFilesInfo(market_no_value);
+				
+				int deleteMiniMarketFilesCnt = fcommunityService
+						.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
+				
+				if (deleteMiniMarketFilesCnt == 1) {
+					logger.debug("file_nm2의 첨부파일 삭제");
+				}
+			}
+			
+			if (file_file2.getSize() > 0) {
+				
+				logger.debug("첨부파일2 등록 시작");
+				
+				MarketFilesVo marketFilesVo1 = new MarketFilesVo();
+				
+				// 첨부파일2 등록 부분
+				
+				logger.debug("file_file2 있다.");
+				
+				String path = "c:\\fdown\\miniMarket\\";
+				
+				try {
+					
+					file_file2.transferTo(new File(path + file_file2.getOriginalFilename()));
+					
+					filesVo.setFile_nm("");
+					filesVo.setFile_nm(file_file2.getOriginalFilename());
+					filesVo.setFile_path(path + filesVo.getFile_nm());
+					
+					int registFilesCnt = fsurpportService.registFiles(filesVo);
+					
+					logger.debug("registFilesCnt : " + registFilesCnt);
+					marketFilesVo1.setFile_no(registFilesCnt);
+					
+					marketFilesVo1.setMarket_no(market_no_value);
+					
+					logger.debug("file_file2 등록전 값 게기글 번호 : {}, 파일 번호 : {}", marketFilesVo1.getMarket_no(),
+							marketFilesVo1.getFile_no());
+					int registmarketfilesCnt = fcommunityService.registmarketfiles(marketFilesVo1);
+					
+					logger.debug("file_file2 등록 : " + registmarketfilesCnt);
+				} catch (IllegalStateException | IOException e) {
+					filesVo.setFile_nm("");
+				}
+				
+			} else {
+				logger.debug("첨부 파일없다.");
+			}
+			
+		}
+		
+		// 첨부파일3 있는지 확인
+		if (req.getParameter("file_nm3") != null && !req.getParameter("file_nm3").equals("")) {
+			
+			logger.debug("file_nm3 값 있다.");
+			
+			
+		} else {
+			
+			if (req.getParameter("file_nm3").equals("")) {
+				
+				logger.debug("file_nm3의 첨부파일 없다.");
+				
+				MarketFilesVo marketFilesVo = new MarketFilesVo();
+				
+				marketFilesVo = fcommunityService.selectMarketFilesInfo(market_no_value);
+				
+				int deleteMiniMarketFilesCnt = fcommunityService
+						.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
+				
+				if (deleteMiniMarketFilesCnt == 1) {
+					logger.debug("file_nm3의 첨부파일 삭제");
+				}
+			}
+			
+			if (file_file3.getSize() > 0) {
+				
+				logger.debug("첨부파일3 등록 시작");
+				
+				MarketFilesVo marketFilesVo1 = new MarketFilesVo();
+				
+				// 첨부파일3 등록 부분
+				
+				logger.debug("file_file3 있다.");
+				
+				String path = "c:\\fdown\\miniMarket\\";
+				
+				try {
+					
+					file_file3.transferTo(new File(path + file_file3.getOriginalFilename()));
+					
+					filesVo.setFile_nm("");
+					filesVo.setFile_nm(file_file3.getOriginalFilename());
+					filesVo.setFile_path(path + filesVo.getFile_nm());
+					
+					int registFilesCnt = fsurpportService.registFiles(filesVo);
+					
+					logger.debug("registFilesCnt : " + registFilesCnt);
+					marketFilesVo1.setFile_no(registFilesCnt);
+					
+					marketFilesVo1.setMarket_no(market_no_value);
+					
+					logger.debug("file_file3 등록전 값 게기글 번호 : {}, 파일 번호 : {}", marketFilesVo1.getMarket_no(),
+							marketFilesVo1.getFile_no());
+					int registmarketfilesCnt = fcommunityService.registmarketfiles(marketFilesVo1);
+					
+					logger.debug("file_file3 등록 : " + registmarketfilesCnt);
+				} catch (IllegalStateException | IOException e) {
+					filesVo.setFile_nm("");
+				}
+				
+			} else {
+				logger.debug("첨부 파일없다.");
+			}
+			
 		}
 		
 		logger.debug("미니장터 게시글 수정 시작전");

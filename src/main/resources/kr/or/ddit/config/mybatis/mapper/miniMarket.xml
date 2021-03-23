@@ -177,9 +177,23 @@
 			, item_code = #{item_code }
 			, content = #{content }
 			, price = #{price }
+			, thumbnail = #{thumbnail }
 		where market_no = #{market_no }
 		and writer = #{writer }
 		
 	</update>	
+	
+	<!-- 20210323_ggy : 썸네일 파일 있는지 없는지 확인 -->
+	<select id="selectThumbnailFileNo" parameterType="map"
+				resultType="int">
+		SELECT f.file_no
+		FROM files f
+		JOIN market m
+		ON f.file_no = m.thumbnail
+		where file_nm = #{file_nm }
+		and m.market_no = #{market_no }
+		and f.use_yn = 'Y'
+		and m.use_yn = 'Y'
+	</select>
 	
 </mapper>

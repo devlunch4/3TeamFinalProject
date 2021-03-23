@@ -1,6 +1,7 @@
 package kr.or.ddit.fcommunity.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -85,6 +86,18 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	@Override
 	public int modifyMiniMarketInfo(MiniMarketVo miniMarketVo) {
 		return template.update("miniMarkets.modifyMiniMarketInfo", miniMarketVo);
+	}
+	
+	// 20210323_ggy : 썸네일 파일 있는지 확인
+	@Override
+	public int selectThumbnailFileNo(Map<String, String> map) {
+		int result = template.selectOne("miniMarkets.selectThumbnailFileNo", map);
+		
+		if(result < 1 ) {
+			result = 0;
+		}
+		
+		return result;
 	}
 	
 	

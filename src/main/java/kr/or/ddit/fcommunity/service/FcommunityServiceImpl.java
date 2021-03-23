@@ -1,6 +1,7 @@
 package kr.or.ddit.fcommunity.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -83,6 +84,12 @@ public class FcommunityServiceImpl implements FcommunityService{
 	@Override
 	public int modifyMiniMarketInfo(MiniMarketVo miniMarketVo) {
 		return fcommunityDao.modifyMiniMarketInfo(miniMarketVo);
+	}
+	
+	// 20210323_ggy : 썸네일 파일 있는지 확인
+	@Override
+	public int selectThumbnailFileNo(Map<String, String> map) {
+		return fcommunityDao.selectThumbnailFileNo(map);
 	}
 
 

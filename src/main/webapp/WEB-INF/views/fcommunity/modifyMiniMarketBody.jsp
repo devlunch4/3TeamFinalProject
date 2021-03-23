@@ -19,6 +19,7 @@
 			
 		})
 		
+		// 첨부파일2 삭제
 		$(document).on('click', '#file_nmDeleteBtn2', function() {
 			
 			
@@ -26,10 +27,19 @@
 			
 		})
 		
+		// 첨부파일 3 삭제
 		$(document).on('click', '#file_nmDeleteBtn3', function() {
 			
 			
 			$('#file_nm3').removeAttr('value');
+			
+		})
+		
+		// 썸네일 파일 삭제
+		$(document).on('click', '#thumbnail_file_check_deleteBtn', function() {
+			
+			
+			$('#thumbnail_file_check').removeAttr('value');
 			
 		})
 		
@@ -167,7 +177,11 @@
 
 			<div class="mailbox-attachment-info">
 				<div class="">
-					<input id="picture" class="form" type="file" name="file_file" accept=".gif, .jpg, .png" style="height: 37px;" />
+					<input id="picture" class="form" type="file" name="thumbnail_file" accept=".gif, .jpg, .png" style="height: 37px;" />
+					<br>
+					<p>썸네일 파일 확인</p>
+					<input type="text" id="thumbnail_file_check" name="thumbnail_file_check" value="${miniMarketInfo.thumbnail_file_nm }" readonly="readonly">
+					<input type="button" id="thumbnail_file_check_deleteBtn" value="썸네일 삭제">
 				</div>
 			</div>
 		</div>
@@ -175,61 +189,21 @@
 	</div>
 	
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">첨부 파일목록222:</label><br>
+		<label class="small mb-1" for="input_plant_prd">첨부 파일목록:</label><br>
 		
-		<c:choose>
-			<c:when test="${marketFileList != null && marketFileList.size() > 0 }">
-				<c:forEach var="marketFileList" items="${marketFileList }" begin="0" end="${marketFileList.size() }" step="1" varStatus="i">
-	<%-- 			<c:forEach items="${marketFileList }" var="marketFileList" > --%>
-					
-					<c:choose>
-						<c:when test="${i.count eq 1 }">
-							<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
-							<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
-						</c:when>
-						
-						<c:otherwise>
-							<input type="text" name="file_nm1" value="" readonly="readonly">
-						</c:otherwise>
-						
-					</c:choose>
-					
-					<c:choose>
-						<c:when test="${i.count eq 2 }">
-							<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
-							<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
-						</c:when>
-						
-						<c:otherwise>
-							<input type="text" name="file_nm2" value="" readonly="readonly">
-						</c:otherwise>
-						
-					</c:choose>
-					
-					<c:choose>
-						<c:when test="${i.count eq 3 }">
-							<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
-							<button type="button" id="file_nmDeleteBtn${i.count }"  >삭제</button>
-						</c:when>
-						
-						<c:otherwise>
-							<input type="text" name="file_nm3" value="" readonly="readonly">
-						</c:otherwise>
-						
-					</c:choose>
-						
-					
-				</c:forEach>
-				
-			</c:when>
-			
-			<c:otherwise>
-					<input type="text" name="file_nm1" value="" readonly="readonly">
-					<input type="text" name="file_nm2" value="" readonly="readonly">
-					<input type="text" name="file_nm3" value="" readonly="readonly">
-			</c:otherwise>
-		
-		</c:choose>
+			<c:forEach var="marketFileList" items="${marketFileList }" begin="0" end="3" step="1" varStatus="i">
+			<c:choose>
+				<c:when test="${marketFileList.file_nm != null && !marketFileList.file_nm.equals('')  }">
+					<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
+					<button type="button" id="file_nmDeleteBtn${i.count }">삭제</button>
+					<br>
+				</c:when>
+				<c:otherwise>
+						<input type="text" name="file_nm${i.count }" value="" readonly="readonly">
+						<br>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
 		
 	</div>
 	
