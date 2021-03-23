@@ -15,6 +15,18 @@
 <link rel="stylesheet" href="../resources/billboard/billboard.css">
 <script src="../resources/billboard/billboard.pkgd.js"></script>
 
+<script type="text/javascript">
+$(function(){
+$('#tb').DataTable({bDestroy : true});
+$('.dataTables_filter input[type="search"]').css(
+	     {'width':'10em'}
+	  );
+$("#tb_filter").addClass('text-right');
+$("#tb_paginate").addClass('text-center');
+$("#tb_info").addClass('text-left p-0');  
+}); 
+</script>
+
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
 <h3 class="mt-4">품목별 비율</h3>
@@ -43,7 +55,7 @@
 	<c:set var="sysd2">
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
-
+ 
 	<div class="form-group m-0">
 		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 		<div class="row text-center">
@@ -52,7 +64,7 @@
 			<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col m-2 btn btn-info">
 			<input type="text" id="syear-picker" name="syear" style="display: none;" class="col m-2 btn btn-info">
 			<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col m-2 btn btn-info">
-			<button id="sel" class="btn btn-primary col-2 m-2">조 회</button>
+			<button id="sel" class="btn btn-primary col-3 m-2">조 회</button>
 		</div>
 	</div>
 
@@ -70,7 +82,7 @@
 
 	<div class="form-group col-xs-12 pt-5">
 		<div class="float-left col-md-12 p-1  text-center">
-			<table class="table table-bordered " style="font-size: 15px;">
+			<table id="tb" class="table table-bordered " style="font-size: 15px;">
 				<thead>
 					<tr>
 						<td class="table-active px-0 py-1">작물명</td>

@@ -3,18 +3,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<thead>
-	<tr role="row">
-		<th style="width: 25%;" role="row" class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">장소</th>
-		<th style="width: 15%;" role="row" class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">장비명</th>
-		<th style="width: 15%;" role="row" class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">작물명</th>
-		<th style="width: 10%;" role="row" class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">온도</th>
-		<th style="width: 10%;" role="row" class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">습도</th>
-		<th style="width: 10%;" role="row" class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">조도</th>
-		<th style="width: 15%;" role="row" class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">등록일</th>
+<thead style="width: 33%;">
+	<tr>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">장소</th>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">장비명</th>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">작물명</th>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">온도</th>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">습도</th>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">조도</th>
+		<th class="p-0" class=" " aria-controls="dataTable" rowspan="1" colspan="1">등록일</th>
 	</tr>
 </thead>
-<tbody>
+<tbody class="text-center">
 	<c:forEach items="${maxmrrecList}" var="mrrecList" varStatus="stat">
 		<c:if test="${fn:length(mrrecList.location) gt 0}">
 			<c:set var="dt">
@@ -41,13 +41,13 @@
 					<tr data-guidecode="${sts.count}">
 				</c:if>
 			</c:forEach>
-			<td style="width: 25%;" data-toggle="tooltip" data-placement="top">${mrrecList.location}</td>
-			<td style="width: 15%;" data-guidecode="${sts.count}">${mrrecList.msr_nm}</td>
-			<td style="width: 15%;" data-guidecode="${sts.count}">${mrrecList.item_code}</td>
-			<td style="width: 10%;">${mrrecList.msr_temp}</td>
-			<td style="width: 10%;">${mrrecList.msr_humid}</td>
-			<td style="width: 10%;">${mrrecList.msr_bright}</td>
-			<td style="width: 15%;" data-guidecode="${sts.count}">${dt}</td>
+			<td class="p-0" data-toggle="tooltip" data-placement="top">${mrrecList.location}</td>
+			<td class="p-0" data-guidecode="${sts.count}">${mrrecList.msr_nm}</td>
+			<td class="p-0" data-guidecode="${sts.count}">${mrrecList.item_code}</td>
+			<td class="p-0">${mrrecList.msr_temp}</td>
+			<td class="p-0">${mrrecList.msr_humid}</td>
+			<td class="p-0">${mrrecList.msr_bright}</td>
+			<td class="p-0" data-guidecode="${sts.count}">${dt}</td>
 			</tr>
 		</c:if>
 	</c:forEach>

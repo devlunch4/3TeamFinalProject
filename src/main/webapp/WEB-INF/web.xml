@@ -32,6 +32,8 @@
 			</param-value>
 			<!-- classpath:/kr/or/ddit/config/spring/interceptor-context.xml -->
 		</init-param>
+		<load-on-startup>1</load-on-startup>
+      	<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>

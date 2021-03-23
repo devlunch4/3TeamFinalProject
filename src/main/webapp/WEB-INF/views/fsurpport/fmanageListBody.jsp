@@ -8,31 +8,51 @@
 	$(function() {
 		<c:if test="${S_USER.user_id ne 'admin'}">
 		$.extend( $.fn.dataTable.defaults, {
-		    searching: false
+		    $('#dataTable').dataTable({
+				"columnDefs" : [ {
+					"searchable" : false,
+					"targets" : 0
+				}, {
+					"searchable" : false,
+					"targets" : 1
+				}, {
+					"searchable" : true,
+					"targets" : 2
+				}, {
+					"searchable" : true,
+					"targets" : 3
+				}, ]
+			});
 		} );
 		</c:if>
-		$('#dataTable').dataTable({
-			"columnDefs" : [ {
-				"searchable" : false,
-				"targets" : 0
-			}, {
-				"searchable" : true,
-				"targets" : 1
-			}, {
-				"searchable" : false,
-				"targets" : 2
-			}, {
-				"searchable" : false,
-				"targets" : 3
-			}, ]
-		});
+		
+		<c:if test="${S_USER.user_id eq 'admin'}">
+		$.extend( $.fn.dataTable.defaults, {
+			$('#dataTable').dataTable({
+				"columnDefs" : [ {
+					"searchable" : false,
+					"targets" : 0
+				}, {
+					"searchable" : true,
+					"targets" : 1
+				}, {
+					"searchable" : true,
+					"targets" : 2
+				}, {
+					"searchable" : true,
+					"targets" : 3
+				}, ]
+			});
+		} );
+		</c:if>
+		
 	});
 </script>
 
 <h3 class="mt-4">텃밭가이드 글 전체보기(목록)</h3>
 <div class="card mb-4">
 	<div class="card-header">전체 텃밭가이드 조회</div>
-	<div class="card-body">
+	<div class="card-body p-1">
 		<div class="table-responsive">
 			<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 			
@@ -65,15 +85,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${fmanageList }" var="fmanage">
+								<c:forEach items="${fmanageList }" var="fmanage" varStatus="status">
 									<c:set var="dt">
 										<fmt:formatDate value="${fmanage.reg_dt}" pattern="yyyy-MM-dd" />
 									</c:set>
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
-									<tr data-guidecode="${fmanage.manage_no }">
-										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.manage_no }</td>
-										<td id = "seow" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
-										<td id = "selo" class="guidecode" data-guidecode="${fmanage.manage_no }" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다."><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
+									<tr data-guidecode="${status.count}">
+										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${status.count}</td>
+										<td id = "seow" class="guidecode" data-guidecode="${status.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
+										<td id = "selo" class="guidecode" data-guidecode="${status.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다."><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
 										<td id = "sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
 									</tr>
 									<%-- </c:if> --%>
