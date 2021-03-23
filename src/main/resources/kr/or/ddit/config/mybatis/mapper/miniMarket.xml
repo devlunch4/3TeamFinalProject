@@ -157,7 +157,7 @@
 		FROM marketfiles m
 		JOIN files f
 		ON m.file_no = f.file_no
-		WHERE market_no = #{market_no }
+		WHERE f.file_no = #{file_no }
 		AND m.use_yn = 'Y'
 		AND f.use_yn = 'Y'
 	</select>

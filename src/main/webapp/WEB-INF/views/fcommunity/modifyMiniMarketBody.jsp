@@ -191,15 +191,17 @@
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">첨부 파일목록:</label><br>
 		
-			<c:forEach var="marketFileList" items="${marketFileList }" begin="0" end="3" step="1" varStatus="i">
+		<c:forEach var="marketFileList" items="${marketFileList }" begin="0" end="3" step="1" varStatus="i">
 			<c:choose>
 				<c:when test="${marketFileList.file_nm != null && !marketFileList.file_nm.equals('')  }">
 					<input type="text" name="file_nm${i.count }" id="file_nm${i.count }" value="${marketFileList.file_nm }" readonly="readonly">
+					<input type="text" name="file_no_check${i.count }" id="file_nm${i.count }" value="${marketFileList.file_no }" readonly="readonly">
 					<button type="button" id="file_nmDeleteBtn${i.count }">삭제</button>
 					<br>
 				</c:when>
 				<c:otherwise>
 						<input type="text" name="file_nm${i.count }" value="" readonly="readonly">
+					<input type="text" name="file_no_check${i.count }" id="file_nm${i.count }" value="" readonly="readonly">
 						<br>
 				</c:otherwise>
 			</c:choose>

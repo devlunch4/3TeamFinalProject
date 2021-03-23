@@ -319,10 +319,9 @@ public class FcommunityController {
 		fcommunityService.addHitMiniMarket(market_no);
 
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
-		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
+//		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
 		model.addAttribute("itemList", fcommunityService.selectItemList());
-		
-//		model.addAttribute("miniMarketList", fcommunityService.selectMiniMarketList());
+		model.addAttribute("miniMarketList", fcommunityService.selectMiniMarketList());
 
 		List<MarketFilesVo> marketFileList = new ArrayList<MarketFilesVo>();
 		MarketFilesVo marketFilesVoList = new MarketFilesVo();
@@ -470,14 +469,23 @@ public class FcommunityController {
 				logger.debug("file_nm1의 첨부파일 없다.");
 
 				MarketFilesVo marketFilesVo = new MarketFilesVo();
-
-				marketFilesVo = fcommunityService.selectMarketFilesInfo(market_no_value);
-
-				int deleteMiniMarketFilesCnt = fcommunityService
-						.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
-
-				if (deleteMiniMarketFilesCnt == 1) {
-					logger.debug("file_nm1의 첨부파일 삭제");
+				
+				if(!req.getParameter("file_no_check1").equals("") 
+						&& req.getParameter("file_no_check1") != null) {
+					
+					int file_no1 = Integer.parseInt(req.getParameter("file_no_check1"));
+					logger.debug("file_no_check1의 값 : "+file_no1);
+					
+					if(file_no1 > 0) { 
+						logger.debug("file_no1 값 있어서 삭제 작업 들어감");
+						marketFilesVo = fcommunityService.selectMarketFilesInfo(file_no1);
+					}
+	
+					int deleteMiniMarketFilesCnt = fcommunityService.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
+	
+					if (deleteMiniMarketFilesCnt == 1) {
+						logger.debug("file_nm1의 첨부파일 삭제");
+					}
 				}
 			}
 
@@ -537,14 +545,23 @@ public class FcommunityController {
 				
 				MarketFilesVo marketFilesVo = new MarketFilesVo();
 				
-				// 첨부파일 이부분에서 오류
-				marketFilesVo = fcommunityService.selectMarketFilesInfo(market_no_value);
+				if(!req.getParameter("file_no_check2").equals("") 
+						&& req.getParameter("file_no_check2") != null) {
+					int file_no2 = Integer.parseInt(req.getParameter("file_no_check2"));
+					logger.debug("file_no_check2의 값 : "+file_no2);
+					
+					if(file_no2 > 0) { 
+						logger.debug("file_no2 값 있어서 삭제 작업 들어감");
+						marketFilesVo = fcommunityService.selectMarketFilesInfo(file_no2);
+					}
+					
+					int deleteMiniMarketFilesCnt = fcommunityService
+							.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
+					
+					if (deleteMiniMarketFilesCnt == 1) {
+						logger.debug("file_nm2의 첨부파일 삭제");
+					}
 				
-				int deleteMiniMarketFilesCnt = fcommunityService
-						.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
-				
-				if (deleteMiniMarketFilesCnt == 1) {
-					logger.debug("file_nm2의 첨부파일 삭제");
 				}
 			}
 			
@@ -604,13 +621,23 @@ public class FcommunityController {
 				
 				MarketFilesVo marketFilesVo = new MarketFilesVo();
 				
-				marketFilesVo = fcommunityService.selectMarketFilesInfo(market_no_value);
+				if(!req.getParameter("file_no_check3").equals("") 
+						&& req.getParameter("file_no_check3") != null) {
 				
-				int deleteMiniMarketFilesCnt = fcommunityService
-						.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
-				
-				if (deleteMiniMarketFilesCnt == 1) {
-					logger.debug("file_nm3의 첨부파일 삭제");
+					int file_no3 = Integer.parseInt(req.getParameter("file_no_check3"));
+					logger.debug("file_no_check3의 값 : "+file_no3);
+					
+					if(file_no3 > 0) { 
+						logger.debug("file_no3 값 있어서 삭제 작업 들어감");
+						marketFilesVo = fcommunityService.selectMarketFilesInfo(file_no3);
+					}
+					
+					int deleteMiniMarketFilesCnt = fcommunityService
+							.deleteMiniMarketFiles(marketFilesVo.getFile_record_no());
+					
+					if (deleteMiniMarketFilesCnt == 1) {
+						logger.debug("file_nm3의 첨부파일 삭제");
+					}
 				}
 			}
 			
