@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 	$(document).ready( function () {
-		  $('#table').dataTable( {
+		  $('#dataTable').dataTable( {
 			  "bLengthChange": false, 
 			  "ordering": false
 		  } );
@@ -27,7 +27,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<table class="table table-bordered dataTable" id="table" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+					<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 						<thead>
 							<tr role="row">
 								<th class="" aria-controls="dataTable" rowspan="1" colspan="1">번호</th>

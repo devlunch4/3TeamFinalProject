@@ -40,6 +40,12 @@ public class QnaServiceImpl implements QnaService {
 		return dao.insertQna(qnaVo);
 	}
 
+	//20210322_LYS 문의게시판 답글 등록- 관리자용
+	@Override
+	public int insertQnaAdminReply(QnaVo qnaVo) {
+		return dao.insertQnaAdminReply(qnaVo);
+	}
+	
 	//20210319_LYS_Q&A5 문의게시판 게시글 수정
 	@Override
 	public int updateQna(QnaVo qnaVo) {
@@ -51,5 +57,6 @@ public class QnaServiceImpl implements QnaService {
 	public int updateUseynToN(int qna_no) {
 		return dao.updateUseynToN(qna_no);
 	}
+
 	
 }

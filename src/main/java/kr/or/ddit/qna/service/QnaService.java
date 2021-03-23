@@ -19,6 +19,9 @@ public interface QnaService {
 	//20210317_LYS_Q&A4 문의게시판 게시글 등록
 	int insertQna(QnaVo qnaVo);
 	
+	//20210322_LYS 문의게시판 답글 등록- 관리자용
+	int insertQnaAdminReply(QnaVo qnaVo);
+	
 	//20210319_LYS_Q&A5 문의게시판 게시글 수정
 	int updateQna(QnaVo qnaVo);
 	

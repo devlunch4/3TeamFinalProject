@@ -11,7 +11,7 @@
 		    qna_no,
 		    qna_parent_no,
 		    writer,
-		    LPAD(' ∟ ', 3*(LEVEL-1)) || title as title,
+		    RPAD('┗', 2*(LEVEL-1), '━━') || title as title,
 		    content,
 		    reg_dt,
 		    hit,
@@ -64,6 +64,31 @@
 		    SEQ_QNA.NEXTVAL
 		    ,SEQ_QNA.CURRVAL
 		    ,#{writer}
+		    ,#{title}
+		    ,#{content}
+		    ,sysdate
+		    ,1
+		    ,'Y'
+		)
+	</insert>
+	
+	<!-- 20210322_LYS 문의게시판 답글 등록- 관리자용
+		admin인지를 확인하려고 writer를 파라미터로
+	-->
+	<insert id="insertQnaAdminReply" parameterType="qnaVo">
+		INSERT INTO qna (
+		    qna_no	
+		    ,qna_parent_no
+		    ,writer
+		    ,title
+		    ,content
+		    ,reg_dt
+		    ,hit
+		    ,use_yn
+		) VALUES (
+		    SEQ_QNA.NEXTVAL
+		    ,#{qna_no}
+		    ,'관리자'
 		    ,#{title}
 		    ,#{content}
 		    ,sysdate

@@ -34,6 +34,12 @@ public class QnaDaoImpl implements QnaDao {
 		return template.update("qna.updateHitCnt", qna_no);
 	}
 
+	//20210322_LYS 문의게시판 답글 등록- 관리자용
+	@Override
+	public int insertQnaAdminReply(QnaVo qnaVo) {
+		return template.insert("qna.insertQnaAdminReply",qnaVo);
+	}
+	
 	//20210317_LYS_Q&A4 문의게시판 게시글 등록
 	@Override
 	public int insertQna(QnaVo qnaVo) {
@@ -51,6 +57,7 @@ public class QnaDaoImpl implements QnaDao {
 	public int updateUseynToN(int qna_no) {
 		return template.update("qna.updateUseynToN", qna_no);
 	}
+
 
 	
 	
