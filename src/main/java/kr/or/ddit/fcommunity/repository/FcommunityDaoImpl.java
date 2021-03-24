@@ -93,7 +93,7 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	public int selectThumbnailFileNo(Map<String, String> map) {
 		int result = template.selectOne("miniMarkets.selectThumbnailFileNo", map);
 		
-		if(result < 1 ) {
+		if(result < 0 ) {
 			result = 0;
 		}
 		

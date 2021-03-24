@@ -180,6 +180,7 @@
 					<input id="picture" class="form" type="file" name="thumbnail_file" accept=".gif, .jpg, .png" style="height: 37px;" />
 					<br>
 					<p>썸네일 파일 확인</p>
+					<input type="text" id="thumbnail_file_no_check" name="thumbnail_file_no_check" value="${miniMarketInfo.thumbnail_file_no }" readonly="readonly">
 					<input type="text" id="thumbnail_file_check" name="thumbnail_file_check" value="${miniMarketInfo.thumbnail_file_nm }" readonly="readonly">
 					<input type="button" id="thumbnail_file_check_deleteBtn" value="썸네일 삭제">
 				</div>
