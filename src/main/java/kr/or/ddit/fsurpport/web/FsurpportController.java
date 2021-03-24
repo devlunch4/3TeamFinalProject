@@ -30,6 +30,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -162,7 +163,7 @@ public class FsurpportController {
 	// ggy_20210308 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
 	@RequestMapping("insertView")
 	public String insertView(String owner, Model model) {
-		logger.debug("영농일지 등록 insertView");
+	logger.debug("영농일지 등록 insertView");
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(owner));
 //		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
@@ -724,7 +725,7 @@ public class FsurpportController {
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
 	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
-	public String fmanage(Model model, FmanageVo fmanage, HttpSession session) {
+	public String fmanage(Model model, FmanageVo fmanage, HttpSession session, String manage_no) {
 		logger.debug(" 시설관리중인 시설 상세조회 fmanageInfo 진입");
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
 		// KJH_20210308 측정 정보 조회 수정
