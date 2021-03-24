@@ -87,20 +87,6 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	public int modifyMiniMarketInfo(MiniMarketVo miniMarketVo) {
 		return template.update("miniMarkets.modifyMiniMarketInfo", miniMarketVo);
 	}
-	
-	// 20210323_ggy : 썸네일 파일 있는지 확인
-	@Override
-	public int selectThumbnailFileNo(Map<String, String> map) {
-		int result = template.selectOne("miniMarkets.selectThumbnailFileNo", map);
-		
-		if(result < 0 ) {
-			result = 0;
-		}
-		
-		return result;
-	}
-	
-	
 
 	// 20210323_ggy : 미니장터 게시글 삭제
 	@Override
