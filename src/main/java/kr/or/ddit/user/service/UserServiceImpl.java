@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	public int updateLoginFailCnt_reset(String user_id) {
 		return userDao.updateLoginFailCnt_reset(user_id);
 	}
-	
+
 	// 20210304_LYS_Login3 - 회원가입 구현
 	// 사용자 정보 추가
 	@Override
@@ -86,11 +86,16 @@ public class UserServiceImpl implements UserService {
 		return userDao.modifyUser(userVo);
 	}
 
-	//20210310_KKC_1110
+	// 20210310_KKC_1110
 	@Override
 	public UserVo modifyUser2(UserVo userVo) {
 		return userDao.modifyUser2(userVo);
 	}
 
+	// 이름과 이메일로 아이디 찾는거 03/23 (경찬)
+	@Override
+	public UserVo findId(UserVo userVo) {
+		return userDao.findId(userVo);
+	}
 
 }

@@ -50,12 +50,12 @@ public class UserDaoImpl implements UserDao {
 		return template.selectOne("users.sumLoginFailCnt", user_id);
 	}
 
-	// 20210309_LYS_Q&A - 로그인 성공했을때 login_fail_cnt 카운트 0으로 리셋 
+	// 20210309_LYS_Q&A - 로그인 성공했을때 login_fail_cnt 카운트 0으로 리셋
 	@Override
 	public int updateLoginFailCnt_reset(String user_id) {
 		return template.update("users.updateLoginFailCnt_reset", user_id);
 	}
-	
+
 	// 20210305_LYS_Join - 아이디 중복 체크
 	@Override
 	public String checkForDuplicateId(String user_id) {
@@ -97,5 +97,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public UserVo modifyUser2(UserVo userVo) {
 		return template.selectOne("users.modifyUser2", userVo);
+	}
+
+	// 이름과 이메일로 아이디 찾는거 03/23 (경찬)
+	@Override
+	public UserVo findId(UserVo userVo) {
+		return template.selectOne("users.findId", userVo);
 	}
 }

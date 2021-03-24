@@ -2,4 +2,3 @@
 	pageEncoding="UTF-8"%>
 	
 	
-<script>document.location="create"</script>
