@@ -5,10 +5,28 @@
 <script type="text/javascript">
 	$(document).ready( function () {
 		  $('#dataTable').dataTable( {
-			  "bLengthChange": false, 
-			  "ordering": false
+			  //order by 쿼리 적용을 위해 
+			  "ordering": false,
+			  
+			  //검색중 제목만 검색 되도록 설정
+			  "columnDefs" : [ {
+					"searchable" : false,
+					"targets" : 0
+				}, {
+					"searchable" : true,
+					"targets" : 1
+				}, {
+					"searchable" : false,
+					"targets" : 2
+				}, {
+					"searchable" : false,
+					"targets" : 3
+				} ]
+			  
 		  } );
 	} );
+	
+	
 </script>
 
 <h3 class="mt-4">문의사항</h3>

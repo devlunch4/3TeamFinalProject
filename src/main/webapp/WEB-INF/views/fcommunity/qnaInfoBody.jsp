@@ -4,45 +4,36 @@
 
 <h3 class="mt-4">문의사항</h3>
 
-<div class="form-group">
-	<label class="small mb-1" for="input_grdgd_nm">글번호</label> 
-	<input class="form-control py-4" id="input_grdgd_nm" name="qna_no" type="text" value="${qna.qna_no}" readonly="readonly">
+<div class="board_wrap">
+	<table>
+		<tr>
+			<th>작성자</th>
+			<td>${qna.writer}</td>
+		</tr>
+		<tr>
+			<th>작성일시</th>
+			<td>${qna.reg_dt}</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>${qna.title}</td>
+		</tr>
+		<tr>
+			<th class="content_title">내용</th>
+			<td class="content">${qna.content}</td>
+		</tr>
+	</table>
 </div>
 
-<div class="form-group">
-	<label class="small mb-1" for="input_grdgd_nm">조회수</label> 
-	<input class="form-control py-4" id="input_grdgd_nm" name="qna_no" type="text" value="${qna.hit}" readonly="readonly">
+<div class="text-right mt-3">
+	<!-- 세션으로 받아온 아이디가 admin과 일치 또는 작성자와 일치하는경우 -->
+	<c:if test="${S_USER.user_id.equals('admin') || S_USER.user_id.equals(qna.writer)}">
+		<a class="btn btn-primary" href="qnaModifyView?qna_no=${qna.qna_no}">수정</a>
+		<a class="btn btn-primary" href="qnaDelete?qna_no=${qna.qna_no}">삭제</a>
+	</c:if>
+	
+	<!-- 세션으로 받아온 아이디가 admin과 일치하는경우 -->
+	<c:if test="${S_USER.user_id.equals('admin')}">
+		<a class="btn btn-primary" href="qnaRegistAdminReplyView?qna_no=${qna.qna_no}">답글등록</a>
+	</c:if>
 </div>
-
-<div class="form-group">
-	<label class="small mb-1" for="input_grdgd_nm">작성자</label> 
-	<input class="form-control py-4" id="input_grdgd_nm" name="qna_no" type="text" value="${qna.writer}" readonly="readonly">
-</div>
-
-<div class="form-group">
-	<label class="small mb-1" for="input_cls_code">제목</label> 
-	<input class="form-control py-4" id="input_cls_code" name="" type="text" value="${qna.title }" readonly="readonly">
-</div>
-
-<div class="form-group">
-	<label class="small mb-1" for="input_difficulty">내용</label><br>
-	<input class="form-control py-4" id="input_cls_code" name="" type="text" value="${qna.content }" readonly="readonly">
-	<p>${S_USER.user_id}</p>
-	<p>${qna.content }</p>
-</div>
-
-
-
-
-<!-- 세션으로 받아온 아이디가 admin과 일치 또는 작성자와 일치하는경우 -->
-<c:if test="${S_USER.user_id.equals('admin') || S_USER.user_id.equals(qna.writer)}">
-	<a class="btn btn-primary" href="qnaModifyView?qna_no=${qna.qna_no}">수정</a>
-	<a class="btn btn-primary" href="qnaDelete?qna_no=${qna.qna_no}">삭제</a>
-</c:if>
-
-<!-- 세션으로 받아온 아이디가 admin과 일치하는경우 -->
-<c:if test="${S_USER.user_id.equals('admin')}">
-	<a class="btn btn-primary" href="qnaRegistAdminReplyView?qna_no=${qna.qna_no}">답글등록</a>
-</c:if>
-
-

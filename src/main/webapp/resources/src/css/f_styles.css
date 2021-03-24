@@ -75,6 +75,41 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 }
 
 
+/* LYS - 20210324*/
+/* 게시판 본문 테이블 */
+.board_wrap{
+	
+}
+
+.board_wrap table{
+	border-top: 2px solid #c7c7c7;
+	border-bottom: 2px solid #c7c7c7;
+	width: 100%;
+}
+.board_wrap tr{
+	border-top: 1px solid #c7c7c7;
+}
+.board_wrap th{
+	width: 16%;
+    padding: 1rem 1.5rem;
+}
+.board_wrap td p{
+	margin : 0;
+}
+
+.content_title{
+	display: block;
+    width: 100% !important;
+}
+
+.content{
+	padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+
+
 /*-------------------------body css 끝 -------------------------*/
 
 
@@ -156,6 +191,12 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 	.display-none-767{
 		display:none;
 	}
+
+
+	.board_wrap th{
+		width: 30%;
+		padding: 0.7rem;
+}
 
 }
 
