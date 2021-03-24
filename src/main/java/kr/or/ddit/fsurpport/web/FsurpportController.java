@@ -341,7 +341,7 @@ public class FsurpportController {
 	}
 
 	// ggy_20210304 : 농업지원-영농일지 내 일지 수정을 위한 진입페이지
-	@RequestMapping("ModifyView")
+	@RequestMapping(path = "ModifyView", method = { RequestMethod.POST })
 	public String ModifyView(String writer, int f_diary_no, int my_simple_code, Model model) {
 		logger.debug("영농일지 수정 ModifyView 진입");
 		MySimpleCodeVo mySimpleCodeVo = new MySimpleCodeVo();
@@ -477,7 +477,7 @@ public class FsurpportController {
 	}
 
 	// ggy_20210309 : 농업지원-영농일지 내 일지 삭제
-	@RequestMapping("deleteFarmdiary")
+	@RequestMapping(path = "deleteFarmdiary", method = { RequestMethod.POST })
 	public String deleteFarmdiary(String writer, int f_diary_no) {
 		logger.debug("deleteFarmdiary 진입");
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();

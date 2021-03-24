@@ -4,7 +4,6 @@
 
 <h3 class="mt-4">영농일지 조회</h3>
 
-<form>
 	<div class="form-group">
 		<label>등록일 : </label>
 		<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
@@ -32,19 +31,36 @@
 		<label>사진 : </label>
 		<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }" alt="none">
 	</div>
-	<div class="form-group text-right">
-		<div class="">
+	<div class="form-group ">
+		<div class="row float-right">
 			<c:choose>
 				<c:when test="${S_USER.user_id == farmdiaryList.writer }">
-					<a class="btn btn-warning" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a>
-					<a class="btn btn-danger" href="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }" onclick="alert('삭제합니다.');">삭제</a>
+<%-- 					<a class="btn btn-warning" href="${pageContext.request.contextPath }/fsurpport/ModifyView?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }&my_simple_code=${farmdiaryList.my_simple_code }">수정</a> --%>
+					<form action="${pageContext.request.contextPath }/fsurpport/ModifyView" method="post">
+						<input type="hidden" name="writer" value="${S_USER.user_id }">
+						<input type="hidden" name="f_diary_no" value="${farmdiaryList.f_diary_no }">
+						<input type="hidden" name="my_simple_code" value="${farmdiaryList.my_simple_code }">
+						<input type="submit" value="수정" class="btn btn-warning  m-1">
+					</form>
+					
+					
+<%-- 					<a class="btn btn-danger" href="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary?writer=${S_USER.user_id }&f_diary_no=${farmdiaryList.f_diary_no }" onclick="alert('삭제합니다.');">삭제</a> --%>
+					
+					<form action="${pageContext.request.contextPath }/fsurpport/deleteFarmdiary" method="post">
+						<input type="hidden" name="writer" value="${S_USER.user_id }">
+						<input type="hidden" name="f_diary_no" value="${farmdiaryList.f_diary_no }">
+						<input type="submit" value="삭제" onclick="alert('삭제합니다.');" class="btn btn-danger  m-1" >
+					</form>
+					
 				</c:when>
 				<c:otherwise></c:otherwise>
 			</c:choose>
 
-			<input class="btn btn-primary" type="button" value="취소" onClick="history.go(-1)">
-			<!-- 		<button type="button" class="btn btn-primary" style="float: rigth;" -->
-			<%-- 		onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >목록이동</button> --%>
+			<input class="btn btn-primary m-1" type="button" value="취소" onClick="history.go(-1)">
+			
+			<button type="button" class="btn btn-primary m-1"
+				onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id }'" >목록이동</button>
+			
 		</div>
 	</div>
 
@@ -110,5 +126,4 @@
 		<!-- 		<button type="button" class="btn btn-primary" style="float: rigth;" -->
 		<%-- 		onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'" >목록이동</button> --%>
 	</div>
-</form>
 
