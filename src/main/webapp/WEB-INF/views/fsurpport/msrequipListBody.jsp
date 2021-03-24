@@ -26,7 +26,6 @@ var tables = $('#tb').DataTable({
 				"targets" : 3
 			}, ],
 			
-	
 		}); 
 		
 	$('.dataTables_filter input[type="search"]').css(
@@ -133,14 +132,29 @@ $("#choice").change(function(){
 	
 // });
 
-
+$(".save").on("click",function(){
+	
+	alert($(this).attr('id'));
+	
+	idval= $(this).attr('id');
+	
+	$("#msr_code").val($("#msr_code".concat(idval)).val());
+	$("#msr_nm").val($("#msr_nm".concat(idval)).val());
+	$("#owner").val($("#owner".concat(idval)).val());
+	$("#form").submit();
+	
+// 	alert($("#msr_code").val());
+// 	alert($("#owner").val());
+// 	alert($("#msr_nm").val());
+	
+});
 });
 </script>
 
 <!-- 20210302_KJH 등록한 시설 리스트 -->
-<h3 class="mt-4">시설관리</h3>
+<h3 class="mt-4">장비관리</h3>
 <div class="card mt-2 px-0">
-	<h3 class="card-header">총게시글 :</h3>
+	<h3 class="card-header">장비관리 :</h3>
 	<div class="card-body text-left p-0">
 		<div class="mt-2 col-sm-2 px-0 float-right">
 			<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary p-2 float-right">장비등록</a>
@@ -171,21 +185,23 @@ $("#choice").change(function(){
 							<th class="p-0 table-active" role="row" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 10%">버튼</th>
 						</tr>
 					</thead>
-					<tbody>
+					<form action="${pageContext.request.contextPath}/fsurpport/msrUpdate" method="get" id="form">
+					<input type="hidden" name="msr_code" id="msr_code" value="" >
+					<input type="hidden" name="owner" id="owner" value="">
+					<input type="hidden" name="msr_nm" id="msr_nm" value="">
+					</form>
+					<tbody> 
 						<c:forEach items="${msrList}" var="msr" varStatus="sts">
-							<form action="${pageContext.request.contextPath}/fsurpport/msrUpdate" method="get">
-
-								<c:if test="${S_USER.user_id ne 'admin'}">
-									<input type="hidden" name="msr_code" value="${msr.msr_code}" />
-									<input type="hidden" name="owner" value="${S_USER.user_id}" />
 									<tr>
-
+									<c:if test="${S_USER.user_id ne 'admin'}">
+									<input type="hidden" id="msr_code${sts.count}" value="${msr.msr_code}">
+									<input type="hidden" id="owner${sts.count}" value="${S_USER.user_id}">
 										<td class="p-0" data-placement="top">${msr.msr_code}</td>
-										<td class="p-0" data-guidecode="${sts.count}"><input type="text" name="msr_nm" value="${msr.msr_nm}" class="col-12">
+										<td class="p-1" data-guidecode="${sts.count}"><input type="text" id="msr_nm${sts.count}" value="${msr.msr_nm}" class="col-12">
 											<div style="display: none;">${msr.msr_nm}</div></td>
 										<td class="p-0" data-guidecode="${sts.count}">${msr.owner}</td>
-										<td class="p-0"><input class="btn btn-info btn-sm" type="submit" value="저장"></td>
-									</tr>
+										<td class="p-0"><input class="save btn btn-info btn-sm" type="submit" value="저장" id="${sts.count}"></td>
+									</tr>	
 								</c:if>
 								<c:if test="${S_USER.user_id eq 'admin'}">
 									<input type="hidden" name="msr_code" value="${msr.msr_code}" />
@@ -195,12 +211,14 @@ $("#choice").change(function(){
 											<div style="display: none;">${msr.msr_nm}</div></td>
 										<td class="px-0 py-1" data-guidecode="${sts.count}"><input class="col-10" type="text" name="owner" value="${msr.owner}">
 											<div style="display: none;">${msr.owner}</div></td>
-										<td class="px-0 py-1"><input class="btn btn-info btn-sm" type="submit" value="저장"></td>
+										<td class="px-0 py-1"><input class="save btn btn-info btn-sm" type="submit" value="저장" id="${sts.count}"></td>
 									</tr>
 								</c:if>
-							</form>
+							
 						</c:forEach>
+					
 					</tbody>
+					
 					<c:if test="${S_USER.user_id ne 'admin'}">
 						<form action="${pageContext.request.contextPath}/fsurpport/msrSet" method="get">
 							<tr class="table-active">

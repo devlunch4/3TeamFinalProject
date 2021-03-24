@@ -10,13 +10,19 @@
 <!-- 	<button type="button" onclick="javascript:clearText();">대화내용 지우기</button> -->
 </div>
 <!-- Server responses get written here -->
+<div class="col-12">
 <div style="overflow-y:scroll; border:2px solid black; height: 500px;" id="scrollDiv" class="col-12">
 <div id="messages"></div>
-</div>
+</div> 	 
 <input type="text" id="sender" value="${S_USER.user_id}" style="display: none;"> 
 
-<button type="button" onclick="send();" id="send">메세지 전송</button>
-<input type="text" id="messageinput">
+<div class="form-group">
+<button type="button" class="form-group float-left small" onclick="send();" id="send" style="width: 30%">메세지 전송</button>
+<span class="form-group text-right" style="width: 100%">
+<input type="text" id="messageinput" style="width: 70%" class="small" onkeyup="enterkey();">
+</span>
+</div>
+</div>
 <!-- websocket javascript -->
 <script type="text/javascript">
         var ws;
@@ -71,5 +77,6 @@
             console.log(messages.parentNode);
             messages.parentNode.removeChild(messages)
       	}
-
+        
+        $("#messageinput").keyup(function(e){if(e.keyCode == 13)  send(); });
   </script>

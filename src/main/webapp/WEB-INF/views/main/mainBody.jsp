@@ -142,7 +142,7 @@ $("#").scrollTop($(document).height());
 				<tr>
 					<th class="table-active px-2 py-1 text-center" style="width: 50px;">구분</th>
 					<c:forEach items="${target}" var="tar">
-						<th class="text-center p-1">${tar}</th>
+						<th class="text-center py-1 px-0">${tar}</th>
 					</c:forEach>
 				</tr>
  

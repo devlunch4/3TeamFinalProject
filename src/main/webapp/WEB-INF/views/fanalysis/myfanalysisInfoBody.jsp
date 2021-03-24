@@ -79,7 +79,7 @@ ${manage_no}
 	<button id="btn_search" class="btn btn-secondary">조회하기</button>
 	<br> <br>
 	<lable class ="text-danger font-weight-bold">${novalue}</lable>
-	<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+	<canvas id="myChart" width="600" height="300"></canvas>
 </div>
 
 
@@ -132,4 +132,6 @@ ${manage_no}
 			data: chartData, // 옵션 
 			options: { legend: { display: false } } });
 	})
+	
+	
 </script>

@@ -31,6 +31,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -722,7 +723,7 @@ public class FsurpportController {
 
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
-	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.GET })
+	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
 	public String fmanage(Model model, FmanageVo fmanage, HttpSession session) {
 		logger.debug(" 시설관리중인 시설 상세조회 fmanageInfo 진입");
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
@@ -762,8 +763,8 @@ public class FsurpportController {
 
 //	 KJH_20210315
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ajax
-	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
-	public String fmanagepost(Model model, FmanageVo fmanage, HttpSession session) {
+	@RequestMapping(path = "fmanageInfoajax", method = { RequestMethod.POST })
+	public String fmanagepostajax(Model model, FmanageVo fmanage, HttpSession session) {
 		logger.debug("관리중인 시설 상세조회 fmanageInfo 진입");
 		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
 		// KJH_20210308 측정 정보 조회 수정
@@ -862,16 +863,15 @@ public class FsurpportController {
 
 	// KJH_20210302
 	// 농업양식 - 시설관리 관리중인 시설 업데이트 페이지 ok
-	@RequestMapping("fmanageUpdate")
+	@RequestMapping(path = "fmanageUpdatePage", method = { RequestMethod.POST })
 	public String fmanageupdate(Model model, String manage_no) {
-		logger.debug("시설 업데이트/수정 fmanageUpdate");
+		logger.debug("시설 업데이트/수정 fmanageUpdatePage");
 		FmanageVo fvo = fsurpportService.updatefmanageInfo(manage_no);
 		CodesVo cvo = fdataService.selectCode(fvo.getItem_code());
 
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("itemcategorycode", cvo.getParent_code());
 		model.addAttribute("itemcode", fvo.getItem_code());
-
 		model.addAttribute("codesList", fsurpportService.selectAllItem_codeList());
 
 		return "tiles.fsurpport.fmanageUpdate";
@@ -881,9 +881,12 @@ public class FsurpportController {
 	// 농업양식 - 시설관리 관리중인 시설 업데이트 ok
 	@RequestMapping(path = "fmanageUpdate", method = { RequestMethod.POST })
 	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
-
+		logger.debug(fmanageVo.getManage_no());
 		fsurpportService.fmanageUpdate(fmanageVo);
-		return "redirect:/fsurpport/fmanageInfo?manage_no=" + fmanageVo.getManage_no();
+		
+		model.addAttribute("manage_no",fmanageVo.getManage_no());
+		return "forward:/fsurpport/fmanageInfo";
+		
 	}
 
 	// KJH_20210311
