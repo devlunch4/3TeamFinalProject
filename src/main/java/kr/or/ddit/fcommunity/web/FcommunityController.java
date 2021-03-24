@@ -307,7 +307,7 @@ public class FcommunityController {
 	}
 	
 	// 20210322_ggy : 미니장터 게시글 수정을 위한 진입 및 상세 조회
-	@RequestMapping("modifyMiniMarketView")
+	@RequestMapping(path = "modifyMiniMarketView", method = { RequestMethod.POST })
 	public String modifyMiniMarketView(String writer, int market_no, Model model) {
 
 		logger.debug("modifyMiniMarketView 진입");
@@ -699,7 +699,7 @@ public class FcommunityController {
 	}
 	
 	// 20210323_ggy : 미니장터 게시글 삭제
-	@RequestMapping(path = "deleteMiniMarketPost", method = { RequestMethod.GET })
+	@RequestMapping(path = "deleteMiniMarketPost", method = { RequestMethod.POST })
 	public String deleteMiniMarketPost(
 			String writer, int market_no ) {
 		
