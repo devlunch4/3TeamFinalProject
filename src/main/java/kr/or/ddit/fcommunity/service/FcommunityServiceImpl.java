@@ -97,6 +97,12 @@ public class FcommunityServiceImpl implements FcommunityService{
 	public int deleteMiniMarketPost(Map<String, String> map) {
 		return fcommunityDao.deleteMiniMarketPost(map);
 	}
+	
+	// 20210324_ggy : 미니장터 썸네일 파일 삭제
+	@Override
+	public int deleteThumbnailFiles(int thumbnail_file_no) {
+		return fcommunityDao.deleteThumbnailFiles(thumbnail_file_no);
+	}
 
 
 }

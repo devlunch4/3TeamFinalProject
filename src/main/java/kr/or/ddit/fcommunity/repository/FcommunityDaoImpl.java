@@ -108,6 +108,12 @@ public class FcommunityDaoImpl implements FcommunityDao {
 		return template.update("miniMarkets.deleteMiniMarketPost", map);
 	}
 	
+	// 20210324_ggy : 미니장터 썸네일 파일 삭제
+	@Override
+	public int deleteThumbnailFiles(int thumbnail_file_no) {
+		return template.update("miniMarkets.deleteThumbnailFiles", thumbnail_file_no);
+	}
+	
 	
 	
 		

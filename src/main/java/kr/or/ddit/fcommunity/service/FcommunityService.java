@@ -50,6 +50,8 @@ public interface FcommunityService {
 	// 20210323_ggy : 미니장터 게시글 삭제
 	int deleteMiniMarketPost(Map<String, String> map);
 	
+	// 20210324_ggy : 미니장터 썸네일 파일 삭제
+	int deleteThumbnailFiles(int thumbnail_file_no);
 	
 	
 	

@@ -402,10 +402,8 @@ public class FcommunityController {
 
 				logger.debug("thumbnail_file_check의 첨부파일 없다.");
 
-				MarketFilesVo marketFilesVo = new MarketFilesVo();
-				
-				if(!req.getParameter("thumbnail_file_check").equals("") 
-						&& req.getParameter("thumbnail_file_check") != null) {
+				if(!req.getParameter("thumbnail_file_no_check").equals("") 
+						&& req.getParameter("thumbnail_file_no_check") != null) {
 					
 					int thumbnail_file_no = Integer.parseInt(req.getParameter("thumbnail_file_no_check"));
 					logger.debug("thumbnail_file_no의 값 : "+thumbnail_file_no);
@@ -426,11 +424,9 @@ public class FcommunityController {
 
 				logger.debug("thumbnail_file 등록 시작");
 
-				MarketFilesVo marketFilesVo1 = new MarketFilesVo();
+				// 썸네일 파일 등록 부분
 
-				// 첨부파일 등록 부분
-
-				logger.debug("file1 있다.");
+				logger.debug("thumbnail_file 있다.");
 
 				String path = "c:\\fdown\\miniMarket\\";
 
@@ -443,23 +439,19 @@ public class FcommunityController {
 					filesVo.setFile_path(path + filesVo.getFile_nm());
 
 					int registFilesCnt = fsurpportService.registFiles(filesVo);
+					
+					logger.debug("thumbnail_file의 registFilesCnt : " + registFilesCnt);
+					
+					miniMarketVo.setThumbnail(registFilesCnt);
 
-					logger.debug("registFilesCnt : " + registFilesCnt);
-					marketFilesVo1.setFile_no(registFilesCnt);
+					logger.debug("thumbnail의 값 : "+miniMarketVo.getThumbnail());
 
-					marketFilesVo1.setMarket_no(market_no_value);
-
-					logger.debug("등록전 값 게기글 번호 : {}, 파일 번호 : {}", marketFilesVo1.getMarket_no(),
-							marketFilesVo1.getFile_no());
-					int registmarketfilesCnt = fcommunityService.registmarketfiles(marketFilesVo1);
-
-					logger.debug("file_file1 등록 : " + registmarketfilesCnt);
 				} catch (IllegalStateException | IOException e) {
 					filesVo.setFile_nm("");
 				}
 
 			} else {
-				logger.debug("첨부 파일없다.");
+				logger.debug("thumbnail_file 파일없다.");
 			}
 
 		}
