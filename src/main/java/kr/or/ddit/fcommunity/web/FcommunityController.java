@@ -74,6 +74,8 @@ public class FcommunityController {
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList",  fcommunityService.selectMarketFileList(market_no));
 		
+		model.addAttribute("marketReplyList",  fcommunityService.selectMarketReplyList());
+		
 		return "tiles.fcommunity.miniMarketInfo";
 	}
 	
@@ -732,4 +734,31 @@ public class FcommunityController {
 
 		return "tiles.fcommunity.chatting";
 	}
+	
+	// 20210324_ggy : 미니장터 게시글 댓글 등록
+	@RequestMapping(path = "registMarketReply", method = { RequestMethod.POST })
+	public String registMarketReply( 
+			String writer
+			, int market_no
+			, String content
+			, Model model) {
+		
+		logger.debug("registMarketReply 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+        map.put("writer", writer);
+        map.put("market_no", Integer.toString(market_no));
+        map.put("content", content);
+		
+		int registCnt =  fcommunityService.registMarketReply(map);
+		
+		if(registCnt == 1) {
+			logger.debug("미니장터 게시글 댓글 등록");
+		}
+		
+		return"redirect:/fcommunity/miniMarketInfoView?writer="+writer+"&market_no="+market_no;
+		
+	}
+	
+	
 }

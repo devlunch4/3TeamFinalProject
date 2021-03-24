@@ -196,4 +196,28 @@
 		where file_no = #{file_no }
 	</update>
 	
+	<!-- 20210324_ggy : 미니장터 게시글 댓글 조회 -->
+	<select id="selectMarketReplyList" resultType="marketReplyVo">
+		select 
+			reply_code
+			, market_no
+			, writer
+			, content
+			, reg_dt
+		from marketreply
+		where use_yn = 'Y'
+	</select>
+	
+	<!-- 20210324_ggy : 미니장터 게시글 댓글 등록 -->
+	<insert id="registMarketReply" parameterType="map">
+		insert into marketreply values(
+			seq_marketreply.nextval
+			, #{market_no }
+			, #{writer }
+			, #{content }
+			, sysdate
+			, 'Y' )
+	</insert>
+	
+	
 </mapper>

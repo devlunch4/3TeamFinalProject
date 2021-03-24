@@ -59,6 +59,9 @@
 		<typeAlias type="kr.or.ddit.common.model.FilesVo" alias="filesVo" />
 		<typeAlias type="kr.or.ddit.farm.model.FarmdiaryVo" alias="farmdiaryVo" />
 		
+		<!-- 20210324_ggy : MarketReplyVo 만듬 -->
+		<typeAlias type="kr.or.ddit.farm.model.MarketReplyVo" alias="marketReplyVo" />
+		
 		<!-- 2021-03-20 KJH Standarditemcode -->
 		<typeAlias type="kr.or.ddit.batch.model.StandarditemcodeVo" alias="standarditemcodeVo" />
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
+import kr.or.ddit.farm.model.MarketReplyVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 
 // 20210318_ggy : FcommunityService 생성
@@ -50,7 +51,10 @@ public interface FcommunityService {
 	// 20210324_ggy : 미니장터 썸네일 파일 삭제
 	int deleteThumbnailFiles(int thumbnail_file_no);
 	
-	
-	
+	// 20210324_ggy : 미니장터 게시글 조회
+	List<MarketReplyVo> selectMarketReplyList();
+
+	// 20210324_ggy : 미니장터 게시글 삭제
+	int registMarketReply(Map<String, String> map);
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
+import kr.or.ddit.farm.model.MarketReplyVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 import kr.or.ddit.fcommunity.repository.FcommunityDao;
 
@@ -96,6 +97,18 @@ public class FcommunityServiceImpl implements FcommunityService{
 	@Override
 	public int deleteThumbnailFiles(int thumbnail_file_no) {
 		return fcommunityDao.deleteThumbnailFiles(thumbnail_file_no);
+	}
+
+	// 20210324_ggy : 미니장터 게시글 조회
+	@Override
+	public List<MarketReplyVo> selectMarketReplyList() {
+		return fcommunityDao.selectMarketReplyList();
+	}
+	
+	// 20210324_ggy : 미니장터 게시글 삭제
+	@Override
+	public int registMarketReply(Map<String, String> map) {
+		return fcommunityDao.registMarketReply(map);
 	}
 
 

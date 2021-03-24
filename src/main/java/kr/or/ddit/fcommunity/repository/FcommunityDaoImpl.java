@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
+import kr.or.ddit.farm.model.MarketReplyVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 
 //20210318_ggy : FcommunityDaoImpl 생성
@@ -99,6 +100,20 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	public int deleteThumbnailFiles(int thumbnail_file_no) {
 		return template.update("miniMarkets.deleteThumbnailFiles", thumbnail_file_no);
 	}
+	
+	// 20210324_ggy : 미니장터 게시글 조회
+	@Override
+	public List<MarketReplyVo> selectMarketReplyList() {
+		return template.selectList("miniMarkets.selectMarketReplyList");
+	}
+	
+	// 20210324_ggy : 미니장터 게시글 삭제
+	@Override
+	public int registMarketReply(Map<String, String> map) {
+		return template.insert("miniMarkets.registMarketReply", map);
+	}
+	
+
 	
 	
 	
