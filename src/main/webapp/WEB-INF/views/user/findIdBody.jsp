@@ -8,19 +8,31 @@
 				url : "${pageContext.request.contextPath}/user/findId2",
 				type : "post",
 				data : {
-					"result" : email_value
+					"user_id" : user_id_value
 				},
 				success : function(res){
-					code = res.code;
-					$(".email_status_not_ok").css("display", "none");
-					$(".email_status_ok").css("display", "block");
-    				$(".email_status").html("인증코드가 발송되었습니다. 해당 이메일을 확인해주세요.");
+					
+					if(res.id_status_taken){
+						id_status_taken_from_idCheck = res.id_status_taken
+	    				$(".id_status_ok").css("display", "none");
+	    				$(".id_status_taken").css("display", "block");
+	    				$(".id_status_taken").html(id_status_taken_from_idCheck);
+	    				verify_id = 0
+				
+					}else if(res.id_status_ok){
+						id_status_ok_from_idCheck = res.id_status_ok;
+						$(".id_status_taken").css("display", "none");
+	    				$(".id_status_ok").css("display", "block");
+	    				$(".id_status_ok").html(id_status_ok_from_idCheck);
+	    				verify_id = 1
+	    				
+					}
 				},
 				error : function(xhr){
 					alert("상태 : " + xhr.status)
 				},
 				dataType : "json"
-			}) 
+			})
 	})
 </script>
 
