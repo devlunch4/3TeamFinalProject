@@ -8,16 +8,22 @@
 	<!-- 20210317_LYS_Q&A4 문의게시판 전체조회 리스트 -->
 	<select id="selectAllQna" resultType="qnaVo">
 		SELECT
-		    qna_no	
-		    ,qna_parent_no
-		    ,writer
-		    ,title
-		    ,content
-		    ,reg_dt
-		    ,hit
-		    ,use_yn
+		    qna_no,
+		    qna_parent_no,
+		    writer,
+		    RPAD('┗', 2*(LEVEL-1), '━━') || title as title,
+		    content,
+		    reg_dt,
+		    hit,
+		    use_yn
 		FROM
 		    qna
+		START WITH 
+		    qna_no = qna_parent_no
+		CONNECT BY NOCYCLE PRIOR 
+		    qna_no = qna_parent_no
+		ORDER SIBLINGS BY 
+		    qna_no desc
 	</select>
 	
 	<!-- 20210317_LYS_Q&A4 문의게시판 상세페이지 조회 -->
@@ -57,6 +63,31 @@
 		) VALUES (
 		    SEQ_QNA.NEXTVAL
 		    ,SEQ_QNA.CURRVAL
+		    ,#{writer}
+		    ,#{title}
+		    ,#{content}
+		    ,sysdate
+		    ,1
+		    ,'Y'
+		)
+	</insert>
+	
+	<!-- 20210322_LYS 문의게시판 답글 등록- 관리자용
+		admin인지를 확인하려고 writer를 파라미터로
+	-->
+	<insert id="insertQnaAdminReply" parameterType="qnaVo">
+		INSERT INTO qna (
+		    qna_no	
+		    ,qna_parent_no
+		    ,writer
+		    ,title
+		    ,content
+		    ,reg_dt
+		    ,hit
+		    ,use_yn
+		) VALUES (
+		    SEQ_QNA.NEXTVAL
+		    ,#{qna_parent_no}
 		    ,#{writer}
 		    ,#{title}
 		    ,#{content}

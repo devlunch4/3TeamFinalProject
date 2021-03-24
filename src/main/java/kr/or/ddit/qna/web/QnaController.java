@@ -53,8 +53,8 @@ public class QnaController {
 	
 	//20210317_LYS_Q&A4 : 문의게시판 글 등록페이지 진입
 	@RequestMapping(path = "qnaRegistView", method = RequestMethod.GET)
-	public String QnaRegistView(Model model, HttpSession session) {
-		logger.debug("IN QnaRegistView() 문의게시판 등록 페이지");
+	public String QnaRegistView(HttpSession session) {
+		logger.debug("IN QnaRegistView() 문의게시판 등록 페이지 진입");
 		
 		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
 		
@@ -67,8 +67,21 @@ public class QnaController {
 
 	//20210317_LYS_Q&A4 : 문의게시판 글 등록
 	@RequestMapping(path="qnaRegist", method = RequestMethod.POST)
-	public String QnaRegist(Model model, QnaVo qnaVo){
-		logger.debug("IN QnaRegistView() 문의게시판 등록 / qnaVo : {}", qnaVo );
+	public String QnaRegist(QnaVo qnaVo, Model model){
+		logger.debug("IN QnaRegist() 문의게시판 등록 / qnaVo : {}", qnaVo );
+		logger.debug("content : {}", qnaVo.getContent() );
+
+		if(qnaVo.getTitle().equals("")) {
+			model.addAttribute("msg", "제목을 입력해주세요.");
+			model.addAttribute("url", "/qna/qnaRegistView");
+			return "alert";
+		}
+		
+		if(qnaVo.getContent().equals("")) {
+			model.addAttribute("msg", "내용을 입력해주세요.");
+			model.addAttribute("url", "/qna/qnaRegistView");
+			return "alert";
+		}
 		
 		int qnaRegistCnt = qnaService.insertQna(qnaVo);
 		
@@ -76,7 +89,41 @@ public class QnaController {
 			logger.debug("등록 완료");
 			return "redirect:/qna/view";
 		}else {
-			return "tiles.fcommunity.qnaRegist";
+			return "tiles.fcommunity.qnaRegistView";
+		}
+	}
+	
+	
+	//20210322_LYS 문의게시판 답글 등록 페이지 진입- 관리자용
+	@RequestMapping(path="qnaRegistAdminReplyView", method=RequestMethod.GET)
+	public String QnaRegistAdminReplyView(Model model, HttpSession session, String qna_no) {
+		logger.debug("IN QnaRegistAdminReplyView() 문의게시판 관리자용 답글 등록 페이지 진입 qna_no : {}",  qna_no);
+		
+		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
+		model.addAttribute("qna_no", qna_no);
+		
+		if(dbUser!=null) {
+			return "tiles.fcommunity.qnaRegistAdminReply";
+		}else {
+			return "redirect:/qna/view";
+		}
+	}
+	
+	//20210322_LYS 문의게시판 답글 등록- 관리자용
+	@RequestMapping(path="qnaRegistAdminReply", method=RequestMethod.POST)
+	public String QnaRegistAdminReply(Model model, QnaVo qnaVo) {
+		logger.debug("IN QnaRegistAdminReply() 문의게시판 답글 등록 / qnaVo : {}", qnaVo );
+		
+		logger.debug("content : {}", qnaVo.getContent() );
+		
+		int qnaRegistAdminReplyCnt = qnaService.insertQnaAdminReply(qnaVo);
+		
+		logger.debug("IN QnaRegistAdminReply() 문의게시판 답글 등록 / qnaRegistAdminReplyCnt : {}", qnaRegistAdminReplyCnt );
+		if(qnaRegistAdminReplyCnt == 1) {
+			logger.debug("답글 등록 완료");
+			return "redirect:/qna/view";
+		}else {
+			return "tiles.fcommunity.qnaRegistAdminReplyView";
 		}
 	}
 	

@@ -2,8 +2,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">문의사항</h3>
+<script type="text/javascript">
+	$(document).ready( function () {
+		  $('#dataTable').dataTable( {
+			  //order by 쿼리 적용을 위해 
+			  "ordering": false,
+			  
+			  //검색중 제목만 검색 되도록 설정
+			  "columnDefs" : [ {
+					"searchable" : false,
+					"targets" : 0
+				}, {
+					"searchable" : true,
+					"targets" : 1
+				}, {
+					"searchable" : false,
+					"targets" : 2
+				}, {
+					"searchable" : false,
+					"targets" : 3
+				} ]
+			  
+		  } );
+	} );
+	
+	
+</script>
 
+<h3 class="mt-4">문의사항</h3>
 
 <!-- 설명 시작 -->
 <div class="mt-2 col-sm-12 px-0">
@@ -22,10 +48,10 @@
 					<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 						<thead>
 							<tr role="row">
-								<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="NOTICE_NO: activate to sort column descending" aria-sort="ascending">번호</th>
-								<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column ascending">제목</th>
-								<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="WRITER: activate to sort column ascending">작성자</th>
-								<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">작성일시</th>
+								<th class="" aria-controls="dataTable" rowspan="1" colspan="1">번호</th>
+								<th class="" aria-controls="dataTable" rowspan="1" colspan="1">제목</th>
+								<th class="" aria-controls="dataTable" rowspan="1" colspan="1">작성자</th>
+								<th class="" aria-controls="dataTable" rowspan="1" colspan="1">작성일시</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -36,7 +62,7 @@
 										<td>${qna.title}</td>
 										<td>${qna.writer}</td>
 										<td>
-											<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy.MM.dd" />
+											<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy-MM-dd" />
 										</td>
 									</tr>
 								</c:if>
