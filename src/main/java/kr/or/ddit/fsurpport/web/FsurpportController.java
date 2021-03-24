@@ -881,9 +881,10 @@ public class FsurpportController {
 	// 농업양식 - 시설관리 관리중인 시설 업데이트 ok
 	@RequestMapping(path = "fmanageUpdate", method = { RequestMethod.POST })
 	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
-
+		logger.debug(fmanageVo.getManage_no());
 		fsurpportService.fmanageUpdate(fmanageVo);
-		return "redirect:/fsurpport/fmanageInfo?manage_no=" + fmanageVo.getManage_no();
+		return "redirect:/fsurpport/fmanageInfo?manage_no="+fmanageVo.getManage_no() ;
+		
 	}
 
 	// KJH_20210311

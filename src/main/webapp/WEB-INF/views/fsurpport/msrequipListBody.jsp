@@ -181,7 +181,7 @@ $("#choice").change(function(){
 									<tr>
 
 										<td class="p-0" data-placement="top">${msr.msr_code}</td>
-										<td class="p-0" data-guidecode="${sts.count}"><input type="text" name="msr_nm" value="${msr.msr_nm}" class="col-12">
+										<td class="p-1" data-guidecode="${sts.count}"><input type="text" name="msr_nm" value="${msr.msr_nm}" class="col-12">
 											<div style="display: none;">${msr.msr_nm}</div></td>
 										<td class="p-0" data-guidecode="${sts.count}">${msr.owner}</td>
 										<td class="p-0"><input class="btn btn-info btn-sm" type="submit" value="저장"></td>

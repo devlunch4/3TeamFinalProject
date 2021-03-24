@@ -6,26 +6,27 @@
 $(function(){
 	$("#category").change(function(){
 		var num = $("#category").val();
+		alert($("#category").val());
 // 		alert("부류코드 값:"+num);
 		if(num == 100){
-			$("#item2").css("display","none")
+			$("#item2").hide();
 			$("#item2").attr('name',"_")
-			$("#item1").css("display","")
+			$("#item1").show();
 			$("#item1").attr('name',"item_code")
 		}
 		if(num == 200){
-			$("#item2").css("display","")
+			$("#item2").show();
 			$("#item2").attr('name',"item_code")
-			$("#item1").css("display","none")
+			$("#item1").hide();
 			$("#item1").attr('name',"_")
 		}
 	})
 	
 	$("#btn_search").on("click",function(){
 		var item;
-		if($("#category").val() == 100){
+		if(100 == $("#category").val()){
 			item = $("#item1").val();
-		}else if($("#category").val() == 200){
+		}else if(200 == $("#category").val()){
 			item = $("#item2").val();
 		}
 		
@@ -35,53 +36,67 @@ $(function(){
 		$("#select").submit();
 	})
 	
-	$("#category").val("${itemcategorycode}").prop("selected",true);
-	if(${itemcategorycode} =='100'){
+// 	$("#category").val("${itemcategorycode}").prop("selected",true);
+// 	if(${itemcategorycode} ==100){
 		
-		$("#item2").hide();
-		$("#item1").show();
+// 		$("#item2").hide();
+// 		$("#item1").show();
 
 		
-	$("#item1").val("${itemcode}").prop("selected",true);
-	}else if(${itemcategorycode} =='200'){
+// 	$("#item1").val("${itemcode}").prop("selected",true);
+// 	}else if(${itemcategorycode} ==200){
 		
-		$("#item2").show();		
-		$("#item1").hide();
+// 		$("#item2").show();		
+// 		$("#item1").hide();
 
 		
-	$("#item2").val("${itemcode}").prop("selected",true);
+// 	$("#item2").val("${itemcode}").prop("selected",true);
+// 	}
+	
+	$("#save").on("click",function(){
+		if($("#category").val() == 100){
+		$("#item_code").val($("#item1").val());
+	}else if($("#category").val() == 200){
+		$("#item_code").val($("#item2").val());
 	}
+		
+		$("#send").submit;
+		
+	})
 })
 </script>
 
 <!-- 20210302_KJH 시설등록 -->
-<h3 class="mt-4">시설관리 등록</h3>
+<h3 class="mt-4">시설등록</h3>
 <div class="card mt-2 col-sm-12 px-0">
-	<h3 class="card-header">총게시글 :</h3>
+	<h3 class="card-header">시설등록 페이지 :</h3>
 	<div class="card-body text-left ">
 		<div class="">
 			<div class="row">
-				<form action="${pageContext.request.contextPath}/fsurpport/fmanageInsert" method="post">
+				<form action="${pageContext.request.contextPath}/fsurpport/fmanageUpdate" method="post" id="send">
 					<table class="table table-bordered col-sx-12" style="text-align: center;">
+					<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
 						<tr>
-							<td class="col12">농장주 : <label>${fmanage.owner}</label>
+							<td class="col12" colspan="2">농장주 : <label>${fmanage.owner}</label>
 							<input type="hidden" name="owner" value="${fmanage.owner}">
 							</td>
+							
 						</tr>
 						<tr>
-							<td sclass="col6"><select id="category" class="form-control">
-									<option value="100">식량작물</option>
+							<td sclass="col6">
+							<select id="category" class="form-control">
+									<option value="100" selected="selected">식량작물</option>
 									<option value="200">채소류</option>
 							</select></td>
 							<td class="col6">
-							<select id="item1" class="form-control" name="item_code">
+							<select id="item1" class="form-control"  name="item_code">
 									<c:forEach items="${codesList}" var="codes">
 										<c:if test="${codes.parent_code=='100'}">
 											<option value="${codes.code_no}">${codes.code_nm}</option>
 										</c:if>
 									</c:forEach>
 							</select> 
-							<select id="item2" class="form-control" style="display: none" name="item_code">
+							<select id="item2" class="form-control" style="display: none">
 									<c:forEach items="${codesList}" var="codes">
 										<c:if test="${codes.parent_code=='200'}">
 											<option value="${codes.code_no}">${codes.code_nm}</option>
@@ -102,7 +117,7 @@ $(function(){
 							<td colspan="2"><textarea id="summernote" name="info">${fmanage.info}</textarea></td>
 						</tr>
 					</table>
-					<button type="submit" class="btn btn-primary">등록하기</button>
+					<button type="submit" class="btn btn-primary" id="save">등록하기</button>
 				</form>
 			</div>
 		</div>

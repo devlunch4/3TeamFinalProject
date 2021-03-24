@@ -93,7 +93,11 @@
 									<tr data-guidecode="${status.count}">
 										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${status.count}</td>
 										<td id = "seow" class="guidecode" data-guidecode="${status.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
-										<td id = "selo" class="guidecode" data-guidecode="${status.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다."><a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">${fmanage.location}</a></td>
+										<td id = "selo" class="guidecode" data-guidecode="${status.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">
+										<a href="${pageContext.request.contextPath}/fsurpport/fmanageInfo?manage_no=${fmanage.manage_no}">
+										
+										${fmanage.location}</a></td>
+										
 										<td id = "sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
 									</tr>
 									<%-- </c:if> --%>
@@ -106,4 +110,5 @@
 		</div>
 	</div>
 </div>
-
+		<input type="button" class="btn btn-primary p-0 col-3 float-right" value="등록" onclick="location.href='${pageContext.request.contextPath}/fsurpport/fmanageInsertPage'">
+	
