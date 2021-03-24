@@ -290,4 +290,25 @@ public class UserController {
 		return "tiles.main.main";
 	}
 
+	// 이메일과 이름으로 아이디 찾기 03/23 (경찬)
+	@RequestMapping(path = "findId", method = { RequestMethod.GET })
+	public String findId() {
+		return "tiles.user.findId";
+	}
+	
+	// 이메일과 이름으로 아이디 찾기 03/24 (경찬)
+	@RequestMapping(path = "findId2", method = { RequestMethod.POST })
+	public String findId2(UserVo userVo, Model model) {
+
+		userVo = userService.findId(userVo);
+		String result = "존재하지 않는 회원입니다";
+		if (userVo == null) {
+			model.addAttribute("result", result);
+		} else {
+			String user_id = "회원님의 아이디는 : " + userVo.user_id;
+			model.addAttribute("user_id", user_id);
+		}
+
+		return "tiles.user.findIdResult";
+	}
 }

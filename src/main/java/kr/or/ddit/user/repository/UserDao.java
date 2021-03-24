@@ -41,5 +41,8 @@ public interface UserDao {
 
 	// 사용자가 개인정보 수정 03/10 (경찬)
 	UserVo modifyUser2(UserVo userVo);
+	
+	// 이름과 이메일로 아이디 찾는거 03/23 (경찬)
+	UserVo findId(UserVo userVo);
 
 }
