@@ -72,6 +72,7 @@
 		    , c.code_nm item_code_nm
             , co.code_nm head_code_nm
 			, f.file_nm thumbnail_file_nm
+			, f.file_no thumbnail_file_no
 		FROM market m
 		JOIN codes c
 		ON m.item_code = c.code_no
@@ -183,23 +184,40 @@
 		
 	</update>	
 	
-	<!-- 20210323_ggy : 썸네일 파일 있는지 없는지 확인 -->
-	<select id="selectThumbnailFileNo" parameterType="map"
-				resultType="int">
-		SELECT f.file_no
-		FROM files f
-		JOIN market m
-		ON f.file_no = m.thumbnail
-		where file_nm = #{file_nm }
-		and m.market_no = #{market_no }
-		and f.use_yn = 'Y'
-		and m.use_yn = 'Y'
-	</select>
-	
 	<update id="deleteMiniMarketPost" parameterType="map">
 		update market set use_yn = 'N'
 		where writer = #{writer }
 		and market_no = #{market_no }
 	</update>
+	
+	<!-- 20210324_ggy : 미니장터게시글 썸네일 파일 삭제 -->
+	<update id="deleteThumbnailFiles" parameterType="int">
+		update files set use_yn = 'N'
+		where file_no = #{file_no }
+	</update>
+	
+	<!-- 20210324_ggy : 미니장터 게시글 댓글 조회 -->
+	<select id="selectMarketReplyList" resultType="marketReplyVo">
+		select 
+			reply_code
+			, market_no
+			, writer
+			, content
+			, reg_dt
+		from marketreply
+		where use_yn = 'Y'
+	</select>
+	
+	<!-- 20210324_ggy : 미니장터 게시글 댓글 등록 -->
+	<insert id="registMarketReply" parameterType="map">
+		insert into marketreply values(
+			seq_marketreply.nextval
+			, #{market_no }
+			, #{writer }
+			, #{content }
+			, sysdate
+			, 'Y' )
+	</insert>
+	
 	
 </mapper>

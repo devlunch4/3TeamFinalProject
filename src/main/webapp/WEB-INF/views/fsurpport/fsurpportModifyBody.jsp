@@ -147,7 +147,7 @@
 	
 	
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">첨부 파일</label>
+		<label class="small mb-1" for="input_plant_prd">사진 첨부 파일</label>
 		<input type="text" id="file_nm" name="file_nm" value="${farmdiaryList.file_nm }" readonly="readonly">
 		<input type="button" id="file_nmDeleteBtn" value="첨부파일 삭제">
 	</div>

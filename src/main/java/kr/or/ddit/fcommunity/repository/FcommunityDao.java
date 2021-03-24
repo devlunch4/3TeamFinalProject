@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
+import kr.or.ddit.farm.model.MarketReplyVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 
 // 20210318_ggy : FcommunityDao 생성
@@ -43,10 +44,16 @@ public interface FcommunityDao {
 	// 20210322_ggy : 미니장터 게시글 수정
 	int modifyMiniMarketInfo(MiniMarketVo miniMarketVo);
 
-	// 20210323_ggy : 썸네일 파일 있는지 확인
-	int selectThumbnailFileNo(Map<String, String> map);
-
 	// 20210323_ggy : 미니장터 게시글 삭제
 	int deleteMiniMarketPost(Map<String, String> map);
+	
+	// 20210324_ggy : 미니장터 썸네일 파일 삭제
+	int deleteThumbnailFiles(int thumbnail_file_no);
+
+	// 20210324_ggy : 미니장터 게시글 조회
+	List<MarketReplyVo> selectMarketReplyList();
+	
+	// 20210324_ggy : 미니장터 게시글 삭제
+	int registMarketReply(Map<String, String> map);
 	
 }

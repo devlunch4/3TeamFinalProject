@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.MarketFilesVo;
+import kr.or.ddit.farm.model.MarketReplyVo;
 import kr.or.ddit.farm.model.MiniMarketVo;
 
 //20210318_ggy : FcommunityDaoImpl 생성
@@ -87,26 +88,32 @@ public class FcommunityDaoImpl implements FcommunityDao {
 	public int modifyMiniMarketInfo(MiniMarketVo miniMarketVo) {
 		return template.update("miniMarkets.modifyMiniMarketInfo", miniMarketVo);
 	}
-	
-	// 20210323_ggy : 썸네일 파일 있는지 확인
-	@Override
-	public int selectThumbnailFileNo(Map<String, String> map) {
-		int result = template.selectOne("miniMarkets.selectThumbnailFileNo", map);
-		
-		if(result < 1 ) {
-			result = 0;
-		}
-		
-		return result;
-	}
-	
-	
 
 	// 20210323_ggy : 미니장터 게시글 삭제
 	@Override
 	public int deleteMiniMarketPost(Map<String, String> map) {
 		return template.update("miniMarkets.deleteMiniMarketPost", map);
 	}
+	
+	// 20210324_ggy : 미니장터 썸네일 파일 삭제
+	@Override
+	public int deleteThumbnailFiles(int thumbnail_file_no) {
+		return template.update("miniMarkets.deleteThumbnailFiles", thumbnail_file_no);
+	}
+	
+	// 20210324_ggy : 미니장터 게시글 조회
+	@Override
+	public List<MarketReplyVo> selectMarketReplyList() {
+		return template.selectList("miniMarkets.selectMarketReplyList");
+	}
+	
+	// 20210324_ggy : 미니장터 게시글 삭제
+	@Override
+	public int registMarketReply(Map<String, String> map) {
+		return template.insert("miniMarkets.registMarketReply", map);
+	}
+	
+
 	
 	
 	

@@ -74,6 +74,8 @@ public class FcommunityController {
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList",  fcommunityService.selectMarketFileList(market_no));
 		
+		model.addAttribute("marketReplyList",  fcommunityService.selectMarketReplyList());
+		
 		return "tiles.fcommunity.miniMarketInfo";
 	}
 	
@@ -307,7 +309,7 @@ public class FcommunityController {
 	}
 	
 	// 20210322_ggy : 미니장터 게시글 수정을 위한 진입 및 상세 조회
-	@RequestMapping("modifyMiniMarketView")
+	@RequestMapping(path = "modifyMiniMarketView", method = { RequestMethod.POST })
 	public String modifyMiniMarketView(String writer, int market_no, Model model) {
 
 		logger.debug("modifyMiniMarketView 진입");
@@ -361,7 +363,7 @@ public class FcommunityController {
 		return "tiles.fcommunity.modifyMiniMarket";
 	}
 	
-	// 20210323_ggy : 미니장터 게시글 수정
+	// 20210324_ggy : 미니장터 게시글 수정
 	@RequestMapping(path = "modifyMiniMarket", method = { RequestMethod.POST })
 	public String modifyMiniMarket(
 			HttpServletRequest req, 
@@ -390,69 +392,70 @@ public class FcommunityController {
 		
 		FilesVo filesVo = new FilesVo();
 		
-		// 썸네일 부분
-		// 썸네일 파일 등록
-		if (thumbnail_file.getSize() > 0) {
+		// 썸네일 파일 처리 부분
+		if (req.getParameter("thumbnail_file_check") != null && !req.getParameter("thumbnail_file_check").equals("")) {
 
-			logger.debug("file 있다.");
-
-			String path = "c:\\fdown\\miniMarket\\";
-
-			try {
-
-				thumbnail_file.transferTo(new File(path + thumbnail_file.getOriginalFilename()));
-
-				filesVo.setFile_nm("");
-				filesVo.setFile_nm(thumbnail_file.getOriginalFilename());
-				filesVo.setFile_path(path + filesVo.getFile_nm());
-			} catch (IllegalStateException | IOException e) {
-				miniMarketVo.setThumbnail(0);
-			}
-			
-			
-			Map<String, String> map = new HashMap<String, String>();
-	        map.put("file_nm", filesVo.getFile_nm());
-	        map.put("market_no", Integer.toString(market_no_value));
-	        
-	        logger.debug("검색전 값 확인 1 : {}, 2 : {} ", map.get("file_nm"), map.get("market_no"));
-	        
-	        int selectCnt = fcommunityService.selectThumbnailFileNo(map);
-	        
-	        if(selectCnt >= 1) {
-	        	logger.debug("이미 있는 썸네일 파일");
-	        	logger.debug("썸네일 파일 번호 : "+selectCnt);
-	        	miniMarketVo.setThumbnail(selectCnt);
-	        }else {
-	        	
-	        	logger.debug("썸네일 파일 새로 등록되서 등록 절차 시작");
-			
-	        	int registFilesCnt = fsurpportService.registFiles(filesVo);
-	        	logger.debug("registFilesCnt : " + registFilesCnt);
-	        	logger.debug("registFilesCnt 결과값 문자 확인 : " + Integer.toString(registFilesCnt));
-	        	
-	        	miniMarketVo.setThumbnail(registFilesCnt);
-	        }
+			logger.debug("thumbnail_file_check 값 있다.");
 
 
 		} else {
-			logger.debug("파일없다.");
-			
-			if(req.getParameter("thumbnail_file_check") != null && !req.getParameter("thumbnail_file_check").equals("")) {
-				
-				logger.debug("썸네일이 바뀌지 않음");
-				
-				Map<String, String> map = new HashMap<String, String>();
-		        map.put("file_nm", req.getParameter("thumbnail_file_check"));
-		        map.put("market_no", Integer.toString(market_no_value));
-		        
-		        logger.debug("검색전 값 확인 1 : {}, 2 : {} ", map.get("file_nm"), map.get("market_no"));
-		        
-		        int selectCnt = fcommunityService.selectThumbnailFileNo(map);
-		        miniMarketVo.setThumbnail(selectCnt);
-			} else {
-				logger.debug("썸네일 파일도 없다.");
-				miniMarketVo.setThumbnail(0);
+
+			if (req.getParameter("thumbnail_file_check").equals("")) {
+
+				logger.debug("thumbnail_file_check의 첨부파일 없다.");
+
+				if(!req.getParameter("thumbnail_file_no_check").equals("") 
+						&& req.getParameter("thumbnail_file_no_check") != null) {
+					
+					int thumbnail_file_no = Integer.parseInt(req.getParameter("thumbnail_file_no_check"));
+					logger.debug("thumbnail_file_no의 값 : "+thumbnail_file_no);
+					
+					if(thumbnail_file_no > 0) { 
+						logger.debug("thumbnail_file_no 값 있어서 삭제 작업 들어감");
+	
+						int deleteThumbnailFilesCnt = fcommunityService.deleteThumbnailFiles(thumbnail_file_no);
+						if (deleteThumbnailFilesCnt == 1) {
+							logger.debug("thumbnail_file의 첨부파일 삭제");
+						}
+					}
+	
+				}
 			}
+
+			if (thumbnail_file.getSize() > 0) {
+
+				logger.debug("thumbnail_file 등록 시작");
+
+				// 썸네일 파일 등록 부분
+
+				logger.debug("thumbnail_file 있다.");
+
+				String path = "c:\\fdown\\miniMarket\\";
+
+				try {
+
+					thumbnail_file.transferTo(new File(path + thumbnail_file.getOriginalFilename()));
+
+					filesVo.setFile_nm("");
+					filesVo.setFile_nm(thumbnail_file.getOriginalFilename());
+					filesVo.setFile_path(path + filesVo.getFile_nm());
+
+					int registFilesCnt = fsurpportService.registFiles(filesVo);
+					
+					logger.debug("thumbnail_file의 registFilesCnt : " + registFilesCnt);
+					
+					miniMarketVo.setThumbnail(registFilesCnt);
+
+					logger.debug("thumbnail의 값 : "+miniMarketVo.getThumbnail());
+
+				} catch (IllegalStateException | IOException e) {
+					filesVo.setFile_nm("");
+				}
+
+			} else {
+				logger.debug("thumbnail_file 파일없다.");
+			}
+
 		}
 		
 		
@@ -698,7 +701,7 @@ public class FcommunityController {
 	}
 	
 	// 20210323_ggy : 미니장터 게시글 삭제
-	@RequestMapping(path = "deleteMiniMarketPost", method = { RequestMethod.GET })
+	@RequestMapping(path = "deleteMiniMarketPost", method = { RequestMethod.POST })
 	public String deleteMiniMarketPost(
 			String writer, int market_no ) {
 		
@@ -731,4 +734,31 @@ public class FcommunityController {
 
 		return "tiles.fcommunity.chatting";
 	}
+	
+	// 20210324_ggy : 미니장터 게시글 댓글 등록
+	@RequestMapping(path = "registMarketReply", method = { RequestMethod.POST })
+	public String registMarketReply( 
+			String writer
+			, int market_no
+			, String content
+			, Model model) {
+		
+		logger.debug("registMarketReply 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+        map.put("writer", writer);
+        map.put("market_no", Integer.toString(market_no));
+        map.put("content", content);
+		
+		int registCnt =  fcommunityService.registMarketReply(map);
+		
+		if(registCnt == 1) {
+			logger.debug("미니장터 게시글 댓글 등록");
+		}
+		
+		return"redirect:/fcommunity/miniMarketInfoView?writer="+writer+"&market_no="+market_no;
+		
+	}
+	
+	
 }
