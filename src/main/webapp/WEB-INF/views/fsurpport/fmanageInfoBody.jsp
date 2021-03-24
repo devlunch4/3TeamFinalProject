@@ -13,7 +13,7 @@ setInterval(function() {
     $.ajax({
         // type을 설정합니다.
         type : 'POST',
-        url : "${pageContext.request.contextPath}/fsurpport/fmanageInfo",
+        url : "${pageContext.request.contextPath}/fsurpport/fmanageInfoajax",
         // 사용자가 입력하여 id로 넘어온 값을 서버로 보냅니다.
         data : {"manage_no" : '${fmanage.manage_no}'},
 //         dataType : "json",
@@ -22,7 +22,7 @@ setInterval(function() {
         	$('#tb').html(data);
         }
     });
-}, 5000);
+}, 10000);
 
 $("#formbtn").on("click",function(){
 	
@@ -34,6 +34,12 @@ $("#formbtn").on("click",function(){
 	$("#save").hide();
 }
 });
+
+$("#updatebtn").on("click",function(){
+	alert("ok");
+	$("#updateform").submit();
+});
+
 });
 
 
@@ -48,6 +54,9 @@ $("#formbtn").on("click",function(){
 		<div class="">
 			<input type="button" class="btn_list" value="목록으로" onclick="goBack()">
 			<div class="row table-responsive" id="info">
+				<form action="${pageContext.request.contextPath }/fsurpport/fmanageUpdatePage" method="post" id="updateform">
+					<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
+				</form>
 				<table class="table table-bordered  col-sx-12" style="text-align: center;" id="tb">
 					<tr>
 						<td style="width: 50%;">게시글 번호:${fmanage.manage_no}</td>
@@ -79,8 +88,8 @@ $("#formbtn").on("click",function(){
 		</div>
 	</div>
 	<div class="mt-2 col-sm-2 px-0 float-right pt-0">
-		<button type="button" class="btn btn-info  col-md-1 my-1 " id="formbtn">장비변경</button>
-		<button type="button" class="btn btn-warning  col-md-1 my-1 " onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageUpdate?manage_no=${fmanage.manage_no}'">수정</button>
+		<button type="button" class="btn btn-info  col-md-1 my-1" id="formbtn">장비변경</button>
+		<button type="button" class="btn btn-warning  col-md-1 my-1" id="updatebtn">수정</button>
 		<button type="button" class="btn btn-danger  col-md-1 my-1 " onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageDelete?manage_no=${fmanage.manage_no}&msr_code=${fmanage.use_yn}'">삭제</button>
 
 

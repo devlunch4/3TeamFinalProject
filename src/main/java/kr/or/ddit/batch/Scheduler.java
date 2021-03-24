@@ -25,7 +25,7 @@ public class Scheduler {
 	private SdCodeService sdCodeService;
 	
 // cron 문법으로 스케줄러가 실행되는 주기를 설정.(아래의 cron 스케줄 문법에 자세한 설명) test ok
-	@Scheduled(cron = "30 * * * * *")
+	@Scheduled(cron = "30 30 * * * *")
 	public void run() throws IOException{
 		
 //		StandarditemcodeVo Vo = new StandarditemcodeVo();
