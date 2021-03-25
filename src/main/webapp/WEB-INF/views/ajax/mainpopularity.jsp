@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script type="text/javascript">
 
-</script>
 <!-- 인기 농작물 페이지 -->
 <!-- 20210308_KJH 인기 농작물 수정 -->
-<h1 class="my-4">인기 농작물</h1>
+<h1 class="mt-4">인기 농작물</h1>
 <div class="card mt-2 col-sm-12 px-0">
 
 	<div class="card-body text-center px-2">
@@ -49,6 +47,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-
-</script>

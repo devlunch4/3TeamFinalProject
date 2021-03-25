@@ -725,9 +725,9 @@ public class FsurpportController {
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
 	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
-	public String fmanage(Model model, FmanageVo fmanage, HttpSession session, String manage_no) {
+	public String fmanage(Model model, FmanageVo fmanage, HttpSession session,String manage_no) {
 		logger.debug(" 시설관리중인 시설 상세조회 fmanageInfo 진입");
-		FmanageVo fvo = fsurpportService.fmanageInfo(fmanage.getManage_no());
+		FmanageVo fvo = fsurpportService.fmanageInfo(manage_no);
 		// KJH_20210308 측정 정보 조회 수정
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fvo.getManage_no());

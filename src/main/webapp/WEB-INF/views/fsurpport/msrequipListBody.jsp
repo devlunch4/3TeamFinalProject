@@ -24,7 +24,7 @@ var tables = $('#tb').DataTable({
 			}, {
 				"searchable" : false,
 				"targets" : 3
-			}, ],
+			} ],
 			
 		}); 
 		

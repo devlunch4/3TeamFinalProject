@@ -110,7 +110,7 @@
 			var scrollHeight = $(document).height();
 			$('#homedown').click(function() {
 				$('body,html').animate({
-					scrollTop : scrollHeight
+					scrollTop : document.body.scrollHeight
 				}, 800);
 				return false;
 			});

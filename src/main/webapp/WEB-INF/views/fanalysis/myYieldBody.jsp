@@ -21,7 +21,7 @@
 <!-- 20210302_KJH main 추가 -->
 <h4 class="mt-2">수확량 분석</h4>
 <div class="card mt-2 col-sm-12 px-0">
-	<h5 class="card-header">총게시글 :</h5>
+	<h5 class="card-header">수확량 분석</h5>
 	<!-- 20210311_KJH 내 수확량 조회-->
 	<form action="${pageContext.request.contextPath}/fsurpport/myYield" id="selec">
 		<input type="hidden" id="selctype" name="selec" value="week"> <input type="hidden" id="sval" name="sdate"> <input type="hidden" id="eval" name="edate">
@@ -54,7 +54,7 @@
 	<div class="align-center px-0">
 		<div class="container px-0">
 			<div class="col-12">
-				<h4 class="mt-2 text-center">품목별 피율</h4>
+				<h4 class="mt-2 text-center">수확량 통계</h4>
 				<div id="multilineLabel"></div>
 
 			</div>
