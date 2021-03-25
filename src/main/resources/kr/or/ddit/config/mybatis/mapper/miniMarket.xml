@@ -219,6 +219,7 @@
 			, 'Y' )
 	</insert>
 	
+	<!-- 20210325_ggy : 미니장터 게시글 댓글 수정 -->
 	<update id="modifyMarketReply" parameterType="map">
 		update marketreply set content = #{content }
 		where writer = #{writer }
@@ -226,6 +227,7 @@
 		and reply_code = #{reply_code }
 	</update>
 	
+	<!-- 20210325_ggy : 미니장터 게시글 댓글 삭제 -->
 	<update id="deleteMarketReply" parameterType="map">
 		update marketreply set use_yn = 'N'
 		where writer = #{writer }
