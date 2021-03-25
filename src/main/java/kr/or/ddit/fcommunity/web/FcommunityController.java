@@ -760,5 +760,52 @@ public class FcommunityController {
 		
 	}
 	
+	// 20210325_ggy : 미니장터 게시글 댓글 수정
+	@RequestMapping(path = "modifyMarketReply", method = { RequestMethod.POST })
+	public String modifyMarketReply(
+			String writer
+			, int market_no
+			, int reply_code
+			, String content) {
+		
+		logger.debug("modifyMarketReply 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("writer", writer);
+		map.put("content", content);
+		map.put("market_no", Integer.toString(market_no));
+		map.put("reply_code", Integer.toString(reply_code));
+		
+		int registCnt =  fcommunityService.modifyMarketReply(map);
+		
+		if(registCnt == 1) {
+			logger.debug("미니장터 게시글 댓글 등록");
+		}
+		
+		return"redirect:/fcommunity/miniMarketInfoView?writer="+writer+"&market_no="+market_no;
+	}
+	
+	// 20210325_ggy : 미니장터 게시글 댓글 삭제
+	@RequestMapping(path = "deleteMarketReply", method = { RequestMethod.POST })
+	public String deleteMarketReply(
+			String writer
+			, int market_no
+			, int reply_code) {
+		
+		logger.debug("deleteMarketReply 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+        map.put("writer", writer);
+        map.put("reply_code", Integer.toString(reply_code));
+		
+		int registCnt =  fcommunityService.deleteMarketReply(map);
+		
+		if(registCnt == 1) {
+			logger.debug("미니장터 게시글 댓글 등록");
+		}
+		
+		return"redirect:/fcommunity/miniMarketInfoView?writer="+writer+"&market_no="+market_no;
+	}
+	
 	
 }

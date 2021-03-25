@@ -219,5 +219,18 @@
 			, 'Y' )
 	</insert>
 	
+	<update id="modifyMarketReply" parameterType="map">
+		update marketreply set content = #{content }
+		where writer = #{writer }
+		and market_no = #{market_no }
+		and reply_code = #{reply_code }
+	</update>
+	
+	<update id="deleteMarketReply" parameterType="map">
+		update marketreply set use_yn = 'N'
+		where writer = #{writer }
+		and reply_code = #{reply_code }
+	</update>
+	
 	
 </mapper>

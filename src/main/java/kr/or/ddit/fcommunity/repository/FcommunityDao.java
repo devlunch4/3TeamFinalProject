@@ -55,5 +55,11 @@ public interface FcommunityDao {
 	
 	// 20210324_ggy : 미니장터 게시글 삭제
 	int registMarketReply(Map<String, String> map);
+
+	// 20210325_ggy : 미니장터 게시글 댓글 수정
+	int modifyMarketReply(Map<String, String> map);
+	
+	// 20210325_ggy : 미니장터 게시글 댓글 삭제
+	int deleteMarketReply(Map<String, String> map);
 	
 }

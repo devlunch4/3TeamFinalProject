@@ -110,6 +110,18 @@ public class FcommunityServiceImpl implements FcommunityService{
 	public int registMarketReply(Map<String, String> map) {
 		return fcommunityDao.registMarketReply(map);
 	}
+	
+	// 20210325_ggy : 미니장터 게시글 댓글 수정
+	@Override
+	public int modifyMarketReply(Map<String, String> map) {
+		return fcommunityDao.modifyMarketReply(map);
+	}
+	
+	// 20210325_ggy : 미니장터 게시글 댓글 삭제
+	@Override
+	public int deleteMarketReply(Map<String, String> map) {
+		return fcommunityDao.deleteMarketReply(map);
+	}
 
 
 }
