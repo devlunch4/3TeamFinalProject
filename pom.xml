@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.or.ddit</groupId>
 	<artifactId>finalProject</artifactId>
@@ -39,8 +37,7 @@
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 			<exclusions>
-				<!-- spring에서 사용한 commons-logging 라이브러리 대신 logback을 사용하기위해 의존성을 제거한다 
-					commons-logging 코드를 logback으로 치환해주는 라이브러리 추가 필요 -->
+				<!-- spring에서 사용한 commons-logging 라이브러리 대신 logback을 사용하기위해 의존성을 제거한다 commons-logging 코드를 logback으로 치환해주는 라이브러리 추가 필요 -->
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
@@ -318,22 +315,21 @@
 			<artifactId>javax.websocket-api</artifactId>
 			<version>1.1</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.oracle</groupId> -->
-<!-- 			<artifactId>ojdbc6</artifactId> -->
-<!-- 			<version>12.2.0.1</version> -->
-<!-- 		</dependency> -->
 
+		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.oracle</groupId> -->
+		<!-- <artifactId>ojdbc6</artifactId> -->
+		<!-- <version>12.2.0.1</version> -->
+		<!-- </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
 		<dependency>
-		    <groupId>com.oracle.database.jdbc</groupId>
-		    <artifactId>ojdbc6</artifactId>
-		    <version>11.2.0.4</version>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4</version>
 		</dependency>
-		
+
 	</dependencies>
 
 </project>

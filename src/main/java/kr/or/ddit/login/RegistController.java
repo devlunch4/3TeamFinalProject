@@ -44,10 +44,8 @@ public class RegistController {
 	// 20210304_LYS_Login3 - 회원가입 시, 아이디 중복체크
 	@RequestMapping(path = "id_check", method = RequestMethod.POST)
 	public String idCheck(String user_id, Model model) {
-
 		logger.debug("iNN RegistController >> idCheck");
 		String user_id_check = userService.checkForDuplicateId(user_id);
-
 		if (user_id_check != null) {
 			String id_status_taken = "가입된 아이디입니다.";
 			model.addAttribute("id_status_taken", id_status_taken);
@@ -61,58 +59,46 @@ public class RegistController {
 	// 20210308_LYS_Join2 - 이메일인증
 	@RequestMapping(path = "email_verify", method = RequestMethod.POST)
 	public String email_verify(String email, Model model) {
-
 		String a[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 		String b[] = { "as", "bb", "cq", "dy", "ex", "fv", "gf", "ha", "ir", "jn", "kc", "lg", "mp", "ni", "ok", "pm",
 				"qn", "rb", "sc", "tq", "ur", "vx", "wb", "xf", "yj", "za" };
 		String c[] = { "AU", "BC", "CB", "DE", "Ed", "Fv", "Gr", "HQ", "IB", "Jb", "Ku", "L4", "M7", "Ng", "O2", "Pf",
 				"Qq", "Rd", "Sv", "Th", "Ut", "Vm", "Wp", "Xf", "gY", "Zs" };
 		String d[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
 		String Brandom1 = (a[new Random().nextInt(a.length)]);
 		String Brandom2 = (b[new Random().nextInt(a.length)]);
 		String Brandom3 = (c[new Random().nextInt(a.length)]);
 		String Brandom4 = (d[new Random().nextInt(a.length)]);
-
 		String code = Brandom1 + Brandom2 + Brandom3 + Brandom4;
-
+		logger.debug("이메일인증값:{}", code);
 		model.addAttribute("code", code);
 
 		// 인증코드를 보내는 이메일
+		// + KWS 외부이메일 호스트 설정
 		String host = "smtp.naver.com";
 		final String user = "test_for_develop@naver.com";
 		final String password = "smartFarmers";
-
 		String to = email;
-
 		Properties props = new Properties();
-
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", "587");
-
 		props.put("mail.smtp.auth", "true");
-
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(user, password);
 			}
 		});
 
+		// +KWS 메시지 내용 설정
 		try {
-
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
-
 			message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(to));
-
 			// 제목
 			message.setSubject("똑똑한 농부들 회원가입 이메일 인증코드입니다.");
-
 			// 내용
 			message.setText("똑똑한 농부들 회원가입 인증코드는 " + code + " 입니다.");
-
 			Transport.send(message);
-
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
@@ -123,10 +109,10 @@ public class RegistController {
 	@RequestMapping(path = "mobile_verify", method = RequestMethod.POST)
 	public String mobile_verify(String mobile, Model model) {
 
+		// +KWS 외부 API 연동 키값.
 		String api_key = "NCSO84P8OV8CL2LC";
 		String api_secret = "0EVDBPVNWPT5K4S8FKIWXEYDK0VSXFD8";
 		Message coolsms = new Message(api_key, api_secret);
-
 		String a[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 		String b[] = { "as", "bb", "cq", "dy", "ex", "fv", "gf", "ha", "ir", "jn", "kc", "lg", "mp", "ni", "ok", "pm",
 				"qn", "rb", "sc", "tq", "ur", "vx", "wb", "xf", "yj", "za" };
@@ -140,9 +126,8 @@ public class RegistController {
 		String Brandom4 = (d[new Random().nextInt(a.length)]);
 
 		String num = Brandom1 + Brandom2 + Brandom3 + Brandom4;
-
 		model.addAttribute("num", num);
-
+		logger.debug("핸드폰 인증값:{}", num);
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", mobile); // 수신전화번호
 		params.put("from", "01029937927"); // 발신전화번호.
@@ -158,16 +143,13 @@ public class RegistController {
 			System.out.println(e.getCode());
 		}
 		return "jsonView";
-
 	}
 
 	// 20210304_LYS_Login3 - 회원가입 구현
 	@RequestMapping(path = "process", method = { RequestMethod.POST })
 	public String registerProcess(UserVo userVo) {
 		logger.debug("iNN RegistController >> registerProcess");
-
 		userService.insertUser(userVo);
-
 		return "register";
 	}
 

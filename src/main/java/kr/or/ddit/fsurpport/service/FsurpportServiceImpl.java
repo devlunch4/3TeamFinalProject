@@ -205,16 +205,19 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public FmanageVo updatefmanageInfo(String str) {
 		return fsurpportDao.updatefmanageInfo(str);
 	}
+
 	// 20210311_KJH Fmanage 업데이트
 	@Override
 	public int fmanageUpdate(FmanageVo fmanageVo) {
 		return fsurpportDao.fmanageUpdate(fmanageVo);
 	}
+
 	// 20210311_KJH Fmanage 업데이트(삭제)
 	@Override
 	public int fmanageDelete(FmanageVo fmanageVo) {
 		return fsurpportDao.fmanageDelete(fmanageVo);
 	}
+
 	// 20210311_KJH fhistory 업데이트(삭제)
 	@Override
 	public int fhistoryDelete(FmanageVo fmanageVo) {
@@ -226,22 +229,22 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<FarmdiaryVo> myYield(FarmdiaryVo vo) {
 		return fsurpportDao.myYield(vo);
 	}
-	
+
 	@Override
 	public List<MsrequipVo> msrallList() {
 		return fsurpportDao.msrallList();
 	}
-	
+
 	@Override
 	public int msrUpdate(MsrequipVo vo) {
 		return fsurpportDao.msrUpdate(vo);
 	}
-	
+
 	@Override
 	public int msrSet(MsrequipVo vo) {
 		return fsurpportDao.msrSet(vo);
 	}
-	
+
 	@Override
 	public int msrSelect(String str) {
 		return fsurpportDao.msrSelect(str);

@@ -30,9 +30,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -90,10 +88,8 @@ public class FsurpportController {
 	public String searchAllFsurpportList(HttpServletRequest req, Model model) {
 		logger.debug("searchAllFsurpportList 진입");
 		logger.debug("값 확인 startDate : {}, endDate : {}", req.getParameter("startDate"), req.getParameter("endDate"));
-
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
 		FarmdiaryVo searchFarmdiaryValue_farmdiaryVo = new FarmdiaryVo();
-
 		if (req.getParameter("startDate") != null && !req.getParameter("startDate").equals("")) {
 			logger.debug("1");
 			farmdiaryVo.setStartDate(req.getParameter("startDate").replace("-", ""));
@@ -141,10 +137,8 @@ public class FsurpportController {
 				&& farmdiaryVo.getEndDate() != null && !farmdiaryVo.getEndDate().equals("")) {
 			logger.debug("값 있으니 searchAllFarmdiaryList로 DB 조회");
 			model.addAttribute("farmdiaryList", fsurpportService.searchAllFarmdiaryList(farmdiaryVo));
-
 //			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
-
 			return "tiles.fsurpport.fsurpportMain";
 		} else {
 			logger.debug("값 없으니 redirect main");
@@ -163,7 +157,7 @@ public class FsurpportController {
 	// ggy_20210308 : 농업지원-영농일지 내 일지 등록을 위한 진입페이지
 	@RequestMapping("insertView")
 	public String insertView(String owner, Model model) {
-	logger.debug("영농일지 등록 insertView");
+		logger.debug("영농일지 등록 insertView");
 		model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(owner));
 //		model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList());
 		model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
@@ -230,19 +224,13 @@ public class FsurpportController {
 	public String registMySimpleCode(MySimpleCodeVo mySimpleCodeVo, Model model) {
 		logger.debug("registMySimpleCode 진입");
 		String user_id = mySimpleCodeVo.getOwner();
-
 		String b_type_code_nm = fsurpportService.selectB_type_code_no(mySimpleCodeVo.getB_type_code()).getCode_nm();
 		String item_code_nm = fsurpportService.selectB_type_code_no(mySimpleCodeVo.getItem_code()).getCode_nm();
 		int area = mySimpleCodeVo.getArea();
-
 		String code_alias = b_type_code_nm + "-" + item_code_nm + "-" + area;
-
 		mySimpleCodeVo.setCode_alias(code_alias);
-
 		int registCnt = fsurpportService.registMySimpleCode(mySimpleCodeVo);
-
 		logger.debug("registCnt :" + registCnt);
-
 		if (registCnt == 1) {
 
 			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(b_type_code_nm));
@@ -301,7 +289,7 @@ public class FsurpportController {
 
 			int registFilesCnt = fsurpportService.registFiles(filesVo);
 
-			logger.debug("registFilesCnt : " + registFilesCnt);
+			logger.debug("registFilesCnt : {}", registFilesCnt);
 
 			if (registFilesCnt < 1) {
 				model.addAttribute("farmdiaryList", farmdiaryVo);
@@ -353,8 +341,8 @@ public class FsurpportController {
 			model.addAttribute("selectMySimpleCodeInfo", fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo));
 			model.addAttribute("farmdiaryList", fsurpportService.selectFarmdiaryInfo(f_diary_no));
 			model.addAttribute("mySimpleCodeList", fsurpportService.selectMySimpleCodeList(writer));
-			logger.debug(
-					"ModifyView의 사업유형값" + fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code());
+			logger.debug("ModifyView의 사업유형값 :{}",
+					fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code());
 			model.addAttribute("workstepsList", fsurpportService.selectAllW_step_codeList(
 					fsurpportService.selectMySimpleCodeInfo(mySimpleCodeVo).getB_type_code()));
 			model.addAttribute("itemsList", fsurpportService.selectAllItem_codeList());
@@ -370,38 +358,38 @@ public class FsurpportController {
 		FarmdiaryVo farmdiaryVo = new FarmdiaryVo();
 		MySimpleCodeVo mySimpleCodeVo1 = new MySimpleCodeVo();
 		mySimpleCodeVo1.setOwner(req.getParameter("writer"));
-		logger.debug("writer : " + req.getParameter("writer"));
+		logger.debug("writer : {}", req.getParameter("writer"));
 		mySimpleCodeVo1.setMy_simple_code(Integer.parseInt(req.getParameter("my_simple_code")));
-		logger.debug("my_simple_code : " + req.getParameter("my_simple_code"));
+		logger.debug("my_simple_code : {}", req.getParameter("my_simple_code"));
 		mySimpleCodeVo1 = fsurpportService.selectMySimpleCode_noInfo(mySimpleCodeVo1);
 		farmdiaryVo.setF_diary_no(Integer.parseInt(req.getParameter("f_diary_no")));
-		logger.debug("f_diary_no : " + req.getParameter("f_diary_no"));
+		logger.debug("f_diary_no {}: ", req.getParameter("f_diary_no"));
 		farmdiaryVo.setWriter(req.getParameter("writer"));
-		logger.debug("writer : " + req.getParameter("writer"));
+		logger.debug("writer : {}", req.getParameter("writer"));
 		farmdiaryVo.setMy_simple_code(Integer.parseInt(req.getParameter("my_simple_code")));
-		logger.debug("my_simple_code : " + req.getParameter("my_simple_code"));
+		logger.debug("my_simple_code : {}", req.getParameter("my_simple_code"));
 		farmdiaryVo.setContent(req.getParameter("content"));
-		logger.debug("content : " + req.getParameter("content"));
+		logger.debug("content : {}", req.getParameter("content"));
 		farmdiaryVo.setWeather(req.getParameter("weather"));
-		logger.debug("weather : " + req.getParameter("weather"));
+		logger.debug("weather : {}", req.getParameter("weather"));
 		farmdiaryVo.setLow_temp(Integer.parseInt(req.getParameter("low_temp")));
-		logger.debug("low_temp : " + req.getParameter("low_temp"));
+		logger.debug("low_temp : {}", req.getParameter("low_temp"));
 		farmdiaryVo.setHigh_temp(Integer.parseInt(req.getParameter("high_temp")));
-		logger.debug("high_temp : " + req.getParameter("high_temp"));
+		logger.debug("high_temp : {}", req.getParameter("high_temp"));
 		farmdiaryVo.setRainfall(Integer.parseInt(req.getParameter("rainfall")));
-		logger.debug("rainfall : " + req.getParameter("rainfall"));
+		logger.debug("rainfall : {}", req.getParameter("rainfall"));
 		farmdiaryVo.setHumid(Integer.parseInt(req.getParameter("humid")));
-		logger.debug("humid : " + req.getParameter("humid"));
+		logger.debug("humid : {}", req.getParameter("humid"));
 		farmdiaryVo.setYield(Integer.parseInt(req.getParameter("yield")));
-		logger.debug("yield : " + req.getParameter("yield"));
+		logger.debug("yield : {}", req.getParameter("yield"));
 		farmdiaryVo.setArea(Integer.parseInt(req.getParameter("area")));
-		logger.debug("area : " + req.getParameter("area"));
+		logger.debug("area : {}", req.getParameter("area"));
 		farmdiaryVo.setB_type_code(mySimpleCodeVo1.getB_type_code());
-		logger.debug("b_type_code : " + mySimpleCodeVo1.getB_type_code());
+		logger.debug("b_type_code : {}", mySimpleCodeVo1.getB_type_code());
 		farmdiaryVo.setW_step_code(req.getParameter("w_step_code"));
-		logger.debug("w_step_code : " + req.getParameter("w_step_code"));
+		logger.debug("w_step_code : {}", req.getParameter("w_step_code"));
 		farmdiaryVo.setItem_code(mySimpleCodeVo1.getItem_code());
-		logger.debug("item_code : " + mySimpleCodeVo1.getItem_code());
+		logger.debug("item_code : {}", mySimpleCodeVo1.getItem_code());
 		FilesVo filesVo = new FilesVo();
 
 		if (req.getParameter("file_nm") != null && !req.getParameter("file_nm").equals("")) {
@@ -409,11 +397,11 @@ public class FsurpportController {
 			FarmdiaryVo farmdiaryVo1 = new FarmdiaryVo();
 			farmdiaryVo1 = fsurpportService.selectFarmdiaryInfo(farmdiaryVo.getF_diary_no());
 			farmdiaryVo.setFile_no(farmdiaryVo1.getFile_no());
-			logger.debug("file_no : " + farmdiaryVo1.getFile_no());
+			logger.debug("file_no : {}", farmdiaryVo1.getFile_no());
 		} else {
 			// if(file_file !=null && !file_file.equals(""))
 			logger.debug("새파일 등록이전에 첨부파일만 삭제인지 확인");
-			logger.debug("file : " + file_file.getOriginalFilename());
+			logger.debug("file : {}", file_file.getOriginalFilename());
 			if (file_file.getOriginalFilename().equals("")) {
 				logger.debug("file_file는 '' ");
 			}
@@ -423,14 +411,14 @@ public class FsurpportController {
 				FarmdiaryVo farmdiaryVo2 = new FarmdiaryVo();
 				farmdiaryVo2 = fsurpportService.selectFarmdiaryInfo(farmdiaryVo.getF_diary_no());
 				farmdiaryVo.setFile_no(farmdiaryVo2.getFile_no());
-				logger.debug("file_no : " + farmdiaryVo2.getFile_no());
+				logger.debug("file_no : {}", farmdiaryVo2.getFile_no());
 				int deleteCnt = 0;
 				if (farmdiaryVo2.getFile_no() > 0) {
 					deleteCnt = fsurpportService.deleteFile_no(farmdiaryVo2.getFile_no());
-					logger.debug("deleteCnt : " + deleteCnt);
+					logger.debug("deleteCnt : {}", deleteCnt);
 					if (deleteCnt == 1) {
 						farmdiaryVo.setFile_no(0);
-						logger.debug("file_no : " + farmdiaryVo.getFile_no());
+						logger.debug("file_no : {}", farmdiaryVo.getFile_no());
 					}
 				}
 			} else {
@@ -445,7 +433,7 @@ public class FsurpportController {
 					filesVo.setFile_nm("");
 				}
 				int registFilesCnt = fsurpportService.registFiles(filesVo);
-				logger.debug("registFilesCnt : " + registFilesCnt);
+				logger.debug("registFilesCnt : {}", registFilesCnt);
 				if (registFilesCnt < 1) {
 					model.addAttribute("farmdiaryList" + farmdiaryVo);
 					logger.debug("파일 등록 실패");
@@ -455,13 +443,13 @@ public class FsurpportController {
 				farmdiaryVo.setFile_no(filesVo.getFile_no());
 			}
 		}
-		logger.debug("수정전 file_no 값 : " + farmdiaryVo.getFile_no());
-		logger.debug("수정 시작 : ");
+		logger.debug("수정전 file_no 값 : {}", farmdiaryVo.getFile_no());
+		logger.debug("수정 시작 ");
 		int modifyCnt = fsurpportService.modifyFarmdiaryInfo(farmdiaryVo);
-		logger.debug("수정후 값 : " + modifyCnt);
+		logger.debug("수정후 값 : {}", modifyCnt);
 		if (modifyCnt == 1) {
 			logger.debug("수정 완료 ");
-			logger.debug("f_diary_no : " + farmdiaryVo.getF_diary_no());
+			logger.debug("f_diary_no : {}", farmdiaryVo.getF_diary_no());
 			return "redirect:/fsurpport/infoView?f_diary_no=" + farmdiaryVo.getF_diary_no();
 		} else {
 			logger.debug("수정 실패");
@@ -487,7 +475,7 @@ public class FsurpportController {
 		farmdiaryVo.setF_diary_no(f_diary_no);
 		logger.debug("deleteFarmdiary 삭제 시작전 ");
 		int deleteCnt = fsurpportService.deleteFarmdiary(farmdiaryVo);
-		logger.debug("deleteCnt : " + deleteCnt);
+		logger.debug("deleteCnt : {}", deleteCnt);
 		if (deleteCnt == 1) {
 			return "redirect:/fsurpport/main?user_id=" + writer;
 		} else {
@@ -725,7 +713,7 @@ public class FsurpportController {
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
 	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
-	public String fmanage(Model model, FmanageVo fmanage, HttpSession session,String manage_no) {
+	public String fmanage(Model model, FmanageVo fmanage, HttpSession session, String manage_no) {
 		logger.debug(" 시설관리중인 시설 상세조회 fmanageInfo 진입");
 		FmanageVo fvo = fsurpportService.fmanageInfo(manage_no);
 		// KJH_20210308 측정 정보 조회 수정
@@ -733,21 +721,15 @@ public class FsurpportController {
 		fhistoryVo.setManage_no(fvo.getManage_no());
 		fhistoryVo.setHistory_no(fvo.getHistory_no());
 		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
-
 		UserVo userVo = new UserVo();
-
 		userVo = (UserVo) session.getAttribute("S_USER");
 		List<MsrequipVo> myList = fsurpportService.msrList(userVo.getUser_id());
-
 		List<MsrequipVo> okList = new ArrayList<MsrequipVo>();
-
 		for (int i = 0; i < myList.size(); i++) {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
-
 			int count = fsurpportService.availableList(vo);
-
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -773,21 +755,15 @@ public class FsurpportController {
 		fhistoryVo.setManage_no(fvo.getManage_no());
 		fhistoryVo.setHistory_no(fvo.getHistory_no());
 		MsrrecVo mvo = fsurpportService.latelyData(fhistoryVo);
-
 		UserVo userVo = new UserVo();
-
 		userVo = (UserVo) session.getAttribute("S_USER");
 		List<MsrequipVo> myList = fsurpportService.msrList(userVo.getUser_id());
-
 		List<MsrequipVo> okList = new ArrayList<MsrequipVo>();
-
 		for (int i = 0; i < myList.size(); i++) {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
-
 			int count = fsurpportService.availableList(vo);
-
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -796,11 +772,9 @@ public class FsurpportController {
 				okList.add(vo);
 			}
 		}
-
 		model.addAttribute("okList", okList);
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
-
 		return "/ajax/ajaxfmanageInfo";
 	}
 
@@ -811,21 +785,15 @@ public class FsurpportController {
 		logger.debug("관리중인 시설 등록 fmanageInsertPage 진입");
 		String itemcategorycode = "100";
 		String itemcode = "111";
-
 		UserVo userVo = new UserVo();
-
 		userVo = (UserVo) session.getAttribute("S_USER");
 		List<MsrequipVo> myList = fsurpportService.msrList(userVo.getUser_id());
-
 		List<MsrequipVo> okList = new ArrayList<MsrequipVo>();
-
 		for (int i = 0; i < myList.size(); i++) {
 			MsrequipVo vo = new MsrequipVo();
 			vo.setMsr_code(myList.get(i).getMsr_code());
 			vo.setOwner(userVo.getUser_id());
-
 			int count = fsurpportService.availableList(vo);
-
 			if (count == 0) {
 				vo.setMsr_code(myList.get(i).getMsr_code());
 				vo.setOwner(userVo.getUser_id());
@@ -834,10 +802,8 @@ public class FsurpportController {
 				okList.add(vo);
 			}
 		}
-
 		model.addAttribute("itemcategorycode", itemcategorycode);
 		model.addAttribute("itemcode", itemcode);
-
 		model.addAttribute("codesList", fsurpportService.selectAllItem_codeList());
 		model.addAttribute("okList", okList);
 		return "tiles.fsurpport.fmanageInsert";
@@ -847,18 +813,14 @@ public class FsurpportController {
 	@RequestMapping("fmanageInsert")
 	public String fmanageInsert(Model model, HttpSession session, FmanageVo fmanageVo, String msr_code) {
 		logger.debug("시설 등록 fmanageInsert");
-
 		if (msr_code == null || msr_code.length() > 0) {
 			msr_code = "X";
 		}
-
 		fsurpportService.insertFmanage(fmanageVo);
-
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fmanageVo.getManage_no());
 		fhistoryVo.setMsr_code(msr_code);
 		fsurpportService.insertFhistory(fhistoryVo);
-
 		return "redirect:/fsurpport/fmanageList";
 	}
 
@@ -869,12 +831,10 @@ public class FsurpportController {
 		logger.debug("시설 업데이트/수정 fmanageUpdatePage");
 		FmanageVo fvo = fsurpportService.updatefmanageInfo(manage_no);
 		CodesVo cvo = fdataService.selectCode(fvo.getItem_code());
-
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("itemcategorycode", cvo.getParent_code());
 		model.addAttribute("itemcode", fvo.getItem_code());
 		model.addAttribute("codesList", fsurpportService.selectAllItem_codeList());
-
 		return "tiles.fsurpport.fmanageUpdate";
 	}
 
@@ -884,10 +844,8 @@ public class FsurpportController {
 	public String fmanageupdate(Model model, FmanageVo fmanageVo) {
 		logger.debug(fmanageVo.getManage_no());
 		fsurpportService.fmanageUpdate(fmanageVo);
-		
-		model.addAttribute("manage_no",fmanageVo.getManage_no());
+		model.addAttribute("manage_no", fmanageVo.getManage_no());
 		return "forward:/fsurpport/fmanageInfo";
-		
 	}
 
 	// KJH_20210311
@@ -897,7 +855,6 @@ public class FsurpportController {
 		logger.debug("시설 삭제 fmanageDelete");
 		fsurpportService.fmanageDelete(fmanageVo);
 		fsurpportService.fhistoryDelete(fmanageVo);
-
 		return "redirect:/fsurpport/fmanageList";
 	}
 
@@ -909,17 +866,13 @@ public class FsurpportController {
 		if (msr_code == null || msr_code.length() < 0) {
 			msr_code = "X";
 		}
-
 		FmanageVo fmanageVo = new FmanageVo();
 		fmanageVo.setManage_no(manage_no);
-
 		fsurpportService.fhistoryDelete(fmanageVo);
-
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(manage_no);
 		fhistoryVo.setMsr_code(msr_code);
 		fsurpportService.insertFhistory(fhistoryVo);
-
 		return "redirect:/fsurpport/fmanageInfo?manage_no=" + manage_no;
 	}
 
@@ -928,32 +881,24 @@ public class FsurpportController {
 	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) {
 		logger.debug("내 수확량 조회 myYield");
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
-
 		UserVo userVo = new UserVo();
-
 		userVo = (UserVo) session.getAttribute("S_USER");
-
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
 			FarmdiaryVo vo = new FarmdiaryVo();
 			vo.setWriter(userVo.getUser_id());
 			vo.setB_type_code("2000-01-01");
 			vo.setW_step_code("5555-12-30");
-
 			farmCount = fsurpportService.myYield(vo);
 		}
-
 		else if (selec.equals("week")) {
 			try {
-
 				String[] dt = sdate.split("~");
 				String sd = dt[0];
 				String ed = dt[1];
-
 				FarmdiaryVo vo = new FarmdiaryVo();
 				vo.setWriter(userVo.getUser_id());
 				vo.setB_type_code(sd);
 				vo.setW_step_code(ed);
-
 				farmCount = fsurpportService.myYield(vo);
 			} catch (Exception e) {
 				model.addAttribute("farmCount", farmCount);
@@ -963,7 +908,6 @@ public class FsurpportController {
 			FarmdiaryVo vo = new FarmdiaryVo();
 			vo.setWriter(userVo.getUser_id());
 			vo.setB_type_code(sdate + "-01");
-
 			String[] dt = edate.split("-");
 			int eyy = Integer.parseInt(dt[0]);// 2021
 			int emm = Integer.parseInt(dt[1]) + 1;// 04
@@ -973,7 +917,6 @@ public class FsurpportController {
 			}
 			String edt = "" + eyy + "-" + emm + "-01";
 			vo.setW_step_code(edt);
-
 			farmCount = fsurpportService.myYield(vo);
 		} else if (selec.equals("year")) {
 			FarmdiaryVo vo = new FarmdiaryVo();
@@ -983,7 +926,6 @@ public class FsurpportController {
 			vo.setWriter(userVo.getUser_id());
 			farmCount = fsurpportService.myYield(vo);
 		}
-
 		model.addAttribute("farmCount", farmCount);
 		return "tiles.fanalysis.myYield";
 	}
@@ -995,16 +937,12 @@ public class FsurpportController {
 		logger.debug("시설리스트 페이지 msrequipList");
 		model.addAttribute("check", check);
 		UserVo userVo = new UserVo();
-
 		userVo = (UserVo) session.getAttribute("S_USER");
-
 		if (userVo.user_id.equals("admin")) {
 			model.addAttribute("msrList", fsurpportService.msrallList());
 			return "tiles.fsurpport.msrequipList";
 		} else {
-
 			model.addAttribute("msrList", fsurpportService.msrList(userVo.user_id));
-
 			return "tiles.fsurpport.msrequipList";
 		}
 	}
@@ -1015,22 +953,16 @@ public class FsurpportController {
 	public String msrUpdate(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		logger.debug("장치 수정 msrUpdate");
 		fsurpportService.msrUpdate(msrequipVo);
-
 		return "redirect:/fsurpport/msrequipList";
 	}
-  
-  // 20210322_KWS_cleanline_bootstrap
+
 	// 20210317_KJH 사용자 장비 등록
 	@RequestMapping(path = "msrSet", method = { RequestMethod.GET })
-
 	public String msrSet(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		logger.debug("장비 등록 msrSet");
 		UserVo userVo = new UserVo();
-
 		userVo = (UserVo) session.getAttribute("S_USER");
-
 		msrequipVo.setOwner(userVo.getUser_id());
-
 		int cnt = fsurpportService.msrSelect(msrequipVo.getMsr_code());
 		if (cnt == 1) {
 			fsurpportService.msrSet(msrequipVo);
@@ -1043,45 +975,34 @@ public class FsurpportController {
 	// ggy_20210309 : 파일 경로
 	@RequestMapping("filePath")
 	public void profile(HttpServletResponse resp, String file_nm, HttpServletRequest req) {
-
 		logger.debug("filePath 진입");
 		resp.setContentType("image");
-
 		// userid 파라미터를 이용하여
 		// userService 객체를 통해 사용자의 사진 파일 이름을 획득
 		// 파일 입출력을 통해 사진을 읽어들여 resp객체의 outputStream으로 응답 생성
-
 		String path = "";
 		if (file_nm == null && !file_nm.equals("")) {
 			logger.debug("file_nm이 null");
-
 			path = req.getServletContext().getRealPath("c:\\fdown\\unknown.png");
-			logger.debug("path : " + path);
+			logger.debug("path : {}", path);
 		} else {
-
 			logger.debug("file_nm이 null 아니다.");
 			path = "c:\\fdown\\" + file_nm;
-			logger.debug("path : " + path);
+			logger.debug("path : {}", path);
 		}
-
 		logger.debug("path : {}", path);
-
 		try {
-
 			FileInputStream fis = new FileInputStream(path);
 			ServletOutputStream sos = resp.getOutputStream();
-
 			byte[] buff = new byte[512];
-
 			while (fis.read(buff) != -1) {
-
 				sos.write(buff);
 			}
-
+			fis.close();
+			sos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

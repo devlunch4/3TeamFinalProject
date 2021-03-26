@@ -1,4 +1,4 @@
-package kr.or.ddit.market.repository;
+package kr.or.ddit.market.repositoryx;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
 
 @Repository("marketDao")
@@ -23,7 +22,7 @@ public class MarketDaoImpl implements MarketDao {
 		return template.selectList("market.selectmarket");
 	}
 
-	// 20210309_SHS - 미니장터 게시글 조회 
+	// 20210309_SHS - 미니장터 게시글 조회
 	@Override
 	public MarketVo selectonemarket(int market_no) {
 
@@ -36,18 +35,18 @@ public class MarketDaoImpl implements MarketDao {
 
 		return template.insert("market.registermarket", coVo);
 	}
-	
+
 	// 20210312_SHS - 미니장터 게시글 작성완료
 	@Override
 	public int modifymarket(MarketVo coVo) {
-		
+
 		return template.update("market.modifymarket", coVo);
 	}
-	
-	//	20210312_SHS - 미니장터 게시글 카테고리 별 조회
+
+	// 20210312_SHS - 미니장터 게시글 카테고리 별 조회
 	@Override
 	public List<MarketVo> selectkate(int head_code) {
-		
+
 		return template.selectList("market.selectkate", head_code);
 	}
 

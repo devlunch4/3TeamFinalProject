@@ -17,7 +17,7 @@ public interface UserDao {
 	// login_fail_cnt 몇개인지 더한거 select LYS - 03/11
 	// - 지금까지 실패한 로그인 카운트
 	int sumLoginFailCnt(String user_id);
-	
+
 	// 로그인 성공하면 login_fail_cnt 0으로 리셋 LYS - 03/11
 	int updateLoginFailCnt_reset(String user_id);
 
@@ -41,7 +41,7 @@ public interface UserDao {
 
 	// 사용자가 개인정보 수정 03/10 (경찬)
 	UserVo modifyUser2(UserVo userVo);
-	
+
 	// 이름과 이메일로 아이디 찾는거 03/23 (경찬)
 	UserVo findId(UserVo userVo);
 

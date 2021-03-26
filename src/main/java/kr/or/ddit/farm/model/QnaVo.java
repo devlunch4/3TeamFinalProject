@@ -85,5 +85,4 @@ public class QnaVo {
 				+ title + ", content=" + content + ", reg_dt=" + reg_dt + ", hit=" + hit + ", use_yn=" + use_yn + "]";
 	}
 
-	
 }

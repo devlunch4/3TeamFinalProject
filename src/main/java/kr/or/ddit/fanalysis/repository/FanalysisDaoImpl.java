@@ -29,12 +29,12 @@ public class FanalysisDaoImpl implements FanalysisDao {
 	public MyMaxMrrecListVo mymaxmsrrecList(FhistoryVo fhistoryVo) {
 		return tempplate.selectOne("fmanage.mymaxmsrrecList", fhistoryVo);
 	}
-	
+
 	// 20210315_KJH 내 시설 관측정보 조회 ver 2 - 보유 시설 조회
 	public List<FmanageVo> selectFmanage(String str) {
 		return tempplate.selectList("fmanage.selectFmanage", str);
 	}
-	
+
 	// 20210315_KJH 내 시설 관측정보 조회 ver 2 - 보유 시설 조회
 	public MsrrecVo avgFmanage(MsrrecVo msrrecVo) {
 		return tempplate.selectOne("fmanage.avgFmanage", msrrecVo);

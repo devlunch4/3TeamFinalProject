@@ -44,10 +44,10 @@ public class MainController {
 
 	@RequestMapping("main2")
 	public String main2(Model model) {
-		
+
 		return "tiles.main.main2";
 	}
-	
+
 	// 20210301KJH
 	// 인기작물 크롤링 test ok
 	@RequestMapping("mainpopularity")
@@ -73,67 +73,65 @@ public class MainController {
 		return "/ajax/mainpopularity";
 	}
 
-
 	// 20210302KJH
-		// 품목별 비율 통계 페이지 test ok
-		@RequestMapping("mainratio")
-		public String mainratio(Model model, String selec, String sdate, String edate) {
-			logger.debug("IN ratio()");
-			List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
-			logger.debug("edate value : {}", edate);
+	// 품목별 비율 통계 페이지 test ok
+	@RequestMapping("mainratio")
+	public String mainratio(Model model, String selec, String sdate, String edate) {
+		logger.debug("IN ratio()");
+		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
+		logger.debug("edate value : {}", edate);
 
-			if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
-				farmCount = fdataService.farmCount();
-				model.addAttribute("farmCount", farmCount);
-				model.addAttribute("choice","전체기간");
-				return "/ajax/mainratio";
-			} else if (selec.equals("week")) {
-				try {
-					String[] dt = sdate.split("~");
-					String sd = dt[0];
-					String ed = dt[1];
-
-					FarmdiaryVo vo = new FarmdiaryVo();
-					vo.setB_type_code(sd);
-					vo.setW_step_code(ed);
-					model.addAttribute("choice",sdate);
-					farmCount = fdataService.datefarmCount(vo);
-				} catch (Exception e) {
-					model.addAttribute("farmCount", farmCount);
-					return "/ajax/mainratio";
-				}
-			} else if (selec.equals("month")) {
-				
-				FarmdiaryVo vo = new FarmdiaryVo();
-				vo.setB_type_code(sdate + "-01");
-
-				String[] dt = edate.split("-");
-				int eyy = Integer.parseInt(dt[0]);// 2021
-				int emm = Integer.parseInt(dt[1]) + 1;// 04
-				if (emm > 12) {
-					emm = 1;
-					eyy += 1;
-				}
-				String edt = "" + eyy + "-" + emm + "-01";
-				vo.setW_step_code(edt);
-				model.addAttribute("choice",sdate+"~"+edate);
-				farmCount = fdataService.datefarmCount(vo);
-			} else if (selec.equals("year")) {
-				FarmdiaryVo vo = new FarmdiaryVo();
-				vo.setB_type_code(sdate + "-01-01");
-				String edt = "" + (Integer.parseInt(edate));
-				vo.setW_step_code(edt + "-12-31");
-				farmCount = fdataService.datefarmCount(vo);
-				model.addAttribute("choice",sdate+"~"+edt);
-			}
+		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
+			farmCount = fdataService.farmCount();
 			model.addAttribute("farmCount", farmCount);
+			model.addAttribute("choice", "전체기간");
 			return "/ajax/mainratio";
+		} else if (selec.equals("week")) {
+			try {
+				String[] dt = sdate.split("~");
+				String sd = dt[0];
+				String ed = dt[1];
+
+				FarmdiaryVo vo = new FarmdiaryVo();
+				vo.setB_type_code(sd);
+				vo.setW_step_code(ed);
+				model.addAttribute("choice", sdate);
+				farmCount = fdataService.datefarmCount(vo);
+			} catch (Exception e) {
+				model.addAttribute("farmCount", farmCount);
+				return "/ajax/mainratio";
+			}
+		} else if (selec.equals("month")) {
+
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setB_type_code(sdate + "-01");
+
+			String[] dt = edate.split("-");
+			int eyy = Integer.parseInt(dt[0]);// 2021
+			int emm = Integer.parseInt(dt[1]) + 1;// 04
+			if (emm > 12) {
+				emm = 1;
+				eyy += 1;
+			}
+			String edt = "" + eyy + "-" + emm + "-01";
+			vo.setW_step_code(edt);
+			model.addAttribute("choice", sdate + "~" + edate);
+			farmCount = fdataService.datefarmCount(vo);
+		} else if (selec.equals("year")) {
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setB_type_code(sdate + "-01-01");
+			String edt = "" + (Integer.parseInt(edate));
+			vo.setW_step_code(edt + "-12-31");
+			farmCount = fdataService.datefarmCount(vo);
+			model.addAttribute("choice", sdate + "~" + edt);
 		}
-	
-	
+		model.addAttribute("farmCount", farmCount);
+		return "/ajax/mainratio";
+	}
+
 	@RequestMapping("mainquote")
 	public String mainuote(Model model, CodesVo codesVo, String sdate) {
-		
+
 		logger.debug("In main()");
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
@@ -207,5 +205,5 @@ public class MainController {
 
 		return "/ajax/mainquote";
 	}
-	
+
 }

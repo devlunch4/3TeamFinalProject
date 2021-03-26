@@ -35,7 +35,7 @@ public class FanalysisServiceImpl implements FanalysisService {
 	}
 
 	@Override
-	public List<FmanageVo> selectFmanage(String str) {		
+	public List<FmanageVo> selectFmanage(String str) {
 		return fanalysisDao.selectFmanage(str);
 	}
 

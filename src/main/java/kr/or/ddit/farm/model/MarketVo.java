@@ -24,7 +24,7 @@ public class MarketVo {
 	public MarketVo(int market_no, String writer, int head_code, String title, String item_code, String content,
 			String price, Date reg_dt, String thumbnail, String mobile, int hit, String use_yn) {
 		super();
-		
+
 		this.market_no = market_no;
 		this.writer = writer;
 		this.head_code = head_code;

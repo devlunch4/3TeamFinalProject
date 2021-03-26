@@ -1,8 +1,7 @@
-package kr.or.ddit.market.repository;
+package kr.or.ddit.market.repositoryx;
 
 import java.util.List;
 
-import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
 
 public interface MarketDao {

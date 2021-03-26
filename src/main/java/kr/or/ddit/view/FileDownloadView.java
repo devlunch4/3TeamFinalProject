@@ -18,17 +18,14 @@ public class FileDownloadView extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		logger.debug("FileDownloadView render");
 		// d:\\upload\\sally.png
 		String realFilename = (String) model.get("realFilename");
 		String filename = (String) model.get("filename");
-
 		// 파일 다운로드 구현 header 사용
 		response.setHeader("Content-Disposition", "attachement; filename=" + filename);
-
 		// ? 파일을 올릴떄 사용
 		ServletOutputStream sos = response.getOutputStream();
-
 		// ? 파일을 읽어온뒤 브라우저에 출력
 		FileInputStream fis = new FileInputStream(new File(realFilename));
 		byte[] buf = new byte[512];
@@ -37,7 +34,5 @@ public class FileDownloadView extends AbstractView {
 		}
 		fis.close();
 		sos.close();
-
 	}
-
 }

@@ -1,4 +1,4 @@
-package kr.or.ddit.market.service;
+package kr.or.ddit.market.servicex;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.farm.model.MarketVo;
-import kr.or.ddit.market.repository.MarketDao;
+import kr.or.ddit.market.repositoryx.MarketDao;
 
 @Service("marketService")
 public class MarketServiceImpl implements MarketService {

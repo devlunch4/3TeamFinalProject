@@ -1,4 +1,4 @@
-package kr.or.ddit.marketfiles.service;
+package kr.or.ddit.marketfiles.servicex;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.or.ddit.farm.model.MarketFilesVo;
-import kr.or.ddit.marketfiles.repository.MarketFilesDao;
+import kr.or.ddit.marketfiles.repositoryx.MarketFilesDao;
 
 @Service("marketfilesService")
 public class MarketFilesServiceImpl implements MarketFilesService {

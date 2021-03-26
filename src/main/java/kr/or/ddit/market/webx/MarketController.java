@@ -1,4 +1,4 @@
-package kr.or.ddit.market.web;
+package kr.or.ddit.market.webx;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +19,8 @@ import kr.or.ddit.farm.model.FilesVo;
 import kr.or.ddit.farm.model.MarketVo;
 import kr.or.ddit.fcommunityfiles.service.FilesService;
 import kr.or.ddit.fileutill.FileUtil;
-import kr.or.ddit.market.service.MarketService;
-import kr.or.ddit.marketfiles.service.MarketFilesService;
+import kr.or.ddit.market.servicex.MarketService;
+import kr.or.ddit.marketfiles.servicex.MarketFilesService;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserService;public class MarketController {
 

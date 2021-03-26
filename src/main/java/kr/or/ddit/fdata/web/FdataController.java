@@ -43,7 +43,6 @@ public class FdataController {
 			doc.select("div[class=list]");
 			String most1 = doc.select("div[class=list]").select("a").text();
 			String[] most2 = most1.split(" ");
-
 			List<String> most = new ArrayList<String>();
 			for (int i = 0; i < most2.length; i++) {
 				most.add(most2[i]);

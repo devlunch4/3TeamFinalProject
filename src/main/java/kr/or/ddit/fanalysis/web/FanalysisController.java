@@ -44,8 +44,8 @@ public class FanalysisController {
 		userVo = (UserVo) session.getAttribute("S_USER");
 
 		List<FmanageVo> fmanageList = fanalysisService.selectFmanage(userVo.getUser_id());
-		if(fmanageList.size()==0) {
-			model.addAttribute("novalue","측정값을 확인할 수 있는 시설이 없습니다.");
+		if (fmanageList.size() == 0) {
+			model.addAttribute("novalue", "측정값을 확인할 수 있는 시설이 없습니다.");
 			return "tiles.fanalysis.myfanalysisInfo";
 		}
 		MsrrecVo msrrecVo = new MsrrecVo();
@@ -83,7 +83,7 @@ public class FanalysisController {
 				msrrecVo.setMsr_no(i);
 				mmmList.add(fanalysisService.avgFmanage(msrrecVo));
 			}
-			
+
 		}
 
 		if (month != null && month.equals("30")) {
@@ -111,7 +111,7 @@ public class FanalysisController {
 					mmmList.add(fanalysisService.avgFmanage(msrrecVo));
 				}
 			} catch (ParseException e) {
-				
+
 			}
 
 		}
@@ -141,11 +141,11 @@ public class FanalysisController {
 			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
 		}
 
-		model.addAttribute("tempList",fanalysisService.selectTempList());
+		model.addAttribute("tempList", fanalysisService.selectTempList());
 		model.addAttribute("maxmrrecList", maxmrrecList);
 		return "tiles.fanalysis.mymaxmsrrecList";
 	}
-	
+
 	// 20210315_KJH 내 시설 실시간 관측 조회 ajax ok
 	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.POST })
 	public String mymaxmsrrecListpost(Model model, HttpSession session) {
@@ -165,7 +165,7 @@ public class FanalysisController {
 			maxmrrecList.add(fanalysisService.mymaxmsrrecList(fhistoryVo));
 		}
 
-		model.addAttribute("tempList",fanalysisService.selectTempList());
+		model.addAttribute("tempList", fanalysisService.selectTempList());
 		model.addAttribute("maxmrrecList", maxmrrecList);
 		return "/ajax/mymaxmsrrecList";
 	}

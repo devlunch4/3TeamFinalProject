@@ -1,4 +1,4 @@
-package kr.or.ddit.marketfiles.service;
+package kr.or.ddit.marketfiles.servicex;
 
 import java.util.List;
 
