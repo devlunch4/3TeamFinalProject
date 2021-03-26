@@ -1,22 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="../resources/datepicker/css/bootstrap-datepicker.css">
-<script src="../resources/datepicker/js/bootstrap-datepicker.js"></script>
-<script src="../resources/datepicker/locales/bootstrap-datepicker.ko.min.js"></script>
 <c:set var="data" value="100" />
-
 <script type="text/javascript">
-$(function() {
-	var offset = $('#gohere').offset();
-	$('html').animate({
-		scrollTop : offset.top
-	}, 300);
-});
 
 
 $(function(){
@@ -24,14 +10,14 @@ $(function(){
 		var num = $("#category").val();
 // 		alert("부류코드 값:"+num);
 		if(num == 100){
-			$("#item2").css("display","none")
-			$("#item1").css("display","")
+			$("#item2").hide();
+			$("#item1").show();
 		}
-		if(num == 200){
-			$("#item2").css("display","")
-			$("#item1").css("display","none")
+		else if(num == 200){
+			$("#item2").show();
+			$("#item1").hide();
 		}
-	})
+	});
 	
 	$("#btn_search").on("click",function(){
 		$(".loadspin").show();
@@ -41,10 +27,33 @@ $(function(){
 		}else if($("#category").val() == 200){
 			item = $("#item2").val();
 		}
-		$("#c_code").val($("#category").val());
-		$("#i_code").val(item);
-		$("#d_code").val($("#dateserch").val());
-		$("#select").submit();
+		
+		
+	    $.ajax({
+	        // type을 설정합니다.
+	        type : 'GET',
+	        url : "${pageContext.request.contextPath}/main/mainquote",
+	        data : {"parent_code" : $("#category").val(),
+	        	"code_no" : item,
+	        	"sdate" : $("#dateserch").val()
+	        },
+	        success : function (data) {
+	        	$('#quote2').html(data);
+	        	$(".loadspin").hide();
+	        }
+	    });
+		
+// 		<form id="select" action="${pageContext.request.contextPath}/main/mainquote">
+// 		<input type="hidden" id="c_code" name="parent_code" value="">
+// 		<input type="hidden" id="i_code" name="code_no" value="">
+// 		<input type="hidden" id="d_code" name="sdate" value="">
+// 	</form>
+		
+		
+// 		$("#c_code").val($("#category").val());
+// 		$("#i_code").val(item);
+// 		$("#d_code").val($("#dateserch").val());
+// 		$("#select").submit();
 	})
 	
 	$("#category").val("${itemcategorycode}").prop("selected",true);
@@ -54,16 +63,17 @@ $(function(){
 	$("#item1").val("${itemcode}").prop("selected",true);
 	}else if(${itemcategorycode}=='200'){
 		$("#item1").css("display","none")
+		$("#item2").css("display","")
 		
 	$("#item2").val("${itemcode}").prop("selected",true);
 	}
 })
-$("#").scrollTop($(document).height());
+
 </script>
-<!-- 20210302_KJH items -> codes 변경사항 갱신 -->
-<h3 class="mt-4">시세분석</h3>
-<div class="form-group">
-	<div class="form-group row mb-0">
+
+
+
+<div class="form-group row mb-0">
 		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
 				<tr>
@@ -77,11 +87,6 @@ $("#").scrollTop($(document).height());
 					</td>
 				</tr>
 			</table>
-			<form id="select" action="${pageContext.request.contextPath}/user/main">
-				<input type="hidden" id="c_code" name="parent_code" value="">
-				<input type="hidden" id="i_code" name="code_no" value="">
-				<input type="hidden" id="d_code" name="sdate" value="">
-			</form>
 		</div>
 		<div class="col-md-4 p-1">
 			<table class="table table-bordered " style="font-size: 15px;">
@@ -100,7 +105,7 @@ $("#").scrollTop($(document).height());
 
 
 		<div class="col-md-4 p-1">
-			<div class="gohere" id="gohere"></div>
+<!-- 			<div class="gohere" id="gohere"></div> -->
 			<table class="table table-bordered" style="font-size: 15px;">
 				<tr>
 					<td class="table-active text-center py-1">품목</td>
@@ -125,11 +130,11 @@ $("#").scrollTop($(document).height());
 	</div>
 
 	<!-- spinner -->
-	<div class="loading loadspin " style="position: relative; z-index: 1; width: 100%; height: 100%; display: none;">
-		<div class="spinner-border loadspin" role="status" style="position: fixed; z-index: 1031; top: 35%; left: 48%; display: none;">
-			<span class="sr-only loadspin " style="display: none;">Loading...</span>
-		</div>
-	</div>
+<!-- 	<div class="loading loadspin " style="position: relative; z-index: 1; width: 100%; height: 100%; display: none;"> -->
+<!-- 		<div class="spinner-border loadspin" role="status" style="position: fixed; z-index: 1031; top: 35%; left: 48%; display: none;"> -->
+<!-- 			<span class="sr-only loadspin " style="display: none;">Loading...</span> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<div class="form-group text-right">
 		<button id="btn_search" class="btn btn-primary col-md-3">조회하기</button>
@@ -178,10 +183,10 @@ $("#").scrollTop($(document).height());
 	<div class="form-group ">
 		<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 	</div>
-</div>
+
 
 <script> 
-	$(document).ready(function(){
+$(function(){
 		
 		<c:forEach items="${target}" var="tg" varStatus="status">
 			var tg${status.count} = ('${tg}');
@@ -224,5 +229,5 @@ $("#").scrollTop($(document).height());
 		
 			// 옵션 
 			options: {} }); 
-	})
+	});
 </script>

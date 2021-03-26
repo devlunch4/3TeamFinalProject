@@ -3,18 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!-- 0309_KJH datepiker -->
-<link rel="stylesheet" href="../resources/datepicker/jquery-ui.css" type="text/css" />
-<script src="../resources/datepicker/jquery-ui.js"></script>
-<script src="../resources/datepicker/jquery.mtz.monthpicker.js"></script>
-
-<!-- 0309_KJH billboard chart js,css -->
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<link rel="stylesheet" href="../resources/billboard/billboard.css">
-<script src="../resources/billboard/billboard.js"></script>
-<link rel="stylesheet" href="../resources/billboard/billboard.css">
-<script src="../resources/billboard/billboard.pkgd.js"></script>
-
 <script type="text/javascript">
 $(function(){
 $('#tb').DataTable({
@@ -30,7 +18,7 @@ $('#tb').DataTable({
 	});
 	//20210325 KJH 검색제한 - 작물명으로만 가능
 $('.dataTables_filter input[type="search"]').css(
-	     {'width':'9em'}
+	     {'width':'10em'}
 	  );
  
 $("#tb_paginate").addClass('text-center');
@@ -44,7 +32,7 @@ $("#tb_length").css( "float", "left" );
  
 $("#tb_paginate").addClass('text-center');
 
-
+ 
 
 $("#tb_filter").addClass('text-right pl-1');
 $("#tb_filter").css( "width", "59%" );
@@ -135,7 +123,9 @@ $("#tb_filter").css( "float", "left" );
 
 
 
-
+<input type="hidden" id="selctype" name="selec" value="week">
+<input type="hidden" id="sval" name="sdate">
+<input type="hidden" id="eval" name="edate">
 <script>
 $(function() {
 	
@@ -285,41 +275,63 @@ $("#week").on("click",function(){
 				alert("주를 선택해야합니다.");
 				return;
 			}else{
-			$("#sval").val($("#week-picker").val());
+		    $.ajax({
+		        // type을 설정합니다.
+		        type : 'GET',
+		        url : "${pageContext.request.contextPath}/main/mainratio",
+		        data : {"selec" : $("#selctype").val(),
+		        	"sdate" : $("#week-picker").val()
+		        },
+		        success : function (data) {
+		        	$('#ratio2').html(data);
+		        }
+		    });
 			}
 		}
-		else if($("#selctype").val() == "month" ){
-			$("#sval").val($("#smonth-picker").val());
-			$("#eval").val($("#emonth-picker").val());
-		}
-		else if($("#selctype").val() == "year"){
-			$("#sval").val($("#syear-picker").val());
-			$("#eval").val($("#eyear-picker").val());
+		else if($("#selctype").val() == "month"){
+			$.ajax({
+		        // type을 설정합니다.
+		        type : 'GET',
+		        url : "${pageContext.request.contextPath}/main/mainratio",
+		        data : {"selec" : $("#selctype").val(),
+		        	"sdate" : $("#smonth-picker").val(),
+		        	"edate" : $("#emonth-picker").val()
+		        },
+		        success : function (data) {
+		        	$('#ratio2').html(data);
+		        }
+		    });
 		}
 		
-		$("#selec").submit();
+		else if($("#selctype").val() == "year"){
+			$.ajax({
+		        // type을 설정합니다.
+		        type : 'GET',
+		        url : "${pageContext.request.contextPath}/main/mainratio",
+		        data : {"selec" : $("#selctype").val(),
+		        	"sdate" : $("#syear-picker").val(),
+		        	"edate" : $("#eyear-picker").val()
+		        },
+		        success : function (data) {
+		        	$('#ratio2').html(data);
+		        }
+		    });
+		}
 	});
 	
 	$("#all").on("click",function(){
-		$("#selctype").val("all")
-		$("#selec").submit();
+	    $.ajax({
+	        // type을 설정합니다.
+	        type : 'GET',
+	        url : "${pageContext.request.contextPath}/main/mainratio",
+	        data : {"selec" : "all"
+	        },
+	        success : function (data) {
+
+	        	$('#ratio2').html(data);
+	        }
+	    });
 	});
-//      	var chart = bb.generate({
-//      		  data: {
-//      		    columns: [
-//      		    	<c:forEach items="${farmCount}" var="fcount">
-//      		     	['${fcount.content}',${fcount.yield}],
-//      		     	</c:forEach>
-//      		    ],
-//      		    type: "donut",
-//      		  },
-//      		  donut: {
-//      		    label: {
-//      		      format: function(value, ratio, id) {		return value       }/*+"\nHours";*/
-//      		    }
-//      		  },
-//      		  bindto: "#multilineLabel"
-//      		});
 				<c:set var = "total" value = "0" />
 				<c:forEach items="${farmCount}" var="fcount">
 				<c:set var= "total" value="${total + fcount.yield}"/>

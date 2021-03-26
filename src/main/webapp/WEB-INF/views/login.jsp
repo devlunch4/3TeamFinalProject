@@ -39,6 +39,38 @@
 			}
 			$("#frm").submit();
 		});
+		 
+		//20210326_KJH 엔터버튼으로 로그인 동작
+		$("#user_id").keyup(function(e){
+			if(e.keyCode == 13)  {
+
+			console.log("로그인클릭확인");
+		if ($("#rememberId").is(":checked") == true) {
+			Cookies.set("user_id", $("#user_id").val());
+			Cookies.set("rememberId", "Y");
+		} else {
+			Cookies.remove("user_id");
+			Cookies.remove("rememberId");
+		}
+		$("#frm").submit();
+			}
+		});
+		
+		//20210326_KJH 엔터버튼으로 로그인 동작
+		$("#user_pw").keyup(function(e){
+			if(e.keyCode == 13)  {
+
+			console.log("로그인클릭확인");
+		if ($("#rememberId").is(":checked") == true) {
+			Cookies.set("user_id", $("#user_id").val());
+			Cookies.set("rememberId", "Y");
+		} else {
+			Cookies.remove("user_id");
+			Cookies.remove("rememberId");
+		}
+		$("#frm").submit();
+			}
+		});
 	});
 </script>
 

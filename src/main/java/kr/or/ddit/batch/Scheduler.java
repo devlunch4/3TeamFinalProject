@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import kr.or.ddit.batch.model.StandarditemcodeVo;
 import kr.or.ddit.batch.service.SdCodeService;
-import kr.or.ddit.finfo.web.FinfoController;
 
 // cron 스케줄러 클래스임을 선언하는 어노테이션.
 @Component

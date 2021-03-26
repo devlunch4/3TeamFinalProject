@@ -54,6 +54,7 @@ $("#updatebtn").on("click",function(){
 		<div class="">
 			<input type="button" class="btn_list" value="목록으로" onclick="goBack()">
 			<div class="row table-responsive" id="info">
+			
 				<form action="${pageContext.request.contextPath }/fsurpport/fmanageUpdatePage" method="post" id="updateform">
 					<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
 				</form>
