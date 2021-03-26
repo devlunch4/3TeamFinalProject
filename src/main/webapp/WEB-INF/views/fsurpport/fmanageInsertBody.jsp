@@ -54,27 +54,28 @@ $(function(){
 </script>
 
 <!-- 20210302_KJH 시설등록 -->
-<h3 class="mt-4">시설관리 등록</h3>
+<h3 class="mt-4">시설관리</h3>
 <div class="card mt-2 col-sm-12 px-0">
-	<h3 class="card-header">총게시글 :</h3>
+	<h3 class="card-header">시설등록</h3>
 	<div class="card-body text-left ">
 		<div class="">
-			<div class="row">
+			<div class="">
 				<form action="${pageContext.request.contextPath}/fsurpport/fmanageInsert" method="post">
 					<table class="table table-bordered col-sx-12" style="text-align: center;">
 						<tr>
-							<td class="col6">시설명 : <input type="text" required="required"/>
-							</td>
-							<td class="col6">농장주 : <label>${S_USER.user_id}</label>
+						<td class="" colspan="1" style="width: 50%">농장주 : ${S_USER.user_id}
 							<input type="hidden" name="owner" value="${S_USER.user_id}">
 							</td>
+							<td class="" style="width: 50%">시설명 : <input type="text" required="required">
+							</td>
+							
 						</tr>
 						<tr>
-							<td sclass="col6"><select id="category" class="form-control">
+							<td sclass="col-6"><select id="category" class="form-control">
 									<option value="100">식량작물</option>
 									<option value="200">채소류</option>
 							</select></td>
-							<td class="col6">
+							<td class="col-6">
 							<select id="item1" class="form-control" name="item_code">
 									<c:forEach items="${codesList}" var="codes">
 										<c:if test="${codes.parent_code=='100'}">

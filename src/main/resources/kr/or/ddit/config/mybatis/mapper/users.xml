@@ -112,7 +112,7 @@
 	</update>
 	
 	<!-- 사용자 이름과 이메일로 아이디 찾는거 03/23 (경찬) -->
-	<select id="findId" resultType="userVo" parameterType="String">
+	<select id="findId" resultType="userVo" parameterType="userVo">
 		select user_id
 		from users
 		where

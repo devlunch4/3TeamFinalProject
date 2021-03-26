@@ -172,7 +172,7 @@
 							<option value="location">장소</option>
 							<option value="msr_nm">장비명</option>
 							<option value="code">작물명</option>
-							<option value="dt">등록일</option>
+							<option value="dt">마지막 측정일</option>
 						</select>
 						<div id="dataTable_filter" class="dataTables_filter"></div>
 					</div>

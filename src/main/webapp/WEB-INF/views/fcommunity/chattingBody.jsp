@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div>
+<div class="form-group mt-2">
+<div class="ml-3 mb-2">
 	<button type="button" onclick="openSocket();">대화방 참여</button>
 	<button type="button" onclick="closeSocket();">대회방 나가기</button>
-	<br/>
-	<br/>
-	<br/>
-	
 
 <!-- 	<button type="button" onclick="javascript:clearText();">대화내용 지우기</button> -->
 </div>
@@ -17,13 +14,14 @@
 <input type="text" id="sender" value="${S_USER.user_id}" style="display: none;"> 
 
 <div class="form-group">
-<button type="button" class="form-group float-left small" onclick="send();" id="send" style="width: 30%">메세지 전송</button>
-<span class="form-group text-right" style="width: 100%">
+<button type="button" class="form-group float-right small" onclick="send();" id="send" style="width: 30%">메세지 전송</button>
+<span class="form-group text-left" style="width: 100%">
 <input type="text" id="messageinput" style="width: 70%" class="small" onkeyup="enterkey();">
 </span>
 </div>
 </div>
 <!-- websocket javascript -->
+</div>
 <script type="text/javascript">
         var ws;
         var messages = document.getElementById("messages");
@@ -67,7 +65,13 @@
         }
         
         function writeResponse(text){
-            messages.innerHTML += "<br/>"+text;
+        	var mytext = text.split(':');
+        	console.log(mytext);
+        	if(mytext[0] == '<나> ' ){
+            messages.innerHTML += "<div style='color: blue;'>"+text+"</div>";
+        	}else{
+        		messages.innerHTML += "<div>"+text+"</div>";	
+        	}
         	$('#scrollDiv').scrollTop($('#scrollDiv').prop('scrollHeight'));
         	$('#messageinput').val("");
         	$('#messageinput').focus();

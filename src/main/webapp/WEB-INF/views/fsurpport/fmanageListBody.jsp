@@ -50,12 +50,16 @@
 		
 		$(".info").on("click",function(){
 			
-// 			alert($(this).attr('id'));
+			alert($(this).attr('id'));
 			
-			var idval= $(this).attr('id');
-// 			alert(idval);
+			idval= $(this).attr('id');
+			
+			alert(idval);
 			$("#manage_no").val($("#manage_no".concat(idval)).val());
-// 		 	alert($("#manage_no".concat(idval)).val());
+			
+		 	alert($("#manage_no".concat(idval)).val());
+		 	
+		 	alert($("#manage_no").val());
 			$("#infoform").submit();
 			
 
@@ -102,7 +106,7 @@
 							</thead>
 							
 							<form action="${pageContext.request.contextPath}/fsurpport/fmanageInfo" method="post" id="infoform">
-							<input type="hidden" name="manage_no" id="manage_no">
+							<input type="hidden" name="manage_no" id="manage_no" value="">
 							</form>
 							
 							<tbody>
