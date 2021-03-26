@@ -254,7 +254,7 @@ public class FinfoController {
 		return "tiles.finfo.raceInfosMain";
 	}
 
-	// ggy_20210304 : 농업정보 - 주간 농사정보 진입
+	// 20210326_ggy : 농업정보 - 주간 농사정보 진입
 
 	@RequestMapping("weeklyFarmInfosView")
 	public String fmanageView(Model model) {
