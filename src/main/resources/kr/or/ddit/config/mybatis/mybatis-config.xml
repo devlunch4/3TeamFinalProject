@@ -112,6 +112,9 @@
 		
 		<!-- 20210318_ggy miniMarket mappers -->
 		<mapper resource="kr/or/ddit/config/mybatis/mapper/miniMarket.xml" />
+		
+		<!-- 20210326_ggy weeklyFarmInfos mappers -->
+		<mapper resource="kr/or/ddit/config/mybatis/mapper/weeklyFarmInfos.xml" />
 
 	</mappers>
 
