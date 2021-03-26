@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <script type="text/javascript">
 	$(document).ready( function () {
@@ -55,16 +57,29 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${qnaList}" var="qna">
+							<!-- 변수 지정 -->
+							<c:set var="cnt_all" value="0"/> 
+							<c:set var="cnt" value="0"/> 
+							
+							<!-- qnaList의 수만큼 for문 돌려서 전체수를 더함 -->
+							<c:forEach items="${qnaList}" var="qna"> 
+								<c:if test="${qna.use_yn.equals('Y')}"> <!-- use_yn이 Y인 것만 카운트 할수 있도록 -->
+									<c:set var="cnt_all" value="${cnt_all+1 }"/> 
+									<!-- if문이 true일때 여기서 1씩 증가. 0부터 시작했고 글 한개씩 셀때마다 카운트가 올라가니까 정확한 use_yn이 Y일때의 글의 수를 셀수있음 -->
+								</c:if>
+							</c:forEach>
+							<c:forEach items="${qnaList}" var="qna" varStatus="status">
 								<c:if test="${qna.use_yn.equals('Y')}">
 									<tr onclick="location.href='${pageContext.request.contextPath}/qna/detailView?qna_no=${qna.qna_no}'">
-										<td>${qna.qna_no}</td>
+										<td>${cnt_all - cnt}</td> 
 										<td>${qna.title}</td>
 										<td>${qna.writer}</td>
 										<td>
 											<fmt:formatDate value="${qna.reg_dt }" pattern="yyyy-MM-dd" />
 										</td>
 									</tr>
+									<!-- cnt 출력하고 난뒤 +1  -->
+									<c:set var="cnt" value="${cnt+1}" />
 								</c:if>
 							</c:forEach>
 						</tbody>

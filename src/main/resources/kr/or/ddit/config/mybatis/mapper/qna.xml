@@ -11,7 +11,7 @@
 		    qna_no,
 		    qna_parent_no,
 		    writer,
-		    RPAD('┗', 2*(LEVEL-1), '━━') || title as title,
+		    RPAD('┗', 2*(LEVEL-1), '━') || title as title,
 		    content,
 		    reg_dt,
 		    hit,

@@ -82,12 +82,12 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 }
 
 .board_wrap table{
-	border-top: 2px solid #c7c7c7;
-	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #dee2e6;
+	border-bottom: 2px solid #dee2e6;
 	width: 100%;
 }
 .board_wrap tr{
-	border-top: 1px solid #c7c7c7;
+	border-top: 1px solid #dee2e6;
 }
 .board_wrap th{
 	width: 16%;
