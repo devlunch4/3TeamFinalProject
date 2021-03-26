@@ -110,16 +110,40 @@ public class FinfoServiceImpl implements FinfoService {
 		return finfoDao.deleteItemMenualInfo(itemmanualVo);
 	}
 	
+	// 20210326_ggy : 주간 농사정보 조회 
+	@Override
+	public List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList() {
+		return finfoDao.selectWeeklyFarmInfosList();
+	}
+	
 	// 20210326_ggy : 주간 농사정보 등록
 	@Override
 	public int registWeeklyFarmInfos(Map<String, String> map) {
 		return finfoDao.registWeeklyFarmInfos(map);
 	}
 	
-	// 20210326_ggy : 주간 농사정보 조회 
+	// 20210326_ggy : 주간 농사정보 수정을 위한 조회
 	@Override
-	public List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList() {
-		return finfoDao.selectWeeklyFarmInfosList();
+	public WeeklyFarmInfosVo selectWeeklyFarmInfosInfo(Map<String, String> map) {
+		return finfoDao.selectWeeklyFarmInfosInfo(map);
+	}
+	
+	// 20210326_ggy : 주간 농사정보 첨부파일 삭제
+	@Override
+	public int deleteWeeklyFarmInfosFiles(int file_no1) {
+		return finfoDao.deleteWeeklyFarmInfosFiles(file_no1);
 	}
 
+	// 20210326_ggy : 주간 농사정보 수정
+	@Override
+	public int modifyWeeklyFarmInfos(Map<String, String> map) {
+		return finfoDao.modifyWeeklyFarmInfos(map);
+	}
+	
+	// 20210326_ggy : 주간 농사정보 삭제
+	@Override
+	public int deleteWeeklyFarmInfos(int w_info_no) {
+		return finfoDao.deleteWeeklyFarmInfos(w_info_no);
+	}
+	
 }

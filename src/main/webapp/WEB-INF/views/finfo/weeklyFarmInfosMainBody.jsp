@@ -54,6 +54,8 @@
 									aria-label="REG_DT: activate to sort column ascending">등록일</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
 									aria-label="FILE_CODE: activate to sort column ascending">첨부파일</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
+									aria-label="ETC activate to sort column ascending">기타</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -63,6 +65,7 @@
 									<th rowspan="1" colspan="1">작성자</th>
 									<th rowspan="1" colspan="1">등록일</th>
 									<th rowspan="1" colspan="1">첨부파일</th>
+									<th rowspan="1" colspan="1">기타</th>
 								</tr>
 							</tfoot>
 							<tbody>
@@ -75,7 +78,22 @@
 											<fmt:formatDate value="${weeklyFarmInfosList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>
 										<td>
-											<button class="btn btn-primary " onclick="location.href='${pageContext.request.contextPath}/finfo/weeklyFarmInfosFilePath?file_nm=${weeklyFarmInfosList.file_nm }'">${weeklyFarmInfosList.file_nm }</button>
+											<c:if test="${weeklyFarmInfosList.file_no > 0 }">
+												<button class="btn btn-primary " onclick="location.href='${pageContext.request.contextPath}/finfo/weeklyFarmInfosFilePath?file_nm=${weeklyFarmInfosList.file_nm }'">${weeklyFarmInfosList.file_nm }</button>
+											</c:if>
+										</td>
+										<td>
+											<c:if test="${S_USER.user_id.equals('admin') }">
+												<form action="${pageContext.request.contextPath}/finfo/modifyWeeklyFarmInfosView" method="post">
+													<input type="hidden" name="w_info_no" value="${weeklyFarmInfosList.w_info_no }" >
+													<input type="hidden" name="writer" value="${weeklyFarmInfosList.writer }" >
+													<input type="submit" value="수정">
+												</form>
+												<form action="${pageContext.request.contextPath}/finfo/deleteWeeklyFarmInfos" method="post">
+													<input type="hidden" name="w_info_no" value="${weeklyFarmInfosList.w_info_no }" >
+													<input type="submit" value="삭제">
+												</form>
+											</c:if>
 										</td>
 									</tr>
 								</c:forEach>

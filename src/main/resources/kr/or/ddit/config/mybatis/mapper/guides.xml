@@ -180,6 +180,26 @@
 		AND f.use_yn = 'Y'
 	</select>
 	
+	<!-- 20210326_ggy : 주간 농사정보 수정을 위한  조회 -->
+	<select id="selectWeeklyFarmInfosInfo" parameterType="map" 
+					resultType="weeklyFarmInfosVo">
+		SELECT 
+		    w.w_info_no 
+		    , w.writer
+		    , w.title
+		    , w.reg_dt
+		    , w.hit
+		    , w.file_no 
+		    , f.file_nm     
+		FROM weeklyinfo w
+		JOIN files f
+		ON w.file_no = f.file_no
+		WHERE w.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+		AND writer = #{writer }
+		AND w_info_no = #{w_info_no }
+	</select>
+	
 	<!-- 20210326_ggy : 주간 농사정보 등록 -->
 	<insert id="registWeeklyFarmInfos" parameterType="map">
 		insert into weeklyinfo(
@@ -198,5 +218,26 @@
 					, #{file_no }
 					, 'Y' )
 	</insert>
+	
+	<!-- 20210326_ggy : 주간 농사정보 파일 삭제 -->	
+	<update id="deleteWeeklyFarmInfosFiles" parameterType="int">
+		update files set use_yn = 'N'
+		WHERE file_no = #{file_no }
+	</update>
+	
+	<!-- 20210326_ggy : 주간 농사정보 수정 -->	
+	<update id="modifyWeeklyFarmInfos" parameterType="map">
+		update weeklyinfo set 
+							title = #{title } 
+							, file_no = #{file_no }
+		WHERE writer = #{writer }
+		AND w_info_no = #{w_info_no }
+	</update>
+	
+	<!-- 20210326_ggy : 주간 농사정보 삭제 -->	
+	<update id="deleteWeeklyFarmInfos" parameterType="int">
+		update weeklyinfo set use_yn = 'N'
+		WHERE w_info_no = #{w_info_no }
+	</update>
 
 </mapper>

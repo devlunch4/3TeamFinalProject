@@ -26,6 +26,7 @@ import kr.or.ddit.common.model.FilesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.farm.model.ItemmanualVo;
+import kr.or.ddit.farm.model.MarketFilesVo;
 import kr.or.ddit.finfo.service.FinfoService;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 
@@ -322,6 +323,116 @@ public class FinfoController {
 
 		return "redirect:/finfo/weeklyFarmInfosView";
 		
+	}
+	
+	// 20210326_ggy : 주간 농사정보 수정을 위한 진입
+	@RequestMapping(path = "modifyWeeklyFarmInfosView", method = { RequestMethod.POST })
+	public String modifyWeeklyFarmInfosView( String writer, int w_info_no,  Model model) {
+		
+		logger.debug("modifyWeeklyFarmInfosView 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("writer", writer);
+		map.put("w_info_no", Integer.toString(w_info_no));
+		
+		model.addAttribute("weeklyFarmInfosInfo", finfoService.selectWeeklyFarmInfosInfo(map));
+		
+		return "tiles.finfo.modifyWeeklyFarmInfos";
+	}
+	
+	// 20210326_ggy : 주간 농사정보 수정
+	@RequestMapping(path = "modifyWeeklyFarmInfos", method = { RequestMethod.POST })
+	public String modifyWeeklyFarmInfos( HttpServletRequest req, MultipartFile file_file1) {
+		
+		logger.debug("modifyWeeklyFarmInfos 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("w_info_no", req.getParameter("w_info_no"));
+		map.put("writer", req.getParameter("writer"));
+		map.put("title", req.getParameter("title"));
+		map.put("file_no", req.getParameter("file_no_check1"));
+		
+		FilesVo filesVo = new FilesVo();
+		
+		// 첨부파일1 있는지 확인
+		if (req.getParameter("file_nm1") != null && !req.getParameter("file_nm1").equals("")) {
+			logger.debug("file_nm1 값 있다.");
+		} else {
+			if (req.getParameter("file_nm1").equals("")) {
+				logger.debug("file_nm1의 첨부파일 없다.");
+				if (!req.getParameter("file_no_check1").equals("") && req.getParameter("file_no_check1") != null) {
+					int file_no1 = Integer.parseInt(req.getParameter("file_no_check1"));
+					logger.debug("file_no_check1의 값 : {}", file_no1);
+					if (file_no1 > 0) {
+						logger.debug("file_no1 값 있어서 삭제 작업 들어감");
+						int deleteCnt = finfoService.deleteWeeklyFarmInfosFiles(file_no1);
+						if(deleteCnt == 1) {
+							logger.debug("첨부파일 삭제");
+							map.put("file_no", Integer.toString(0));
+						}
+					}
+				}
+			}
+			if (file_file1.getSize() > 0) {
+				logger.debug("첨부파일1 등록 시작");
+				// 첨부파일 등록 부분
+				logger.debug("file1 있다.");
+				String path = "c:\\fdown\\weeklyFarmInfos\\";
+				try {
+					file_file1.transferTo(new File(path + file_file1.getOriginalFilename()));
+					filesVo.setFile_nm(file_file1.getOriginalFilename());
+					filesVo.setFile_path(path + filesVo.getFile_nm());
+					int registFilesCnt = fsurpportService.registFiles(filesVo);
+					logger.debug("registFilesCnt : {}", registFilesCnt);
+					map.put("file_no", Integer.toString(registFilesCnt));
+					
+				} catch (IllegalStateException | IOException e) {
+					filesVo.setFile_nm("");
+					map.put("file_no", Integer.toString(0));
+				}
+			} else {
+				logger.debug("첨부 파일없다.");
+			}
+		}
+		
+		int modifyCnt = finfoService.modifyWeeklyFarmInfos(map);
+		
+		if(modifyCnt == 1) {
+			logger.debug("수정완료");
+		}
+		
+		return "redirect:/finfo/weeklyFarmInfosView";
+	}
+	
+
+	// 20210326_ggy : 주간 농사정보 삭제
+	@RequestMapping(path = "deleteWeeklyFarmInfosFiles", method = { RequestMethod.POST })
+	public String deleteWeeklyFarmInfosFiles( int w_info_no) {
+		
+		logger.debug("deleteWeeklyFarmInfosFiles 진입");
+		
+		int deleteCnt = finfoService.deleteWeeklyFarmInfosFiles(w_info_no);
+		
+		if(deleteCnt==1) {
+			logger.debug("주간 농사정보 삭제");
+		}
+		
+		return "redirect:/finfo/weeklyFarmInfosView";
+	}
+	
+	// 20210326_ggy : 주간 농사정보 삭제
+	@RequestMapping(path = "deleteWeeklyFarmInfos", method = { RequestMethod.POST })
+	public String deleteWeeklyFarmInfos( int w_info_no) {
+		
+		logger.debug("deleteWeeklyFarmInfos 진입");
+		
+		int deleteCnt = finfoService.deleteWeeklyFarmInfos(w_info_no);
+		
+		if(deleteCnt==1) {
+			logger.debug("주간 농사정보 삭제");
+		}
+		
+		return "redirect:/finfo/weeklyFarmInfosView";
 	}
 	
 	// 20210326_ggy : 농업정보 - 주간 농사정보 파일 다운로드

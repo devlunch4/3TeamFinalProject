@@ -117,18 +117,43 @@ public class FinfoDaoImpl implements FinfoDao {
 	public int deleteItemMenualInfo(ItemmanualVo itemmanualVo) {
 		return tempplate.update("guides.deleteItemMenualInfo", itemmanualVo);
 	}
-
-	// 20210326_ggy : 주간 농사정보 등록
-	@Override
-	public int registWeeklyFarmInfos(Map<String, String> map) {
-		return tempplate.insert("guides.registWeeklyFarmInfos", map);
-	}
 	
 	// 20210326_ggy : 주간 농사정보 조회 
 	@Override
 	public List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList() {
 		
 		return tempplate.selectList("guides.selectWeeklyFarmInfosList");
+	}
+
+	// 20210326_ggy : 주간 농사정보 등록
+	@Override
+	public int registWeeklyFarmInfos(Map<String, String> map) {
+		return tempplate.insert("guides.registWeeklyFarmInfos", map);
+	}
+
+	// 20210326_ggy : 주간 농사정보 수정을 위한 조회
+	@Override
+	public WeeklyFarmInfosVo selectWeeklyFarmInfosInfo(Map<String, String> map) {
+		return tempplate.selectOne("guides.selectWeeklyFarmInfosInfo", map);
+	}
+	
+
+	// 20210326_ggy : 주간 농사정보 첨부파일 삭제
+	@Override
+	public int deleteWeeklyFarmInfosFiles(int file_no1) {
+		return tempplate.update("guides.deleteWeeklyFarmInfosFiles", file_no1);
+	}
+
+	// 20210326_ggy : 주간 농사정보 수정
+	@Override
+	public int modifyWeeklyFarmInfos(Map<String, String> map) {
+		return tempplate.update("guides.modifyWeeklyFarmInfos", map);
+	}
+	
+	// 20210326_ggy : 주간 농사정보 삭제
+	@Override
+	public int deleteWeeklyFarmInfos(int w_info_no) {
+		return tempplate.update("guides.deleteWeeklyFarmInfos", w_info_no);
 	}
 
 }

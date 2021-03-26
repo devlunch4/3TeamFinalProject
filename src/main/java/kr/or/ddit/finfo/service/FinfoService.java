@@ -56,10 +56,22 @@ public interface FinfoService {
 	// 20210311 KWS 제철정보 조회
 	List<GardenguideVo> selectSeasons(String season);
 	
+	// 20210326_ggy : 주간 농사정보 조회
+	List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList();
+	
 	// 20210326_ggy : 주간 농사정보 등록
 	int registWeeklyFarmInfos(Map<String, String> map);
 	
-	// 20210326_ggy : 주간 농사정보 조회
-	List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList();
+	// 20210326_ggy : 주간 농사정보 수정을 위한 조회
+	WeeklyFarmInfosVo selectWeeklyFarmInfosInfo(Map<String, String> map);
+	
+	// 20210326_ggy : 주간 농사정보 첨부파일 삭제
+	int deleteWeeklyFarmInfosFiles(int file_no1);
 
+	// 20210326_ggy : 주간 농사정보 수정
+	int modifyWeeklyFarmInfos(Map<String, String> map);
+	
+	// 20210326_ggy : 주간 농사정보 삭제
+	int deleteWeeklyFarmInfos(int w_info_no);
+	
 }

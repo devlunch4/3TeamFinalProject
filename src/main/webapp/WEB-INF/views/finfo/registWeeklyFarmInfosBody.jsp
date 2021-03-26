@@ -43,6 +43,6 @@
 	<div class="float-right">
 		<input type="submit" value="등록"  class="btn btn-primary">
 		<input type="button" value="목록으로" class="btn btn-primary" 
-		onclick="location.href='${pageContext.request.contextPath }/finfo/itemFarmManualsView?user_id=${S_USER.user_id}'" >
+		onclick="location.href='${pageContext.request.contextPath }/finfo/weeklyFarmInfosView'" >
 	</div>
 </form>
