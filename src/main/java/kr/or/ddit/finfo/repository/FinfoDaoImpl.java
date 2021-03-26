@@ -1,6 +1,8 @@
 package kr.or.ddit.finfo.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,6 +13,7 @@ import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.farm.model.ItemmanualVo;
+import kr.or.ddit.farm.model.WeeklyFarmInfosVo;
 
 @Repository("finfoDao")
 public class FinfoDaoImpl implements FinfoDao {
@@ -113,6 +116,19 @@ public class FinfoDaoImpl implements FinfoDao {
 	@Override
 	public int deleteItemMenualInfo(ItemmanualVo itemmanualVo) {
 		return tempplate.update("guides.deleteItemMenualInfo", itemmanualVo);
+	}
+
+	// 20210326_ggy : 주간 농사정보 등록
+	@Override
+	public int registWeeklyFarmInfos(Map<String, String> map) {
+		return tempplate.insert("guides.registWeeklyFarmInfos", map);
+	}
+	
+	// 20210326_ggy : 주간 농사정보 조회 
+	@Override
+	public List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList() {
+		
+		return tempplate.selectList("guides.selectWeeklyFarmInfosList");
 	}
 
 }

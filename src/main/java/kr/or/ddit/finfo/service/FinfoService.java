@@ -1,11 +1,13 @@
 package kr.or.ddit.finfo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.GardenguideVo;
 import kr.or.ddit.farm.model.GuideSqlVo;
 import kr.or.ddit.farm.model.ItemmanualVo;
+import kr.or.ddit.farm.model.WeeklyFarmInfosVo;
 
 public interface FinfoService {
 
@@ -53,5 +55,11 @@ public interface FinfoService {
 
 	// 20210311 KWS 제철정보 조회
 	List<GardenguideVo> selectSeasons(String season);
+	
+	// 20210326_ggy : 주간 농사정보 등록
+	int registWeeklyFarmInfos(Map<String, String> map);
+	
+	// 20210326_ggy : 주간 농사정보 조회
+	List<WeeklyFarmInfosVo> selectWeeklyFarmInfosList();
 
 }

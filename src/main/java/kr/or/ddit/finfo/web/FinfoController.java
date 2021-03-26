@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -259,7 +261,82 @@ public class FinfoController {
 	@RequestMapping("weeklyFarmInfosView")
 	public String fmanageView(Model model) {
 		logger.debug("IN weeklyFarmInfosView()");
+		
+		model.addAttribute("weeklyFarmInfosList", finfoService.selectWeeklyFarmInfosList() );
+		
 		return "tiles.finfo.weeklyFarmInfosMain";
+	}
+	
+	// 20210326_ggy : 주간 농사정보 등록을 위한 진입
+	@RequestMapping(path = "registWeeklyFarmInfosView", method = { RequestMethod.POST })
+	public String registWeeklyFarmInfosView(String user_id) {
+		logger.debug("registWeeklyFarmInfosView 진입");
+		
+		if(!user_id.equals("admin")) {
+			logger.debug("관리자가 아닙니다.");
+			return "redirect:/finfo/weeklyFarmInfosView";
+		}
+		
+		
+		return "tiles.finfo.registWeeklyFarmInfos";
+	}
+	
+	// 20210326_ggy : 주간 농사정보 등록
+	@RequestMapping(path = "registWeeklyFarmInfos", method = { RequestMethod.POST })
+	public String registWeeklyFarmInfos(HttpServletRequest req, MultipartFile file_file1) {
+		logger.debug("registWeeklyFarmInfos 진입");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("writer", req.getParameter("writer"));
+		map.put("title", req.getParameter("title"));
+		
+		FilesVo filesVo = new FilesVo();
+		
+		// 첨부파일 등록 부분
+		if (file_file1.getSize() > 0) {
+			logger.debug("file1 있다.");
+			String path = "c:\\fdown\\weeklyFarmInfos\\";
+			try {
+				file_file1.transferTo(new File(path + file_file1.getOriginalFilename()));
+				filesVo.setFile_nm(file_file1.getOriginalFilename());
+				filesVo.setFile_path(path + filesVo.getFile_nm());
+				
+				int registFilesCnt = fsurpportService.registFiles(filesVo);
+				
+				logger.debug("registFilesCnt : {}", registFilesCnt);
+				
+				map.put("file_no", Integer.toString(registFilesCnt));
+				
+			} catch (IllegalStateException | IOException e) {
+				filesVo.setFile_nm("");
+			}
+		} else {
+			logger.debug("첨부 파일1없다.");
+		}
+		
+		int registCnt = finfoService.registWeeklyFarmInfos(map);
+		
+		if(registCnt == 1) {
+			logger.debug("주간 농사정보 등록");
+		}
+
+		return "redirect:/finfo/weeklyFarmInfosView";
+		
+	}
+	
+	// 20210326_ggy : 농업정보 - 주간 농사정보 파일 다운로드
+	@RequestMapping("weeklyFarmInfosFilePath")
+	public void weeklyFarmInfosFilePath(HttpServletResponse resp, String file_nm, HttpServletRequest req) throws IOException {
+		logger.debug("weeklyFarmInfosFilePath/profile 진입");
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+		byte fileByte[] = org.apache.commons.io.FileUtils
+				.readFileToByteArray(new File("c:\\fdown\\weeklyFarmInfos\\" + file_nm));
+		resp.setContentType("application/octet-stream");
+		resp.setContentLength(fileByte.length);
+		resp.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(file_nm, "UTF-8") + "\";");
+		resp.getOutputStream().write(fileByte);
+		resp.getOutputStream().flush();
+		resp.getOutputStream().close();
 	}
 
 	// 20210315_ggy : 농업정보 - 품목별영농매뉴얼 진입

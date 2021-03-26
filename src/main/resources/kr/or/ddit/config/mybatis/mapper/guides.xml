@@ -162,5 +162,41 @@
 		select * from gardenguide
         where item_code = #{item_code}
 	</select>
+	
+	<!-- 20210326_ggy : 주간 농사정보 조회 -->
+	<select id="selectWeeklyFarmInfosList" resultType="weeklyFarmInfosVo">
+		SELECT 
+		    w.w_info_no 
+		    , w.writer
+		    , w.title
+		    , w.reg_dt
+		    , w.hit
+		    , w.file_no 
+		    , f.file_nm     
+		FROM weeklyinfo w
+		JOIN files f
+		ON w.file_no = f.file_no
+		WHERE w.use_yn = 'Y'
+		AND f.use_yn = 'Y'
+	</select>
+	
+	<!-- 20210326_ggy : 주간 농사정보 등록 -->
+	<insert id="registWeeklyFarmInfos" parameterType="map">
+		insert into weeklyinfo(
+				w_info_no
+				, writer
+				, title
+				, reg_dt
+				, hit
+				, file_no
+				, use_yn)
+			values( seq_weeklyinfo.nextval
+					, #{writer }
+					, #{title }
+					, sysdate
+					, 0
+					, #{file_no }
+					, 'Y' )
+	</insert>
 
 </mapper>

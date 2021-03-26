@@ -9,8 +9,12 @@
 <div>
 	
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right"
-			onclick="location.href='#'" class=" btn btn-outline-dark m-1">주간 농사정보 등록</button>
+<!-- 		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" -->
+<!-- 			onclick="location.href='#'" class=" btn btn-outline-dark m-1">주간 농사정보 등록</button> -->
+		<form action="${pageContext.request.contextPath}/finfo/registWeeklyFarmInfosView" method="post">
+			<input type="hidden" name="user_id" value="${S_USER.user_id }">
+			<input type="submit" value="주간 농사정보 등록">
+		</form>
 	</c:if>
 </div>
 	
@@ -62,20 +66,19 @@
 								</tr>
 							</tfoot>
 							<tbody>
-<%-- 								<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
+								<c:forEach items="${weeklyFarmInfosList }" var="weeklyFarmInfosList">
 									<tr >
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>${weeklyFarmInfosList.w_info_no }</td>
+										<td>${weeklyFarmInfosList.title }</td>
+										<td>${weeklyFarmInfosList.writer }</td>
 										<td>
-											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
+											<fmt:formatDate value="${weeklyFarmInfosList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>
 										<td>
-											<input type="button" value="다운로드"
-												onclick="location.href=''">
+											<button class="btn btn-primary " onclick="location.href='${pageContext.request.contextPath}/finfo/weeklyFarmInfosFilePath?file_nm=${weeklyFarmInfosList.file_nm }'">${weeklyFarmInfosList.file_nm }</button>
 										</td>
 									</tr>
-<%-- 								</c:forEach> --%>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
