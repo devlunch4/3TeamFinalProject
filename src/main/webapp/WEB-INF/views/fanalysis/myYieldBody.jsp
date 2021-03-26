@@ -298,7 +298,7 @@ $("#week").on("click",function(){
      		  gauge: {
      		    type: "single",
      		    max: ${total},
-     		    min: 1,
+     		    min: 0,
      		    fullCircle: true,
      		    arcLength: 100
      		  },

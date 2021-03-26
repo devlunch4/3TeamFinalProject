@@ -89,11 +89,11 @@ $("#tb_filter").css( "float", "left" );
 		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 	</div>
 	<div class="form-group row text-center m-0">
-		<input type="text" id="week-picker" value="주간 선택" name="week" class="btn btn-info col m-2">
-		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col  btn btn-info m-2">
-		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col  btn btn-info m-2">
-		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col  btn btn-info m-2">
-		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col  btn btn-info m-2">
+		<input type="text" id="week-picker" value="주간 선택" name="week" class="btn btn-info col m-2" readonly>
+		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col  btn btn-info m-2" readonly>
+		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col  btn btn-info m-2" readonly>
+		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col  btn btn-info m-2" readonly>
+		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col  btn btn-info m-2" readonly>
 		<button id="sel" class="btn btn-primary col-3 m-2 float-right">조 회</button>
 
 	</div>
@@ -337,7 +337,7 @@ $("#week").on("click",function(){
      		  gauge: {
      		    type: "single",
      		    max: ${total},
-     		    min: 1,
+     		    min: 0,
      		    fullCircle: true,
      		    arcLength: 100
      		  },

@@ -176,7 +176,7 @@ $("#").scrollTop($(document).height());
 		</div>
 	</div>
 	<div class="form-group ">
-		<canvas id="myChart" width="600" height="300">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+		<canvas id="myChart" width="400" height="400">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 	</div>
 </div>
 
