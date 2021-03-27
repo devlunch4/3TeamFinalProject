@@ -5,30 +5,23 @@
 
 <mapper namespace="fsurpports">
 
-	<!-- ggy_20210309 : 영농일지 전체 리스트 조회 -->
+	<!-- ggy_20210327 : 영농일지 전체 리스트 조회 -->
 	<select id="selectAllFsurpportList" resultType="farmdiaryVo" parameterType="String">
-		select f.f_diary_no, f.writer, f.my_simple_code, mysim.code_alias code_alias, 
+		select f.f_diary_no, f.writer, f.my_simple_code
+            , (select code_alias from mysimplecode where my_simple_code = f.my_simple_code) code_alias, 
 		    f.content, f.reg_dt, f.weather, f.low_temp, 
 		    f.high_temp, f.rainfall, f.humid, 
-		    f.yield, f.area, files.file_nm file_nm, 
-		    c.code_nm b_type_code, co.code_nm w_step_code, cod.code_nm item_code
+		    f.yield, f.area
+            , ( select file_nm from files where file_no = f.file_no) file_nm
+		    , ( select code_nm from codes where code_no = f.b_type_code) b_type_code
+            , ( select code_nm from codes where code_no = f.w_step_code)  w_step_code
+            , ( select code_nm from codes where code_no = f.item_code) item_code            
 		from farmdiary f
-		JOIN codes c
-		ON f.b_type_code = c.code_no
-		JOIN codes co
-		ON f.w_step_code = co.code_no
-		JOIN codes cod
-		ON f.item_code = cod.code_no
-		JOIN files files
-		ON f.file_no = files.file_no
-        JOIN mysimplecode mysim
-        ON f.my_simple_code = mysim.my_simple_code
-		where f.use_yn = 'Y'
-		and c.use_yn = 'Y'
-		and co.use_yn = 'Y'
-		and cod.use_yn = 'Y'
-		and files.use_yn ='Y'
-        and mysim.use_yn = 'Y'
+		where (select use_yn from files where file_no = f.file_no) = 'Y'
+		and (select use_yn from codes where code_no = f.b_type_code) = 'Y'
+		and (select use_yn from codes where code_no = f.w_step_code) = 'Y'
+		and (select use_yn from codes where code_no = f.item_code) = 'Y'
+        and (select use_yn from mysimplecode where my_simple_code = f.my_simple_code) = 'Y'        
 		and writer = #{writer }
 		ORDER BY reg_dt desc
 	</select>
