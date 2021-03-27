@@ -22,7 +22,7 @@
 <!-- cookie set -->
 <script type="text/javascript">
 	//remember check 함수
-	$(function() { 
+	$(function() {
 		if (Cookies.get("user_id") != undefined) {
 			$("#user_id").val(Cookies.get("user_id"));
 			$("#rememberId").prop("checked", true);
@@ -39,36 +39,36 @@
 			}
 			$("#frm").submit();
 		});
-		 
-		//20210326_KJH 엔터버튼으로 로그인 동작
-		$("#user_id").keyup(function(e){
-			if(e.keyCode == 13)  {
 
-			console.log("로그인클릭확인");
-		if ($("#rememberId").is(":checked") == true) {
-			Cookies.set("user_id", $("#user_id").val());
-			Cookies.set("rememberId", "Y");
-		} else {
-			Cookies.remove("user_id");
-			Cookies.remove("rememberId");
-		}
-		$("#frm").submit();
+		//20210326_KJH 엔터버튼으로 로그인 동작
+		$("#user_id").keyup(function(e) {
+			if (e.keyCode == 13) {
+
+				console.log("로그인클릭확인");
+				if ($("#rememberId").is(":checked") == true) {
+					Cookies.set("user_id", $("#user_id").val());
+					Cookies.set("rememberId", "Y");
+				} else {
+					Cookies.remove("user_id");
+					Cookies.remove("rememberId");
+				}
+				$("#frm").submit();
 			}
 		});
-		
-		//20210326_KJH 엔터버튼으로 로그인 동작
-		$("#user_pw").keyup(function(e){
-			if(e.keyCode == 13)  {
 
-			console.log("로그인클릭확인");
-		if ($("#rememberId").is(":checked") == true) {
-			Cookies.set("user_id", $("#user_id").val());
-			Cookies.set("rememberId", "Y");
-		} else {
-			Cookies.remove("user_id");
-			Cookies.remove("rememberId");
-		}
-		$("#frm").submit();
+		//20210326_KJH 엔터버튼으로 로그인 동작
+		$("#user_pw").keyup(function(e) {
+			if (e.keyCode == 13) {
+
+				console.log("로그인클릭확인");
+				if ($("#rememberId").is(":checked") == true) {
+					Cookies.set("user_id", $("#user_id").val());
+					Cookies.set("rememberId", "Y");
+				} else {
+					Cookies.remove("user_id");
+					Cookies.remove("rememberId");
+				}
+				$("#frm").submit();
 			}
 		});
 	});
@@ -113,7 +113,8 @@
 								</div>
 								<div class="card-footer text-center">
 									<div class="small">
-										<a href="${pageContext.request.contextPath}/join/view">아직 회원이 아니신가요? 똑똑한 농부들 회원 되기!</a>
+										<a href="${pageContext.request.contextPath}/join/view">아직 회원이 아니신가요? <br>똑똑한 농부들 회원 되기!
+										</a>
 									</div>
 								</div>
 							</div>
