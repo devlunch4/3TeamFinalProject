@@ -70,22 +70,20 @@
 	</select>
 	
 	
-	<!-- ggy_20210305 : mysimplecode 내가 등록한 간편 등록 조회해서 화면에 배치. -->
+	<!-- ggy_20210327 : mysimplecode 내가 등록한 간편 등록 조회해서 화면에 배치. -->
 	<select id="selectMySimpleCodeInfo" parameterType="mySimpleCodeVo"
 		resultType="mySimpleCodeVo">
 		
-		SELECT my.my_simple_code, my.owner, 
-		c.code_nm item_code, co.code_nm b_type_code, my.code_alias, my.area
-		FROM mysimplecode my
-		JOIN codes c
-		ON my.item_code = c.code_no 
-		JOIN codes co
-		ON my.b_type_code = co.code_no
+		SELECT my.my_simple_code, my.owner
+        , (select code_nm from codes where code_no = my.item_code) item_code
+        , ( select code_nm from codes where code_no = my.b_type_code) b_type_code
+        , my.code_alias, my.area
+		FROM mysimplecode my        
 		where my.owner = #{owner }
 		and my.my_simple_code = #{my_simple_code }
 		and my.use_yn = 'Y'
-		and c.use_yn = 'Y'
-		and co.use_yn = 'Y'
+		and (select use_yn from codes where code_no = my.item_code) = 'Y'
+		and (select use_yn from codes where code_no = my.b_type_code) = 'Y'
 		
 	</select>
 	
