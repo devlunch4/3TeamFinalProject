@@ -114,7 +114,7 @@
 										#{code_alias }, #{area }, 'Y')
 	</insert>
 	
-	<!-- ggy_20210306 : 페이징 처리하여 영농일지 검색 조회 -->
+	<!-- ggy_20210327 : 페이징 처리하여 영농일지 검색 조회 -->
 	<select id="searchAllFarmdiaryList" resultType="farmdiaryVo"
 		parameterType="farmdiaryVo">
 		
