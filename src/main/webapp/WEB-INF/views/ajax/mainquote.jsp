@@ -183,7 +183,7 @@ $(function(){
 	<div class="form-group ">
 		<canvas id="myChart" width="400" height="320">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 	</div>
-z
+
 
 <script> 
 $(function(){

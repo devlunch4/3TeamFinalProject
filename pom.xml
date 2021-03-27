@@ -323,12 +323,20 @@
 		<!-- <version>12.2.0.1</version> -->
 		<!-- </dependency> -->
 
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.4</version>
-		</dependency>
+	<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
+	<dependency>
+		<groupId>com.oracle.database.jdbc</groupId>
+		<artifactId>ojdbc6</artifactId>
+		<version>11.2.0.4</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.dataformat</groupId>
+		<artifactId>jackson-dataformat-xml</artifactId>
+		<version>2.12.1</version>
+	</dependency>
+		
 
 	</dependencies>
 

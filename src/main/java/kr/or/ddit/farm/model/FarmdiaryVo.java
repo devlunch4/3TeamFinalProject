@@ -2,12 +2,22 @@ package kr.or.ddit.farm.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 // ggy_20210306 : FarmdiaryVo 수정
+@XmlRootElement(name ="farmdiaryVo")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FarmdiaryVo {
 
 	private int f_diary_no;
 	private String writer;
 	private int my_simple_code;
+	@XmlAttribute
 	private String content;
 	private Date reg_dt;
 	private String weather;
@@ -15,6 +25,7 @@ public class FarmdiaryVo {
 	private int high_temp;
 	private int rainfall;
 	private int humid;
+	@XmlElement
 	private int yield;
 	private int area;
 	private int file_no;
