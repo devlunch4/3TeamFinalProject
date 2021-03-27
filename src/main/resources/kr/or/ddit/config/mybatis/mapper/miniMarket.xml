@@ -5,6 +5,7 @@
 
 <mapper namespace="miniMarkets">
 	
+	<!-- 20210327_ggy : 미니장터 게시글 전체 조회 -->
 	<select id="selectAllMiniMarketList" parameterType="miniMarketVo" 
 		resultType="miniMarketVo">
 		SELECT 
@@ -19,22 +20,14 @@
 			, m.thumbnail
 		    , m.mobile
 			, m.hit
-		    , c.code_nm item_code_nm
-            , co.code_nm head_code_nm
-            , f.file_nm thumbnail_file_nm
-            
+		    , (select code_nm from codes where code_no = m.item_code ) item_code_nm
+            , (select code_nm from codes where code_no = m.head_code ) head_code_nm
+            , (select file_nm from files where file_no = m.thumbnail ) thumbnail_file_nm 
 		FROM market m
-		JOIN codes c
-		ON m.item_code = c.code_no
-        JOIN codes co
-        ON m.head_code = co.code_no
-        JOIN files f
-	    ON m.thumbnail = f.file_no
-        
 		WHERE 1=1
         AND m.use_yn = 'Y'
-		AND c.use_yn = 'Y'
-		AND f.use_yn = 'Y'
+		AND (select use_yn from codes where code_no = m.item_code ) = 'Y'
+		AND (select use_yn from files where file_no = m.thumbnail ) = 'Y'
         
         <if test="item_code != null and item_code != ''">
 	        AND m.item_code = #{item_code }
