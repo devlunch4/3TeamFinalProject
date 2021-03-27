@@ -48,12 +48,12 @@ $(function(){
 	
 	$("#category").val("${itemcategorycode}").prop("selected",true);
 	if(${itemcategorycode}=='100'){
-		$("#item2").css("display","none")
-		$("#item1").css("display","")
+		$("#item2").css("display","none");
+		$("#item1").css("display","");
 	$("#item1").val("${itemcode}").prop("selected",true);
 	}else if(${itemcategorycode}=='200'){
-		$("#item1").css("display","none")
-		
+		$("#item1").css("display","none");
+		$("#item2").css("display","");
 	$("#item2").val("${itemcode}").prop("selected",true);
 	}
 });
@@ -173,10 +173,13 @@ $("#").scrollTop($(document).height());
 			</table>
 		</div>
 	</div>
-	<div class="form-group ">
-		<canvas id="myChart" width="400" height="400">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
-	</div>
+
 </div>
+<!-- <div > -->
+ <div class="form-group" id="mychartfirst"> 
+<canvas id="myChart" style="height:70vh; width:450vw"></canvas>
+ </div> 
+<!--   </div> -->
 
 <script> 
 	$(document).ready(function(){
@@ -221,6 +224,11 @@ $("#").scrollTop($(document).height());
 					] },
 		
 			// 옵션 
-			options: {} }); 
+			options: {
+				
+				maintainAspectRatio: false
+				
+			} });
+
 	})
 </script>

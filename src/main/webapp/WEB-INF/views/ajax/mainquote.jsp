@@ -180,10 +180,10 @@ $(function(){
 			</table>
 		</div>
 	</div> 
-	<div class="form-group ">
-		<canvas id="myChart" width="400" height="320">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
-	</div>
-z
+ <div class="form-group" id="mychartfirst"> 
+<canvas id="myChart" style="height:70vh; width:450vw"></canvas>
+ </div> 
+
 
 <script> 
 $(function(){
@@ -228,6 +228,10 @@ $(function(){
 					] },
 		
 			// 옵션 
-			options: {} }); 
+			options: {
+				
+				maintainAspectRatio: false
+				
+			} }); 
 	});
 </script>
