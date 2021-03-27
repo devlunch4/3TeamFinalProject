@@ -127,6 +127,8 @@ $("#").scrollTop($(document).height());
 		<div class="spinner-border loadspin" role="status" style="position: fixed; z-index: 1031; top: 35%; left: 48%; display: none;">
 			<span class="sr-only loadspin " style="display: none;">Loading...</span>
 		</div>
+		
+		
 	</div>
 
 	<div class="form-group text-right">

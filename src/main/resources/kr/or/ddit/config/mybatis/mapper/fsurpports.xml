@@ -149,7 +149,7 @@
 		WHERE writer = #{user_id}
 	</select>
 
-	<!-- ggy_20210306 : 해당 영농일지 조회 -->
+	<!-- ggy_20210327 : 해당 영농일지 조회 -->
 	<select id="selectFarmdiaryInfo" resultType="farmdiaryVo"
 		parameterType="int">
 		SELECT
@@ -157,19 +157,13 @@
 		f.reg_dt,
 		f.weather, f.low_temp,
 		f.high_temp, f.rainfall, f.humid,
-		f.yield, f.area, files.file_nm file_nm, f.file_no,
-		c.code_nm b_type_code, co.code_nm
-		w_step_code,
-		cod.code_nm item_code
+		f.yield, f.area
+        , (select file_nm from files where file_no = f.file_no) file_nm
+        , f.file_no
+		, (select code_nm from codes where code_no = f.b_type_code) b_type_code
+        , (select code_nm from codes where code_no = f.w_step_code) w_step_code
+		, (select code_nm from codes where code_no = f.item_code) item_code
 		FROM farmdiary f
-		JOIN codes c
-		ON f.b_type_code = c.code_no
-		JOIN codes co
-		ON f.w_step_code = co.code_no
-		JOIN codes cod
-		ON f.item_code = cod.code_no
-		JOIN files files
-		ON f.file_no = files.file_no
 		WHERE f.f_diary_no = #{f_diary_no }
 	</select>
 	
