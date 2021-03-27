@@ -22,7 +22,7 @@
 <!-- cookie set -->
 <script type="text/javascript">
 	//remember check 함수
-	$(function() {
+	$(function() { 
 		if (Cookies.get("user_id") != undefined) {
 			$("#user_id").val(Cookies.get("user_id"));
 			$("#rememberId").prop("checked", true);

@@ -3,11 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <script type="text/javascript">
 	$(document).ready( function () {
 		  $('#dataTable').dataTable( {
 			  //order by 쿼리 적용을 위해 
 			  "ordering": false,
+			  
+// 			  //3 개 항목 중 1 ~ 3 개 표시 - 문구 안보이게
+// 			  "bInfo" : false,
 			  
 			  //검색중 제목만 검색 되도록 설정
 			  "columnDefs" : [ {
@@ -83,7 +87,9 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div class="row">
 					<button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/qna/qnaRegistView' ">등록</button>
+					</div>
 				</div>
 			</div>
 		</div>
