@@ -73,20 +73,18 @@
 		ORDER BY reg_dt desc
 	</select>
 	
-	<!-- 20210319_ggy : 미니장터 게시글 상세 조회때 첨부파일 조회 -->
+	<!-- 20210327_ggy : 미니장터 게시글 상세 조회때 첨부파일 조회 -->
 	<select id="selectMarketFileList" parameterType="int" 
 			resultType="marketFilesVo">
 		SELECT 
 		    m.file_record_no
 		    , m.market_no
 		    , m.file_no
-		    , f.file_nm
+		    , (select file_nm from files where file_no = m.file_no) file_nm
 		FROM marketfiles m
-		JOIN files f
-		ON m.file_no = f.file_no
 		WHERE market_no = #{market_no }
 		AND m.use_yn = 'Y'
-		AND f.use_yn = 'Y'
+		AND (select use_yn from files where file_no = m.file_no) = 'Y'
 	</select>
 	
 	<!-- 20210319_ggy : 미니장터 게시글 품목 종류 조회 -->
