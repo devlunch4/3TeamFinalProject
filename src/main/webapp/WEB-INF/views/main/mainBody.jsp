@@ -18,7 +18,6 @@ $(function() {
 	}, 300);
 });
 
-
 $(function(){
 	$("#category").change(function(){
 		var num = $("#category").val();
@@ -57,7 +56,7 @@ $(function(){
 		
 	$("#item2").val("${itemcode}").prop("selected",true);
 	}
-})
+});
 $("#").scrollTop($(document).height());
 </script>
 <!-- 20210302_KJH items -> codes 변경사항 갱신 -->
@@ -70,7 +69,7 @@ $("#").scrollTop($(document).height());
 					<td class="table-active text-center py-1">날짜선택</td>
 				</tr>
 				<tr class="p-2">
-					<td >
+					<td>
 						<!-- 현재날짜를 넘지 않게 max값 지정 --> <c:set var="now" value="<%=new java.util.Date()%>" /> <c:set var="sysd">
 							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
 						</c:set> <input type="date" id="dateserch" class="form-control" value="${mydate}" max="${sysd}">
@@ -96,7 +95,6 @@ $("#").scrollTop($(document).height());
 				</tr>
 			</table>
 		</div>
-
 
 
 		<div class="col-md-4 p-1">
@@ -136,38 +134,38 @@ $("#").scrollTop($(document).height());
 	</div>
 
 	<div class="form-group ">
-		<div class="table-responsive"> 
-			<table class="table table-bordered dataTable small" style="font-size: 15px;">
+		<div class="table-responsive">
+			<table class="table dataTable small" style="font-size: 15px;">
 				<tr>
-					<th class="table-active px-2 py-1 text-center" style="width: 50px;">구분</th>
+					<th class="table-active px-0 py-1 text-center" style="width: 50px;">구분</th>
 					<c:forEach items="${target}" var="tar">
 						<th class="text-center py-1 px-0">${tar}</th>
 					</c:forEach>
 				</tr>
- 
+
 				<tr>
-					<td class="table-active px-2 py-1 text-center">평균</td>
+					<td class="table-active px-0 py-1 text-center">평균</td>
 					<c:forEach items="${average}" var="avg">
 						<td class="text-center p-1">${avg}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
-					<td class="table-active px-2 py-1 text-center">최고값</td>
+					<td class="table-active px-0 py-1 text-center">최고값</td>
 					<c:forEach items="${maxvalue}" var="maxval">
 						<td class="text-center p-1">${maxval}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
-					<td class="table-active px-2 py-1 text-center">최저값</td>
+					<td class="table-active px-0 py-1 text-center">최저값</td>
 					<c:forEach items="${minvalue}" var="minval">
 						<td class="text-center p-1">${minval}</td>
 					</c:forEach>
 				</tr>
 
 				<tr>
-					<td class="table-active px-2 py-1 text-center">등락률</td>
+					<td class="table-active px-0 py-1 text-center">등락률</td>
 					<c:forEach items="${flrate}" var="rate">
 						<td class="text-center p-1">${rate}</td>
 					</c:forEach>

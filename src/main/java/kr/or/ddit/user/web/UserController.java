@@ -50,6 +50,11 @@ public class UserController {
 	@RequestMapping("main")
 	public String main(Model model, CodesVo codesVo, String sdate) {
 		logger.debug("In main()");
+		logger.debug("In main()");
+		logger.debug("In main()");
+		logger.debug("In main()");
+		logger.debug("In main()");
+		
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
