@@ -498,7 +498,7 @@ public class FsurpportController {
 		header.add("영농일지번호");
 		header.add("작성자");
 		header.add("간편등록코드");
-		header.add("내용");
+//		header.add("내용");
 		header.add("작성일자");
 		header.add("날씨");
 		header.add("최저온도");
@@ -541,7 +541,7 @@ public class FsurpportController {
 			r.createCell(colnum++).setCellValue(d.getF_diary_no());
 			r.createCell(colnum++).setCellValue(d.getWriter());
 			r.createCell(colnum++).setCellValue(d.getMy_simple_code());
-			r.createCell(colnum++).setCellValue(d.getContent());
+//			r.createCell(colnum++).setCellValue(d.getContent());
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			String dateToStr = dateFormat.format(d.getReg_dt());
 			r.createCell(colnum++).setCellValue(d.getWeather());
