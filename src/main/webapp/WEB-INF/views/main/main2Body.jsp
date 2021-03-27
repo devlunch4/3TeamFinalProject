@@ -55,7 +55,6 @@
 			//         dataType : "json",
 			// 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
 			success : function(data) {
-
 				$('#popularity2').append(data);
 			}
 		});
@@ -77,7 +76,7 @@
 	</div>
 
 	<div class="text-center pb-2">
-		<button class="btn btn-info col-12" id="quotepse" data-toggle="collapse" data-target="#quote">시세분석</button>
+		<button class="btn btn-info col-12" id="quotepse" data-toggle="collapse" data-target="#quote">시세분석▼</button>
 	</div>
 
 	<div id="quote" class="collapse show">
@@ -85,7 +84,7 @@
 	</div>
 
 	<div class="text-center pb-2">
-		<button class="btn btn-info text-center col-12" id="ratiopse" data-toggle="collapse" data-target="#ratio">품목별 비율</button>
+		<button class="btn btn-info text-center col-12" id="ratiopse" data-toggle="collapse" data-target="#ratio">품목별 비율▼</button>
 	</div>
 
 	<div id="ratio" class="collapse show">
@@ -93,7 +92,7 @@
 	</div>
 
 	<div class="text-center pb-2">
-		<button class="btn btn-info text-center col-12" id="popularitypse" data-toggle="collapse" data-target="#popularity">인기농작물</button>
+		<button class="btn btn-info text-center col-12" id="popularitypse" data-toggle="collapse" data-target="#popularity">인기농작물▼</button>
 	</div>
 
 	<div id="popularity" class="collapse show">
