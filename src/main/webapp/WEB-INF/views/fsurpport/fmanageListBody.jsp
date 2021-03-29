@@ -50,16 +50,16 @@
 		
 		$(".info").on("click",function(){
 			
-			alert($(this).attr('id'));
+			/* alert($(this).attr('id')); */
 			
 			idval= $(this).attr('id');
 			
-			alert(idval);
+			/* alert(idval); */
 			$("#manage_no").val($("#manage_no".concat(idval)).val());
 			
-		 	alert($("#manage_no".concat(idval)).val());
+		 	/* alert($("#manage_no".concat(idval)).val()); */
 		 	
-		 	alert($("#manage_no").val());
+		 	/* alert($("#manage_no").val()); */
 			$("#infoform").submit();
 			
 
@@ -75,12 +75,12 @@
 	<div class="card-body p-1">
 		<div class="table-responsive">
 			<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-			
+
 				<div class="row">
 					<div class="col-sm-12 col-md-6">
 						<div class="dataTables_length" id="dataTable_length"></div>
-					</div> 
-					  	
+					</div>
+
 					<div class="col-sm-12 col-md-6">
 						<div id="dataTable_filter" class="dataTables_filter"></div>
 					</div>
@@ -104,24 +104,23 @@
 									</th>
 								</tr>
 							</thead>
-							
+
 							<form action="${pageContext.request.contextPath}/fsurpport/fmanageInfo" method="post" id="infoform">
-							<input type="hidden" name="manage_no" id="manage_no" value="">
+								<input type="hidden" name="manage_no" id="manage_no" value="">
 							</form>
-							
+
 							<tbody>
 								<c:forEach items="${fmanageList }" var="fmanage" varStatus="sts">
-								
+
 									<c:set var="dt">
 										<fmt:formatDate value="${fmanage.reg_dt}" pattern="yyyy-MM-dd" />
 									</c:set>
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
 									<tr data-guidecode="${sts.count}" class="info" id="${sts.count}">
 										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${sts.count}</td>
-										<td id = "seow" class="guidecode" data-guidecode="${sts.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
-										<td id = "selo" class="guidecode" data-guidecode="${sts.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">
-										${fmanage.location}<input type=hidden id="manage_no${sts.count}" value="${fmanage.manage_no}"></td>
-										<td id = "sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
+										<td id="seow" class="guidecode" data-guidecode="${sts.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
+										<td id="selo" class="guidecode" data-guidecode="${sts.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.location}<input type=hidden id="manage_no${sts.count}" value="${fmanage.manage_no}"></td>
+										<td id="sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
 									</tr>
 									<%-- </c:if> --%>
 								</c:forEach>
@@ -133,5 +132,5 @@
 		</div>
 	</div>
 </div>
-		<input type="button" class="btn btn-primary p-0 col-3 float-right" value="등록" onclick="location.href='${pageContext.request.contextPath}/fsurpport/fmanageInsertPage'">
-	
+<input type="button" class="btn btn-primary p-0 col-3 float-right" value="등록" onclick="location.href='${pageContext.request.contextPath}/fsurpport/fmanageInsertPage'">
+
