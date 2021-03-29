@@ -132,8 +132,8 @@
 
 		$(".save").on("click", function() {
 
-			alert($(this).attr('id'));
-			alert($("#msr_code1").val());
+			console.log($(this).attr('id'));
+			console.log($("#msr_code1").val());
 			idval = $(this).attr('id');
 
 			$("#msr_code").val($("#msr_code".concat(idval)).val());
@@ -141,9 +141,9 @@
 			$("#owner").val($("#owner".concat(idval)).val());
 			$("#form").submit();
 
-			alert($("#msr_code").val() + "ok");
-			alert($("#owner").val());
-			alert($("#msr_nm").val());
+			console.log($("#msr_code").val() + "ok");
+			console.log($("#owner").val());
+			console.log($("#msr_nm").val());
 		});
 
 		$("#setBtn").on("click", function() {

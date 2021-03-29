@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="form-group mt-2">
-<div class="ml-3 mb-2">
-	<button type="button" onclick="openSocket();">대화방 참여</button>
-	<button type="button" onclick="closeSocket();">대회방 나가기</button>
+<div class="m-2">
+	<!-- <button type="button" onclick="openSocket();">대화방 참여</button> -->
+	<button class="btn btn-secondary" type="button" onclick="closeSocket();">대화방 나가기</button>
 
 <!-- 	<button type="button" onclick="javascript:clearText();">대화내용 지우기</button> -->
 </div>
@@ -26,7 +26,7 @@
         var ws;
         var messages = document.getElementById("messages");
         
-        function openSocket(){
+        $(function openSocket(){
             if(ws !== undefined && ws.readyState !== WebSocket.CLOSED ){
                 writeResponse("WebSocket is already opened.");
                 return;
@@ -51,7 +51,7 @@
                 writeResponse("대화 종료");
             }
             
-        }
+        });
         
         function send(){
            // var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
