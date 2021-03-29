@@ -952,6 +952,7 @@ public class FsurpportController {
 	@RequestMapping(path = "msrUpdate", method = { RequestMethod.GET })
 	public String msrUpdate(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		logger.debug("장치 수정 msrUpdate");
+		logger.debug("msrequipVo확인 : {}",msrequipVo);
 		fsurpportService.msrUpdate(msrequipVo);
 		return "redirect:/fsurpport/msrequipList";
 	}

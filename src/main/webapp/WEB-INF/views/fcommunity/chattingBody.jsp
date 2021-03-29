@@ -32,7 +32,7 @@
                 return;
             }
             //웹소켓 객체 만드는 코드
-            ws = new WebSocket("ws://192.168.0.126:80/finalProject/echo.do");//아이피 주소 셋팅할것.
+            ws = new WebSocket("ws://192.168.0.111/finalProject/echo.do");//아이피 주소 셋팅할것.
             
             ws.onopen = function(event){
                 if(event.data === undefined){

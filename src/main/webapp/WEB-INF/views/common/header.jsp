@@ -148,7 +148,7 @@
 	<!-- Navbar-->
 	<c:if test="${S_USER != null}">
 		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="m-2"><a class="nav-link small text-white p-0" href="${pageContext.request.contextPath}/fcommunity/chatting">채팅</a></li>
+			<li class="m-1"><a class="nav-link small text-white p-0" href="${pageContext.request.contextPath}/fcommunity/chatting">채팅</a></li>
 		</ul>
 	</c:if>
 
