@@ -18,7 +18,7 @@
 					</a>
 				</c:when>
 				<c:otherwise></c:otherwise>
-			<%-- 
+				<%-- 
 			<a class="nav-link" href="${pageContext.request.contextPath}/fcommunity/chatting">
 				<div class="sb-nav-link-icon">
 					<i class="fas fa-users-cog fa-fw"></i>

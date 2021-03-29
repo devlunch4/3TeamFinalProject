@@ -20,7 +20,7 @@ public class UserVo {
 	public Date reg_dt; // 가입일
 	public int file_no; // 파일번호
 	public int login_fail_cnt; // 로그인 실패수
-	public Date logout_dt; // 로그아웃 시간
+	public Date login_dt; // 로그아웃 시간
 	public String use_yn; // 사용여부
 
 	public UserVo() {
@@ -124,12 +124,12 @@ public class UserVo {
 		this.login_fail_cnt = login_fail_cnt;
 	}
 
-	public Date getLogout_dt() {
-		return logout_dt;
+	public Date getLogin_dt() {
+		return login_dt;
 	}
 
-	public void setLogout_dt(Date logout_dt) {
-		this.logout_dt = logout_dt;
+	public void setlogin_dt(Date login_dt) {
+		this.login_dt = login_dt;
 	}
 
 	public String getUse_yn() {
@@ -144,7 +144,7 @@ public class UserVo {
 	public String toString() {
 		return "UserVo [user_id=" + user_id + ", user_nm=" + user_nm + ", user_pw=" + user_pw + ", email=" + email
 				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zip=" + zip + ", mobile=" + mobile + ", reg_dt=" + reg_dt
-				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", logout_dt=" + logout_dt
+				+ ", file_no=" + file_no + ", login_fail_cnt=" + login_fail_cnt + ", login_dt=" + login_dt
 				+ ", use_yn=" + use_yn + "]";
 	}
 

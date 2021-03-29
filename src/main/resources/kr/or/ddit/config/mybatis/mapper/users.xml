@@ -51,7 +51,7 @@
 	<!-- 로그인 성공했을때 login_fail_cnt 카운트 0으로 리셋 -->
 	<update id="updateLoginFailCnt_reset" parameterType="String">
 		UPDATE users
-		SET login_fail_cnt = 0
+		SET login_fail_cnt = 0, login_dt = sysdate
 		WHERE user_id = #{value}
 	</update>
 
