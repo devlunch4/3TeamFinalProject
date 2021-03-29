@@ -51,7 +51,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-12 table-width">
 		<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 			<thead>
 				<tr role="row">

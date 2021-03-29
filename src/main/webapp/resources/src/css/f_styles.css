@@ -47,6 +47,13 @@ body {font-family: 'NanumBarunGothic', 'serif';}
 }
 
 
+/* 20210329 LYS - 테이블 넓이*/ 
+.table-width{
+	width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;	
+}
+
 
 /*-------------------------공통 css 끝 -------------------------*/
 
