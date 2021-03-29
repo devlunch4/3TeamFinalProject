@@ -55,7 +55,7 @@
 		<div class="col-xs-3 mr-1">
 			<div class="form-group m-0">
 				<label class="small m-0" for="my_simple_code">간편코드</label>
-				<input class="form-control text-right" id="my_simple_code" name="my_simple_code" type="text" value="${selectMySimpleCodeInfo.my_simple_code }" required="required"  readonly="readonly" style="width: 100px;">
+				<input class="form-control text-right" id="my_simple_code" name="my_simple_code" type="text" value="${selectMySimpleCodeInfo.my_simple_code }" required="required" readonly="readonly" style="width: 100px;">
 			</div>
 		</div>
 	</div>
@@ -177,22 +177,24 @@
 		<div class="col-xs-3 mr-1">
 			<label class="small mb-1" for="input_plant_prd">사진 등록(미리보기)</label>
 			<div class="mailbox-attachments clearfix text-center">
-				<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 100px; width: 100px; margin: 0 auto;">
-					<img id="pictureViewImg" style="width: auto; height: auto;" />
-				</div>
-
 				<div class="mailbox-attachment-info">
 					<div class="">
 						<input id="picture" class="form" type="file" name="file_file" accept=".gif, .jpg, .png" style="height: 37px;" />
 					</div>
 				</div>
+				<div class="mailbox-attachment-icon has-img" id="pictureView" style="border: 1px solid green; height: 100px; width: 100px; margin: 0 auto;">
+					<img id="pictureViewImg" style="width: 100px; height: 100px;" />
+				</div>
+
+
 			</div>
 		</div>
 	</div>
 
-
-	<div class="float-right">
-		<input type="submit" value="등록" class="btn btn-primary">
-		<input type="button" value="목록으로" class="btn btn-dark" onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'">
+	<div class="form-group">
+		<div class="text-right">
+			<input type="submit" value="등록" class="btn btn-primary">
+			<input type="button" value="목록으로" class="btn btn-dark" onclick="location.href='${pageContext.request.contextPath }/fsurpport/main?user_id=${S_USER.user_id}'">
+		</div>
 	</div>
 </form>
