@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="../resources/datepicker/css/bootstrap-datepicker.css">
 <script src="../resources/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="../resources/datepicker/locales/bootstrap-datepicker.ko.min.js"></script>
+
+
 <c:set var="data" value="100" />
 
 <script type="text/javascript">
@@ -82,17 +84,16 @@ ${manage_no}
 	<canvas id="myChart" width="600" height="300"></canvas>
 </div>
 
-
 <script> 
 	$(document).ready(function(){
 		
-		const colors = ['red','yellow','blue','#c3e6cb','#dc3545','#6c757d']; 
+		const colors = ['red','blue','black','#c3e6cb','#6c757d','#FFFFFF']; 
 		var chBar = document.getElementById("myChart"); 
 		var chartData = { labels: 
 			[
 				<c:forEach items="${mmmList}" var="msrrec" varStatus="status">
 
-				'${status.index}',
+				'${status.count}',
 
 			</c:forEach>
 				], 
@@ -131,6 +132,7 @@ ${manage_no}
 			type: 'bar', // 챠트를 그릴 데이타 
 			data: chartData, // 옵션 
 			options: { legend: { display: false } } });
+
 	})
 	
 	
