@@ -93,41 +93,56 @@
 	</c:if>
 </div>
 <hr>
-<div class="form-group">
-	<div class="row">
-		<form action="${pageContext.request.contextPath }/fcommunity/registMarketReply" method="post">
-			<textarea name="content" rows="2" cols="42" class="text-left"></textarea>
-			<input type="hidden" name="writer" value="${S_USER.user_id }">
-			<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }">
-			<input type="submit" value="댓글 등록">
-		</form>
-		<hr>
-		<br>
-		<label class="small mb-1" for="input_plant_prd">댓글</label>
-		<br>
-		<hr>
-		<c:forEach items="${marketReplyList }" var="marketReplyList">
-			<div id="modifyMarketReplyContent${marketReplyList.reply_code }" class="row">
-				<div>${marketReplyList.content }</div>
-				<label>&nbsp;&nbsp;&nbsp;${marketReplyList.writer }&nbsp;&nbsp;&nbsp;</label>
+<div class="">
+	<div class="row float-right ">
+		<c:choose>
+			<c:when test="${S_USER.user_id == miniMarketInfo.writer }">
+				<form action="${pageContext.request.contextPath }/fcommunity/modifyMiniMarketView" method="post">
+					<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
+					<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
+					<input type="submit" value="수정" class="btn btn-warning m-1">
+				</form>
+				<form action="${pageContext.request.contextPath }/fcommunity/deleteMiniMarketPost" method="post">
+					<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
+					<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
+					<input type="submit" value="삭제" onclick="alert('삭제합니다.');" class="btn btn-danger  m-1">
+				</form>
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
+		<input class="btn btn-primary m-1" type="button" value="취소" onClick="history.go(-1)">
+		<button type="button" class="btn btn-primary m-1" onclick="location.href='${pageContext.request.contextPath }/fcommunity/miniMarketView'">목록이동</button>
+	</div>
+</div>
+<br>
+<br>
+<hr>
+<div class="form-group  ">
+	<label class="mb-1">댓글 목록</label>
+	<hr class="m-0 mb-1">
+	<c:forEach items="${marketReplyList }" var="marketReplyList">
+		<div id="modifyMarketReplyContent${marketReplyList.reply_code }" class="row mb-1">
+			<div class="col-md-6 p-0">댓글내용 : ${marketReplyList.content }</div>
+			<label>
+				작성자 : ${marketReplyList.writer }&nbsp;&nbsp;&nbsp; 작성일 :
 				<fmt:formatDate value="${marketReplyList.reg_dt }" pattern="yyyy.MM.dd" />
-			</div>
+			</label>
+		</div>
+		<div class="text-left row">
 			<c:choose>
-
 				<c:when test="${S_USER.user_id == miniMarketInfo.writer }">
-					<input type="button" name="${marketReplyList.reply_code }" value="댓글수정" class="modifyMarketReplyBtn btn btn-warning  m-1">
+					<div class="text-left ">
+						<input type="button" name="${marketReplyList.reply_code }" value="댓글수정" class="modifyMarketReplyBtn btn btn-warning m-1 ">
+						<form action="${pageContext.request.contextPath }/fcommunity/deleteMarketReply" method="post" class="text-left">
+							<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
+							<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
+							<input type="hidden" name="reply_code" value="${marketReplyList.reply_code }" readonly="readonly">
+							<input type="submit" value="댓글삭제" onclick="alert('삭제합니다.');" class="btn btn-danger m-1">
+						</form>
+					</div>
 
-					<form action="${pageContext.request.contextPath }/fcommunity/deleteMarketReply" method="post" class="text-right">
-						<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
-						<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
-						<input type="hidden" name="reply_code" value="${marketReplyList.reply_code }" readonly="readonly">
-						<input type="submit" value="댓글삭제" onclick="alert('삭제합니다.');" class="btn btn-danger  m-1">
-					</form>
-
-
-					<div id="modifyMarketReplyDiv${marketReplyList.reply_code }" style="display: none;">
-						<form action="${pageContext.request.contextPath }/fcommunity/modifyMarketReply" method="post" class="text-right">
-							--%>
+					<div id="modifyMarketReplyDiv${marketReplyList.reply_code }" style="display: none;" class="text-left">
+						<form action="${pageContext.request.contextPath }/fcommunity/modifyMarketReply" method="post" class="text-left">
 							<textarea name="content" rows="2" cols="42" class="text-left">
 								${marketReplyList.content }
 							</textarea>
@@ -138,46 +153,19 @@
 							<input type="button" name="${marketReplyList.reply_code }" value="취소" class="modifyMarketReplyCancleBtn btn btn-primary m-1">
 						</form>
 					</div>
-					<br>
-					<br>
-					<br>
-					<br>
 				</c:when>
 				<c:otherwise></c:otherwise>
 			</c:choose>
-		</c:forEach>
+		</div>
+	</c:forEach>
+	<!-- 댓글 등록 -->
+	<div class="row">
+		<form action="${pageContext.request.contextPath }/fcommunity/registMarketReply" method="post">
+			<textarea name="content" rows="2" cols="42" class="text-left"></textarea>
+			<input type="hidden" name="writer" value="${S_USER.user_id }">
+			<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }">
+			<input type="submit" value="댓글 등록">
+		</form>
 	</div>
 </div>
-
-
-
-<div class="form-group">
-	<div class="row float-right">
-
-		<c:choose>
-			<c:when test="${S_USER.user_id == miniMarketInfo.writer }">
-				<%-- 				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/modifyMiniMarketView?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }">수정</a> --%>
-				<form action="${pageContext.request.contextPath }/fcommunity/modifyMiniMarketView" method="post" class="text-right">
-					<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
-					<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
-					<input type="submit" value="수정" class="btn btn-warning  m-1">
-				</form>
-
-				<%-- 				<a class="btn btn-primary" href="${pageContext.request.contextPath }/fcommunity/deleteMiniMarketPost?writer=${S_USER.user_id }&market_no=${miniMarketInfo.market_no }" --%>
-				<!-- 					onclick="alert('삭제합니다.');">삭제</a> -->
-				<form action="${pageContext.request.contextPath }/fcommunity/deleteMiniMarketPost" method="post" class="text-right">
-					<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
-					<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
-					<input type="submit" value="삭제" onclick="alert('삭제합니다.');" class="btn btn-danger  m-1">
-				</form>
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-		<input class="btn btn-primary m-1" type="button" value="취소" onClick="history.go(-1)">
-		<button type="button" class="btn btn-primary m-1" onclick="location.href='${pageContext.request.contextPath }/fcommunity/miniMarketView'">목록이동</button>
-
-
-	</div>
-</div>
-
 

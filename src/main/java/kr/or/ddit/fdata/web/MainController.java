@@ -44,8 +44,12 @@ public class MainController {
 
 	@RequestMapping("main2")
 	public String main2(Model model) {
-
 		return "tiles.main.main2";
+	}
+	
+	@RequestMapping("info")
+	public String info(Model model) {
+		return "tiles.main.info";
 	}
 
 	// 20210301KJH
