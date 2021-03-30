@@ -106,14 +106,17 @@
 											</div>
 										</div>
 										<div class="forgot_id_pw">
-											<a class="small" href="${pageContext.request.contextPath}/user/findId">아이디를 잊어버리셨나요?</a> <a class="small" href="${pageContext.request.contextPath}/user/findPw">비밀번호를 잊어버리셨나요?</a> <a class="small" href="${pageContext.request.contextPath}/user/main">메인페이지로 돌아가기</a>
+											<a class="small" href="${pageContext.request.contextPath}/user/findId">아이디를 잊어버리셨나요?</a>
+											<a class="small" href="${pageContext.request.contextPath}/user/findPw">비밀번호를 잊어버리셨나요?</a>
+											<a class="small text-danger" href="${pageContext.request.contextPath}/user/main">메인페이지로 돌아가기</a>
 										</div>
 										<button id="signin" class="btn-login btn btn-primary" type="button">로그인</button>
 									</form>
 								</div>
 								<div class="card-footer text-center">
 									<div class="small">
-										<a href="${pageContext.request.contextPath}/join/view">아직 회원이 아니신가요? <br>똑똑한 농부들 회원 되기!
+										<a href="${pageContext.request.contextPath}/join/view">
+											아직 회원이 아니신가요? <br>똑똑한 농부들 회원 되기!
 										</a>
 									</div>
 								</div>
@@ -129,7 +132,9 @@
 					<div class="d-flex align-items-center justify-content-between small">
 						<div class="text-muted">Copyright &copy; 똑똑한 농부들 2021</div>
 						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms &amp; Conditions</a>
+							<a href="#">Privacy Policy</a>
+							&middot;
+							<a href="#">Terms &amp; Conditions</a>
 						</div>
 					</div>
 				</div>
