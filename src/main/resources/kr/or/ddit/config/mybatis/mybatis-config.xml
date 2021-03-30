@@ -78,6 +78,12 @@
 
 		<!-- 20210311_ggy ItemmanualVo typeAliases -->
 		<typeAlias type="kr.or.ddit.farm.model.ItemmanualVo" alias="itemmanualVo" />
+		
+
+		<!-- 20210326_ggy WeeklyFarmInfosVo typeAliases -->
+		<typeAlias type="kr.or.ddit.farm.model.WeeklyFarmInfosVo" alias="weeklyFarmInfosVo" />
+		
+		
 	</typeAliases>
 
 	<mappers>

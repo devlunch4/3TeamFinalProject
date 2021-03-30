@@ -9,8 +9,12 @@
 <div>
 	
 	<c:if test="${S_USER.user_id.equals('admin') }">
-		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right"
-			onclick="location.href='#'" class=" btn btn-outline-dark m-1">주간 농사정보 등록</button>
+<!-- 		<button type="button" class="btn btn-success btn-lg btn-block col-md-3 float-right" -->
+<!-- 			onclick="location.href='#'" class=" btn btn-outline-dark m-1">주간 농사정보 등록</button> -->
+		<form action="${pageContext.request.contextPath}/finfo/registWeeklyFarmInfosView" method="post">
+			<input type="hidden" name="user_id" value="${S_USER.user_id }">
+			<input type="submit" value="주간 농사정보 등록">
+		</form>
 	</c:if>
 </div>
 	
@@ -50,6 +54,8 @@
 									aria-label="REG_DT: activate to sort column ascending">등록일</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
 									aria-label="FILE_CODE: activate to sort column ascending">첨부파일</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
+									aria-label="ETC activate to sort column ascending">기타</th>
 								</tr>
 							</thead>
 							<tfoot>
@@ -59,23 +65,38 @@
 									<th rowspan="1" colspan="1">작성자</th>
 									<th rowspan="1" colspan="1">등록일</th>
 									<th rowspan="1" colspan="1">첨부파일</th>
+									<th rowspan="1" colspan="1">기타</th>
 								</tr>
 							</tfoot>
 							<tbody>
-<%-- 								<c:forEach items="${farmdiaryList }" var="farmdiaryList"> --%>
+								<c:forEach items="${weeklyFarmInfosList }" var="weeklyFarmInfosList">
 									<tr >
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>${weeklyFarmInfosList.w_info_no }</td>
+										<td>${weeklyFarmInfosList.title }</td>
+										<td>${weeklyFarmInfosList.writer }</td>
 										<td>
-											<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
+											<fmt:formatDate value="${weeklyFarmInfosList.reg_dt }" pattern="yyyy.MM.dd" />
 										</td>
 										<td>
-											<input type="button" value="다운로드"
-												onclick="location.href=''">
+											<c:if test="${weeklyFarmInfosList.file_no > 0 }">
+												<button class="btn btn-primary " onclick="location.href='${pageContext.request.contextPath}/finfo/weeklyFarmInfosFilePath?file_nm=${weeklyFarmInfosList.file_nm }'">${weeklyFarmInfosList.file_nm }</button>
+											</c:if>
+										</td>
+										<td>
+											<c:if test="${S_USER.user_id.equals('admin') }">
+												<form action="${pageContext.request.contextPath}/finfo/modifyWeeklyFarmInfosView" method="post">
+													<input type="hidden" name="w_info_no" value="${weeklyFarmInfosList.w_info_no }" >
+													<input type="hidden" name="writer" value="${weeklyFarmInfosList.writer }" >
+													<input type="submit" value="수정">
+												</form>
+												<form action="${pageContext.request.contextPath}/finfo/deleteWeeklyFarmInfos" method="post">
+													<input type="hidden" name="w_info_no" value="${weeklyFarmInfosList.w_info_no }" >
+													<input type="submit" value="삭제">
+												</form>
+											</c:if>
 										</td>
 									</tr>
-<%-- 								</c:forEach> --%>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
