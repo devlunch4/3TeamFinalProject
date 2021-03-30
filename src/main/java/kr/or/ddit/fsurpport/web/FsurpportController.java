@@ -725,8 +725,15 @@ public class FsurpportController {
 			model.addAttribute("url", "/login/view");
 			return "alert";
 		}
+		
+		List<FmanageVo> fmanageList = new ArrayList<FmanageVo>();
+		logger.debug(userVox.getUser_id());
+		if(userVox.getUser_id().equals("admin")) {
+			fmanageList = fsurpportService.myfmanageList();
+		}else{
+			fmanageList = fsurpportService.selmyfmanageList(userVox.getUser_id());
+		}
 
-		List<FmanageVo> fmanageList = fsurpportService.myfmanageList();
 		model.addAttribute("fmanageList", fmanageList);
 		return "tiles.fsurpport.fmanageList";
 	}

@@ -18,7 +18,7 @@
 		SELECT
 		manage_no,owner,location,info,reg_dt,use_yn
 		FROM fmanage
-		wherer owner = ${owner}
+		where owner = #{owner}
 		order by reg_dt desc
 	</select>
 
