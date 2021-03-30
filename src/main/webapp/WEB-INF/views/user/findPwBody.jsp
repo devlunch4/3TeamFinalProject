@@ -5,15 +5,15 @@
 	$(function() {
 		$("#btn_join").on("click", function() {
 
+			user_id = $("#user_id").val().trim();
 			user_nm = $("#user_nm").val().trim();
-			email = $("#email").val().trim();
 
 			$.ajax({
-				url : "${pageContext.request.contextPath}/user/findId2",
+				url : "${pageContext.request.contextPath}/user/findPw2",
 				type : "post",
 				data : {
 					"user_nm" : user_nm,
-					"email" : email
+					"user_id" : user_id
 				},
 				success : function(res) {
 					if (res.result) {
@@ -41,18 +41,18 @@
 					<div class="col-lg-7">
 						<div class="card shadow-lg border-0 rounded-lg mt-5">
 							<div class="card-header">
-								<h3 class="text-center font-weight-light my-4">ID찾기</h3>
+								<h3 class="text-center font-weight-light my-4">비밀번호 찾기</h3>
 							</div>
 							<div class="card-body">
 								<form action="">
 									<div class="form-group">
-										<label class="small mb-1" for="user_nm">이름<span class="red_star"> </span></label> <input class="form-control py-4" id="user_nm" name="user_nm" type="text" placeholder="이름을 입력하세요." />
+										<label class="small mb-1" for="user_nm">ID<span class="red_star"> </span></label> <input class="form-control py-4" id="user_id" name="user_id" type="text" placeholder="ID를 입력해주세요." />
 									</div>
 
 									<div class="form-row">
 										<div class="col-md-8">
 											<div class="form-group">
-												<label class="small mb-1" for="email">이메일<span class="red_star"> </span></label> <input class="form-control py-4" id="email" name="email" type="email" aria-describedby="이메일" placeholder="이메일주소를 입력하세요." />
+												<label class="small mb-1" for="email">이름<span class="red_star"> </span></label> <input class="form-control py-4" id="user_nm" name="user_nm"  placeholder="이름을 입력해주세요." />
 											</div>
 										</div>
 									</div>
@@ -62,7 +62,7 @@
 									</div>
 
 									<div class="form-group mt-4 mb-0">
-										<button type="button" id="btn_join" class="btn btn-primary btn-block">아이디 찾기</button>
+										<button type="button" id="btn_join" class="btn btn-primary btn-block">비밀번호 찾기</button>
 									</div>
 								</form>
 							</div>

@@ -6,8 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -315,4 +322,68 @@ public class UserController {
 
 		return "jsonView";
 	}
+
+	// 이메일과 이름으로 아이디 찾기 03/23 (경찬)
+	@RequestMapping(path = "findPw", method = { RequestMethod.GET })
+	public String findPw() {
+		return "tiles.user.findPw";
+	}
+
+	// 이메일과 이름으로 비밀번호 찾기 03/27 (경찬)
+	@RequestMapping(path = "findPw2", method = { RequestMethod.POST })
+	public String findPw2(String email, Model model, UserVo userVo) {
+
+		userVo = userService.findPw(userVo);
+		
+		logger.debug("라이언 비밀번호는 : {} ", userVo);
+		
+		if (userVo == null) {
+			String result = "존재하지 않는 회원입니다";
+			model.addAttribute("result", result);
+		} else {
+			String user_id = "회원님의 메일로 비밀번호를 전송했습니다.";
+			model.addAttribute("user_id", user_id);
+
+			// 인증코드를 보내는 이메일
+			String host = "smtp.naver.com";
+			final String user = "test_for_develop@naver.com";
+			final String password = "smartFarmers";
+
+			String to = email;
+
+			Properties props = new Properties();
+
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+
+			Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(user, password);
+				}
+			});
+
+			try {
+
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(user));
+
+				message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(to));
+
+				// 제목
+				message.setSubject("똑똑한 농부들 회원님의 비밀번호 입니다.");
+
+				// 내용
+				message.setText("똑똑한 농부들 회원가입 인증코드는 " + userVo.getUser_pw() + " 입니다.");
+
+				Transport.send(message);
+
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return "jsonView";
+	}
+
 }

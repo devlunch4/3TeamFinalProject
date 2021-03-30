@@ -104,4 +104,10 @@ public class UserDaoImpl implements UserDao {
 	public UserVo findId(UserVo userVo) {
 		return template.selectOne("users.findId", userVo);
 	}
+	
+	// 아이디랑 이름으로 비번 찾는거 03/27 (경찬)
+	@Override
+	public UserVo findPw(UserVo userVo) {
+		return template.selectOne("users.findPw", userVo);
+	}
 }
