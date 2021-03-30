@@ -73,9 +73,15 @@
 		});
 	});
 </script>
-
 </head>
+
+
 <body class="bg-primary">
+	<!-- KWS 20210330 뒤로가기 투명버튼 추가 -->
+	<button type="button" value="BACK" onClick="history.go(-1)" style="opacity: 13%;">
+		<i class="fas fa-backspace fa-2x"></i>
+	</button>
+
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
 			<main>
