@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fdata.repository.FdataDao;
 
 @Service("fdataService")
@@ -40,6 +41,12 @@ public class FdataServiceImpl implements FdataService {
 	public List<FarmdiaryVo> datefarmCount(FarmdiaryVo vo) {
 		// TODO Auto-generated method stub
 		return fdataDao.datefarmCount(vo);
+	}
+	// 20210330 KJH 측정값저장
+	@Override
+	public int addData(MsrrecVo vo) {
+		// TODO Auto-generated method stub
+		return fdataDao.addData(vo);
 	}
 
 }

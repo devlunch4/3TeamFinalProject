@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 
 @Repository("fdataDao")
 public class FdataDaoImpl implements FdataDao {
@@ -37,6 +38,11 @@ public class FdataDaoImpl implements FdataDao {
 	@Override
 	public List<FarmdiaryVo> datefarmCount(FarmdiaryVo vo) {
 		return tempplate.selectList("fsurpports.datefarmCount", vo);
+	}
+	// 20210330 KJH 측정값저장
+	@Override
+	public int addData(MsrrecVo vo) {
+		return tempplate.insert("fmanage.addData",vo);
 	}
 
 }

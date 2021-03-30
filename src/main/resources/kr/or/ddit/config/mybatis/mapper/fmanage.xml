@@ -216,5 +216,10 @@
 	and ga.temperature like '%℃'
 	</select>
 	
+	<!-- 20210330KJH 측정값 저장 -->
+	<insert id="addData" parameterType="msrrecVo">
+		insert into mserec values(seq_mserec.nextval,#{msr_code},sysdate,#{msr_temp},#{msr_humid},#{msr_bright})
+	</insert>
+	
 
 </mapper>

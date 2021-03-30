@@ -2,6 +2,7 @@ package kr.or.ddit.fdata.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ddit.common.model.CodesVo;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fdata.service.FdataService;
 import kr.or.ddit.finfo.service.FinfoService;
 
@@ -118,5 +120,15 @@ public class FdataController {
 		}
 		model.addAttribute("farmCount", farmCount);
 		return "tiles.fdata.ratio";
+	}
+	
+	// 20210330_KJH 측정값 insert
+	@RequestMapping("addData")
+	public String addData(Model model, MsrrecVo msrrecVo) {
+		logger.debug("측정값 insert : {}",msrrecVo);
+		
+		fdataService.addData(msrrecVo);
+		
+		return null;
 	}
 }
