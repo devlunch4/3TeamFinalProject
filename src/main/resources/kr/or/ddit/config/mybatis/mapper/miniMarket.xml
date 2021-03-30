@@ -178,7 +178,8 @@
 	</update>
 	
 	<!-- 20210324_ggy : 미니장터 게시글 댓글 조회 -->
-	<select id="selectMarketReplyList" resultType="marketReplyVo">
+	<select id="selectMarketReplyList" parameterType="int" 
+							resultType="marketReplyVo">
 		select 
 			reply_code
 			, market_no
@@ -186,7 +187,8 @@
 			, content
 			, reg_dt
 		from marketreply
-		where use_yn = 'Y'
+		where market_no = #{market_no }
+		and use_yn = 'Y'
 	</select>
 	
 	<!-- 20210324_ggy : 미니장터 게시글 댓글 등록 -->
