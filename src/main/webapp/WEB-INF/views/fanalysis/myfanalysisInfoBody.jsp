@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../resources/datepicker/css/bootstrap-datepicker.css">
 <script src="../resources/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="../resources/datepicker/locales/bootstrap-datepicker.ko.min.js"></script>
+<!-- <script type="text/javascript" src="../resources/googlechart/loader.js"></script> -->
 <c:set var="data" value="100" />
 
 <script type="text/javascript">
@@ -34,7 +35,6 @@ $(function(){
 	});
 	$("#select").val("${selec}").prop("selected", true);
 })
-
 </script>
 
 <form action="${pageContext.request.contextPath}/fanalysis/myfanalysisInfo" id="read" method="post">
@@ -80,58 +80,55 @@ ${manage_no}
 	<br> <br>
 	<lable class ="text-danger font-weight-bold">${novalue}</lable>
 	<canvas id="myChart" width="600" height="300"></canvas>
+<!-- <div class="col-12"> -->
+<!-- <div id="chart_div"></div> -->
+<!-- </div> -->
 </div>
 
-
-<script> 
-	$(document).ready(function(){
-		
-		const colors = ['red','yellow','blue','#c3e6cb','#dc3545','#6c757d']; 
-		var chBar = document.getElementById("myChart"); 
-		var chartData = { labels: 
-			[
-				<c:forEach items="${mmmList}" var="msrrec" varStatus="status">
-
-				'${status.index}',
-
-			</c:forEach>
+<script>
+$(document).ready(function(){
+	
+	const colors = ['red','blue','black','#c3e6cb','#6c757d','#FFFFFF']; 
+	var chBar = document.getElementById("myChart"); 
+	var chartData = { labels: 
+		[
+			<c:forEach items="${mmmList}" var="msrrec" varStatus="status">
+			'${status.count}',
+		</c:forEach>
+			], 
+		datasets: [
+			{ 
+				label: '온도',
+				data: [
+				<c:forEach items="${mmmList}" var="msrrec">
+				${msrrec.msr_temp},
+				</c:forEach>
+				
 				], 
-			datasets: [
-				{ data: [
-
+				backgroundColor: colors[0] }, 
+				{ 
+					label: '습도',
+					data: [
 					<c:forEach items="${mmmList}" var="msrrec">
-					${msrrec.msr_temp},
+					${msrrec.msr_humid},
 					</c:forEach>
 					
 					], 
-					backgroundColor: colors[0] }, 
-					{ data: [
-
+					backgroundColor: colors[1] }, 
+					{
+						label: '조도',
+						data: [
 						<c:forEach items="${mmmList}" var="msrrec">
-
-						${msrrec.msr_humid},
-
+						${msrrec.msr_bright},
 						</c:forEach>
 						
 						], 
-						backgroundColor: colors[1] }, 
-						{ data: [
-
-							<c:forEach items="${mmmList}" var="msrrec">
-							${msrrec.msr_bright},
-							</c:forEach>
-							
-							], 
-							backgroundColor: colors[2] }
-							] 
-		};
-
-
-		var myChart = new Chart(chBar, { // 챠트 종류를 선택 
-			type: 'bar', // 챠트를 그릴 데이타 
-			data: chartData, // 옵션 
-			options: { legend: { display: false } } });
-	})
-	
-	
+						backgroundColor: colors[2] }
+						] 
+	};
+	var myChart = new Chart(chBar, { // 챠트 종류를 선택 
+		type: 'bar', // 챠트를 그릴 데이타 
+		data: chartData, // 옵션 
+		options: { } });
+});
 </script>

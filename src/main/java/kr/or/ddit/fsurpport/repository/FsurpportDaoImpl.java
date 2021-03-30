@@ -146,6 +146,12 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public List<FmanageVo> myfmanageList() {
 		return template.selectList("fmanage.myfmanageList");
 	}
+	
+	//20210330_KJH 시설 리스트 유저로조회
+	@Override
+	public List<FmanageVo> selmyfmanageList(String str) {
+		return template.selectList("fsurpports.selmyfmanageList",str);
+	}
 
 	// 20210308_KJH 시설 상세조회 수정
 	@Override
@@ -251,4 +257,5 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	public int msrSelect(String str) {
 		return template.selectOne("fsurpports.msrSelect",str);
 	}
+
 }

@@ -143,6 +143,12 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public List<FmanageVo> myfmanageList() {
 		return fsurpportDao.myfmanageList();
 	}
+	
+	// 20210330_KJH 시설 리스트 유저조건 검색
+	@Override
+	public List<FmanageVo> selmyfmanageList(String str) {
+		return fsurpportDao.selmyfmanageList(str);
+	}
 
 	// 20210308_KJH 시설 상세조회 수정
 	@Override
@@ -249,4 +255,5 @@ public class FsurpportServiceImpl implements FsurpportService {
 	public int msrSelect(String str) {
 		return fsurpportDao.msrSelect(str);
 	}
+
 }
