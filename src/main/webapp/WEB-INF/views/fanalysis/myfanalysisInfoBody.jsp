@@ -88,7 +88,7 @@ ${manage_no}
 <script>
 $(document).ready(function(){
 	
-	const colors = ['red','blue','black','#c3e6cb','#6c757d','#FFFFFF']; 
+	const colors = ['red','blue','gray','#c3e6cb','#6c757d','#808080']; 
 	var chBar = document.getElementById("myChart"); 
 	var chartData = { labels: 
 		[

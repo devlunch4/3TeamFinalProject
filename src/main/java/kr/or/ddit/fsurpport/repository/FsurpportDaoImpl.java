@@ -150,7 +150,7 @@ public class FsurpportDaoImpl implements FsurpportDao {
 	//20210330_KJH 시설 리스트 유저로조회
 	@Override
 	public List<FmanageVo> selmyfmanageList(String str) {
-		return template.selectList("fsurpports.selmyfmanageList",str);
+		return template.selectList("fmanage.selmyfmanageList",str);
 	}
 
 	// 20210308_KJH 시설 상세조회 수정
