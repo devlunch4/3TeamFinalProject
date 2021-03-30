@@ -102,7 +102,8 @@
 	<div class="form-group">
 		<c:if test="${marketFileList != null }">
 			<c:forEach items="${marketFileList }" var="marketFileList">
-				<input type="text" value="${marketFileList.file_nm }" readonly="readonly">
+				<input type="button" value="${marketFileList.file_nm }" readonly="readonly"
+				onclick="location.href='${pageContext.request.contextPath}/fcommunity/fileDownloadPath?file_nm=${marketFileList.file_nm }'" >
 				<br>
 			</c:forEach>
 		</c:if>
