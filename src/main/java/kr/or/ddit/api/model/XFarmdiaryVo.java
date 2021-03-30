@@ -12,10 +12,12 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 //@XmlAccessorType(XmlAccessType.NONE)
 @JacksonXmlRootElement(localName = "xmember")
 public class XFarmdiaryVo {
-	
-	@JacksonXmlProperty private String content;
-	
-	@JacksonXmlProperty private int yield;
+
+	@JacksonXmlProperty
+	private String content;
+
+	@JacksonXmlProperty
+	private int yield;
 
 	public String getContent() {
 		return content;
@@ -32,8 +34,5 @@ public class XFarmdiaryVo {
 	public void setYield(int yield) {
 		this.yield = yield;
 	}
-
-
-	
 
 }
