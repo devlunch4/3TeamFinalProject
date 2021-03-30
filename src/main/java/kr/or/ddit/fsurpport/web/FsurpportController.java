@@ -74,7 +74,17 @@ public class FsurpportController {
 
 	// ggy_20210302 : 농업지원-영농일지 내 일지 페이징 목록조회를 위한 진입페이지
 	@RequestMapping("main")
-	public String main(String user_id, Model model) {
+	public String main(String user_id, Model model, HttpSession session) {
+		// KWS 로그인 접근제한 20210330
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
+			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
+
 		logger.debug("/finalProject/main 진입");
 		if (user_id != null) {
 			model.addAttribute("farmdiaryList", fsurpportService.selectAllFsurpportList(user_id));
@@ -704,8 +714,18 @@ public class FsurpportController {
 	// KJH_20210302
 	// 농업지원 - 시설관리 관리중인 시설 리스트 조회페이지 ok
 	@RequestMapping("fmanageList")
-	public String fmanageList(Model model) {
+	public String fmanageList(Model model, HttpSession session) {
 		logger.debug(" 시설관리중인 시설 리스트 fmanageList 진입");
+		// KWS 로그인 접근제한 20210330
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
+			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
+
 		List<FmanageVo> fmanageList = fsurpportService.myfmanageList();
 		model.addAttribute("fmanageList", fmanageList);
 		return "tiles.fsurpport.fmanageList";
@@ -880,7 +900,17 @@ public class FsurpportController {
 	// 20210311_KJH 내 수확량 조회 ok
 	@RequestMapping(path = "myYield", method = { RequestMethod.GET })
 	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) {
-		logger.debug("내 수확량 조회 myYield");
+		logger.debug("IN myYield() GET");
+		// KWS 로그인 접근제한 20210330
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
+			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
+		logger.debug("내 수확량 조회 myYield ");
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
 		UserVo userVo = new UserVo();
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -890,8 +920,7 @@ public class FsurpportController {
 			vo.setB_type_code("2000-01-01");
 			vo.setW_step_code("5555-12-30");
 			farmCount = fsurpportService.myYield(vo);
-		}
-		else if (selec.equals("week")) {
+		} else if (selec.equals("week")) {
 			try {
 				String[] dt = sdate.split("~");
 				String sd = dt[0];
@@ -936,6 +965,16 @@ public class FsurpportController {
 	@RequestMapping(path = "msrequipList", method = { RequestMethod.GET })
 	public String msrequipList(Model model, HttpSession session, String check) {
 		logger.debug("시설리스트 페이지 msrequipList");
+		// KWS 로그인 접근제한 20210330
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
+			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
+
 		model.addAttribute("check", check);
 		UserVo userVo = new UserVo();
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -953,7 +992,7 @@ public class FsurpportController {
 	@RequestMapping(path = "msrUpdate", method = { RequestMethod.GET })
 	public String msrUpdate(Model model, HttpSession session, MsrequipVo msrequipVo) {
 		logger.debug("장치 수정 msrUpdate");
-		logger.debug("msrequipVo확인 : {}",msrequipVo);
+		logger.debug("msrequipVo확인 : {}", msrequipVo);
 		fsurpportService.msrUpdate(msrequipVo);
 		return "redirect:/fsurpport/msrequipList";
 	}
