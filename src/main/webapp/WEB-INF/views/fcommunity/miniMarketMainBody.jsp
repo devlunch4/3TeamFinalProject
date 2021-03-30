@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="mt-4">작은 장터</h3>
+<h3 class="mt-4">똑똑한 장터</h3>
 
 <c:if test="${S_USER.user_id != null }">
 	<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fcommunity/registMiniMarketView'">미니장터게시글 등록</button>
