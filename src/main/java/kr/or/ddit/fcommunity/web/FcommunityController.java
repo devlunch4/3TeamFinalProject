@@ -3,6 +3,7 @@ package kr.or.ddit.fcommunity.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -531,6 +532,21 @@ public class FcommunityController {
 			logger.debug("미니장터 게시글 댓글 등록");
 		}
 		return "redirect:/fcommunity/miniMarketInfoView?writer=" + writer + "&market_no=" + market_no;
+	}
+	
+	// 미니장터 첨부파일 다운로드
+	@RequestMapping("fileDownloadPath")
+	public void fileDownload(HttpServletResponse resp, String file_nm, HttpServletRequest req) throws IOException {
+		logger.debug("filePath/profile 진입");
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+		byte fileByte[] = org.apache.commons.io.FileUtils
+				.readFileToByteArray(new File("c:\\fdown\\miniMarket\\" + file_nm));
+		resp.setContentType("application/octet-stream");
+		resp.setContentLength(fileByte.length);
+		resp.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(file_nm, "UTF-8") + "\";");
+		resp.getOutputStream().write(fileByte);
+		resp.getOutputStream().flush();
+		resp.getOutputStream().close();
 	}
 
 }
