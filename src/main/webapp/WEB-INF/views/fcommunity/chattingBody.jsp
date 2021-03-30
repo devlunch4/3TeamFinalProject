@@ -62,8 +62,9 @@
         
         function closeSocket(){
             ws.close();
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
-        
+
         function writeResponse(text){
         	var mytext = text.split(':');
         	console.log(mytext);
