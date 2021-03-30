@@ -51,7 +51,7 @@ public interface FcommunityDao {
 	int deleteThumbnailFiles(int thumbnail_file_no);
 
 	// 20210324_ggy : 미니장터 게시글 조회
-	List<MarketReplyVo> selectMarketReplyList();
+	List<MarketReplyVo> selectMarketReplyList(int market_no);
 
 	// 20210324_ggy : 미니장터 게시글 삭제
 	int registMarketReply(Map<String, String> map);

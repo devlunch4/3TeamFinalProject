@@ -101,8 +101,8 @@ public class FcommunityServiceImpl implements FcommunityService {
 
 	// 20210324_ggy : 미니장터 게시글 조회
 	@Override
-	public List<MarketReplyVo> selectMarketReplyList() {
-		return fcommunityDao.selectMarketReplyList();
+	public List<MarketReplyVo> selectMarketReplyList(int market_no) {
+		return fcommunityDao.selectMarketReplyList(market_no);
 	}
 
 	// 20210324_ggy : 미니장터 게시글 삭제

@@ -65,7 +65,7 @@ public class FcommunityController {
 		fcommunityService.addHitMiniMarket(market_no);
 		model.addAttribute("miniMarketInfo", fcommunityService.miniMarketInfo(miniMarketVo));
 		model.addAttribute("marketFileList", fcommunityService.selectMarketFileList(market_no));
-		model.addAttribute("marketReplyList", fcommunityService.selectMarketReplyList());
+		model.addAttribute("marketReplyList", fcommunityService.selectMarketReplyList(market_no));
 		return "tiles.fcommunity.miniMarketInfo";
 	}
 
