@@ -130,7 +130,9 @@
 <!-- floating setting 끝 -->
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-	<a class="navbar-brand" id="logo" href="${pageContext.request.contextPath}/main/main2"><img src="${pageContext.request.contextPath}/resources/src/img/logo.png" alt="똑똑한 농부들" /></a>
+	<a class="navbar-brand" id="logo" href="${pageContext.request.contextPath}/main/main2">
+		<img src="${pageContext.request.contextPath}/resources/src/img/logo.png" alt="똑똑한 농부들" />
+	</a>
 	<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
 		<i class="fas fa-bars"></i>
 	</button>
@@ -146,23 +148,25 @@
 		</div>
 	</form>
 	<!-- Navbar-->
-	<c:if test="${S_USER != null}">
-		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="m-1"><a class="nav-link small text-white p-0" href="${pageContext.request.contextPath}/fcommunity/chatting">채팅</a></li>
-		</ul>
-	</c:if>
 
 	<ul class="navbar-nav ml-auto ml-md-0 ">
+		<c:if test="${S_USER != null}">
+			<li class="text-right m-1"><a class="nav-link small text-white p-auto" href="${pageContext.request.contextPath}/fcommunity/chatting">채팅</a></li>
+		</c:if>
+
 		<li class="nav-item dropdown"><div class="text-white text-center m-auto p-auto" style="font-size: 0.5rem">
 				<c:if test="${S_USER != null}">${S_USER.user_id }</c:if>
-			</div> <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+			</div> <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-user fa-fw"></i>
+			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
 				<c:if test="${S_USER != null}">
 					<c:set var="loginnow" value="${S_USER.login_dt}" />
 					<div>
 						<div class="dropdown-item small text-danger" href="#">
-							최근접속: <fmt:formatDate value="${loginnow}" pattern="yyyy.MM.dd" />
+							최근접속:
+							<fmt:formatDate value="${loginnow}" pattern="yyyy.MM.dd" />
 							<div class="text-center">
 								<fmt:formatDate value="${loginnow}" pattern="HH:mm:ss" />
 							</div>
