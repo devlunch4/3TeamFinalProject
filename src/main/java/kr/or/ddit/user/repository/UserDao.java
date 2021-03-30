@@ -44,5 +44,8 @@ public interface UserDao {
 
 	// 이름과 이메일로 아이디 찾는거 03/23 (경찬)
 	UserVo findId(UserVo userVo);
+	
+	// 아이디랑 이름으로 비번 찾는거 03/27 (경찬)
+	UserVo findPw(UserVo userVo);
 
 }

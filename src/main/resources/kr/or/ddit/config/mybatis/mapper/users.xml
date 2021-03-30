@@ -118,6 +118,13 @@
 		where
 		user_nm = #{user_nm} and email = #{email}
 	</select>
+	
+	<!-- 	아이디와 이름으로 비번 찾는거 03/26 (경찬) -->
+	<select id="findPw" resultType="userVo" parameterType="userVo">
+		select user_pw
+		from users
+		where user_id = #{user_id} and user_nm = #{user_nm}
+	</select>
 
 
 </mapper>
