@@ -179,7 +179,7 @@ $("#").scrollTop($(document).height());
 </div>
 <!-- <div > -->
  <div class="form-group" id="mychartfirst"> 
-<canvas id="myChart" style="height:70vh; width:450vw"></canvas>
+<canvas id="myChart" style="height:300px; width:auto;"></canvas>
  </div> 
 <!--   </div> -->
 
@@ -228,7 +228,7 @@ $("#").scrollTop($(document).height());
 			// 옵션 
 			options: {
 				
-				maintainAspectRatio: false
+			maintainAspectRatio: false
 				
 			} });
 

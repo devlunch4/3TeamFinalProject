@@ -10,6 +10,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,7 @@ import kr.or.ddit.user.model.UserVo;
 @RequestMapping("fanalysis")
 @Controller
 public class FanalysisController {
+	private static final Logger logger = LoggerFactory.getLogger(FanalysisController.class);
 
 	@Resource(name = "fsurpportService")
 	private FsurpportService fsurpportService;
@@ -38,7 +41,16 @@ public class FanalysisController {
 	// 20210308_KJH 내 시설 관측정보 조회 수정 test ok
 	@RequestMapping(path = "myfanalysisInfo", method = { RequestMethod.GET })
 	public String myfanalysisInfo(Model model, HttpSession session) {
-
+		logger.debug("IN myfanalysisInfo() GET");
+		// KWS 로그인 접근제한 20210330
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
+			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -66,7 +78,7 @@ public class FanalysisController {
 	@RequestMapping(path = "myfanalysisInfo", method = { RequestMethod.POST })
 	public String myfanalysisInfo(Model model, HttpSession session, String week, String month, String day,
 			String selec) {
-
+		logger.debug("IN myfanalysisInfo() POST");
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
@@ -125,6 +137,16 @@ public class FanalysisController {
 	// 20210305_KJH 내 시설 실시간 관측 조회 test ok
 	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.GET })
 	public String mymaxmsrrecList(Model model, HttpSession session) {
+		logger.debug("IN mymaxmsrrecList() GET");
+		// KWS 로그인 접근제한 20210330
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
+			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
 
 		UserVo userVo = new UserVo();
 
@@ -149,7 +171,7 @@ public class FanalysisController {
 	// 20210315_KJH 내 시설 실시간 관측 조회 ajax ok
 	@RequestMapping(path = "mymaxmsrrecList", method = { RequestMethod.POST })
 	public String mymaxmsrrecListpost(Model model, HttpSession session) {
-
+		logger.debug("IN mymaxmsrrecListpost() POST");
 		UserVo userVo = new UserVo();
 
 		userVo = (UserVo) session.getAttribute("S_USER");
