@@ -135,7 +135,7 @@
 			<div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 				<nav class="sb-sidenav-menu-nested nav">
 					<a class="nav-link" href="${pageContext.request.contextPath}/finfo/gardenguides">
-						텃밭가이드<i class="fas fa-book-open ml-2"></i>
+						재배안내<i class="fas fa-book-open ml-2"></i>
 					</a>
 					<a class="nav-link" href="${pageContext.request.contextPath}/finfo/seasonInfos">
 						제철작물 <i class="fas fa-tree ml-2"></i>

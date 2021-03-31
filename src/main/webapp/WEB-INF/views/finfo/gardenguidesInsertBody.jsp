@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<h3 class="mt-4">텃밭가이드 등록(재배정보)</h3>
+<h3 class="mt-4">재배안내 등록</h3>
 
 <form id="grdguidefrm" enctype="multipart/form-data" action="${pageContext.request.contextPath}/finfo/gardenguidesInsertBtn" method="post">
 	<!-- 글쓰기 summernote-->

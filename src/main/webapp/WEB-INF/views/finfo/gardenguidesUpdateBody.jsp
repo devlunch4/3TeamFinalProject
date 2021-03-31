@@ -16,7 +16,7 @@
 </script>
 
 
-<h3 class="mt-4">텃밭가이드 수정(재배정보)</h3>
+<h3 class="mt-4">재배안내 수정</h3>
 
 <form id="guidefrm" enctype="multipart/form-data" action="${pageContext.request.contextPath}/finfo/gardenguidesUpdateBtn" method="post">
 	<input type="hidden" id="xguide_code" name="xguide_code" value="">

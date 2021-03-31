@@ -45,7 +45,7 @@
 	});
 </script>
 
-<h3 class="mt-4">텃밭가이드(재배정보)</h3>
+<h3 class="mt-4">재배안내</h3>
 <div class="">
 	<div class="text-right col-12 p-0">
 		<!-- 관리자 전용 등록 이동 버튼 활성 -->
