@@ -1,3 +1,9 @@
+## SIMPlE Screen Shot (Mobile ver)
+<img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" width="35%"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" width="35%"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" width="35%">
+
+
+
+
 ## KOREAN
 # 3TeamFinalProject 2021.02.22 ~ 2021.03.31(04.12)
 영농 지원 서비스 웹
