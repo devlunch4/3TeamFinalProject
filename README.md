@@ -1,7 +1,7 @@
 ## KOREAN
 # 3TeamFinalProject 2021.02.22 ~ 2021.03.31(04.12)
 영농 지원 서비스 웹
-devlunch4(PL), wnsgur530(TA), larlarru(AA), K-kyungchan(DA), yezlee(BA). DDIT FINAL PROJECT.
+###### devlunch4(PL), wnsgur530(TA), larlarru(AA), K-kyungchan(DA), yezlee(BA). DDIT FINAL PROJECT.
 
 # 좌측 일람표
 #### 똑똑한영농(영농일지/시설관리/장비관리) :
