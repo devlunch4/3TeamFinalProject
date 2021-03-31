@@ -11,12 +11,9 @@
 </script>
 
 <h3 class="mt-4">공지사항</h3>
-
 <c:if test="${S_USER.user_id.equals('admin') }">
 	<button type="button" class=" btn btn-success " onclick="location.href='${pageContext.request.contextPath}/fnotice/insertNotice'" class=" btn btn-outline-dark m-1">공지사항 등록</button>
 </c:if>
-
-
 
 <!-- 설명 시작 -->
 <div class="card mt-2 col-sm-12 px-0">
