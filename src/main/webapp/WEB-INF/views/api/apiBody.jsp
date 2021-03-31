@@ -6,12 +6,14 @@ $(function(){
 		$("#axml").hide();
 		$("#ajson").show();
 		$("#selec").show();
+		$("#sediv").show();
 	});
 	
 		$("#xml").on("click",function(){
 		$("#ajson").hide();
 		$("#axml").show();
 		$("#selec").show();
+		$("#sediv").show();
 	});
 		
 		
@@ -61,7 +63,9 @@ $(function(){
 			</div>
 			<div class="form-row col-12 text-center">
 			
-				<div class="col-sm-12 p-0"><a id="ajson" style="display: none;">/finalProject/api/list/{selec}/{sdate}/{edate}</a>
+				<div class="col-sm-12 p-1" style="border: 3px solid gray; display: none;" id="sediv">
+				
+				<a id="ajson" style="display: none;">/finalProject/api/list/{selec}/{sdate}/{edate}</a>
 					<a id="axml" style="display: none;">/finalProject/xml/sendxml/{selec}/{sdate}/{edate}</a>
 				</div>
 			</div>
