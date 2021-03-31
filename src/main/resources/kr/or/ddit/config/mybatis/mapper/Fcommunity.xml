@@ -8,7 +8,7 @@
 	<!-- 20210309 모든 공지사항 조회 (경찬) -->
 	<select id="selectAllNoticeList" resultType="fnoticeVo">
 		select *
-		from notice
+		from notice order by notice_no
 	</select>
 
 	<!-- 20210312 해당 공지사항 클릭 상세정보 (경찬) -->

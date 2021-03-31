@@ -80,9 +80,10 @@ public class FnoticeController {
 	@RequestMapping("insertNotice2")
 	public String insertNotice2(FnoticeVo noticeVO, Model model) {
 		logger.debug("IN insertNotice2()");
+		// KWS20210331 기존 경찬 코드 오류 수정
+		fnoticeService.insertNotice(noticeVO);
 		List<FnoticeVo> noticeList = fnoticeService.selectAllNoticeList();
 		model.addAttribute("noticeList", noticeList);
-		fnoticeService.insertNotice(noticeVO);
 		return "tiles.fcommunity.noticesMain";
 	}
 }
