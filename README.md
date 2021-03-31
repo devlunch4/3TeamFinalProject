@@ -1,5 +1,5 @@
 ## SIMPlE Screen Shot (Mobile ver)
-<img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" width="35%"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" width="35%"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" width="35%">
+<img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" height="15%"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" height="15%"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" height="15%">
 
 
 
