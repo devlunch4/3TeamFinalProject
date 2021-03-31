@@ -171,15 +171,17 @@
 				</nav>
 			</div>
 			
-			<a class="nav-link collapsed" href="${pageContext.request.contextPath }/api/appData" data-toggle="collapse" data-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts5">
+			
+			<a class="nav-link collapsed" href="${pageContext.request.contextPath }/api/apiData">
 				<div class="sb-nav-link-icon">
-					<i class="fas fa-handshake fa-fw"></i>
+					<i class="fas fa-store"></i>
 				</div>
 				API 제공
-				<div class="sb-sidenav-collapse-arrow">
+				<!-- 				<div class="sb-sidenav-collapse-arrow">
 					<i class="fas fa-angle-down"></i>
-				</div>
+				</div> -->
 			</a>
+			
 		</div>
 	</div>
 </nav>
