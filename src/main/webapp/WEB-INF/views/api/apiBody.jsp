@@ -35,7 +35,7 @@ $(function(){
 </script>
 <!-- 인기 농작물 페이지 -->
 <!-- 20210308_KJH 인기 농작물 수정 -->
-<h1 class="my-4">인기 농작물</h1>
+<h1 class="my-4">API 제공</h1>
 <div class="card mt-2 col-sm-12 px-0">
 
 	<div class="card-body text-center px-2">
@@ -49,11 +49,13 @@ $(function(){
 			
 			<div class="form-row col-12 p-1" id="selec" style="display: none;">
 				<div class="col-sm-12 p-0">
-					<div class="form-group row text-center m-0">
-						<button id="all" class="btn btn-outline-dark col m-2">전체</button>
-						<button id="week" class="btn btn-outline-dark col m-2 ">주별</button>
-						<button id="month" class="btn btn-outline-dark col m-2">월별</button>
-						<button id="year" class="btn btn-outline-dark col m-2 ">년별</button>
+					<div class="form-group row text-center m-0 small">
+<!-- 					<div clas="text-center"> -->
+						<button id="all" class="btn btn-outline-dark col m-1 small">전체</button>
+						<button id="week" class="btn btn-outline-dark col m-1 small">주별</button>
+						<button id="month" class="btn btn-outline-dark col m-1 samll">월별</button>
+						<button id="year" class="btn btn-outline-dark col m-1 small">년별</button>
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
@@ -110,6 +112,3 @@ $(function(){
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-
-</script>
