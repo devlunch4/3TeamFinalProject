@@ -24,15 +24,16 @@
 	<h5 class="card-header">수확량 분석</h5>
 	<!-- 20210311_KJH 내 수확량 조회-->
 	<form action="${pageContext.request.contextPath}/fsurpport/myYield" id="selec">
-		<input type="hidden" id="selctype" name="selec" value="week"> <input type="hidden" id="sval" name="sdate"> <input type="hidden" id="eval" name="edate">
+		<input type="hidden" id="selctype" name="selec" value="week">
+		<input type="hidden" id="sval" name="sdate">
+		<input type="hidden" id="eval" name="edate">
 	</form>
 
-
 	<div class="input-group">
-		<button id="all" class="col-6">전체</button>
-		<button id="week" class="col-6">주별</button>
-		<button id="month" class="col-6">월별</button>
-		<button id="year" class="col-6">년별</button>
+		<button id="all" class="btn btn-outline-dark col-6 ">전체</button>
+		<button id="week" class="btn btn-outline-primary col-6 ">주별</button>
+		<button id="month" class="btn btn-outline-danger col-6 ">월별</button>
+		<button id="year" class="btn btn-outline-info col-6 ">년별</button>
 	</div>
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="sysd">
@@ -43,12 +44,15 @@
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
 	<div class="input-group">
-		<input type="text" id="week-picker" value="입력칸을 클릭하여 주 선택" name="week" class="col-12  text-center"> <input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col-6"> <input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col-6"> <input type="text" id="syear-picker" name="syear" style="display: none;" class="col-6"> <input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col-6">
+		<input type="text" id="week-picker" value="입력칸을 클릭하여 주 선택" name="week" class="col-12  text-center">
+		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col-6">
+		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col-6">
+		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col-6">
+		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="col-6">
 	</div>
 
-
 	<div class="form-group text-center">
-		<button id="sel" class="col-4">조회하기</button>
+		<button id="sel" class="btn btn-primary col-4 m-1">조회하기</button>
 	</div>
 
 	<div class="align-center px-0">
@@ -64,7 +68,7 @@
 		</div>
 	</div>
 
- 
+
 	<div class="form-group col-xs-12 pt-3">
 		<div class="float-left col-md-12 p-1  text-center">
 			<table class="table table-bordered " style="font-size: 15px;">
@@ -72,13 +76,13 @@
 					<td class="table-active p-0">작물명</td>
 					<td class="table-active p-0">수확량</td>
 				</tr>
-				
+
 				<c:forEach items="${farmCount}" var="fcount">
-				<tr>
-      		     	<td class="p-0">${fcount.content}</td>
-					<td class="p-0">${fcount.yield}</td>
-					</tr> 
-      		     	</c:forEach>
+					<tr>
+						<td class="p-0">${fcount.content}</td>
+						<td class="p-0">${fcount.yield}</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>

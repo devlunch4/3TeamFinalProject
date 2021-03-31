@@ -152,14 +152,14 @@
 <h3 class="mt-4">시설관리</h3>
 
 <div class="card mt-2 px-0">
-	<h3 class="card-header">총게시글 :</h3>
+	<!-- <h3 class="card-header">총게시글 :</h3> -->
 	<div class="card-body text-left p-1">
 
 		<div class="table-responsive small">
 			<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
- 
+
 				<div class="form group">
-					<div class="col-sm-6 col-md-2 m-0" >
+					<div class="col-sm-6 col-md-2 m-0">
 						<div class="dataTables_length" id="dataTable_length"></div>
 					</div>
 
@@ -167,26 +167,27 @@
 						<div id="dataTable_filter" class="dataTables_filter p-0 text-right form-group"></div>
 					</div>
 				</div>
-					<div class="text-right py-1 mr-0">
-						<select class="text-right" id="choice" style="width: 140px;">
-							<option value="location">장소</option>
-							<option value="msr_nm">장비명</option>
-							<option value="code">작물명</option>
-							<option value="dt">마지막 측정일</option>
-						</select>
-						<div id="dataTable_filter" class="dataTables_filter"></div>
-					</div>
+				
+				<div class=" text-right py-1 mr-0">
+					<select class="text-right form-control form-control-sm" id="choice" style="width: 140px;">
+						<option value="location">장소</option>
+						<option value="msr_nm">장비명</option>
+						<option value="code">작물명</option>
+						<option value="dt">마지막 측정일</option>
+					</select>
+					<div id="dataTable_filter" class="dataTables_filter"></div>
+				</div>
 				<table class="table table-bordered text-center" id="tb">
- 
-					<thead style="width: 33%; ">
+
+					<thead style="width: 33%;">
 						<tr role="row">
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >장소</th>
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >장비명</th>
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >작물명</th>
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >온도</th>
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >습도</th>
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >조도</th>
-							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >등록일</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">장소</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">장비명</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">작물명</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">온도</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">습도</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">조도</th>
+							<th class="p-0" role="row" class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">등록일</th>
 						</tr>
 					</thead>
 					<tbody class="text-center">
@@ -202,11 +203,9 @@
 											<c:when test="${mrrecList.msr_temp >= temp.number1 && mrrecList.msr_temp <= temp.number2}">
 												<tr class="table-success" data-guidecode="${sts.count}">
 											</c:when>
-
 											<c:when test="${mrrecList.msr_temp < temp.number1}">
 												<tr class="table-primary" data-guidecode="${sts.count}">
 											</c:when>
-
 											<c:when test="${mrrecList.msr_temp > temp.number2}">
 												<tr class="table-danger" data-guidecode="${sts.count}">
 											</c:when>
@@ -224,10 +223,11 @@
 								<td class="p-0">${mrrecList.msr_bright}</td>
 								<td class="p-0" data-guidecode="${sts.count}">${dt}</td>
 								</tr>
-							</c:if> 
-						</c:forEach> 
+							</c:if>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+</div>

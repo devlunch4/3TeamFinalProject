@@ -42,7 +42,7 @@ $(function(){
 </form>
 
 <!-- 20210304_KJH items -> 내 시설 관측 -->
-<h3 class="mt-4">내 시설 관측</h3>
+<h3 class="mt-4">측정 기록 보기</h3>
 <select id="select">
 	<c:forEach items="${fmanageList}" var="fmanage" varStatus="status">
 		<option id="${status.index}" value="${fmanage.manage_no}">${fmanage.location}</option>
