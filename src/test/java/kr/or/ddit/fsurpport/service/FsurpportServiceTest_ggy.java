@@ -48,7 +48,7 @@ public class FsurpportServiceTest_ggy extends ModelTestConfig {
 		
 		/***Then***/
 		
-		assertEquals(63, codesList.size());
+		assertEquals(62, codesList.size());
 	}
 	
 	// 20210312_ggy_fsurpport : 등록된 작업단계 조회 수정_OK

@@ -14,7 +14,7 @@
 <input type="text" id="sender" value="${S_USER.user_id}" style="display: none;"> 
 
 <div class="form-group">
-<button type="button" class="form-group float-right small" onclick="send();" id="send" style="width: 30%">메세지 전송</button>
+<button type="button" class="form-group float-right small p-0" onclick="send();" id="send" style="width: 30%">메세지 전송</button>
 <span class="form-group text-left" style="width: 100%">
 <input type="text" id="messageinput" style="width: 70%" class="small" onkeyup="enterkey();">
 </span>
