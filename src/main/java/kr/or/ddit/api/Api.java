@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.ddit.codes.service.CodesService;
 import kr.or.ddit.farm.model.FarmdiaryVo;
+import kr.or.ddit.farm.model.MsrrecVo;
 import kr.or.ddit.fdata.service.FdataService;
 import kr.or.ddit.fsurpport.service.FsurpportService;
 import kr.or.ddit.user.model.UserVo;
@@ -44,7 +45,7 @@ public class Api {
 	@Resource(name = "codesService")
 	private CodesService codesService;
 
-	@RequestMapping(value = "/list/{selec}/{sdate}/{edate}", method = RequestMethod.GET)
+	@RequestMapping(value = "/list/{selec}/{sdate}/{edate}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody() // JSON
 	public List<Map> home(@PathVariable String selec, String sdate, String edate) {
 
@@ -143,6 +144,11 @@ public class Api {
 
 	}
 	
-
-
+	//api 홈페이지 호출
+	@RequestMapping("apiData")
+	public String addData(Model model) {
+		logger.debug("api 페이지");
+		
+		return "tiles.api.api";
+	}
 }

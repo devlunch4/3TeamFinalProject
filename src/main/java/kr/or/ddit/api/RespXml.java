@@ -40,21 +40,19 @@ public class RespXml {
 	@ResponseBody
 	public List<XFarmdiaryVo> sendxml(@PathVariable String selec, String sdate, String edate) {
 
-		
 		List<XFarmdiaryVo> farm = new ArrayList<XFarmdiaryVo>();
 		List<FarmdiaryVo> farmCount = fdataService.farmCount();
-		
-		
+
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
-		for(int i = 0; i < farmCount.size(); i++) {
-			XFarmdiaryVo Vo = new XFarmdiaryVo();	
-			Vo.setContent(farmCount.get(i).getContent());
-			Vo.setYield(farmCount.get(i).getYield());
-			
-			farm.add(Vo);
-		}
-		return farm;
-		}else if(selec.equals("week")){
+			for (int i = 0; i < farmCount.size(); i++) {
+				XFarmdiaryVo Vo = new XFarmdiaryVo();
+				Vo.setContent(farmCount.get(i).getContent());
+				Vo.setYield(farmCount.get(i).getYield());
+
+				farm.add(Vo);
+			}
+			return farm;
+		} else if (selec.equals("week")) {
 			try {
 				String[] dt = sdate.split("~");
 				String sd = dt[0];
@@ -64,27 +62,27 @@ public class RespXml {
 				vo.setB_type_code(sd);
 				vo.setW_step_code(ed);
 				farmCount = fdataService.datefarmCount(vo);
-				
-				for(int i = 0; i < farmCount.size(); i++) {
-					XFarmdiaryVo Vo = new XFarmdiaryVo();	
+
+				for (int i = 0; i < farmCount.size(); i++) {
+					XFarmdiaryVo Vo = new XFarmdiaryVo();
 					Vo.setContent(farmCount.get(i).getContent());
 					Vo.setYield(farmCount.get(i).getYield());
-					
+
 					farm.add(Vo);
 				}
 				return farm;
 			} catch (Exception e) {
 				return farm;
-		}
-			
-		}else{
-			for(int i = 0; i < farmCount.size(); i++) {
-				XFarmdiaryVo Vo = new XFarmdiaryVo();	
+			}
+
+		} else {
+			for (int i = 0; i < farmCount.size(); i++) {
+				XFarmdiaryVo Vo = new XFarmdiaryVo();
 				Vo.setContent(farmCount.get(i).getContent());
 				Vo.setYield(farmCount.get(i).getYield());
 				farm.add(Vo);
 			}
 			return farm;
-	}
+		}
 	}
 }
