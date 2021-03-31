@@ -28,7 +28,8 @@ devlunch4(PL), wnsgur530(TA), larlarru(AA), K-kyungchan(DA), yezlee(BA). DDIT FI
 #### 마이페이지
 ###### 기본적인 CRUD.
 
-작성자 : devlunch4 (2021.03.31)
+### 작성자 : devlunch4 (2021.03.31)
+
 
 ## ENG
 # 3TeamFinalProject 2021.02.22 ~ 2021.03.31(04.12)
