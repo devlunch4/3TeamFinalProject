@@ -36,9 +36,9 @@
 <div id="layoutAuthentication">
 	<div id="layoutAuthentication_content">
 		<main>
-			<div class="container">
+			<div class="container p-0">
 				<div class="row justify-content-center">
-					<div class="col-lg-7">
+					<div class="col-lg-11">
 						<div class="card shadow-lg border-0 rounded-lg mt-5">
 							<div class="card-header">
 								<h3 class="text-center font-weight-light my-4">비밀번호 찾기</h3>
@@ -46,13 +46,19 @@
 							<div class="card-body">
 								<form action="">
 									<div class="form-group">
-										<label class="small mb-1" for="user_nm">ID<span class="red_star"> </span></label> <input class="form-control py-4" id="user_id" name="user_id" type="text" placeholder="ID를 입력해주세요." />
+										<label class="small mb-1" for="user_nm">
+											ID<span class="red_star"> </span>
+										</label>
+										<input class="form-control py-4" id="user_id" name="user_id" type="text" placeholder="ID를 입력해주세요." />
 									</div>
 
 									<div class="form-row">
 										<div class="col-md-8">
 											<div class="form-group">
-												<label class="small mb-1" for="email">이름<span class="red_star"> </span></label> <input class="form-control py-4" id="user_nm" name="user_nm"  placeholder="이름을 입력해주세요." />
+												<label class="small mb-1" for="email">
+													이름<span class="red_star"> </span>
+												</label>
+												<input class="form-control py-4" id="user_nm" name="user_nm" placeholder="이름을 입력해주세요." />
 											</div>
 										</div>
 									</div>
