@@ -24,7 +24,7 @@
 	}
 </script>
 
-<h3 class="mt-4">미니장터 게시글 등록</h3>
+<h3 class="mt-4">장터 게시글 등록</h3>
 
 <form action="${pageContext.request.contextPath}/fcommunity/registMiniMarket" method="post" enctype="multipart/form-data">
 	
