@@ -1,7 +1,7 @@
 ## SIMPLE Screen Shot (Mobile ver)
-<img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" width="80px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" width="80px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" width="80px">
-<img src = "/readmefolder/스크린샷 2021-03-32 10.18.03_findId.png" width="80px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.19.14_findPw.png" width="80px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.21.49_join1.png" width="80px">
-<img src = "/readmefolder/스크린샷 2021-03-32 10.22.18_join2.png" width="80px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.22.40_join3.png" width="80px"> <img src = "/readmefolder/스크린샷 2021-03-32 11.07.18_loginafter0.png" width="80px">
+<img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" width="100px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" width="100px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" width="100px">
+<img src = "/readmefolder/스크린샷 2021-03-32 10.18.03_findId.png" width="100px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.19.14_findPw.png" width="100px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.21.49_join1.png" width="100px">
+<img src = "/readmefolder/스크린샷 2021-03-32 10.22.18_join2.png" width="100px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.22.40_join3.png" width="100px"> <img src = "/readmefolder/스크린샷 2021-03-32 11.07.18_loginafter0.png" width="100px">
 
 
 ## KOREAN
