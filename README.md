@@ -22,7 +22,7 @@ devlunch4(PL), wnsgur530(TA), larlarru(AA), K-kyungchan(DA), yezlee(BA). DDIT FI
 
 # 상단 일람표
 #### 로그인/아이디찾기/비번찾기
-###### AJAX 사용. 이메일전송. 난수 설정.
+###### AJAX 사용. 이메일전송. 난수 설정, JSCOOKIE 사용.
 #### 회원가입
 ###### AJAX / JsonView 사용, 문자전송, 이메일전송
 #### 마이페이지
