@@ -21,7 +21,8 @@
 		and (select use_yn from codes where code_no = f.b_type_code) = 'Y'
 		and (select use_yn from codes where code_no = f.w_step_code) = 'Y'
 		and (select use_yn from codes where code_no = f.item_code) = 'Y'
-        and (select use_yn from mysimplecode where my_simple_code = f.my_simple_code) = 'Y'        
+        and (select use_yn from mysimplecode where my_simple_code = f.my_simple_code) = 'Y'
+        and f.use_yn = 'Y'        
 		and writer = #{writer }
 		ORDER BY reg_dt desc
 	</select>
