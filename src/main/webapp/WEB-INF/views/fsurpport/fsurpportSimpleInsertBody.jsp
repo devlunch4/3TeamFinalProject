@@ -33,7 +33,7 @@
 	
 		<div class="form-group">
 			<label  class="small mb-1" for="input_plant_prd">면적(m2)</label> 
-			<input name="area" id="input_cls_code" type="text" class="form-control py-4" required="required">
+			<input name="area" id="input_cls_code" type="number" value="0" min="0" step="0.5" class="form-control py-4" required="required">
 		</div>
 		
 		

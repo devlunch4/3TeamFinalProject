@@ -88,7 +88,7 @@
 		
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">가격</label> 
-		<input type="number" name="price" value="" min="0" class="form-control py-4" required="required">
+		<input type="number" name="price" value="0" min="0"  step="1" class="form-control py-4" required="required">
 	</div>
 	
 	<div class="form-group">
