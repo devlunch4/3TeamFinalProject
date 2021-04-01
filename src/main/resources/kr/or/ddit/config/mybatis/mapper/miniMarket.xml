@@ -28,7 +28,7 @@
         AND m.use_yn = 'Y'
 		AND (select use_yn from codes where code_no = m.item_code ) = 'Y'
 		AND (select use_yn from files where file_no = m.thumbnail ) = 'Y'
-        
+		
         <if test="item_code != null and item_code != ''">
 	        AND m.item_code = #{item_code }
         </if>
@@ -36,8 +36,8 @@
         <if test="title != null and title != ''">
 	        AND m.title like '%'||#{title }||'%'
         </if>
-        
 		ORDER BY reg_dt desc
+		
 	</select>	
 	
 	<!-- 20210318_ggy : 미니장터 게시글 클릭시 조회수 증가 -->

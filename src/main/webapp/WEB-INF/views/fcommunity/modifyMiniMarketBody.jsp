@@ -162,8 +162,8 @@
 	
 	<div class="form-group">
 		<label class="small mb-1" for="input_plant_prd">가격</label><br> 
-		<input type="number" name="price" value="${miniMarketInfo.price }"
-		required="required">
+		<input type="number" name="price" value="${miniMarketInfo.price }" 
+		min="0"  step="1" required="required">
 	</div>
 	
 	

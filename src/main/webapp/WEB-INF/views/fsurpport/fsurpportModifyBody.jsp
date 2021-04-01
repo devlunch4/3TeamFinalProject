@@ -122,28 +122,28 @@
 	</div>
 		
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">최저 온도</label> 
-		<input type="text" name="low_temp" value="${farmdiaryList.low_temp }" class="form-control py-4" required="required">
+		<label class="small mb-1" for="input_plant_prd">최저 온도(℃)</label> 
+		<input type="number" name="low_temp" value="${farmdiaryList.low_temp }" min="0" step="0.5" class="form-control py-4" required="required">
 	</div>
 	
 	<div class="form-group">
-		<label class="small mb-1"  for="input_plant_prd">최고 온도</label> 
-		<input type="text" name="high_temp" value="${farmdiaryList.high_temp }" class="form-control py-4" required="required">
+		<label class="small mb-1"  for="input_plant_prd">최고 온도(℃)</label> 
+		<input type="number" name="high_temp" value="${farmdiaryList.high_temp }" min="0" step="0.5" class="form-control py-4" required="required">
 	</div>
 	
 	<div class="form-group">
-		<label class="small mb-1" for="input_plant_prd">강수량</label> 
-		<input type="text" name="rainfall" value="${farmdiaryList.rainfall }" class="form-control py-4" required="required">
+		<label class="small mb-1" for="input_plant_prd">강수량(mm)</label> 
+		<input type="number" name="rainfall" value="${farmdiaryList.rainfall }" min="0" step="0.1"  class="form-control py-4" required="required" >
 	</div>
 	
 	<div class="form-group">
-		<label class="small mb-1"  for="input_plant_prd">습도</label> 
-		<input type="text" name="humid" value="${farmdiaryList.humid }" class="form-control py-4" required="required">
+		<label class="small mb-1"  for="input_plant_prd">습도(%)</label> 
+		<input type="number" name="humid" value="${farmdiaryList.humid }" min="0" step="0.1" class="form-control py-4" required="required" >
 	</div>
 	
 	<div class="form-group">
-		<label class="small mb-1"  for="input_plant_prd">수확량</label> 
-		<input type="text" name="yield" value="${farmdiaryList.yield }" class="form-control py-4"required="required">
+		<label class="small mb-1"  for="input_plant_prd">수확량(kg)</label> 
+		<input type="number" name="yield" value="${farmdiaryList.yield }" min="0" step="0.1" class="form-control py-4"required="required" >
 	</div>
 	
 	

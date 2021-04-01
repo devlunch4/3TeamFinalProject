@@ -142,28 +142,28 @@
 		</div>
 
 		<div class="col-xs-2 mr-1">
-			<label class="col-xs-1 small m-0" for="input_plant_prd">최저 온도</label>
-			<input type="text" name="low_temp" value="" class="form-control col-xs-1" required="required" style="width: 100px;">
+			<label class="col-xs-1 small m-0" for="input_plant_prd">최저 온도(℃)</label>
+			<input type="number" name="low_temp" value="0" min="0" step="0.5" class="form-control col-xs-1" required="required" style="width: 100px;">
 		</div>
 
 		<div class="col-xs-2 mr-1">
-			<label class="col-xs-1 small m-0" for="input_plant_prd">최고 온도</label>
-			<input type="text" name="high_temp" value="" class="form-control col-xs-1" required="required" style="width: 100px;">
+			<label class="col-xs-1 small m-0" for="input_plant_prd">최고 온도(℃)</label>
+			<input type="number" name="high_temp" value="0" min="0" step="0.5" class="form-control col-xs-1" required="required" style="width: 100px;">
 		</div>
 
 		<div class="col-xs-2 mr-1">
-			<label class="col-xs-1 small m-0" for="input_plant_prd">강수량</label>
-			<input type="text" name="rainfall" value="" class="form-control col-xs-1" required="required" style="width: 100px;">
+			<label class="col-xs-1 small m-0" for="input_plant_prd">강수량(mm)</label>
+			<input type="number" name="rainfall" value="0" min="0" step="0.1" class="form-control col-xs-1" required="required" style="width: 100px;">
 		</div>
 
 		<div class="col-xs-2 mr-1">
-			<label class="col-xs-1 small m-0" for="input_plant_prd">습도</label>
-			<input type="text" name="humid" value="" class="form-control col-xs-1" required="required" style="width: 100px;">
+			<label class="col-xs-1 small m-0" for="input_plant_prd">습도(%)</label>
+			<input type="number" name="humid" value="0" min="0" step="0.1" class="form-control col-xs-1" required="required" style="width: 100px;">
 		</div>
 
 		<div class="col-xs-2 mr-1">
-			<label class="col-xs-1 small m-0" for="input_plant_prd">수확량</label>
-			<input type="text" name="yield" value="" class="form-control col-xs-1" required="required" style="width: 100px;">
+			<label class="col-xs-1 small m-0" for="input_plant_prd">수확량(kg)</label>
+			<input type="number" name="yield" value="0" min="0" step="0.1" class="form-control col-xs-1" required="required" style="width: 100px;">
 		</div>
 	</div>
 
