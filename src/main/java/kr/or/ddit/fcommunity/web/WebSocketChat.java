@@ -22,8 +22,7 @@ public class WebSocketChat {
     private static final List<Session> sessionList=new ArrayList<Session>();;
     private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
     public WebSocketChat() {
-
-        System.out.println("웹소켓(서버) 객체생성");
+    	logger.debug("웹소켓(서버) 객체생성");
     }
     
     @OnOpen
@@ -34,8 +33,7 @@ public class WebSocketChat {
             final Basic basic=session.getBasicRemote();
             basic.sendText("대화방에 연결 되었습니다.");
         }catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
+        	logger.debug(e.getMessage());
         }
         sessionList.add(session);
     }
@@ -55,8 +53,7 @@ public class WebSocketChat {
                 }
             }
         }catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
+        	logger.debug(e.getMessage());
         }
     }
     
@@ -76,8 +73,7 @@ public class WebSocketChat {
             final Basic basic=session.getBasicRemote();
             basic.sendText("<나> : "+message);
         }catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
+        	logger.debug(e.getMessage());
         }
         sendAllSessionToMessage(session, sender, message);
     }
