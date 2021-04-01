@@ -19,6 +19,7 @@
 		manage_no,owner,location,info,reg_dt,use_yn
 		FROM fmanage
 		where owner = #{owner}
+		and use_yn = 'Y'
 		order by reg_dt desc
 	</select>
 

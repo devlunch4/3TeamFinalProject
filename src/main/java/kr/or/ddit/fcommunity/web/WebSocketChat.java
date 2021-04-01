@@ -38,7 +38,7 @@ public class WebSocketChat {
         sessionList.add(session);
     }
     
-    /*
+    /**
      * 모든 사용자에게 메시지를 전달한다.
      * @param self
      * @param sender
@@ -57,7 +57,7 @@ public class WebSocketChat {
         }
     }
     
-    /*
+    /**
      * 내가 입력하는 메세지
      * @param message
      * @param session
