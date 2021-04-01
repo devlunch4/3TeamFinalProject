@@ -109,7 +109,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 		
 		mockMvc.perform(get("/fsurpport/selectMySimpleCodeInfo")
 				.param("user_id", "brown")
-				.param("my_simple_code", "26")
+				.param("my_simple_code", "82")
 				)
 		.andExpect(view().name("tiles.fsurpport.fsurpportInsert"))
 		.andExpect(model().attributeExists("mySimpleCodeList"
@@ -216,7 +216,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 	
 	
 	mockMvc.perform(fileUpload("/fsurpport/modifyFarmdiary").file(file)
-			.param("f_diary_no", "85")
+			.param("f_diary_no", "83")
 			.param("area", "500")
 			.param("b_type_code", "1")
 			.param("content", "testCode_test")
@@ -233,7 +233,7 @@ public class FsurpportControllerTest_ggy  extends WebTestConfig {
 			.param("file_nm", "")
 			
 			)
-	.andExpect(redirectedUrl("/fsurpport/infoView?f_diary_no=85"))
+	.andExpect(redirectedUrl("/fsurpport/infoView?f_diary_no=83"))
 	.andExpect(status().is3xxRedirection())
 	.andDo(print());
 	}
