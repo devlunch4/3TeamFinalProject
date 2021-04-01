@@ -130,12 +130,12 @@
 		</div>
 		<div class="text-left row">
 			<c:choose>
-				<c:when test="${S_USER.user_id == miniMarketInfo.writer }">
+				<c:when test="${S_USER.user_id == marketReplyList.writer }">
 					<div class="text-left ">
 						<input type="button" name="${marketReplyList.reply_code }" value="댓글수정" class="modifyMarketReplyBtn btn btn-warning m-1 ">
 						<form action="${pageContext.request.contextPath }/fcommunity/deleteMarketReply" method="post" class="text-left">
 							<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
-							<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
+							<input type="hidden" name="market_no" value="${marketReplyList.market_no }" readonly="readonly">
 							<input type="hidden" name="reply_code" value="${marketReplyList.reply_code }" readonly="readonly">
 							<input type="submit" value="댓글삭제" onclick="alert('삭제합니다.');" class="btn btn-danger m-1">
 						</form>
@@ -147,7 +147,7 @@
 								${marketReplyList.content }
 							</textarea>
 							<input type="hidden" name="writer" value="${S_USER.user_id }" readonly="readonly">
-							<input type="hidden" name="market_no" value="${miniMarketInfo.market_no }" readonly="readonly">
+							<input type="hidden" name="market_no" value="${marketReplyList.market_no }" readonly="readonly">
 							<input type="hidden" name="reply_code" value="${marketReplyList.reply_code }" readonly="readonly">
 							<input type="submit" name="${marketReplyList.reply_code }" value="댓글수정저장" class="modifyMarketReplySubmitBtn btn btn-warning  m-1">
 							<input type="button" name="${marketReplyList.reply_code }" value="취소" class="modifyMarketReplyCancleBtn btn btn-primary m-1">

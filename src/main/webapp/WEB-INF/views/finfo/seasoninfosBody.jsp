@@ -19,7 +19,7 @@
 <div>
 	<c:if test="${S_USER.user_id.equals('admin') }">
 		<!-- 관리자 전용 수정 이동 버튼 활성 -->
-		<button type="button" class="btn-success btn-lg col-md-3 mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesAll'">재배안내관리</button>
+		<button type="button" class="btn-success btn-lg col-md-3 mb-4" onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesAll'">재배정보관리</button>
 	</c:if>
 </div>
 

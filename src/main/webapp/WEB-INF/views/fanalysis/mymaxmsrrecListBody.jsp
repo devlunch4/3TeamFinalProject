@@ -148,8 +148,8 @@
 	});
 </script>
 
-<!-- 20210305_KJH 시설정보 조회 -->
-<h3 class="mt-4">시설관리</h3>
+<!-- 20210305_KJH 시설정보 조회 시설관리-->
+<h3 class="mt-4">실시간 측정</h3>
 
 <div class="card mt-2 px-0">
 	<!-- <h3 class="card-header">총게시글 :</h3> -->
