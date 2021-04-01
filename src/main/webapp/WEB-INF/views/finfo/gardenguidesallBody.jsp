@@ -23,7 +23,7 @@
 	<input type="hidden" id="xguide_code" name="xguide_code" value="" />
 </form>
 
-<h3 class="mt-4">재배안내 글 전체보기(목록)</h3>
+<h3 class="mt-4">재배정보 글 전체보기(목록)</h3>
 <div class="">
 	<div class="text-right col-12 p-0">
 		<button class="btn-success btn-lg col-xs-4 col-md-3 mb-2" type="button"  onclick="location.href='${pageContext.request.contextPath}/finfo/gardenguidesInsert'">신규등록</button>
@@ -35,7 +35,7 @@
 		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
 <path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path>
 </svg>
-		전체 재배안내 조회
+		전체 재배정보 조회
 	</div>
 
 	<div class="card-body">
