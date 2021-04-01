@@ -19,14 +19,14 @@ import kr.or.ddit.batch.service.SdCodeService;
 @Component
 public class Scheduler {
 	private static final Logger logger = LoggerFactory.getLogger(Scheduler.class);
-	
+
 	@Resource(name = "sdCodeService")
 	private SdCodeService sdCodeService;
-	
+
 // cron 문법으로 스케줄러가 실행되는 주기를 설정.(아래의 cron 스케줄 문법에 자세한 설명) test ok
 	@Scheduled(cron = "30 30 * * * *")
-	public void run() throws IOException{
-		
+	public void run() throws IOException {
+		logger.debug("스케쥴러 실행 진입");
 //		StandarditemcodeVo Vo = new StandarditemcodeVo();
 //
 //		String path = "C:\\Users\\PC-12\\git\\3TeamFinalProject\\src\\main\\webapp\\resources"; // 현재폴더의 디렉토리 가지고 오기.
