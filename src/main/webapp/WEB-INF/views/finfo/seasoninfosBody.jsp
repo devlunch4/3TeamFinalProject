@@ -9,7 +9,7 @@
 			var guidecode = $(this).data("guidecode");
 			$("#xguide_code").val(guidecode);
 			$("#frm").attr("method", "post");
-			$("#frm").attr("action", "gardenguides");
+			$("#frm").attr("action", "gardenguides2");
 			$("#frm").submit();
 		});
 	});

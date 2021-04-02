@@ -675,4 +675,61 @@ public class FinfoController {
 		}
 		logger.debug("수행 완료 guideimg()");
 	}
+	
+	
+	// KWS 텃밭 가이드 (재배정보 진입) 조회 20210402
+		@RequestMapping("gardenguides2")
+		public String gardenguides2(Model model, @RequestParam(defaultValue = "ㄱ") String chosung,
+				@RequestParam(defaultValue = "0") int xguide_code) {
+			logger.debug("IN gardenguides222()");
+			logger.debug("초성 : {}", chosung);
+			logger.debug("xguide_code : {}", xguide_code);
+
+			String[] chosungArr = { "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ" };
+			model.addAttribute("chosungArr", chosungArr);
+
+			String[] chosungArrMatch = { "가", "나", "다", "라", "마", "바", "사", "아", "자", "차", "카", "타", "파", "하" };
+			String sqlwhere1 = "";
+			String sqlwhere2 = "";
+
+			// 마지막 'ㅎ'인 제외 검색
+			for (int i = 0; i < chosungArrMatch.length - 1; i++) {
+				if (chosung.equals(chosungArr[i])) {
+					sqlwhere1 = chosungArrMatch[i];
+					sqlwhere2 = chosungArrMatch[i + 1];
+					logger.debug("검색 where 조건1: {}, {}", sqlwhere1, sqlwhere2);
+				}
+			}
+			// 마지막 'ㅎ'인 경우 검색
+			if (chosung.equals("ㅎ")) {
+				sqlwhere1 = "하";
+				sqlwhere2 = "힣";
+				logger.debug("검색 where 조건1: {}, {}", sqlwhere1, sqlwhere2);
+			}
+			logger.debug("검색 where 조건 최종: {}, {}", sqlwhere1, sqlwhere2);
+			GuideSqlVo guideSqlVo = new GuideSqlVo(sqlwhere1, sqlwhere2);
+			// 초성 글자 보내기
+			model.addAttribute("chosung", chosung);
+			// 초성 검색 관련 이름 리스트 보내기
+			List<GardenguideVo> gardenguidesList = finfoService.selectGuideList(guideSqlVo);
+
+			// 검색 조건시 조회 리스트가 없는 경우 처리.
+			if (gardenguidesList.size() == 0) {
+				logger.debug("값 확인1 gardenguidesList.size(): {}", gardenguidesList.size());
+				xguide_code = 0;
+			}
+			if (gardenguidesList.size() != 0 && xguide_code == 0) {
+				logger.debug("값 확인2 gardenguidesList.size() : {}", gardenguidesList.size());
+				xguide_code = Integer.parseInt(gardenguidesList.get(0).getGuide_code());
+			}
+			model.addAttribute("gardenguidesList", gardenguidesList);
+
+			// 해당 가이드 글번호 보내기
+			model.addAttribute("xguide_code", xguide_code);
+			// 헤당 가이드 글 보내기
+			GardenguideVo gardenguidesVo = finfoService.selectGuide(xguide_code);
+			model.addAttribute("gardenguidesVo", gardenguidesVo);
+			return "tiles.finfo.gardenguides";
+		}
+
 }
