@@ -61,7 +61,7 @@ public class UserController {
 		logger.debug("In main()");
 		logger.debug("In main()");
 		logger.debug("In main()");
-		
+
 		// KJH - 메인으로 가면서 크롤링하여 시세분석값을 가져옴
 		String itemcategorycode = "100";
 		String itemcode = "111";
@@ -336,16 +336,19 @@ public class UserController {
 
 	// 이메일과 이름으로 비밀번호 찾기 03/27 (경찬)
 	@RequestMapping(path = "findPw2", method = { RequestMethod.POST })
-	public String findPw2(String email, Model model, UserVo userVo) {
+	public String findPw2(String email, Model model, UserVo userVo2) {
+		UserVo userVo = new UserVo();
+		logger.debug(" 입력된 VO : {} ", userVo2);
+		userVo = userService.findPw(userVo2);
 
-		userVo = userService.findPw(userVo);
-		
-		logger.debug("라이언 비밀번호는 : {} ", userVo);
-		
+		logger.debug(" 재생성된 VO : {} ", userVo);
+
 		if (userVo == null) {
 			String result = "존재하지 않는 회원입니다";
 			model.addAttribute("result", result);
 		} else {
+			logger.debug("확인된 회원의 존재 값. VO : {} ", userVo);
+
 			String user_id = "회원님의 메일로 비밀번호를 전송했습니다.";
 			model.addAttribute("user_id", user_id);
 
@@ -354,10 +357,12 @@ public class UserController {
 			final String user = "test_for_develop@naver.com";
 			final String password = "smartFarmers";
 
-			String to = email;
+			// String to = email;
+			// ~~~
+			// 받는이 이메일 설정.
+			String to = userVo.getEmail();
 
 			Properties props = new Properties();
-
 			props.put("mail.smtp.host", host);
 			props.put("mail.smtp.port", "587");
 			props.put("mail.smtp.auth", "true");
@@ -372,12 +377,9 @@ public class UserController {
 
 				MimeMessage message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(user));
-
 				message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(to));
-
 				// 제목
 				message.setSubject("똑똑한 농부들 회원님의 비밀번호 입니다.");
-
 				// 내용
 				message.setText("똑똑한 농부들 회원가입 인증코드는 " + userVo.getUser_pw() + " 입니다.");
 

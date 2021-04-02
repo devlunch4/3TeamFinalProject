@@ -34,9 +34,17 @@ public class LoginController {
 	@RequestMapping(path = "process", method = { RequestMethod.POST })
 	public String loginProcess(UserVo userVo, HttpSession session, Model model, HttpServletRequest request) {
 		logger.debug("iNN login controller >> loginProcess");
+		
 		UserVo dbUser = userService.selectUser(userVo.getUser_id());
+		if (dbUser == null) {
+			model.addAttribute("msg", "존재하지 않는 사용자입니다.\\n 로그인이 불가능합니다.");
+			model.addAttribute("url", "/login/view");
+			return "alert";
+		}
+				
 		String use_yn = userService.selectUse_yn(userVo.getUser_id());
 		int login_fail_cnt = userService.sumLoginFailCnt(userVo.getUser_id());
+		
 		// use_yn이 N이면 로그인 불가능하게끔
 		if (dbUser != null && use_yn.equals("N")) {
 			model.addAttribute("msg", "아이디 '" + dbUser.getUser_id() + "' 로그인이 불가능합니다.");
