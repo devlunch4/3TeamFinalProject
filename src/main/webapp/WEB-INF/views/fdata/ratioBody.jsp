@@ -59,7 +59,7 @@ $("#tb_filter").css( "float", "left" );
 	<!-- <h5 class="card-header">총게시글 :</h5> -->
 
 	<form action="${pageContext.request.contextPath}/fdata/ratio" id="selec">
-		<input type="hidden" id="selctype" name="selec" value="week">
+		<input type="hidden" id="selctype" name="selec" value="all">
 		<input type="hidden" id="sval" name="sdate">
 		<input type="hidden" id="eval" name="edate">
 	</form>
@@ -89,7 +89,8 @@ $("#tb_filter").css( "float", "left" );
 		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 	</div>
 	<div class="form-group row text-center m-0">
-		<input type="text" id="week-picker" value="주간 선택" name="week" class="btn btn-info col m-2" readonly>
+	<input type="text" id="allpick" value="전체조회" name="alls" class="btn btn-info col m-2" readonly>
+		<input type="text" id="week-picker" value="주간 선택" name="week" class="btn btn-info col m-2" style="display: none;" readonly>
 		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col  btn btn-info m-2" readonly>
 		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col  btn btn-info m-2" readonly>
 		<input type="text" id="syear-picker" name="syear" style="display: none;" class="col  btn btn-info m-2" readonly>
@@ -233,6 +234,51 @@ $(function() {
     
     //초기값을 오늘 날짜로 설정
     $('#eyear-picker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+
+
+    if("all" == "${selec}"){
+    	$("#allpick").show();
+    	$("#week-picker").hide();
+    	$("#smonth-picker").hide();
+    	$("#emonth-picker").hide();
+    	$("#syear-picker").hide();
+    	$("#eyear-picker").hide();
+    }
+
+    if("week" == "${selec}"){
+    	$("#selctype").val("week");
+    	$("#week-picker").show();
+    	$("#smonth-picker").hide();
+    	$("#emonth-picker").hide();
+    	$("#syear-picker").hide();
+    	$("#eyear-picker").hide();
+    	$("#allpick").hide();
+    	$("#week-picker").val("${sdate}");
+    }
+    else if("month" == "${selec}"){
+    		$("#selctype").val("month");
+    		$("#week-picker").hide();
+    		$("#smonth-picker").show();
+    		$("#emonth-picker").show();
+    		$("#syear-picker").hide();
+    		$("#eyear-picker").hide();
+        	$("#allpick").hide();
+    		
+    		$("#smonth-picker").val("${sdate}");
+    		$("#emonth-picker").val("${edate}");
+    }else if("year" == "${selec}"){
+    		$("#selctype").val("year");
+    		$("#week-picker").hide();
+    		$("#smonth-picker").hide();
+    		$("#emonth-picker").hide();
+    		$("#syear-picker").show();
+    		$("#eyear-picker").show();
+        	$("#allpick").hide();
+    		
+    		$("#syear-picker").val("${sdate}");
+    		$("#eyear-picker").val("${edate}");
+    }
+
 });
 function applyWeeklyHighlight() {
  $('.ui-datepicker-calendar tr').each(function() {
@@ -254,6 +300,10 @@ function applyWeeklyHighlight() {
   }
  });
 }
+
+
+
+
 $("#week").on("click",function(){
 	$("#selctype").val("week");
 	$("#week-picker").show();
@@ -261,6 +311,7 @@ $("#week").on("click",function(){
 	$("#emonth-picker").hide();
 	$("#syear-picker").hide();
 	$("#eyear-picker").hide();
+	$("#allpick").hide();
 });	
 	$("#month").on("click",function(){
 		$("#selctype").val("month");
@@ -269,6 +320,7 @@ $("#week").on("click",function(){
 		$("#emonth-picker").show();
 		$("#syear-picker").hide();
 		$("#eyear-picker").hide();
+    	$("#allpick").hide();
 });
 	$("#year").on("click",function(){
 		$("#selctype").val("year");
@@ -277,8 +329,11 @@ $("#week").on("click",function(){
 		$("#emonth-picker").hide();
 		$("#syear-picker").show();
 		$("#eyear-picker").show();
+    	$("#allpick").hide();
 });
 	$("#sel").on("click",function(){
+		
+		
 		
 		if($("#selctype").val() == "week"){
 			if($("#week-picker").val() =="클릭하여 주 선택"){
@@ -296,6 +351,10 @@ $("#week").on("click",function(){
 			$("#sval").val($("#syear-picker").val());
 			$("#eval").val($("#eyear-picker").val());
 		}
+		else if($("#selctype").val() == "all"){
+			$("#sval").val($("#syear-picker").val());
+			$("#eval").val($("#eyear-picker").val());
+		}
 		
 		$("#selec").submit();
 	});
@@ -304,22 +363,6 @@ $("#week").on("click",function(){
 		$("#selctype").val("all")
 		$("#selec").submit();
 	});
-//      	var chart = bb.generate({
-//      		  data: {
-//      		    columns: [
-//      		    	<c:forEach items="${farmCount}" var="fcount">
-//      		     	['${fcount.content}',${fcount.yield}],
-//      		     	</c:forEach>
-//      		    ],
-//      		    type: "donut",
-//      		  },
-//      		  donut: {
-//      		    label: {
-//      		      format: function(value, ratio, id) {		return value       }/*+"\nHours";*/
-//      		    }
-//      		  },
-//      		  bindto: "#multilineLabel"
-//      		});
 				<c:set var = "total" value = "0" />
 				<c:forEach items="${farmCount}" var="fcount">
 				<c:set var= "total" value="${total + fcount.yield}"/>
