@@ -10,7 +10,7 @@
 // 		$.extend( 
 // 				$.fn.dataTable.defaults, 
 // 				{
-// 		    $('#dataTable').dataTable({
+		    var table = $('#dataTable').dataTable({	 "order": [[ 0, 'desc' ]]});
 // 				"columnDefs" : [ {
 // 					"searchable" : false,
 // 					"targets" : 0
@@ -62,6 +62,9 @@
 		 	/* alert($("#manage_no").val()); */
 			$("#infoform").submit();
 			
+$('#sort').removeClass("sorting_asc");
+$('#sort').addClass("sorting_desc");
+
 
 			
 		});
@@ -90,16 +93,16 @@
 						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
-									<th class="sorting_asc " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" aria-sort="ascending">
+									<th class="" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" id="sort">
 										<!-- GUIDE_CODE(seq) -->시설번호
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">
+									<th class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">
 										<!-- CLASS_CODE -->소유자
 									</th>
-									<th class="sorting " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">
+									<th class=" " tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" >
 										<!-- ITEM_CODE -->시설위치
 									</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="">
+									<th class="" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="">
 										<!-- DIFFICULTY -->등록일
 									</th>
 								</tr>
@@ -108,7 +111,7 @@
 							<form action="${pageContext.request.contextPath}/fsurpport/fmanageInfo" method="post" id="infoform">
 								<input type="hidden" name="manage_no" id="manage_no" value="">
 							</form>
-
+				<c:set var="cnt_all" value="${fmanageList.size()}" />
 							<tbody>
 								<c:forEach items="${fmanageList }" var="fmanage" varStatus="sts">
 
@@ -117,12 +120,13 @@
 									</c:set>
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
 									<tr data-guidecode="${sts.count}" class="info" id="${sts.count}">
-										<td data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${sts.count}</td>
-										<td id="seow" class="guidecode" data-guidecode="${sts.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
-										<td id="selo" class="guidecode" data-guidecode="${sts.count}" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.location}<input type=hidden id="manage_no${sts.count}" value="${fmanage.manage_no}"></td>
-										<td id="sedt" data-toggle="tooltip" data-placement="top" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
+										<td data-toggle="tooltip"title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${cnt_all}</td>
+										<td id="seow" data-toggle="tooltip" title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.owner }</td>
+										<td id="selo" data-toggle="tooltip"  title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${fmanage.location}<input type=hidden id="manage_no${sts.count}" value="${fmanage.manage_no}"></td>
+										<td id="sedt" data-toggle="tooltip"  title="시설 위치명을 클릭하면 해당 상세 페이지로 이동합니다.">${dt}</td>
 									</tr>
 									<%-- </c:if> --%>
+									<c:set var="cnt_all" value="${cnt_all - 1}" />
 								</c:forEach>
 							</tbody>
 						</table>
