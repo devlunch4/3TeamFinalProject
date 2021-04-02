@@ -77,18 +77,18 @@ $(function(){
 					<table class="table table-bordered col-sx-12" style="text-align: center;">
 					<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
 						<tr>
-							<td class="col12" colspan="2">농장주 : <label>${fmanage.owner}</label>
+							<td class="col-12" colspan="2">농장주 : <label>${fmanage.owner}</label>
 							<input type="hidden" name="owner" value="${fmanage.owner}">
 							</td>
 							
 						</tr>
 						<tr>
-							<td sclass="col6">
+							<td sclass="col-6">
 							<select id="category" class="form-control">
 									<option value="100" selected="selected">식량작물</option>
 									<option value="200">채소류</option>
 							</select></td>
-							<td class="col6">
+							<td class="col-6">
 							<select id="item1" class="form-control"  name="item_code">
 									<c:forEach items="${codesList}" var="codes">
 										<c:if test="${codes.parent_code=='100'}">

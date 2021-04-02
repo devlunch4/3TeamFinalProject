@@ -119,6 +119,9 @@ public class FdataController {
 			model.addAttribute("choice",sdate+"~"+edt);
 		}
 		model.addAttribute("farmCount", farmCount);
+		model.addAttribute("selec",selec);
+		model.addAttribute("sdate",sdate);
+		model.addAttribute("edate",edate);
 		return "tiles.fdata.ratio";
 	}
 	

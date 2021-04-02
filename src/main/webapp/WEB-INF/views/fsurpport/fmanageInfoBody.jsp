@@ -49,7 +49,7 @@ $("#updatebtn").on("click",function(){
 <!-- 20210302_KJH 시설정보 조회 -->
 <h3 class="mt-4">시설관리</h3>
 <div class="card mt-2 col-sm-12 px-0">
-	<h3 class="card-header">총게시글 :</h3>
+	<h3 class="card-header">시설조회 : <label class="small">해당 시설의 정보를 확인하는 페이지입니다.<label></h3>
 	<div class="card-body text-left ">
 		<div class="">
 			<input type="button" class="btn_list" value="목록으로" onclick="goBack()">
