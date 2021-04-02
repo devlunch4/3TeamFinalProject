@@ -95,10 +95,15 @@ public class QnaController {
 
 	// 20210322_LYS 문의게시판 답글 등록 페이지 진입- 관리자용
 	@RequestMapping(path = "qnaRegistAdminReplyView", method = RequestMethod.GET)
-	public String QnaRegistAdminReplyView(Model model, HttpSession session, String qna_no) {
+	public String QnaRegistAdminReplyView(Model model, HttpSession session, int qna_no) {
 		logger.debug("IN QnaRegistAdminReplyView() 문의게시판 관리자용 답글 등록 페이지 진입 qna_no : {}", qna_no);
 
 		UserVo dbUser = (UserVo) session.getAttribute("S_USER");
+		
+		QnaVo qnaVo = (QnaVo) qnaService.selectOneListQna(qna_no);
+		logger.debug("IN QnaRegistAdminReplyView() qnaVo : {}", qnaVo);
+
+		model.addAttribute("qna", qnaVo);
 		model.addAttribute("qna_no", qna_no);
 
 		if (dbUser != null) {
