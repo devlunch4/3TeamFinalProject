@@ -88,7 +88,9 @@
 							</thead>
 							<tbody>
 
-								<c:forEach items="${guidelists }" var="guidelist">
+								<c:forEach items="${guidelists}" var="guidelist">
+								<fmt:parseDate value = "${guidelist.reg_dt}" pattern="yyyy-MM-dd" var="dt"/>
+								<fmt:formatDate value = "${dt}" pattern="yyyy-MM-dd" var="reg_dt"/>
 									<%-- <c:if test="${guidelist.use_yn == 'Y'}"> --%>
 									<tr data-guidecode="${guidelist.guide_code }">
 										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.guide_code }</td>
@@ -99,7 +101,7 @@
 										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.temperature }</td>
 										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.damage }</td>
 										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.season }</td>
-										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.reg_dt}</td>
+										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${reg_dt}</td>
 										<td data-toggle="tooltip" data-placement="top" title="부류명 또는 품명을 클릭하면 해당 상세 페이지로 이동합니다.">${guidelist.use_yn }</td>
 									</tr>
 									<%-- </c:if> --%>
