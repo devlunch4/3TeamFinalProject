@@ -74,21 +74,21 @@
 			<div class="form-group">
 				<label class="small mb-1" for="input_cls_code">주소</label> <br>
 
-				<div class="col-sm-10">
+				<div class="col-sm-10 mb-1">
 					<input readonly="readonly" id="addr1" class="form-control" value="${S_USER.addr1 }" />
 				</div>
-				<div class="col-sm-10">
+				<div class="col-sm-10 mb-1">
 					<input readonly="readonly" id="zipcode" class="form-control" value="${S_USER.addr2 }" />
 				</div>
-				<div class="col-sm-10">
+				<div class="col-sm-10 mb-1">
 					<input readonly="readonly" id="zipcode" class="form-control" value="${S_USER.zip }" />
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group text-right">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" id="deleteBtn" class="btn btn-primary">회원탈퇴</button>
-					<button type="button" id="modifyBtn" class="btn btn-primary">정보수정</button>
+					<button type="button" id="deleteBtn" class="btn btn-danger">회원탈퇴</button>
+					<button type="button" id="modifyBtn" class="btn btn-warning">정보수정</button>
 				</div>
 			</div>
 
