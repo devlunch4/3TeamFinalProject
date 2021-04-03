@@ -905,113 +905,47 @@ public class FsurpportController {
 		return "redirect:/fsurpport/fmanageInfo?manage_no=" + manage_no;
 	}
 
-//	// 20210311_KJH 내 수확량 조회 ok
-//	@RequestMapping(path = "myYield", method = { RequestMethod.GET })
-//	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) {
-//		logger.debug("IN myYield() GET");
-//		// KWS 로그인 접근제한 20210330
-//		UserVo userVox = new UserVo();
-//		userVox = (UserVo) session.getAttribute("S_USER");
-//		if (userVox == null || userVox.equals("")) {
-//			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
-//			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
-//			model.addAttribute("url", "/login/view");
-//			return "alert";
-//		}
-//		logger.debug("내 수확량 조회 myYield ");
-//		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
-//		UserVo userVo = new UserVo();
-//		userVo = (UserVo) session.getAttribute("S_USER");
-//		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
-//			FarmdiaryVo vo = new FarmdiaryVo();
-//			vo.setWriter(userVo.getUser_id());
-//			vo.setB_type_code("2000-01-01");
-//			vo.setW_step_code("5555-12-30");
-//			farmCount = fsurpportService.myYield(vo);
-//		} else if (selec.equals("week")) {
-//			try {
-//				String[] dt = sdate.split("~");
-//				String sd = dt[0];
-//				String ed = dt[1];
-//				FarmdiaryVo vo = new FarmdiaryVo();
-//				vo.setWriter(userVo.getUser_id());
-//				vo.setB_type_code(sd);
-//				vo.setW_step_code(ed);
-//				farmCount = fsurpportService.myYield(vo);
-//			} catch (Exception e) {
-//				model.addAttribute("farmCount", farmCount);
-//				return "tiles.fanalysis.myYield";
-//			}
-//		} else if (selec.equals("month")) {
-//			FarmdiaryVo vo = new FarmdiaryVo();
-//			vo.setWriter(userVo.getUser_id());
-//			vo.setB_type_code(sdate + "-01");
-//			String[] dt = edate.split("-");
-//			int eyy = Integer.parseInt(dt[0]);// 2021
-//			int emm = Integer.parseInt(dt[1]) + 1;// 04
-//			if (emm > 12) {
-//				emm = 1;
-//				eyy += 1;
-//			}
-//			String edt = "" + eyy + "-" + emm + "-01";
-//			vo.setW_step_code(edt);
-//			farmCount = fsurpportService.myYield(vo);
-//		} else if (selec.equals("year")) {
-//			FarmdiaryVo vo = new FarmdiaryVo();
-//			vo.setB_type_code(sdate + "-01-01");
-//			String edt = "" + (Integer.parseInt(edate));
-//			vo.setW_step_code(edt + "-12-31");
-//			vo.setWriter(userVo.getUser_id());
-//			farmCount = fsurpportService.myYield(vo);
-//		}
-//		model.addAttribute("farmCount", farmCount);
-//		return "tiles.fanalysis.myYield";
-//	}
-	
 	// 20210311_KJH 내 수확량 조회 ok
 	@RequestMapping(path = "myYield", method = { RequestMethod.GET })
-	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) throws SessionException {
+	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) {
 		logger.debug("IN myYield() GET");
-		
-		/** 
-		 * 1. 외부파라미터 조회 및 설정(사용자)
-		 * 2. 파라미터 밸리데이션
-		 * 3. 서비스사용(트랜잭션 단위로 호출)
-		 *   - try{}catch(){}.finally{}
-		 *   - try{}catch(){}.finally{}
-		 * 4. 클라이언트 전송 데이터 설정
-		 * 5. view 페이지 설정
-		 */
-		
-		
-		/** 1. 파라미터 조회/구성/ - 사용자 검증  */
 		// KWS 로그인 접근제한 20210330
-		UserVo userVo = (UserVo) session.getAttribute("S_USER");
-		if (userVo == null || userVo.equals("")) {
+		UserVo userVox = new UserVo();
+		userVox = (UserVo) session.getAttribute("S_USER");
+		if (userVox == null || userVox.equals("")) {
 			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
 			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
 			model.addAttribute("url", "/login/view");
-			/** 로그인 페이지로 이동, 에러 페이지 이동 */ 
-			// return "alert";
-			throw new SessionException("로그인 후 실행하시기 바랍니다. ");
+			return "alert";
 		}
 		logger.debug("내 수확량 조회 myYield ");
-		
-		/** 기간 ****************************************** */ 
-		/** 전체  */ 
-		String bTypeCode = null;
-		String wTypeCode = null;
-		
-		/** 주간 */ 
-		if (selec.equals("week")) {
-			String[] dt = sdate.split("~");
-			bTypeCode = dt[0];
-			wTypeCode = dt[1];
-		} 
-		
-		/** 월간 */ 
-		else if (selec.equals("month")) {
-			
+		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
+		UserVo userVo = new UserVo();
+		userVo = (UserVo) session.getAttribute("S_USER");
+		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setWriter(userVo.getUser_id());
+			vo.setB_type_code("2000-01-01");
+			vo.setW_step_code("5555-12-30");
+			farmCount = fsurpportService.myYield(vo);
+		} else if (selec.equals("week")) {
+			try {
+				String[] dt = sdate.split("~");
+				String sd = dt[0];
+				String ed = dt[1];
+				FarmdiaryVo vo = new FarmdiaryVo();
+				vo.setWriter(userVo.getUser_id());
+				vo.setB_type_code(sd);
+				vo.setW_step_code(ed);
+				farmCount = fsurpportService.myYield(vo);
+			} catch (Exception e) {
+				model.addAttribute("farmCount", farmCount);
+				return "tiles.fanalysis.myYield";
+			}
+		} else if (selec.equals("month")) {
+			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setWriter(userVo.getUser_id());
+			vo.setB_type_code(sdate + "-01");
 			String[] dt = edate.split("-");
 			int eyy = Integer.parseInt(dt[0]);// 2021
 			int emm = Integer.parseInt(dt[1]) + 1;// 04
@@ -1020,36 +954,102 @@ public class FsurpportController {
 				eyy += 1;
 			}
 			String edt = "" + eyy + "-" + emm + "-01";
-			bTypeCode = sdate + "-01";
-			wTypeCode = edt;
-		} 
-		
-		/** 년간 */
-		else if (selec.equals("year")) {
+			vo.setW_step_code(edt);
+			farmCount = fsurpportService.myYield(vo);
+		} else if (selec.equals("year")) {
 			FarmdiaryVo vo = new FarmdiaryVo();
+			vo.setB_type_code(sdate + "-01-01");
 			String edt = "" + (Integer.parseInt(edate));
-			bTypeCode = sdate + "-01-01";
-			wTypeCode = edt + "-12-31";
-			
+			vo.setW_step_code(edt + "-12-31");
+			vo.setWriter(userVo.getUser_id());
+			farmCount = fsurpportService.myYield(vo);
 		}
-		
-		FarmdiaryVo vo = new FarmdiaryVo();
-		vo.setB_type_code(bTypeCode);
-		vo.setW_step_code(wTypeCode);
-		vo.setWriter(userVo.getUser_id());
-		
-		
-		
-		/** 3. 서비스사용(트랜잭션 단위로 호출) */
-		List<FarmdiaryVo> farmCount = fsurpportService.myYield(vo);
-		
-		/** 4. 클라이언트 전송 데이터 설정 */
 		model.addAttribute("farmCount", farmCount);
-
-		/** 5.view 페이지 설정 */
 		return "tiles.fanalysis.myYield";
 	}
 	
+//	// 20210311_KJH 내 수확량 조회 ok
+//	@RequestMapping(path = "myYield", method = { RequestMethod.GET })
+//	public String myYield(Model model, String selec, String sdate, String edate, HttpSession session) throws SessionException {
+//		logger.debug("IN myYield() GET");
+//		
+//		/** 
+//		 * 1. 외부파라미터 조회 및 설정(사용자)
+//		 * 2. 파라미터 밸리데이션
+//		 * 3. 서비스사용(트랜잭션 단위로 호출)
+//		 *   - try{}catch(){}.finally{}
+//		 *   - try{}catch(){}.finally{}
+//		 * 4. 클라이언트 전송 데이터 설정
+//		 * 5. view 페이지 설정
+//		 */
+//		
+//		
+//		/** 1. 파라미터 조회/구성/ - 사용자 검증  */
+//		// KWS 로그인 접근제한 20210330
+//		UserVo userVo = (UserVo) session.getAttribute("S_USER");
+//		if (userVo == null || userVo.equals("")) {
+//			logger.debug("미로그인자의 접속 로그인 요청페이지 이동");
+//			model.addAttribute("msg", "로그인이 필요합니다. \\n로그인 페이지로 이동합니다.");
+//			model.addAttribute("url", "/login/view");
+//			/** 로그인 페이지로 이동, 에러 페이지 이동 */ 
+//			// return "alert";
+//			throw new SessionException("로그인 후 실행하시기 바랍니다. ");
+//		}
+//		logger.debug("내 수확량 조회 myYield ");
+//		
+//		/** 기간 ****************************************** */ 
+//		/** 전체  */ 
+//		String bTypeCode = null;
+//		String wTypeCode = null;
+//		
+//		/** 주간 */ 
+//		if (selec.equals("week")) {
+//			String[] dt = sdate.split("~");
+//			bTypeCode = dt[0];
+//			wTypeCode = dt[1];
+//		} 
+//		
+//		/** 월간 */ 
+//		else if (selec.equals("month")) {
+//			
+//			String[] dt = edate.split("-");
+//			int eyy = Integer.parseInt(dt[0]);// 2021
+//			int emm = Integer.parseInt(dt[1]) + 1;// 04
+//			if (emm > 12) {
+//				emm = 1;
+//				eyy += 1;
+//			}
+//			String edt = "" + eyy + "-" + emm + "-01";
+//			bTypeCode = sdate + "-01";
+//			wTypeCode = edt;
+//		} 
+//		
+//		/** 년간 */
+//		else if (selec.equals("year")) {
+//			FarmdiaryVo vo = new FarmdiaryVo();
+//			String edt = "" + (Integer.parseInt(edate));
+//			bTypeCode = sdate + "-01-01";
+//			wTypeCode = edt + "-12-31";
+//			
+//		}
+//		
+//		FarmdiaryVo vo = new FarmdiaryVo();
+//		vo.setB_type_code(bTypeCode);
+//		vo.setW_step_code(wTypeCode);
+//		vo.setWriter(userVo.getUser_id());
+//		
+//		
+//		
+//		/** 3. 서비스사용(트랜잭션 단위로 호출) */
+//		List<FarmdiaryVo> farmCount = fsurpportService.myYield(vo);
+//		
+//		/** 4. 클라이언트 전송 데이터 설정 */
+//		model.addAttribute("farmCount", farmCount);
+//
+//		/** 5.view 페이지 설정 */
+//		return "tiles.fanalysis.myYield";
+//	}
+//	
 
 	// KJH_20210317
 	// 시설리스트 페이지

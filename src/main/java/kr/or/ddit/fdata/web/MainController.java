@@ -84,9 +84,9 @@ public class MainController {
 		logger.debug("IN ratio()");
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
 		logger.debug("edate value : {}", edate);
-
+		FarmdiaryVo vo = new FarmdiaryVo();
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
-			farmCount = fdataService.farmCount();
+			farmCount = fdataService.datefarmCount(vo);
 			model.addAttribute("farmCount", farmCount);
 			model.addAttribute("choice", "전체기간");
 			return "/ajax/mainratio";
@@ -96,18 +96,15 @@ public class MainController {
 				String sd = dt[0];
 				String ed = dt[1];
 
-				FarmdiaryVo vo = new FarmdiaryVo();
 				vo.setB_type_code(sd);
 				vo.setW_step_code(ed);
 				model.addAttribute("choice", sdate);
-				farmCount = fdataService.datefarmCount(vo);
 			} catch (Exception e) {
 				model.addAttribute("farmCount", farmCount);
 				return "/ajax/mainratio";
 			}
 		} else if (selec.equals("month")) {
 
-			FarmdiaryVo vo = new FarmdiaryVo();
 			vo.setB_type_code(sdate + "-01");
 
 			String[] dt = edate.split("-");
@@ -122,13 +119,14 @@ public class MainController {
 			model.addAttribute("choice", sdate + "~" + edate);
 			farmCount = fdataService.datefarmCount(vo);
 		} else if (selec.equals("year")) {
-			FarmdiaryVo vo = new FarmdiaryVo();
+
 			vo.setB_type_code(sdate + "-01-01");
 			String edt = "" + (Integer.parseInt(edate));
 			vo.setW_step_code(edt + "-12-31");
-			farmCount = fdataService.datefarmCount(vo);
 			model.addAttribute("choice", sdate + "~" + edt);
 		}
+		
+		farmCount = fdataService.datefarmCount(vo);
 		model.addAttribute("farmCount", farmCount);
 		return "/ajax/mainratio";
 	}
