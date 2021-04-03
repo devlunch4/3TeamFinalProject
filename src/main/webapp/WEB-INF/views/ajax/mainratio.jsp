@@ -358,32 +358,5 @@ $("#week").on("click",function(){
      		  },
      		  bindto: "#multilineLabel"
      		});
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", 75, false);
-     			chart.flush(true);
-     		}, 2000);
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", 50, false);
-     			chart.flush(true);
-     		}, 4000);
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", 25, false);
-     			chart.flush(true);
-     		}, 6000);
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", -25, false);
-     			chart.flush(true);
-     		}, 8000);
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", -50, false);
-     			chart.flush(true);
-     		}, 10000);
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", -75, false);
-     			chart.flush(true);
-     		}, 12000);
-     		setTimeout(function() {
-     			chart.config("gauge.arcLength", -100, false);
-     			chart.flush(true);
-     		}, 14000);
+
 </script>
