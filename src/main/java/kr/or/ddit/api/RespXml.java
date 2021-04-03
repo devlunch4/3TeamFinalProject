@@ -41,7 +41,8 @@ public class RespXml {
 	public List<XFarmdiaryVo> sendxml(@PathVariable String selec, String sdate, String edate) {
 
 		List<XFarmdiaryVo> farm = new ArrayList<XFarmdiaryVo>();
-		List<FarmdiaryVo> farmCount = fdataService.farmCount();
+		FarmdiaryVo vo = new FarmdiaryVo();
+		List<FarmdiaryVo> farmCount = fdataService.datefarmCount(vo);
 
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
 			for (int i = 0; i < farmCount.size(); i++) {
@@ -58,7 +59,7 @@ public class RespXml {
 				String sd = dt[0];
 				String ed = dt[1];
 
-				FarmdiaryVo vo = new FarmdiaryVo();
+
 				vo.setB_type_code(sd);
 				vo.setW_step_code(ed);
 				farmCount = fdataService.datefarmCount(vo);

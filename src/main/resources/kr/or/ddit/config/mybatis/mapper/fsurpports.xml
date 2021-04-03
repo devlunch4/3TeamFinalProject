@@ -244,31 +244,24 @@
 		and f_diary_no = #{f_diary_no }
 	</update>
 		
-	<!--전체 품목별 비율 -->
-
-	<select id="farmCount" resultType="farmdiaryVo">
-	select count(code_nm) yield,code_nm content  from (
-    select usr.USER_ID, co.CODE_NM
-    from FARMDIARY fa ,codes co ,users usr
-    where co.CODE_NO = fa.ITEM_CODE
-    and usr.USER_ID = fa.WRITER
-    and fa.REG_DT &gt; sysdate-9999
-    and fa.REG_DT &lt; sysdate+9999
-    GROUP by usr.user_id, co.code_nm
-    )group by code_nm
-	</select>
-	
-	<!-- 0310_KJH 날짜조건 품목별 비율 -->
-	<select id="datefarmCount" resultType="farmdiaryVo" parameterType="farmdiaryVo">
-    select count(code_nm) yield,code_nm content  from (
-    select usr.user_id, co.code_nm
-    from farmdiary fa ,codes co ,users usr
-    where co.code_no = fa.item_code
-    and usr.user_id = fa.writer
-    and fa.reg_dt &gt; to_date(#{b_type_code},'yyyy-mm-dd')+1
-    and fa.reg_dt &lt; to_date(#{w_step_code},'yyyy-mm-dd')+1
-    group by usr.user_id, co.code_nm
-    )group by code_nm
+		<!-- 0310_KJH 날짜조건 품목별 비율 -->
+		<select id="datefarmCount" resultType="farmdiaryVo" parameterType="farmdiaryVo">
+	    		select item_code
+		, count(1) as yield
+		, (select code_nm from codes a where a.code_no = b.item_code) as
+		content
+		from (
+		select item_code,writer
+		from farmdiary
+		<if test="b_type_code != null">
+		where reg_dt &gt; to_date(#{b_type_code},'yyyy-mm-dd')+1
+		</if>
+		<if test="w_step_code != null">
+	    and reg_dt &lt; to_date(#{w_step_code},'yyyy-mm-dd')+1
+		</if>
+		group by item_code,writer
+		) b
+		group by item_code
 	</select>
 	
 	<!-- 0311_KJH 날짜조건 수확량 조회-->
@@ -277,8 +270,12 @@
     from farmdiary fa ,codes co ,users usr
     where co.code_no = fa.item_code
     and usr.user_id = fa.writer
-    and fa.reg_dt &gt; to_date(#{b_type_code},'yyyy-mm-dd')+1
-    and fa.reg_dt &lt; to_date(#{w_step_code},'yyyy-mm-dd')+1
+    <if test="b_type_code!=null">
+	    and fa.reg_dt &gt; to_date(#{b_type_code},'yyyy-mm-dd')+1
+    </if>
+    <if test="w_step_code!=null">
+    	and fa.reg_dt &lt; to_date(#{w_step_code},'yyyy-mm-dd')+1
+    </if>
     and fa.writer = #{writer}
     group by co.code_nm,co.code_no
 	</select>

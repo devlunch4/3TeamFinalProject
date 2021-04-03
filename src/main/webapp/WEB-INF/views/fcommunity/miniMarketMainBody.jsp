@@ -47,17 +47,14 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-md-12 col-sm-12 ">
-
 						<!-- 					<input type="button" value="EXCEL다운로드" class="float-right btn btn-success col-xs-2 col-md-2   "  -->
 						<%-- 					onclick="location.href='${pageContext.request.contextPath}/fsurpport/excelFamrdiaryList?user_id=${S_USER.user_id }'"> --%>
-
 						<!-- 					<input type="button" value="PDF다운로드" class="float-right btn btn-success col-xs-2 col-md-2  "  -->
 						<%-- 					onclick="location.href='${pageContext.request.contextPath}/fsurpport/farmdiaryListPDF.pdf?user_id=${S_USER.user_id }'"> --%>
-
 						<table class="col-xs-6 col-md-12 table dataTable table-width" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead>
 								<tr role="row">
-									<th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Head: activate to sort column descending" aria-sort="ascending">머릿말</th>
+									<th class="sorting_desc text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Head: activate to sort column ascending" aria-sort="descending">머릿말</th>
 									<th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending">사진</th>
 									<th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column descending">제목</th>
 									<th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="WRITER: activate to sort column ascending">작성자</th>

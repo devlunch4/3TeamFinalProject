@@ -60,6 +60,13 @@
 		<tx:attributes>
 			<!-- 세분화 관리 가능하나 우리는 모두로 설정관리 -->
 			<tx:method name="*" />
+			<!-- <tx:method name="select*" />
+			<tx:method name="update*" />
+			<tx:method name="insert*" />
+			<tx:method name="delete*" />
+			<tx:method name="save*" />
+			<tx:method name="get*" />
+			<tx:method name="merge*" /> -->
 		</tx:attributes>
 	</tx:advice>
 

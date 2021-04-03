@@ -53,9 +53,10 @@ public class Api {
 		logger.debug("edate value : {}", edate);
 		List<Map> listlist = new ArrayList<Map>();
 		List<FarmdiaryVo> farmCount = new ArrayList<FarmdiaryVo>();
-
+		FarmdiaryVo vo = new FarmdiaryVo();
+		
 		if (selec == null || selec.equals("all") || sdate == null || sdate == "") {
-			farmCount = fdataService.farmCount();
+			farmCount = fdataService.datefarmCount(vo);
 
 			for (int i = 0; i < farmCount.size(); i++) {
 				Map<String, String> maps = new HashMap<String, String>();
@@ -71,7 +72,6 @@ public class Api {
 				String sd = dt[0];
 				String ed = dt[1];
 
-				FarmdiaryVo vo = new FarmdiaryVo();
 				vo.setB_type_code(sd);
 				vo.setW_step_code(ed);
 				farmCount = fdataService.datefarmCount(vo);
@@ -89,7 +89,6 @@ public class Api {
 			return listlist;
 		} else if (selec.equals("month")) {
 
-			FarmdiaryVo vo = new FarmdiaryVo();
 			vo.setB_type_code(sdate + "-01");
 
 			String[] dt = edate.split("-");
@@ -114,7 +113,6 @@ public class Api {
 			return listlist;
 
 		} else if (selec.equals("year")) {
-			FarmdiaryVo vo = new FarmdiaryVo();
 			vo.setB_type_code(sdate + "-01-01");
 			String edt = "" + (Integer.parseInt(edate));
 			vo.setW_step_code(edt + "-12-31");
