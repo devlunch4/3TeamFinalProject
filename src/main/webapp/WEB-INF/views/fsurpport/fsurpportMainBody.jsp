@@ -74,7 +74,7 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-md-12 col-sm-12 ">
-						<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+						<table class="table table-bordered dataTable table-width small" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 							<thead class="thead-light">
 								<tr role="row" class="small">
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column descending" aria-sort="ascending">사진</th>
