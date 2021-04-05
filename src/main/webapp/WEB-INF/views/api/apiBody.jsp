@@ -75,7 +75,7 @@ $(function(){
 		<div class="form-group pl-1 text-left small">
 			<dl class="name">
 				<dt>데이터명</dt>
-				<dd>기간별 품목 비율(전자경매속보)</dd>
+				<dd>기간별 품목 비율</dd>
 			</dl>
 			<dl class="source">
 				<dt>제공</dt>
