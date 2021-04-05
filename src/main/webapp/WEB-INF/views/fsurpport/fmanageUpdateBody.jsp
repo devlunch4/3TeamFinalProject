@@ -67,36 +67,32 @@ $(function(){
 </script>
 
 <!-- 20210302_KJH 시설등록 -->
-<h3 class="mt-4">시설등록</h3>
+<h3 class="mt-4">시설수정</h3>
 <div class="card mt-2 col-sm-12 px-0">
-	<h3 class="card-header">시설등록 페이지 :</h3>
+	<!-- <h3 class="card-header">시설등록 페이지 :</h3> -->
 	<div class="card-body text-left ">
 		<div class="">
-			<div class="row">
+			<div class="">
 				<form action="${pageContext.request.contextPath}/fsurpport/fmanageUpdate" method="post" id="send">
-					<table class="table table-bordered col-sx-12" style="text-align: center;">
-					<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
+					<table class="table table-bordered " style="text-align: center;">
+						<input type="hidden" name="manage_no" value="${fmanage.manage_no}">
 						<tr>
-							<td class="col-12" colspan="2">농장주 : <label>${fmanage.owner}</label>
-							<input type="hidden" name="owner" value="${fmanage.owner}">
+							<td class="col-12" colspan="2">농장주 : <label>${fmanage.owner}</label> <input type="hidden" name="owner" value="${fmanage.owner}">
 							</td>
-							
+
 						</tr>
 						<tr>
-							<td sclass="col-6">
-							<select id="category" class="form-control">
+							<td sclass="col-6"><select id="category" class="form-control">
 									<option value="100" selected="selected">식량작물</option>
 									<option value="200">채소류</option>
 							</select></td>
-							<td class="col-6">
-							<select id="item1" class="form-control"  name="item_code">
+							<td class="col-6"><select id="item1" class="form-control" name="item_code">
 									<c:forEach items="${codesList}" var="codes">
 										<c:if test="${codes.parent_code=='100'}">
 											<option value="${codes.code_no}">${codes.code_nm}</option>
 										</c:if>
 									</c:forEach>
-							</select> 
-							<select id="item2" class="form-control" style="display: none">
+							</select> <select id="item2" class="form-control" style="display: none">
 									<c:forEach items="${codesList}" var="codes">
 										<c:if test="${codes.parent_code=='200'}">
 											<option value="${codes.code_no}">${codes.code_nm}</option>
@@ -105,19 +101,22 @@ $(function(){
 							</select></td>
 						</tr>
 						<tr>
-							<td colspan="2">장소 : <input type="text" name="location" value="${fmanage.location}" required="required"/>
+							<td colspan="2">장소 : <input type="text" name="location" value="${fmanage.location}" required="required" />
 							</td>
 						</tr>
-<!-- 						<tr> -->
-<!-- 							<td colspan="2">장비 :  -->
-<!-- 							<label></label> -->
-<!-- 							</td> -->
-<!-- 						</tr> -->
+						<!-- 						<tr> -->
+						<!-- 							<td colspan="2">장비 :  -->
+						<!-- 							<label></label> -->
+						<!-- 							</td> -->
+						<!-- 						</tr> -->
 						<tr>
 							<td colspan="2"><textarea id="summernote" name="info">${fmanage.info}</textarea></td>
 						</tr>
 					</table>
-					<button type="submit" class="btn btn-primary" id="save">등록하기</button>
+					<div class="text-right">
+						<button type="submit" class="btn btn-warning" id="save">수정</button>
+					</div>
+
 				</form>
 			</div>
 		</div>
@@ -134,9 +133,9 @@ $(function(){
 	    ['font', ['bold', 'underline', 'clear']],
 	    ['color', ['color']],
 	    ['para', ['ul', 'ol', 'paragraph']],
-	    ['table', ['table']],
+	  /*   ['table', ['table']],
 	    ['insert', ['link', 'picture', 'video']],
-	    ['view', ['fullscreen', 'codeview', 'help']]
+	    ['view', ['fullscreen', 'codeview', 'help']] */
 	  ]
 	});
 </script>

@@ -38,25 +38,31 @@ $(function(){
 </script>
 
 <form action="${pageContext.request.contextPath}/fanalysis/myfanalysisInfo" id="read" method="post">
-	<input type="hidden" name="msr_code" value="${msr_code}"> <input type="hidden" id="w_date" name="week"> <input type="hidden" id="m_date" name="month"> <input type="hidden" id="d_date" name="day"> <input type="hidden" id="selec" name="selec">
+	<input type="hidden" name="msr_code" value="${msr_code}">
+	<input type="hidden" id="w_date" name="week">
+	<input type="hidden" id="m_date" name="month">
+	<input type="hidden" id="d_date" name="day">
+	<input type="hidden" id="selec" name="selec">
 </form>
 
 <!-- 20210304_KJH items -> 내 시설 관측 -->
 <h3 class="mt-4">측정 기록 보기</h3>
-<select id="select">
-	<c:forEach items="${fmanageList}" var="fmanage" varStatus="status">
-		<option id="${status.index}" value="${fmanage.manage_no}">${fmanage.location}</option>
-	</c:forEach>
-</select>
-<br>
-${manage_no}
-<br>
 
-<button class="btn btn-primary float-left" id="week">일주일</button>
-&nbsp;
-<button class="btn btn-primary float-left" id="month">한달</button>
-
-<div class="form-group">
+<div class="text-left">
+	<label>시설 위치 : </label>
+	<select id="select" class="form-control-sm m-1">
+		<c:forEach items="${fmanageList}" var="fmanage" varStatus="status">
+			<option id="${status.index}" value="${fmanage.manage_no}">${fmanage.location}</option>
+		</c:forEach>
+	</select>
+</div>
+<div class="text-left">
+	<label>기간 선택 : </label>
+	<button class="btn-sm btn-primary m-1  " id="week">일주일</button>
+	<button class="btn-sm btn-primary m-1  " id="month">한달</button>
+</div>
+<div class="text-left">
+	<label>날짜 선택 : </label>
 	<!-- 현재날짜를 넘지 않게 max값 지정 -->
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="sysd">
@@ -67,22 +73,20 @@ ${manage_no}
 	<c:set var="sedate">
 		<fmt:formatDate value="${se}" pattern="yyyy-MM-dd" />
 	</c:set>
-
-	<input type="date" id="dateserch" class="form-control" value="${sedate}" max="${sysd}"> <br>
-
-
-
+	<input type="date" id="dateserch" class="form-control-sm m-1" value="${sedate}" max="${sysd}">
+	<button id="btn_search" class="btn-sm btn-secondary m-1">조회하기</button>
 	<form id="select" action="${pageContext.request.contextPath}/user/main">
-		<input type="hidden" id="c_code" name="parent_code" value=""> <input type="hidden" id="i_code" name="code_no" value=""> <input type="hidden" id="d_code" name="sdate" value="">
+		<input type="hidden" id="c_code" name="parent_code" value="">
+		<input type="hidden" id="i_code" name="code_no" value="">
+		<input type="hidden" id="d_code" name="sdate" value="">
 	</form>
-	
-	<button id="btn_search" class="btn btn-secondary">조회하기</button>
-	<br> <br>
-	<lable class ="text-danger font-weight-bold">${novalue}</lable>
+
+	<hr>
+	<label class="text-danger font-weight-bold">${novalue}</label>
 	<canvas id="myChart" width="600" height="300"></canvas>
-<!-- <div class="col-12"> -->
-<!-- <div id="chart_div"></div> -->
-<!-- </div> -->
+	<!-- <div class="col-12"> -->
+	<!-- <div id="chart_div"></div> -->
+	<!-- </div> -->
 </div>
 
 <script>

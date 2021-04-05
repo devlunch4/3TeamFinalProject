@@ -49,9 +49,9 @@
 			</main>	
 			<footer class="py-4 bg-light mt-auto footer">
                 <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; 똑똑한 농부들 2021</div>
-                        <div>
+                    <div class="d-flex align-items-center justify-content-between small row">
+                        <div class="col-md-6 text-muted">Copyright &copy; 똑똑한 농부들 2021</div>
+                        <div class="col-md-6">
                             <a href="#">Privacy Policy</a>
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
