@@ -22,10 +22,8 @@
                		<path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path>
                 </svg>
 		<h3>주간 농사정보</h3>
-		
-		
 	</div> -->
-	<div class="card-body">
+	<div class="card-body small">
 		<div class="table-responsive">
 			<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 				<div class="row">
@@ -42,10 +40,10 @@
 							<thead>
 								<tr role="row">
 									<th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="NUMBER: activate to sort column descending" aria-sort="ascending">번호</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column ascending">제목</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="FILE_CODE: activate to sort column ascending">첨부파일</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="WRITER: activate to sort column ascending">작성자</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="REG_DT: activate to sort column ascending">등록일</th>
-									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="FILE_CODE: activate to sort column ascending">첨부파일</th>
+									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="TITLE: activate to sort column ascending">제목</th>
 									<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="ETC activate to sort column ascending">기타</th>
 								</tr>
 							</thead>
@@ -63,12 +61,13 @@
 								<c:forEach items="${weeklyFarmInfosList }" var="weeklyFarmInfosList">
 									<tr>
 										<td class="text-center">${weeklyFarmInfosList.w_info_no }</td>
-										<td>${weeklyFarmInfosList.title }</td>
+										<td class="p-1"><c:if test="${weeklyFarmInfosList.file_no > 0 }">
+												<button class="btn-sm btn-primary m-1" onclick="location.href='${pageContext.request.contextPath}/finfo/weeklyFarmInfosFilePath?file_nm=${weeklyFarmInfosList.file_nm }'">${weeklyFarmInfosList.file_nm }</button>
+											</c:if></td>
 										<td>${weeklyFarmInfosList.writer }</td>
 										<td><fmt:formatDate value="${weeklyFarmInfosList.reg_dt }" pattern="yyyy.MM.dd" /></td>
-										<td class="p-0"><c:if test="${weeklyFarmInfosList.file_no > 0 }">
-												<button class="btn btn-primary m-0" onclick="location.href='${pageContext.request.contextPath}/finfo/weeklyFarmInfosFilePath?file_nm=${weeklyFarmInfosList.file_nm }'">${weeklyFarmInfosList.file_nm }</button>
-											</c:if></td>
+										<td>${weeklyFarmInfosList.title }</td>
+
 										<td><c:if test="${S_USER.user_id.equals('admin') }">
 												<form action="${pageContext.request.contextPath}/finfo/modifyWeeklyFarmInfosView" method="post">
 													<input type="hidden" name="w_info_no" value="${weeklyFarmInfosList.w_info_no }">

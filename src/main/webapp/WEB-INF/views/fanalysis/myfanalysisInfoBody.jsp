@@ -74,16 +74,17 @@ $(function(){
 		<fmt:formatDate value="${se}" pattern="yyyy-MM-dd" />
 	</c:set>
 	<input type="date" id="dateserch" class="form-control-sm m-1" value="${sedate}" max="${sysd}">
-	<button id="btn_search" class="btn-sm btn-secondary m-1">조회하기</button>
+	<button id="btn_search" class="btn-sm btn-secondary m-1">조회</button>
 	<form id="select" action="${pageContext.request.contextPath}/user/main">
 		<input type="hidden" id="c_code" name="parent_code" value="">
 		<input type="hidden" id="i_code" name="code_no" value="">
 		<input type="hidden" id="d_code" name="sdate" value="">
 	</form>
-
 	<hr>
+	
 	<label class="text-danger font-weight-bold">${novalue}</label>
 	<canvas id="myChart" width="600" height="300"></canvas>
+	<div class="small text-danger">* 오늘 >>> 과거</div>
 	<!-- <div class="col-12"> -->
 	<!-- <div id="chart_div"></div> -->
 	<!-- </div> -->
