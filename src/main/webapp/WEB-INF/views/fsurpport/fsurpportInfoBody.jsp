@@ -7,9 +7,28 @@
 <div class="form-group">
 	<label>등록일 : </label>
 	<fmt:formatDate value="${farmdiaryList.reg_dt }" pattern="yyyy.MM.dd" />
-	<br> <label>품목 : </label> ${farmdiaryList.item_code } <br> <label>작업단계 : </label> ${farmdiaryList.w_step_code } <br> <label class="mb-0">작업내용 : </label>
-	<div class="border">${farmdiaryList.content }</div>
-	<label>날씨정보 : </label> ${farmdiaryList.weather } <br> <label>최저온도 : </label> ${farmdiaryList.low_temp } 도 <br> <label>최고온도 : </label> ${farmdiaryList.high_temp } 도<br> <label>강수량 : </label> ${farmdiaryList.rainfall } mm<br> <label>습도 : </label> ${farmdiaryList.humid } %<br> <label>수확량 : </label> ${farmdiaryList.yield } kg<br> <label>면적 : </label> ${farmdiaryList.area } m<sup>2</sup><br> <label>사진 : </label> <img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }" alt="none" height="100px">
+	<br>
+	<label>품목 : </label>
+	${farmdiaryList.item_code } <br>
+	<label>작업단계 : </label>
+	${farmdiaryList.w_step_code } <br>
+	<label class="mb-0">작업내용 : </label>${farmdiaryList.content }<br>
+	<label>날씨정보 : </label>
+	${farmdiaryList.weather } <br>
+	<label>최저온도 : </label>
+	${farmdiaryList.low_temp } 도 <br>
+	<label>최고온도 : </label>
+	${farmdiaryList.high_temp } 도<br>
+	<label>강수량 : </label>
+	${farmdiaryList.rainfall } mm<br>
+	<label>습도 : </label>
+	${farmdiaryList.humid } %<br>
+	<label>수확량 : </label>
+	${farmdiaryList.yield } kg<br>
+	<label>면적 : </label>
+	${farmdiaryList.area } m<sup>2</sup><br>
+	<label>사진 : </label>
+	<img src="${pageContext.request.contextPath}/fsurpport/filePath?file_nm=${farmdiaryList.file_nm }" alt="none" height="100px">
 </div>
 <div class="form-group ">
 	<div class="row float-right">
