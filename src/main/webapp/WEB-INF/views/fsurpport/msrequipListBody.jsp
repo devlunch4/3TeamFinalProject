@@ -139,11 +139,12 @@
 			$("#msr_code").val($("#msr_code".concat(idval)).val());
 			$("#msr_nm").val($("#msr_nm".concat(idval)).val());
 			$("#owner").val($("#owner".concat(idval)).val());
-			$("#form").submit();
 
 			console.log($("#msr_code").val() + "ok");
 			console.log($("#owner").val());
 			console.log($("#msr_nm").val());
+			$("#form").submit();
+
 		});
 
 		$("#setBtn").on("click", function() {
@@ -157,7 +158,7 @@
 <!-- 20210302_KJH 등록한 시설 리스트 -->
 <h3 class="mt-4">장비관리</h3>
 <div class="card mt-2 px-0">
-	<h3 class="card-header">장비관리 :</h3>
+	<!-- <h3 class="card-header">장비관리 :</h3> -->
 	<div class="card-body text-left p-0">
 		<!-- 		<div class="mt-2 col-sm-2 px-0 float-right"> -->
 		<%-- 			<a href="${pageContext.request.contextPath}/fsurpport/fmanageInsertPage" class="btn btn-primary p-2 float-right">장비등록</a> --%>
@@ -178,11 +179,11 @@
 						<div id="dataTable_filter" class="dataTables_filter"></div>
 					</div>
 				</div>
-				<table class="table table-bordered text-center  p-1" id="tb">
+				<table class="table table-bordered text-center table-width p-1" id="tb">
 					<thead>
 						<tr role="row">
 							<th class="p-0 table-active" role="row" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 24%">장비코드</th>
-							<th class="p-0 table-active" role="row" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 35%">장비명</th>
+							<th class="p-0 table-active" role="row" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 100%">장비명</th>
 							<th class="p-0 table-active" role="row" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 31%">사용자</th>
 							<th class="p-0 table-active" role="row" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 10%">버튼</th>
 						</tr>
@@ -195,13 +196,11 @@
 					<tbody>
 						<c:forEach items="${msrList}" var="msr" varStatus="sts">
 							<c:if test="${S_USER.user_id ne 'admin'}">
-								<input type="hidden" id="msr_code${sts.count}" value="${msr.msr_code}">
-								<input type="hidden" id="owner${sts.count}" value="${S_USER.user_id}">
 								<tr>
 									<td class="p-0" data-placement="top">${msr.msr_code}</td>
 									<td class="p-1" data-guidecode="${sts.count}"><input type="text" id="msr_nm${sts.count}" value="${msr.msr_nm}" class="col-12">
 										<div style="display: none;">${msr.msr_nm}</div></td>
-									<td class="p-0" data-guidecode="${sts.count}">${msr.owner}</td>
+									<td class="p-0" data-guidecode="${sts.count}"><input type="hidden" id="msr_code${sts.count}" value="${msr.msr_code}"> <input type="hidden" id="owner${sts.count}" value="${S_USER.user_id}">${msr.owner}</td>
 									<td class="p-0"><input class="save btn btn-info btn-sm" type="submit" value="저장" id="${sts.count}"></td>
 								</tr>
 							</c:if>
@@ -222,10 +221,11 @@
 					</tbody>
 
 					<c:if test="${S_USER.user_id ne 'admin'}">
+						<!-- <tr><td></td></tr> -->
 						<tr class="table-active">
-							<th class="p-0">등록할 장비코드</th>
-							<td class="py-0 pl-3" colspan="2"><input class="form-control col-11" type="text" id="setInput" /></td>
-							<td class="p-0"><input class="btn btn-outline-info btn-sm" type="button" value="등록" id="setBtn" /></td>
+							<th class="px-0 py-1">등록할 장비코드</th>
+							<td class="px-0 py-1" colspan="2"><input class="col" type="text" id="setInput" /></td>
+							<td class="px-0 py-1"><input class="btn-sm btn-outline-info " type="button" value="등록" id="setBtn" /></td>
 						</tr>
 					</c:if>
 				</table>

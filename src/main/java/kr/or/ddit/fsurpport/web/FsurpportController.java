@@ -742,7 +742,7 @@ public class FsurpportController {
 //	 KJH_20210308 수정
 //	 농업양식 - 시설관리 관리중인 시설 상세 조회페이지 ok
 	@RequestMapping(path = "fmanageInfo", method = { RequestMethod.POST })
-	public String fmanage(Model model, FmanageVo fmanage, HttpSession session, String manage_no) {
+	public String fmanage(Model model, HttpSession session, String manage_no) {
 		logger.debug(" 시설관리중인 시설 상세조회 fmanageInfo 진입");
 		FmanageVo fvo = fsurpportService.fmanageInfo(manage_no);
 		// KJH_20210308 측정 정보 조회 수정
@@ -887,9 +887,9 @@ public class FsurpportController {
 		return "redirect:/fsurpport/fmanageList";
 	}
 
-	// KJH_20210311
+	// KJH_20210311 + 20210405 오류해결
 	// 농업양식 - 시설관리 관리중인 시설 장비변경 ok
-	@RequestMapping(path = "msrequipChange", method = { RequestMethod.GET })
+	@RequestMapping(path = "msrequipChange", method = { RequestMethod.POST })
 	public String msrequipChange(Model model, String manage_no, String msr_code) {
 		logger.debug("시설 장비변경 msrequipChange");
 		if (msr_code == null || msr_code.length() < 0) {
@@ -902,7 +902,9 @@ public class FsurpportController {
 		fhistoryVo.setManage_no(manage_no);
 		fhistoryVo.setMsr_code(msr_code);
 		fsurpportService.insertFhistory(fhistoryVo);
-		return "redirect:/fsurpport/fmanageInfo?manage_no=" + manage_no;
+		
+		model.addAttribute("manage_no", manage_no);
+		return "forward:/fsurpport/fmanageInfo";
 	}
 
 	// 20210311_KJH 내 수확량 조회 ok
