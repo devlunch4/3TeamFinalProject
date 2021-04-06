@@ -171,7 +171,7 @@
 					</div>
 
 					<div class="text-right p-2 mr-1">
-						<select class="text-right" id="choice" style="width: 140px;">
+						<select class="text-right form-control-sm " id="choice" style="width: 140px;">
 							<option value="msr_code">장비코드</option>
 							<option value="msr_nm">장비명</option>
 							<option value="owner">농장주</option>

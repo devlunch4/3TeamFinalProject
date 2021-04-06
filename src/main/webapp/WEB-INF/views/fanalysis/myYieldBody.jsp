@@ -44,12 +44,12 @@
 		<fmt:formatDate value="${now2}" pattern="yyyy-MM" />
 	</c:set>
 	<div class="row">
-		<input type="text" id="week-picker" value="입력칸을 클릭하여 주 선택" name="week" class="btn-outline-dark col-8 small text-center m-1">
-		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="">
-		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="">
-		<input type="text" id="syear-picker" name="syear" style="display: none;" class="">
-		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="">
-		<button id="sel" class="btn btn-primary col m-1 ">조회</button>
+		<input type="text" id="week-picker" value="클릭하여 주간 기간 선택" name="week" class="btn-outline-dark col text-center m-1">
+		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="btn-outline-dark col small text-center m-1">
+		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="btn-outline-dark col small text-center m-1">
+		<input type="text" id="syear-picker" name="syear" style="display: none;" class="btn-outline-dark col  small text-center m-1">
+		<input type="text" id="eyear-picker" name="eyear" style="display: none;" class="btn-outline-dark col  small text-center m-1">
+		<button id="sel" class="btn btn-primary col-3 m-1 float-right">조회</button>
 	</div>
 
 

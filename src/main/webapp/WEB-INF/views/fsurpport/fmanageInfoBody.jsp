@@ -51,8 +51,8 @@
 	<!-- <h3 class="card-header">시설조회 : <label class="small">해당 시설의 정보를 확인하는 페이지입니다.<label></h3> -->
 	<div class="card-body text-left ">
 		<div class="">
-		<div class="text-right">
-			<input type="button" class="btn-sm btn-primary mb-2" value="목록으로" onclick="goBack()">
+			<div class="text-right">
+				<input type="button" class="btn-sm btn-primary mb-2" value="목록으로" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageList'">
 			</div>
 			<div class="row table-responsive" id="info">
 
