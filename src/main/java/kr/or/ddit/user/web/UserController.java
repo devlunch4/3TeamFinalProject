@@ -301,14 +301,15 @@ public class UserController {
 	public String modifyUser2(UserVo userVo, HttpSession session,HttpServletRequest request) {
 		logger.debug("In modifyUser3()");
 		logger.debug("In modifyUser3() VO : {}", userVo);
-		userVo = userService.modifyUser2(userVo);
+		userService.modifyUser2(userVo);
 		
+		
+		// 20210406 KWS&KJH 수정시 오류 해결 // 수정 update 서비스 정 호출 및 session 상태 업데이트 화/
 		UserVo dbUser = userService.selectUser(userVo.getUser_id());
 		session = request.getSession();
 		session.setAttribute("S_USER", dbUser);
 		
-		
-		return "tiles.main.main";
+		return "tiles.main.main2";
 	}
 
 	// 이메일과 이름으로 아이디 찾기 03/23 (경찬)
