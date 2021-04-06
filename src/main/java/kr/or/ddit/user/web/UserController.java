@@ -15,6 +15,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -138,6 +139,7 @@ public class UserController {
 	@RequestMapping(path = "myPage", method = { RequestMethod.GET })
 	public String myPage(UserVo userVo) {
 		logger.debug("in myPage()");
+		
 		return "tiles.user.userinfo";
 	}
 
@@ -296,9 +298,16 @@ public class UserController {
 
 	// 사용자가 개인정보 수정하는거 03/10 (경찬)
 	@RequestMapping(path = "modifyUser3", method = { RequestMethod.POST })
-	public String modifyUser2(UserVo userVo) {
-		logger.debug("In modifyUser2()");
+	public String modifyUser2(UserVo userVo, HttpSession session,HttpServletRequest request) {
+		logger.debug("In modifyUser3()");
+		logger.debug("In modifyUser3() VO : {}", userVo);
 		userVo = userService.modifyUser2(userVo);
+		
+		UserVo dbUser = userService.selectUser(userVo.getUser_id());
+		session = request.getSession();
+		session.setAttribute("S_USER", dbUser);
+		
+		
 		return "tiles.main.main";
 	}
 
