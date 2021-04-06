@@ -147,10 +147,16 @@ public class RegistController {
 
 	// 20210304_LYS_Login3 - 회원가입 구현
 	@RequestMapping(path = "process", method = { RequestMethod.POST })
-	public String registerProcess(UserVo userVo) {
+	public String registerProcess(Model model, UserVo userVo) {
 		logger.debug("iNN RegistController >> registerProcess");
-		userService.insertUser(userVo);
-		return "register";
+		int cnt = userService.insertUser(userVo);
+		if(cnt == 1) {
+		return "redirect:/login/view";
+		}
+		else {
+			model.addAttribute("userVo",userVo);
+			return "register";
+		}
 	}
 
 }
