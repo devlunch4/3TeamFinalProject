@@ -17,7 +17,7 @@
 			if (con_test == true) {
 				 alert("탈퇴완료");
 				$("#frm").attr("method", "post");
-				$("#frm").attr("action", "deleteUser");
+				$("#frm").attr("action", "deleteUser2");
 				$("#frm").submit();
 			} else if (con_test == false) {
 				alert("취소");

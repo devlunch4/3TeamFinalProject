@@ -139,7 +139,7 @@ public class UserController {
 	@RequestMapping(path = "myPage", method = { RequestMethod.GET })
 	public String myPage(UserVo userVo) {
 		logger.debug("in myPage()");
-		
+
 		return "tiles.user.userinfo";
 	}
 
@@ -176,6 +176,22 @@ public class UserController {
 		UserVo user = userService.deleteUser(user_id);
 		logger.debug("in deleteUser() user : {]", user);
 		return "redirect:/user/allUser";
+	}
+
+// 20210406 KJH&KWS 개인 마이페이지 회원탈퇴시 자동 탈퇴 및 로그아웃 처리	
+	@RequestMapping(path = "deleteUser2", method = { RequestMethod.POST })
+	public String deleteUser2(String user_id, Model model, HttpServletRequest req, HttpServletResponse resp,
+			HttpSession session) {
+		UserVo user = userService.deleteUser(user_id);
+		logger.debug("in deleteUser() user : {]", user);
+
+		String outid = user_id;
+		model.addAttribute("msg", outid + " 님 탈퇴/로그아웃 되셨습니다.");
+		model.addAttribute("url", "/user/main");
+		req.getSession().invalidate();
+		logger.debug("세션제거");
+		return "alert";
+
 	}
 
 	// 회원이 정보수정 하는거 03/05(경찬)
@@ -298,17 +314,16 @@ public class UserController {
 
 	// 사용자가 개인정보 수정하는거 03/10 (경찬)
 	@RequestMapping(path = "modifyUser3", method = { RequestMethod.POST })
-	public String modifyUser2(UserVo userVo, HttpSession session,HttpServletRequest request) {
+	public String modifyUser2(UserVo userVo, HttpSession session, HttpServletRequest request) {
 		logger.debug("In modifyUser3()");
 		logger.debug("In modifyUser3() VO : {}", userVo);
 		userService.modifyUser2(userVo);
-		
-		
+
 		// 20210406 KWS&KJH 수정시 오류 해결 // 수정 update 서비스 정 호출 및 session 상태 업데이트 화/
 		UserVo dbUser = userService.selectUser(userVo.getUser_id());
 		session = request.getSession();
 		session.setAttribute("S_USER", dbUser);
-		
+
 		return "tiles.main.main2";
 	}
 
