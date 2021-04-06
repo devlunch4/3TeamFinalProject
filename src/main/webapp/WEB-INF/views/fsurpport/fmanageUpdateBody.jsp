@@ -3,67 +3,65 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script type="text/javascript">
-$(function(){
-	$("#category").change(function(){
-		var num = $("#category").val();
-		alert($("#category").val());
-// 		alert("부류코드 값:"+num);
-		if(num == 100){
-			$("#item2").hide();
-			$("#item2").attr('name',"_")
-			$("#item1").show();
-			$("#item1").attr('name',"item_code")
-		}
-		if(num == 200){
-			$("#item2").show();
-			$("#item2").attr('name',"item_code")
-			$("#item1").hide();
-			$("#item1").attr('name',"_")
-		}
-	})
-	
-	$("#btn_search").on("click",function(){
-		var item;
-		if(100 == $("#category").val()){
-			item = $("#item1").val();
-		}else if(200 == $("#category").val()){
-			item = $("#item2").val();
-		}
-		
-		$("#c_code").val($("#category").val());
-		$("#i_code").val(item);
-		$("#d_code").val($("#dateserch").val());
-		$("#select").submit();
-	})
-	
-// 	$("#category").val("${itemcategorycode}").prop("selected",true);
-// 	if(${itemcategorycode} ==100){
-		
-// 		$("#item2").hide();
-// 		$("#item1").show();
+	$(function() {
+		$("#category").change(function() {
+			var num = $("#category").val();
+			alert($("#category").val());
+			// 		alert("부류코드 값:"+num);
+			if (num == 100) {
+				$("#item2").hide();
+				$("#item2").attr('name', "_")
+				$("#item1").show();
+				$("#item1").attr('name', "item_code")
+			}
+			if (num == 200) {
+				$("#item2").show();
+				$("#item2").attr('name', "item_code")
+				$("#item1").hide();
+				$("#item1").attr('name', "_")
+			}
+		})
 
-		
-// 	$("#item1").val("${itemcode}").prop("selected",true);
-// 	}else if(${itemcategorycode} ==200){
-		
-// 		$("#item2").show();		
-// 		$("#item1").hide();
+		$("#btn_search").on("click", function() {
+			var item;
+			if (100 == $("#category").val()) {
+				item = $("#item1").val();
+			} else if (200 == $("#category").val()) {
+				item = $("#item2").val();
+			}
 
-		
-// 	$("#item2").val("${itemcode}").prop("selected",true);
-// 	}
-	
-	$("#save").on("click",function(){
-		if($("#category").val() == 100){
-		$("#item_code").val($("#item1").val());
-	}else if($("#category").val() == 200){
-		$("#item_code").val($("#item2").val());
-	}
-		
-		$("#send").submit;
-		
+			$("#c_code").val($("#category").val());
+			$("#i_code").val(item);
+			$("#d_code").val($("#dateserch").val());
+			$("#select").submit();
+		})
+
+		// 	$("#category").val("${itemcategorycode}").prop("selected",true);
+		// 	if(${itemcategorycode} ==100){
+
+		// 		$("#item2").hide();
+		// 		$("#item1").show();
+
+		// 	$("#item1").val("${itemcode}").prop("selected",true);
+		// 	}else if(${itemcategorycode} ==200){
+
+		// 		$("#item2").show();		
+		// 		$("#item1").hide();
+
+		// 	$("#item2").val("${itemcode}").prop("selected",true);
+		// 	}
+
+		$("#save").on("click", function() {
+			if ($("#category").val() == 100) {
+				$("#item_code").val($("#item1").val());
+			} else if ($("#category").val() == 200) {
+				$("#item_code").val($("#item2").val());
+			}
+
+			$("#send").submit;
+
+		})
 	})
-})
 </script>
 
 <!-- 20210302_KJH 시설등록 -->
@@ -115,6 +113,7 @@ $(function(){
 					</table>
 					<div class="text-right">
 						<button type="submit" class="btn btn-warning" id="save">수정</button>
+						<input type="button" class="btn-sm btn-primary mb-2" value="목록으로" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageList'">
 					</div>
 
 				</form>
@@ -124,18 +123,18 @@ $(function(){
 </div>
 
 <script>
-	$('#summernote').summernote({
-	  placeholder: 'Hello SUMMERNOTE',
-	  tabsize: 2,
-	  height: 120,
-	  toolbar: [
-	    ['style', ['style']],
-	    ['font', ['bold', 'underline', 'clear']],
-	    ['color', ['color']],
-	    ['para', ['ul', 'ol', 'paragraph']],
-	  /*   ['table', ['table']],
-	    ['insert', ['link', 'picture', 'video']],
-	    ['view', ['fullscreen', 'codeview', 'help']] */
-	  ]
-	});
+	$('#summernote').summernote(
+			{
+				placeholder : 'Hello SUMMERNOTE',
+				tabsize : 2,
+				height : 120,
+				toolbar : [ [ 'style', [ 'style' ] ],
+						[ 'font', [ 'bold', 'underline', 'clear' ] ],
+						[ 'color', [ 'color' ] ],
+						[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
+				/*   ['table', ['table']],
+				  ['insert', ['link', 'picture', 'video']],
+				  ['view', ['fullscreen', 'codeview', 'help']] */
+				]
+			});
 </script>

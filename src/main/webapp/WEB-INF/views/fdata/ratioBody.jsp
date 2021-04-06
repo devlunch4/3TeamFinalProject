@@ -51,7 +51,7 @@ $("#tb_filter").css( "width", "59%" );
 $("#tb_filter").css( "float", "left" );
 }); 
 </script>
- 
+
 <!-- 품목별 비율 통계 페이지 -->
 <!-- 20210302_KJH main 추가 -->
 <h3 class="mt-4">품목별 비율</h3>
@@ -70,7 +70,7 @@ $("#tb_filter").css( "float", "left" );
 		<button id="month" class="btn btn-outline-dark col m-2">월별</button>
 		<button id="year" class="btn btn-outline-dark col m-2 ">년별</button>
 	</div>
-	
+
 	<div></div>
 
 
@@ -84,12 +84,12 @@ $("#tb_filter").css( "float", "left" );
 	</c:set>
 
 
-  
+
 	<div class="form-group m-0">
 		<label class=" small mb-1 ml-2 mb-1" for="time">기간선택 : ${choice}</label>
 	</div>
 	<div class="form-group row text-center m-0">
-	<input type="text" id="allpick" value="전체조회" name="alls" class="btn btn-info col m-2" readonly>
+		<input type="text" id="allpick" value="전체조회" name="alls" class="btn btn-info col m-2" readonly>
 		<input type="text" id="week-picker" value="주간 선택" name="week" class="btn btn-info col m-2" style="display: none;" readonly>
 		<input type="text" id="smonth-picker" value="${sysd}" name="smonth-picker" style="display: none;" class="col  btn btn-info m-2" readonly>
 		<input type="text" id="emonth-picker" value="${sysd2}" name="emonth-picker" style="display: none;" class="col  btn btn-info m-2" readonly>

@@ -6,7 +6,6 @@
 
 <script>
 	$(function() {
-
 		$('#tb').DataTable({
 			// 			bDestroy : true
 			"bLengthChange" : false,
@@ -23,8 +22,7 @@
 		$("#tb_info").addClass('text-left p-0');
 		setInterval(
 				function() {
-					$
-							.ajax({
+					$.ajax({
 								// type을 설정합니다.
 								type : 'POST',
 								url : "${pageContext.request.contextPath}/fanalysis/mymaxmsrrecList",
@@ -49,7 +47,7 @@
 								}
 							});
 				}, 5000);
-
+		console.log("출력출력출력5초간격");
 		$("#choice").change(function() {
 			if ($("#choice").val() == "location") {
 				$('#tb').DataTable({
