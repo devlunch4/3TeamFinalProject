@@ -29,6 +29,15 @@
 		}
 		//signin 아이디를 select
 		$("#signin").on("click", function() {
+			if($("#user_id").val().length == 0){
+				alert("아이디를 입력해주세요.");
+			}
+			else if($("#user_id").val().length > 0){
+				if($("#user_pw").val().length == 0){
+					alert("비밀번호를 입력해주세요.");
+				}
+			}
+			else{
 			console.log("로그인클릭확인");
 			if ($("#rememberId").is(":checked") == true) {
 				Cookies.set("user_id", $("#user_id").val());
@@ -38,12 +47,21 @@
 				Cookies.remove("rememberId");
 			}
 			$("#frm").submit();
+			}
 		});
 
 		//20210326_KJH 엔터버튼으로 로그인 동작
 		$("#user_id").keyup(function(e) {
 			if (e.keyCode == 13) {
-
+				if($("#user_id").val().length == 0){
+					alert("아이디를 입력해주세요");
+				}
+				else if($("#user_id").val().length > 0){
+					if($("#user_pw").val().length == 0){
+						alert("비밀번호를 입력해주세요.");
+					}
+				}
+				else{
 				console.log("로그인클릭확인");
 				if ($("#rememberId").is(":checked") == true) {
 					Cookies.set("user_id", $("#user_id").val());
@@ -54,11 +72,21 @@
 				}
 				$("#frm").submit();
 			}
+			}
 		});
 
 		//20210326_KJH 엔터버튼으로 로그인 동작
 		$("#user_pw").keyup(function(e) {
 			if (e.keyCode == 13) {
+				if($("#user_id").val().length == 0){
+					alert("아이디를 입력해주세요");
+				}
+				else if($("#user_id").val().length > 0){
+					if($("#user_pw").val().length == 0){
+						alert("비밀번호를 입력해주세요.");
+					}
+				}
+				else{
 
 				console.log("로그인클릭확인");
 				if ($("#rememberId").is(":checked") == true) {
@@ -69,6 +97,7 @@
 					Cookies.remove("rememberId");
 				}
 				$("#frm").submit();
+				}
 			}
 		});
 	});
@@ -98,7 +127,7 @@
 										<div class="form-group">
 											<label class="small mb-1" for="user_id">아이디</label>
 											<!--                                                 <input class="form-control py-4" id="user_id" name="user_id"  placeholder="아이디를 입력하세요." /> -->
-											<input class="form-control py-4" id="user_id" name="user_id" placeholder="아이디를 입력하세요." />
+											<input class="form-control py-4" id="user_id" name="user_id" placeholder="아이디를 입력하세요."/>
 										</div>
 										<div class="form-group">
 											<label class="small mb-1" for="user_pw">비밀번호</label>
