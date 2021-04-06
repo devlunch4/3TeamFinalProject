@@ -56,10 +56,8 @@
 				if($("#user_id").val().length == 0){
 					alert("아이디를 입력해주세요");
 				}
-				else if($("#user_id").val().length > 0){
-					if($("#user_pw").val().length == 0){
-						alert("비밀번호를 입력해주세요.");
-					}
+				else if($("#user_pw").val().length == 0){
+					alert("비밀번호를 입력해주세요.");
 				}
 				else{
 				console.log("로그인클릭확인");
@@ -81,11 +79,9 @@
 				if($("#user_id").val().length == 0){
 					alert("아이디를 입력해주세요");
 				}
-				else if($("#user_id").val().length > 0){
-					if($("#user_pw").val().length == 0){
+				else if($("#user_pw").val().length == 0){
 						alert("비밀번호를 입력해주세요.");
 					}
-				}
 				else{
 
 				console.log("로그인클릭확인");
