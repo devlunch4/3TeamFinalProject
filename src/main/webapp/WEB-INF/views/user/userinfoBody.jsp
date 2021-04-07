@@ -34,40 +34,40 @@
 	<div class="container-fluid">
 		<h3 class="mt-4">마이페이지</h3>
 		<form class="form-horizontal" id="frm" role="form">
-			<input type="hidden" name="userid" value="${S_USER.user_id }" />
+			<input type="hidden" name="user_id" value="${S_USER.user_id }" />
 
 			<div class="form-group">
 				<label class="small mb-3" for="input_cls_code">성명</label>
 				<div class="col-sm-10">
-					<input readonly="readonly" name="user_id" class="form-control" value="${S_USER.user_nm }" />
+					<input readonly="readonly" name="user_nm" class="form-control" value="${S_USER.user_nm }" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="small mb-1" for="input_cls_code">아이디</label>
 				<div class="col-sm-10">
-					<input readonly="readonly" name="userid" class="form-control" value="${S_USER.user_id }" />
+					<input readonly="readonly" name="user_id2" class="form-control" value="${S_USER.user_id }" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="small mb-1" for="input_cls_code">비밀번호</label>
 				<div class="col-sm-10">
-					<input readonly="readonly" name="userid" class="form-control" value="${S_USER.user_pw }" />
+					<input readonly="readonly" name="user_pw" class="form-control" value="${S_USER.user_pw }" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="small mb-1" for="input_cls_code">이메일</label>
 				<div class="col-sm-10">
-					<input readonly="readonly" name="userid" class="form-control" value="${S_USER.email }" />
+					<input readonly="readonly" name="email" class="form-control" value="${S_USER.email }" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="small mb-1" for="input_cls_code">전화번호</label>
 				<div class="col-sm-10">
-					<input readonly="readonly" name="userid" class="form-control" value="${S_USER.mobile }" />
+					<input readonly="readonly" name="mobile" class="form-control" value="${S_USER.mobile }" />
 				</div>
 			</div>
 
@@ -78,10 +78,10 @@
 					<input readonly="readonly" id="addr1" class="form-control" value="${S_USER.addr1 }" />
 				</div>
 				<div class="col-sm-10 mb-1">
-					<input readonly="readonly" id="zipcode" class="form-control" value="${S_USER.addr2 }" />
+					<input readonly="readonly" id="addr2" class="form-control" value="${S_USER.addr2 }" />
 				</div>
 				<div class="col-sm-10 mb-1">
-					<input readonly="readonly" id="zipcode" class="form-control" value="${S_USER.zip }" />
+					<input readonly="readonly" id="zip" class="form-control" value="${S_USER.zip }" />
 				</div>
 			</div>
 

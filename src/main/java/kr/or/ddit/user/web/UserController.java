@@ -182,8 +182,8 @@ public class UserController {
 	@RequestMapping(path = "deleteUser2", method = { RequestMethod.POST })
 	public String deleteUser2(String user_id, Model model, HttpServletRequest req, HttpServletResponse resp,
 			HttpSession session) {
-		UserVo user = userService.deleteUser(user_id);
-		logger.debug("in deleteUser() user : {]", user);
+		userService.deleteUser(user_id);
+		logger.debug("in deleteUser2() user : {]", user_id);
 
 		String outid = user_id;
 		model.addAttribute("msg", outid + " 님 탈퇴/로그아웃 되셨습니다.");

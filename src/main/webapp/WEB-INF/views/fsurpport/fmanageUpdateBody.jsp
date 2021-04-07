@@ -112,7 +112,7 @@
 						</tr>
 					</table>
 					<div class="text-right">
-						<button type="submit" class="btn btn-warning" id="save">수정</button>
+						<button type="submit" class="btn-sm btn-warning" id="save">수정</button>
 						<input type="button" class="btn-sm btn-primary mb-2" value="목록으로" onclick="location.href = '${pageContext.request.contextPath }/fsurpport/fmanageList'">
 					</div>
 
