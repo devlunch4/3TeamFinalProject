@@ -406,7 +406,7 @@ public class UserController {
 				// 제목
 				message.setSubject("똑똑한 농부들 회원님의 비밀번호 입니다.");
 				// 내용
-				message.setText("똑똑한 농부들 회원가입 인증코드는 " + userVo.getUser_pw() + " 입니다.");
+				message.setText("똑똑한 농부들 비밀번호는 " + userVo.getUser_pw() + " 입니다.");
 
 				Transport.send(message);
 
