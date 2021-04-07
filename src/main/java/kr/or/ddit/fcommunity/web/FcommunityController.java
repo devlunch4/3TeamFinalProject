@@ -276,6 +276,7 @@ public class FcommunityController {
 		// 썸네일 파일 처리 부분
 		if (req.getParameter("thumbnail_file_check") != null && !req.getParameter("thumbnail_file_check").equals("")) {
 			logger.debug("thumbnail_file_check 값 있다.");
+			miniMarketVo.setThumbnail(Integer.parseInt(req.getParameter("thumbnail_file_no_check")));
 		} else {
 			if (req.getParameter("thumbnail_file_check").equals("")) {
 				logger.debug("thumbnail_file_check의 첨부파일 없다.");
