@@ -61,7 +61,7 @@
 
 		<c:if test="${selectMySimpleCodeInfo.area != null }">
 			<label class="small mb-1" for="input_cls_code">면적 : </label>
-			<input type="text" name="area" value="${selectMySimpleCodeInfo.area } ㎡" style="border: none;" readonly="readonly" required="required">
+			<input type="text" name="area" value="${selectMySimpleCodeInfo.area }" style="border: none;" readonly="readonly" required="required">㎡
 			<br>
 		</c:if>
 	</div>
