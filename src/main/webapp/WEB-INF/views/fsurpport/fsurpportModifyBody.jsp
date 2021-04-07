@@ -45,24 +45,27 @@
 		<input type="hidden" name="my_simple_code" value="${selectMySimpleCodeInfo.my_simple_code }" required="required">
 	</c:if>
 
-	<div class="form-group col-md-2">
+	<div class="form-group col-md-12">
 
 		<c:if test="${selectMySimpleCodeInfo.b_type_code != null }">
-			<label class="small mb-1" for="input_cls_code">사업유형 : </label>
-			<input type="text" name="b_type_code" value="${selectMySimpleCodeInfo.b_type_code }" style="border: none;" readonly="readonly" required="required">
+			<label class=" mb-1" for="input_cls_code">사업유형 : </label>
+			<input type="text" name="b_type_code" value="${selectMySimpleCodeInfo.b_type_code }" style="border: none; " readonly="readonly" required="required">
 			<br>
 		</c:if>
-		
+
 		<c:if test="${selectMySimpleCodeInfo.item_code != null }">
-			<label class="small mb-1" for="input_cls_code">품목 : </label>
-			<input type="text" name="item_code" value="${selectMySimpleCodeInfo.item_code }" style="border: none;" readonly="readonly" required="required">
+			<label class=" mb-1" for="input_cls_code">품&nbsp;&nbsp;&nbsp;목 : </label>
+			<input type="text" name="item_code" value="${selectMySimpleCodeInfo.item_code }" style="border: none; " readonly="readonly" required="required">
 			<br>
 		</c:if>
 
 		<c:if test="${selectMySimpleCodeInfo.area != null }">
-			<label class="small mb-1" for="input_cls_code">면적 : </label>
-			<input type="text" name="area" value="${selectMySimpleCodeInfo.area } ㎡" style="border: none;" readonly="readonly" required="required">
-			<br>
+			<div class="row">
+				<label class=" mb-1" for="input_cls_code">면&nbsp;&nbsp;&nbsp;적 : </label>
+				&nbsp;
+				<input type="text" name="area" value="${selectMySimpleCodeInfo.area }" style="border: none; width: 50px;" readonly="readonly" required="required" class="text-right">
+				㎡ <br>
+			</div>
 		</c:if>
 	</div>
 
