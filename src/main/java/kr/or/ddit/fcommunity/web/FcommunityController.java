@@ -192,11 +192,11 @@ public class FcommunityController {
 		String path = "";
 		if (file_nm == null && !file_nm.equals("")) {
 			logger.debug("file_nm이 null");
-			path = req.getServletContext().getRealPath("c:\\fdown\\unknown.png");
+			path = req.getServletContext().getRealPath("c:\\fdown\\miniMarket\\unknown.png");
 			logger.debug("path : " + path);
 		} else {
 			logger.debug("file_nm이 null 아니다.");
-			path = "c:\\fdown\\" + file_nm;
+			path = "c:\\fdown\\miniMarket\\" + file_nm;
 			logger.debug("path : " + path);
 		}
 		logger.debug("path : {}", path);
@@ -491,7 +491,7 @@ public class FcommunityController {
 
 	// 20210324_ggy : 미니장터 게시글 댓글 등록
 	@RequestMapping(path = "registMarketReply", method = { RequestMethod.POST })
-	public String registMarketReply(String writer, int market_no, String content, Model model) {
+	public String registMarketReply(String writer, String post_writer, int market_no, String content, Model model) {
 		logger.debug("registMarketReply 진입");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("writer", writer);
@@ -500,13 +500,14 @@ public class FcommunityController {
 		int registCnt = fcommunityService.registMarketReply(map);
 		if (registCnt == 1) {
 			logger.debug("미니장터 게시글 댓글 등록");
+			logger.debug("registMarketReply의 1 : {}, 2 : {}", post_writer , market_no);
 		}
-		return "redirect:/fcommunity/miniMarketInfoView?writer=" + writer + "&market_no=" + market_no;
+		return "redirect:/fcommunity/miniMarketInfoView?writer=" + post_writer + "&market_no=" + market_no;
 	}
 
 	// 20210325_ggy : 미니장터 게시글 댓글 수정
 	@RequestMapping(path = "modifyMarketReply", method = { RequestMethod.POST })
-	public String modifyMarketReply(String writer, int market_no, int reply_code, String content) {
+	public String modifyMarketReply(String writer, String post_writer, int market_no, int reply_code, String content) {
 		logger.debug("modifyMarketReply 진입");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("writer", writer);
@@ -517,12 +518,12 @@ public class FcommunityController {
 		if (registCnt == 1) {
 			logger.debug("미니장터 게시글 댓글 등록");
 		}
-		return "redirect:/fcommunity/miniMarketInfoView?writer=" + writer + "&market_no=" + market_no;
+		return "redirect:/fcommunity/miniMarketInfoView?writer=" + post_writer + "&market_no=" + market_no;
 	}
 
 	// 20210325_ggy : 미니장터 게시글 댓글 삭제
 	@RequestMapping(path = "deleteMarketReply", method = { RequestMethod.POST })
-	public String deleteMarketReply(String writer, int market_no, int reply_code) {
+	public String deleteMarketReply(String writer, String post_writer, int market_no, int reply_code) {
 		logger.debug("deleteMarketReply 진입");
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("writer", writer);
@@ -531,7 +532,7 @@ public class FcommunityController {
 		if (registCnt == 1) {
 			logger.debug("미니장터 게시글 댓글 등록");
 		}
-		return "redirect:/fcommunity/miniMarketInfoView?writer=" + writer + "&market_no=" + market_no;
+		return "redirect:/fcommunity/miniMarketInfoView?writer=" + post_writer + "&market_no=" + market_no;
 	}
 	
 	// 미니장터 첨부파일 다운로드
