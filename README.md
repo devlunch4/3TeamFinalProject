@@ -18,6 +18,8 @@
 <img src = "/readmefolder/스크린샷 2021-03-32 14.30.32_mobile.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.51.42_chat.png" width="150px"> <img src = "/readmefolder/화면 캡처 2021-03-31 151406.png" width="150px">
 
 ## youTube Link
+[![합본-total](http://img.youtube.com/vi/gT6nE1fJB0s/1.jpg)](https://youtu.be/gT6nE1fJB0s?t=0s)<br>
+*합본테스트_totalTest_ 33min*<br>
 
 [![통합테스트01](http://img.youtube.com/vi/Tlo6EKubE38/1.jpg)](https://youtu.be/Tlo6EKubE38?t=0s)<br>
 *통합테스트01*<br>
