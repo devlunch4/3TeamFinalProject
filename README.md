@@ -1,3 +1,8 @@
+## CONTENTS
+1. simple screen shot flow.
+2. youTube - test step flow.
+3. this project Summary (KOREAN/ENGLISH)
+
 ## SIMPLE Screen Shot (Mobile ver 2021.03.31 )(iphone x screen standard)
 <img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" width="150px">
 <img src = "/readmefolder/스크린샷 2021-03-32 10.18.03_findId.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.19.14_findPw.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.21.49_join1.png" width="150px">
@@ -11,6 +16,19 @@
 <img src = "/readmefolder/스크린샷 2021-03-32 12.17.27_week1.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 12.21.05_menual1.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 13.40.41_notice1.png" width="150px">
 <img src = "/readmefolder/스크린샷 2021-03-32 13.41.15_qna1.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.01.41_api.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.27.51_pc.png" width="150px">
 <img src = "/readmefolder/스크린샷 2021-03-32 14.30.32_mobile.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.51.42_chat.png" width="150px"> <img src = "/readmefolder/화면 캡처 2021-03-31 151406.png" width="150px">
+
+## youTube Link
+[![합본-total](http://img.youtube.com/vi/gT6nE1fJB0s/1.jpg)](https://youtu.be/gT6nE1fJB0s?t=0s)<br>
+*합본테스트_totalTest_ 33min*<br>
+
+[![통합테스트01](http://img.youtube.com/vi/Tlo6EKubE38/1.jpg)](https://youtu.be/Tlo6EKubE38?t=0s)<br>
+*통합테스트01*<br>
+
+[![통합테스트02](http://img.youtube.com/vi/o9cm_HmghXM/1.jpg)](https://youtu.be/o9cm_HmghXM?t=0s)<br>
+*통합테스트02*<br>
+
+[![통합테스트03](http://img.youtube.com/vi/4y7bVGaeJqM/1.jpg)](https://youtu.be/4y7bVGaeJqM?t=0s)<br>
+*통합테스트03* <br>
 
 
 ## KOREAN
