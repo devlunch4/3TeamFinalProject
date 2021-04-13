@@ -21,6 +21,9 @@
 <img src = "/readmefolder/PC_main2.png" width="350px"> <img src = "/readmefolder/PC_market.png" width="350px"> <img src = "/readmefolder/PC_finfo.png" width="350px">
 
 ## youTube Link
+<iframe width="664" height="373" src="https://www.youtube.com/embed/gT6nE1fJB0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 [![합본-total](http://img.youtube.com/vi/gT6nE1fJB0s/1.jpg)](https://youtu.be/gT6nE1fJB0s?t=0s)<br>
 *합본테스트_totalTest_ 33min*<br>
 
