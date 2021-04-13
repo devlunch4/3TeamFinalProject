@@ -745,6 +745,9 @@ public class FsurpportController {
 	public String fmanage(Model model, HttpSession session, String manage_no) {
 		logger.debug(" 시설관리중인 시설 상세조회 fmanageInfo 진입");
 		FmanageVo fvo = fsurpportService.fmanageInfo(manage_no);
+		
+		
+		
 		// KJH_20210308 측정 정보 조회 수정
 		FhistoryVo fhistoryVo = new FhistoryVo();
 		fhistoryVo.setManage_no(fvo.getManage_no());
@@ -770,6 +773,8 @@ public class FsurpportController {
 		model.addAttribute("okList", okList);
 		model.addAttribute("fmanage", fvo);
 		model.addAttribute("msrrec", mvo);
+		logger.debug("~~~~~~~ fvo : {}", fvo);
+		logger.debug("~~~~~~~ mvo : {}", mvo);
 		return "tiles.fsurpport.fmanageInfo";
 	}
 

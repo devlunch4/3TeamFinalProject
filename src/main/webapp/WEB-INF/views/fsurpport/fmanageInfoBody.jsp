@@ -82,24 +82,50 @@
 						<td style="width: 50%;">장비명</td>
 						<td style="width: 50%;">${fmanage.use_yn}</td>
 					</tr>
-					<tr>
-						<td style="width: 50%;" id="temp">온도</td>
-						<td style="width: 50%;" id="temp2">${msrrec.msr_temp}°C</td>
-					</tr>
-					<tr>
-						<td style="width: 50%;">습도</td>
-						<td style="width: 50%;">${msrrec.msr_humid}%</td>
-					</tr>
-					<tr>
-						<td style="width: 50%;">조도</td>
-						<td style="width: 50%;">${msrrec.msr_bright}</td>
-					</tr>
-					<tr>
-						<td colspan="2">${fmanage.info}</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="small text-danger">* 조도 값이 높을 경우 어둡습니다.</td>
-					</tr>
+
+					<!-- //값이 없는 경우 분할처리 -->
+					<c:choose>
+						<c:when test="${empty msrrec}">
+							<tr>
+								<td style="width: 50%;" id="temp">온도</td>
+								<td style="width: 50%;" id="temp2" class="text-danger">측정된값이 없습니다.</td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">습도</td>
+								<td style="width: 50%;" class="text-danger">측정된값이 없습니다.</td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">조도</td>
+								<td style="width: 50%;" class="text-danger">측정된값이 없습니다.</td>
+							</tr>
+							<tr>
+								<td colspan="2">${fmanage.info}</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="small text-danger">* 조도 값이 높을 경우 어둡습니다.</td>
+							</tr>
+						</c:when>
+						<c:when test="${not empty msrrec}">
+							<tr>
+								<td style="width: 50%;" id="temp">온도</td>
+								<td style="width: 50%;" id="temp2">${msrrec.msr_temp}°C</td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">습도</td>
+								<td style="width: 50%;">${msrrec.msr_humid}%</td>
+							</tr>
+							<tr>
+								<td style="width: 50%;">조도</td>
+								<td style="width: 50%;">${msrrec.msr_bright}</td>
+							</tr>
+							<tr>
+								<td colspan="2">${fmanage.info}</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="small text-danger">* 조도 값이 높을 경우 어둡습니다.</td>
+							</tr>
+						</c:when>
+					</c:choose>
 				</table>
 			</div>
 			<form style="display: none;">
