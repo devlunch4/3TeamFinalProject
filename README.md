@@ -18,7 +18,7 @@
 <img src = "/readmefolder/스크린샷 2021-03-32 14.30.32_mobile.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.51.42_chat.png" width="150px"> <img src = "/readmefolder/화면 캡처 2021-03-31 151406.png" width="150px">
 
 ## SIMPLE Screen Shot (PC ver 2021.04.13)
-<img src = "/readmefolder/PC_main2.png" width="150px"> <img src = "/readmefolder/PC_market.png" width="150px"> <img src = "/readmefolder/PC_finfo.png" width="150px">
+<img src = "/readmefolder/PC_main2.png" width="350px"> <img src = "/readmefolder/PC_market.png" width="350px"> <img src = "/readmefolder/PC_finfo.png" width="350px">
 
 ## youTube Link
 [![합본-total](http://img.youtube.com/vi/gT6nE1fJB0s/1.jpg)](https://youtu.be/gT6nE1fJB0s?t=0s)<br>
