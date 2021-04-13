@@ -17,6 +17,9 @@
 <img src = "/readmefolder/스크린샷 2021-03-32 13.41.15_qna1.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.01.41_api.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.27.51_pc.png" width="150px">
 <img src = "/readmefolder/스크린샷 2021-03-32 14.30.32_mobile.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 14.51.42_chat.png" width="150px"> <img src = "/readmefolder/화면 캡처 2021-03-31 151406.png" width="150px">
 
+## SIMPLE Screen Shot (PC ver 2021.04.13)
+<img src = "/readmefolder/PC_main2.png" width="150px"> <img src = "/readmefolder/PC_market.png" width="150px"> <img src = "/readmefolder/PC_finfo.png" width="150px">
+
 ## youTube Link
 [![합본-total](http://img.youtube.com/vi/gT6nE1fJB0s/1.jpg)](https://youtu.be/gT6nE1fJB0s?t=0s)<br>
 *합본테스트_totalTest_ 33min*<br>
