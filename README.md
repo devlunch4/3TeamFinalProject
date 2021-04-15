@@ -3,6 +3,9 @@
 2. youTube - test step flow.
 3. this project Summary (KOREAN/ENGLISH)
 
+<img src = "/readmefolder/Screenshot_2021-04-15 devlunch4 3TeamFinalProject_fin1.png" width="200px"> <img src = "/readmefolder/Screenshot_2021-04-15 devlunch4 3TeamFinalProject_fin2.png" width="200px">
+
+
 ## SIMPLE Screen Shot (Mobile ver 2021.03.31 )(iphone x screen standard)
 <img src = "/readmefolder/스크린샷 2021-03-32 10.13.08_leftmenu.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.33_topmenu.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.13.50_login.png" width="150px">
 <img src = "/readmefolder/스크린샷 2021-03-32 10.18.03_findId.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.19.14_findPw.png" width="150px"> <img src = "/readmefolder/스크린샷 2021-03-32 10.21.49_join1.png" width="150px">
