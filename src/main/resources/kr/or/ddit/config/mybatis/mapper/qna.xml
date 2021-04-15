@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+	<!-- 20210317_LYS_Q&A4 문의게시판 전체조회 리스트 -->
+	<select id="selectAllQna" resultType="qnaVo">
+		SELECT
+		    qna_no,
+		    qna_parent_no,
+		    writer,
+		    RPAD('┗', 2*(LEVEL-1), '━') || title as title,
+		    content,
+		    reg_dt,
+		    hit,
+		    use_yn
+		FROM
+		    qna
+		START WITH 
+		    qna_no = qna_parent_no
+		CONNECT BY NOCYCLE PRIOR 
+		    qna_no = qna_parent_no
+		ORDER SIBLINGS BY 
+		    qna_no desc
+	</select>
+	
+	<!-- 20210317_LYS_Q&A4 문의게시판 상세페이지 조회 -->
+	<select id="selectOneListQna" resultType="qnaVo">
+		SELECT
+		    qna_no	
+		    ,qna_parent_no
+		    ,writer
+		    ,title
+		    ,content
+		    ,reg_dt
+		    ,hit
+		    ,use_yn
+		FROM
+		    qna
+		WHERE 
+			qna_no = #{qna_no} 
+	</select>
+	
+	<!-- 20210317_LYS_Q&A4 문의게시판 상세페이지 클릭할때마다 조회수 상승 hit -->
+	<update id="updateHitCnt" parameterType="int">
+		UPDATE qna SET hit = NVL(hit,0) + 1
+		WHERE qna_no = #{qna_no}
+	</update>
+
+	<!-- 20210317_LYS_Q&A4 문의게시판 게시글 등록 -->
+	<insert id="insertQna" parameterType="qnaVo">
+		INSERT INTO qna (
+		    qna_no	
+		    ,qna_parent_no
+		    ,writer
+		    ,title
+		    ,content
+		    ,reg_dt
+		    ,hit
+		    ,use_yn
+		) VALUES (
+		    SEQ_QNA.NEXTVAL
+		    ,SEQ_QNA.CURRVAL
+		    ,#{writer}
+		    ,#{title}
+		    ,#{content}
+		    ,sysdate
+		    ,1
+		    ,'Y'
+		)
+	</insert>
+	
+	<!-- 20210322_LYS 문의게시판 답글 등록- 관리자용
+		admin인지를 확인하려고 writer를 파라미터로
+	-->
+	<insert id="insertQnaAdminReply" parameterType="qnaVo">
+		INSERT INTO qna (
+		    qna_no	
+		    ,qna_parent_no
+		    ,writer
+		    ,title
+		    ,content
+		    ,reg_dt
+		    ,hit
+		    ,use_yn
+		) VALUES (
+		    SEQ_QNA.NEXTVAL
+		    ,#{qna_parent_no}
+		    ,#{writer}
+		    ,#{title}
+		    ,#{content}
+		    ,sysdate
+		    ,1
+		    ,'Y'
+		)
+	</insert>
+	
+	<!-- 20210319_LYS_Q&A5 문의게시판 게시글 수정 -->
+	<update id="updateQna" parameterType="qnaVo">
+		UPDATE qna
+		SET
+		    title = #{title}
+		    ,content = #{content}
+		WHERE
+		    qna_no = #{qna_no}	
+	</update>
+	
+	<!-- 20210319_LYS_Q&A5 문의게시판 게시글 삭제 -->
+	<update id="updateUseynToN" parameterType="int">
+		UPDATE qna
+		SET
+		    use_yn = 'N'
+		WHERE
+		    qna_no = #{qna_no}	
+	</update>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="community">
+
+	<!-- 20210309 모든 공지사항 조회 (경찬) -->
+	<select id="selectAllNoticeList" resultType="fnoticeVo">
+		select *
+		from notice order by notice_no
+	</select>
+
+	<!-- 20210312 해당 공지사항 클릭 상세정보 (경찬) -->
+	<select id="selectNotice" resultType="fnoticeVo"
+		parameterType="Integer">
+		SELECT *
+		FROM notice
+		WHERE notice_no = #{value}
+	</select>
+	
+		
+	<!-- 공지사항 작성하는거 03/15 (경찬) -->
+	<insert id="insertNotice" parameterType="fnoticeVo">
+		INSERT INTO notice
+		(notice_no, writer, title,content, reg_dt, file_no, hit, use_yn)
+		VALUES (
+		(SELECT NVL(MAX(notice_no),0)+1 from notice),
+		'admin',
+        #{title},
+        #{content},
+        sysdate,
+        1,
+        0,
+        'Y'
+		)
+	</insert>
+	
+	<!-- 공지사항 수정 하는거 03/19 (경찬) -->
+	<update id="deleteNotice" parameterType="Integer">
+		UPDATE notice set use_yn = 'N'
+		WHERE notice_no = #{value}
+	</update>
+	
+		
+
+</mapper>

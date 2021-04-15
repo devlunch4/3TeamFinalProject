@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+
+
+
+
+
+/*-------------------------공통 css 시작-------------------------*/
+
+/* LYS - 20210303*/
+/* 폰트 추가 */
+@font-face { font-family: 'NanumBarunGothic';
+src: url('/fonts/NanumBarunGothic.eot');
+src: url('/fonts/NanumBarunGothic.eot') format('embedded-opentype'),
+url('/fonts/NanumBarunGothic.woff') format('woff');}
+
+body {font-family: 'NanumBarunGothic', 'serif';}
+
+#logo img{
+	width: 180px;
+}
+
+/* LYS - 20210303*/
+/* 인라인요소 블럭 처리할때 - 공통사용 */
+.display-block{
+	display:block;
+}
+
+.red_star{
+	color: #e4301e;
+}
+
+/* 로그인 페이지 */
+.forgot_id_pw{
+	
+}
+.forgot_id_pw a{
+	display:block; 
+	padding:3px;
+	font-size: 80%;
+	text-align:right;
+}
+.btn-login{
+	display:block; 
+	margin-top:20px; 
+	width:100%
+}
+
+
+/* 20210329 LYS - 테이블 넓이*/ 
+.table-width{
+	width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;	
+}
+
+
+/*-------------------------공통 css 끝 -------------------------*/
+
+
+
+/*-------------------------header css 시작-------------------------*/
+/*-------------------------header css 끝 -------------------------*/
+
+
+/*-------------------------body css 시작-------------------------*/
+
+/* LYS - 20210304*/
+/* 회원가입 */
+.status_txt, .id_status, .id_status_taken, .confirm_email_fail, .email_status_not_ok, .confirm_mobile_fail, .mobile_status_not_ok{
+	font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+    color: #e4301e;
+}
+
+.status_ok, .confirm_email_success, .email_status_ok, .confirm_mobile_success, .mobile_status_ok{
+	font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+    color: #138035;
+}
+
+
+/* LYS - 20210324*/
+/* 게시판 본문 테이블 */
+.board_wrap{
+	
+}
+
+.board_wrap table{
+	border-top: 2px solid #dee2e6;
+	border-bottom: 2px solid #dee2e6;
+	width: 100%;
+}
+.board_wrap tr{
+	border-top: 1px solid #dee2e6;
+}
+.board_wrap th{
+	width: 16%;
+    padding: 1rem 1.5rem;
+}
+.board_wrap td p{
+	margin : 0;
+}
+
+.content_title{
+	display: block;
+    width: 100% !important;
+}
+
+.content{
+	padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+
+
+/*-------------------------body css 끝 -------------------------*/
+
+
+
+/*-------------------------footer css 시작-------------------------*/
+
+/* LYS - 20210303*/
+/* footer 상단 여백 */
+.footer{
+	margin-top: 2.0rem !important;
+}
+
+
+/*-------------------------footer css 끝 -------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------그외 부트스트랩 수정 css 시작-------------------------*/
+
+/* LYS - 20210303*/
+/*헤더부분 검색 안보임 처리 - 소스자체를 지우면 레이아웃 틀어짐  */
+.header-search{
+	display:none;
+}
+
+/* LYS - 20210226*/
+/* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼*/
+.btn-primary2 {
+    color: #138035;
+    background-color: #c5f1c1;
+}
+
+/* LYS - 20210226*/
+/* 부트스트랩에 없는 버튼스타일 - 회원가입할때 인증하기 버튼 hover*/
+.btn-primary2:hover {
+    color: #0d6238;
+    background-color: #aceaa5;
+}
+
+/* LYS - 20210303*/
+/* py-3  패딩 1rem아니고, 회원가입할때 버튼 틀어져서 직접 맞춘 패딩 */
+.f-py-3{
+	padding-top: 0.8rem !important;
+	padding-bottom: 0.7rem !important;
+}
+
+/*-------------------------그외 부트스트랩 수정 css 끝 -------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------미디어쿼리 767px미만 or 766px이하 시작--------------------------*/
+
+/* LYS - 20210303*/
+@media (max-width: 767px) {
+
+	/* 	767px미만일때 display:none 처리 */
+	.display-none-767{
+		display:none;
+	}
+
+
+	.board_wrap th{
+		width: 30%;
+		padding: 0.7rem;
+}
+
+}
+
+/* ----------------------미디어쿼리 767px미만 or 766px이하 끝--------------------------*/

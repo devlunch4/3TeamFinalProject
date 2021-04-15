@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="miniMarkets">
+	
+	<!-- 20210327_ggy : 미니장터 게시글 전체 조회 -->
+	<select id="selectAllMiniMarketList" parameterType="miniMarketVo" 
+		resultType="miniMarketVo">
+		SELECT 
+		    m.market_no
+			, m.writer
+			, m.head_code
+			, m.title
+			, m.item_code
+			, m.content
+			, m.price
+			, m.reg_dt
+			, m.thumbnail
+		    , m.mobile
+			, m.hit
+		    , (select code_nm from codes where code_no = m.item_code ) item_code_nm
+            , (select code_nm from codes where code_no = m.head_code ) head_code_nm
+            , (select file_nm from files where file_no = m.thumbnail ) thumbnail_file_nm 
+		FROM market m
+		WHERE 1=1
+        AND m.use_yn = 'Y'
+		AND (select use_yn from codes where code_no = m.item_code ) = 'Y'
+		AND (select use_yn from files where file_no = m.thumbnail ) = 'Y'
+		
+        <if test="item_code != null and item_code != ''">
+	        AND m.item_code = #{item_code }
+        </if>
+        
+        <if test="title != null and title != ''">
+	        AND m.title like '%'||#{title }||'%'
+        </if>
+		ORDER BY reg_dt desc
+		
+	</select>	
+	
+	<!-- 20210318_ggy : 미니장터 게시글 클릭시 조회수 증가 -->
+	<update id="addHitMiniMarket" parameterType="int">
+		update market set hit = hit+1 
+		where market_no = #{market_no }
+	</update>
+	
+	<!-- 20210327_ggy : 미니장터 게시글 상세조회 -->	
+	<select id="miniMarketInfo" parameterType="miniMarketVo" 
+					resultType="miniMarketVo">
+		SELECT 
+		    m.market_no
+			, m.writer
+			, m.head_code
+			, m.title
+			, m.item_code
+			, m.content
+			, m.price
+			, m.reg_dt
+			, m.thumbnail
+		    , m.mobile
+			, m.hit
+		    , (select code_nm from codes where code_no = m.item_code ) item_code_nm
+            , (select code_nm from codes where code_no = m.head_code ) head_code_nm
+			, (select file_nm from files where file_no = m.thumbnail ) thumbnail_file_nm
+			, (select file_no from files where file_no = m.thumbnail ) thumbnail_file_no
+		FROM market m
+		WHERE m.use_yn = 'Y'
+		AND (select use_yn from codes where code_no = m.item_code ) = 'Y'
+		AND writer = #{writer }
+		AND m.market_no = #{market_no }
+		ORDER BY reg_dt desc
+	</select>
+	
+	<!-- 20210327_ggy : 미니장터 게시글 상세 조회때 첨부파일 조회 -->
+	<select id="selectMarketFileList" parameterType="int" 
+			resultType="marketFilesVo">
+		SELECT 
+		    m.file_record_no
+		    , m.market_no
+		    , m.file_no
+		    , (select file_nm from files where file_no = m.file_no) file_nm
+		FROM marketfiles m
+		WHERE market_no = #{market_no }
+		AND m.use_yn = 'Y'
+		AND (select use_yn from files where file_no = m.file_no) = 'Y'
+	</select>
+	
+	<!-- 20210319_ggy : 미니장터 게시글 품목 종류 조회 -->
+	<select id="selectItemList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code in 
+		    (select code_no
+		    from codes
+		    where parent_code = 
+		        (select code_no
+		        from codes
+		        where parent_code = 'i'))
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- 20210319_ggy : 미니장터 게시글 등록을 위한 머릿말조회 -->
+	<select id="selectMiniMarketList" resultType="codesVo">
+		select *
+		from codes
+		where parent_code = 'mhead'
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- 20210319_ggy : 게시글 등록 후 게시글 번호 가져오기 -->
+	<insert id="registMiniMarketPost" parameterType="miniMarketVo" >
+		
+		<selectKey keyProperty = "market_no" resultType="int" order="BEFORE">
+			select seq_market.NEXTVAL from dual
+		</selectKey>
+		
+		INSERT INTO market VALUES(
+		#{market_no }, #{writer }, #{head_code },
+		#{title }, #{item_code }, #{content },
+		#{price }, sysdate, #{thumbnail }, #{mobile },
+		0, 'Y')
+		
+	</insert>
+	
+	<!-- 20210319_ggy : 미니장터파일 등록 -->
+	<insert id="registmarketfiles" parameterType="marketFilesVo">
+		INSERT INTO marketfiles VALUES(
+		seq_marketfiles.NEXTVAL, #{market_no }, #{file_no }, 'Y')
+	</insert>
+	
+	<!-- 20210327_ggy : 미니장터 첨부파일 있는지 확인 -->
+	<select id="selectMarketFilesInfo" parameterType="int"
+				resultType="marketFilesVo">
+		SELECT 
+		    m.file_record_no
+		    , m.market_no
+		    , m.file_no
+		    , (select file_nm from files where file_no = m.file_no) file_nm
+		FROM marketfiles m
+		WHERE (select file_no from files where file_no = m.file_no) = #{file_no }
+		AND m.use_yn = 'Y'
+		AND (select use_yn from files where file_no = m.file_no) = 'Y'
+	</select>
+	
+	<!-- 20210322_ggy : 미니장터 첨부파일 삭제 -->
+	<update id="deleteMiniMarketFiles" parameterType="int">
+		update marketfiles set use_yn = 'N'
+		where file_record_no = #{file_record_no }
+	</update>
+	
+	<update id="modifyMiniMarketInfo" parameterType="miniMarketVo">
+		
+		update market set
+			title = #{title }
+			, mobile = #{mobile }
+			, head_code = #{head_code }
+			, item_code = #{item_code }
+			, content = #{content }
+			, price = #{price }
+			, thumbnail = #{thumbnail }
+		where market_no = #{market_no }
+		and writer = #{writer }
+		
+	</update>	
+	
+	<update id="deleteMiniMarketPost" parameterType="map">
+		update market set use_yn = 'N'
+		where writer = #{writer }
+		and market_no = #{market_no }
+	</update>
+	
+	<!-- 20210324_ggy : 미니장터게시글 썸네일 파일 삭제 -->
+	<update id="deleteThumbnailFiles" parameterType="int">
+		update files set use_yn = 'N'
+		where file_no = #{file_no }
+	</update>
+	
+	<!-- 20210324_ggy : 미니장터 게시글 댓글 조회 -->
+	<select id="selectMarketReplyList" parameterType="int" 
+							resultType="marketReplyVo">
+		select 
+			reply_code
+			, market_no
+			, writer
+			, content
+			, reg_dt
+		from marketreply
+		where market_no = #{market_no }
+		and use_yn = 'Y'
+	</select>
+	
+	<!-- 20210324_ggy : 미니장터 게시글 댓글 등록 -->
+	<insert id="registMarketReply" parameterType="map">
+		insert into marketreply values(
+			seq_marketreply.nextval
+			, #{market_no }
+			, #{writer }
+			, #{content }
+			, sysdate
+			, 'Y' )
+	</insert>
+	
+	<!-- 20210325_ggy : 미니장터 게시글 댓글 수정 -->
+	<update id="modifyMarketReply" parameterType="map">
+		update marketreply set content = #{content }
+		where writer = #{writer }
+		and market_no = #{market_no }
+		and reply_code = #{reply_code }
+	</update>
+	
+	<!-- 20210325_ggy : 미니장터 게시글 댓글 삭제 -->
+	<update id="deleteMarketReply" parameterType="map">
+		update marketreply set use_yn = 'N'
+		where writer = #{writer }
+		and reply_code = #{reply_code }
+	</update>
+	
+	
+</mapper>
